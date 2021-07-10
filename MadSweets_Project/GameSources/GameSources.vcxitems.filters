@@ -61,6 +61,24 @@
     <Filter Include="Stages\GameStage">
       <UniqueIdentifier>{997c51af-c47c-47d7-90b3-b958dc709dd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru">
+      <UniqueIdentifier>{d3af788f-c0c9-4122-9ab8-27d30e05e62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar">
+      <UniqueIdentifier>{ceb38311-a939-4f54-914d-4553ac69e531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar\GraphNode">
+      <UniqueIdentifier>{fd7ddc07-2b43-4996-903e-2df1a49d9fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar\GraphEdge">
+      <UniqueIdentifier>{5c3cd9e0-b287-4aee-b098-24bcdd6fd7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar\GraphNode\NavGraphNode">
+      <UniqueIdentifier>{0127342d-7a04-425a-a63e-dd2a8650a656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar\SparseGraph">
+      <UniqueIdentifier>{146890ae-e14b-4f42-b16f-b1c8e8b6d6d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -108,6 +126,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
       <Filter>Objects\Player</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h">
+      <Filter>Maru\Astar\GraphNode</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h">
+      <Filter>Maru\Astar\GraphEdge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h">
+      <Filter>Maru\Astar\GraphNode\NavGraphNode</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h">
+      <Filter>Maru\Astar\SparseGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -145,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
       <Filter>Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp">
+      <Filter>Maru\Astar\GraphNode</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp">
+      <Filter>Maru\Astar\GraphEdge</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
