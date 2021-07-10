@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{4b0a624a-610d-4bc6-b311-2b02a781cdf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{96692d2a-8790-41a9-bfac-6c5662d4ad61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{2c12e06e-d950-411e-8b3b-973e2fba8a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{0a16c94b-80da-495c-a4eb-fa9d852f3155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs">
+      <UniqueIdentifier>{b1697eed-9908-4826-a43e-fc6bdeafc6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Inputs">
+      <UniqueIdentifier>{8ea8304f-7d85-4729-b7b5-7be5259c8157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys">
+      <UniqueIdentifier>{9f290e5f-5ed5-4847-a9b1-b069ae6c90b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Inputs\InputHelper">
+      <UniqueIdentifier>{6034174d-3bde-4479-ae15-dd94addc6417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys\DelegateSystem">
+      <UniqueIdentifier>{2c9342b7-cf30-4d49-bdfe-bbb26702b974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Inputs\BasecrossInputer">
+      <UniqueIdentifier>{5a57cec0-049e-4985-96f2-7ddd9088504a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\basecross">
+      <UniqueIdentifier>{bb695e37-2514-4694-bf85-ab9b2c3717ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys\ActionTimer">
+      <UniqueIdentifier>{cf684c3b-b1b7-4fca-ab0a-047c882a933b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\basecross\UIHelper">
+      <UniqueIdentifier>{c21e1771-31e4-4beb-b470-3489478cdabb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys\ex_weak_ptr">
+      <UniqueIdentifier>{c1dea5a4-1867-4a7c-9eb9-38af1ae3e5b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\basecross\BezierTransitioner">
+      <UniqueIdentifier>{67091211-fc35-4bf9-b7e4-25bf77668c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Maths">
+      <UniqueIdentifier>{96c4f73f-ab43-4bee-85e0-0dbfede4fea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Maths\Bezier">
+      <UniqueIdentifier>{f70e135d-2359-44a1-a195-57b7670dc925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player">
+      <UniqueIdentifier>{ab924e83-5c70-4a49-8885-1bda3f61f46a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stages">
+      <UniqueIdentifier>{3193fbb8-f073-4421-b1e5-ded3011f2184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stages\GameStage">
+      <UniqueIdentifier>{997c51af-c47c-47d7-90b3-b958dc709dd9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Stages\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h">
+      <Filter>Patchs\Inputs\InputHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h">
+      <Filter>Patchs\Utilitys\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h">
+      <Filter>Patchs\Inputs\BasecrossInputer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h">
+      <Filter>Patchs\Utilitys\ActionTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h">
+      <Filter>Patchs\basecross\UIHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h">
+      <Filter>Patchs\Utilitys\ex_weak_ptr</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h">
+      <Filter>Patchs\Maths\Bezier</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h">
+      <Filter>Patchs\basecross\BezierTransitioner</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h">
+      <Filter>Patchs</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>Objects\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Stages\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp">
+      <Filter>Patchs\Inputs\InputHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp">
+      <Filter>Patchs\Inputs\BasecrossInputer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp">
+      <Filter>Patchs\Utilitys\ActionTimer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp">
+      <Filter>Patchs\basecross\UIHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp">
+      <Filter>Patchs\Maths\Bezier</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp">
+      <Filter>Patchs\basecross\BezierTransitioner</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
+      <Filter>Objects\Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
