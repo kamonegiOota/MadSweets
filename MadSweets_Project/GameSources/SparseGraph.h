@@ -63,9 +63,9 @@ namespace basecross {
 		/// 次のフリーノードのインデックスを参照する。
 		/// </summary>
 		/// <returns></returns>
-		//int GetNextFreeNodeIndex() const{
-
-		//}
+		int GetNextFreeNodeIndex() const{
+			return m_nextNodeIndex;
+		}
 
 		/// <summary>
 		/// このグラフのノードを追加して、そのインデックスを返す。
@@ -74,6 +74,7 @@ namespace basecross {
 		/// <returns>追加したノードのインデックス</returns>
 		int AddNode(const NodeType& node) {
 			m_nodes.push_back(node);
+			m_nextNodeIndex++;
 			return m_nodes.size() - 1;
 		}
 
@@ -90,7 +91,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="edge">追加したいエッジ</param>
 		void AddEdge(const EdgeType& edge) {
-			//m_edges.push_back(edge);
+			m_edges[edge.from].push_back(edge);
 		}
 
 		/// <summary>
@@ -106,17 +107,55 @@ namespace basecross {
 		/// このグラフ内のノードの個数を返す。
 		/// </summary>
 		/// <returns>ノードの個数</returns>
-		//int GetNumNodes() const {
-
-		//}
+		int GetNumNodes() const {
+			return m_nodes.size();
+		}
 
 		/// <summary>
 		/// このグラフ内に存在するアクティブなノードの個数を返す。
 		/// </summary>
 		/// <returns>アクティブなノードの個数</returns>
-		//int GetNumActiveNodes() const {
+		int GetNumActiveNodes() const {
+			int num = 0;
+			for (auto node : m_nodes) {
+				if (node.IsActive()) {
+					num++;
+				}
+			}
+			return num;
+		}
 
-		//}
+		int GetNumEdges() const {
+			int num = 0;
+			for (auto edges : m_edges) {
+				num += edges.size();
+			}
+
+			return num;
+		}
+
+		bool IsDigraph() const {
+			return m_isDigraph;
+		}
+
+		bool IsEmpty() const {
+			return m_nodes.size() == 0 ? true, false;
+		}
+
+		/// <summary>
+		/// 指定したインデックスを持つノードがこのグラフ内に存在する場合、trueを返す。
+		/// </summary>
+		/// <param name="index">指定したインデックス</param>
+		/// <returns>指定したインデックスを持つノードが存在する場合はtrue</returns>
+		bool IsPresent(int index) const {
+			for (auto node : m_nodes) {
+				if (node.GetIndex() == index) {
+					return true;
+				}
+			}
+			
+			return false;
+		}
 	};
 
 }
