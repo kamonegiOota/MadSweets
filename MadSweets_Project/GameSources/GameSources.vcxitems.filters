@@ -79,6 +79,9 @@
     <Filter Include="Maru\Astar\SparseGraph">
       <UniqueIdentifier>{146890ae-e14b-4f42-b16f-b1c8e8b6d6d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\TestStage">
+      <UniqueIdentifier>{84e15fa2-dc3d-46bd-a2e2-6b680dbee1e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -138,6 +141,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h">
       <Filter>Maru\Astar\SparseGraph</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h">
+      <Filter>Maru\TestStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -181,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp">
       <Filter>Maru\Astar\GraphEdge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
+      <Filter>Maru\TestStage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
