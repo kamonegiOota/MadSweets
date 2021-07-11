@@ -12,6 +12,7 @@ namespace basecross {
 	{
 	protected:
 		int m_index;
+		bool m_isActive;
 
 	public:
 
@@ -26,6 +27,14 @@ namespace basecross {
 
 		void SetIndex(const int& index) {
 			m_index = index;
+		}
+
+		bool IsActive() {
+			return m_isActive;
+		}
+
+		void SetIsActive(bool b) {
+			m_isActive = b;
 		}
 	};
 	

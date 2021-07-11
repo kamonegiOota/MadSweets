@@ -14,7 +14,7 @@ namespace basecross {
 	{}
 
 	GraphNode::GraphNode(const int& index)
-		:m_index(index)
+		:m_index(index),m_isActive(true)
 	{}
 
 }
