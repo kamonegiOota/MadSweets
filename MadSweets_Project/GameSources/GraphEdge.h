@@ -13,8 +13,8 @@ namespace basecross {
 	protected:
 		//エッジは二つのノードを連結する。
 		//有効ノードは常に正
-		int m_front;
-		int m_back;
+		int m_from;
+		int m_to;
 
 		float m_cost;  //移動のコスト
 
@@ -29,18 +29,18 @@ namespace basecross {
 		
 		//フロント
 		int GetFront() const {  
-			return m_front;
+			return m_from;
 		}
-		void SetFront(const int& front) {
-			m_front = front;
+		void SetFront(const int& from) {
+			m_from = from;
 		}
 
 		//バック
-		int GetBack() const {   
-			return m_back;
+		int GetTo() const {   
+			return m_to;
 		}
-		void SetBack(const int& back) {
-			m_back = back;
+		void SetTo(const int& to) {
+			m_to = to;
 		}
 
 		//コスト

@@ -19,12 +19,12 @@ namespace basecross {
 		GraphEdge(front,back,0.0f)
 	{}
 
-	GraphEdge::GraphEdge(const int& front, 
-		const int& back, 
+	GraphEdge::GraphEdge(const int& from, 
+		const int& to, 
 		const int& cost
 	):
-		m_front(front),
-		m_back(back),
+		m_from(from),
+		m_to(to),
 		m_cost(cost)
 	{}
 
