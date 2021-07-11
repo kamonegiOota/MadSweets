@@ -22,7 +22,7 @@ namespace basecross {
 
 		GraphEdge();
 		GraphEdge(const int& front, const int& back);
-		GraphEdge(const int& front, const int& back, const int& cost);
+		GraphEdge(const int& front, const int& back, const float& cost);
 		virtual ~GraphEdge() {}
 
 		//アクセッサ-------------------------------------------------------

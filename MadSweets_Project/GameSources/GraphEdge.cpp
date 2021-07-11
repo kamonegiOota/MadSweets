@@ -21,7 +21,7 @@ namespace basecross {
 
 	GraphEdge::GraphEdge(const int& from, 
 		const int& to, 
-		const int& cost
+		const float& cost
 	):
 		m_from(from),
 		m_to(to),
