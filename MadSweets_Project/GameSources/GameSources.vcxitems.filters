@@ -85,6 +85,9 @@
     <Filter Include="Maru\Enemy">
       <UniqueIdentifier>{df70e2e6-5712-4e19-9882-f83cbd767c0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\TestEnemy">
+      <UniqueIdentifier>{96a6c5a0-c6ba-4bc6-9cc8-8c8118a05b56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h">
       <Filter>Maru\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h">
+      <Filter>Maru\Enemy\TestEnemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -196,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
       <Filter>Maru\TestStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEneny.cpp">
+      <Filter>Maru\Enemy\TestEnemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
