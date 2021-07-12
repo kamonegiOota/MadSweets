@@ -27,6 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -47,7 +48,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEneny.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
