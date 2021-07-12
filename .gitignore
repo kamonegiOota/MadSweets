@@ -345,3 +345,4 @@ media/Datas/volume.dat
 MadSweets_Project/Temp/
 MadSweets_Project/Debug/
 MadSweets_Project/Release/
+*.cso
