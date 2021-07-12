@@ -1,6 +1,6 @@
 /*!
-@file MaruStage.cpp
-@brief MaruStageÀ‘Ì
+@file BaseEnemy.cpp
+@brief BaseEnemyÀ‘Ì
 ’S“–ÒFŠÛR —TŠì
 */
 
