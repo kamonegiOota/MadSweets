@@ -34,11 +34,11 @@ namespace basecross {
 		/// </summary>
 		void Move();
 		/// <summary>
-		/// 目的地に限りなく近く、次のポジションのindexに切り替えるならtrue
+		/// 目的地に限りなく近い場所にいるならtrue
 		/// </summary>
 		/// <param name="pos">現在のポジション</param>
-		/// <returns>次のインデックスにするならtrue</returns>
-		bool IsNextIndex(const Vec3& pos);
+		/// <returns>目的地に限りなく近い場所になるならtrue</returns>
+		bool IsNearArrival(const Vec3& pos);
 		/// <summary>
 		/// 次の目的地のインデックスに切り替える処理
 		/// </summary>

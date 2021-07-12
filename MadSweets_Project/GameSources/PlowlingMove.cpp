@@ -31,7 +31,6 @@ namespace basecross {
 	{}
 
 
-
 	Vec3 PlowlingMove::CalucMoveVec() {
 		auto selfPos = transform->GetPosition();
 		auto movePos = m_positions[m_index] - selfPos;
@@ -48,12 +47,12 @@ namespace basecross {
 
 		transform->SetPosition(pos);
 
-		if (IsNextIndex(pos)) {   //次のインデックスになったら
+		if (IsNearArrival(pos)) {   //目的地に到達していたら
 			NextIndex();
 		}
 	}
 
-	bool PlowlingMove::IsNextIndex(const Vec3& pos) {
+	bool PlowlingMove::IsNearArrival(const Vec3& pos) {
 		float nearRange = 0.1f;  //近くまで来たら、次のポジションに移動するようにする。
 
 		auto toTargetVec = m_positions[m_index] - pos;
@@ -62,7 +61,7 @@ namespace basecross {
 	}
 
 	void PlowlingMove::NextIndex() {
-		m_index += m_addIndexDirect;
+		m_index += m_addIndexDirect; //カウントを進める。
 
 		if (m_index >= m_positions.size() || m_index < 0) {
 			m_addIndexDirect *= -1;  //カウントを進める方向を逆にする。
