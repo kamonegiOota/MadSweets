@@ -40,7 +40,7 @@ namespace basecross
 
 		if (parentTransform)
 		{
-			return parentTransform->GetAnchorOffset(anchorType);
+			return parentTransform->GetAnchorOffset(anchorType, false);
 		}
 
 		Vec2 anchorOffset = m_anchorOffsetTable.at(anchorType);
@@ -79,38 +79,6 @@ namespace basecross
 		return m_pivot;
 	}
 
-	Vec2 RectTransform::GetAnchorOffsetWorldPosition(const AnchorType anchorType) const
-	{
-		Vec2 anchorOffset = m_anchorOffsetTable.at(anchorType);
-		anchorOffset.y = 1.0f - anchorOffset.y;
-		Vec2 offset = anchorOffset - m_pivot;
-
-		auto scale = transform->GetWorldScale();
-
-		return GetCenterOffsetPosition() + Vec2(m_width * offset.x * scale.x, m_height * offset.y * scale.y);
-	}
-
-	Vec2 RectTransform::GetCenterOffsetPosition(const bool isScaleble) const
-	{
-
-		auto parentRectTransform = GetParentRectTransform();
-
-		auto position = Vec2(transform->GetPosition().x, transform->GetPosition().y);
-
-		if (!parentRectTransform)
-		{
-			return position + GetParentAnchorOffset(m_anchorType);
-		}
-
-		auto parentAnchorOffset = parentRectTransform->GetCenterOffsetPosition() + GetParentAnchorOffset(m_anchorType);
-
-		auto parentScale = isScaleble ? transform->GetParent()->GetComponent<Transform>()->GetWorldScale() : Vec3(1,1,1);
-
-		auto positionOffset = Vec2(position.x * parentScale.x, position.y * parentScale.y);
-
-		return parentAnchorOffset + positionOffset;
-	}
-
 	void RectTransform::SetWidth(const float width)
 	{
 		m_width = width;
@@ -137,35 +105,92 @@ namespace basecross
 		return m_height;
 	}
 
+	void RectTransform::SetPosition(const Vec2& position)
+	{
+		m_position = position;
+	}
+
+	void RectTransform::SetPosition(const float x, const float y)
+	{
+		SetPosition(Vec2(x, y));
+	}
+
+	Vec2 RectTransform::GetPosition() const
+	{
+		return m_position;
+	}
+
+	void RectTransform::SetRotation(const float radian)
+	{
+		m_rotation = radian;
+	}
+
+	float RectTransform::GetRotation() const
+	{
+		return m_rotation;
+	}
+
+	void RectTransform::Rotate(const float radian)
+	{
+		m_rotation += radian;
+	}
+
+	void RectTransform::SetScale(const Vec2& scale)
+	{
+		m_scale = scale;
+	}
+
+	void RectTransform::SetScale(const float x, const float y)
+	{
+		SetScale(Vec2(x, y));
+	}
+
+	Vec2 RectTransform::GetScale() const
+	{
+		return m_scale;
+	}
+
+	Vec2 RectTransform::GetWorldScale() const
+	{
+		auto scale = GetScale();
+
+		auto parentRectTransform = GetParentRectTransform();
+
+		if (parentRectTransform)
+		{
+			auto parentScale = parentRectTransform->GetWorldScale();
+
+			scale.x *= parentScale.x;
+			scale.y *= parentScale.y;
+
+			return scale;
+		}
+
+		return scale;
+	}
+
 	Vec2 RectTransform::GetAnchorOffset(const AnchorType anchorType,const bool isScaleble) const
 	{
 		Vec2 anchorOffset = m_anchorOffsetTable.at(anchorType);
 
 		Vec2 offset = anchorOffset - m_pivot;
 
-		Vec3 scale = isScaleble ? transform->GetWorldScale() : Vec3(1, 1, 1);
+		Vec2 scale = isScaleble ? GetWorldScale() : Vec2(1, 1);
 
 		return Vec2(m_width * scale.x * offset.x, m_height * scale.y * offset.y);
 	}
 
 	D2D1::Matrix3x2F RectTransform::GetWorldMatrix() const
 	{
-		auto centerPosition = ToWindowPoint(GetCenterOffsetPosition(false));
-		auto point2F = D2D1::Point2F(centerPosition.x, centerPosition.y);
-
-		point2F = D2D1::Point2F();
-
-		auto position = transform->GetPosition();
+		auto point2F = D2D1::Point2F();
 		
 		auto offsetPosition = GetParentAnchorOffset(m_anchorType);
-		auto windowPosition = Vec2(position.x, position.y) + GetParentAnchorOffset(m_anchorType);
+		auto windowPosition = Vec2(m_position.x, m_position.y) + GetParentAnchorOffset(m_anchorType);
 		auto positionMatrix = D2D1::Matrix3x2F::Translation(D2D1::SizeF(windowPosition.x, -windowPosition.y));
 
-		auto rotation = transform->GetQuaternion().toRotVec();
-		auto rotationMatrix = D2D1::Matrix3x2F::Rotation(XMConvertToDegrees(-rotation.z), point2F);
+		auto rotationMatrix = D2D1::Matrix3x2F::Rotation(XMConvertToDegrees(-m_rotation), point2F);
 
-		auto scale = transform->GetScale();
-		auto scaleMatrix = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale.x, scale.y), point2F);
+		auto scaleMatrix = D2D1::Matrix3x2F::Scale(D2D1::SizeF(m_scale.x, m_scale.y), point2F);
 
 		auto worldMatrix = scaleMatrix * rotationMatrix * positionMatrix;
 
@@ -178,59 +203,7 @@ namespace basecross
 
 		return worldMatrix;
 	}
-	D2D1::Matrix3x2F RectTransform::GetWorldTranslationMatrix() const
-	{
-		auto position = transform->GetPosition();
 
-		auto offsetPosition = GetParentAnchorOffset(m_anchorType);
-		auto windowPosition = Vec2(position.x, position.y) + GetParentAnchorOffset(m_anchorType);
-		auto positionMatrix = D2D1::Matrix3x2F::Translation(D2D1::SizeF(windowPosition.x, -windowPosition.y));
-
-		auto parentRectTransform = GetParentRectTransform();
-
-		if (!parentRectTransform)
-		{
-			return positionMatrix;
-		}
-
-		return positionMatrix * parentRectTransform->GetWorldTranslationMatrix();
-	}
-
-	D2D1::Matrix3x2F RectTransform::GetWorldRotationMatrix() const
-	{ 
-		auto centerPosition = ToWindowPoint(GetCenterOffsetPosition(false));
-		auto point2F = D2D1::Point2F(centerPosition.x, centerPosition.y);
-
-		auto rotation = transform->GetQuaternion().toRotVec();
-		auto rotationMatrix = D2D1::Matrix3x2F::Rotation(XMConvertToDegrees(-rotation.z), point2F);
-
-		auto parentRectTransform = GetParentRectTransform();
-
-		if (!parentRectTransform)
-		{
-			return rotationMatrix;
-		}
-
-		return rotationMatrix * parentRectTransform->GetWorldRotationMatrix();
-	}
-
-	D2D1::Matrix3x2F RectTransform::GetWorldScaleMatrix() const
-	{
-		auto centerPosition = ToWindowPoint(GetCenterOffsetPosition());
-		auto point2F = D2D1::Point2F(centerPosition.x, centerPosition.y);
-
-		auto scale = transform->GetScale();
-		auto scaleMatrix = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale.x, scale.y), point2F);
-
-		auto parentRectTransform = GetParentRectTransform();
-
-		if (!parentRectTransform)
-		{
-			return scaleMatrix;
-		}
-
-		return scaleMatrix * parentRectTransform->GetWorldScaleMatrix();
-	}
 	std::shared_ptr<RectTransform> RectTransform::GetParentRectTransform() const
 	{
 		auto parent = GetGameObject()->GetParent();
@@ -249,19 +222,6 @@ namespace basecross
 	// Image ------------------------------------
 
 	const std::vector<uint16_t> Image::m_indices = { 0,1,2, 2,1,3 };
-
-	const std::unordered_map<AnchorType, Vec2> Image::m_verticesAnchorTable =
-	{
-		std::make_pair(AnchorType::Center,Vec2(0.5f,0.5f)),
-		std::make_pair(AnchorType::Up,Vec2(0.5f,0.0f)),
-		std::make_pair(AnchorType::Down,Vec2(0.5f,1.0f)),
-		std::make_pair(AnchorType::Left,Vec2(0.0f,0.5f)),
-		std::make_pair(AnchorType::LeftUp,Vec2(0.0f,0.0f)),
-		std::make_pair(AnchorType::LeftDown,Vec2(0.0f,1.0f)),
-		std::make_pair(AnchorType::Right,Vec2(1.0f,0.5f)),
-		std::make_pair(AnchorType::RightUp,Vec2(1.0f,0.0f)),
-		std::make_pair(AnchorType::RightDown,Vec2(1.0f,1.0f))
-	};
 
 	Image::Image(std::shared_ptr<GameObject>& owner) :
 		PCTSpriteDraw(owner),
@@ -339,15 +299,25 @@ namespace basecross
 	{
 		auto parentRectTransform = rectTransform->GetParentRectTransform();
 
-		auto offset = parentRectTransform->GetAnchorOffsetWorldPosition(rectTransform->GetAnhor());
+		auto position = rectTransform->GetPosition();
 
-		auto position = transform->GetPosition();
+		auto parentScale = parentRectTransform->GetScale();
+		position.x *= parentScale.x;
+		position.y *= parentScale.y;
 
-		if (m_localPosition != position)
-		{
-			m_localPosition = position;
-			transform->SetPosition(Vec3(offset.x, offset.y, 0));
-		}
+		auto offset = parentRectTransform->GetAnchorOffset(rectTransform->GetAnhor());
+
+		position += offset;
+
+		transform->SetPosition(position.x, position.y, 0);
+
+		float rotation = rectTransform->GetRotation();
+
+		transform->SetRotation(Vec3(0, 0, rotation));
+
+		auto scale = rectTransform->GetWorldScale();
+
+		transform->SetScale(scale.x, scale.y, 1);
 	}
 	// TextBox ------------------------
 
@@ -363,10 +333,8 @@ namespace basecross
 		rectTransform = owner->GetComponent<RectTransform>();
 
 		// デバイスに依存するリソースを作成します。
-		auto Dev = App::GetApp()->GetDeviceResources();
-		auto D2DFactory = Dev->GetD2DFactory();
-		auto DWriteFactory = Dev->GetDWriteFactory();
-		auto D2DDeviceContext = Dev->GetD2DDeviceContext();
+		auto deviceResources = App::GetApp()->GetDeviceResources();
+		auto D2DFactory = deviceResources->GetD2DFactory();
 
 		SetFontColor(m_fontColor);
 
@@ -398,9 +366,8 @@ namespace basecross
 
 	void TextBox::TextLayoutUpdate()
 	{
-		auto Dev = App::GetApp()->GetDeviceResources();
-		auto D2DDeviceContext = Dev->GetD2DDeviceContext();
-		auto DWriteFactory = Dev->GetDWriteFactory();
+		auto deviceResources = App::GetApp()->GetDeviceResources();
+		auto DWriteFactory = deviceResources->GetDWriteFactory();
 
 		DWriteFactory->CreateTextLayout(
 			m_text.c_str(),
@@ -460,11 +427,6 @@ namespace basecross
 		return m_fontColor;
 	}
 
-	void TextBox::SetAnchor(const AnchorType& anchorType)
-	{
-		m_anchorType = anchorType;
-	}
-
 	void TextBox::SetFontName(const std::wstring& fontName)
 	{
 		m_fontName = fontName;
@@ -493,6 +455,11 @@ namespace basecross
 	void TextBox::SetText(const std::wstring& text)
 	{
 		m_text = text;
+	}
+
+	void TextBox::AddText(const std::wstring& text)
+	{
+		SetText(m_text + text);
 	}
 
 	std::wstring TextBox::GetText() const
@@ -552,20 +519,13 @@ namespace basecross
 	{
 		auto deviceResources = App::GetApp()->GetDeviceResources();
 		auto D2DDeviceContext = deviceResources->GetD2DDeviceContext();
-		auto DWriteFactory = deviceResources->GetDWriteFactory();
 
 		auto defaultTranslation = D2D1::Matrix3x2F::Translation(D2D1::SizeF(
 			WindowSetting::WINDOW_WIDTH * 0.5f,
 			WindowSetting::WINDOW_HEIGHT * 0.5f
 		));
 
-		auto translation = defaultTranslation * rectTransform->GetWorldTranslationMatrix();
-		auto rotation = rectTransform->GetWorldRotationMatrix();
-		auto scale = rectTransform->GetWorldScaleMatrix();
-
 		auto worldMatrix = rectTransform->GetWorldMatrix();
-
-		//D2DDeviceContext->SetTransform(translation * scale * rotation);
 
 		D2DDeviceContext->SetTransform(worldMatrix * defaultTranslation);
 
