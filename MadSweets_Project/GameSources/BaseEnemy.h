@@ -14,9 +14,11 @@ namespace basecross {
 
 	public:
 		
-		BaseEnemy(const std::shared_ptr<GameObject> objPtr)
+		BaseEnemy(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
+
+		void OnDraw() override {}
 
 	};
 
