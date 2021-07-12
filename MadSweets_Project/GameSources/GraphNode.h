@@ -1,6 +1,7 @@
 /*!
 @file GraphNode.h
 @brief GraphNode‚È‚Ç
+’S“–ÒFŠÛR —TŠì
 */
 
 #pragma once
