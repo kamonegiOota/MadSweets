@@ -82,6 +82,9 @@
     <Filter Include="Maru\TestStage">
       <UniqueIdentifier>{84e15fa2-dc3d-46bd-a2e2-6b680dbee1e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy">
+      <UniqueIdentifier>{df70e2e6-5712-4e19-9882-f83cbd767c0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h">
       <Filter>Maru\TestStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h">
+      <Filter>Maru\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

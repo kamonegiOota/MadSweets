@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
