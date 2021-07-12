@@ -9,7 +9,7 @@
 
 namespace basecross {
 
-	class MaruStage : Stage {
+	class MaruStage : public Stage {
 
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();

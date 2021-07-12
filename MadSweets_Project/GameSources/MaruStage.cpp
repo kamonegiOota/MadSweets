@@ -7,6 +7,8 @@
 #include "Project.h"
 #include "MaruStage.h"
 
+#include "MTestEnemyObject.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -34,8 +36,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 
-
-
+			AddGameObject<MTestEnemyObject>();
 		}
 		catch (...) {
 			throw;
