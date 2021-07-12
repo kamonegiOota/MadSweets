@@ -1,6 +1,7 @@
 /*!
-@file ProjectBehavior.h
-@brief プロジェク定義の行動クラス
+@file NavGraphNode.h
+@brief NavGraphNodeクラス
+担当者：丸山 裕喜
 */
 
 #pragma once
