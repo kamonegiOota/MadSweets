@@ -10,7 +10,6 @@
 
 namespace basecross {
 
-	template<class ExtraInfo>
 	class NavGraphNode : public GraphNode
 	{
 	protected:
@@ -18,8 +17,6 @@ namespace basecross {
 		/// ƒm[ƒh‚ÌêŠ
 		/// </summary>
 		Vec2 m_position;
-
-		ExtraInfo m_extraInfo;
 
 	public:
 		
