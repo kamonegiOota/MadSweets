@@ -56,9 +56,15 @@ namespace basecross {
 		/// <param name="from"></param>
 		/// <param name="back"></param>
 		/// <returns></returns>
-		//const EdgeType& GetEdge(const int& from,const int& back) const {
-		//	return 
-		//}
+		const EdgeType& GetEdge(const int& from,const int& to) const {
+			for (auto edge : m_edges[from]) {
+				if (edge.GetTo() == to) {
+					return edge;
+				}
+			}
+
+			return nullptr;
+		}
 
 		/// <summary>
 		/// 次のフリーノードのインデックスを参照する。
@@ -100,7 +106,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="from"></param>
 		/// <param name="back"></param>
-		void RemoveEdge(const int& from, const int& back) {
+		void RemoveEdge(const int& from, const int& to) {
 
 		}
 
