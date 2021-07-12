@@ -7,6 +7,9 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "NavGraphNode.h"
+#include "GraphEdge.h"
+
 namespace basecross {
 
 	template<class node_type, class edge_type>
