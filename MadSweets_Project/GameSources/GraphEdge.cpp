@@ -1,6 +1,6 @@
 /*!
-@file Character.cpp
-@brief キャラクターなど実体
+@file GraphEdge.cpp
+@brief GraphEdge実体
 */
 
 #include "stdafx.h"
