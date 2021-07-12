@@ -10,7 +10,7 @@
 
 namespace basecross {
 
-	class MTestEnemy : BaseEnemy
+	class MTestEnemy : public BaseEnemy
 	{
 		
 
