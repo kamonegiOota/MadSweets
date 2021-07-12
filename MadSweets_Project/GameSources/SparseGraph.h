@@ -1,6 +1,7 @@
 /*!
 @file SparseGraph.cpp
 @brief SparseGraphÀ‘Ì
+’S“–ÒFŠÛR —TŠì
 */
 
 #include "stdafx.h"
@@ -156,6 +157,8 @@ namespace basecross {
 			
 			return false;
 		}
+
+
 	};
 
 }
