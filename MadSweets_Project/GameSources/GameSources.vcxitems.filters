@@ -85,6 +85,27 @@
     <Filter Include="Maru\Enemy">
       <UniqueIdentifier>{df70e2e6-5712-4e19-9882-f83cbd767c0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi">
+      <UniqueIdentifier>{31a41ec9-3d62-4d81-a7c6-789613bc9ee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Inputs">
+      <UniqueIdentifier>{b66039da-1cf4-4712-8b67-266fd2b8b139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Inputs\PlayerInputer">
+      <UniqueIdentifier>{b403c781-feea-4210-ae15-8248516a5e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\PlayerObject">
+      <UniqueIdentifier>{122d87cd-c1bf-4518-8c04-83d5028304f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Stage">
+      <UniqueIdentifier>{cea4f9bd-46bd-4295-b7a5-2795e5fa44f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\PlayerCameraObject">
+      <UniqueIdentifier>{621fd597-b413-47d9-bdb3-df9a993dff9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Maths\MyMath">
+      <UniqueIdentifier>{b5b99c72-316b-47bf-89cc-86ccf6366663}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -150,6 +171,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h">
       <Filter>Maru\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h">
+      <Filter>Itabashi\Inputs\PlayerInputer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h">
+      <Filter>Itabashi\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h">
+      <Filter>Itabashi\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h">
+      <Filter>Patchs\Maths\MyMath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -196,6 +229,18 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
       <Filter>Maru\TestStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp">
+      <Filter>Itabashi\Inputs\PlayerInputer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp">
+      <Filter>Itabashi\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp">
+      <Filter>Itabashi\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp">
+      <Filter>Patchs\Maths\MyMath</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
