@@ -1,0 +1,120 @@
+#include"PlayerInputer.h"
+
+namespace basecross
+{
+	int PlayerInputer::m_rotationSensitivityLevel = 5;
+	int PlayerInputer::m_mouseSensitivityLevel = 5;
+
+	Vec2 PlayerInputer::GetMoveDirection()
+	{
+		static const auto& inputDevice = App::GetApp()->GetMyInputDevice();
+		static const auto& keyBoard = inputDevice->GetKeyBoard();
+		static const auto& xinput = inputDevice->GetXInputGamePad();
+
+		Vec2 direction;
+
+		if (keyBoard.IsKeyPush(KeyCode::D))
+		{
+			direction.x += 1;
+		}
+
+		if (keyBoard.IsKeyPush(KeyCode::A))
+		{
+			direction.x -= 1;
+		}
+
+		if (keyBoard.IsKeyPush(KeyCode::W))
+		{
+			direction.y += 1;
+		}
+
+		if (keyBoard.IsKeyPush(KeyCode::S))
+		{
+			direction.y -= 1;
+		}
+
+
+		direction.x += xinput.GetLeftThumb().x;
+		direction.y += xinput.GetLeftThumb().y;
+
+		direction.x = MyMath::Clamp(direction.x, -1.0f, 1.0f);
+
+		direction.y = MyMath::Clamp(direction.y, -1.0f, 1.0f);
+
+		if (direction.length() > 1.0f)
+		{
+			direction.normalize();
+		}
+
+		return direction;
+	}
+
+	Vec2 PlayerInputer::GetCameraRotation()
+	{
+		static const auto& inputDevice = App::GetApp()->GetMyInputDevice();
+		static const auto& keyBoard = inputDevice->GetKeyBoard();
+		static const auto& xinput = inputDevice->GetXInputGamePad();
+
+		Vec2 rotation;
+
+		rotation.x += xinput.GetRightThumb().x;
+		rotation.y += xinput.GetRightThumb().y;
+
+		auto mouseMovePoint = inputDevice->GetMouseState().GetMouseMove();
+		auto mouseMove = Vec2(mouseMovePoint.x, mouseMovePoint.y);
+
+		rotation += mouseMove / MOUSE_SENSITIVITY_DEFAULT_VALUE * 
+			(m_mouseSensitivityLevel / static_cast<float>(MAX_SENSITIVITY_LEVEL));
+
+		rotation *= m_rotationSensitivityLevel / static_cast<float>(MAX_SENSITIVITY_LEVEL);
+
+		rotation *= XMConvertToRadians(12);
+
+		return rotation;
+
+	}
+
+	void PlayerInputer::SetMouseSensitivityLevel(const int level)
+	{
+		m_mouseSensitivityLevel = level;
+	}
+
+	void PlayerInputer::SetRotationSensitivityLevel(const int level)
+	{
+		m_rotationSensitivityLevel = level;
+	}
+
+	int PlayerInputer::GetMouseSensitivityLevel()
+	{
+		return m_mouseSensitivityLevel;
+	}
+
+	int PlayerInputer::GetRotationSensitivityLevel()
+	{
+		return m_rotationSensitivityLevel;
+	}
+
+	bool PlayerInputer::IsDecision()
+	{
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::Space) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::A);
+	}
+
+	bool PlayerInputer::IsCancel()
+	{
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::X) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::B);
+	}
+
+	bool PlayerInputer::IsChangeStance()
+	{
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::C) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::RightThumb);
+	}
+
+	bool PlayerInputer::IsMenuDown()
+	{
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::Tab) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::Start);
+	}
+}
