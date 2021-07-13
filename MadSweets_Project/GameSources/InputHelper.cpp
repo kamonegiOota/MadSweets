@@ -91,8 +91,8 @@ namespace itbs
 				return;
 			}
 
-			this->x = x;
-			this->y = y;
+			this->x = x / INPUT_MAX_VALUE;
+			this->y = y / INPUT_MAX_VALUE;
 		}
 
 		// XInputGamePadState --------------------------------

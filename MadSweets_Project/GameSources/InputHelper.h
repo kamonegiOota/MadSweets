@@ -195,6 +195,8 @@ namespace itbs
 		/// </summary>
 		struct XInputGamePadThumbState
 		{
+			static constexpr SHORT INPUT_MAX_VALUE = 0x7FFF;
+
 			float x;
 			float y;
 
