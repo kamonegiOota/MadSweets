@@ -84,7 +84,7 @@ namespace itbs
 		void XInputGamePadThumbState::UpdateState(const float x,const float y,const int deadzone)
 		{
 			if ((deadzone > x && x > -deadzone) &&
-				(deadzone > y && deadzone > -deadzone))
+				(deadzone > y && y > -deadzone))
 			{
 				this->x = 0;
 				this->y = 0;
