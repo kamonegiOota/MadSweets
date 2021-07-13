@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include "PlayerInputer.h"
 
 using namespace basecross;
 
@@ -126,6 +127,7 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 	//ウインドウ情報。メッセージボックス表示チェックに使用
 	WINDOWINFO WinInfo;
 	ZeroMemory(&WinInfo, sizeof(WinInfo));
+
 	//例外処理開始
 	try {
 		//COMの初期化
@@ -136,7 +138,10 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 		}
 		////アプリケーションクラスの構築
 		App::CreateApp(hInstance, hWnd, isFullScreen, iClientWidth, iClientHeight);
-		//シーンの作成
+
+		App::GetApp()->GetMyInputDevice()->AddInputer(new PlayerInputer());
+
+	//シーンの作成
 		//戻り値のScenePtrは汎用的に使える
 		auto ScenePtr = App::GetApp()->CreateScene<Scene>();
 		//メッセージループ
