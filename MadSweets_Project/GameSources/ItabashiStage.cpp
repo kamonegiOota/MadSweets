@@ -1,5 +1,6 @@
 #include"ItabashiStage.h"
 #include"PlayerObject.h"
+#include"PlayerCameraObject.h"
 
 namespace basecross
 {
@@ -18,6 +19,9 @@ namespace basecross
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 
-		AddGameObject<PlayerObject>();
+		auto playerObject = AddGameObject<PlayerObject>();
+		auto cameraObject = AddGameObject<PlayerCameraObject>();
+		cameraObject->SetParent(playerObject);
+
 	}
 }
