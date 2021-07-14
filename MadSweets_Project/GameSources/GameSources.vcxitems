@@ -47,8 +47,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />

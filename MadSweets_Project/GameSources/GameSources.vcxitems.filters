@@ -242,5 +242,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp">
       <Filter>Maru\Enemy\Component\PlowlingMove</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp">
+      <Filter>Maru\Astar\Heuristic</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp">
+      <Filter>Maru\Astar\GraphAstar</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
