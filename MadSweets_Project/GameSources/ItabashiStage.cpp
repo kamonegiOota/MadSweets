@@ -39,5 +39,7 @@ namespace basecross
 		gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
 		gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
 		gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
+
+		itbs::Input::CursorSetting::SetIsLock(true);
 	}
 }
