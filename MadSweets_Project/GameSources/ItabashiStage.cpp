@@ -23,5 +23,21 @@ namespace basecross
 		auto cameraObject = AddGameObject<PlayerCameraObject>();
 		cameraObject->SetParent(playerObject);
 
+		std::vector<std::shared_ptr<GameObject>> gameobjects;
+
+		for (int i = 0; i < 4; i++)
+		{
+			auto gameobject = AddGameObject<GameObject>();
+
+			auto draw = gameobject->AddComponent<PNTStaticDraw>();
+			draw->SetMeshResource(L"DEFAULT_CUBE");
+
+			gameobjects.push_back(gameobject);
+		}
+
+		gameobjects[0]->GetComponent<Transform>()->SetPosition(-2, 0, -2);
+		gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
+		gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
+		gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
 	}
 }
