@@ -183,6 +183,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h">
       <Filter>Patchs\Maths\MyMath</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h">
+      <Filter>Itabashi\PlayerCameraObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp">
       <Filter>Patchs\Maths\MyMath</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp">
+      <Filter>Itabashi\PlayerCameraObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
