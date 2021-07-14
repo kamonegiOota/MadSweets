@@ -7,8 +7,8 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "NavGraphNode.h"
-#include "GraphEdge.h"
+//#include "NavGraphNode.h"
+//#include "GraphEdge.h"
 
 namespace basecross {
 
@@ -22,7 +22,7 @@ namespace basecross {
 
 		typedef std::vector<node_type> NodeVector;
 		typedef std::vector<edge_type> EdgeVector; //削除の都合上リストにしてある。
-		typedef std::vector<EdgeVector> Edge2DVector;
+		typedef std::map<int,EdgeVector> EdgeMapVector;
 
 	private:
 		//このクラスを構成するノード
@@ -30,7 +30,7 @@ namespace basecross {
 
 		//隣接エッジリストのベクター
 		//(各ノードのインデックスは、そのノードに関連付けられたエッジのリストのキーとなる)
-		Edge2DVector m_edges;
+		EdgeMapVector m_edges;
 
 		//このノードは有効グラフか？
 		bool m_isDigraph;
@@ -40,8 +40,8 @@ namespace basecross {
 
 	public:
 		SparseGraph(bool digraph):
-			m_nextNodeIndex(0)
-			m_isDigraph(diraph)
+			m_nextNodeIndex(0),
+			m_isDigraph(digraph)
 		{}
 
 		/// <summary>
@@ -102,7 +102,7 @@ namespace basecross {
 		int AddNode(const NodeType& node) {
 			m_nodes.push_back(node);
 			m_nextNodeIndex++;
-			return m_nodes.size() - 1;
+			return (int)m_nodes.size() - 1;
 		}
 
 		/// <summary>
@@ -118,7 +118,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="edge">追加したいエッジ</param>
 		void AddEdge(const EdgeType& edge) {
-			m_edges[edge.from].push_back(edge);
+			m_edges[edge.GetFrom()].push_back(edge);
 		}
 
 		/// <summary>
