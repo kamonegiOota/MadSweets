@@ -1,5 +1,6 @@
 #include"PlayerObject.h"
 #include"PlayerInputer.h"
+#include"PlayerMover.h"
 
 namespace basecross
 {
@@ -14,20 +15,11 @@ namespace basecross
 		auto draw = AddComponent<PNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 
-		PlayerInputer::SetRotationSensitivityLevel(10);
+		AddComponent<PlayerMover>();
 	}
 
 	void PlayerObject::OnUpdate()
 	{
-		auto position = transform->GetPosition();
-		auto move= PlayerInputer::GetMoveDirection();
-		position += Vec3(move.x, 0, move.y) * App::GetApp()->GetElapsedTime() * 3;
-		transform->SetPosition(position);
-
-		auto rotation = PlayerInputer::GetCameraRotation();
-
-		//transform->Rotate(0,rotation.x, 0);
-
 
 	}
 }
