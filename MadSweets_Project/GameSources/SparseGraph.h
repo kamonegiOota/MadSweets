@@ -21,8 +21,8 @@ namespace basecross {
 		using EdgeType = edge_type ;
 
 		typedef std::vector<node_type> NodeVector;
-		typedef std::list<edge_type> EdgeList;
-		typedef std::vector<EdgeList> EdgeListVector;
+		typedef std::vector<edge_type> EdgeVector; //削除の都合上リストにしてある。
+		typedef std::vector<EdgeVector> Edge2DVector;
 
 	private:
 		//このクラスを構成するノード
@@ -30,7 +30,7 @@ namespace basecross {
 
 		//隣接エッジリストのベクター
 		//(各ノードのインデックスは、そのノードに関連付けられたエッジのリストのキーとなる)
-		EdgeListVector m_edges;
+		Edge2DVector m_edges;
 
 		//このノードは有効グラフか？
 		bool m_isDigraph;
@@ -54,6 +54,14 @@ namespace basecross {
 		}
 
 		/// <summary>
+		/// 全てのノードを渡す
+		/// </summary>
+		/// <returns>全てのノード</returns>
+		const std::vector<NodeType>& GetNodes() const {
+			return m_nodes;
+		}
+
+		/// <summary>
 		/// エッジの参照を得る
 		/// </summary>
 		/// <param name="from"></param>
@@ -67,6 +75,15 @@ namespace basecross {
 			}
 
 			return nullptr;
+		}
+
+		/// <summary>
+		/// 与えられた引数から始まるエッジリストを全て取得
+		/// </summary>
+		/// <param name="from">欲しいエッジリストのインデックス</param>
+		/// <returns>エッジリスト</returns>
+		const std::vector<EdgeType>& GetEdges(const int& from) {
+			return m_edges[from];
 		}
 
 		/// <summary>
