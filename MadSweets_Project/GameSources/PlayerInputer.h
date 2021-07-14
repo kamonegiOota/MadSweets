@@ -11,7 +11,7 @@ namespace basecross
 		static constexpr int MIN_SENSITIVITY_LEVEL = 1;
 		static constexpr int MAX_SENSITIVITY_LEVEL = 10;
 
-		static constexpr float MOUSE_SENSITIVITY_DEFAULT_VALUE = 10;
+		static constexpr float MOUSE_SENSITIVITY_DEFAULT_VALUE = 50;
 
 		static int m_mouseSensitivityLevel;
 
