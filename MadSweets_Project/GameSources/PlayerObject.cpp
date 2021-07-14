@@ -28,12 +28,6 @@ namespace basecross
 
 		//transform->Rotate(0,rotation.x, 0);
 
-		radX += rotation.x;
-		radY += rotation.y;
-
-		radY = MyMath::Clamp(radY, -XM_PIDIV4, XM_PIDIV4);
-
-		transform->SetRotation(radY, radX, 0);
 
 	}
 }
