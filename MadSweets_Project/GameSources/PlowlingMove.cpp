@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file PlowlingMove.cpp
+@brief PlowlingMove‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

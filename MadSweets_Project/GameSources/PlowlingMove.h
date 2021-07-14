@@ -1,6 +1,6 @@
 /*!
-@file BaseEnemy.cpp
-@brief BaseEnemyÀ‘Ì
+@file PlowlingMove.cpp
+@brief PlowlingMoveÀ‘Ì
 ’S“–ÒFŠÛR —TŠì
 */
 
