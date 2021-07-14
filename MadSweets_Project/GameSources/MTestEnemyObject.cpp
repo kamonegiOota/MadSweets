@@ -9,6 +9,7 @@
 
 #include "MTestEnemy.h"
 #include "PlowlingMove.h"
+#include "AstarCtrl.h"
 
 namespace basecross {
 
@@ -18,14 +19,14 @@ namespace basecross {
 		auto draw = AddComponent<BcPNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 		
-		std::vector<Vec3> poss = {
-			{0.0f,0.0f,+5.0f},
-			{0.0f,0.0f,+0.0f},
-			{0.0f,+2.0f,+0.0f},
-			{0.0f,-2.0f,0.0f}
-		};
-		auto plow = AddComponent<PlowlingMove>();
-		plow->SetPositions(poss);
+		//std::vector<Vec3> poss = {
+		//	{0.0f,0.0f,+5.0f},
+		//	{0.0f,0.0f,+0.0f},
+		//	{0.0f,+2.0f,+0.0f},
+		//	{0.0f,-2.0f,0.0f}
+		//};
+		//auto plow = AddComponent<PlowlingMove>();
+		//plow->SetPositions(poss);
 	}
 
 }
