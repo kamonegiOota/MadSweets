@@ -4,6 +4,7 @@
 #include<unordered_map>
 #include<array>
 #include"DelegateSystem.h"
+#include<queue>
 
 namespace itbs
 {
@@ -123,6 +124,15 @@ namespace itbs
 			static bool GetIsDraw();
 		};
 
+		template<class T>
+		class I_InputEventGetter
+		{
+		public:
+			virtual bool IsInputDown(const T& key) const = 0;
+			virtual bool IsInputPush(const T& key) const = 0;
+			virtual bool IsInputUp(const T& key) const = 0;
+		};
+
 		/// <summary>
 		/// マウスデータ管理クラス
 		/// </summary>
@@ -138,10 +148,16 @@ namespace itbs
 			POINT GetMouseMove() const;
 		};
 
+		class I_KeyBoardInputEventGetter : public I_InputEventGetter<KeyCode>
+		{
+		public:
+
+		};
+
 		/// <summary>
 		/// キーボード入力データ管理クラス
 		/// </summary>
-		class KeyBoardState
+		class KeyBoardState : public I_KeyBoardInputEventGetter
 		{
 			/// <summary>
 			/// キーコード最大数
@@ -161,6 +177,10 @@ namespace itbs
 			/// 現在のフレームに入力されたキーテーブル
 			/// </summary>
 			std::array<bool, MAX_KEYCODE> m_nowKeycodeTable;
+
+			std::queue<KeyCode> m_downEventQueue;
+
+			std::queue<KeyCode> m_upEventQueue;
 		public:
 			/// <summary>
 			/// キーボード入力の更新
@@ -172,22 +192,25 @@ namespace itbs
 			/// </summary>
 			/// <param name="keycode">判別用キーコード</param>
 			/// <returns>押された瞬間ならtrue</returns>
-			bool IsKeyDown(const KeyCode& keycode) const noexcept;
+			bool IsInputDown(const KeyCode& keycode) const override;
 
 			/// <summary>
 			/// キーコードに対応するキーが押されているかを判別する関数
 			/// </summary>
 			/// <param name="keycode">判別用キーコード</param>
 			/// <returns>押されているならtrue</returns>
-			bool IsKeyPush(const KeyCode& keycode) const noexcept;
+			bool IsInputPush(const KeyCode& keycode) const override;
 
 			/// <summary>
 			/// キーコードに対応するキーが離された瞬間かを判別する関数
 			/// </summary>
 			/// <param name="keycode">判別用キーコード</param>
 			/// <returns>離された瞬間ならtrue</returns>
-			bool IsKeyUp(const KeyCode& keycode) const noexcept;
+			bool IsInputUp(const KeyCode& keycode) const override;
 
+			void AddDownEvent(const KeyCode& keycode);
+
+			void AddUpEvent(const KeyCode& keycode);
 		};
 
 		/// <summary>
@@ -209,10 +232,25 @@ namespace itbs
 			void UpdateState(const float x, const float y,const int deadzone);
 		};
 
+		class I_XInputEventGetter : public I_InputEventGetter<XInputCode>
+		{
+		public:
+			/// <summary>
+			/// 左スティック入力を取得する
+			/// </summary>
+			/// <returns>左スティック入力情報</returns>
+			virtual const XInputGamePadThumbState& GetLeftThumb() const = 0;
+
+			/// <summary>
+			/// 右スティック入力を取得する
+			/// </summary>
+			/// <returns>右スティック入力情報</returns>
+			virtual const XInputGamePadThumbState& GetRightThumb() const = 0;
+		};
 		/// <summary>
 		/// XBoxコントローラー入力データ管理クラス
 		/// </summary>
-		class XInputGamePadState
+		class XInputGamePadState : public I_XInputEventGetter
 		{
 			/// <summary>
 			/// １回呼び出し前のゲームパッド情報
@@ -244,33 +282,33 @@ namespace itbs
 			/// </summary>
 			/// <param name="xinputCode">判別用コード</param>
 			/// <returns>押された瞬間ならtrue</returns>
-			bool IsButtonDown(const XInputCode& xinputCode) const noexcept;
+			bool IsInputDown(const XInputCode& xinputCode) const override;
 
 			/// <summary>
 			/// コードに対応するボタンが押されているかを判別する関数
 			/// </summary>
 			/// <param name="xinputCode">判別用コード</param>
 			/// <returns>押されているならtrue</returns>
-			bool IsButtonPush(const XInputCode& xinputCode) const noexcept;
+			bool IsInputPush(const XInputCode& xinputCode) const override;
 
 			/// <summary>
 			/// コードに対応するボタンが離された瞬間かを判別する関数
 			/// </summary>
 			/// <param name="xinputCode">判別用コード</param>
 			/// <returns>離された瞬間ならtrue</returns>
-			bool IsButtonUp(const XInputCode& xinputCode) const noexcept;
+			bool IsInputUp(const XInputCode& xinputCode) const override;
 
 			/// <summary>
 			/// 左スティック入力を取得する
 			/// </summary>
 			/// <returns>左スティック入力情報</returns>
-			const XInputGamePadThumbState& GetLeftThumb() const;
+			const XInputGamePadThumbState& GetLeftThumb() const override;
 
 			/// <summary>
 			/// 右スティック入力を取得する
 			/// </summary>
 			/// <returns>右スティック入力情報</returns>
-			const XInputGamePadThumbState& GetRightThumb() const;
+			const XInputGamePadThumbState& GetRightThumb() const override;
 		};
 
 		/// <summary>
@@ -471,14 +509,14 @@ namespace itbs
 			/// キーボードの状態を返す関数
 			/// </summary>
 			/// <returns>キーボードの状態</returns>
-			const KeyBoardState& GetKeyBoard() const noexcept;
+			const I_KeyBoardInputEventGetter& GetKeyBoard() const noexcept;
 
 			/// <summary>
 			/// XBoxコントローラーの状態を返す関数
 			/// </summary>
 			/// <param name="num">コントローラー番号</param>
 			/// <returns>コントローラーの状態</returns>
-			const XInputGamePadState& GetXInputGamePad(const int& num = 0) const noexcept;
+			const I_XInputEventGetter& GetXInputGamePad(const int& num = 0) const noexcept;
 
 			/// <summary>
 			/// XBoxコントローラーの状態の配列を返す関数
@@ -491,6 +529,8 @@ namespace itbs
 			/// </summary>
 			/// <param name="inputer">登録するコントローラー</param>
 			void AddInputer(InputerBase* inputer);
+
+			void MessageChecker(const UINT message, const WPARAM wParam, const LPARAM lParam);
 		};
 	}
 }
