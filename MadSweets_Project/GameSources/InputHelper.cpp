@@ -60,24 +60,33 @@ namespace itbs
 			}
 		}
 
-		bool KeyBoardState::IsKeyDown(const KeyCode& keycode) const noexcept
+		bool KeyBoardState::IsInputDown(const KeyCode& keycode) const
 		{
 			UINT8 tableCode = static_cast<UINT8>(keycode);
 			return m_nowKeycodeTable[tableCode] && !m_beforeKeycodeTable[tableCode];
 		}
 
-		bool KeyBoardState::IsKeyPush(const KeyCode& keycode) const noexcept
+		bool KeyBoardState::IsInputPush(const KeyCode& keycode) const
 		{
 			UINT8 tableCode = static_cast<UINT8>(keycode);
 			return m_nowKeycodeTable[tableCode];
 		}
 
-		bool KeyBoardState::IsKeyUp(const KeyCode& keycode) const noexcept
+		bool KeyBoardState::IsInputUp(const KeyCode& keycode) const
 		{
 			UINT8 tableCode = static_cast<UINT8>(keycode);
 			return !m_nowKeycodeTable[tableCode] && m_beforeKeycodeTable[tableCode];
 		}
 
+		void KeyBoardState::AddDownEvent(const KeyCode& keycode)
+		{
+			m_downEventQueue.push(keycode);
+		}
+
+		void KeyBoardState::AddUpEvent(const KeyCode& keycode)
+		{
+			m_upEventQueue.push(keycode);
+		}
 
 		// XInputGamePadThumbState ----------------------------
 
@@ -114,19 +123,19 @@ namespace itbs
 			}
 		}
 
-		bool XInputGamePadState::IsButtonDown(const XInputCode& xinputCode) const noexcept
+		bool XInputGamePadState::IsInputDown(const XInputCode& xinputCode) const
 		{
 			WORD buttonCode = static_cast<WORD>(xinputCode);
 			return (m_nowGamepad.wButtons & buttonCode) && !(m_beforeGamepad.wButtons & buttonCode);
 		}
 
-		bool XInputGamePadState::IsButtonPush(const XInputCode& xinputCode) const noexcept
+		bool XInputGamePadState::IsInputPush(const XInputCode& xinputCode) const
 		{
 			WORD buttonCode = static_cast<WORD>(xinputCode);
 			return m_nowGamepad.wButtons & buttonCode;
 		}
 
-		bool XInputGamePadState::IsButtonUp(const XInputCode& xinputCode) const noexcept
+		bool XInputGamePadState::IsInputUp(const XInputCode& xinputCode) const
 		{
 			WORD buttonCode = static_cast<WORD>(xinputCode);
 			return !(m_nowGamepad.wButtons & buttonCode) && (m_beforeGamepad.wButtons & buttonCode);
@@ -260,7 +269,7 @@ namespace itbs
 				while (buttonCode != 0)
 				{
 					XInputCode xinputCode = static_cast<XInputCode>(buttonCode);
-					if (gamePad.IsButtonDown(xinputCode))
+					if (gamePad.IsInputDown(xinputCode))
 					{
 						for (auto& inputer : m_inputers)
 						{
@@ -268,7 +277,7 @@ namespace itbs
 						}
 					}
 
-					if (gamePad.IsButtonUp(xinputCode))
+					if (gamePad.IsInputUp(xinputCode))
 					{
 						for (auto& inputer : m_inputers)
 						{
@@ -316,12 +325,12 @@ namespace itbs
 			return m_mouseState;
 		}
 
-		const KeyBoardState& InputDevice::GetKeyBoard() const noexcept
+		const I_KeyBoardInputEventGetter& InputDevice::GetKeyBoard() const noexcept
 		{
 			return m_keyBoardState;
 		}
 
-		const XInputGamePadState& InputDevice::GetXInputGamePad(const int& num) const noexcept
+		const I_XInputEventGetter& InputDevice::GetXInputGamePad(const int& num) const noexcept
 		{
 			return m_gamePadState[num];
 		}
@@ -334,6 +343,17 @@ namespace itbs
 		void InputDevice::AddInputer(InputerBase* inputer)
 		{
 			m_inputers.push_back(std::unique_ptr<InputerBase>(inputer));
+		}
+
+		void InputDevice::MessageChecker(const UINT message, const WPARAM wParam, const LPARAM lParam)
+		{
+			switch (message)
+			{
+			case WM_KEYDOWN:
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

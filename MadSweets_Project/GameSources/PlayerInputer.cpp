@@ -13,22 +13,22 @@ namespace basecross
 
 		Vec2 direction;
 
-		if (keyBoard.IsKeyPush(KeyCode::D))
+		if (keyBoard.IsInputPush(KeyCode::D))
 		{
 			direction.x += 1;
 		}
 
-		if (keyBoard.IsKeyPush(KeyCode::A))
+		if (keyBoard.IsInputPush(KeyCode::A))
 		{
 			direction.x -= 1;
 		}
 
-		if (keyBoard.IsKeyPush(KeyCode::W))
+		if (keyBoard.IsInputPush(KeyCode::W))
 		{
 			direction.y += 1;
 		}
 
-		if (keyBoard.IsKeyPush(KeyCode::S))
+		if (keyBoard.IsInputPush(KeyCode::S))
 		{
 			direction.y -= 1;
 		}
@@ -96,25 +96,25 @@ namespace basecross
 
 	bool PlayerInputer::IsDecision()
 	{
-		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::Space) ||
-			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::A);
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::Space) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::A);
 	}
 
 	bool PlayerInputer::IsCancel()
 	{
-		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::X) ||
-			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::B);
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::X) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::B);
 	}
 
 	bool PlayerInputer::IsChangeStance()
 	{
-		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::C) ||
-			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::RightThumb);
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::C) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::RightThumb);
 	}
 
 	bool PlayerInputer::IsMenuDown()
 	{
-		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsKeyDown(KeyCode::Tab) ||
-			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsButtonDown(XInputCode::Start);
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::Tab) ||
+			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::Start);
 	}
 }
