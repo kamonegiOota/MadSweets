@@ -20,6 +20,9 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate()override;
 
+
+		//テスト実装用の関数----------------------------------------------------
+		void CreateGraphTest();
 	};
 
 }
