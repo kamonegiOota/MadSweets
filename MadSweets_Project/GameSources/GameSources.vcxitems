@@ -31,7 +31,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
@@ -55,7 +57,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />

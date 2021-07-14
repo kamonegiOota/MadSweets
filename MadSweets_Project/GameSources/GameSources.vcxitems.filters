@@ -106,6 +106,15 @@
     <Filter Include="Patchs\Maths\MyMath">
       <UniqueIdentifier>{b5b99c72-316b-47bf-89cc-86ccf6366663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Components">
+      <UniqueIdentifier>{96229e58-db65-4675-8bfc-58bd13ab03b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerMover">
+      <UniqueIdentifier>{6b09f635-c8fe-4c47-b242-20074a4dd0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerFPSCameraMover">
+      <UniqueIdentifier>{408746b2-719d-414c-ad20-7cfe1b712910}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -186,6 +195,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h">
       <Filter>Itabashi\PlayerCameraObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h">
+      <Filter>Itabashi\Components\PlayerMover</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h">
+      <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -247,6 +262,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp">
       <Filter>Itabashi\PlayerCameraObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp">
+      <Filter>Itabashi\Components\PlayerMover</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp">
+      <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
