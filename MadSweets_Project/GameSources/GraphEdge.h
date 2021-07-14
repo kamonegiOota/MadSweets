@@ -22,17 +22,17 @@ namespace basecross {
 	public:
 
 		GraphEdge();
-		GraphEdge(const int& front, const int& back);
-		GraphEdge(const int& front, const int& back, const float& cost);
+		GraphEdge(const int& from, const int& to);
+		GraphEdge(const int& from, const int& to, const float& cost);
 		virtual ~GraphEdge() {}
 
 		//アクセッサ-------------------------------------------------------
 		
 		//フロント
-		int GetFront() const {  
+		int GetFrom() const {
 			return m_from;
 		}
-		void SetFront(const int& from) {
+		void SetFrom(const int& from) {
 			m_from = from;
 		}
 

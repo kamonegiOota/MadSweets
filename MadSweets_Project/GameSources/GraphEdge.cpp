@@ -13,10 +13,10 @@ namespace basecross {
 		:GraphEdge(0,0,0.0f)
 	{}
 
-	GraphEdge::GraphEdge(const int& front, 
-		const int& back
+	GraphEdge::GraphEdge(const int& from,
+		const int& to
 	):
-		GraphEdge(front,back,0.0f)
+		GraphEdge(from,to,0.0f)
 	{}
 
 	GraphEdge::GraphEdge(const int& from, 
