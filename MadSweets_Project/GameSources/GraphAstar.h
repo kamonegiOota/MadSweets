@@ -10,15 +10,34 @@
 #include "SparseGraph.h"
 #include "Heuristic.h"
 
+//#include "NavGraphNode.h"
+#include "GraphEdge.h"
+
 namespace basecross {
 
 	/// <summary>
 	/// Astarにおける、期待値の計算に用いる構造体
 	/// </summary>
 	struct AstarExpectData {
-		NavGraphNode node = NavGraphNode();
-		float range = 0.0f;
-		float heuristic = 0.0f;
+		NavGraphNode node;
+		NavGraphNode nextNode;
+		float range;
+		float heuristic;
+
+		AstarExpectData():
+			AstarExpectData(NavGraphNode(),NavGraphNode(),0.0f,0.0f)
+		{}
+
+		AstarExpectData(const NavGraphNode& node, const NavGraphNode& nextNode,
+			const float& range, const float& heuristic
+		) :
+			node(node),nextNode(nextNode),
+			range(range),heuristic(heuristic)
+		{}
+
+		float GetSumRange() const {
+			return range + heuristic;
+		}
 	};
 
 	class GraphAstar
@@ -32,34 +51,50 @@ namespace basecross {
 		/// </summary>
 		Heuristic m_heuristic;
 
-		std::vector<std::vector<float>> m_nodeRanges;  //計測したノード間の長さを格納する。
-		int m_rangeIndex;  //現在探索計算が何回目かを判断する。
+		std::vector<std::vector<AstarExpectData>> m_expectDatas;  //計測した期待値のデータを計測
+		//int m_countIndex;  //現在探索計算が何回目かを判断する。
 
-		std::vector<NavGraphNode> m_shortNodes;  //最短ノードを格納した配列。
+		std::vector<AstarExpectData> m_shortRoutes;  //最短経路を格納した配列。
+		int m_routeIndex = 0;   //現在どのノードを目標としているかを判断するインデックス。
+		bool m_isRouteEnd = false;
 
-	public:
-		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
-			:m_graph(graph),m_rangeIndex(0)
-		{}
+		bool m_isCreateNewData = true;
+
+		void RemoveData(const AstarExpectData& data);
+		void BackShortRoute(); //一旦前のルートに戻る。
+		bool IsAstarEnd();
 
 		//目的ノードの設定
 		//ターゲットから一番近くのノードを検索する。
 		NavGraphNode SearchNearNode(const std::shared_ptr<GameObject>& target);
 		
+	public:
+		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
+			:m_graph(graph)//, m_countIndex(0)
+		{}
+		
 		//自分ノードとエッジから、どのルートが一番近いか検索
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
 
-		//隣接ノードの距離とヒューリスティック距離の合計を測る
-		std::vector<float> CalucNearNodeSumRange(const NavGraphNode& node);
+		//最短ノードの中で今欲しいノードの場所を取得する。
+		Vec3 CalucTargetNode(const std::shared_ptr<GameObject>& objPtr);
+
+	private:
+
+		//ループして探索経路を測る。
+		void LoopSearchAstar(const NavGraphNode& stdNode);
+
+		//隣接ノードの距離とヒューリスティック距離の合計を測り、そのデータを返す。
+		std::vector<AstarExpectData> CalucNearNodeExpectData(const NavGraphNode& node);
 
 		//隣接ノードの距離を測る
 		float CalucNearNodeRange(const NavGraphNode& fromNode, const NavGraphNode& toNode);
 
 		//計測した隣接ノードの期待値の中で,一番小さい数のノードを引き抜く。
-		NavGraphNode CalucMinRangeNode(const std::vector<float>& ranges);
+		AstarExpectData CalucMinRangeNode(const std::vector<AstarExpectData>& datas);
 
 		//求めた距離が本当に最短かどうかを判断する。
-		bool IsShortRoot();
+		bool IsShortRoute(const AstarExpectData& data);
 	};
 
 }
