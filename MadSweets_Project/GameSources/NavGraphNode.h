@@ -10,19 +10,36 @@
 
 namespace basecross {
 
-	template<class ExtraInfo>
 	class NavGraphNode : public GraphNode
 	{
 	protected:
 		/// <summary>
 		/// ÉmÅ[ÉhÇÃèÍèä
 		/// </summary>
-		Vec2 m_position;
-
-		ExtraInfo m_extraInfo;
+		Vec3 m_position;
 
 	public:
+
+		NavGraphNode() :
+			NavGraphNode(0)
+		{}
+
+		NavGraphNode(const int& index) :
+			NavGraphNode(index,Vec3(0.0f))
+		{}
+
+		NavGraphNode(const int& index, const Vec3& position) :
+			GraphNode(index),m_position(position)
+		{}
 		
+		void SetPosition(const Vec3& position) {
+			m_position = position;
+		}
+
+		Vec3 GetPosition() const{
+			return m_position;
+		}
+
 	};
 
 }

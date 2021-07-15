@@ -9,7 +9,7 @@
 
 namespace basecross {
 
-	class MaruStage : Stage {
+	class MaruStage : public Stage {
 
 		//ビューの作成
 		void CreateViewLight();
@@ -20,6 +20,9 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate()override;
 
+
+		//テスト実装用の関数----------------------------------------------------
+		void CreateGraphTest();
 	};
 
 }

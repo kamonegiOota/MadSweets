@@ -9,16 +9,16 @@
 
 namespace basecross {
 
-	class BaseEnemy :public Component
+	class MTestEnemyObject : public GameObject
 	{
 
+
 	public:
-		
-		BaseEnemy(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+		MTestEnemyObject(const std::shared_ptr<Stage>& stage)
+			:GameObject(stage)
 		{}
 
-		void OnDraw() override {}
+		void OnCreate() override;
 
 	};
 

@@ -7,6 +7,9 @@
 #include "stdafx.h"
 #include "Project.h"
 
+//#include "NavGraphNode.h"
+//#include "GraphEdge.h"
+
 namespace basecross {
 
 	template<class node_type, class edge_type>
@@ -18,8 +21,8 @@ namespace basecross {
 		using EdgeType = edge_type ;
 
 		typedef std::vector<node_type> NodeVector;
-		typedef std::list<edge_type> EdgeList;
-		typedef std::vector<EdgeList> EdgeListVector;
+		typedef std::vector<edge_type> EdgeVector; //削除の都合上リストにしてある。
+		typedef std::map<int,EdgeVector> EdgeMapVector;
 
 	private:
 		//このクラスを構成するノード
@@ -27,7 +30,7 @@ namespace basecross {
 
 		//隣接エッジリストのベクター
 		//(各ノードのインデックスは、そのノードに関連付けられたエッジのリストのキーとなる)
-		EdgeListVector m_edges;
+		EdgeMapVector m_edges;
 
 		//このノードは有効グラフか？
 		bool m_isDigraph;
@@ -37,8 +40,8 @@ namespace basecross {
 
 	public:
 		SparseGraph(bool digraph):
-			m_nextNodeIndex(0)
-			m_isDigraph(diraph)
+			m_nextNodeIndex(0),
+			m_isDigraph(digraph)
 		{}
 
 		/// <summary>
@@ -51,14 +54,37 @@ namespace basecross {
 		}
 
 		/// <summary>
+		/// 全てのノードを渡す
+		/// </summary>
+		/// <returns>全てのノード</returns>
+		const std::vector<NodeType>& GetNodes() const {
+			return m_nodes;
+		}
+
+		/// <summary>
 		/// エッジの参照を得る
 		/// </summary>
 		/// <param name="from"></param>
 		/// <param name="back"></param>
 		/// <returns></returns>
-		//const EdgeType& GetEdge(const int& from,const int& back) const {
-		//	return 
-		//}
+		const EdgeType& GetEdge(const int& from,const int& to) const {
+			for (auto edge : m_edges[from]) {
+				if (edge.GetTo() == to) {
+					return edge;
+				}
+			}
+
+			return nullptr;
+		}
+
+		/// <summary>
+		/// 与えられた引数から始まるエッジリストを全て取得
+		/// </summary>
+		/// <param name="from">欲しいエッジリストのインデックス</param>
+		/// <returns>エッジリスト</returns>
+		const std::vector<EdgeType>& GetEdges(const int& from) {
+			return m_edges[from];
+		}
 
 		/// <summary>
 		/// 次のフリーノードのインデックスを参照する。
@@ -76,7 +102,7 @@ namespace basecross {
 		int AddNode(const NodeType& node) {
 			m_nodes.push_back(node);
 			m_nextNodeIndex++;
-			return m_nodes.size() - 1;
+			return (int)m_nodes.size() - 1;
 		}
 
 		/// <summary>
@@ -92,7 +118,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="edge">追加したいエッジ</param>
 		void AddEdge(const EdgeType& edge) {
-			m_edges[edge.from].push_back(edge);
+			m_edges[edge.GetFrom()].push_back(edge);
 		}
 
 		/// <summary>
@@ -100,7 +126,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="from"></param>
 		/// <param name="back"></param>
-		void RemoveEdge(const int& from, const int& back) {
+		void RemoveEdge(const int& from, const int& to) {
 
 		}
 

@@ -15,19 +15,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
@@ -35,6 +41,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
@@ -45,22 +53,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
