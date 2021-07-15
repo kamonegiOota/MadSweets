@@ -1,8 +1,10 @@
 /*!
-@file BaseEnemy.cpp
-@brief BaseEnemyÀ‘Ì
+@file DebugObject.h
+@brief DebugObject
 ’S“–ÒFŠÛR —TŠì
 */
+
+#pragma once
 
 #include "stdafx.h"
 #include "Project.h"
