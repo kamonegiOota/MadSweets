@@ -1,8 +1,10 @@
 /*!
-@file GraphEdge.cpp
-@brief GraphEdgeÀ‘Ì
+@file GraphEdge.h
+@brief GraphEdge
 ’S“–ÒFŠÛR —TŠì
 */
+
+#pragma once
 
 #include "stdafx.h"
 #include "Project.h"
