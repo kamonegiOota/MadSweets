@@ -12,6 +12,7 @@
 //#include "GraphEdge.h"
 #include "AstarCtrl.h"
 #include "DebugObject.h"
+#include "BaseEnemy.h"
 
 namespace basecross {
 
@@ -42,6 +43,7 @@ namespace basecross {
 
 			CreateGraphTest();
 
+			AddGameObject<GameObject>()->AddComponent<BaseEnemy>();
 			AddGameObject<DebugObject>();
 		}
 		catch (...) {
@@ -88,6 +90,7 @@ namespace basecross {
 			{GraphEdge(3,0)},
 			{GraphEdge(4,0)},
 			{GraphEdge(3,5)},
+			{GraphEdge(1,5)},
 		};
 
 		for (auto& edge : edges) {
