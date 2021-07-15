@@ -30,7 +30,7 @@ namespace basecross {
 			const float& speed
 		);
 
-		void OnCreate() override;
+		void OnCreate() override {}
 		void OnUpdate() override;
 		void OnDraw() override {}
 

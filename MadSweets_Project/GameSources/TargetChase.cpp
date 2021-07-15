@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "TargetChase.h"
+#include "MyUtility.h"
 
 namespace basecross {
 
@@ -29,12 +30,15 @@ namespace basecross {
 		m_speed(speed)
 	{}
 
+
 	void TargetChase::Move() {
-		
-	}
+		auto delta = App::GetApp()->GetElapsedTime();
 
-	void TargetChase::OnCreate() {
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
 
+		auto pos = transform->GetPosition();
+		pos += toVec.GetNormalized() * m_speed * delta;
+		transform->SetPosition(pos);
 	}
 
 	void TargetChase::OnUpdate() {
