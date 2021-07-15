@@ -13,6 +13,8 @@
 #include "AstarCtrl.h"
 #include "DebugObject.h"
 #include "BaseEnemy.h"
+#include "MTestBox.h"
+#include "TargetChase.h"
 
 namespace basecross {
 
@@ -44,6 +46,7 @@ namespace basecross {
 			CreateGraphTest();
 
 			AddGameObject<GameObject>()->AddComponent<BaseEnemy>();
+			
 			AddGameObject<DebugObject>();
 		}
 		catch (...) {
@@ -101,6 +104,9 @@ namespace basecross {
 		GraphAstar astar(graph);
 		enemy->AddComponent<AstarCtrl>(astar);
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
+
+
+		AddGameObject<MTestBox>()->AddComponent<TargetChase>(enemy);
 	}
 }
 
