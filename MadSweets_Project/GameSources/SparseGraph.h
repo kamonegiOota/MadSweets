@@ -1,8 +1,10 @@
 /*!
-@file SparseGraph.cpp
-@brief SparseGraphÀ‘Ì
+@file SparseGraph.h
+@brief SparseGraph
 ’S“–ÒFŠÛR —TŠì
 */
+
+#pragma once
 
 #include "stdafx.h"
 #include "Project.h"
