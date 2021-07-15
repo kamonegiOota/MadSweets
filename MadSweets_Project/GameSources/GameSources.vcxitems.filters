@@ -136,11 +136,26 @@
     <Filter Include="Maru\Enemy\Component\PlowlingMove">
       <UniqueIdentifier>{e8f8eace-7e18-486f-8e88-e004d33087ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Component\AstarCtrl">
+    <Filter Include="Maru\StateMachine">
+      <UniqueIdentifier>{202a3964-3764-46d9-a6ae-c53493ab2e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine">
+      <UniqueIdentifier>{30be2354-38be-413d-82d9-8eef988daf03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\DebugObject">
+      <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Plowling">
+      <UniqueIdentifier>{7894883d-bc8a-4d57-a199-3808bcd13059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_TargetChase">
+      <UniqueIdentifier>{7db85269-b982-4a48-be11-fa0af18d0837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\AstarCtrl">
       <UniqueIdentifier>{619b9cef-dde1-407a-8e2d-b518d807d726}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\DebugObject">
-      <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
+    <Filter Include="Maru\Enemy\Component\TargetChase">
+      <UniqueIdentifier>{88435333-0cf8-4c34-aca3-f1aa1e4c23bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -223,10 +238,10 @@
       <Filter>Maru\Enemy\Component\PlowlingMove</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h">
-      <Filter>Maru\Enemy\Component\AstarCtrl</Filter>
+      <Filter>Maru\Enemy\AstarCtrl</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h">
-      <Filter>Maru\Enemy\Object\DebugObject</Filter>
+      <Filter>Maru\DebugObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h">
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
@@ -250,6 +265,19 @@
       <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h">
+      <Filter>Maru\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_TargetChase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h">
+      <Filter>Maru\Enemy\Component\TargetChase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -334,10 +362,22 @@
       <Filter>Maru\Astar\GraphAstar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp">
-      <Filter>Maru\Enemy\Component\AstarCtrl</Filter>
+      <Filter>Maru\Enemy\AstarCtrl</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp">
-      <Filter>Maru\Enemy\Object\DebugObject</Filter>
+      <Filter>Maru\DebugObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp">
+      <Filter>Maru\Enemy\Component\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_TargetChase</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp">
+      <Filter>Maru\Enemy\Component\TargetChase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
