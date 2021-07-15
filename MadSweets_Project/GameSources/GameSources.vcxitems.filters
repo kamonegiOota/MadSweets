@@ -157,6 +157,21 @@
     <Filter Include="Maru\Enemy\Component\TargetChase">
       <UniqueIdentifier>{88435333-0cf8-4c34-aca3-f1aa1e4c23bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruUthilyty">
+      <UniqueIdentifier>{a281861c-c082-4f38-bc6e-1fd232c5d920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty\Utility">
+      <UniqueIdentifier>{3e566ccb-e4c8-4a7d-b275-cbf7e4c0b54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty\Mathf">
+      <UniqueIdentifier>{5cdbb210-e021-43b7-a88c-13aeb2e8acdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\MTestEnemyObject">
+      <UniqueIdentifier>{234102e7-b5d5-4c6e-9457-2768e8495afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object">
+      <UniqueIdentifier>{451988c1-f723-4865-9b61-9d5c2c71a59a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -222,9 +237,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h">
       <Filter>Maru\Enemy\Component\Enemy\TestEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h">
-      <Filter>Maru\Enemy\Object</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h">
       <Filter>Maru\Astar\Heuristic</Filter>
     </ClInclude>
@@ -277,6 +289,19 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h">
       <Filter>Maru\Enemy\Component\TargetChase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h">
+      <Filter>Maru\MaruUthilyty\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h">
+      <Filter>Maru\MaruUthilyty\Mathf</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h">
+      <Filter>Maru\Enemy\Object\MTestEnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h">
+      <Filter>Maru\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -349,9 +374,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp">
       <Filter>Maru\Enemy\Component\Enemy\TestEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp">
-      <Filter>Maru\Enemy\Object</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp">
       <Filter>Maru\Enemy\Component\PlowlingMove</Filter>
     </ClCompile>
@@ -378,6 +400,18 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp">
       <Filter>Maru\Enemy\Component\TargetChase</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp">
+      <Filter>Maru\MaruUthilyty\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp">
+      <Filter>Maru\MaruUthilyty\Mathf</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp">
+      <Filter>Maru\Enemy\Object\MTestEnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp">
+      <Filter>Maru\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

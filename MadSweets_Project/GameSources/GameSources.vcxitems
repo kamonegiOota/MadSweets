@@ -33,9 +33,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
@@ -73,9 +76,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
