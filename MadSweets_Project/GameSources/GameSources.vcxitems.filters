@@ -172,6 +172,9 @@
     <Filter Include="Maru\Object">
       <UniqueIdentifier>{451988c1-f723-4865-9b61-9d5c2c71a59a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\SearchObject">
+      <UniqueIdentifier>{e210bef0-fb93-4346-bc62-7a7593147774}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -303,6 +306,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h">
       <Filter>Maru\Object</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h">
+      <Filter>Maru\Enemy\Component\SearchObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -412,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp">
       <Filter>Maru\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp">
+      <Filter>Maru\Enemy\Component\SearchObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

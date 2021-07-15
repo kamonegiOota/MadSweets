@@ -52,6 +52,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
