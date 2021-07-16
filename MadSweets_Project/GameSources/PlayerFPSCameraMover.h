@@ -1,4 +1,6 @@
 #pragma once
+#include"PlayerProvider.h"
+#include"PlayerStanceManager.h"
 
 namespace basecross
 {
@@ -16,6 +18,10 @@ namespace basecross
 		/// ステージのカメラ
 		/// </summary>
 		ex_weak_ptr<Camera> m_targetCamera;
+
+		ex_weak_ptr<PlayerProvider> m_playerProvider;
+
+		ex_weak_ptr<PlayerStanceManager> m_playerStanceManager;
 
 		/// <summary>
 		/// 現在のY回転
