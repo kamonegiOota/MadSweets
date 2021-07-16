@@ -8,6 +8,7 @@
 
 #include "AstarCtrl.h"
 #include "MTestEnemyObject.h"
+#include "MTestBox.h"
 
 namespace basecross {
 
@@ -21,12 +22,13 @@ namespace basecross {
 
 	void AstarCtrl::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
+		auto speed = 3.0f;
 
 		auto nodePos = m_astar.CalucTargetNode(GetGameObject());
 		auto toVec = nodePos - transform->GetPosition();
 
 		auto pos = transform->GetPosition();
-		pos += toVec * delta * 3.0f;
+		pos += toVec.GetNormalized() * delta * speed;
 		transform->SetPosition(pos);
 	}
 }
