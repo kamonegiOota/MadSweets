@@ -1,8 +1,10 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMoveÀ‘Ì
+@file PlowlingMove.h
+@brief PlowlingMove
 ’S“–ÒFŠÛR —TŠì
 */
+
+#pragma once
 
 #include "stdafx.h"
 #include "Project.h"

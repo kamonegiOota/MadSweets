@@ -191,7 +191,7 @@ namespace basecross {
 		//m_isRouteEnd = true;
 		//DebugObject::m_wss.str(L"");
 		if (m_isRouteEnd) {
-			DebugObject::m_wss << to_wstring(m_shortRoutes.size());
+			//DebugObject::m_wss << to_wstring(m_shortRoutes.size());
 			return Vec3(0.0f);
 		}
 

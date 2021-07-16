@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.h
-@brief GraphNode‚È‚Ç
+@file GraphAstar.h
+@brief GraphAstar‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

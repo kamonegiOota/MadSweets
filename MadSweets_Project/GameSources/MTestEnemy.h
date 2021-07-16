@@ -1,8 +1,10 @@
 /*!
-@file MaruStage.cpp
-@brief MaruStageÀ‘Ì
+@file MaruStage.h
+@brief MaruStage
 ’S“–ÒFŠÛR —TŠì
 */
+
+#pragma once
 
 #include "stdafx.h"
 #include "Project.h"

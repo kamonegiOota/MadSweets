@@ -136,10 +136,13 @@
     <Filter Include="Maru\Enemy\Component\PlowlingMove">
       <UniqueIdentifier>{e8f8eace-7e18-486f-8e88-e004d33087ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Component\AstarCtrl">
-      <UniqueIdentifier>{619b9cef-dde1-407a-8e2d-b518d807d726}</UniqueIdentifier>
+    <Filter Include="Maru\StateMachine">
+      <UniqueIdentifier>{202a3964-3764-46d9-a6ae-c53493ab2e4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\DebugObject">
+    <Filter Include="Maru\Enemy\EnemyStateMachine">
+      <UniqueIdentifier>{30be2354-38be-413d-82d9-8eef988daf03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\DebugObject">
       <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
     </Filter>
     <Filter Include="Itabashi\Components\PlayerProvider">
@@ -147,6 +150,36 @@
     </Filter>
     <Filter Include="Itabashi\Components\PlayerStanceManager">
       <UniqueIdentifier>{a03a8fe2-75c8-4c83-aee6-15e4348355dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Plowling">
+      <UniqueIdentifier>{7894883d-bc8a-4d57-a199-3808bcd13059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_TargetChase">
+      <UniqueIdentifier>{7db85269-b982-4a48-be11-fa0af18d0837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\AstarCtrl">
+      <UniqueIdentifier>{619b9cef-dde1-407a-8e2d-b518d807d726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\TargetChase">
+      <UniqueIdentifier>{88435333-0cf8-4c34-aca3-f1aa1e4c23bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty">
+      <UniqueIdentifier>{a281861c-c082-4f38-bc6e-1fd232c5d920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty\Utility">
+      <UniqueIdentifier>{3e566ccb-e4c8-4a7d-b275-cbf7e4c0b54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty\Mathf">
+      <UniqueIdentifier>{5cdbb210-e021-43b7-a88c-13aeb2e8acdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\MTestEnemyObject">
+      <UniqueIdentifier>{234102e7-b5d5-4c6e-9457-2768e8495afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object">
+      <UniqueIdentifier>{451988c1-f723-4865-9b61-9d5c2c71a59a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\SearchObject">
+      <UniqueIdentifier>{e210bef0-fb93-4346-bc62-7a7593147774}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +246,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h">
       <Filter>Maru\Enemy\Component\Enemy\TestEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h">
-      <Filter>Maru\Enemy\Object</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h">
       <Filter>Maru\Astar\Heuristic</Filter>
     </ClInclude>
@@ -229,10 +259,10 @@
       <Filter>Maru\Enemy\Component\PlowlingMove</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h">
-      <Filter>Maru\Enemy\Component\AstarCtrl</Filter>
+      <Filter>Maru\Enemy\AstarCtrl</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h">
-      <Filter>Maru\Enemy\Object\DebugObject</Filter>
+      <Filter>Maru\DebugObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h">
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
@@ -263,6 +293,33 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h">
       <Filter>Itabashi\Components\PlayerStanceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h">
+      <Filter>Maru\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_TargetChase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h">
+      <Filter>Maru\Enemy\Component\TargetChase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h">
+      <Filter>Maru\MaruUthilyty\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h">
+      <Filter>Maru\MaruUthilyty\Mathf</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h">
+      <Filter>Maru\Enemy\Object\MTestEnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h">
+      <Filter>Maru\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h">
+      <Filter>Maru\Enemy\Component\SearchObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +392,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp">
       <Filter>Maru\Enemy\Component\Enemy\TestEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp">
-      <Filter>Maru\Enemy\Object</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp">
       <Filter>Maru\Enemy\Component\PlowlingMove</Filter>
     </ClCompile>
@@ -348,10 +402,37 @@
       <Filter>Maru\Astar\GraphAstar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp">
-      <Filter>Maru\Enemy\Component\AstarCtrl</Filter>
+      <Filter>Maru\Enemy\AstarCtrl</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp">
-      <Filter>Maru\Enemy\Object\DebugObject</Filter>
+      <Filter>Maru\DebugObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp">
+      <Filter>Maru\Enemy\Component\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_TargetChase</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp">
+      <Filter>Maru\Enemy\Component\TargetChase</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp">
+      <Filter>Maru\MaruUthilyty\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp">
+      <Filter>Maru\MaruUthilyty\Mathf</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp">
+      <Filter>Maru\Enemy\Object\MTestEnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp">
+      <Filter>Maru\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp">
+      <Filter>Maru\Enemy\Component\SearchObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp">
       <Filter>Itabashi\Components\PlayerProvider</Filter>
