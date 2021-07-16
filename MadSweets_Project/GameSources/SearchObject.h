@@ -24,14 +24,73 @@ namespace basecross {
 		{}
 
 		void OnCreate() override;
-		void OnUpdate() override {};
+		void OnUpdate() override {}
 		void OnDraw() override {}
 
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 		void OnCollisionExit(std::shared_ptr<GameObject>& other) override;
 
+
 		//アクセッサ-------------------------------------------------------------------
-		
+		template<class T,
+			enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >  //GameObjectを継承したもののみ指定できる
+		std::shared_ptr<T> GetSearchObject() const
+		{
+			for (auto obj : m_objs) {
+				auto target = dynamic_pointer_cast<T>(obj);
+				if (target) {
+					return target;
+				}
+			}
+
+			return nullptr;
+		}
+
+		template<class T,
+			enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >  //GameObjectを継承したもののみ指定できる
+		std::vector<std::shared_ptr<T>> GetSearchObjects() const 
+		{
+			std::vector<std::shared_ptr<T>> reObjs;
+
+			for (auto obj : m_objs) {
+				auto target = dynamic_pointer_cast<T>(obj);
+				if (target) {
+					reObjs.push_back(target);
+				}
+			}
+
+			return reObjs;
+		}
+
+		template<class T,
+			enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr > //Componentを継承したもののみ指定できる
+		std::shared_ptr<T> GetSearchComponent() const
+		{
+			for (auto obj : m_objs) {
+				auto target = obj->GetComponent<T>();
+				if (target) {
+					return target;
+				}
+			}
+
+			return nullptr;
+		}
+
+		template<class T,
+			enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr > //Componentを継承したもののみ指定できる
+		std::vector<std::shared_ptr<T>> GetSearchComponents() const 
+		{
+			std::vector<std::shared_ptr<T>> reComps;
+
+			for (auto obj : m_objs) {
+				auto target = obj->GetComponent<T>();
+				if (target) {
+					reComps.push_back(target);
+				}
+			}
+
+			return reComps;
+		}
 
 	};
 
