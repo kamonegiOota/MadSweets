@@ -2,6 +2,7 @@
 
 namespace basecross
 {
+
 	class PlayerObject : public GameObject
 	{
 	public:
