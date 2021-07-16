@@ -113,6 +113,8 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		virtual void OnCreate() {}
 
+		virtual void OnDraw() override {}
+
 	protected:
 		/// <summary>
 		/// ˆê’èŠÔŒã‚ÉŒÄ‚Î‚ê‚éŠÖ”‚ğ“o˜^

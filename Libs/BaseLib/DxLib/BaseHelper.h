@@ -2017,6 +2017,24 @@ namespace basecross{
 			Ptr->SetCreated(true);
 			return Ptr;
 		}
+
+		template<class T, class Vec3, class Quat, class GameObject>
+		static shared_ptr<T> InstantiateCreate(std::shared_ptr<Stage>& stage,
+			const Vec3& position, const Quat& rotation, const std::shared_ptr<GameObject>& parent)
+		{
+			shared_ptr<T> ptr = shared_ptr<T>(new T(stage));
+
+			ex_weak_ptr<GameObject> gameobject = ptr;
+			gameobject->OnPreCreate();
+			gameobject->SetParent(parent);
+			gameobject->GetComponent<Transform>()->SetPosition(position);
+			gameobject->GetComponent<Transform>()->SetQuaternion(rotation);
+
+			gameobject->OnCreate();
+			gameobject->SetCreated(true);
+
+			return ptr;
+		}
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief オブジェクト作成（static関数）<br/>

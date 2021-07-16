@@ -1,6 +1,5 @@
 #include"ItabashiStage.h"
 #include"PlayerObject.h"
-#include"PlayerCameraObject.h"
 
 namespace basecross
 {
@@ -19,15 +18,13 @@ namespace basecross
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 
-		auto playerObject = AddGameObject<PlayerObject>();
-		auto cameraObject = AddGameObject<PlayerCameraObject>();
-		cameraObject->SetParent(playerObject);
+		auto playerObject = Instantiate<PlayerObject>();
 
 		std::vector<std::shared_ptr<GameObject>> gameobjects;
 
 		for (int i = 0; i < 4; i++)
 		{
-			auto gameobject = AddGameObject<GameObject>();
+			auto gameobject = Instantiate<GameObject>();
 
 			auto draw = gameobject->AddComponent<PNTStaticDraw>();
 			draw->SetMeshResource(L"DEFAULT_CUBE");
@@ -39,7 +36,5 @@ namespace basecross
 		gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
 		gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
 		gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
-
-		itbs::Input::CursorSetting::SetIsLock(true);
 	}
 }

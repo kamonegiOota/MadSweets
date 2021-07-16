@@ -41,6 +41,10 @@ namespace basecross
 		m_targetCamera->SetAt(m_lookAtObject->GetComponent<Transform>()->GetWorldPosition());
 
 		m_targetCamera->SetCameraObject(GetGameObject());
+
+		m_playerProvider = GetGameObject()->GetParent()->GetComponent<PlayerProvider>();
+
+		m_playerStanceManager = GetGameObject()->GetParent()->GetComponent<PlayerStanceManager>();
 	}
 
 	void PlayerFPSCameraMover::OnUpdate()
@@ -54,5 +58,9 @@ namespace basecross
 		transform->SetRotation(m_rotY, 0, 0);
 
 		m_targetCamera->SetAt(m_lookAtObject->GetComponent<Transform>()->GetWorldPosition());
+
+		auto position = m_playerStanceManager->GetPlayerStance() == PlayerStance::Stand ? Vec3(0, 1, 0) : Vec3(0, 0, 0);
+
+		transform->SetPosition(position);
 	}
 }

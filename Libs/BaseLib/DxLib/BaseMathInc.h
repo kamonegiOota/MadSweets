@@ -1193,6 +1193,10 @@ namespace bsm {
 		return *this;
 	}
 
+	inline Quat Quat::Identity()
+	{
+		return (Quat)XMQuaternionIdentity();
+	}
 
 	inline Quat&  Quat::rotationX(float radians)
 	{
