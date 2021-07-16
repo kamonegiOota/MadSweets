@@ -15,18 +15,24 @@ namespace basecross {
 
 	void MTestEnemyObject::OnCreate() {
 		AddComponent<MTestEnemy>();
+		AddTag(L"MTestEnemy");
 
 		auto draw = AddComponent<BcPNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 		
-		//std::vector<Vec3> poss = {
-		//	{0.0f,0.0f,+5.0f},
-		//	{0.0f,0.0f,+0.0f},
-		//	{0.0f,+2.0f,+0.0f},
-		//	{0.0f,-2.0f,0.0f}
-		//};
-		//auto plow = AddComponent<PlowlingMove>();
-		//plow->SetPositions(poss);
+		auto col = AddComponent<CollisionObb>();
+	}
+	
+	void MTestEnemyObject::StartPlowlingTest() {
+		//œpœjƒeƒXƒg
+		std::vector<Vec3> poss = {
+			{0.0f,0.0f,+5.0f},
+			{0.0f,0.0f,+0.0f},
+			{0.0f,+2.0f,+0.0f},
+			{0.0f,-2.0f,0.0f}
+		};
+		auto plow = AddComponent<PlowlingMove>();
+		plow->SetPositions(poss);
 	}
 
 }
