@@ -25,6 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchLange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />

@@ -181,6 +181,12 @@
     <Filter Include="Maru\Enemy\Component\SearchObject">
       <UniqueIdentifier>{e210bef0-fb93-4346-bc62-7a7593147774}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\EyeSearchLange">
+      <UniqueIdentifier>{083cfdae-c473-41a5-98d2-ff26503ac754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\EyeSearchCtrl">
+      <UniqueIdentifier>{c5b7cb43-141b-4f17-ad7c-390392ce0e61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -285,7 +291,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h">
       <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" >
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h">
       <Filter>Maru\Astar\GraphNode\NavGraphNode</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h">
@@ -320,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h">
       <Filter>Maru\Enemy\Component\SearchObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchLange.h">
+      <Filter>Maru\Enemy\Component\EyeSearchLange</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
