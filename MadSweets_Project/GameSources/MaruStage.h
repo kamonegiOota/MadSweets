@@ -20,8 +20,8 @@ namespace basecross {
 		MaruStage() :Stage() {}
 		virtual ~MaruStage() {}
 		//初期化
-		virtual void OnCreate()override;
-
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 
 		//テスト実装用の関数----------------------------------------------------
 		void CreateGraphTest();

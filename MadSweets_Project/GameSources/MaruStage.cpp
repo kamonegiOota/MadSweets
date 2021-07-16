@@ -15,6 +15,8 @@
 #include "BaseEnemy.h"
 #include "MTestBox.h"
 #include "TargetChase.h"
+#include "PlayerMover.h"
+#include "SearchObject.h"
 
 namespace basecross {
 
@@ -54,8 +56,28 @@ namespace basecross {
 		}
 	}
 
+	void MaruStage::OnUpdate() {
+		
+		auto objs = GetGameObjectVec();
+		for (auto& obj : objs) {
+			auto search = obj->GetComponent<SearchObject>(false);
+			if (search) {
+				auto size = search->GetSearchComponents<AstarCtrl>().size();
+				DebugObject::m_wss << to_wstring(size);
+			}
+		}
+	}
+
 	void MaruStage::CreateGraphTest() {
-		auto enemy = AddGameObject<MTestEnemyObject>();
+		std::vector<std::shared_ptr<GameObject>> enemys;
+		constexpr int EnemyNum = 1;
+		for (int i = 0; i < EnemyNum; i++) {
+			auto enemy = AddGameObject<MTestEnemyObject>();
+			auto col = enemy->GetComponent<CollisionObb>();
+			//col->SetAfterCollision(AfterCollision::None);
+			//col->AddExcludeCollisionTag(L"MTestEnemy");
+			enemys.push_back(enemy);
+		}
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
@@ -102,11 +124,21 @@ namespace basecross {
 
 		//Astar¶¬
 		GraphAstar astar(graph);
-		enemy->AddComponent<AstarCtrl>(astar);
+		for (auto enemy : enemys) {
+			enemy->AddComponent<AstarCtrl>(astar);
+		}
+		
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
 
+		//AddGameObject<MTestBox>()->AddComponent<TargetChase>(enemy);
+		auto testObj = AddGameObject<MTestBox>();
+		testObj->AddComponent<PlayerMover>();
 
-		AddGameObject<MTestBox>()->AddComponent<TargetChase>(enemy);
+		auto testSearch = AddGameObject<GameObject>();
+		testSearch->GetComponent<Transform>()->SetScale(Vec3(3.0f));
+		testSearch->AddComponent<SearchObject>();
+		
+		testSearch->SetParent(testObj);
 	}
 }
 
