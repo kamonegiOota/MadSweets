@@ -36,5 +36,7 @@ namespace basecross
 		static bool IsChangeStance();
 
 		static bool IsMenuDown();
+
+		static bool IsDashPush();
 	};
 }
