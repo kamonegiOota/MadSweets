@@ -99,6 +99,9 @@ namespace basecross
 
 		AnimationClip m_animationClip;
 
+		std::vector<std::function<void()>> m_entryEvents;
+		std::vector<std::function<void()>> m_exitEvents;
+
 	public:
 		AnimationStateBase(const StateEnum& stateEnum, const std::shared_ptr<PNTBoneModelDraw>& modelDraw,
 			const AnimationClip& animationClip) :
@@ -113,6 +116,21 @@ namespace basecross
 			m_modelDraw->SetMeshResource(m_animationClip.animationKey);
 			m_modelDraw->AddAnimation(m_animationClip.animationKey, 0, m_animationClip.playTime, m_animationClip.isLoop);
 			m_modelDraw->ChangeCurrentAnimation(m_animationClip.animationKey);
+
+			for (auto& entryEvent : m_entryEvents)
+			{
+				entryEvent();
+			}
+		}
+
+		void AddEntryEvent(const std::function<void()>& entryEvent)
+		{
+			m_entryEvents.push_back(entryEvent);
+		}
+
+		void AddExitEvent(const std::function<void()>& exitEvent)
+		{
+			m_exitEvents.push_back(exitEvent);
 		}
 
 		void Play(const StructMember& member) override
@@ -120,6 +138,14 @@ namespace basecross
 			if (m_modelDraw->IsTargetAnimeEnd())
 			{
 				SetIsEndLoop(true);
+			}
+		}
+
+		void Exit() override
+		{
+			for (auto& exitEvent : m_exitEvents)
+			{
+				exitEvent();
 			}
 		}
 
@@ -261,7 +287,9 @@ namespace basecross
 			return m_animatorStateMachine->GetStateRateOfTime();
 		}
 
-		void OnUpdate() override
+		void OnUpdate() override {}
+
+		void OnUpdate2() override
 		{
 			if (!m_animatorStateMachine)
 			{
