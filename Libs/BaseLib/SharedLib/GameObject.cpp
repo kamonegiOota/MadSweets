@@ -112,6 +112,27 @@ namespace basecross {
 		}
 	}
 
+	void GameObject::ComponentUpdate2() {
+		auto Transptr = GetComponent<Transform>();
+		auto RightPtr = GetComponent<Rigidbody>(false);
+		//マップを検証してUpdate
+		list<type_index>::iterator it = m_CompOrder.begin();
+		while (it != m_CompOrder.end()) {
+			map<type_index, shared_ptr<Component> >::const_iterator it2;
+			it2 = m_CompMap.find(*it);
+			if (it2 != m_CompMap.end()) {
+				//指定の型のコンポーネントが見つかった
+				if (it2->second->IsUpdateActive()
+					&& (it2->second != Transptr)
+					&& (it2->second != RightPtr)
+					) {
+					it2->second->OnUpdate2();
+				}
+			}
+			it++;
+		}
+	}
+
 	void GameObject::DrawShadowmap() {
 		auto shadowptr = GetComponent<Shadowmap>(false);
 		if (shadowptr) {
@@ -1153,6 +1174,14 @@ namespace basecross {
 		//自身の更新後処理
 		if (IsUpdateActive()) {
 			OnUpdate2();
+		}
+
+		for (auto& ptr : GetGameObjectVec())
+		{
+			if (ptr->IsUpdateActive())
+			{
+				ptr->ComponentUpdate2();
+			}
 		}
 
 		//自身のビューをアップデート
