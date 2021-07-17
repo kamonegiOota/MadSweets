@@ -9,18 +9,23 @@
 #include "EnState_Plowling.h"
 #include "DebugObject.h"
 
+#include "PlowlingMove.h"
+
 namespace basecross {
 
 	void EnState_Plowling::OnStart() {
+		auto obj = GetOwner()->GetGameObject();
+		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
 
+		StartChangeComps();
 	}
 
 	void EnState_Plowling::OnUpdate() {
-		//DebugObject::m_wss << L"Plowling";
+		
 	}
 
 	void EnState_Plowling::OnExit() {
-
+		ExitChangeComps();
 	}
 }
 
