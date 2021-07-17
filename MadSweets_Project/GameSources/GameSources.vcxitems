@@ -20,12 +20,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchLange.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
@@ -33,6 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Chase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
@@ -53,6 +57,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
@@ -68,9 +73,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
