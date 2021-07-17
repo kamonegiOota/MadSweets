@@ -1,10 +1,27 @@
 #pragma once
+#include"Trigger.h"
 
 namespace basecross
 {
+	struct PlayerAnimationMember
+	{
+		Trigger changeStance;
+		float moveSpeed;
+	};
+
+	enum class PlayerState
+	{
+		StandStay,
+		CrouchStay,
+		StandToCrouch,
+		CrouchToStand,
+		StandMove,
+		CrouchMove
+	};
 
 	class PlayerObject : public GameObject
 	{
+		void CreateAnimator();
 	public:
 		PlayerObject(std::shared_ptr<Stage>& stage);
 
