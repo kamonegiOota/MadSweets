@@ -11,20 +11,37 @@
 
 namespace basecross {
 
+	const NavGraphNode *GraphAstar::GetBeforeNode() const {
+		if (m_shortRoutes.size() != 0) {
+			auto index = m_shortRoutes.size() - 1;
+			return &m_shortRoutes[index].node;
+		}
+
+		return nullptr;
+	}
+
 	void GraphAstar::RemoveData(const AstarExpectData& data) {
 		auto index = m_expectDatas.size() - 1;
-		auto iter = m_expectDatas[index].begin();
+		if (m_isReturnPhase) {  //リターン状態出会った場合は、最新のデータを消す。
+			auto end = m_expectDatas.end();
+			m_expectDatas.erase(end);
+			index--;
+		}
 
+		auto iter = m_expectDatas[index].begin();
+		
 		while (iter != m_expectDatas[index].end()) {
-			if (iter->GetSumRange() == data.GetSumRange()) {
+			if(iter->GetSumRange() == data.GetSumRange()){
 				m_expectDatas[index].erase(iter);
 				return;
 			}
+			iter++;
 		}
 	}
 
 	void GraphAstar::BackShortRoute() {
 		auto end = m_shortRoutes.end();
+		end--;
 		m_shortRoutes.erase(end);
 	}
 
@@ -78,10 +95,28 @@ namespace basecross {
 		LoopSearchAstar(selfNearNode);
 	}
 
+	void GraphAstar::NextProcess(const AstarExpectData& newRoute, const vector<AstarExpectData>& newDatas) {
+		m_shortRoutes.push_back(newRoute);
+		m_expectDatas.push_back(newDatas);
+		m_isCreateNewData = true;
+		m_isReturnPhase = false;
+	}
+
+	void GraphAstar::BackProcess(const AstarExpectData& shortRoute) {
+		
+		//前回分から最少の部分を省く
+		RemoveData(shortRoute);
+		//前回の分から最少のデータを求める
+		BackShortRoute();
+		//二回以上戻った場合に判断
+		m_isReturnPhase = true;
+	}
+
 	void GraphAstar::LoopSearchAstar(const NavGraphNode& stdNode) {
 		//次にそれを基準に同じ行程を踏む。
-		//int count = 0;
-		while (true) {
+		
+		//for (int i = 0; i < 5; i++) {
+		while(true){
 			NavGraphNode node;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
 				node = stdNode;
@@ -93,27 +128,39 @@ namespace basecross {
 
 			//初めに、全ての隣接ノードの期待値を測る。
 			auto datas = CalucNearNodeExpectData(node);
+
+			//ノードが一つもない場合は「処理を飛ばして」戻る
+			if (datas.size() == 0) {
+				auto index = (int)m_shortRoutes.size() - 1;
+				BackProcess(m_shortRoutes[index]);
+				continue;
+			}
+
 			//それぞれの合計の中で一番小さい理想値を求める。
 			auto shortRoute = CalucMinRangeNode(datas);
-			DebugObject::AddVector(shortRoute.nextNode.GetPosition());
+			//DebugObject::AddVector(shortRoute.nextNode.GetPosition());
 			
 			//一番最初に選んだノードが最短かどうか判断する。
 			//そうでない場合は処理を一回もどす。
 			if (IsShortRoute(shortRoute)) {
-				m_shortRoutes.push_back(shortRoute);
-				m_expectDatas.push_back(datas);
-				m_isCreateNewData = true;
+				NextProcess(shortRoute, datas);
 
 				if (IsAstarEnd()) {  //検索終了
 					break;
 				}
 			}
 			else {
-				//前回分から最少の部分を省く
-				RemoveData(shortRoute);
-				//前回の分から最少のデータを求める
-				BackShortRoute();
-				//最少のデータからまた最少ルート検索
+				//nextNodeが前のnodeからのエッジを持っているかどうか？
+				if (IsBackShort(shortRoute)) {
+					BackProcess(shortRoute);  //戻る
+				}
+				else {
+					NextProcess(shortRoute, datas);  //次に進む。
+
+					if (IsAstarEnd()) {  //検索終了
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -131,9 +178,18 @@ namespace basecross {
 
 		std::vector<AstarExpectData> reExpectData;  //リターンする期待値を含むデータ。
 
+		auto beforeNode = GetBeforeNode();
+
 		for (auto edge : edges) {
 			auto toIndex = edge.GetTo();
 			auto nextNode = m_graph.GetNode(toIndex);
+
+			//自分の前のノードの場合は入れない
+			if (beforeNode) {  //beforeNodeが存在する場合
+				if (beforeNode->GetIndex() == toIndex) {
+					continue;
+				}
+			}
 
 			auto toRange = CalucNearNodeRange(node,nextNode);
 			auto toHeuriRange = m_heuristic.CalucHeuristicRange(nextNode);  //候補ノードから目的ノードまでのヒューリスティック距離を求める。
@@ -155,7 +211,6 @@ namespace basecross {
 	}
 
 	AstarExpectData GraphAstar::CalucMinRangeNode(const std::vector<AstarExpectData>& datas) {
-		//現状だときちんとしたインデックスを取得できていない。
 		int index = 0;
 		float minRange = 100000.0f;
 		for (int i = 0; i < datas.size(); i++) {
@@ -185,6 +240,20 @@ namespace basecross {
 		else {
 			return false;
 		}
+	}
+
+	bool GraphAstar::IsBackShort(const AstarExpectData& newShortRoute) {
+		auto index = (int)m_shortRoutes.size() - 1;
+		auto beforeShort = m_shortRoutes[index];
+		auto edges = m_graph.GetEdges(beforeShort.node.GetIndex());
+		for (auto& edge : edges) {
+			if (newShortRoute.nextNode.GetIndex() == edge.GetTo()) {
+				//ノードを戻る処理		
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	Vec3 GraphAstar::CalucTargetNode(const std::shared_ptr<GameObject>& objPtr) {

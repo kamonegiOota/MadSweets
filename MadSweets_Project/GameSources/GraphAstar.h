@@ -59,10 +59,12 @@ namespace basecross {
 		bool m_isRouteEnd = false;
 
 		bool m_isCreateNewData = true;
+		bool m_isReturnPhase = false;  //一度戻っている状態かどうか
 
+		const NavGraphNode *GetBeforeNode() const;  //前のノードの情報を取得する。
 		void RemoveData(const AstarExpectData& data);
 		void BackShortRoute(); //一旦前のルートに戻る。
-		bool IsAstarEnd();
+		bool IsAstarEnd();  //Astarの終了を判断
 
 		//目的ノードの設定
 		//ターゲットから一番近くのノードを検索する。
@@ -81,6 +83,12 @@ namespace basecross {
 
 	private:
 
+		//進む時の処理
+		void NextProcess(const AstarExpectData& newRoute, const vector<AstarExpectData>& newDatas);
+
+		//戻る時の処理
+		void BackProcess(const AstarExpectData& shortRoute);
+
 		//ループして探索経路を測る。
 		void LoopSearchAstar(const NavGraphNode& stdNode);
 
@@ -95,6 +103,9 @@ namespace basecross {
 
 		//求めた距離が本当に最短かどうかを判断する。
 		bool IsShortRoute(const AstarExpectData& data);
+
+		//前のノードから今回の最短ルートが繋がっている場合は、戻った方が最短の可能性が高い。それを判断
+		bool IsBackShort(const AstarExpectData& newShortRoute);
 	};
 
 }
