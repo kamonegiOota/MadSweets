@@ -20,11 +20,15 @@ namespace basecross {
 	void DebugObject::OnUpdate() {
 		auto sprite = GetComponent<StringSprite>();
 
-		sprite->AddText(m_wss.str());	
+		sprite->AddText(m_wss.str());
 		m_wss.str(L"");
 	}
 
 	void DebugObject::OnUpdate2() {
-		
+		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		if (key.IsInputDown(itbs::Input::KeyCode::R)) {
+			auto sprite = GetComponent<StringSprite>();
+			sprite->SetText(L"");
+		}
 	}
 }
