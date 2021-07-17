@@ -59,9 +59,15 @@ namespace basecross {
 
 	NavGraphNode GraphAstar::SearchNearNode(const std::shared_ptr<GameObject>& target) {
 		//一番近いノードの検索
-		auto nodes = m_graph.GetNodes();
 		auto targetTrans = target->GetComponent<Transform>();
 		auto targetPos = targetTrans->GetPosition();
+
+		auto reNode = SearchNearNode(targetPos);
+		return reNode;
+	}
+
+	NavGraphNode GraphAstar::SearchNearNode(const Vec3& targetPos) {
+		auto nodes = m_graph.GetNodes();
 
 		float minRange = 10000.0f;
 		NavGraphNode minNode;  //一番距離が短いノード
@@ -83,12 +89,16 @@ namespace basecross {
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
-		//m_countIndex = 0;
+		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+		SearchAstarStart(self, targetPos);
+	}
+
+	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
 		m_isRouteEnd = false;
 		m_routeIndex = 0;
 		auto selfNearNode = SearchNearNode(self);
-		auto targetNearNode = SearchNearNode(target);
-		DebugObject::AddVector(targetNearNode.GetPosition());
+		auto targetNearNode = SearchNearNode(targetPos);
+		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
 
 		//ループして処理を行う。
@@ -103,7 +113,6 @@ namespace basecross {
 	}
 
 	void GraphAstar::BackProcess(const AstarExpectData& shortRoute) {
-		
 		//前回分から最少の部分を省く
 		RemoveData(shortRoute);
 		//前回の分から最少のデータを求める

@@ -69,6 +69,7 @@ namespace basecross {
 		//目的ノードの設定
 		//ターゲットから一番近くのノードを検索する。
 		NavGraphNode SearchNearNode(const std::shared_ptr<GameObject>& target);
+		NavGraphNode SearchNearNode(const Vec3& targetPos);
 		
 	public:
 		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
@@ -77,9 +78,17 @@ namespace basecross {
 		
 		//自分ノードとエッジから、どのルートが一番近いか検索
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
+		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos);
 
 		//最短ノードの中で今欲しいノードの場所を取得する。
 		Vec3 CalucTargetNode(const std::shared_ptr<GameObject>& objPtr);
+
+		//アクセッサ-------------------------------------------------------
+		
+		//検索したルートの最後まで来たらtrue
+		bool IsRouteEnd() {
+			return m_isRouteEnd;
+		}
 
 	private:
 
