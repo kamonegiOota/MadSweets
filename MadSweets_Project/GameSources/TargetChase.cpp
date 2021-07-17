@@ -18,7 +18,7 @@ namespace basecross {
 	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
 		const std::shared_ptr<GameObject>& target
 	) :
-		TargetChase(objPtr,target,1.0f)
+		TargetChase(objPtr,target,2.0f)
 	{}
 
 	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,

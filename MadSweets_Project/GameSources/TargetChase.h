@@ -13,7 +13,6 @@ namespace basecross {
 	class TargetChase : public Component
 	{
 		std::shared_ptr<GameObject> m_target;
-
 		float m_speed;
 
 		void Move();
