@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
   </ItemGroup>

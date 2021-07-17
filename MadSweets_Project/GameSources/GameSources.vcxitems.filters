@@ -181,6 +181,12 @@
     <Filter Include="Maru\Enemy\Component\SearchObject">
       <UniqueIdentifier>{e210bef0-fb93-4346-bc62-7a7593147774}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Patchs\basecross\AnimationHelper">
+      <UniqueIdentifier>{191983ec-ad4b-4765-8bc5-2e9d2990aa36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys\Trigger">
+      <UniqueIdentifier>{5e8dd015-1809-4106-8b2a-df6afb375d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -320,6 +326,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h">
       <Filter>Maru\Enemy\Component\SearchObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h">
+      <Filter>Patchs\basecross\AnimationHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h">
+      <Filter>Patchs\Utilitys\Trigger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
