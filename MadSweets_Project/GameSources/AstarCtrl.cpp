@@ -29,11 +29,11 @@ namespace basecross {
 	}
 
 	void AstarCtrl::OnCreate() {
-		auto target = GetStage()->AddGameObject<MTestEnemyObject>();
-		target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,+5.0f,0.0f));
+		//auto target = GetStage()->AddGameObject<MTestEnemyObject>();
+		//target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,+5.0f,0.0f));
 
-		transform->SetPosition(Vec3(-5.0f, 0.0f, 0.0f));
-		m_astar.SearchAstarStart(GetGameObject(),target);
+		//transform->SetPosition(Vec3(-5.0f, 0.0f, 0.0f));
+		//m_astar.SearchAstarStart(GetGameObject(),target);
 	}
 
 	void AstarCtrl::OnUpdate() {
