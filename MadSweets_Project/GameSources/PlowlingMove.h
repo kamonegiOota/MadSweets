@@ -57,7 +57,6 @@ namespace basecross {
 			const float& speed
 		);
 		
-
 		void OnCreate() {}
 		void OnUpdate();
 		void OnDraw(){}
@@ -76,6 +75,14 @@ namespace basecross {
 		}
 		void SetSpeed(const float& speed) {
 			m_speed = speed;
+		}
+
+		/// <summary>
+		/// 現在向かっているポジションを返す
+		/// </summary>
+		/// <returns>現在向かっているポジション</returns>
+		Vec3 GetNowTargetPosition() const {
+			return m_positions[m_index];
 		}
 	};
 
