@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file BaseEnemy.cpp
+@brief BaseEnemy‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"
@@ -28,20 +28,24 @@ namespace basecross {
 		}
 
 		//ƒeƒXƒgŽÀ‘•
-		//auto key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
-		//if(key.IsInputDown(itbs::Input::KeyCode::A)) {
-		//	
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//if (key.IsInputDown(itbs::Input::KeyCode::T)) {
+		//	ChangeStateMachine<EnState_TargetChase>();
+		//}
+
+		//if (key.IsInputDown(itbs::Input::KeyCode::Y)) {
+		//	ChangeStateMachine<EnState_Plowling>();
 		//}
 	}
 
-	void BaseEnemy::ChangeStateMachine(const std::shared_ptr<maru::StateMachine<BaseEnemy>>& newState) {
-		if (m_stateMachine) {
-			m_stateMachine->OnExit();
-		}
+	//void BaseEnemy::ChangeStateMachine(const std::shared_ptr<maru::StateMachine<BaseEnemy>>& newState) {
+	//	if (m_stateMachine) {
+	//		m_stateMachine->OnExit();
+	//	}
 
-		newState->OnStart();
-		m_stateMachine = newState;
-	}
+	//	newState->OnStart();
+	//	m_stateMachine = newState;
+	//}
 
 }
 
