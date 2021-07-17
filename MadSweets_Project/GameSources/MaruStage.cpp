@@ -17,6 +17,10 @@
 #include "TargetChase.h"
 #include "PlayerMover.h"
 #include "SearchObject.h"
+#include "EyeSearchRange.h"
+#include "ChaseEnemy.h"
+
+#include "ChaseEnemyObject.h"
 
 namespace basecross {
 
@@ -47,8 +51,20 @@ namespace basecross {
 
 			CreateGraphTest();
 
-			AddGameObject<GameObject>()->AddComponent<BaseEnemy>();
-			
+			auto target = AddGameObject<MTestBox>();
+			target->AddComponent<BaseEnemy>();
+			target->SetColor(Col4(1.0f,0.0f,0.0f,1.0f));
+			target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,1.0f,0.0f));
+
+			auto player = AddGameObject<MTestBox>();
+			player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+			//chaseEnemy->AddComponent<ChaseEnemy>();
+			//chaseEnemy->AddComponent<EyeSearchRange>()->AddTarget(target);
+			//chaseEnemy->AddComponent<TargetChase>();
+			player->AddComponent<PlayerMover>();
+
+			Instantiate<ChaseEnemyObject>()->GetComponent<EyeSearchRange>()->AddTarget(player);
+
 			AddGameObject<DebugObject>();
 		}
 		catch (...) {
@@ -58,12 +74,24 @@ namespace basecross {
 
 	void MaruStage::OnUpdate() {
 		
+		std::shared_ptr<BaseEnemy> enemy;
 		auto objs = GetGameObjectVec();
 		for (auto& obj : objs) {
 			auto search = obj->GetComponent<SearchObject>(false);
 			if (search) {
 				auto size = search->GetSearchComponents<AstarCtrl>().size();
 				DebugObject::m_wss << to_wstring(size);
+			}
+			auto ene = obj->GetComponent<BaseEnemy>(false);
+			if (ene) {
+				enemy = ene;
+			}
+		}
+
+		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		if (key.IsInputDown(itbs::Input::KeyCode::T)) {
+			if (enemy) {
+				//enemy->ChangeStateMachine<>
 			}
 		}
 	}
@@ -130,15 +158,16 @@ namespace basecross {
 		
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
 
-		//AddGameObject<MTestBox>()->AddComponent<TargetChase>(enemy);
-		auto testObj = AddGameObject<MTestBox>();
-		testObj->AddComponent<PlayerMover>();
 
-		auto testSearch = AddGameObject<GameObject>();
-		testSearch->GetComponent<Transform>()->SetScale(Vec3(3.0f));
-		testSearch->AddComponent<SearchObject>();
-		
-		testSearch->SetParent(testObj);
+		//auto testObj = AddGameObject<MTestBox>();
+		//testObj->AddComponent<PlayerMover>();
+		//auto eyeRange = testObj->AddComponent<EyeSearchRange>();
+		//eyeRange->AddTarget(enemys[0]);
+
+		//auto testSearch = AddGameObject<GameObject>();
+		//testSearch->GetComponent<Transform>()->SetScale(Vec3(3.0f));
+		//testSearch->AddComponent<SearchObject>();
+		//testSearch->SetParent(testObj);
 	}
 }
 
