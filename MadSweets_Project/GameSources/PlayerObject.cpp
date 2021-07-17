@@ -18,13 +18,16 @@ namespace basecross
 	{
 		auto draw = AddComponent<PNTBoneModelDraw>();
 
-		CreateAnimator();
+		AddComponent<Animator<PlayerAnimationMember, PlayerState>>();
+
 
 		AddComponent<PlayerMover>();
 		AddComponent<PlayerProvider>();
 		AddComponent<PlayerStanceManager>();
 
 		AddComponent<CollisionCapsule>();
+
+		CreateAnimator();
 
 		GetStage()->Instantiate<PlayerCameraObject>(Vec3(),Quat::Identity(),GetThis<GameObject>());
 	}
@@ -36,7 +39,7 @@ namespace basecross
 
 	void PlayerObject::CreateAnimator()
 	{
-		auto animator = AddComponent<Animator<PlayerAnimationMember, PlayerState>>();
+		auto animator = GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
 
 		auto stateMachine = animator->CreateAnimationStateMchine(GetComponent<PNTBoneModelDraw>());
 
@@ -44,17 +47,24 @@ namespace basecross
 
 		state->AddTransition([](const PlayerAnimationMember& member) {return member.changeStance.Get(); }, PlayerState::StandToCrouch, false);
 
-		//state->AddTransition([](const PlayerAnimationMember& member) {return member.moveSpeed > 0.1f; }, PlayerState::StandMove, false);
+		auto mover = GetComponent<PlayerMover>();
 
-		state = stateMachine->CreateAnimationState(PlayerState::StandToCrouch, L"PlayerStandToCrouch", 30, false);
+		state->AddEntryEvent([mover]() {mover->SetMoveSpeed(3.0f); });
+		//state->AddExitEvent([mover]() {mover->SetUpdateActive(false); });
+
+		state = stateMachine->CreateAnimationState(PlayerState::StandToCrouch, L"PlayerStandToCrouch", 5, false);
 
 		state->AddTransition([](const PlayerAnimationMember& member) {return true; }, PlayerState::CrouchStay, true);
 
 		state = stateMachine->CreateAnimationState(PlayerState::CrouchStay, L"PlayerCrouchStay", 30, true);
 
+		state->AddEntryEvent([mover]() { mover->SetMoveSpeed(1.5f); });
+
 		state->AddTransition([](const PlayerAnimationMember& member) {return member.changeStance.Get(); }, PlayerState::CrouchToStand, false);
 
-		state = stateMachine->CreateAnimationState(PlayerState::CrouchToStand, L"PlayerStandToCrouch", 30, false);
+		state->AddTransition([](const PlayerAnimationMember& member) {return PlayerInputer::IsDashPush(); }, PlayerState::CrouchToStand, false);
+
+		state = stateMachine->CreateAnimationState(PlayerState::CrouchToStand, L"PlayerStandToCrouch", 5, false);
 
 		state->AddTransition([](const PlayerAnimationMember& member) {return true; }, PlayerState::StandStay, true);
 

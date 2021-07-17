@@ -7,6 +7,7 @@ namespace basecross
 	{
 		Trigger changeStance;
 		float moveSpeed;
+		bool isDash;
 	};
 
 	enum class PlayerState
