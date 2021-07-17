@@ -56,7 +56,7 @@ namespace basecross {
 
 		std::vector<AstarExpectData> m_shortRoutes;  //最短経路を格納した配列。
 		int m_routeIndex = 0;   //現在どのノードを目標としているかを判断するインデックス。
-		bool m_isRouteEnd = false;
+		bool m_isRouteEnd = true;
 
 		bool m_isCreateNewData = true;
 		bool m_isReturnPhase = false;  //一度戻っている状態かどうか
