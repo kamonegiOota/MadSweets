@@ -13,28 +13,18 @@ namespace basecross
 	{
 		if (PlayerInputer::IsChangeStance())
 		{
-			if (m_playerStance == PlayerStance::Stand)
+			auto nowState = m_animator->GetNowState();
+			if (nowState == PlayerState::StandStay || nowState == PlayerState::CrouchStay)
 			{
-				m_playerStance = PlayerStance::Crouch;
-				return;
-			}
+				m_animator->GetMemberRefarence().changeStance.Fire();
 
-			if (m_playerStance == PlayerStance::Crouch)
-			{
-				m_playerStance = PlayerStance::Stand;
-				return;
 			}
 		}
 	}
 
-	PlayerStance PlayerStanceManager::GetPlayerStance() const
-	{
-		return m_playerStance;
-	}
-
 	void PlayerStanceManager::OnCreate()
 	{
-
+		m_animator = GetGameObject()->GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
 	}
 
 	void PlayerStanceManager::OnUpdate()
