@@ -6,7 +6,8 @@ namespace basecross
 	{
 		float rotY = 0.0f;
 
-		float m_moveSpeed;
+		float m_standMoveSpeed;
+		float m_crouchMoveSpeed;
 		float m_dashPower;
 	public:
 		PlayerMover(std::shared_ptr<GameObject>& owner);
@@ -18,6 +19,8 @@ namespace basecross
 		void SetDashPower(const float dashPower);
 
 		float GetDashPower() const;
+
+		void OnCreate() override;
 
 		void OnUpdate() override;
 

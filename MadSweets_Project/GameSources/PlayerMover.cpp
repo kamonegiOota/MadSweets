@@ -5,7 +5,8 @@ namespace basecross
 {
 	PlayerMover::PlayerMover(std::shared_ptr<GameObject>& owner) :
 		Component(owner),
-		m_moveSpeed(3.0f),
+		m_standMoveSpeed(3.0f),
+		m_crouchMoveSpeed(1.5f),
 		m_dashPower(1.5f)
 	{
 
@@ -13,12 +14,12 @@ namespace basecross
 
 	void PlayerMover::SetMoveSpeed(const float moveSpeed)
 	{
-		m_moveSpeed = moveSpeed;
+		m_standMoveSpeed = moveSpeed;
 	}
 
 	float PlayerMover::GetMoveSpeed() const
 	{
-		return m_moveSpeed;
+		return m_standMoveSpeed;
 	}
 
 	void PlayerMover::SetDashPower(const float dashPower)
@@ -29,6 +30,11 @@ namespace basecross
 	float PlayerMover::GetDashPower() const
 	{
 		return m_dashPower;
+	}
+
+	void PlayerMover::OnCreate()
+	{
+
 	}
 
 	void PlayerMover::OnUpdate()
@@ -45,7 +51,7 @@ namespace basecross
 		auto moveForward = transform->GetForword() * move.y;
 		auto moveRight = transform->GetRight() * move.x;
 
-		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_moveSpeed;
+		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_standMoveSpeed;
 
 		if (PlayerInputer::IsDashPush())
 		{
