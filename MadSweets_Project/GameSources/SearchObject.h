@@ -11,12 +11,16 @@
 
 namespace basecross {
 
-	class SearchObject : Component 
+	//現状EnterとExitの利用した場合にエラーを吐くため、やめる。
+	class SearchObject : public Component 
 	{
 		std::list<std::shared_ptr<GameObject>> m_objs;
+		std::list<type_index> m_searchTypes;
 
 		void AddObject(const std::shared_ptr<GameObject>& addObj);
 		void RemoveObject(const std::shared_ptr<GameObject>& removeObj);
+
+		bool IsSearchTarget(const std::shared_ptr<GameObject>& other);  //検索対象だったらtrue
 
 	public:
 		SearchObject(const std::shared_ptr<GameObject>& objPtr)
@@ -30,8 +34,16 @@ namespace basecross {
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 		void OnCollisionExit(std::shared_ptr<GameObject>& other) override;
 
-
 		//アクセッサ-------------------------------------------------------------------
+		template<class T>
+		void AddSearchType() {  //検索対象を絞る
+			m_searchTypes.push_back(type_index(typeid(T)));
+		}
+
+		std::list<std::shared_ptr<GameObject>> GetObjects() {
+			return m_objs;
+		}
+
 		template<class T,
 			enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >  //GameObjectを継承したもののみ指定できる
 		std::shared_ptr<T> GetSearchObject() const
@@ -67,7 +79,7 @@ namespace basecross {
 		std::shared_ptr<T> GetSearchComponent() const
 		{
 			for (auto obj : m_objs) {
-				auto target = obj->GetComponent<T>();
+				auto target = obj->GetComponent<T>(false);
 				if (target) {
 					return target;
 				}
@@ -83,7 +95,7 @@ namespace basecross {
 			std::vector<std::shared_ptr<T>> reComps;
 
 			for (auto obj : m_objs) {
-				auto target = obj->GetComponent<T>();
+				auto target = obj->GetComponent<T>(false);
 				if (target) {
 					reComps.push_back(target);
 				}
