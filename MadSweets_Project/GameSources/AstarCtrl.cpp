@@ -12,15 +12,11 @@
 
 namespace basecross {
 
-	void AstarCtrl::OnCreate() {
-		auto target = GetStage()->AddGameObject<MTestEnemyObject>();
-		target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,+5.0f,0.0f));
+	void AstarCtrl::Move() {
+		if (m_astar.IsRouteEnd()) { //ƒ‹[ƒg‚ÌÅŒã‚Ü‚Å—ˆ‚½‚çˆ—‚ðŽ~‚ß‚éB
+			return;
+		}
 
-		transform->SetPosition(Vec3(-5.0f, 0.0f, 0.0f));
-		m_astar.SearchAstarStart(GetGameObject(),target);
-	}
-
-	void AstarCtrl::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto speed = 3.0f;
 
@@ -30,6 +26,26 @@ namespace basecross {
 		auto pos = transform->GetPosition();
 		pos += toVec.GetNormalized() * delta * speed;
 		transform->SetPosition(pos);
+	}
+
+	void AstarCtrl::OnCreate() {
+		auto target = GetStage()->AddGameObject<MTestEnemyObject>();
+		target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,+5.0f,0.0f));
+
+		transform->SetPosition(Vec3(-5.0f, 0.0f, 0.0f));
+		m_astar.SearchAstarStart(GetGameObject(),target);
+	}
+
+	void AstarCtrl::OnUpdate() {
+		Move();
+	}
+
+	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target) {
+		m_astar.SearchAstarStart(GetGameObject(), target);
+	}
+
+	void AstarCtrl::SearchAstarStart(const Vec3& targetPos) {
+		m_astar.SearchAstarStart(GetGameObject(), targetPos);
 	}
 }
 

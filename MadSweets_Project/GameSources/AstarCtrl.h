@@ -11,8 +11,9 @@ namespace basecross {
 
 	class AstarCtrl : public Component
 	{
-
 		GraphAstar m_astar;
+
+		void Move();
 
 	public:
 		AstarCtrl(const std::shared_ptr<GameObject>& objPtr,
@@ -26,6 +27,9 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnDraw() override {};
 
+		//アクセッサ-------------------------------------------------------------
+		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
+		void SearchAstarStart(const Vec3& targetPos);
 	};
 
 }
