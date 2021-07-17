@@ -1,6 +1,7 @@
 #pragma once
 #include"PlayerProvider.h"
-#include"PlayerStanceManager.h"
+#include"AnimationHelper.h"
+#include"PlayerObject.h"
 
 namespace basecross
 {
@@ -19,9 +20,7 @@ namespace basecross
 		/// </summary>
 		ex_weak_ptr<Camera> m_targetCamera;
 
-		ex_weak_ptr<PlayerProvider> m_playerProvider;
-
-		ex_weak_ptr<PlayerStanceManager> m_playerStanceManager;
+		ex_weak_ptr<Animator<PlayerAnimationMember, PlayerState>> m_playerAnimator;
 
 		/// <summary>
 		/// 現在のY回転
@@ -36,6 +35,9 @@ namespace basecross
 		/// 最小Y回転角度
 		/// </summary>
 		float m_minRotY = -XM_PIDIV2;
+
+		Vec3 m_standPosition = Vec3(0, 1, 0);
+		Vec3 m_crouchPosition = Vec3(0, 0, 0);
 	public:
 		/// <summary>
 		/// コンストラクタ
@@ -68,6 +70,8 @@ namespace basecross
 		void OnCreate() override;
 
 		void OnUpdate() override;
+
+		void OnUpdate2() override;
 
 		void OnDraw() override {}
 	};

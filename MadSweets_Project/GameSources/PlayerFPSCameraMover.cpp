@@ -31,6 +31,8 @@ namespace basecross
 
 	void PlayerFPSCameraMover::OnCreate()
 	{
+		transform->SetPosition(m_standPosition);
+
 		m_targetCamera = GetStage()->GetView()->GetTargetCamera();
 
 		m_lookAtObject = GetStage()->AddGameObject<GameObject>();
@@ -42,9 +44,7 @@ namespace basecross
 
 		m_targetCamera->SetCameraObject(GetGameObject());
 
-		m_playerProvider = GetGameObject()->GetParent()->GetComponent<PlayerProvider>();
-
-		m_playerStanceManager = GetGameObject()->GetParent()->GetComponent<PlayerStanceManager>();
+		m_playerAnimator = GetGameObject()->GetParent()->GetComponent<Animator<PlayerAnimationMember,PlayerState>>();
 	}
 
 	void PlayerFPSCameraMover::OnUpdate()
@@ -57,10 +57,29 @@ namespace basecross
 
 		transform->SetRotation(m_rotY, 0, 0);
 
+		auto state = m_playerAnimator->GetNowState();
+
+		if (state == PlayerState::StandToCrouch)
+		{
+			float rateOfTime = m_playerAnimator->GetStateRateOfTime();
+
+			Vec3 position = m_standPosition * (1.0f - rateOfTime) + m_crouchPosition * rateOfTime;
+
+			transform->SetPosition(position);
+		}
+
+		if (state == PlayerState::CrouchToStand)
+		{
+			float rateOfTime = m_playerAnimator->GetStateRateOfTime();
+
+			Vec3 position = m_standPosition * rateOfTime + m_crouchPosition * (1.0f - rateOfTime);
+
+			transform->SetPosition(position);
+		}
+	}
+
+	void PlayerFPSCameraMover::OnUpdate2()
+	{
 		m_targetCamera->SetAt(m_lookAtObject->GetComponent<Transform>()->GetWorldPosition());
-
-		auto position = m_playerStanceManager->GetPlayerStance() == PlayerStance::Stand ? Vec3(0, 1, 0) : Vec3(0, 0, 0);
-
-		transform->SetPosition(position);
 	}
 }
