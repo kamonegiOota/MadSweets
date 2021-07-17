@@ -18,6 +18,21 @@ namespace basecross
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 
+		std::wstring mediaDir = App::GetApp()->GetDataDirWString();
+		auto& app = App::GetApp();
+
+		//モデル
+		std::wstring modelDir = mediaDir + L"Models\\";
+		auto modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Player\\StandStay\\", L"PlayerStandStay.bmf");
+		app->RegisterResource(L"PlayerStandStay", modelMesh);
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Player\\CrouchStay\\", L"PlayerCrouchStay.bmf");
+		app->RegisterResource(L"PlayerCrouchStay", modelMesh);
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
+		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
+
 		auto playerObject = Instantiate<PlayerObject>();
 
 		std::vector<std::shared_ptr<GameObject>> gameobjects;
@@ -29,6 +44,8 @@ namespace basecross
 			auto draw = gameobject->AddComponent<PNTStaticDraw>();
 			draw->SetMeshResource(L"DEFAULT_CUBE");
 
+			auto collision = gameobject->AddComponent<CollisionObb>();
+			collision->SetFixed(true);
 			gameobjects.push_back(gameobject);
 		}
 
