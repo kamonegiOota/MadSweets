@@ -494,5 +494,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_LoseTarget</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp">
+      <Filter>Maru\Enemy\Component\ReturnPlowlingPosition</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
