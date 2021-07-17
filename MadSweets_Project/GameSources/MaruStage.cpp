@@ -51,10 +51,10 @@ namespace basecross {
 
 			CreateGraphTest();
 
-			auto target = AddGameObject<MTestBox>();
-			target->AddComponent<BaseEnemy>();
-			target->SetColor(Col4(1.0f,0.0f,0.0f,1.0f));
-			target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,1.0f,0.0f));
+			//auto target = AddGameObject<MTestBox>();
+			//target->AddComponent<BaseEnemy>();
+			//target->SetColor(Col4(1.0f,0.0f,0.0f,1.0f));
+			//target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,1.0f,0.0f));
 
 			auto player = AddGameObject<MTestBox>();
 			player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -111,12 +111,15 @@ namespace basecross {
 		
 		//データ構築
 		std::vector<Vec3> poss = {
-			{+0.0f ,+0.0f ,+0.0f},
+			{+0.0f ,+0.0f ,+0.0f},//0
 			{+5.0f ,+0.0f ,+0.0f},
-			{-5.0f ,+0.0f ,+0.0f},
-			{+0.0f ,+5.0f ,+0.0f},
-			{+0.0f ,-5.0f ,+0.0f},
-			{+5.0f ,+6.0f ,+0.0f},
+			{-5.0f ,+0.0f ,+0.0f},//2
+			{-1.0f ,+5.0f ,+0.0f},
+			{+0.0f ,-5.0f ,+0.0f},//4
+			{+5.0f ,+5.0f ,+0.0f},
+			{+10.0f ,+0.0f ,+0.0f},//6
+			{+6.0f ,+4.0f ,+0.0f},
+			{+2.0f ,+2.0f ,+0.0f},
 		};
 
 		int index = 0;
@@ -143,7 +146,12 @@ namespace basecross {
 			{GraphEdge(3,0)},
 			{GraphEdge(4,0)},
 			{GraphEdge(3,5)},
-			{GraphEdge(1,5)},
+			//{GraphEdge(1,5)},
+
+			{GraphEdge(1,6)},
+			{GraphEdge(6,7)},
+			{GraphEdge(7,5)},
+			{GraphEdge(0,8)},
 		};
 
 		for (auto& edge : edges) {
