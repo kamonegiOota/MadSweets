@@ -56,14 +56,14 @@ namespace basecross {
 			//target->SetColor(Col4(1.0f,0.0f,0.0f,1.0f));
 			//target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,1.0f,0.0f));
 
-			auto player = AddGameObject<MTestBox>();
-			player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+			//auto player = AddGameObject<MTestBox>();
+			//player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 			//chaseEnemy->AddComponent<ChaseEnemy>();
 			//chaseEnemy->AddComponent<EyeSearchRange>()->AddTarget(target);
 			//chaseEnemy->AddComponent<TargetChase>();
-			player->AddComponent<PlayerMover>();
+			//player->AddComponent<PlayerMover>();
 
-			Instantiate<ChaseEnemyObject>()->GetComponent<EyeSearchRange>()->AddTarget(player);
+			//Instantiate<ChaseEnemyObject>()->GetComponent<EyeSearchRange>()->AddTarget(player);
 
 			AddGameObject<DebugObject>();
 		}
@@ -101,6 +101,7 @@ namespace basecross {
 		constexpr int EnemyNum = 1;
 		for (int i = 0; i < EnemyNum; i++) {
 			auto enemy = AddGameObject<MTestEnemyObject>();
+			enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
 			auto col = enemy->GetComponent<CollisionObb>();
 			//col->SetAfterCollision(AfterCollision::None);
 			//col->AddExcludeCollisionTag(L"MTestEnemy");
@@ -158,10 +159,13 @@ namespace basecross {
 			graph.AddEdge(edge);
 		}
 
+		auto astarTarget = AddGameObject<MTestEnemyObject>();
+		astarTarget->GetComponent<Transform>()->SetPosition(Vec3(5.0f, +5.0f, 0.0f));
+
 		//Astar¶¬
 		GraphAstar astar(graph);
 		for (auto enemy : enemys) {
-			enemy->AddComponent<AstarCtrl>(astar);
+			enemy->AddComponent<AstarCtrl>(astar)->SearchAstarStart(astarTarget);
 		}
 		
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
@@ -176,6 +180,14 @@ namespace basecross {
 		//testSearch->GetComponent<Transform>()->SetScale(Vec3(3.0f));
 		//testSearch->AddComponent<SearchObject>();
 		//testSearch->SetParent(testObj);
+
+		auto player = AddGameObject<MTestBox>();
+		player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+		player->AddComponent<PlayerMover>();
+
+		auto chaseEnemy = Instantiate<ChaseEnemyObject>();
+		chaseEnemy->GetComponent<EyeSearchRange>()->AddTarget(player);
+		chaseEnemy->AddComponent<AstarCtrl>(astar);
 	}
 }
 
