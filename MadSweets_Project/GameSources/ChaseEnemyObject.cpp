@@ -32,7 +32,8 @@ namespace basecross {
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 		draw->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
 
-		AddComponent<TargetChase>()->SetSpeed(0.5f);
+		//AddComponent<AstarCtrl>();
+		AddComponent<TargetChase>();
 		AddComponent<EyeSearchRange>();
 		CreatePlowlingRoute();
 
