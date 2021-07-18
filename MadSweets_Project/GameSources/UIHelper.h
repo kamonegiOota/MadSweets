@@ -256,19 +256,19 @@ namespace basecross
 		ex_weak_ptr<RectTransform> rectTransform;
 
 		/// <summary>
-		/// ï¿½æ‘œï¿½Ì“hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½v
+		/// ‰æ‘œ‚ÌØ‚èæ‚è—Ìˆæ‚Ì’¸“_ƒf[ƒ^
+		/// </summary>
+		std::array<Vec2, VERTICES_POINT_NUM> m_UVPoints;
+
+		/// <summary>
+		/// ‰æ‘œ‚Ì“h‚è‚Â‚Ô‚µƒ^ƒCƒv
 		/// </summary>
 		ImageFillType m_fillType = ImageFillType::None;
 
 		/// <summary>
-		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ (1.0f ï¿½` 2.0f)
+		/// “h‚è‚Â‚Ô‚³‚ê‚é—Ê (1.0f ` 2.0f)
 		/// </summary>
 		float m_fillAmount = 1.0f;
-
-		/// <summary>
-		/// ‰æ‘œ‚ÌØ‚èæ‚è—Ìˆæ‚Ì’¸“_ƒf[ƒ^
-		/// </summary>
-		std::array<Vec2, VERTICES_POINT_NUM> m_UVPoints;
 
 		/// <summary>
 		/// Œ»İ‚Ìó‘Ô‚Ìverticesƒf[ƒ^‚ğì¬‚·‚é
@@ -308,27 +308,27 @@ namespace basecross
 		float GetAlpha() const;
 
 		/// <summary>
-		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½vï¿½ï¿½İ’è‚·ï¿½ï¿½
+		/// “h‚è‚Â‚Ô‚µƒ^ƒCƒv‚ğİ’è‚·‚é
 		/// </summary>
-		/// <param name="fillType">ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½v</param>
+		/// <param name="fillType">“h‚è‚Â‚Ô‚µƒ^ƒCƒv</param>
 		void SetFillType(const ImageFillType fillType);
 
 		/// <summary>
-		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½vï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+		/// “h‚è‚Â‚Ô‚µƒ^ƒCƒv‚ğæ“¾‚·‚é
 		/// </summary>
 		/// <returns></returns>
 		ImageFillType GetFillType() const;
 
 		/// <summary>
-		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½Ê‚ï¿½İ’è‚·ï¿½ï¿½
+		/// “h‚è‚Â‚Ô‚µ—Ê‚ğİ’è‚·‚é
 		/// </summary>
-		/// <param name="fillAmount">ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½</param>
+		/// <param name="fillAmount">“h‚è‚Â‚Ô‚µ—Ê</param>
 		void SetFillAmount(const float fillAmount);
 
 		/// <summary>
-		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½Ê‚ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+		/// “h‚è‚Â‚Ô‚µ—Ê‚ğæ“¾‚·‚é
 		/// </summary>
-		/// <returns>ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½</returns>
+		/// <returns>“h‚è‚Â‚Ô‚µ—Ê</returns>
 		float GetFillAmount() const;
 
 		virtual void OnCreate() override;
@@ -582,5 +582,19 @@ namespace basecross
 		void OnUpdate() override {}
 
 		void OnDraw() override;
+	};
+
+	/// <summary>
+	/// UI—pGameObject
+	/// </summary>
+	class UIObject : public GameObject
+	{
+	protected:
+		ex_weak_ptr<RectTransform> rectTransform;
+
+	public:
+		UIObject(std::shared_ptr<Stage>& stage);
+
+		void OnPreCreate() override;
 	};
 }

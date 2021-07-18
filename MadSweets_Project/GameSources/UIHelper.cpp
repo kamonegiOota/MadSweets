@@ -340,8 +340,33 @@ namespace basecross
 		return color.w;
 	}
 
+	void Image::SetFillType(const ImageFillType fillType)
+	{
+		m_fillType = fillType;
+	}
+
+	ImageFillType Image::GetFillType() const
+	{
+		return m_fillType;
+	}
+
+	void Image::SetFillAmount(const float fillAmount)
+	{
+		float fill = fillAmount;
+		fill = std::fmaxf(fill, 0.0f);
+		fill = std::fminf(fill, 1.0f);
+		m_fillAmount = fill;
+	}
+
+	float Image::GetFillAmount() const
+	{
+		return m_fillAmount;
+	}
+
 	void Image::OnUpdate()
 	{
+		UpdateVertices(CreateVertices());
+
 		auto parentRectTransform = rectTransform->GetParentRectTransform();
 
 		auto position = rectTransform->GetPosition();
@@ -617,5 +642,20 @@ namespace basecross
 
 		D2DDeviceContext->RestoreDrawingState(m_stateBlock.Get());
 
+	}
+
+	// UIObject ---------------------------------
+
+	UIObject::UIObject(std::shared_ptr<Stage>& stage) :
+		GameObject(stage)
+	{
+
+	}
+
+	void UIObject::OnPreCreate()
+	{
+		GameObject::OnPreCreate();
+
+		rectTransform = AddComponent<RectTransform>();
 	}
 }
