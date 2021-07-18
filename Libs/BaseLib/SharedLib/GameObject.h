@@ -13,7 +13,7 @@ using namespace itbs::Utility;
 namespace basecross {
 	class Stage;
 	struct CollisionPair;
-
+	class UIObject;
 	//--------------------------------------------------------------------------------------
 	///	ゲーム配置オブジェクト親クラス
 	//--------------------------------------------------------------------------------------
@@ -1647,7 +1647,23 @@ namespace basecross {
 		}
 
 		template<class T,
-			std::enable_if_t<std::is_base_of_v<GameObject,T> && std::is_constructible_v<T,std::shared_ptr<Stage>&>,
+			std::enable_if_t<std::is_base_of_v<UIObject,T> && std::is_constructible_v<T,std::shared_ptr<Stage>&>,
+			std::nullptr_t> = nullptr>
+		std::shared_ptr<T>  Instantiate()
+		{
+			try {
+				auto Ptr = ObjectFactory::InstantiateCreate<T>(GetThis<Stage>(), Vec3(), Quat::Identity(), m_canvas);
+				PushBackGameObject(Ptr);
+				return Ptr;
+			}
+			catch (...) {
+				throw;
+			}
+		}
+
+		template<class T,
+			std::enable_if_t<std::is_base_of_v<GameObject,T> && !std::is_base_of_v<UIObject, T>
+			&& std::is_constructible_v<T,std::shared_ptr<Stage>&>,
 			std::nullptr_t> = nullptr>
 		std::shared_ptr<T>  Instantiate()
 		{
@@ -1662,7 +1678,23 @@ namespace basecross {
 		}
 
 		template<class T,
-			std::enable_if_t<std::is_base_of_v<GameObject,T> && std::is_constructible_v<T,std::shared_ptr<Stage>&>,
+			std::enable_if_t<std::is_base_of_v<UIObject,T> && std::is_constructible_v<T,std::shared_ptr<Stage>&>,
+			std::nullptr_t> = nullptr>
+		std::shared_ptr<T>  Instantiate(const bsm::Vec3& position,const bsm::Quat& rotation,const std::shared_ptr<UIObject>& parent = nullptr)
+		{
+			try {
+				auto Ptr = ObjectFactory::InstantiateCreate<T>(GetThis<Stage>(), position, rotation, parent);
+				PushBackGameObject(Ptr);
+				return Ptr;
+			}
+			catch (...) {
+				throw;
+			}
+		}
+
+		template<class T,
+			std::enable_if_t<std::is_base_of_v<GameObject,T> && !std::is_base_of_v<UIObject, T>
+			&& std::is_constructible_v<T,std::shared_ptr<Stage>&>,
 			std::nullptr_t> = nullptr>
 		std::shared_ptr<T>  Instantiate(const bsm::Vec3& position,const bsm::Quat& rotation,const std::shared_ptr<GameObject>& parent = nullptr)
 		{

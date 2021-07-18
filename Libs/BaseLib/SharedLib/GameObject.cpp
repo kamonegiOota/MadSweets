@@ -1119,6 +1119,10 @@ namespace basecross {
 		pImpl->m_CollisionManager = ObjectFactory::Create<CollisionManager>(GetThis<Stage>());
 		//物理計算リセット
 		pImpl->m_BasePhysics.Reset();
+
+		m_canvas = AddGameObject<GameObject>();
+		auto rect = m_canvas->AddComponent<RectTransform>();
+		rect->SetRectSize(WindowSetting::WINDOW_WIDTH, WindowSetting::WINDOW_HEIGHT);
 	}
 
 
