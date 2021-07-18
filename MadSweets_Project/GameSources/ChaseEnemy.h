@@ -27,6 +27,7 @@ namespace basecross {
 
 		//Interfaceの実装
 		void ChangeChaseState(const std::shared_ptr<GameObject>& target) override;
+		void ChangeTargetLostState() override;
 
 		//アクセッサ-----------------------------------------------
 	};

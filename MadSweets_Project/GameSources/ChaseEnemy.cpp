@@ -10,6 +10,7 @@
 
 #include "EnState_TargetChase.h"
 #include "EnState_Plowling.h"
+#include "EnState_LoseTarget.h"
 #include "DebugObject.h"
 
 namespace basecross {
@@ -26,6 +27,10 @@ namespace basecross {
 
 	void ChaseEnemy::ChangeChaseState(const std::shared_ptr<GameObject>& target) {
 		ChangeStateMachine<EnState_TargetChase>(target);
+	}
+
+	void ChaseEnemy::ChangeTargetLostState() {
+		ChangeStateMachine<EnState_LoseTarget>();
 	}
 
 }
