@@ -80,13 +80,16 @@ namespace basecross {
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos);
 
+		//ターゲットの行先を予測してその方向ノードに向かうルートを構築する処理(Forecast == 予測、予想)
+		void SearchAstarForecastStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
+
 		//最短ノードの中で今欲しいノードの場所を取得する。
 		Vec3 CalucTargetNode(const std::shared_ptr<GameObject>& objPtr);
 
 		//アクセッサ-------------------------------------------------------
 		
 		//検索したルートの最後まで来たらtrue
-		bool IsRouteEnd() {
+		bool IsRouteEnd() const {
 			return m_isRouteEnd;
 		}
 
