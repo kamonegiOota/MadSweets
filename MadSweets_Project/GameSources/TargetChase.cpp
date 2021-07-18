@@ -71,6 +71,12 @@ namespace basecross {
 		if (!astar) {
 			return;
 		}
+		
+		if (astar->IsRouteEnd()) {
+			LookCheck();
+			return;
+		}
+
 		auto delta = App::GetApp()->GetElapsedTime();
 
 	 	auto selfPos = transform->GetPosition();
