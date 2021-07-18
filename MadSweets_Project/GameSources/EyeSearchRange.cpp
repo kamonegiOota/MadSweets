@@ -26,41 +26,52 @@ namespace basecross {
 	{}
 
 	void EyeSearchRange::LengthCheck() {
-		for (auto target : m_targets) {
-			auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), target);
+		for (auto& param : m_targetParams) {
+			auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), param.target);
 			if (toVec.length() <= m_param.lenght) {
-				HeightCheck(target);  //高さチェック
+				HeightCheck(param);  //高さチェック
+			}
+			else {
+				param.isFind = false;
 			}
 		}
 	}
 
-	void EyeSearchRange::HeightCheck(const std::shared_ptr<GameObject>& target) {
+	void EyeSearchRange::HeightCheck(const EyeTargetParam& targetParam) {
 		auto selfPos = transform->GetPosition();
-		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+		auto targetPos = targetParam.target->GetComponent<Transform>()->GetPosition();
 
 		auto subHeight = targetPos.y - selfPos.y;  //高さの差を求める。
 		if (std::abs(subHeight) <= m_param.height) {  //高さが小さかったら。
-			RadCheck(target);  //角度チェック
+			RadCheck(targetParam);  //角度チェック
+		}
+		else {
+			targetParam.isFind = false;
 		}
 	}
 
-	void EyeSearchRange::RadCheck(const std::shared_ptr<GameObject>& target) {
+	void EyeSearchRange::RadCheck(const EyeTargetParam& targetParam) {
 		auto forward = transform->GetForword();
 		forward.y = 0.0f;
-		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), target);
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), targetParam.target);
 		toVec.y = 0.0f;
 
 		auto newDot = dot(forward.GetNormalized(), toVec.GetNormalized());
 		auto newRad = acosf(newDot);
 		if (newRad <= m_param.rad) {  //索敵範囲に入っていたら。
-			Hit(target);
+			Hit(targetParam);
+		}
+		else {
+			targetParam.isFind = false;
 		}
 	}
 
-	void EyeSearchRange::Hit(const std::shared_ptr<GameObject>& target) {
+	void EyeSearchRange::Hit(const EyeTargetParam& targetParam) {
+		targetParam.isFind = true;
+
 		auto chase = GetGameObject()->GetComponent<I_Chase>(false);
 		if (chase) {
-			chase->ChangeChaseState(target);
+			chase->ChangeChaseState(targetParam.target);
 			//DebugObject::m_wss << L"Chase,";
 			return;
 		}
