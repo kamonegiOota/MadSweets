@@ -157,8 +157,6 @@ namespace basecross {
 	}
 
 	void GraphAstar::LoopSearchAstar(const NavGraphNode& stdNode) {
-		//Ÿ‚É‚»‚ê‚ğŠî€‚É“¯‚¶s’ö‚ğ“¥‚ŞB
-		
 		//for (int i = 0; i < 5; i++) {
 		while(true){
 			NavGraphNode node;
