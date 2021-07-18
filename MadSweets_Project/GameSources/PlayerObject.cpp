@@ -5,6 +5,8 @@
 #include"PlayerCameraObject.h"
 #include"PlayerStanceManager.h"
 #include"AnimationHelper.h"
+#include"PlayerWeightManager.h"
+#include"PlayerEatManager.h"
 
 namespace basecross
 {
@@ -26,6 +28,11 @@ namespace basecross
 		AddComponent<PlayerStanceManager>();
 
 		AddComponent<CollisionCapsule>();
+
+		auto weightManager = AddComponent<PlayerWeightManager>();
+		weightManager->SetGaugeManager(GetStage()->GetSharedGameObject<GameObject>(L"PlayerWeightGauge")->GetComponent<GaugeManager>());
+
+		AddComponent<PlayerEatManager>();
 
 		CreateAnimator();
 
