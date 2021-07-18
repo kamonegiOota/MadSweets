@@ -29,6 +29,8 @@ namespace basecross {
 		void LostMove();
 		void LookCheck();
 
+		void ChangeStateMachine();
+
 	public:
 		TargetChase(const std::shared_ptr<GameObject>& objPtr);
 

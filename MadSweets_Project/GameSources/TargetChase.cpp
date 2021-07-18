@@ -11,6 +11,7 @@
 
 #include "EyeSearchRange.h"
 #include "AstarCtrl.h"
+#include "I_Chase.h"
 #include "DebugObject.h"
 
 namespace basecross {
@@ -73,7 +74,7 @@ namespace basecross {
 		}
 		
 		if (astar->IsRouteEnd()) {
-			LookCheck();
+			ChangeStateMachine();
 			return;
 		}
 
@@ -102,6 +103,13 @@ namespace basecross {
 		}
 	}
 
+	void TargetChase::ChangeStateMachine() {
+		auto chase = GetGameObject()->GetComponent<I_Chase>(false);
+		if (chase) {
+			chase->ChangeTargetLostState();
+		}
+	}
+
 	void TargetChase::OnCreate() {
 		m_updateFunc = &TargetChase::LookMove;
 	}
@@ -114,8 +122,6 @@ namespace basecross {
 		if (m_updateFunc) {
 			m_updateFunc(*this);
 		}
-
-		//LookMove();
 	}
 
 }
