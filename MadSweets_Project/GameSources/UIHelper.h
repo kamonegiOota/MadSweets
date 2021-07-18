@@ -2,6 +2,10 @@
 
 namespace basecross
 {
+	class GameObject;
+	class Component;
+	class Stage;
+
 	/// <summary>
 	/// •\¦‚·‚éÛ‚ÌƒAƒ“ƒJ[ƒ^ƒCƒv
 	/// </summary>
@@ -224,6 +228,13 @@ namespace basecross
 		virtual void OnDraw() override {}
 	};
 
+	enum class ImageFillType
+	{
+		None,
+		Horizontal,
+		Vertical
+	};
+
 	/// <summary>
 	/// ‰æ‘œ‚ğ•\¦‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg
 	/// </summary>
@@ -243,6 +254,16 @@ namespace basecross
 		/// lŠpƒgƒ‰ƒ“ƒXƒtƒH[ƒ€
 		/// </summary>
 		ex_weak_ptr<RectTransform> rectTransform;
+
+		/// <summary>
+		/// ï¿½æ‘œï¿½Ì“hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½v
+		/// </summary>
+		ImageFillType m_fillType = ImageFillType::None;
+
+		/// <summary>
+		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ (1.0f ï¿½` 2.0f)
+		/// </summary>
+		float m_fillAmount = 1.0f;
 
 		/// <summary>
 		/// ‰æ‘œ‚ÌØ‚èæ‚è—Ìˆæ‚Ì’¸“_ƒf[ƒ^
@@ -285,6 +306,30 @@ namespace basecross
 		/// </summary>
 		/// <returns>Alpha’l</returns>
 		float GetAlpha() const;
+
+		/// <summary>
+		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½vï¿½ï¿½İ’è‚·ï¿½ï¿½
+		/// </summary>
+		/// <param name="fillType">ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½v</param>
+		void SetFillType(const ImageFillType fillType);
+
+		/// <summary>
+		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½^ï¿½Cï¿½vï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+		/// </summary>
+		/// <returns></returns>
+		ImageFillType GetFillType() const;
+
+		/// <summary>
+		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½Ê‚ï¿½İ’è‚·ï¿½ï¿½
+		/// </summary>
+		/// <param name="fillAmount">ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½</param>
+		void SetFillAmount(const float fillAmount);
+
+		/// <summary>
+		/// ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½Ê‚ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+		/// </summary>
+		/// <returns>ï¿½hï¿½ï¿½Â‚Ô‚ï¿½ï¿½ï¿½</returns>
+		float GetFillAmount() const;
 
 		virtual void OnCreate() override;
 

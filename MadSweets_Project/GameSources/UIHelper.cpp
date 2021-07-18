@@ -244,11 +244,56 @@ namespace basecross
 		float width = rectTransform->GetWidth();
 		float height = rectTransform->GetHeight();
 
+		Vec3 leftUpPoint, rightUpPoint, leftDownPoint, rightDownPoint;
+
+		switch (m_fillType)
+		{
+		case basecross::ImageFillType::None:
+			leftUpPoint = Vec3(width * (-0.5f - pivot.x), height * (0.5f - pivot.y), 0);
+			rightUpPoint = Vec3(width * (0.5f - pivot.x), height * (0.5f - pivot.y), 0);
+			leftDownPoint = Vec3(width * (-0.5f - pivot.x), height * (-0.5f - pivot.y), 0);
+			rightDownPoint = Vec3(width * (0.5f - pivot.x), height * (-0.5f - pivot.y), 0);
+			break;
+		case basecross::ImageFillType::Horizontal:
+			leftUpPoint = Vec3(width * (-0.5f - pivot.x), height * (0.5f - pivot.y), 0);
+			rightUpPoint = Vec3(width * (0.5f - pivot.x) - (width * (1.0f - m_fillAmount)), height * (0.5f - pivot.y), 0);
+			leftDownPoint = Vec3(width * (-0.5f - pivot.x), height * (-0.5f - pivot.y), 0);
+			rightDownPoint = Vec3(width * (0.5f - pivot.x) - (width * (1.0f - m_fillAmount)), height * (-0.5f - pivot.y), 0);
+			break;
+		case basecross::ImageFillType::Vertical:
+			leftUpPoint = Vec3(width * (-0.5f - pivot.x), height * (0.5f - pivot.y) - (height * (1.0f - m_fillAmount)), 0);
+			rightUpPoint = Vec3(width * (0.5f - pivot.x), height * (0.5f - pivot.y) - (height * (1.0f - m_fillAmount)), 0);
+			leftDownPoint = Vec3(width * (-0.5f - pivot.x), height * (-0.5f - pivot.y), 0);
+			rightDownPoint = Vec3(width * (0.5f - pivot.x), height * (-0.5f - pivot.y), 0);
+			break;
+		}
+
+		Vec2 uvLeftUp = m_UVPoints[0];
+		Vec2 uvRightUp = m_UVPoints[1];
+		Vec2 uvLeftDown = m_UVPoints[2];
+		Vec2 uvRightDowm = m_UVPoints[3];
+
+		switch (m_fillType)
+		{
+		case basecross::ImageFillType::None:
+			break;
+		case basecross::ImageFillType::Horizontal:
+			uvRightUp.x -= (1.0f - m_fillAmount);
+			uvRightDowm.x -= (1.0f - m_fillAmount);
+			break;
+		case basecross::ImageFillType::Vertical:
+			uvLeftUp.y += (1.0f - m_fillAmount);
+			uvRightDowm.y += (1.0f - m_fillAmount);
+			break;
+		default:
+			break;
+		}
+
 		std::vector<VertexPositionColorTexture> vertices = {
-			{Vec3(width * (-0.5f - pivot.x),height * ( 0.5f - pivot.y), 0), color, m_UVPoints[0]},
-			{Vec3(width * ( 0.5f - pivot.x),height * ( 0.5f - pivot.y), 0), color, m_UVPoints[1]},
-			{Vec3(width * (-0.5f - pivot.x),height * (-0.5f - pivot.y), 0), color, m_UVPoints[2]} ,
-			{Vec3(width * ( 0.5f - pivot.x),height * (-0.5f - pivot.y), 0), color, m_UVPoints[3]}
+			{leftUpPoint, color, uvLeftUp},
+			{rightUpPoint, color, uvRightUp},
+			{leftDownPoint, color, uvLeftDown} ,
+			{rightDownPoint, color, uvRightDowm}
 		};
 
 		return vertices;
