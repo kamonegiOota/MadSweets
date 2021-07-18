@@ -109,12 +109,6 @@
     <Filter Include="Itabashi\Components">
       <UniqueIdentifier>{96229e58-db65-4675-8bfc-58bd13ab03b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\Components\PlayerMover">
-      <UniqueIdentifier>{6b09f635-c8fe-4c47-b242-20074a4dd0ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Itabashi\Components\PlayerFPSCameraMover">
-      <UniqueIdentifier>{408746b2-719d-414c-ad20-7cfe1b712910}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object">
       <UniqueIdentifier>{4965dc1f-7a8c-4767-b962-af79a521793d}</UniqueIdentifier>
     </Filter>
@@ -144,12 +138,6 @@
     </Filter>
     <Filter Include="Maru\DebugObject">
       <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Itabashi\Components\PlayerProvider">
-      <UniqueIdentifier>{8d9fdd75-e194-4459-a196-1be9e6115ea1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Itabashi\Components\PlayerStanceManager">
-      <UniqueIdentifier>{a03a8fe2-75c8-4c83-aee6-15e4348355dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Plowling">
       <UniqueIdentifier>{7894883d-bc8a-4d57-a199-3808bcd13059}</UniqueIdentifier>
@@ -186,6 +174,39 @@
     </Filter>
     <Filter Include="Patchs\Utilitys\Trigger">
       <UniqueIdentifier>{5e8dd015-1809-4106-8b2a-df6afb375d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GaugeUI">
+      <UniqueIdentifier>{226ce1f6-aff7-48d8-9b20-d3a2134891e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\GaugeManager">
+      <UniqueIdentifier>{9385c7cc-b6c2-4b77-9def-59f85a2472f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\EatenComponent">
+      <UniqueIdentifier>{8ac77ee5-1f6a-4684-b36a-bfba6e37a0d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\TestEatenObject">
+      <UniqueIdentifier>{26d84d4b-d0fc-478a-aceb-54a1fa6886d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent">
+      <UniqueIdentifier>{37af5101-91d8-4b3c-ab7a-c88c9293018b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerWeightManager">
+      <UniqueIdentifier>{10cc3f75-7267-418f-8bc0-c66918a2cb82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerFPSCameraMover">
+      <UniqueIdentifier>{408746b2-719d-414c-ad20-7cfe1b712910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerMover">
+      <UniqueIdentifier>{6b09f635-c8fe-4c47-b242-20074a4dd0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerProvider">
+      <UniqueIdentifier>{8d9fdd75-e194-4459-a196-1be9e6115ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerStanceManager">
+      <UniqueIdentifier>{a03a8fe2-75c8-4c83-aee6-15e4348355dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerEatManager">
+      <UniqueIdentifier>{780ec6bb-176c-4eb3-8208-8ce79fc3edbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -286,19 +307,19 @@
       <Filter>Itabashi\PlayerCameraObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h">
-      <Filter>Itabashi\Components\PlayerMover</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerMover</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h">
-      <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerFPSCameraMover</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" >
+    <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h">
       <Filter>Maru\Astar\GraphNode\NavGraphNode</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h">
-      <Filter>Itabashi\Components\PlayerProvider</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerProvider</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h">
-      <Filter>Itabashi\Components\PlayerStanceManager</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerStanceManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
@@ -332,6 +353,24 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h">
       <Filter>Patchs\Utilitys\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h">
+      <Filter>Itabashi\GaugeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h">
+      <Filter>Itabashi\Components\GaugeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerWeightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h">
+      <Filter>Itabashi\Components\EatenComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h">
+      <Filter>Itabashi\TestEatenObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerEatManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -396,10 +435,10 @@
       <Filter>Itabashi\PlayerCameraObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp">
-      <Filter>Itabashi\Components\PlayerMover</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerMover</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp">
-      <Filter>Itabashi\Components\PlayerFPSCameraMover</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerFPSCameraMover</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp">
       <Filter>Maru\Enemy\Component\Enemy\TestEnemy</Filter>
@@ -447,10 +486,28 @@
       <Filter>Maru\Enemy\Component\SearchObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp">
-      <Filter>Itabashi\Components\PlayerProvider</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerProvider</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp">
-      <Filter>Itabashi\Components\PlayerStanceManager</Filter>
+      <Filter>Itabashi\Components\PlayerComponent\PlayerStanceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeUI.cpp">
+      <Filter>Itabashi\GaugeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp">
+      <Filter>Itabashi\Components\GaugeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerWeightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp">
+      <Filter>Itabashi\Components\EatenComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TestEatenObject.cpp">
+      <Filter>Itabashi\TestEatenObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerEatManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

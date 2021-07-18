@@ -23,10 +23,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
@@ -43,10 +46,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
@@ -58,6 +63,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
@@ -70,9 +76,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
@@ -88,10 +97,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
@@ -100,6 +111,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TestEatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
