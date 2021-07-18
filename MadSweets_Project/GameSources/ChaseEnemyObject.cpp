@@ -13,6 +13,7 @@
 #include "TargetChase.h"
 #include "PlowlingMove.h"
 #include "EyeSearchRange.h"
+#include "ReturnPlowlingPosition.h"
 
 namespace basecross {
 
@@ -35,6 +36,7 @@ namespace basecross {
 		//AddComponent<AstarCtrl>();
 		AddComponent<TargetChase>();
 		AddComponent<EyeSearchRange>();
+		AddComponent<ReturnPlowlingPosition>();
 		CreatePlowlingRoute();
 
 		AddComponent<ChaseEnemy>();
