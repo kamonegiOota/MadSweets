@@ -9,6 +9,10 @@
 #include "TargetChase.h"
 #include "MyUtility.h"
 
+#include "EyeSearchRange.h"
+#include "AstarCtrl.h"
+#include "DebugObject.h"
+
 namespace basecross {
 
 	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr):
@@ -31,7 +35,7 @@ namespace basecross {
 	{}
 
 
-	void TargetChase::Move() {
+	void TargetChase::LookMove() {
 		auto delta = App::GetApp()->GetElapsedTime();
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
@@ -39,6 +43,61 @@ namespace basecross {
 		auto pos = transform->GetPosition();
 		pos += toVec.GetNormalized() * m_speed * delta;
 		transform->SetPosition(pos);
+
+		LostCheck();
+	}
+
+	void TargetChase::LostCheck() {
+		//Ž‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð”»’f
+		auto obj = GetGameObject();
+		auto eyeRange = obj->GetComponent<EyeSearchRange>(false);
+		if (eyeRange == nullptr) {
+			return;
+		}
+
+		//Ž‹ŠEŠO‚È‚çAstar‚ð—˜—p‚µ‚Ä’Ç‚¢‚©‚¯‚éB
+		if (!eyeRange->IsLookTarget(m_target)) {
+			auto astar = obj->GetComponent<AstarCtrl>();
+			if (astar) {
+				astar->SearchAstarForecastStart(m_target);
+				m_updateFunc = &TargetChase::LostMove;
+			}
+		}
+	}
+
+
+	void TargetChase::LostMove() {
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+		if (!astar) {
+			return;
+		}
+		auto delta = App::GetApp()->GetElapsedTime();
+
+	 	auto selfPos = transform->GetPosition();
+		auto targetPos = astar->GetCalucNodePos();
+
+		auto toVec = targetPos - selfPos;
+		selfPos += toVec.GetNormalized() * m_speed * delta;
+		transform->SetPosition(selfPos);
+
+		LookCheck();
+	}
+
+	void TargetChase::LookCheck() {
+		//Ž‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð”»’f
+		auto obj = GetGameObject();
+		auto eyeRange = obj->GetComponent<EyeSearchRange>(false);
+		if (eyeRange == nullptr) {
+			return;
+		}
+
+		if (eyeRange->IsLookTarget(m_target)) {
+			m_updateFunc = &TargetChase::LookMove;
+		}
+	}
+
+	void TargetChase::OnCreate() {
+		m_updateFunc = &TargetChase::LookMove;
 	}
 
 	void TargetChase::OnUpdate() {
@@ -46,7 +105,11 @@ namespace basecross {
 			return;
 		}
 
-		Move();
+		if (m_updateFunc) {
+			m_updateFunc(*this);
+		}
+
+		//LookMove();
 	}
 
 }
