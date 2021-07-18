@@ -1,5 +1,7 @@
 #include"ItabashiStage.h"
 #include"PlayerObject.h"
+#include"GaugeUI.h"
+#include"TestEatenObject.h"
 
 namespace basecross
 {
@@ -21,6 +23,9 @@ namespace basecross
 		std::wstring mediaDir = App::GetApp()->GetDataDirWString();
 		auto& app = App::GetApp();
 
+		std::wstring textureDir = mediaDir + L"Textures\\";
+		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
+		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
@@ -33,7 +38,17 @@ namespace basecross
 			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
 		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
 
+		auto gauge = Instantiate<GaugeUI>();
+
+		auto rectTransform = gauge->GetComponent<RectTransform>();
+
+		rectTransform->SetAnchor(AnchorType::LeftUp);
+
+		SetSharedGameObject(L"PlayerWeightGauge", gauge);
+
 		auto playerObject = Instantiate<PlayerObject>();
+
+		SetSharedGameObject(L"PlayerObject", playerObject);
 
 		std::vector<std::shared_ptr<GameObject>> gameobjects;
 
@@ -53,5 +68,9 @@ namespace basecross
 		gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
 		gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
 		gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
+
+		auto testKashi = Instantiate<TestEatenObject>();
+
+		testKashi->GetComponent<Transform>()->SetPosition(0, 0, 3);
 	}
 }
