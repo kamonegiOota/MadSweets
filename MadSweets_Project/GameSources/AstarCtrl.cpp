@@ -37,7 +37,7 @@ namespace basecross {
 	}
 
 	void AstarCtrl::OnUpdate() {
-		Move();
+		//Move();
 	}
 
 	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target) {
@@ -46,6 +46,10 @@ namespace basecross {
 
 	void AstarCtrl::SearchAstarStart(const Vec3& targetPos) {
 		m_astar.SearchAstarStart(GetGameObject(), targetPos);
+	}
+
+	void AstarCtrl::SearchAstarForecastStart(const std::shared_ptr<GameObject>& target) {
+		m_astar.SearchAstarForecastStart(GetGameObject(),target);
 	}
 }
 

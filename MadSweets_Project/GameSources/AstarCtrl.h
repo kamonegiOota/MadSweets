@@ -30,6 +30,16 @@ namespace basecross {
 		//アクセッサ-------------------------------------------------------------
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
 		void SearchAstarStart(const Vec3& targetPos);
+		
+		void SearchAstarForecastStart(const std::shared_ptr<GameObject>& target);
+
+		Vec3 GetCalucNodePos(){
+			return m_astar.CalucTargetNode(GetGameObject());
+		}
+
+		bool IsRouteEnd() const {
+			return m_astar.IsRouteEnd();
+		}
 	};
 
 }
