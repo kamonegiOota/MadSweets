@@ -20,6 +20,11 @@ namespace basecross {
 
 		void OnCreate() override;
 
+
+		void SetColor(const Col4& color) {
+			auto draw = AddComponent<BcPNTStaticDraw>();
+			draw->SetDiffuse(color);
+		}
 	};
 
 }

@@ -12,11 +12,24 @@ namespace basecross {
 	//設定されたターゲットを追従する処理
 	class TargetChase : public Component
 	{
+		enum class ChaseMode {
+			Look,  //視認できている状態
+			Lost   //視認できてない状態
+		};
+
 		std::shared_ptr<GameObject> m_target;
-
 		float m_speed;
+		ChaseMode m_chaseMode = ChaseMode::Look;
 
-		void Move();
+		std::function<void(TargetChase&)> m_updateFunc;
+
+		void LookMove();
+		void LostCheck();
+
+		void LostMove();
+		void LookCheck();
+
+		void ChangeStateMachine();
 
 	public:
 		TargetChase(const std::shared_ptr<GameObject>& objPtr);
@@ -30,7 +43,7 @@ namespace basecross {
 			const float& speed
 		);
 
-		void OnCreate() override {}
+		void OnCreate() override;
 		void OnUpdate() override;
 		void OnDraw() override {}
 

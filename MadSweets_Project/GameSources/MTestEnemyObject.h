@@ -23,6 +23,17 @@ namespace basecross {
 
 		void OnCreate() override;
 
+
+		//アクセッサ-----------------------------------------------------------
+		void SetColor(const Col4& color) {
+			auto draw = GetComponent<BcPNTStaticDraw>();
+			draw->SetDiffuse(color);
+		}
+
+		//徘徊行動テスト
+		void StartPlowlingTest();
+
+		//ステート変更テスト
 	};
 
 }

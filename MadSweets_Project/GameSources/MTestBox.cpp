@@ -15,6 +15,9 @@ namespace basecross {
 	void MTestBox::OnCreate() {
 		auto draw = AddComponent<BcPNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto col = AddComponent<CollisionObb>();
+		//col->SetAfterCollision(AfterCollision::None);
 	}
 
 }

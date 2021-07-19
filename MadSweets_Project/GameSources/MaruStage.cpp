@@ -15,6 +15,13 @@
 #include "BaseEnemy.h"
 #include "MTestBox.h"
 #include "TargetChase.h"
+#include "PlayerMover.h"
+#include "SearchObject.h"
+#include "EyeSearchRange.h"
+#include "ChaseEnemy.h"
+
+#include "ChaseEnemyObject.h"
+#include "EnemyEar.h"
 
 namespace basecross {
 
@@ -45,8 +52,20 @@ namespace basecross {
 
 			CreateGraphTest();
 
-			AddGameObject<GameObject>()->AddComponent<BaseEnemy>();
-			
+			//auto target = AddGameObject<MTestBox>();
+			//target->AddComponent<BaseEnemy>();
+			//target->SetColor(Col4(1.0f,0.0f,0.0f,1.0f));
+			//target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,1.0f,0.0f));
+
+			//auto player = AddGameObject<MTestBox>();
+			//player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+			//chaseEnemy->AddComponent<ChaseEnemy>();
+			//chaseEnemy->AddComponent<EyeSearchRange>()->AddTarget(target);
+			//chaseEnemy->AddComponent<TargetChase>();
+			//player->AddComponent<PlayerMover>();
+
+			//Instantiate<ChaseEnemyObject>()->GetComponent<EyeSearchRange>()->AddTarget(player);
+
 			AddGameObject<DebugObject>();
 		}
 		catch (...) {
@@ -54,19 +73,55 @@ namespace basecross {
 		}
 	}
 
+	void MaruStage::OnUpdate() {
+		
+		std::shared_ptr<BaseEnemy> enemy;
+		auto objs = GetGameObjectVec();
+		for (auto& obj : objs) {
+			auto search = obj->GetComponent<SearchObject>(false);
+			if (search) {
+				auto size = search->GetSearchComponents<AstarCtrl>().size();
+				DebugObject::m_wss << to_wstring(size);
+			}
+			auto ene = obj->GetComponent<BaseEnemy>(false);
+			if (ene) {
+				enemy = ene;
+			}
+		}
+
+		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		if (key.IsInputDown(itbs::Input::KeyCode::T)) {
+			if (enemy) {
+				//enemy->ChangeStateMachine<>
+			}
+		}
+	}
+
 	void MaruStage::CreateGraphTest() {
-		auto enemy = AddGameObject<MTestEnemyObject>();
+		std::vector<std::shared_ptr<GameObject>> enemys;
+		constexpr int EnemyNum = 0;
+		for (int i = 0; i < EnemyNum; i++) {
+			auto enemy = AddGameObject<MTestEnemyObject>();
+			enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
+			auto col = enemy->GetComponent<CollisionObb>();
+			//col->SetAfterCollision(AfterCollision::None);
+			//col->AddExcludeCollisionTag(L"MTestEnemy");
+			enemys.push_back(enemy);
+		}
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//データ構築
 		std::vector<Vec3> poss = {
-			{+0.0f ,+0.0f ,+0.0f},
+			{+0.0f ,+0.0f ,+0.0f},//0
 			{+5.0f ,+0.0f ,+0.0f},
-			{-5.0f ,+0.0f ,+0.0f},
-			{+0.0f ,+5.0f ,+0.0f},
-			{+0.0f ,-5.0f ,+0.0f},
-			{+5.0f ,+6.0f ,+0.0f},
+			{-5.0f ,+0.0f ,+0.0f},//2
+			{-1.0f ,+5.0f ,+0.0f},
+			{+0.0f ,-5.0f ,+0.0f},//4
+			{+5.0f ,+5.0f ,+0.0f},
+			{+10.0f ,+0.0f ,+0.0f},//6
+			{+6.0f ,+4.0f ,+0.0f},
+			{+2.0f ,+2.0f ,+0.0f},
 		};
 
 		int index = 0;
@@ -93,20 +148,48 @@ namespace basecross {
 			{GraphEdge(3,0)},
 			{GraphEdge(4,0)},
 			{GraphEdge(3,5)},
-			{GraphEdge(1,5)},
+			//{GraphEdge(1,5)},
+
+			{GraphEdge(1,6)},
+			{GraphEdge(6,7)},
+			{GraphEdge(7,5)},
+			{GraphEdge(0,8)},
 		};
 
 		for (auto& edge : edges) {
 			graph.AddEdge(edge);
 		}
 
+		auto astarTarget = AddGameObject<MTestEnemyObject>();
+		astarTarget->GetComponent<Transform>()->SetPosition(Vec3(5.0f, +5.0f, 0.0f));
+
 		//Astar生成
 		GraphAstar astar(graph);
-		enemy->AddComponent<AstarCtrl>(astar);
+		for (auto enemy : enemys) {
+			enemy->AddComponent<AstarCtrl>(astar)->SearchAstarStart(astarTarget);
+		}
+		
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
 
 
-		AddGameObject<MTestBox>()->AddComponent<TargetChase>(enemy);
+		//auto testObj = AddGameObject<MTestBox>();
+		//testObj->AddComponent<PlayerMover>();
+		//auto eyeRange = testObj->AddComponent<EyeSearchRange>();
+		//eyeRange->AddTarget(enemys[0]);
+
+		//auto testSearch = AddGameObject<GameObject>();
+		//testSearch->GetComponent<Transform>()->SetScale(Vec3(3.0f));
+		//testSearch->AddComponent<SearchObject>();
+		//testSearch->SetParent(testObj);
+
+		auto player = AddGameObject<MTestBox>();
+		player->SetColor(Col4(0.0f, 1.0f, 0.0f, 1.0f));
+		player->AddComponent<PlayerMover>();
+
+		auto chaseEnemy = Instantiate<ChaseEnemyObject>();
+		chaseEnemy->GetComponent<EyeSearchRange>()->AddTarget(player);
+		chaseEnemy->AddComponent<AstarCtrl>(astar);
+		//chaseEnemy->AddComponent<EnemyEar>();
 	}
 }
 

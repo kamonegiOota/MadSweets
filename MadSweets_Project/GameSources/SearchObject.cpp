@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "SearchObject.h"
+#include "DebugObject.h"
 
 namespace basecross {
 
@@ -24,14 +25,30 @@ namespace basecross {
 	}
 
 	void SearchObject::RemoveObject(const std::shared_ptr<GameObject>& removeObj) {
-		auto iter = m_objs.begin();
+		m_objs.remove(removeObj);
+	}
 
-		while (iter != m_objs.end()) {
-			if (*iter == removeObj) {
-				m_objs.erase(iter);
-				return;
+	bool SearchObject::IsSearchTarget(const std::shared_ptr<GameObject>& other) {
+		//対象が親だったら検索対象外
+		auto parent = GetGameObject()->GetParent();
+		if (other == parent) {
+			return false;
+		}
+
+		//検索対象が0なら親以外全てを対象にする。
+		if (m_searchTypes.size() == 0) {
+			return true;
+		}
+
+		//そうでないなら検索対象かどうか判断する。
+		auto otherObjType = type_index(typeid(other));
+		for (auto& type : m_searchTypes) {
+			if (type == otherObjType) {
+				return true;
 			}
 		}
+
+		return false;
 	}
 
 	void SearchObject::OnCreate() {
@@ -40,11 +57,17 @@ namespace basecross {
 	}
 
 	void SearchObject::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
-		AddObject(other);
+		if (IsSearchTarget(other)) {
+			AddObject(other);
+			DebugObject::m_wss << "Enter";
+		}
 	}
 
 	void SearchObject::OnCollisionExit(std::shared_ptr<GameObject>& other) {
-		RemoveObject(other);
+		if (IsSearchTarget(other)) {
+			DebugObject::m_wss << "Exit";
+			RemoveObject(other);
+		}
 	}
 
 }
