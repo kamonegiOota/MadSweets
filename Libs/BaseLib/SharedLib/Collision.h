@@ -354,6 +354,8 @@ namespace basecross {
 			//スライドする方向は現在のベクトルから引き算
 			return (Vec - Contact);
 		}
+
+		virtual bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const { return false; }
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。デフォルトは何も行わない
@@ -553,6 +555,8 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
+
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる
@@ -751,6 +755,8 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
+
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる
@@ -919,6 +925,8 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
+
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる

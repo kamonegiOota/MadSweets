@@ -573,7 +573,10 @@ namespace basecross {
 		return GetSphere().GetWrappedAABB();
 	}
 
-
+	bool CollisionSphere::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	{
+		return HitTest::SEGMENT_SPHERE(startPos, endPos, GetSphere());
+	}
 
 	void CollisionSphere::OnDraw() {
 		GenericDraw Draw;
@@ -948,6 +951,11 @@ namespace basecross {
 		return GetCapsule().GetWrappedAABB();
 	}
 
+	bool CollisionCapsule::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	{
+		return HitTest::SEGMENT_CAPSULE(startPos, endPos, GetCapsule());
+	}
+
 	void CollisionCapsule::OnDraw() {
 		GenericDraw Draw;
 		Draw.DrawWireFrame(GetGameObject(), App::GetApp()->GetResource<MeshResource>(L"DEFAULT_PC_CAPSULE"));
@@ -1279,7 +1287,10 @@ namespace basecross {
 		return GetObb().GetWrappedAABB();
 	}
 
-
+	bool CollisionObb::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	{
+		return HitTest::SEGMENT_OBB(startPos, endPos, GetObb());
+	}
 
 	void CollisionObb::OnDraw() {
 		GenericDraw Draw;
