@@ -19,10 +19,19 @@ namespace basecross {
 
 	void ChaseEnemyObject::CreatePlowlingRoute() {
 		std::vector<Vec3> poss = {
-			{0.0f,0.0f,+5.0f},
-			{0.0f,0.0f,+0.0f},
-			{0.0f,+2.0f,+0.0f},
-			{0.0f,-2.0f,0.0f}
+			//{0.0f,0.0f,+5.0f},
+			//{0.0f,0.0f,+0.0f},
+			//{0.0f,+2.0f,+0.0f},
+			//{0.0f,-2.0f,0.0f}
+			{+0.0f ,+0.0f ,+0.0f},//0
+			{+5.0f ,+0.0f ,+0.0f},
+			{-5.0f ,+0.0f ,+0.0f},//2
+			{-1.0f ,+5.0f ,+0.0f},
+			{+0.0f ,-5.0f ,+0.0f},//4
+			{+5.0f ,+5.0f ,+0.0f},
+			{+10.0f ,+0.0f ,+0.0f},//6
+			{+6.0f ,+4.0f ,+0.0f},
+			{+2.0f ,+2.0f ,+0.0f},
 		};
 
 		AddComponent<PlowlingMove>(poss);
