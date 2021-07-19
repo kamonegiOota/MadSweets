@@ -12,19 +12,18 @@
 
 namespace basecross {
 
-	void AstarCtrl::Move() {
+	void AstarCtrl::UpdateMove() {
 		if (m_astar.IsRouteEnd()) { //ƒ‹[ƒg‚ÌÅŒã‚Ü‚Å—ˆ‚½‚çˆ—‚ðŽ~‚ß‚éB
 			return;
 		}
 
 		auto delta = App::GetApp()->GetElapsedTime();
-		auto speed = 3.0f;
 
 		auto nodePos = m_astar.CalucTargetNode(GetGameObject());
 		auto toVec = nodePos - transform->GetPosition();
 
 		auto pos = transform->GetPosition();
-		pos += toVec.GetNormalized() * delta * speed;
+		pos += toVec.GetNormalized() * delta * m_speed;
 		transform->SetPosition(pos);
 	}
 

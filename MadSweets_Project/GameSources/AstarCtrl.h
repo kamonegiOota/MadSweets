@@ -13,19 +13,22 @@ namespace basecross {
 	{
 		GraphAstar m_astar;
 
-		void Move();
+		float m_speed;
 
 	public:
 		AstarCtrl(const std::shared_ptr<GameObject>& objPtr,
 			const GraphAstar& astar
 		):
 			Component(objPtr),
-			m_astar(astar)
+			m_astar(astar),
+			m_speed(3.0f)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnDraw() override {};
+
+		void UpdateMove();
 
 		//アクセッサ-------------------------------------------------------------
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
@@ -39,6 +42,14 @@ namespace basecross {
 
 		bool IsRouteEnd() const {
 			return m_astar.IsRouteEnd();
+		}
+
+		void SetSpeed(const float& speed) {
+			m_speed = speed;
+		}
+
+		float GetSpeed() const {
+			return m_speed;
 		}
 	};
 
