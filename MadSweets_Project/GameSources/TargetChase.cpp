@@ -79,8 +79,8 @@ namespace basecross {
 	 	auto selfPos = transform->GetPosition();
 		auto targetPos = astar->GetCalucNodePos();
 
-		if (astar->IsRouteEnd()) {
-			ChangeStateMachine();
+		if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、ステートを変更する
+			ChangeStateMachine();  //ステートの変更
 			return;
 		}
 
