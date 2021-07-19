@@ -99,7 +99,7 @@ namespace basecross {
 
 	void MaruStage::CreateGraphTest() {
 		std::vector<std::shared_ptr<GameObject>> enemys;
-		constexpr int EnemyNum = 1;
+		constexpr int EnemyNum = 0;
 		for (int i = 0; i < EnemyNum; i++) {
 			auto enemy = AddGameObject<MTestEnemyObject>();
 			enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
