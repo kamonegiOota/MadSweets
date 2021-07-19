@@ -584,6 +584,25 @@ namespace basecross
 		void OnDraw() override;
 	};
 
+	class Choices : public Component
+	{
+		struct ChoicesData
+		{
+			std::shared_ptr<TextBox> m_textBox;
+			std::function<void()> m_eventFunc;
+		};
+		std::shared_ptr<TextBox> m_textBox;
+
+		std::function<void()> m_eventFunc;
+
+	public:
+		Choices(std::shared_ptr<GameObject>& owner);
+
+		void AddChoice(std::wstring& text, const std::function<void()>& eventFunc);
+
+		void RemoveChoice(std::wstring& text, const std::function<void>& eventFunc);
+	};
+
 	/// <summary>
 	/// UI—pGameObject
 	/// </summary>
