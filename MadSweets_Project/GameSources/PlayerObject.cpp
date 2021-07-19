@@ -32,11 +32,11 @@ namespace basecross
 		auto weightManager = AddComponent<PlayerWeightManager>();
 		weightManager->SetGaugeManager(GetStage()->GetSharedGameObject<GameObject>(L"PlayerWeightGauge")->GetComponent<GaugeManager>());
 
-		AddComponent<PlayerEatManager>();
 
 		CreateAnimator();
 
-		GetStage()->Instantiate<PlayerCameraObject>(Vec3(),Quat::Identity(),GetThis<GameObject>());
+		auto playerCamera = GetStage()->Instantiate<PlayerCameraObject>(Vec3(),Quat::Identity(),GetThis<GameObject>());
+		AddComponent<PlayerEatManager>(playerCamera);
 	}
 
 	void PlayerObject::OnUpdate()
