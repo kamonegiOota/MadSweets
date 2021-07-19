@@ -34,6 +34,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHideManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
@@ -86,6 +88,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
@@ -99,6 +102,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHideManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />

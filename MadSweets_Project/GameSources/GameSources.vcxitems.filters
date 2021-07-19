@@ -208,6 +208,12 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerEatManager">
       <UniqueIdentifier>{780ec6bb-176c-4eb3-8208-8ce79fc3edbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Components\HiddenComponent">
+      <UniqueIdentifier>{dd94de25-d022-469d-a4fd-625f797c3cc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerHideManager">
+      <UniqueIdentifier>{e26851cd-a627-4420-b1e5-ba41e94e4a27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -372,6 +378,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerEatManager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h">
+      <Filter>Itabashi\Components\HiddenComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHideManager.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerHideManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -508,6 +520,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerEatManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp">
+      <Filter>Itabashi\Components\HiddenComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHideManager.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerHideManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
