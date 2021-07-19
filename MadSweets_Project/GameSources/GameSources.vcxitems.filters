@@ -205,6 +205,12 @@
     <Filter Include="Maru\Enemy\Component\ReturnPlowlingPosition">
       <UniqueIdentifier>{a67ad3bd-77c5-4e45-9358-e443b571f866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Ear">
+      <UniqueIdentifier>{512a1033-4caf-4eaa-a1a4-f62ce8edd034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Ear\EnemyEar">
+      <UniqueIdentifier>{931de1dc-8099-4f7d-b8ec-a8aa69ad1bd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -363,6 +369,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_LoseTarget</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h">
+      <Filter>Maru\Enemy\Component\Ear</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h">
+      <Filter>Maru\Enemy\Component\Ear\EnemyEar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -496,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp">
       <Filter>Maru\Enemy\Component\ReturnPlowlingPosition</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp">
+      <Filter>Maru\Enemy\Component\Ear\EnemyEar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
