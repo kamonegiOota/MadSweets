@@ -21,15 +21,29 @@ namespace basecross {
 	}
 
 	void GraphAstar::RemoveData(const AstarExpectData& data) {
+
 		auto index = m_expectDatas.size() - 1;
 		if (m_isReturnPhase) {  //リターン状態出会った場合は、最新のデータを消す。
 			auto end = m_expectDatas.end();
+			end--;
 			m_expectDatas.erase(end);
 			index--;
 		}
 
+		if (m_expectDatas.size() == 0) {
+			int i = 0;
+		}
+
+		if (m_expectDatas[index].size() == 0) {
+			int i = 0;
+		}
+
+		if (index <= 0) {
+			int i = 0;
+		}
+
 		auto iter = m_expectDatas[index].begin();
-		
+
 		while (iter != m_expectDatas[index].end()) {
 			if(iter->GetSumRange() == data.GetSumRange()){
 				m_expectDatas[index].erase(iter);
@@ -48,6 +62,9 @@ namespace basecross {
 	bool GraphAstar::IsAstarEnd() {
 		//最終的に判断する方法を変える。
 		auto index = m_shortRoutes.size() - 1;
+		if (index < 0) {
+			int i = 0;
+		}
 
 		if (m_shortRoutes[index].heuristic <= 0.1f){
 			return true;
@@ -105,6 +122,11 @@ namespace basecross {
 		auto targetNearNode = SearchNearNode(targetPos);
 		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
+
+		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
+			m_shortRoutes.push_back(AstarExpectData(selfNearNode,targetNearNode,0,0));
+			return;
+		}
 
 		//ループして処理を行う。
 		LoopSearchAstar(selfNearNode);
@@ -174,6 +196,9 @@ namespace basecross {
 			//ノードが一つもない場合は「処理を飛ばして」戻る
 			if (datas.size() == 0) {
 				auto index = (int)m_shortRoutes.size() - 1;
+				if (index < 0) {
+					break;
+				}
 				BackProcess(m_shortRoutes[index]);
 				continue;
 			}
@@ -210,6 +235,9 @@ namespace basecross {
 	std::vector<AstarExpectData> GraphAstar::CalucNearNodeExpectData(const NavGraphNode& node) {
 		if (m_isCreateNewData == false) {  //新しい物を作らなくて良いのなら
 			int index = (int)m_expectDatas.size() - 1;
+			if (index < 0) {
+				int i = 0;
+			}
 			return m_expectDatas[index];  //前回分のインデックスを返す。
 		}
 
@@ -253,6 +281,7 @@ namespace basecross {
 	}
 
 	AstarExpectData GraphAstar::CalucMinRangeNode(const std::vector<AstarExpectData>& datas) {
+		//直前でデータが0の時の処理をしているため、エラー回避はいらない。
 		int index = 0;
 		float minRange = 100000.0f;
 		for (int i = 0; i < datas.size(); i++) {
@@ -273,6 +302,10 @@ namespace basecross {
 		}
 
 		auto beforeIndex = m_shortRoutes.size() - 1;
+		if (beforeIndex < 0) {
+			int i = 0;
+		}
+
 		auto beforeRoute = m_shortRoutes[beforeIndex];
 
 		//送られてきたデータが前回分より小さければtrue
@@ -285,7 +318,14 @@ namespace basecross {
 	}
 
 	bool GraphAstar::IsBackShort(const AstarExpectData& newShortRoute) {
+		if (m_shortRoutes.size() == 0) {  //エラーが発覚したらこのifいらないかも
+			return false;
+		}
+
 		auto index = (int)m_shortRoutes.size() - 1;
+		if (index < 0) {
+			int i = 0;
+		}
 		auto beforeShort = m_shortRoutes[index];
 		auto edges = m_graph.GetEdges(beforeShort.node.GetIndex());
 		for (auto& edge : edges) {
@@ -299,7 +339,11 @@ namespace basecross {
 	}
 
 	Vec3 GraphAstar::CalucTargetNode(const std::shared_ptr<GameObject>& objPtr) {
-		//m_isRouteEnd = true;
+
+		if (m_shortRoutes.size() == 0) {
+			m_isRouteEnd = true;
+		}
+
 		//DebugObject::m_wss.str(L"");
 		if (m_isRouteEnd) {
 			//DebugObject::m_wss << to_wstring(m_shortRoutes.size());
@@ -320,7 +364,7 @@ namespace basecross {
 			m_routeIndex++;
 		}
 
-		//ノードインデックスがショートを超えたら。
+		//ノードインデックスがショートを超えたら
 		if (m_shortRoutes.size() <= m_routeIndex) {
 			m_isRouteEnd = true;//機能をoffにする。
 		}
