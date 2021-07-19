@@ -142,6 +142,7 @@ namespace basecross {
 
 		float minRad = 360.0f;
 		NavGraphNode targetNode;
+		DebugObject::m_wss << to_wstring(targetNearNode.GetIndex()) << endl;
 		auto edges = m_graph.GetEdges(targetNearNode.GetIndex());
 		for (const auto& edge : edges) {
 			auto toIndex = edge.GetTo();
@@ -153,6 +154,8 @@ namespace basecross {
 
 			auto newDot = dot(toTargetVec.GetNormalized(), toNextNodeVec.GetNormalized());
 			auto newRad = acosf(newDot);
+			DebugObject::m_wss << to_wstring(nextNode.GetIndex()) << L": ";
+			DebugObject::m_wss << to_wstring(XMConvertToDegrees(newRad)) << endl;
 			if (newRad < minRad) {
 				minRad = newRad;
 				targetNode = nextNode;
