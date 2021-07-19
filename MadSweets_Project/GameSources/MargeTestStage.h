@@ -23,6 +23,9 @@ namespace basecross {
 
 		virtual void CreateMap(const wstring& fileName);
 
+		//テスト用-----------------------------------------------------------
+		virtual void TempLoad();
+		void CreateEnemy(const std::shared_ptr<GameObject>& player);
 	};
 
 }
