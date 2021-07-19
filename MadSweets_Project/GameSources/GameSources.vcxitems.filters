@@ -211,6 +211,12 @@
     <Filter Include="Maru\Enemy\Component\Ear\EnemyEar">
       <UniqueIdentifier>{931de1dc-8099-4f7d-b8ec-a8aa69ad1bd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Rotation">
+      <UniqueIdentifier>{e3a154b2-e36b-4812-88cb-71078d93e4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Rotation\EnemyRotationCtrl">
+      <UniqueIdentifier>{9fbe970b-6b8e-429c-b8c2-12115e77b393}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -375,6 +381,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h">
       <Filter>Maru\Enemy\Component\Ear\EnemyEar</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h">
+      <Filter>Maru\Enemy\Component\Rotation\EnemyRotationCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -511,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp">
       <Filter>Maru\Enemy\Component\Ear\EnemyEar</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp">
+      <Filter>Maru\Enemy\Component\Rotation\EnemyRotationCtrl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
