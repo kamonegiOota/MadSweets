@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 #include "PlowlingMove.h"
+#include "EnemyRotationCtrl.h"
 
 namespace basecross {
 
@@ -46,10 +47,16 @@ namespace basecross {
 		pos += moveVec.GetNormalized() * delta * m_speed;
 
 		transform->SetPosition(pos);
+		Rotation(moveVec);
 
 		if (IsNearArrival(pos)) {   //–Ú“I’n‚É“ž’B‚µ‚Ä‚¢‚½‚ç
 			NextIndex();
 		}
+	}
+
+	void PlowlingMove::Rotation(const Vec3& moveVec) {
+		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>();
+		rotCtrl->SetDirect(moveVec);
 	}
 
 	bool PlowlingMove::IsNearArrival(const Vec3& pos) {

@@ -35,6 +35,7 @@ namespace basecross {
 		/// 実際の移動処理
 		/// </summary>
 		void Move();
+		void Rotation(const Vec3& moveVec);
 		/// <summary>
 		/// 目的地に限りなく近い場所にいるならtrue
 		/// </summary>
@@ -45,6 +46,8 @@ namespace basecross {
 		/// 次の目的地のインデックスに切り替える処理
 		/// </summary>
 		void NextIndex();
+
+		//void RandomAstarMove();
 
 	public:
 
