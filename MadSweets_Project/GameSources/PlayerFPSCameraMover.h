@@ -72,7 +72,5 @@ namespace basecross
 		void OnUpdate() override;
 
 		void OnUpdate2() override;
-
-		void OnDraw() override {}
 	};
 }
