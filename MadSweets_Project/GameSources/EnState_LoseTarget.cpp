@@ -20,6 +20,7 @@ namespace basecross {
             returnPlow->StartReturn();
         }
         
+        AddChangeComp(returnPlow, true, false);
         AddChangeComp(obj->GetComponent<AstarCtrl>(), true, false);
         AddChangeComp(obj->GetComponent<TargetChase>(), false, false);
 
