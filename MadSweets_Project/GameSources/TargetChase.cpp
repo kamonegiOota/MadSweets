@@ -61,6 +61,7 @@ namespace basecross {
 			auto astar = obj->GetComponent<AstarCtrl>();
 			if (astar) {
 				astar->SearchAstarForecastStart(m_target);
+				//astar->SearchAstarStart(m_target);
 				m_updateFunc = &TargetChase::LostMove;
 			}
 		}
@@ -72,16 +73,16 @@ namespace basecross {
 		if (!astar) {
 			return;
 		}
-		
-		if (astar->IsRouteEnd()) {
-			ChangeStateMachine();
-			return;
-		}
 
 		auto delta = App::GetApp()->GetElapsedTime();
 
 	 	auto selfPos = transform->GetPosition();
 		auto targetPos = astar->GetCalucNodePos();
+
+		if (astar->IsRouteEnd()) {
+			ChangeStateMachine();
+			return;
+		}
 
 		auto toVec = targetPos - selfPos;
 		selfPos += toVec.GetNormalized() * m_speed * delta;
