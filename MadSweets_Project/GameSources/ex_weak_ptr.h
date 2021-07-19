@@ -33,6 +33,11 @@ namespace itbs
 			{
 				return !ptr.expired();
 			}
+
+			T* get() const
+			{
+				return ptr.lock().get();
+			}
 		};
 	}
 }
