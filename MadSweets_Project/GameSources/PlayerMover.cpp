@@ -7,7 +7,8 @@ namespace basecross
 		Component(owner),
 		m_standMoveSpeed(3.0f),
 		m_crouchMoveSpeed(1.5f),
-		m_dashPower(1.5f)
+		m_dashPower(1.5f),
+		m_dashUseWeight(0.10f)
 	{
 
 	}
@@ -32,9 +33,9 @@ namespace basecross
 		return m_dashPower;
 	}
 
-	void PlayerMover::OnCreate()
+	void PlayerMover::OnStart()
 	{
-
+		m_playerWeightManager = GetGameObject()->GetComponent<PlayerWeightManager>();
 	}
 
 	void PlayerMover::OnUpdate()
@@ -53,9 +54,11 @@ namespace basecross
 
 		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_standMoveSpeed;
 
-		if (PlayerInputer::IsDashPush())
+		if (m_playerWeightManager->GetWeightState() != PlayerWeightState::Hunger &&
+			PlayerInputer::IsDashPush())
 		{
 			moveVector *= m_dashPower;
+			m_playerWeightManager->AddWeight(-m_dashUseWeight);
 		}
 
 		position += moveVector;
