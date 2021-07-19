@@ -19,12 +19,14 @@ namespace basecross {
         if (returnPlow) {
             returnPlow->StartReturn();
         }
-        
+
         AddChangeComp(returnPlow, true, false);
         AddChangeComp(obj->GetComponent<AstarCtrl>(), true, false);
         AddChangeComp(obj->GetComponent<TargetChase>(), false, false);
 
         StartChangeComps();
+
+        obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
     }
 
     void EnState_LoseTarget::OnUpdate() {
