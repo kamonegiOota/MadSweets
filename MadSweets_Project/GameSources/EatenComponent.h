@@ -6,9 +6,11 @@ namespace basecross
 	{
 		float weightValue;
 
+		float calorieValue;
+
 		EatenData();
 
-		EatenData(const float weightValue);
+		EatenData(const float weightValue,const float calorieValue);
 	};
 
 	class EatenComponent : public Component

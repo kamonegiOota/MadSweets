@@ -3,12 +3,14 @@
 namespace basecross
 {
 	EatenData::EatenData() :
-		weightValue(0.0f)
+		weightValue(0.0f),
+		calorieValue(0.0f)
 	{
 	}
 
-	EatenData::EatenData(const float weightValue) :
-		weightValue(weightValue)
+	EatenData::EatenData(const float weightValue, const float calorieValue) :
+		weightValue(weightValue),
+		calorieValue(calorieValue)
 	{
 		
 	}
