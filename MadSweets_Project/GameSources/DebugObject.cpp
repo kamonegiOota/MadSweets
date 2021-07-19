@@ -10,6 +10,7 @@
 namespace basecross {
 
 	wstringstream DebugObject::m_wss;
+	bool DebugObject::sm_isResetDelta = false;
 	
 	void DebugObject::OnCreate() {
 		auto sprite = AddComponent<StringSprite>();
@@ -27,6 +28,11 @@ namespace basecross {
 	void DebugObject::OnUpdate2() {
 		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 		if (key.IsInputDown(itbs::Input::KeyCode::R)) {
+			auto sprite = GetComponent<StringSprite>();
+			sprite->SetText(L"");
+		}
+
+		if (sm_isResetDelta) {
 			auto sprite = GetComponent<StringSprite>();
 			sprite->SetText(L"");
 		}
