@@ -1,63 +1,97 @@
 #pragma once
 #include<memory>
 #include<vector>
+#include"ex_weak_ptr.h"
 
 namespace itbs
 {
 	namespace Utility
 	{
-		/// <summary>
-		/// 関数ポインタラップクラス
-		/// </summary>
 		template<class T, class... Types>
 		class I_Func
 		{
 		public:
 			virtual T operator()(Types... args) = 0;
 			virtual bool IsValid() const = 0;
+
+			virtual bool operator==(const I_Func<T, Types...>& func) const = 0;
+
+			bool operator!=(const I_Func<T, Types...>& func) const
+			{
+				!this->operator==(func);
+			}
 		};
 
-		/// <summary>
-		/// メンバ関数ポインタラップクラス
-		/// </summary>
 		template<class Object, class T, class... Args>
 		class MemberFunction : public I_Func<T, Args...>
 		{
 		public:
 			using func_type = T(Object::*)(Args...);
 
+			struct FunctionSet
+			{
+				itbs::Utility::ex_weak_ptr<Object> ptr;
+				func_type fn;
+
+				FunctionSet(std::shared_ptr<Object>& ptr, func_type fn) :
+					ptr(ptr),
+					fn(fn)
+				{
+
+				}
+
+				bool operator==(const FunctionSet& functionSet) const
+				{
+					return ptr.get() == functionSet.ptr.get() &&
+						fn == fn;
+				}
+
+				bool operator!=(const FunctionSet& functionSet) const
+				{
+					return !*this == functionSet;
+				}
+			};
 		private:
-			std::weak_ptr<Object> ptr;
-			func_type fn;
+			FunctionSet m_functionSet;
 
 		public:
-			/// <summary>
-			/// コンストラクタ
-			/// </summary>
-			/// <param name="ptr">関数を呼ぶオブジェクト</param>
-			/// <param name="fn">関数ポインタ</param>
-			MemberFunction(const std::shared_ptr<Object>& ptr, func_type fn) :
-				ptr(ptr),
-				fn(fn)
+			MemberFunction(std::shared_ptr<Object>& ptr, func_type fn) :
+				m_functionSet(ptr, fn)
 			{
 
 			}
 
 			T operator()(Args... args) override
 			{
-				auto* objectPtr = ptr.lock().get();
-				return (objectPtr->*fn)(args...);
+				auto* objectPtr = m_functionSet.ptr.get();
+				return (objectPtr->*(m_functionSet.fn))(args...);
 			}
 
 			bool IsValid() const override
 			{
-				return !ptr.expired();
+				return m_functionSet.ptr;
+			}
+
+			FunctionSet GetFunctionSet() const
+			{
+				return m_functionSet;
+			}
+
+			bool operator==(const I_Func<T, Args...>& func) const override
+			{
+				auto memberFunc = dynamic_cast<const MemberFunction&>(func);
+
+				try
+				{
+					return m_functionSet == memberFunc.GetFunctionSet();
+				}
+				catch (...)
+				{
+					return false;
+				}
 			}
 		};
 
-		/// <summary>
-		/// グローバル or static関数ポインタラップクラス
-		/// </summary>
 		template<class T, class... Args>
 		class GlobalFunction : public I_Func<T, Args...>
 		{
@@ -83,17 +117,30 @@ namespace itbs
 			{
 				return true;
 			}
+
+			func_type GetPtr() const
+			{
+				return fn;
+			}
+
+			bool operator==(const I_Func<T, Args...>& func) const
+			{
+				auto globalFunc = dynamic_cast<const GlobalFunction&>(func);
+
+				try
+				{
+					return fn == globalFunc.GetPtr();
+				}
+				catch (...)
+				{
+					return false;
+				}
+			}
 		};
 
-		/// <summary>
-		/// デリゲートクラス
-		/// </summary>
 		template<class T>
 		class Delegate;
 
-		/// <summary>
-		/// デリゲートクラス
-		/// </summary>
 		template<class T, class... Args>
 		class Delegate<T(Args...)>
 		{
@@ -101,29 +148,61 @@ namespace itbs
 			std::vector<std::shared_ptr<I_func>> functions;
 		public:
 
-			/// <summary>
-			/// メンバ関数ポインタ登録関数
-			/// </summary>
-			/// <param name="object">関数を呼ぶオブジェクトのshardポインタ</param>
-			/// <param name="fn">メンバ関数ポインタ</param>
 			template<class Obj>
-			void AddFunc(const std::shared_ptr<Obj>& object, T(Obj::* fn)(Args...))
+			void AddFunc(std::shared_ptr<Obj>& object, T(Obj::* fn)(Args...))
 			{
 				auto memberFunc = std::make_shared<MemberFunction<Obj, T, Args...>>(object, fn);
-				functions.push_back(memberFunc);
+				functions.push_back(std::move(memberFunc));
 			}
 
-			/// <summary>
-			/// グローバル or static関数ポインタ登録関数
-			/// </summary>
-			/// <param name="fn">関数ポインタ</param>
 			void AddFunc(T(*fn)(Args...))
 			{
-				auto globalFunc = std::make_shared<GlobalFunction<T, Args...>>(fn);
-				functions.push_back(globalFunc);
+				auto globalFunc = std::make_unique<GlobalFunction<T, Args...>>(fn);
+				functions.push_back(std::move(globalFunc));
 			}
 
-			void RemoveAll()
+			template<class Obj>
+			void RemoveFunc(std::shared_ptr<Obj>& object, T(Obj::* fn)(Args...))
+			{
+				auto memberFunc = MemberFunction<Obj, T, Args...>(object, fn);
+
+				auto it = functions.begin();
+
+				while (it != functions.end())
+				{
+					auto& func = (*it);
+
+					if (func->operator==(memberFunc))
+					{
+						it = functions.erase(it);
+						return;
+					}
+
+					it++;
+				}
+			}
+
+			void RemoveFunc(T(*fn)(Args...))
+			{
+				auto globalFunc = GlobalFunction<T, Args...>(fn);
+
+				auto it = functions.begin();
+
+				while (it != functions.end())
+				{
+					auto& func = (*it);
+
+					if (func->operator==(globalFunc))
+					{
+						it = functions.erase(it);
+						return;
+					}
+
+					it++;
+				}
+			}
+
+			void Clear()
 			{
 				functions.clear();
 			}
@@ -146,6 +225,5 @@ namespace itbs
 				}
 			}
 		};
-
 	}
 }
