@@ -16,6 +16,15 @@
 
 #include "PositionDrawComp.h"
 
+#include "ChaseEnemyObject.h"
+#include "EyeSearchRange.h"
+
+#include "SparseGraph.h"
+#include "GraphEdge.h"
+#include "NavGraphNode.h"
+#include "GraphAstar.h"
+#include "AstarCtrl.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -54,10 +63,13 @@ namespace basecross {
 			player->SetDrawActive(false);
 			player->AddComponent<CollisionObb>();
 			//èÍèäÇîcà¨Ç∑ÇÈÇΩÇﬂÇÃèàóù
-			player->AddComponent<PositionDrawComp>();
+			//player->AddComponent<PositionDrawComp>();
 
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
-			DebugObject::sm_isResetDelta = true;
+			//ìGÇÃê∂ê¨
+			CreateEnemy(player);
+
+			//AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//DebugObject::sm_isResetDelta = true;
 		}
 		catch (...) {
 			throw;
@@ -93,7 +105,54 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
+		auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
+		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 
+		//Astarê∂ê¨
+		std::vector<Vec3> poss = {
+			{ +0.0f, +1.0f, +0.0f},//0
+			{-12.0f, +1.0f,-12.0f},
+			{+12.0f, +1.0f,-12.0f},//2
+			{+11.0f, +1.0f,+11.0f},
+			{ +0.0f, +1.0f,+12.0f},//4
+			{-10.0f, +1.0f,+12.0f},
+			{-12.0f, +1.0f, +7.0f},//6
+			{-12.0f, +1.0f, -6.0f},
+		};
+
+		int index = 0;
+		for (auto pos : poss) {
+			graph.AddNode(NavGraphNode(index++, pos));
+		}
+
+		vector<GraphEdge> edges = {
+			{GraphEdge(0,1)},
+			{GraphEdge(0,2)},
+			{GraphEdge(0,4)},
+			{GraphEdge(1,0)},
+			{GraphEdge(1,2)},
+			{GraphEdge(1,7)},
+			{GraphEdge(2,0)},
+			{GraphEdge(2,1)},
+			{GraphEdge(2,3)},
+			{GraphEdge(3,2)},
+			{GraphEdge(3,4)},
+			{GraphEdge(4,0)},
+			{GraphEdge(4,3)},
+			{GraphEdge(4,5)},
+			{GraphEdge(5,4)},
+			{GraphEdge(5,6)},
+			{GraphEdge(6,5)},
+			{GraphEdge(7,1)},
+		};
+
+		for (auto& edge : edges) {
+			graph.AddEdge(edge);
+		}
+
+		GraphAstar astar(graph);
+		enemy->AddComponent<AstarCtrl>(graph);
+		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
 	}
 }
 
