@@ -10,6 +10,7 @@
 #include "MyUtility.h"
 
 #include "EyeSearchRange.h"
+#include "EnemyRotationCtrl.h"
 #include "AstarCtrl.h"
 #include "I_Chase.h"
 #include "DebugObject.h"
@@ -44,6 +45,7 @@ namespace basecross {
 		auto pos = transform->GetPosition();
 		pos += toVec.GetNormalized() * m_speed * delta;
 		transform->SetPosition(pos);
+		Rotation(toVec);
 
 		LostCheck();
 	}
@@ -63,6 +65,9 @@ namespace basecross {
 				astar->SearchAstarForecastStart(m_target);
 				//astar->SearchAstarStart(m_target);
 				m_updateFunc = &TargetChase::LostMove;
+
+				//テスト実装
+				obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
 			}
 		}
 	}
@@ -87,6 +92,7 @@ namespace basecross {
 		auto toVec = targetPos - selfPos;
 		selfPos += toVec.GetNormalized() * m_speed * delta;
 		transform->SetPosition(selfPos);
+		Rotation(toVec);
 
 		LookCheck();
 	}
@@ -101,6 +107,16 @@ namespace basecross {
 
 		if (eyeRange->IsLookTarget(m_target)) {
 			m_updateFunc = &TargetChase::LookMove;
+
+			//テスト実装
+			obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		}
+	}
+
+	void TargetChase::Rotation(const Vec3& moveVec) {
+		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotCtrl) {
+			rotCtrl->SetDirect(moveVec);
 		}
 	}
 

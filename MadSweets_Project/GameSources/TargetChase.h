@@ -29,6 +29,8 @@ namespace basecross {
 		void LostMove();
 		void LookCheck();
 
+		void Rotation(const Vec3& moveVec);
+
 		void ChangeStateMachine();
 
 	public:
