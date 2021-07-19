@@ -16,6 +16,6 @@ namespace basecross
 		draw->SetDiffuse(Col4(1, 0, 0, 1));
 		auto collision = AddComponent<CollisionObb>();
 
-		AddComponent<EatenComponent>(10);
+		AddComponent<EatenComponent>(EatenData(10, 10));
 	}
 }
