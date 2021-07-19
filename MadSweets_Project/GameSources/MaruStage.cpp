@@ -21,6 +21,7 @@
 #include "ChaseEnemy.h"
 
 #include "ChaseEnemyObject.h"
+#include "EnemyEar.h"
 
 namespace basecross {
 
@@ -188,6 +189,7 @@ namespace basecross {
 		auto chaseEnemy = Instantiate<ChaseEnemyObject>();
 		chaseEnemy->GetComponent<EyeSearchRange>()->AddTarget(player);
 		chaseEnemy->AddComponent<AstarCtrl>(astar);
+		//chaseEnemy->AddComponent<EnemyEar>();
 	}
 }
 
