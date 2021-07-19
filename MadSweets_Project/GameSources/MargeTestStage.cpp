@@ -13,6 +13,7 @@
 
 #include "PlayerObject.h"
 #include "GaugeUI.h"
+#include "TestEatenObject.h"
 
 #include "PositionDrawComp.h"
 
@@ -67,6 +68,9 @@ namespace basecross {
 
 			//ìGÇÃê∂ê¨
 			CreateEnemy(player);
+
+			//êHÇ◊ï®ÇÃê∂ê¨
+			CreateEatItems();
 
 			//AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
@@ -153,6 +157,37 @@ namespace basecross {
 		GraphAstar astar(graph);
 		enemy->AddComponent<AstarCtrl>(graph);
 		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
+	}
+
+	void MargeTestStage::CreateEatItems() {
+		Vec3 poss[] = {
+			//{ +0.0f, +1.0f, +0.0f},//0
+			//{-12.0f, +1.0f,-12.0f},
+			//{+12.0f, +1.0f,-12.0f},//2
+			{+13.0f, +1.0f,+13.0f},
+			//{ +0.0f, +1.0f,+12.0f},//4
+			//{-10.0f, +1.0f,+12.0f},
+			{-12.0f, +1.0f, +6.0f},//6
+			{-12.0f, +1.0f, -7.0f},
+		};
+
+		std::shared_ptr<GameObject> enemy;
+		for (auto& obj : GetGameObjectVec()) {
+			auto ene = obj->GetComponent<ChaseEnemyObject>(false);
+			if (ene) {
+				enemy = ene;
+				break;
+			}
+		}
+
+		for (auto& pos : poss) {
+			pos.y += -0.5f;
+			AddGameObject<FixedBox>(L"Fixed", Vec3(0.5f,1.0f,0.5f), Vec3(0.0f), pos, L"");
+			pos.y += 1.0f;
+			auto item = Instantiate<TestEatenObject>(pos,Quat());
+			item->GetComponent<Collision>()->SetAfterCollision(AfterCollision::None);
+			//item->GetComponent<Collision>()->AddExcludeCollisionGameObject(enemy);
+		}
 	}
 }
 
