@@ -84,6 +84,27 @@ namespace basecross {
 		Transptr->SetToBefore();
 	}
 
+	void GameObject::ComponentStart()
+	{
+		auto Transptr = GetComponent<Transform>();
+		auto RightPtr = GetComponent<Rigidbody>(false);
+		//マップを検証してUpdate
+		list<type_index>::iterator it = m_CompOrder.begin();
+		while (it != m_CompOrder.end()) {
+			map<type_index, shared_ptr<Component> >::const_iterator it2;
+			it2 = m_CompMap.find(*it);
+			if (it2 != m_CompMap.end()) {
+				//指定の型のコンポーネントが見つかった
+				if ( (it2->second != Transptr)
+					&& (it2->second != RightPtr)
+					) {
+					it2->second->OnStart();
+				}
+			}
+			it++;
+		}
+	}
+
 	void GameObject::ComponentUpdate() {
 		auto Transptr = GetComponent<Transform>();
 		auto RightPtr = GetComponent<Rigidbody>(false);
