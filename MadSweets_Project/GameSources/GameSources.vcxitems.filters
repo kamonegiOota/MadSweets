@@ -217,6 +217,30 @@
     <Filter Include="Maru\Enemy\Component\Rotation\EnemyRotationCtrl">
       <UniqueIdentifier>{9fbe970b-6b8e-429c-b8c2-12115e77b393}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\TestStage\MaruStage">
+      <UniqueIdentifier>{46da6908-d87d-40c1-975b-8dc5fc350493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\TestStage\MargeTestStage">
+      <UniqueIdentifier>{e7601cfc-f04e-4bc4-a7eb-05cd32530f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Load">
+      <UniqueIdentifier>{9fb80dcc-85b3-49a5-aa9b-87b2cc6fbb55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Load\StageMapCSV">
+      <UniqueIdentifier>{a015ffb2-867e-4c24-85f2-7a276b7d3a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Load\LoadData">
+      <UniqueIdentifier>{908301d4-868c-4d06-86a0-1e6497273278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\StageObject">
+      <UniqueIdentifier>{de33f592-1885-4ec9-bb29-057927443be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\StageObject\FixedBox">
+      <UniqueIdentifier>{35fdc128-596b-45dd-bb60-1654bd411ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\StageObject\ResetStageObj">
+      <UniqueIdentifier>{1c17f5c4-88a4-4001-9529-230feb9f2645}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -275,9 +299,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h">
       <Filter>Maru\Astar\SparseGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h">
-      <Filter>Maru\TestStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h">
       <Filter>Maru\Astar\Heuristic</Filter>
@@ -384,6 +405,27 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h">
       <Filter>Maru\Enemy\Component\Rotation\EnemyRotationCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h">
+      <Filter>Maru\TestStage\MaruStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h">
+      <Filter>Maru\TestStage\MargeTestStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h">
+      <Filter>Maru\Load\StageMapCSV</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h">
+      <Filter>Maru\Load\LoadData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
+      <Filter>Maru\Object\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h">
+      <Filter>Maru\Object\StageObject\ResetStageObj</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h">
+      <Filter>Maru\Object\StageObject\FixedBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -427,9 +469,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp">
       <Filter>Maru\Astar\GraphEdge</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
-      <Filter>Maru\TestStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp">
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
@@ -523,6 +562,27 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp">
       <Filter>Maru\Enemy\Component\Rotation\EnemyRotationCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
+      <Filter>Maru\TestStage\MaruStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp">
+      <Filter>Maru\TestStage\MargeTestStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp">
+      <Filter>Maru\Load\StageMapCSV</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadData.cpp">
+      <Filter>Maru\Load\LoadData</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
+      <Filter>Maru\Object\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp">
+      <Filter>Maru\Object\StageObject\ResetStageObj</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp">
+      <Filter>Maru\Object\StageObject\FixedBox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

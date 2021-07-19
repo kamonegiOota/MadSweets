@@ -32,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
@@ -40,6 +41,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Chase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
@@ -60,10 +63,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
@@ -85,6 +91,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
@@ -92,6 +99,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadData.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp" />
@@ -110,9 +119,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
