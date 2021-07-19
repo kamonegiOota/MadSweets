@@ -16,8 +16,8 @@ namespace basecross
 
 		float m_nowWeight = m_maxWeight;
 
-		const float m_skinnyLine;
-		const float m_fatLine;
+		const float m_skinnyLinePercentage;
+		const float m_fatLinePercentage;
 
 		PlayerWeightState m_playerWeightState;
 
@@ -38,6 +38,8 @@ namespace basecross
 		void AddWeight(const float weight);
 
 		void SetGaugeManager(const std::shared_ptr<GaugeManager>& gaugeManager);
+
+		PlayerWeightState GetWeightState() const;
 
 		void OnCreate() override;
 

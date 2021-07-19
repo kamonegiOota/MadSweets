@@ -115,6 +115,8 @@ namespace basecross {
 
 		virtual void OnUpdate() {}
 
+		virtual void OnStart() {}
+
 		virtual void OnDraw() override {}
 
 	protected:

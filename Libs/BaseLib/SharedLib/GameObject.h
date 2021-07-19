@@ -673,6 +673,8 @@ namespace basecross {
 		*/
 		//--------------------------------------------------------------------------------------
 		void TransformInit();
+
+		void ComponentStart();
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	コンポーネントの更新処理
@@ -1653,6 +1655,7 @@ namespace basecross {
 		{
 			try {
 				auto Ptr = ObjectFactory::InstantiateCreate<T>(GetThis<Stage>(), Vec3(), Quat::Identity(), m_canvas);
+				Ptr->ComponentStart();
 				PushBackGameObject(Ptr);
 				return Ptr;
 			}
@@ -1669,6 +1672,7 @@ namespace basecross {
 		{
 			try {
 				auto Ptr = ObjectFactory::Create<T>(GetThis<Stage>());
+				Ptr->ComponentStart();
 				PushBackGameObject(Ptr);
 				return Ptr;
 			}
@@ -1684,6 +1688,7 @@ namespace basecross {
 		{
 			try {
 				auto Ptr = ObjectFactory::InstantiateCreate<T>(GetThis<Stage>(), position, rotation, parent);
+				Ptr->ComponentStart();
 				PushBackGameObject(Ptr);
 				return Ptr;
 			}
@@ -1700,6 +1705,7 @@ namespace basecross {
 		{
 			try {
 				auto Ptr = ObjectFactory::InstantiateCreate<T>(GetThis<Stage>(), position, rotation, parent);
+				Ptr->ComponentStart();
 				PushBackGameObject(Ptr);
 				return Ptr;
 			}

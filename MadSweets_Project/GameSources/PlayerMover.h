@@ -1,4 +1,5 @@
 #pragma once
+#include"PlayerWeightManager.h"
 
 namespace basecross
 {
@@ -9,6 +10,11 @@ namespace basecross
 		float m_standMoveSpeed;
 		float m_crouchMoveSpeed;
 		float m_dashPower;
+
+		float m_dashUseWeight;
+
+		ex_weak_ptr<PlayerWeightManager> m_playerWeightManager;
+
 	public:
 		PlayerMover(std::shared_ptr<GameObject>& owner);
 
@@ -20,7 +26,7 @@ namespace basecross
 
 		float GetDashPower() const;
 
-		void OnCreate() override;
+		void OnStart() override;
 
 		void OnUpdate() override;
 

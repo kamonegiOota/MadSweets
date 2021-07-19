@@ -7,8 +7,8 @@ namespace basecross
 {
 	PlayerWeightManager::PlayerWeightManager(std::shared_ptr<GameObject>& owner) :
 		Component(owner),
-		m_skinnyLine(33.0f),
-		m_fatLine(66.0f)
+		m_skinnyLinePercentage(0.3f),
+		m_fatLinePercentage(0.66f)
 	{
 		m_nowWeight = m_maxWeight * 0.5f;
 		UpdateGauge();
@@ -24,10 +24,19 @@ namespace basecross
 		m_gaugeManager->SetMaxGauge(m_maxWeight);
 		m_gaugeManager->SetNowGauge(m_nowWeight);
 
-		if (m_nowWeight >= m_fatLine)
+		if (m_nowWeight >= m_maxWeight * m_fatLinePercentage)
 		{
-
+			m_playerWeightState = PlayerWeightState::Fat;
+			return;
 		}
+
+		if (m_nowWeight >= m_maxWeight * m_skinnyLinePercentage)
+		{
+			m_playerWeightState = PlayerWeightState::Skinny;
+			return;
+		}
+
+		m_playerWeightState = PlayerWeightState::Hunger;
 	}
 
 	void PlayerWeightManager::SetMaxWeight(const float maxWeight)
@@ -66,6 +75,11 @@ namespace basecross
 		m_gaugeManager = gaugeManager;
 
 		UpdateGauge();
+	}
+
+	PlayerWeightState PlayerWeightManager::GetWeightState() const
+	{
+		return m_playerWeightState;
 	}
 
 	void PlayerWeightManager::OnCreate()
