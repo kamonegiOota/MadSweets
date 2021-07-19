@@ -14,11 +14,11 @@ namespace basecross {
 	{
         StageObject::OnCreate();
 
-        auto Coll = AddComponent<CollisionObb>();
-        Coll->SetFixed(true);
+        auto coll = AddComponent<CollisionObb>();
+        coll->SetFixed(true);
 
         //描画コンポーネントの追加
-        auto PtrDraw = AddComponent<BcPNTStaticDraw>();
+        auto PtrDraw = AddComponent<PNTStaticDraw>();
         PtrDraw->SetMeshResource(L"DEFAULT_CUBE");
         //描画コンポーネントに形状（メッシュ）を設定
         PtrDraw->SetOwnShadowActive(true);
@@ -26,6 +26,9 @@ namespace basecross {
         //PtrDraw->SetTextureResource(L"Wall_Tx");
         //タイリング設定
         PtrDraw->SetSamplerState(SamplerState::LinearWrap);
+
+        AddTag(L"FixedBox");
+        coll->AddExcludeCollisionTag(L"FixedBox");
 	}
 
     void FixedBox::OnUpdate()
