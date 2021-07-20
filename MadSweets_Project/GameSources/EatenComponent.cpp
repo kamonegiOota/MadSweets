@@ -1,4 +1,5 @@
 #include"EatenComponent.h"
+#include"PlayerWeightManager.h"
 
 namespace basecross
 {
@@ -16,7 +17,7 @@ namespace basecross
 	}
 
 	EatenComponent::EatenComponent(std::shared_ptr<GameObject>& owner,const EatenData& eatenData) :
-		Component(owner),
+		ChoicesComponentBase(owner),
 		m_eatenData(eatenData)
 	{
 
@@ -25,5 +26,26 @@ namespace basecross
 	EatenData EatenComponent::GetEatenData() const
 	{
 		return m_eatenData;
+	}
+
+	ChoicesObjectAndEvent EatenComponent::GetChoicesObjectAndEvent(std::shared_ptr<GameObject>& selectorObject) const
+	{
+		auto weightManager = selectorObject->GetComponent<PlayerWeightManager>(false);
+
+		std::function<void()> eventFunction = []() {};
+
+		float weight = m_eatenData.weightValue;
+
+		if (weightManager)
+		{
+			eventFunction = [this,weightManager]()
+			{
+				weightManager->AddWeight(m_eatenData.weightValue);
+
+				GetGameObject()->Destroy();
+			};
+		}
+
+		return ChoicesObjectAndEvent(L"êHÇ◊ÇÈ", GetGameObject(), eventFunction);
 	}
 }
