@@ -161,6 +161,19 @@ namespace itbs
 				functions.push_back(std::move(globalFunc));
 			}
 
+			Delegate() {}
+
+			template<class Obj>
+			Delegate(std::shared_ptr<Obj>& object, T(Obj::* fn)(Args...))
+			{
+				AddFunc(object, fn);
+			}
+
+			Delegate(T(*fn)(Args...))
+			{
+				AddFunc(fn);
+			}
+
 			template<class Obj>
 			void RemoveFunc(std::shared_ptr<Obj>& object, T(Obj::* fn)(Args...))
 			{
@@ -202,6 +215,11 @@ namespace itbs
 				}
 			}
 
+			const std::vector<std::shared_ptr<I_func>>& GetFunction() const
+			{
+				return functions;
+			}
+
 			void Clear()
 			{
 				functions.clear();
@@ -223,6 +241,24 @@ namespace itbs
 					(*func)(args...);
 					it++;
 				}
+			}
+
+			bool operator==(const Delegate& other) const
+			{
+				auto& otherFunction = other.GetFunction();
+
+				auto check = [](const std::shared_ptr<I_func>& func1, const std::shared_ptr<I_func>& func2)
+				{
+					return func1->operator==(*func2);
+				};
+
+				return std::equal(std::begin(functions), std::end(functions),
+					std::begin(otherFunction), std::end(otherFunction), check);
+			}
+
+			bool operator!=(const Delegate& other) const
+			{
+				return !(*this == other);
 			}
 		};
 	}
