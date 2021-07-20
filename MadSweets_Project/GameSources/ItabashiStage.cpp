@@ -46,6 +46,13 @@ namespace basecross
 
 		SetSharedGameObject(L"PlayerWeightGauge", gauge);
 
+		auto go = Instantiate<UIObject>();
+		go->GetComponent<RectTransform>()->SetPosition(300, 0);
+		auto mo = go->AddComponent<ChoicesList>();
+
+		SetSharedGameObject(L"PlayerChoicesList", go);
+
+
 		auto playerObject = Instantiate<PlayerObject>();
 
 		SetSharedGameObject(L"PlayerObject", playerObject);
@@ -72,5 +79,9 @@ namespace basecross
 		auto testKashi = Instantiate<TestEatenObject>();
 
 		testKashi->GetComponent<Transform>()->SetPosition(0, 0, 3);
+
+		auto a = itbs::Utility::Delegate<void()>(GetThis<ItabashiStage>(), &ItabashiStage::OnCreate);
+		itbs::Utility::Delegate<void()> b;
+
 	}
 }
