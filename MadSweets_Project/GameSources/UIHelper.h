@@ -584,23 +584,43 @@ namespace basecross
 		void OnDraw() override;
 	};
 
-	class Choices : public Component
+	struct ChoicesObjectAndEvent
+	{
+		std::wstring text;
+		ex_weak_ptr<GameObject> choicesObject;
+		std::function<void()> eventFunction;
+
+		ChoicesObjectAndEvent();
+
+		ChoicesObjectAndEvent(const std::wstring& text, std::shared_ptr<GameObject>& choicesObject, const std::function<void()>& eventFunction);
+	};
+
+	class ChoicesList : public Component
 	{
 		struct ChoicesData
 		{
-			std::shared_ptr<TextBox> m_textBox;
-			std::function<void()> m_eventFunc;
+			ex_weak_ptr<GameObject> textBox;
+
+			ChoicesObjectAndEvent choicesObjectAndEvent;
+
+			ChoicesData(const std::shared_ptr<GameObject>& textBox, const ChoicesObjectAndEvent& choicesObjectAndEvent);
 		};
-		std::shared_ptr<TextBox> m_textBox;
 
-		std::function<void()> m_eventFunc;
+		std::vector<ChoicesData> m_choicesDatas;
 
+		bool m_isEmpty = true;
+
+		int m_index = 0;
 	public:
-		Choices(std::shared_ptr<GameObject>& owner);
+		ChoicesList(std::shared_ptr<GameObject>& owner);
 
-		void AddChoice(std::wstring& text, const std::function<void()>& eventFunc);
+		void AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent);
 
-		void RemoveChoice(std::wstring& text, const std::function<void>& eventFunc);
+		void RemoveChoice(const std::shared_ptr<GameObject>& gameObject);
+
+		void Invoke();
+
+		void OnUpdate2() override;
 	};
 
 	/// <summary>

@@ -644,6 +644,109 @@ namespace basecross
 
 	}
 
+	// ChoicesObjectAndEvent --------------------
+
+	ChoicesObjectAndEvent::ChoicesObjectAndEvent() :
+		ChoicesObjectAndEvent(L"a", std::shared_ptr<GameObject>(), []() {})
+	{
+
+	}
+
+	ChoicesObjectAndEvent::ChoicesObjectAndEvent(const std::wstring& text, std::shared_ptr<GameObject>& choicesObject,
+		const std::function<void()>& eventFunction) :
+		text(text),
+		choicesObject(choicesObject),
+		eventFunction(eventFunction)
+	{
+
+	}
+	// ChoicesList ------------------------------
+
+	ChoicesList::ChoicesData::ChoicesData(const std::shared_ptr<GameObject>& textBox, const ChoicesObjectAndEvent& choicesObjectAndEvent) :
+		textBox(textBox),
+		choicesObjectAndEvent(choicesObjectAndEvent)
+	{
+
+	}
+
+	ChoicesList::ChoicesList(std::shared_ptr<GameObject>& owner) :
+		Component(owner)
+	{
+
+	}
+
+	void ChoicesList::AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent)
+	{
+		auto uiObject = dynamic_pointer_cast<UIObject>(GetGameObject());
+		auto child = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
+
+		auto rect = child->GetComponent<RectTransform>();
+		rect->SetRectSize(200, 50);
+		auto textBox = child->AddComponent<TextBox>();
+		textBox->SetText(choicesObjectAndEvent.text);
+		textBox->SetBoxColor(0, 0, 0, 1);
+		textBox->SetFontColor(1, 1, 1, 1);
+		textBox->SetFontSize(32);
+		textBox->SetTextSideAlignment(TextBox::TextSideAlignment::Center);
+		textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
+
+		m_choicesDatas.push_back(ChoicesData(child, choicesObjectAndEvent));
+
+		m_isEmpty = false;
+	}
+
+	void ChoicesList::RemoveChoice(const std::shared_ptr<GameObject>& choicesObjectAndEvent)
+	{
+		auto it = m_choicesDatas.begin();
+
+		while (it != m_choicesDatas.end())
+		{
+			auto& choicesData = (*it);
+
+			if (choicesData.choicesObjectAndEvent.choicesObject == choicesObjectAndEvent)
+			{
+				choicesData.textBox->Destroy();
+
+				m_choicesDatas.erase(it);
+
+				if (m_choicesDatas.empty())
+				{
+					m_isEmpty = true;
+				}
+				return;
+			}
+		}
+	}
+
+	void ChoicesList::Invoke()
+	{
+		if (m_isEmpty)
+		{
+			return;
+		}
+
+		auto& choicesObjectAndEvent = m_choicesDatas[m_index].choicesObjectAndEvent;
+		m_choicesDatas[m_index].choicesObjectAndEvent.eventFunction();
+	}
+
+	void ChoicesList::OnUpdate2()
+	{
+		auto it = m_choicesDatas.begin();
+
+		while (it != m_choicesDatas.end())
+		{
+			if (!it->choicesObjectAndEvent.choicesObject)
+			{
+				it->textBox->Destroy();
+
+				it = m_choicesDatas.erase(it);
+
+				continue;
+			}
+
+			it++;
+		}
+	}
 	// UIObject ---------------------------------
 
 	UIObject::UIObject(std::shared_ptr<Stage>& stage) :
