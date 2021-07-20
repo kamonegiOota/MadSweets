@@ -38,6 +38,16 @@ namespace itbs
 			{
 				return ptr.lock().get();
 			}
+
+			bool operator==(const ex_weak_ptr& other) const
+			{
+				return get() == other.get();
+			}
+
+			bool operator!=(const ex_weak_ptr& other) const
+			{
+				return !(*this == other);
+			}
 		};
 	}
 }
