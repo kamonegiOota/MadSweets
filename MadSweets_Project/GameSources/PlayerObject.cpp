@@ -6,7 +6,7 @@
 #include"PlayerStanceManager.h"
 #include"AnimationHelper.h"
 #include"PlayerWeightManager.h"
-#include"PlayerEatManager.h"
+#include"PlayerChoicesManager.h"
 
 namespace basecross
 {
@@ -36,7 +36,7 @@ namespace basecross
 		CreateAnimator();
 
 		auto playerCamera = GetStage()->Instantiate<PlayerCameraObject>(Vec3(),Quat::Identity(),GetThis<GameObject>());
-		AddComponent<PlayerEatManager>(playerCamera);
+		AddComponent<PlayerChoicesManager>(playerCamera);
 	}
 
 	void PlayerObject::OnUpdate()
