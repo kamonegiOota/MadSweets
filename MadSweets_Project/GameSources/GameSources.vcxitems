@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHideManager.h" />
@@ -124,6 +126,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHideManager.cpp" />

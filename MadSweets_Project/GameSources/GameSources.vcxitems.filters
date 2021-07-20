@@ -277,6 +277,12 @@
     <Filter Include="Maru\Object\StageObject\ResetStageObj">
       <UniqueIdentifier>{1c17f5c4-88a4-4001-9529-230feb9f2645}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Components\ChoicesComponentBase">
+      <UniqueIdentifier>{5d076e82-eb11-4b6d-9705-3c13cb8608bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerChoicesManager">
+      <UniqueIdentifier>{c658f843-68d4-430f-8644-31b798280a9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -492,6 +498,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h">
       <Filter>Maru\Object\StageObject\FixedBox</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h">
+      <Filter>Itabashi\Components\ChoicesComponentBase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerChoicesManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -673,6 +685,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp">
       <Filter>Maru\Object\StageObject\FixedBox</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerChoicesManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
