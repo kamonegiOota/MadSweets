@@ -74,6 +74,54 @@ namespace basecross {
 
 			return toVec;
 		}
+
+		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj) {
+			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
+			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+
+			for (auto& object : startObj->GetStage()->GetGameObjectVec())
+			{
+				auto collision = object->GetComponent<Collision>(false);
+				if (!collision){
+					continue;
+				}
+
+				if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
+					continue;
+				}
+
+				//ヒットしたら、障害物があることになる。
+				if (collision->IsRayHit(startPosition, endPosition)){
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+			const std::shared_ptr<GameObject>& endObj,
+			const std::shared_ptr<GameObject>& obstacleObj)
+		{
+			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
+			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+
+			return IsRayObstacle(startPosition, endPosition, obstacleObj);
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
+			const std::shared_ptr<GameObject>& obstacleObj)
+		{
+			auto collision = obstacleObj->GetComponent<Collision>();
+
+			//ヒットしたら、障害物があることになる。
+			if (collision->IsRayHit(startPosition, endPosition)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
 }
 
