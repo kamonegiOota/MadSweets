@@ -149,6 +149,7 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 		//キーボード入力用
 		//ここに設定したキーボード入力を得る
 		vector<DWORD> UseKeyVec = {};
+
 		while (WM_QUIT != msg.message) {
 			App::GetApp()->GetMyInputDevice()->UpdateDevice();
 
@@ -160,6 +161,8 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 					DispatchMessage(&msg);
 				}
 			}
+
+
 			//更新描画処理
 			App::GetApp()->UpdateDraw(1);
 		}
@@ -301,13 +304,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		if (wParam == VK_ESCAPE) {  // 押されたのはESCキーだ
 			DestroyWindow(hWnd);	//ウインドウを破棄する
 		}
+
 		break;
 
 	case WM_KEYUP:
 		App::GetApp()->OnKeyUp(static_cast<UINT8>(wParam));
 		break;
 
+	case WM_ERASEBKGND:
+		return 1;
 	default:
+
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;
