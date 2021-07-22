@@ -7,6 +7,10 @@
 #include"AnimationHelper.h"
 #include"PlayerWeightManager.h"
 #include"PlayerChoicesManager.h"
+#include"SpringArmComponent.h"
+#include"PlayerCameraMover.h"
+#include"ForwardLookAtCameraComponent.h"
+#include"ChasingTarget.h"
 
 namespace basecross
 {
@@ -18,12 +22,29 @@ namespace basecross
 
 	void PlayerObject::OnCreate()
 	{
+		auto springArm = GetStage()->Instantiate<GameObject>(Vec3(), Quat());
+		auto chasingTarget = springArm->AddComponent<ChasingTarget>();
+		chasingTarget->SetTarget(GetThis<GameObject>());
+		auto cameraMover = springArm->AddComponent<PlayerCameraMover>();
+		cameraMover->SetMinRotX(-XM_PIDIV4);
+		cameraMover->SetMaxRotX(XM_PIDIV4);
+		auto springArmComponent = springArm->AddComponent<SpringArmComponent>();
+
+		Quat quat = Quat::Identity();
+		quat.rotationY(XM_PI);
+		auto tpsCamera = GetStage()->Instantiate<GameObject>(Vec3(0, 0, 3), quat, springArm);
+		tpsCamera->AddComponent<ForwardLookAtCameraComponent>();
+
+		springArmComponent->SetChildObject(tpsCamera);
+		springArmComponent->AddHitTag(L"Wall");
+
 		auto draw = AddComponent<PNTBoneModelDraw>();
 
 		AddComponent<Animator<PlayerAnimationMember, PlayerState>>();
 
 
-		AddComponent<PlayerMover>();
+		auto playerMover = AddComponent<PlayerMover>();
+		playerMover->SetIsCameraAffected(true);
 		AddComponent<PlayerProvider>();
 		AddComponent<PlayerStanceManager>();
 
@@ -35,8 +56,6 @@ namespace basecross
 
 		CreateAnimator();
 
-		auto playerCamera = GetStage()->Instantiate<PlayerCameraObject>(Vec3(),Quat::Identity(),GetThis<GameObject>());
-		AddComponent<PlayerChoicesManager>(playerCamera);
 	}
 
 	void PlayerObject::OnUpdate()
