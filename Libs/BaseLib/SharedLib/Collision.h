@@ -32,6 +32,11 @@ namespace basecross {
 		None,
 	};
 
+	struct RayHitData
+	{
+		float length;
+		bsm::Vec3 point;
+	};
 
 	//--------------------------------------------------------------------------------------
 	///	 衝突判定コンポーネントの親クラス
@@ -355,7 +360,7 @@ namespace basecross {
 			return (Vec - Contact);
 		}
 
-		virtual bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const { return false; }
+		virtual bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& direction, RayHitData& hitData = RayHitData()) const { return false; }
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。デフォルトは何も行わない
@@ -556,7 +561,7 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
 
-		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& direction, RayHitData& hitData) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる
@@ -756,7 +761,7 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
 
-		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& direction, RayHitData& hitData) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる
@@ -926,7 +931,7 @@ namespace basecross {
 		//--------------------------------------------------------------------------------------
 		virtual AABB GetWrappedAABB()const override;
 
-		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& endPos) const override;
+		bool IsRayHit(const bsm::Vec3& startPos, const bsm::Vec3& direction, RayHitData& hitData) const override;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief 描画処理。DrawActiveがtrue時に呼ばれる

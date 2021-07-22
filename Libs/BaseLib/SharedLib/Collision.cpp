@@ -573,9 +573,9 @@ namespace basecross {
 		return GetSphere().GetWrappedAABB();
 	}
 
-	bool CollisionSphere::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	bool CollisionSphere::IsRayHit(const Vec3& startPos, const Vec3& direction, RayHitData& hitData) const
 	{
-		return HitTest::SEGMENT_SPHERE(startPos, endPos, GetSphere());
+		return HitTest::RAY_SPHERE(startPos, direction, GetSphere(), hitData.length, hitData.point);
 	}
 
 	void CollisionSphere::OnDraw() {
@@ -951,7 +951,7 @@ namespace basecross {
 		return GetCapsule().GetWrappedAABB();
 	}
 
-	bool CollisionCapsule::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	bool CollisionCapsule::IsRayHit(const Vec3& startPos, const Vec3& endPos,RayHitData& hitData) const
 	{
 		return HitTest::SEGMENT_CAPSULE(startPos, endPos, GetCapsule());
 	}
@@ -1287,9 +1287,9 @@ namespace basecross {
 		return GetObb().GetWrappedAABB();
 	}
 
-	bool CollisionObb::IsRayHit(const Vec3& startPos, const Vec3& endPos) const
+	bool CollisionObb::IsRayHit(const Vec3& startPos, const Vec3& direction,RayHitData& hitData) const
 	{
-		return HitTest::SEGMENT_OBB(startPos, endPos, GetObb());
+		return HitTest::RAY_OBB(startPos, direction, GetObb(), hitData.length, hitData.point);
 	}
 
 	void CollisionObb::OnDraw() {
