@@ -29,6 +29,11 @@ namespace itbs
 				return ptr.lock();
 			}
 
+			std::shared_ptr<T> GetShard() const
+			{
+				return ptr.lock();
+			}
+
 			operator bool() const
 			{
 				return !ptr.expired();
