@@ -280,6 +280,18 @@
     <Filter Include="Maru\MaruUthilyty\PositionDrawComp">
       <UniqueIdentifier>{ff6d4292-e1ac-4275-ba4e-9e3845080071}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\EscapeEnemyObject">
+      <UniqueIdentifier>{95b69695-6656-425d-929d-25b299a4129b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Enemy\TestEnemy\EscapeEnemy">
+      <UniqueIdentifier>{5b40025a-023b-40b2-a51a-b0f29012e380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\AstarCtrl\CalucEscapeRoute">
+      <UniqueIdentifier>{83bd686a-1912-474b-b5d5-427224540019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Astar\GraphAstar\UtilityAstar">
+      <UniqueIdentifier>{f741759d-93b9-4df0-a1b3-002c0cad64c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -498,6 +510,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h">
       <Filter>Maru\MaruUthilyty\PositionDrawComp</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.h">
+      <Filter>Maru\Enemy\Object\EscapeEnemyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemy.h">
+      <Filter>Maru\Enemy\Component\Enemy\TestEnemy\EscapeEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h">
+      <Filter>Maru\Enemy\AstarCtrl\CalucEscapeRoute</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h">
+      <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -682,6 +706,18 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp">
       <Filter>Maru\MaruUthilyty\PositionDrawComp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp">
+      <Filter>Maru\Enemy\Object\EscapeEnemyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemy.cpp">
+      <Filter>Maru\Enemy\Component\Enemy\TestEnemy\EscapeEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp">
+      <Filter>Maru\Enemy\AstarCtrl\CalucEscapeRoute</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp">
+      <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
