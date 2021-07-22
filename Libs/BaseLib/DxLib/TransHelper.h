@@ -2561,6 +2561,63 @@ namespace basecross{
 			}
 			return false;
 		}
+
+		static bool RAY_OBB(const bsm::Vec3& startPos, const bsm::Vec3& direction, const OBB& obb,
+			float& length,bsm::Vec3& crossPosition)
+		{
+			AABB aabb = AABB(obb.m_Center, obb.m_Size.x * 2.0f, obb.m_Size.y * 2.0f, obb.m_Size.z);
+			
+			bsm::Vec3 center = (aabb.m_Min + aabb.m_Max) * 0.5f;
+			bsm::Vec3 rotStartPos = startPos - center;
+			rotStartPos *= obb.GetRotMatrix();
+			bsm::Vec3 unitDirection = direction;
+			unitDirection.normalize();
+			bsm::Vec3 rotDirection = unitDirection * obb.GetRotMatrix();
+			
+
+			float inTime = -FLT_MAX;
+			float outTime = FLT_MAX;
+
+			for (int i = 0; i < 3; i++)
+			{
+				if (std::fabsf(rotDirection[i]) < FLT_EPSILON)
+				{
+					if (std::fabsf(rotStartPos[i]) > obb.m_Size[i])
+					{
+						return false;
+					}
+				}
+				else
+				{
+					float odd = 1.0f / rotDirection[i];
+					float nearPosition = (-obb.m_Size[i] - rotStartPos[i]) * odd;
+					float farPosition = (obb.m_Size[i] - rotStartPos[i]) * odd;
+
+					if (nearPosition > farPosition)
+					{
+						std::swap(nearPosition, farPosition);
+					}
+
+					inTime = std::fmaxf(nearPosition, inTime);
+					outTime = std::fminf(farPosition, outTime);
+
+					if (inTime >= outTime)
+					{
+						return false;
+					}
+				}
+			}
+			if (inTime < 0)
+			{
+				return false;
+			}
+
+
+			length = inTime;
+			crossPosition = startPos + (unitDirection * length);
+
+			return true;
+		}
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	ü•ª‚ÆAABB‚ÌƒŒƒC”»’è
