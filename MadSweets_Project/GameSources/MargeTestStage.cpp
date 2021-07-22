@@ -25,6 +25,7 @@
 #include "NavGraphNode.h"
 #include "GraphAstar.h"
 #include "AstarCtrl.h"
+#include "MTestEnemyObject.h"
 
 namespace basecross {
 
@@ -72,7 +73,9 @@ namespace basecross {
 			//êHÇ◊ï®ÇÃê∂ê¨
 			CreateEatItems();
 
-			//AddGameObject<DebugObject>()->SetDrawLayer(100);
+			AddGameObject<MTestEnemyObject>();
+
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 		}
 		catch (...) {
@@ -106,6 +109,10 @@ namespace basecross {
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
 		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Handy\\", L"Handy_Walk.bmf");
+		app->RegisterResource(L"Handy", modelMesh);
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
@@ -168,7 +175,7 @@ namespace basecross {
 			//{ +0.0f, +1.0f,+12.0f},//4
 			//{-10.0f, +1.0f,+12.0f},
 			{-12.0f, +1.0f, +6.0f},//6
-			{-12.0f, +1.0f, -7.0f},
+			//{-12.0f, +1.0f, -7.0f},
 		};
 
 		std::shared_ptr<GameObject> enemy;
