@@ -606,11 +606,19 @@ namespace basecross
 			ChoicesData(const std::shared_ptr<GameObject>& textBox, const ChoicesObjectAndEvent& choicesObjectAndEvent);
 		};
 
+		ex_weak_ptr<GameObject> m_upTextBox;
+		ex_weak_ptr<GameObject> m_centerTextBox;
+		ex_weak_ptr<GameObject> m_downTextBox;
+
 		std::vector<ChoicesData> m_choicesDatas;
+
+		std::vector<ChoicesObjectAndEvent> m_choiceObjectAndEvent;
 
 		bool m_isEmpty = true;
 
 		int m_index = 0;
+
+		void UpdateChoices();
 	public:
 		ChoicesList(std::shared_ptr<GameObject>& owner);
 
@@ -619,6 +627,8 @@ namespace basecross
 		void RemoveChoice(const std::shared_ptr<GameObject>& gameObject);
 
 		void Invoke();
+
+		void OnStart() override;
 
 		void OnUpdate2() override;
 	};
