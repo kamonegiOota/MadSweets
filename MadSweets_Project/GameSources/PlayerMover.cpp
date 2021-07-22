@@ -33,24 +33,55 @@ namespace basecross
 		return m_dashPower;
 	}
 
+	void PlayerMover::SetIsCameraAffected(const bool isCameraAffected)
+	{
+		m_isCameraAffected = isCameraAffected;
+	}
+
+	bool PlayerMover::GetIsCameraAffected() const
+	{
+		return m_isCameraAffected;
+	}
+
 	void PlayerMover::OnStart()
 	{
 		m_playerWeightManager = GetGameObject()->GetComponent<PlayerWeightManager>();
+		m_camera = GetStage()->GetView()->GetTargetCamera();
 	}
 
 	void PlayerMover::OnUpdate()
 	{
-		auto rotation = PlayerInputer::GetCameraRotation();
+		Vec3 inputVector;
 
-		rotY += rotation.x;
+		auto inputMove = PlayerInputer::GetMoveDirection();
 
-		transform->SetRotation(0, rotY, 0);
+		if (inputMove.lengthSqr() == 0)
+		{
+			return;
+		}
 
-		auto position = transform->GetPosition();
-		auto move = PlayerInputer::GetMoveDirection();
+		inputVector.x = inputMove.x;
+		inputVector.z = inputMove.y;
 
-		auto moveForward = transform->GetForword() * move.y;
-		auto moveRight = transform->GetRight() * move.x;
+		Vec3 forward;
+		Vec3 right;
+
+		if (m_isCameraAffected)
+		{
+			Vec3 cameraForward = -m_camera->GetAt();
+			cameraForward.y = 0;
+			cameraForward.normalize();
+			forward = cameraForward;
+			right = Vec3(cameraForward.z, 0, -cameraForward.x);
+		}
+		else
+		{
+			forward = Vec3(0, 0, 1);
+			right = Vec3(1, 0, 0);
+		}
+
+		auto moveForward = forward * inputVector.z;
+		auto moveRight = right * inputVector.x;
 
 		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_standMoveSpeed;
 
@@ -60,9 +91,13 @@ namespace basecross
 			moveVector *= m_dashPower;
 			m_playerWeightManager->AddWeight(-m_dashUseWeight);
 		}
+		
+		auto position = transform->GetPosition();
 
 		position += moveVector;
 		transform->SetPosition(position);
+
+		transform->SetForward(moveVector);
 	}
 
 }

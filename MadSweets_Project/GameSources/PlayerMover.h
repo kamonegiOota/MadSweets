@@ -13,8 +13,11 @@ namespace basecross
 
 		float m_dashUseWeight;
 
+		bool m_isCameraAffected = false;
+
 		ex_weak_ptr<PlayerWeightManager> m_playerWeightManager;
 
+		ex_weak_ptr<Camera> m_camera;
 	public:
 		PlayerMover(std::shared_ptr<GameObject>& owner);
 
@@ -25,6 +28,10 @@ namespace basecross
 		void SetDashPower(const float dashPower);
 
 		float GetDashPower() const;
+
+		void SetIsCameraAffected(const bool isCameraAffected);
+
+		bool GetIsCameraAffected() const;
 
 		void OnStart() override;
 
