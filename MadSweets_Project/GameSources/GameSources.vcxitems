@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
@@ -36,6 +37,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ForwardLookAtCameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h" />
@@ -58,6 +61,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
@@ -78,6 +82,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpringArmComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
@@ -105,6 +110,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeUI.cpp" />
@@ -125,6 +131,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
@@ -143,6 +150,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />

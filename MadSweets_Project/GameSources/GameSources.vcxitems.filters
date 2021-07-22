@@ -283,6 +283,21 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerChoicesManager">
       <UniqueIdentifier>{c658f843-68d4-430f-8644-31b798280a9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Patchs\basecross\FontHelper">
+      <UniqueIdentifier>{b6bd7621-e1db-4857-ab71-483538a88a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\SpringArmComponent">
+      <UniqueIdentifier>{b7728277-2750-4c09-ad71-97bc68513459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerCameraMover">
+      <UniqueIdentifier>{49947647-46fa-4511-9780-06dc0ee6f139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\ForwardLocckAtCameraComponent">
+      <UniqueIdentifier>{5ca269cd-5248-4e3b-9cbc-a54ddc62e7c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\ChasingTarget">
+      <UniqueIdentifier>{627eaf7f-f97a-4535-a265-5e282376da85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -504,6 +519,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerChoicesManager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h">
+      <Filter>Patchs\basecross\FontHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpringArmComponent.h">
+      <Filter>Itabashi\Components\SpringArmComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraMover.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerCameraMover</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ForwardLookAtCameraComponent.h">
+      <Filter>Itabashi\Components\ForwardLocckAtCameraComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h">
+      <Filter>Itabashi\Components\ChasingTarget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -688,6 +718,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerChoicesManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp">
+      <Filter>Patchs\basecross\FontHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp">
+      <Filter>Itabashi\Components\SpringArmComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerCameraMover</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
