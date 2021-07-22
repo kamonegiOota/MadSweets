@@ -11,6 +11,7 @@
 #include "DebugObject.h"
 
 #include "I_Chase.h"
+#include "MyUtility.h"
 
 namespace basecross {
 
@@ -59,6 +60,18 @@ namespace basecross {
 		auto newDot = dot(forward.GetNormalized(), toVec.GetNormalized());
 		auto newRad = acosf(newDot);
 		if (newRad <= m_param.rad) {  //õ“G”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚½‚çB
+			RayCheck(targetParam);
+		}
+		else {
+			targetParam.isFind = false;
+		}
+	}
+
+	void EyeSearchRange::RayCheck(const EyeTargetParam& targetParam) {
+		const auto& target = targetParam.target;
+	
+		//áŠQ•¨‚Éƒqƒbƒg‚µ‚È‚©‚Á‚½‚ç
+		if (maru::MyUtility::IsRayObstacle(GetGameObject(),target) == false) {
 			Hit(targetParam);
 		}
 		else {
