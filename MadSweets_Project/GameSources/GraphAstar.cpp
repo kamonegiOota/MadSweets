@@ -7,6 +7,7 @@
 #include "Project.h"
 #include "GraphAstar.h"
 #include "DebugObject.h"
+#include "MyUtility.h"
 
 
 namespace basecross {
@@ -95,6 +96,9 @@ namespace basecross {
 			auto toNode = pos - targetPos;
 			const auto& range = toNode.length();
 
+			//障害物が合ったらコンティニュ―
+
+
 			//距離が短かったらこれにする。
 			if (range <= minRange) {
 				minRange = range;
@@ -111,28 +115,33 @@ namespace basecross {
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
-		m_isRouteEnd = false;
-		m_routeIndex = 0;
-		m_expectDatas.clear();
-		m_shortRoutes.clear();
-		m_isCreateNewData = true;
-		m_isReturnPhase = false;
+		//m_selfObj = self;
+		auto selfPos = self->GetComponent<Transform>()->GetPosition();
+		SearchAstarStart(selfPos,targetPos);
+	}
 
-		auto selfNearNode = SearchNearNode(self);
+	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
+		ResetAstar();
+
+		auto selfNearNode = SearchNearNode(selfPos);
 		auto targetNearNode = SearchNearNode(targetPos);
 		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
 
 		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
-			m_shortRoutes.push_back(AstarExpectData(selfNearNode,targetNearNode,0,0));
+			m_shortRoutes.push_back(AstarExpectData(selfNearNode, targetNearNode, 0, 0));
 			return;
 		}
 
 		//ループして処理を行う。
-		LoopSearchAstar(selfNearNode);
+		AstarExpectData data;
+		data.nextNode = selfNearNode;
+		LoopSearchAstar(data);
 	}
 
 	void GraphAstar::SearchAstarForecastStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
+		m_isForecase = true;
+
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
 
 		auto targetNearNode = SearchNearNode(target);
@@ -162,7 +171,41 @@ namespace basecross {
 			}
 		}
 
-		SearchAstarStart(self, targetNode.GetPosition());
+		SearchAstarStart(targetPos, targetNode.GetPosition());
+	}
+
+	void GraphAstar::ResetAstar() {
+		m_isRouteEnd = false;
+		m_routeIndex = 0;
+		m_expectDatas.clear();
+		m_shortRoutes.clear();
+		m_isCreateNewData = true;
+		m_isReturnPhase = false;
+	}
+
+	void GraphAstar::LastAdjust(const AstarExpectData& startData) { //最終調整
+		//初期ノードと次のノードの間に自分がいる場合は処理をしない
+		//if (m_selfObj) {
+		//	auto startPos = startData.nextNode.GetPosition();
+		//	auto nextPos = m_shortRoutes[0].nextNode.GetPosition();
+		//	if (maru::MyUtility::IsRayObstacle(startPos, nextPos, m_selfObj) == false) {  //自分の間に二つのノードが存在しなかったら
+		//		return;
+		//	}
+		//}
+
+		if (!m_isForecase) {  //予測状態出なかったら処理をしない
+			return;
+		}
+		m_isForecase = false;
+
+		vector<AstarExpectData> newShortRoutes;
+		newShortRoutes.push_back(startData);
+
+		for (const auto& route : m_shortRoutes) {
+			newShortRoutes.push_back(route);
+		}
+
+		m_shortRoutes = newShortRoutes;
 	}
 
 	void GraphAstar::NextProcess(const AstarExpectData& newRoute, const vector<AstarExpectData>& newDatas) {
@@ -181,12 +224,12 @@ namespace basecross {
 		m_isReturnPhase = true;
 	}
 
-	void GraphAstar::LoopSearchAstar(const NavGraphNode& stdNode) {
+	void GraphAstar::LoopSearchAstar(const AstarExpectData& startData) {
 		//for (int i = 0; i < 5; i++) {
 		while(true){
 			NavGraphNode node;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
-				node = stdNode;
+				node = startData.nextNode;
 			}
 			else {
 				auto index = m_shortRoutes.size() - 1;
@@ -232,6 +275,12 @@ namespace basecross {
 					}
 				}
 			}
+		}
+
+		LastAdjust(startData);
+
+		for (auto route : m_shortRoutes) {
+			DebugObject::m_wss << route.nextNode.GetIndex() << L",";
 		}
 	}
 
@@ -372,6 +421,7 @@ namespace basecross {
 			m_isRouteEnd = true;//機能をoffにする。
 		}
 
+		DebugObject::m_wss << to_wstring(m_shortRoutes[m_routeIndex].node.GetIndex());
 		return nodePos;
 	}
 }

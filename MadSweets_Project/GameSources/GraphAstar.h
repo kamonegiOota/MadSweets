@@ -51,15 +51,19 @@ namespace basecross {
 		/// </summary>
 		Heuristic m_heuristic;
 
+		//std::shared_ptr<GameObject> m_selfObj;
+
 		std::vector<std::vector<AstarExpectData>> m_expectDatas;  //計測した期待値のデータを計測
-		//int m_countIndex;  //現在探索計算が何回目かを判断する。
 
 		std::vector<AstarExpectData> m_shortRoutes;  //最短経路を格納した配列。
 		int m_routeIndex = 0;   //現在どのノードを目標としているかを判断するインデックス。
-		bool m_isRouteEnd = true;
+		bool m_isRouteEnd = true;  //ルートの最後に来たかどうか？
 
-		bool m_isCreateNewData = true;
+		bool m_isCreateNewData = true;  //新しくルートを作るかどうか
 		bool m_isReturnPhase = false;  //一度戻っている状態かどうか
+
+		bool m_isForecase = false;  //予測したノードをターゲットにしているかどうか
+
 
 		const NavGraphNode *GetBeforeNode() const;  //前のノードの情報を取得する。
 		void RemoveData(const AstarExpectData& data);
@@ -79,6 +83,7 @@ namespace basecross {
 		//自分ノードとエッジから、どのルートが一番近いか検索
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos);
+		void SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos);
 
 		//ターゲットの行先を予測してその方向ノードに向かうルートを構築する処理(Forecast == 予測、予想)
 		void SearchAstarForecastStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
@@ -95,6 +100,12 @@ namespace basecross {
 
 	private:
 
+		//情報をリセットするときの関数
+		void ResetAstar();
+
+		//最終調整
+		void LastAdjust(const AstarExpectData& startData);
+
 		//進む時の処理
 		void NextProcess(const AstarExpectData& newRoute, const vector<AstarExpectData>& newDatas);
 
@@ -102,7 +113,7 @@ namespace basecross {
 		void BackProcess(const AstarExpectData& shortRoute);
 
 		//ループして探索経路を測る。
-		void LoopSearchAstar(const NavGraphNode& stdNode);
+		void LoopSearchAstar(const AstarExpectData& startData);
 
 		//隣接ノードの距離とヒューリスティック距離の合計を測り、そのデータを返す。
 		std::vector<AstarExpectData> CalucNearNodeExpectData(const NavGraphNode& node);
