@@ -84,8 +84,8 @@ namespace basecross {
 		/// </summary>
 		/// <param name="from">欲しいエッジリストのインデックス</param>
 		/// <returns>エッジリスト</returns>
-		const std::vector<EdgeType>& GetEdges(const int& from) {
-			return m_edges[from];
+		const std::vector<EdgeType>& GetEdges(const int& from) const{
+			return m_edges.at(from);
 		}
 
 		/// <summary>
