@@ -69,12 +69,26 @@ namespace basecross {
 
 		for (auto& child : m_children)
 		{
-			auto childPtr = child.lock();
-
-			if (childPtr)
+			if (child)
 			{
-				childPtr->Destroy();
+				child->Destroy();
 			}
+		}
+	}
+
+	void GameObject::ChildDestroy(const std::shared_ptr<GameObject>& childObject)
+	{
+		auto it = m_children.begin();
+
+		while (it != m_children.end())
+		{
+			if (*it == childObject)
+			{
+				m_children.erase(it);
+
+				return;
+			}
+			it++;
 		}
 	}
 
@@ -95,9 +109,8 @@ namespace basecross {
 			it2 = m_CompMap.find(*it);
 			if (it2 != m_CompMap.end()) {
 				//指定の型のコンポーネントが見つかった
-				if ( (it2->second != Transptr)
-					&& (it2->second != RightPtr)
-					) {
+				if ( (it2->second != Transptr) && (it2->second != RightPtr))
+				{
 					it2->second->OnStart();
 				}
 			}
@@ -322,6 +335,11 @@ namespace basecross {
 		TMptr->OnDestroy();
 		//自分自身のOnDestroy()
 		OnDestroy();
+
+		if (m_parent)
+		{
+			m_parent->ChildDestroy(GetThis<GameObject>());
+		}
 	}
 
 	//--------------------------------------------------------------------------------------

@@ -36,8 +36,8 @@ namespace basecross {
 											//行動のマップ
 		map<type_index, shared_ptr<Behavior>> m_BehaviorMap;
 
-		std::weak_ptr<GameObject> m_parent;  // 親オブジェクト
-		std::vector<std::weak_ptr<GameObject>> m_children; // 子オブジェクト
+		ex_weak_ptr<GameObject> m_parent;  // 親オブジェクト
+		std::vector<ex_weak_ptr<GameObject>> m_children; // 子オブジェクト
 
 		itbs::Utility::ActionTimer m_actionTimer;
 
@@ -140,11 +140,10 @@ namespace basecross {
 
 			for (auto& child : m_children)
 			{
-				auto childPtr = child.lock();
 
-				if (childPtr)
+				if (child)
 				{
-					childPtr->SetUpdateActive(b, false);
+					child->SetUpdateActive(b, false);
 				}
 			}
 		}
@@ -187,11 +186,9 @@ namespace basecross {
 
 			for (auto& child : m_children)
 			{
-				auto childPtr = child.lock();
-
-				if (childPtr)
+				if (child)
 				{
-					childPtr->SetDrawActive(b, false);
+					child->SetDrawActive(b, false);
 				}
 			}
 		}
@@ -239,13 +236,14 @@ namespace basecross {
 			this->m_parent = parent;
 			transform->SetParent(parent);
 		}
+
 		/// <summary>
 		/// 親オブジェクトを返す関数
 		/// </summary>
 		/// <returns>親オブジェクト</returns>
 		std::shared_ptr<GameObject> GetParent()
 		{
-			return m_parent.lock();
+			return m_parent.GetShard();
 		}
 		/// <summary>
 		/// 子オブジェクト登録関数
@@ -256,7 +254,20 @@ namespace basecross {
 			m_children.push_back(child);
 			child->SetParent(GetThis<GameObject>());
 		}
+
+		std::shared_ptr<GameObject> GetChild() const
+		{
+			return m_children.empty() ? nullptr : m_children[0].GetShard();
+		}
+
+		const std::vector<ex_weak_ptr<GameObject>>& GetChildren() const
+		{
+			return m_children;
+		}
+
 		void Destroy();
+
+		void ChildDestroy(const std::shared_ptr<GameObject>& childObject);
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	スプライトとしてDrawするかどうかを得る
