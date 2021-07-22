@@ -8,7 +8,7 @@
 #include "GraphAstar.h"
 #include "DebugObject.h"
 #include "MyUtility.h"
-
+#include "UtilityAstar.h"
 
 namespace basecross {
 
@@ -75,39 +75,39 @@ namespace basecross {
 		}
 	}
 
-	NavGraphNode GraphAstar::SearchNearNode(const std::shared_ptr<GameObject>& target) {
-		//一番近いノードの検索
-		auto targetTrans = target->GetComponent<Transform>();
-		auto targetPos = targetTrans->GetPosition();
+	//const NavGraphNode GraphAstar::SearchNearNode(const std::shared_ptr<GameObject>& target) {
+	//	//一番近いノードの検索
+	//	auto targetTrans = target->GetComponent<Transform>();
+	//	auto targetPos = targetTrans->GetPosition();
 
-		auto reNode = SearchNearNode(targetPos);
-		return reNode;
-	}
+	//	auto reNode = SearchNearNode(targetPos);
+	//	return reNode;
+	//}
 
-	NavGraphNode GraphAstar::SearchNearNode(const Vec3& targetPos) {
-		auto nodes = m_graph.GetNodes();
+	//const NavGraphNode GraphAstar::SearchNearNode(const Vec3& targetPos) {
+	// 	const auto& nodes = m_graph.GetNodes();
 
-		float minRange = 10000.0f;
-		NavGraphNode minNode;  //一番距離が短いノード
+	//	float minRange = 10000.0f;
+	//	NavGraphNode minNode;  //一番距離が短いノード
 
-		//検索開始
-		for (const auto& node : nodes) {
-			auto pos = node.GetPosition();
-			auto toNode = pos - targetPos;
-			const auto& range = toNode.length();
+	//	//検索開始
+	//	for (const auto& node : nodes) {
+	//		auto pos = node.GetPosition();
+	//		auto toNode = pos - targetPos;
+	//		const auto& range = toNode.length();
 
-			//障害物が合ったらコンティニュ―
+	//		//障害物が合ったらコンティニュ―
 
 
-			//距離が短かったらこれにする。
-			if (range <= minRange) {
-				minRange = range;
-				minNode = node;
-			}
-		}
+	//		//距離が短かったらこれにする。
+	//		if (range <= minRange) {
+	//			minRange = range;
+	//			minNode = node;
+	//		}
+	//	}
 
-		return minNode;
-	}
+	//	return minNode;
+	//}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
@@ -123,8 +123,8 @@ namespace basecross {
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
 		ResetAstar();
 
-		auto selfNearNode = SearchNearNode(selfPos);
-		auto targetNearNode = SearchNearNode(targetPos);
+		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
+		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
 		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
 
@@ -144,32 +144,13 @@ namespace basecross {
 
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
 
-		auto targetNearNode = SearchNearNode(target);
+	    auto targetNearNode = UtilityAstar::SearchNearNode(*this,target);
 		auto startNodePos = targetNearNode.GetPosition();
 		auto toTargetVec = targetPos - startNodePos;
 		toTargetVec.y = 0.0f;
 
-		float minRad = 360.0f;
-		NavGraphNode targetNode;
-		DebugObject::m_wss << to_wstring(targetNearNode.GetIndex()) << endl;
-		auto edges = m_graph.GetEdges(targetNearNode.GetIndex());
-		for (const auto& edge : edges) {
-			auto toIndex = edge.GetTo();
-			auto nextNode = m_graph.GetNode(toIndex);
-			auto nextPos = nextNode.GetPosition();
-
-			auto toNextNodeVec = nextPos - startNodePos;
-			toNextNodeVec.y = 0.0f;
-
-			auto newDot = dot(toTargetVec.GetNormalized(), toNextNodeVec.GetNormalized());
-			auto newRad = acosf(newDot);
-			DebugObject::m_wss << to_wstring(nextNode.GetIndex()) << L": ";
-			DebugObject::m_wss << to_wstring(XMConvertToDegrees(newRad)) << endl;
-			if (newRad < minRad) {
-				minRad = newRad;
-				targetNode = nextNode;
-			}
-		}
+		//ターゲットノードの計算
+		auto targetNode = UtilityAstar::CalucTargetDirectNode(*this,targetNearNode,targetPos);
 
 		SearchAstarStart(targetPos, targetNode.GetPosition());
 	}
@@ -421,7 +402,7 @@ namespace basecross {
 			m_isRouteEnd = true;//機能をoffにする。
 		}
 
-		DebugObject::m_wss << to_wstring(m_shortRoutes[m_routeIndex].node.GetIndex());
+		//DebugObject::m_wss << to_wstring(m_shortRoutes[m_routeIndex].node.GetIndex());
 		return nodePos;
 	}
 }

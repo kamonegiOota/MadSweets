@@ -71,14 +71,16 @@ namespace basecross {
 		bool IsAstarEnd();  //Astarの終了を判断
 
 		//目的ノードの設定
-		//ターゲットから一番近くのノードを検索する。
-		NavGraphNode SearchNearNode(const std::shared_ptr<GameObject>& target);
-		NavGraphNode SearchNearNode(const Vec3& targetPos);
 		
 	public:
 		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
 			:m_graph(graph)//, m_countIndex(0)
 		{}
+
+
+		//ターゲットから一番近くのノードを検索する。
+		//const NavGraphNode SearchNearNode(const std::shared_ptr<GameObject>& target);
+		//const NavGraphNode SearchNearNode(const Vec3& targetPos);
 		
 		//自分ノードとエッジから、どのルートが一番近いか検索
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
@@ -96,6 +98,10 @@ namespace basecross {
 		//検索したルートの最後まで来たらtrue
 		bool IsRouteEnd() const {
 			return m_isRouteEnd;
+		}
+
+		const SparseGraph<NavGraphNode, GraphEdge>& GetGraph() const {
+			return m_graph;
 		}
 
 	private:
