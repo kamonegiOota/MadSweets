@@ -2,6 +2,7 @@
 #include"PlayerObject.h"
 #include"GaugeUI.h"
 #include"TestEatenObject.h"
+#include"FontHelper.h"
 
 namespace basecross
 {
@@ -49,6 +50,7 @@ namespace basecross
 		auto go = Instantiate<UIObject>();
 		go->GetComponent<RectTransform>()->SetPosition(300, 0);
 		auto mo = go->AddComponent<ChoicesList>();
+		mo->OnStart();
 
 		SetSharedGameObject(L"PlayerChoicesList", go);
 
@@ -69,6 +71,7 @@ namespace basecross
 			auto collision = gameobject->AddComponent<CollisionObb>();
 			collision->SetFixed(true);
 			gameobjects.push_back(gameobject);
+			gameobject->AddTag(L"Wall");
 		}
 
 		gameobjects[0]->GetComponent<Transform>()->SetPosition(-2, 0, -2);
@@ -83,5 +86,43 @@ namespace basecross
 		auto a = itbs::Utility::Delegate<void()>(GetThis<ItabashiStage>(), &ItabashiStage::OnCreate);
 		itbs::Utility::Delegate<void()> b;
 
+		App::GetApp()->GetXAudio2Manager()->GetSoundItemVec();
+
+		for (auto& fontName : FontHelper::GetSystemFontNames())
+		{
+			OutputDebugString((fontName + L"\n").c_str());
+		}
+
+		//auto atari = AddGameObject<GameObject>();
+
+		//atari->GetComponent<Transform>()->SetPosition(1.0f, 1.00f, 1.0f);
+		//atari->GetComponent<Transform>()->SetRotation(0, 0, 0);
+
+		//auto atari2 = Instantiate<GameObject>(Vec3(1, 1, 1), Quat(), atari);
+		//auto collision = atari2->AddComponent<CollisionObb>();
+
+		//auto obb = collision->GetObb();
+		//auto aabb = AABB(obb.m_Center, obb.m_Size.x * 2.0f, obb.m_Size.y * 2.0f, obb.m_Size.z * 2.0f);
+
+		//wstringstream wss;
+		//auto matrix = collision->GetObb().GetRotMatrix();
+
+		////MessageBox(0, wss.str().c_str(), L"", 0);
+
+		//float length = 0;
+		//Vec3 crossPosition;
+
+		//bool fa = HitTest::RAY_OBB(Vec3(0, 0, 0), Vec3(1.0f, 1.0f, 1.0f), obb, length, crossPosition);
+
+		//if (fa)
+		//{
+
+		//	wss << L"¬Œ÷\n";
+		//	wss << L"’·‚³ : " << length;
+		//	wss << L"“–‚½‚Á‚½ˆÊ’u : " << crossPosition.x << "," << crossPosition.y << "," << crossPosition.z;
+
+		//	MessageBox(0, wss.str().c_str(), L"", 0);
+
+		//}
 	}
 }
