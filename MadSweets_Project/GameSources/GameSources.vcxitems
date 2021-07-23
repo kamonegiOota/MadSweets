@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
@@ -49,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Chase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
@@ -84,6 +86,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
@@ -104,6 +107,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
@@ -152,6 +156,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />

@@ -292,6 +292,12 @@
     <Filter Include="Maru\Astar\GraphAstar\UtilityAstar">
       <UniqueIdentifier>{f741759d-93b9-4df0-a1b3-002c0cad64c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_EscapeMove">
+      <UniqueIdentifier>{1ed975ae-d20b-413e-8ce3-2335c25c2b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\TargetEscape">
+      <UniqueIdentifier>{101dd930-b7b6-457d-8928-9b36e128f12e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -522,6 +528,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h">
       <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_EscapeMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h">
+      <Filter>Maru\Enemy\Component\TargetEscape</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h">
+      <Filter>Maru\Enemy\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -718,6 +733,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp">
       <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_EscapeMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp">
+      <Filter>Maru\Enemy\Component\TargetEscape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
