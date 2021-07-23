@@ -34,7 +34,16 @@ namespace basecross {
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
 		void SearchAstarStart(const Vec3& targetPos);
 		
+		/// <summary>
+		/// ターゲットの行先を予測してノードを選択する関数
+		/// </summary>
+		/// <param name="target"></param>
 		void SearchAstarForecastStart(const std::shared_ptr<GameObject>& target);
+
+		//逃げ出すときのルート計算
+		void SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target);
+		//逃げているときのルート計算
+		void SearchAstarEscapeNextRoute(const std::shared_ptr<GameObject>& target);
 
 		Vec3 GetCalucNodePos(){
 			return m_astar.CalucTargetNode(GetGameObject());
