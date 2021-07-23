@@ -10,6 +10,7 @@
 #include "ReturnPlowlingPosition.h"
 #include "AstarCtrl.h"
 #include "TargetChase.h"
+#include "TargetEscape.h"
 
 namespace basecross {
 
@@ -21,8 +22,9 @@ namespace basecross {
         }
 
         AddChangeComp(returnPlow, true, false);
-        AddChangeComp(obj->GetComponent<AstarCtrl>(), true, false);
-        AddChangeComp(obj->GetComponent<TargetChase>(), false, false);
+        AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
+        AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
+        AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
 
         StartChangeComps();
 
