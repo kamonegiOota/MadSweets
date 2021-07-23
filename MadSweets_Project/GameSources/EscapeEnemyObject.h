@@ -14,6 +14,7 @@ namespace basecross {
 
 	class EscapeEnemyObject : public GameObject
 	{
+		void CreatePlowlingRoute();
 
 	public:
 
