@@ -18,13 +18,20 @@ namespace basecross {
 	{
 
 	public:
-		static void CalucRoute(const GraphAstar& astar,
+		static NavGraphNode CalucRoute(const GraphAstar& astar,
 			const std::shared_ptr<GameObject>& selfObj,
 			const std::shared_ptr<GameObject>& targetObj);
 
-		static void CalucRoute(const GraphAstar& astar,
+		static NavGraphNode CalucRoute(const GraphAstar& astar,
 			const Vec3& selfPos, const Vec3& targetPos);
 
+		//“¦‚°‚é‚Æ‚«‚Ì“ñ‰ñ–ÚˆÈ~‚Ìƒ‹[ƒgŒš’z
+		static NavGraphNode CalucNextRoute(const GraphAstar& astar,
+			const std::shared_ptr<GameObject>& selfObj,
+			const std::shared_ptr<GameObject>& targetObj);
+
+		static NavGraphNode CalucNextRoute(const GraphAstar& astar,
+			const Vec3& selfPos, const Vec3& targetPos);
 	};
 
 }
