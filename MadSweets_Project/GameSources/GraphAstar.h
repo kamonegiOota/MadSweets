@@ -104,6 +104,11 @@ namespace basecross {
 			return m_graph;
 		}
 
+		void SetShortRoutes(const vector<AstarExpectData> shortRoutes) {
+			m_isRouteEnd = false;
+			m_shortRoutes = shortRoutes;
+		}
+
 	private:
 
 		//î•ñ‚ğƒŠƒZƒbƒg‚·‚é‚Æ‚«‚ÌŠÖ”
