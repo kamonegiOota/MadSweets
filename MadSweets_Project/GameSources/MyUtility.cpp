@@ -79,10 +79,10 @@ namespace basecross {
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
 			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
 
-			for (auto& object : startObj->GetStage()->GetGameObjectVec())
+			for (const auto& object : startObj->GetStage()->GetGameObjectVec())
 			{
 				auto collision = object->GetComponent<Collision>(false);
-				if (!collision){
+				if (!collision) {
 					continue;
 				}
 
@@ -91,7 +91,26 @@ namespace basecross {
 				}
 
 				//ƒqƒbƒg‚µ‚½‚çAáŠQ•¨‚ª‚ ‚é‚±‚Æ‚É‚È‚éB
-				if (collision->IsRayHit(startPosition, endPosition)){
+				if (collision->IsRayHit(startPosition, endPosition)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition) {
+			auto stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+
+			for (const auto& object : stage->GetGameObjectVec())
+			{
+				auto collision = object->GetComponent<Collision>(false);
+				if (!collision) {
+					continue;
+				}
+
+				//ƒqƒbƒg‚µ‚½‚çAáŠQ•¨‚ª‚ ‚é‚±‚Æ‚É‚È‚éB
+				if (collision->IsRayHit(startPosition, endPosition)) {
 					return true;
 				}
 			}
