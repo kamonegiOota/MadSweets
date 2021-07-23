@@ -55,6 +55,7 @@ namespace basecross {
 		AddComponent<EnemyRotationCtrl>();
 		CreatePlowlingRoute();
 
+		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
 
 		auto col = AddComponent<CollisionObb>();
