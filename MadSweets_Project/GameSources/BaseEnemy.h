@@ -57,6 +57,24 @@ namespace basecross {
 			newState->OnStart();
 			m_stateMachine = newState;
 		}
+
+		/// <summary>
+		/// 同じステートでも変更処理を加えたいときはこちらを利用
+		/// </summary>
+		template<class T, class... Ts,
+			enable_if_t<is_base_of_v<maru::StateMachine<BaseEnemy>, T>, std::nullptr_t> = nullptr >
+		void AbsoluteChangeStateMachine(Ts&&... params) 
+		{
+
+			auto newState = make_shared<T>(GetThis<BaseEnemy>(), params...);
+
+			if (m_stateMachine) {
+				m_stateMachine->OnExit();
+			}
+
+			newState->OnStart();
+			m_stateMachine = newState;
+		}
 	};
 
 }
