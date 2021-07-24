@@ -117,7 +117,8 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
-		auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
+		auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
+		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//Astar¶¬
