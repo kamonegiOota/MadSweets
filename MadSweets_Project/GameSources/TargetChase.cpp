@@ -105,7 +105,7 @@ namespace basecross {
 			return;
 		}
 
-		if (eyeRange->IsLookTarget(m_target)) {
+		if (eyeRange->IsLookTarget(m_target)) {  //一部のオブジェクトを障害物として扱わないようにする
 			m_updateFunc = &TargetChase::LookMove;
 
 			//テスト実装

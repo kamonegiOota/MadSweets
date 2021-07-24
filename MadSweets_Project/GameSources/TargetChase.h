@@ -51,6 +51,7 @@ namespace basecross {
 
 		//アクセッサ-----------------------------------------------------------------------
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
+			//m_updateFunc = &TargetChase::LookMove;
 			m_target = target;
 		}
 		std::shared_ptr<GameObject> GetTarget() const {
