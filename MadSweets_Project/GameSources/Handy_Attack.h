@@ -17,7 +17,7 @@ namespace basecross {
 	{
 		std::function<void(Handy_Attack&)> m_updateFunc = nullptr;
 
-		float m_delay = 2.0f;
+		float m_delay = 1.0f;
 
 		void ChangeAttackState() override;
 		void ChangeEndState() override;

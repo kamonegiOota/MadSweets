@@ -9,6 +9,8 @@
 #include "Handy_Attack.h"
 #include "BaseEnemy.h"
 #include "EnState_Attack.h"
+#include "ThrowCtrl.h"
+#include "ThrowHandyObject.h"
 
 #include "EnState_TargetChase.h"
 
@@ -57,7 +59,12 @@ namespace basecross {
 		m_delay += -1.0f * delta;
 
 		if (IsEnd() && m_delay <= 0.0f) {
-			m_delay = 3.0f;
+			m_delay = 1.0f;
+			auto throwCtrl = GetGameObject()->GetComponent<ThrowCtrl>();
+			if (throwCtrl) {
+				throwCtrl->Throw<ThrowHandyObject>(GetGameObject(),transform->GetForword(), 10.0f);
+			}
+
 			ChangeEndState();
 			m_updateFunc = nullptr;
 		}
