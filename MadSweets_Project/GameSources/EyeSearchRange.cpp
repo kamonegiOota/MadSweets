@@ -12,6 +12,7 @@
 
 #include "I_Chase.h"
 #include "I_Escape.h"
+#include "BaseAttack.h"
 #include "MyUtility.h"
 
 namespace basecross {
@@ -84,7 +85,13 @@ namespace basecross {
 	void EyeSearchRange::Hit(const EyeTargetParam& targetParam) {
 		targetParam.isFind = true;
 		auto obj = GetGameObject();
-	
+		
+		auto attack = obj->GetComponent<BaseAttack>(false);
+		if (attack) {
+			attack->Attack(targetParam.target);
+			//attack->ChangeStateMachine(targetParam.target);
+		}
+
 		auto chase = obj->GetComponent<I_Chase>(false);
 		if (chase) {
 			chase->ChangeChaseState(targetParam.target);
@@ -95,7 +102,7 @@ namespace basecross {
 		auto escape = obj->GetComponent<I_Escape>(false);
 		if (escape) {
 			//DebugObject::m_wss << L"Escape,";
-			escape->ChangeEscapeState(targetParam.target);
+			//escape->ChangeEscapeState(targetParam.target);
 			return;
 		}
 	}
