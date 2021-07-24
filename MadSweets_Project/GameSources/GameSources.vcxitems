@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
@@ -45,6 +47,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
@@ -96,6 +99,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
@@ -107,6 +111,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
@@ -121,6 +126,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />

@@ -298,6 +298,15 @@
     <Filter Include="Maru\Enemy\Component\TargetEscape">
       <UniqueIdentifier>{101dd930-b7b6-457d-8928-9b36e128f12e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Attack">
+      <UniqueIdentifier>{3c045221-de29-4373-a2f1-b600ce491e9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack">
+      <UniqueIdentifier>{a2671add-9fcd-478b-bfe4-485f41fc8dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack\HnadyAttack">
+      <UniqueIdentifier>{02c95907-acb8-4c2b-8442-3ae86e618c06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -537,6 +546,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h">
+      <Filter>Maru\Enemy\Component\Attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -739,6 +757,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp">
       <Filter>Maru\Enemy\Component\TargetEscape</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp">
+      <Filter>Maru\Enemy\Component\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
