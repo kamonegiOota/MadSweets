@@ -16,6 +16,7 @@
 #include "ReturnPlowlingPosition.h"
 #include "EnemyRotationCtrl.h"
 #include "Handy_Attack.h"
+#include "ThrowCtrl.h"
 
 namespace basecross {
 
@@ -57,6 +58,7 @@ namespace basecross {
 		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();
+		AddComponent<ThrowCtrl>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
