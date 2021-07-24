@@ -65,6 +65,10 @@ namespace basecross {
 		/// </summary>
 		/// <param name="target">索敵ターゲット</param>
 		void RadCheck(const EyeTargetParam& targetParam);
+		/// <summary>
+		/// Rayを飛ばしたときのチェック
+		/// </summary>
+		/// <param name="targetParam">索敵ターゲット</param>
 		void RayCheck(const EyeTargetParam& targetParam);
 
 		/// <summary>

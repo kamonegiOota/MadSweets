@@ -74,7 +74,7 @@ namespace basecross {
 		const auto& target = targetParam.target;
 	
 		//áŠQ•¨‚Éƒqƒbƒg‚µ‚È‚©‚Á‚½‚ç
-		if (maru::MyUtility::IsRayObstacle(GetGameObject(),target) == false) {
+		if (!maru::MyUtility::IsRayObstacle(GetGameObject(),target)) {
 			Hit(targetParam);
 		}
 		else {
