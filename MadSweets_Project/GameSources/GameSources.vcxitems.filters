@@ -307,6 +307,24 @@
     <Filter Include="Maru\Enemy\Component\Attack\HnadyAttack">
       <UniqueIdentifier>{02c95907-acb8-4c2b-8442-3ae86e618c06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack\HnadyAttack\ThrowCtrl">
+      <UniqueIdentifier>{f0a9c033-2da6-4e6d-a1b8-38ae5154a275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\ThrowObject">
+      <UniqueIdentifier>{2fe2b2d4-c314-4dea-be1c-1d4c6923fbe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component">
+      <UniqueIdentifier>{4f0f8c7d-015e-4338-9c20-71131f640a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Velocity">
+      <UniqueIdentifier>{bc53e95f-7320-45aa-a1fb-dabc1be79af5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\ThrowObject\ThromHandyObject">
+      <UniqueIdentifier>{f60144bf-f785-4f55-8fff-09c290822a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack\HnadyAttack\ThrowObjectCtrl">
+      <UniqueIdentifier>{f992700f-b08c-4794-9070-d5fb9bf62bda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -555,6 +573,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h">
       <Filter>Maru\Enemy\Component\Attack</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObject.h">
+      <Filter>Maru\Object\ThrowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h">
+      <Filter>Maru\Component\Velocity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHandyObject.h">
+      <Filter>Maru\Object\ThrowObject\ThromHandyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.h">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowObjectCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -766,6 +799,21 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp">
       <Filter>Maru\Enemy\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObject.cpp">
+      <Filter>Maru\Object\ThrowObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp">
+      <Filter>Maru\Component\Velocity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHandyObject.cpp">
+      <Filter>Maru\Object\ThrowObject\ThromHandyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowCtrl.cpp">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.cpp">
+      <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowObjectCtrl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
