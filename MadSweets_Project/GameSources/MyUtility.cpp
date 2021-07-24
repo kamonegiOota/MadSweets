@@ -10,6 +10,7 @@
 #include "MyUtility.h"
 #include "Mathf.h"
 
+#include "ThrowObject.h"
 
 namespace basecross {
 
@@ -87,6 +88,12 @@ namespace basecross {
 				}
 
 				if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
+					continue;
+				}
+
+				//仮で反応しないようにする。(将来的には何かで反応しないようにする。) 
+				auto throwObj = dynamic_pointer_cast<ThrowObject>(object);
+				if (throwObj) {
 					continue;
 				}
 
