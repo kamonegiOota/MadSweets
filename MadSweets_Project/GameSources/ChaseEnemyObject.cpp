@@ -15,6 +15,7 @@
 #include "EyeSearchRange.h"
 #include "ReturnPlowlingPosition.h"
 #include "EnemyRotationCtrl.h"
+#include "Handy_Attack.h"
 
 namespace basecross {
 
@@ -54,6 +55,8 @@ namespace basecross {
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		CreatePlowlingRoute();
+
+		AddComponent<Handy_Attack>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
