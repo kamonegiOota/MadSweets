@@ -102,7 +102,7 @@ namespace basecross {
 		auto escape = obj->GetComponent<I_Escape>(false);
 		if (escape) {
 			//DebugObject::m_wss << L"Escape,";
-			//escape->ChangeEscapeState(targetParam.target);
+			escape->ChangeEscapeState(targetParam.target);
 			return;
 		}
 	}
