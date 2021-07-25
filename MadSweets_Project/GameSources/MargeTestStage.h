@@ -19,7 +19,7 @@ namespace basecross {
 		virtual ~MargeTestStage() {}
 		//‰Šú‰»
 		virtual void OnCreate() override;
-		virtual void OnUpdate() override {}
+		virtual void OnUpdate() override;
 
 		virtual void CreateMap(const wstring& fileName);
 

@@ -44,8 +44,19 @@ namespace basecross {
 		PtrCamera->SetAt(at);
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
+		
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
+		//PtrMultiLight->SetAmbientLightColor(Col4(1.0f,0.1f,0.1f,0.1f));
+
+		for (int i = 0; i < 3; i++) {
+			auto& light = PtrMultiLight->GetLight(i);
+			light.m_DiffuseColor = Col4(0.01f);
+			//light.m_Directional = Vec3(0.0f);
+			light.m_SpecularColor = Col4(0.01f);
+		}
+
+		
 	}
 
 	void MargeTestStage::OnCreate() {
@@ -81,6 +92,24 @@ namespace basecross {
 		}
 		catch (...) {
 			throw;
+		}
+	}
+
+	void MargeTestStage::OnUpdate() {
+		for (auto obj : GetGameObjectVec()) {
+			auto player = dynamic_pointer_cast<PlayerObject>(obj);
+			if (player) {
+				//DebugObject::m_wss << L"ss";
+				auto pos = player->GetComponent<Transform>()->GetPosition();
+				//auto forward = player->GetComponent<Transform>()->GetForword();
+				auto light = dynamic_pointer_cast<MultiLight>(GetLight());
+				auto newLight = light->GetLight(2);
+				//newLight.m_Directional = forward;
+				newLight.m_Directional = pos;
+				newLight.m_DiffuseColor = Col4(1.0f);
+				newLight.m_SpecularColor = Col4(1.0f);
+				//light->SetDefaultLighting();
+			}
 		}
 	}
 
