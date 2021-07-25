@@ -42,8 +42,16 @@ namespace basecross {
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
 
+		//m_speed = 4.0f;
 		auto pos = transform->GetPosition();
+		//DebugObject::m_wss << to_wstring(toVec.length());
+		//DebugObject::sm_isResetDelta = true;
+
+		//auto dist = toVec.length();
+		//m_speed = toVec.length() / dist * 0.3f;
+		//auto velocity = toVec.GetNormalized() * m_speed / dist;
 		pos += toVec.GetNormalized() * m_speed * delta;
+		//pos += velocity;
 		transform->SetPosition(pos);
 		Rotation(toVec);
 
