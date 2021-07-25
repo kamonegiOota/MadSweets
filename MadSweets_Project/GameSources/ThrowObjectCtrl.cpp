@@ -19,7 +19,8 @@ namespace basecross {
 			velocity = GetGameObject()->AddComponent<Velocity>();
 		}
 		
-		velocity->AddForce(direct, speed);
+		auto newDirect = direct;
+		velocity->SetVelocity(newDirect.GetNormalized() * speed);
 	}
 
 	void ThrowObjectCtrl::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
