@@ -13,17 +13,19 @@
 #include "BaseAttack.h"
 #include "ReturnPlowlingPosition.h"
 
+#include "Velocity.h"
+
 namespace basecross {
 
 	void EnState_Attack::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 		
 		auto attack = obj->GetComponent<BaseAttack>(false);
-		//if (attack) {
-		//	attack->Attack(m_target);
-		//}
 
-		//DebugObject::m_wss << L"Attack";
+		auto velocity = GetOwner()->GetGameObject()->GetComponent<Velocity>(false);
+		if (velocity) {
+			velocity->Reset();
+		}
 		
 		AddChangeComp(attack, true, false);
 		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);

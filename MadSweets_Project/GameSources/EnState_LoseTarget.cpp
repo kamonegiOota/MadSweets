@@ -11,6 +11,7 @@
 #include "AstarCtrl.h"
 #include "TargetChase.h"
 #include "TargetEscape.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -19,6 +20,11 @@ namespace basecross {
         auto returnPlow = obj->GetComponent<ReturnPlowlingPosition>(false);
         if (returnPlow) {
             returnPlow->StartReturn();
+        }
+
+        auto velocity = obj->GetComponent<Velocity>();
+        if (velocity) {
+            velocity->Reset();
         }
 
         AddChangeComp(returnPlow, true, false);
