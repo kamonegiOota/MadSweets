@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "TargetChase.h"
+#include "Velocity.h"
 #include "MyUtility.h"
 
 #include "EyeSearchRange.h"
@@ -39,20 +40,44 @@ namespace basecross {
 
 	void TargetChase::LookMove() {
 		auto delta = App::GetApp()->GetElapsedTime();
+		auto velocity = GetGameObject()->GetComponent<Velocity>(false);
+		if (!velocity) {
+			return;
+		}
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
 
-		//m_speed = 4.0f;
 		auto pos = transform->GetPosition();
 		//DebugObject::m_wss << to_wstring(toVec.length());
 		//DebugObject::sm_isResetDelta = true;
 
-		//auto dist = toVec.length();
-		//m_speed = toVec.length() / dist * 0.3f;
-		//auto velocity = toVec.GetNormalized() * m_speed / dist;
-		pos += toVec.GetNormalized() * m_speed * delta;
-		//pos += velocity;
-		transform->SetPosition(pos);
+		velocity->AddForce(toVec);
+
+		//pos += velocity->GetVelocity() * delta;
+		//pos += toVec.normalize() * 3 * delta;
+
+		//transform->SetPosition(pos);
+
+		//Easing<Vec3> easing;
+		//if (m_Swap) {
+		//auto TgtPos = easing.EaseInOut(EasingType::Exponential, m_target->GetComponent<Transform>()->GetPosition(), transform->GetPosition(), 0.1f, 4.0f);
+		//TgtRot = easing.EaseInOut(EasingType::Exponential, EndRot, StartRot, m_TotalTime, 4.0f);
+		//}
+
+		//transform->SetPosition(TgtPos);
+
+		//auto u = toVec.GetNormalized();
+		//auto A = 20.0f;
+		//auto B = 100.0f;
+		//auto n = 1;
+		//auto m = 2;
+		//auto d = toVec.length() / 1.0f;
+		//float U = -A / pow(d, n) + B / pow(d, m);
+		//DebugObject::m_wss << to_wstring(U) << endl;
+		//DebugObject::sm_isResetDelta = true;
+
+		//transform->SetPosition(pos + U * u * delta);
+
 		Rotation(toVec);
 
 		LostCheck();
@@ -98,8 +123,13 @@ namespace basecross {
 		}
 
 		auto toVec = targetPos - selfPos;
-		selfPos += toVec.GetNormalized() * m_speed * delta;
-		transform->SetPosition(selfPos);
+
+		auto velocity = GetGameObject()->GetComponent<Velocity>();
+		if (velocity) {
+			velocity->AddForce(toVec);
+		}
+		//selfPos += toVec.GetNormalized() * m_speed * delta;
+		//transform->SetPosition(selfPos);
 		Rotation(toVec);
 
 		LookCheck();
