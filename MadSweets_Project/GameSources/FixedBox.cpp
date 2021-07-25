@@ -18,7 +18,7 @@ namespace basecross {
         coll->SetFixed(true);
 
         //描画コンポーネントの追加
-        auto PtrDraw = AddComponent<PNTStaticDraw>();
+        auto PtrDraw = AddComponent<BcPNTStaticDraw>();
         PtrDraw->SetMeshResource(L"DEFAULT_CUBE");
         //描画コンポーネントに形状（メッシュ）を設定
         PtrDraw->SetOwnShadowActive(true);
