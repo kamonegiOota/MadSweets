@@ -11,6 +11,7 @@
 
 #include "TargetChase.h"
 #include "ReturnPlowlingPosition.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -34,6 +35,7 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnExit() {
+
 		ExitChangeComps();
 	}
 
