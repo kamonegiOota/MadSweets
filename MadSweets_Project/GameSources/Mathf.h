@@ -38,8 +38,8 @@ namespace basecross {
 			template<class T>
 			static T Clamp(const T& value, const T& min, const T& max) {  //min,max‚ÌŠÔ‚Ì”š‚ğ•Ô‚·B
 				T reValue = value;
-				reValue = MyMathf::Min(reValue);
-				reValue = MyMathf::Max(reValue);
+				reValue = Mathf::Min(reValue, min);
+				reValue = Mathf::Max(reValue, max);
 
 				return reValue;
 			}
