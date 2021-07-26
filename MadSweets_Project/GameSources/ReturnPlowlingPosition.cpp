@@ -12,6 +12,7 @@
 #include "BaseEnemy.h"
 #include "EnState_Plowling.h"
 #include "EnemyRotationCtrl.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -30,6 +31,12 @@ namespace basecross {
 		auto toVec = nodePos - selfPos;
 		selfPos += toVec.GetNormalized() * m_speed * delta;
 		transform->SetPosition(selfPos);
+
+		//auto velocity = GetGameObject()->GetComponent<Velocity>();
+		//if (velocity) {
+		//	velocity->AddForce(toVec);
+		//}
+
 		Rotation(toVec);
 
 		if (m_astar->IsRouteEnd()) {

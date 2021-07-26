@@ -7,6 +7,7 @@
 #include "Project.h"
 #include "PlowlingMove.h"
 #include "EnemyRotationCtrl.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -43,13 +44,18 @@ namespace basecross {
 		auto delta = App::GetApp()->GetElapsedTime();
 
 		auto moveVec = CalucMoveVec();
+
+		//auto velocity = GetGameObject()->GetComponent<Velocity>();
+		//if (velocity) {
+		//	velocity->AddForce(moveVec);
+		//}
 		auto pos = transform->GetPosition();
 		pos += moveVec.GetNormalized() * delta * m_speed;
 
 		transform->SetPosition(pos);
 		Rotation(moveVec);
 
-		if (IsNearArrival(pos)) {   //目的地に到達していたら
+		if (IsNearArrival(transform->GetPosition())) {   //目的地に到達していたら
 			NextIndex();
 		}
 	}
