@@ -18,7 +18,7 @@ namespace basecross {
 		float m_maxSpeed = 3.0f;
 		float m_nearRange = 1.0f;  //‹ß‚­‚Æ”»’f‚·‚é‹——£
 
-	public:
+	protected:
 		virtual void SetVelocityMaxSpeed(const float& speed) final {
 			m_maxSpeed = speed;
 		}
