@@ -18,6 +18,7 @@
 #include "Handy_Attack.h"
 #include "ThrowCtrl.h"
 #include "Velocity.h"
+#include "ProbeAstarMove.h"
 
 namespace basecross {
 
@@ -57,6 +58,7 @@ namespace basecross {
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
+		AddComponent<ProbeAstarMove>();
 		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();
