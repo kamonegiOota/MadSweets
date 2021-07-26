@@ -12,6 +12,8 @@
 #include "Mathf.h"
 #include "DebugObject.h"
 
+#include "UtilVelocity.h"
+
 //#include <directxmath.h>
 
 namespace basecross {
@@ -53,7 +55,9 @@ namespace basecross {
 			//Vec3 desiredVelocity = toVec * speed / dist; //希望のベクトル
 			//Vec3 desiredVelocity = toVec; //希望のベクトル
 			//auto steerVec = desiredVelocity - velocity;  //ステアリングベクトル
-			auto steerVec = toVec - velocity;  //ステアリングベクトル
+			auto steerVec = UtilVelocity::CalucArriveVec(velocity,toVec,maxSpeed,decl);
+
+			//auto steerVec = toVec - velocity;  //ステアリングベクトル
 			return MaxSteerVecCheck(steerVec);  //最大値の制限
 		}
 		return Vec3(0, 0, 0);

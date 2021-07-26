@@ -82,6 +82,13 @@ namespace basecross {
 			return m_velocity;
 		}
 
+		void SetMaxSpeed(const float& speed) {
+			m_maxSpeed = speed;
+		}
+		float GetMaxSpeed() const {
+			return m_maxSpeed;
+		}
+
 		/// <summary>
 		/// ù‰ñ‚µ‚â‚·‚³‚ª•Ï‚í‚é•Ï”(Default’l‚Í3.0f)
 		/// </summary>
