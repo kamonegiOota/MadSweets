@@ -15,6 +15,9 @@ namespace basecross {
 	/// </summary>
 	class UtilVelocity 
 	{
+
+	public:
+
 		/// <summary>
 		/// Å‘å‘¬“x§ŒÀ
 		/// </summary>
