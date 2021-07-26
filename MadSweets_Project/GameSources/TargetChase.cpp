@@ -8,6 +8,7 @@
 
 #include "TargetChase.h"
 #include "Velocity.h"
+#include "UtilVelocity.h"
 #include "MyUtility.h"
 
 #include "EyeSearchRange.h"
@@ -46,37 +47,12 @@ namespace basecross {
 		}
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
-
-		auto pos = transform->GetPosition();
-		//DebugObject::m_wss << to_wstring(toVec.length());
-		//DebugObject::sm_isResetDelta = true;
+		
+		auto maxSpeed = 4.0f;  //将来的にメンバ変数化
+		auto velo = velocity->GetVelocity();
+		auto force = UtilVelocity::CalucSeekVec(velo, toVec, maxSpeed);
 
 		velocity->AddForce(toVec);
-
-		//pos += velocity->GetVelocity() * delta;
-		//pos += toVec.normalize() * 3 * delta;
-
-		//transform->SetPosition(pos);
-
-		//Easing<Vec3> easing;
-		//if (m_Swap) {
-		//auto TgtPos = easing.EaseInOut(EasingType::Exponential, m_target->GetComponent<Transform>()->GetPosition(), transform->GetPosition(), 0.1f, 4.0f);
-		//TgtRot = easing.EaseInOut(EasingType::Exponential, EndRot, StartRot, m_TotalTime, 4.0f);
-		//}
-
-		//transform->SetPosition(TgtPos);
-
-		//auto u = toVec.GetNormalized();
-		//auto A = 20.0f;
-		//auto B = 100.0f;
-		//auto n = 1;
-		//auto m = 2;
-		//auto d = toVec.length() / 1.0f;
-		//float U = -A / pow(d, n) + B / pow(d, m);
-		//DebugObject::m_wss << to_wstring(U) << endl;
-		//DebugObject::sm_isResetDelta = true;
-
-		//transform->SetPosition(pos + U * u * delta);
 
 		Rotation(toVec);
 
@@ -105,10 +81,12 @@ namespace basecross {
 		}
 	}
 
-
 	void TargetChase::LostMove() {
-		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
-		if (!astar) {
+		//将来的に別のコンポーネントで作業をする。
+		auto obj = GetGameObject();
+		auto astar = obj->GetComponent<AstarCtrl>(false);
+		auto velocity = obj->GetComponent<Velocity>(false);
+		if (!astar || !velocity) {
 			return;
 		}
 
@@ -123,13 +101,10 @@ namespace basecross {
 		}
 
 		auto toVec = targetPos - selfPos;
+		auto velo = velocity->GetVelocity();
+		auto force = UtilVelocity::CalucNearArriveFarSeek(velo,toVec, 3.0f, 10.0f); //将来的に変数化
+		velocity->SetForce(toVec);
 
-		auto velocity = GetGameObject()->GetComponent<Velocity>();
-		if (velocity) {
-			velocity->AddForce(toVec);
-		}
-		//selfPos += toVec.GetNormalized() * m_speed * delta;
-		//transform->SetPosition(selfPos);
 		Rotation(toVec);
 
 		LookCheck();
