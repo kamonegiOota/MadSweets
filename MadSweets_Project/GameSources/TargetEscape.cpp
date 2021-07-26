@@ -26,7 +26,6 @@ namespace basecross {
 		astar->UpdateMove();
 		
 		if(astar->IsRouteEnd()) {  //ÅIêŠ‚Ü‚ÅA‚¢‚½‚ç
-			//DebugObject::m_wss << L"sss";
 			TargetRayCheck();
 		}
 	}
