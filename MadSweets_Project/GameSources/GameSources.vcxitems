@@ -20,6 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
@@ -35,7 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_ProbeTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.h" />
@@ -78,6 +79,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAtartMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
@@ -91,6 +93,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHandyObject.h" />
@@ -122,7 +125,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_ProbeTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
@@ -161,6 +164,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
@@ -171,6 +175,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHandyObject.cpp" />

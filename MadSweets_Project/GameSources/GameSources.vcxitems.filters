@@ -331,8 +331,17 @@
     <Filter Include="Maru\Component\Velocity\UtilVelocity">
       <UniqueIdentifier>{4a9494ff-e5c8-4fb6-9dea-206bbfa0ca64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_ProbTarget">
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_ProbeTarget">
       <UniqueIdentifier>{f35c0b0d-3412-4df4-b51d-e3f3767fcc48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\TargetProbe">
+      <UniqueIdentifier>{a46d04c4-93af-4287-b6e5-4d9d149a5eda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove">
+      <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Velocity\BaseUseVelocity">
+      <UniqueIdentifier>{b98cc198-7278-4d92-ade9-8b06f9526747}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -600,8 +609,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h">
       <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.h">
-      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbTarget</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_ProbeTarget.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbeTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAtartMove.h">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h">
+      <Filter>Maru\Component\Velocity\BaseUseVelocity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -833,8 +851,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp">
       <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.cpp">
-      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbTarget</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_ProbeTarget.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbeTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
