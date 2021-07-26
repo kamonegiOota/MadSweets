@@ -20,18 +20,20 @@ namespace basecross {
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions
 	) :
-		PlowlingMove(objPtr,positions,1.0f)
+		PlowlingMove(objPtr,positions,2.0f,5.0f)
 	{}
 
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions,
-		const float& speed
+		const float& speed,
+		const float& nearRange
 	):
 		Component(objPtr),
 		m_positions(positions),
 		m_index(0),
 		m_addIndexDirect(1),
-		m_speed(speed)
+		m_maxSpeed(speed),
+		m_nearRange(nearRange)
 	{}
 
 
@@ -47,15 +49,16 @@ namespace basecross {
 
 		auto moveVec = CalucMoveVec();
 
-		//auto velocity = GetGameObject()->GetComponent<Velocity>();
-		//if (velocity) {
-		//	velocity->AddForce(moveVec);
-		//}
+		auto velocity = GetGameObject()->GetComponent<Velocity>();
+		if (velocity) {
+			velocity->AddForce(moveVec);
+		}
 
-		auto pos = transform->GetPosition();
-		pos += moveVec.GetNormalized() * delta * m_speed;
+		//auto pos = transform->GetPosition();
+		//pos += moveVec.GetNormalized() * delta * m_speed;
 
-		transform->SetPosition(pos);
+		//transform->SetPosition(pos);
+
 		Rotation(moveVec);
 
 		if (IsNearArrival(transform->GetPosition())) {   //–Ú“I’n‚É“ž’B‚µ‚Ä‚¢‚½‚ç
