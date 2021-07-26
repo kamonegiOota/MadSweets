@@ -20,8 +20,6 @@ namespace basecross {
 		auto speed = m_velocity.length();
 
 		speed = maru::Mathf::Min(speed,m_maxSpeed);
-		DebugObject::m_wss << to_wstring(speed);
-		DebugObject::sm_isResetDelta = true;
 		m_velocity = m_velocity.GetNormalized() * speed;
 	}
 
@@ -44,11 +42,11 @@ namespace basecross {
 		return (desiredVelocity - velocity);
 	}
 
-	Vec3 Velocity::CalucSteerVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed, float decl) {
+	Vec3 Velocity::CalucArriveVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed, float decl) {
 		//Vec3 toTarget = toVec;
 		float dist = toVec.length();
 		if (dist > 0) {
-			constexpr float DecelerationTweaker = 0.3f;  //減速値
+			//constexpr float DecelerationTweaker = 0.3f;  //減速値
 			//float speed = dist / (decl * DecelerationTweaker);
 			//speed = maru::Mathf::Clamp(speed, 0.0f ,maxSpeed);
 			//speed = maru::Mathf::Min(speed,maxSpeed);
@@ -58,7 +56,7 @@ namespace basecross {
 			auto steerVec = toVec - velocity;  //ステアリングベクトル
 			return MaxSteerVecCheck(steerVec);  //最大値の制限
 		}
-		return bsm::Vec3(0, 0, 0);
+		return Vec3(0, 0, 0);
 	}
 
 	void Velocity::Move() {
@@ -86,7 +84,7 @@ namespace basecross {
 	void Velocity::AddForce(const Vec3& force) {
 		Vec3 newForce(0.0f);
 		if (force.length() <= m_nearRange) {  //距離が近かったら
-			newForce = CalucSteerVec(m_velocity, force, m_maxSpeed); //ステアリングベクトル
+			newForce = CalucArriveVec(m_velocity, force, m_maxSpeed); //ステアリングベクトル
 		}
 		else {   //距離が遠かったら
 			newForce = CalucSeekVec(m_velocity, force, m_maxSpeed);  //シークベクトル
