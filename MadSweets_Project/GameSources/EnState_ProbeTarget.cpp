@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "EnState_ProbTarget.h"
+#include "EnState_ProbeTarget.h"
 #include "DebugObject.h"
 
 #include "TargetChase.h"
@@ -17,8 +17,6 @@ namespace basecross {
 
 	void EnState_ProbTarget::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
-
-
 
 		//AddChangeComp(chase, true, false);
 		//AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(), false, false);
