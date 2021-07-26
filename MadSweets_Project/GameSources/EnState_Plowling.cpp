@@ -18,9 +18,15 @@ namespace basecross {
 	void EnState_Plowling::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
+		auto plow = obj->GetComponent<PlowlingMove>();
+
 		auto velocity = obj->GetComponent<Velocity>(false);
 		if (velocity) {
 			velocity->Reset();
+			auto range = plow->GetNearRange();
+			auto speed = plow->GetMaxSpeed();
+			velocity->SetNearRange(range);
+			velocity->SetMaxSpeed(speed);
 		}
 
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
