@@ -20,7 +20,7 @@ namespace basecross {
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions
 	) :
-		PlowlingMove(objPtr,positions,2.0f,5.0f)
+		PlowlingMove(objPtr,positions,2.0f,10.0f)
 	{}
 
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
@@ -45,19 +45,19 @@ namespace basecross {
 	}
 
 	void PlowlingMove::Move() {
-		auto delta = App::GetApp()->GetElapsedTime();
-
-		auto moveVec = CalucMoveVec();
-
-		auto velocity = GetGameObject()->GetComponent<Velocity>();
-		if (velocity) {
-			velocity->AddForce(moveVec);
+		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
+		if (!velocityComp) {
+			return;
 		}
 
-		//auto pos = transform->GetPosition();
-		//pos += moveVec.GetNormalized() * delta * m_speed;
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto moveVec = CalucMoveVec();
 
-		//transform->SetPosition(pos);
+		//ŽÀÛ‚Ì‘¬“x‚ÌŒvŽZ
+		auto velocity = velocityComp->GetVelocity();
+		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, m_maxSpeed, m_nearRange);
+
+		velocityComp->SetForce(force);
 
 		Rotation(moveVec);
 

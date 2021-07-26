@@ -25,7 +25,7 @@ namespace basecross {
 		int m_addIndexDirect;  //インデックスが増える方向
 
 		float m_maxSpeed = 2.0f;  //最大スピードを設定する、plowlingMove時の
-		float m_nearRange = 3.0f; //近くにいるかどうかの判断をする。
+		float m_nearRange = 3.5f; //近くにいるかどうかの判断をする。
 
 		/// <summary>
 		/// 次のポジションまでのベクトルを計算して返す。
