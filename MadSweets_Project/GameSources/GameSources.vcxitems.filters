@@ -615,11 +615,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h">
       <Filter>Maru\Enemy\Component\Move\TargetProbe</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAtartMove.h">
-      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h">
       <Filter>Maru\Component\Velocity\BaseUseVelocity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -79,7 +79,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAtartMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
