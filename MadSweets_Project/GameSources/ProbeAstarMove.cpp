@@ -20,6 +20,12 @@ namespace basecross {
 		}
 	}
 
+	void ProbeAstarMove::OnStart() {
+		//Velocityを使うときの初期値を設定
+		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
+		BaseUseVelocity::SetNearRnage(10.0f);
+	}
+
 	void ProbeAstarMove::Move() {
 		auto obj = GetGameObject();
 		auto astar = obj->GetComponent<AstarCtrl>(false);
@@ -39,7 +45,7 @@ namespace basecross {
 
 		auto toVec = targetPos - selfPos;
 		auto velocity = veloComp->GetVelocity();
-		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, 3.0f, 10.0f); //将来的に変数化
+		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, GetVelocityMaxSpeed(), GetNearRange()); //将来的に変数化
 		veloComp->SetForce(toVec);
 
 		Rotation(toVec);
