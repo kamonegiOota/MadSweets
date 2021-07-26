@@ -331,6 +331,9 @@
     <Filter Include="Maru\Component\Velocity\UtilVelocity">
       <UniqueIdentifier>{4a9494ff-e5c8-4fb6-9dea-206bbfa0ca64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_ProbTarget">
+      <UniqueIdentifier>{f35c0b0d-3412-4df4-b51d-e3f3767fcc48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -597,6 +600,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h">
       <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbTarget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -826,6 +832,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp">
       <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_ProbTarget.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_ProbTarget</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
