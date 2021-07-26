@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "ProbeAtartMove.h"
+#include "ProbeAstarMove.h"
 #include "Velocity.h"
 #include "UtilVelocity.h"
 #include "EnemyRotationCtrl.h"
