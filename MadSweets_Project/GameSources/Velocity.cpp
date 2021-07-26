@@ -85,19 +85,19 @@ namespace basecross {
 		MaxVelocityCheck();  //最大速度管理
 	}
 
-	void Velocity::AddForce(const Vec3& force) {
-		Vec3 newForce(0.0f);
-		if (force.length() <= m_nearRange) {  //距離が近かったら
-			newForce = CalucArriveVec(m_velocity, force, m_maxSpeed); //ステアリングベクトル
-		}
-		else {   //距離が遠かったら
-			newForce = CalucSeekVec(m_velocity, force, m_maxSpeed);  //シークベクトル
-		}
+	//void Velocity::SetForce(const Vec3& force) {
+	//	//Vec3 newForce(0.0f);
+	//	//if (force.length() <= m_nearRange) {  //距離が近かったら
+	//	//	newForce = CalucArriveVec(m_velocity, force, m_maxSpeed); //ステアリングベクトル
+	//	//}
+	//	//else {   //距離が遠かったら
+	//	//	newForce = CalucSeekVec(m_velocity, force, m_maxSpeed);  //シークベクトル
+	//	//}
 
-		m_force = newForce;  //力の更新
+	//	m_force = force;  //力の更新
 
-		MaxForceCheck();     //力の最大値チェック
-	}
+	//	MaxForceCheck();     //力の最大値チェック
+	//}
 
 }
 

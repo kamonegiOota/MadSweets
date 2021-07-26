@@ -73,7 +73,18 @@ namespace basecross {
 			m_velocity = Vec3(0.0f);
 		}
 
-		void AddForce(const Vec3& force);
+		void AddForce(const Vec3& force) {
+			m_force += force;
+			MaxForceCheck();
+		}
+
+		void SetForce(const Vec3& force) {
+			m_force = force;  //力の更新
+			MaxForceCheck();     //力の最大値チェック
+		}
+		Vec3 GetForce() const {
+			return m_force;
+		}
 
 		void SetVelocity(const Vec3& velocity) {
 			m_velocity = velocity;
