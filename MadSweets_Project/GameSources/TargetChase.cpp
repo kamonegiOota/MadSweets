@@ -72,7 +72,6 @@ namespace basecross {
 			auto astar = obj->GetComponent<AstarCtrl>();
 			if (astar) {
 				astar->SearchAstarForecastStart(m_target);
-				//astar->SearchAstarStart(m_target);
 				m_updateFunc = &TargetChase::LostMove;
 
 				//ƒeƒXƒgÀ‘•
