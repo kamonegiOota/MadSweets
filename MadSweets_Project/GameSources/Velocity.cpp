@@ -19,19 +19,46 @@ namespace basecross {
 	void Velocity::MaxVelocityCheck() {
 		auto speed = m_velocity.length();
 
-		speed = maru::Mathf::Clamp(speed, 0.0f ,m_maxSpeed);
+		speed = maru::Mathf::Min(speed,m_maxSpeed);
+		DebugObject::m_wss << to_wstring(speed);
+		DebugObject::sm_isResetDelta = true;
 		m_velocity = m_velocity.GetNormalized() * speed;
-		//DebugObject::m_wss << to_wstring(speed) << endl;
-		//DebugObject::sm_isResetDelta = true;
-		//m_velocity *= (Mat4x4)XMMatrixRotationAxis(Vec3(1.0f,0.0f,0.0f),XM_PI);
-		
 	}
 
 	void Velocity::MaxForceCheck() {
-		auto force = m_force.length();
+		auto speed = m_force.length();
 
-		force = maru::Mathf::Clamp(force, 0.0f, m_maxForce);
-		m_force = m_force.GetNormalized() * force;
+		speed = maru::Mathf::Min(speed, m_maxForce);
+		m_force = m_force.GetNormalized() * speed;
+	}
+
+	Vec3 Velocity::MaxSteerVecCheck(const Vec3& vec) {
+		auto speed = vec.length();
+		speed = maru::Mathf::Min(speed, m_maxSteer);
+
+		return normalize(vec) * speed;
+	}
+
+	Vec3 Velocity::CalucSeekVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed) {
+		Vec3 desiredVelocity = normalize(toVec) * maxSpeed;  //希望のベクトル
+		return (desiredVelocity - velocity);
+	}
+
+	Vec3 Velocity::CalucSteerVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed, float decl) {
+		//Vec3 toTarget = toVec;
+		float dist = toVec.length();
+		if (dist > 0) {
+			constexpr float DecelerationTweaker = 0.3f;  //減速値
+			//float speed = dist / (decl * DecelerationTweaker);
+			//speed = maru::Mathf::Clamp(speed, 0.0f ,maxSpeed);
+			//speed = maru::Mathf::Min(speed,maxSpeed);
+			//Vec3 desiredVelocity = toVec * speed / dist; //希望のベクトル
+			//Vec3 desiredVelocity = toVec; //希望のベクトル
+			//auto steerVec = desiredVelocity - velocity;  //ステアリングベクトル
+			auto steerVec = toVec - velocity;  //ステアリングベクトル
+			return MaxSteerVecCheck(steerVec);  //最大値の制限
+		}
+		return bsm::Vec3(0, 0, 0);
 	}
 
 	void Velocity::Move() {
@@ -47,12 +74,27 @@ namespace basecross {
 	}
 
 	void Velocity::OnUpdate() {
+		//速度の加算
 		auto delta = App::GetApp()->GetElapsedTime();
 		m_velocity += m_force * delta;
 
-		Move();
+		Move(); //移動処理
 
-		MaxVelocityCheck();
+		MaxVelocityCheck();  //最大速度管理
+	}
+
+	void Velocity::AddForce(const Vec3& force) {
+		Vec3 newForce(0.0f);
+		if (force.length() <= m_nearRange) {  //距離が近かったら
+			newForce = CalucSteerVec(m_velocity, force, m_maxSpeed); //ステアリングベクトル
+		}
+		else {   //距離が遠かったら
+			newForce = CalucSeekVec(m_velocity, force, m_maxSpeed);  //シークベクトル
+		}
+
+		m_force = newForce;  //力の更新
+
+		MaxForceCheck();     //力の最大値チェック
 	}
 
 }
