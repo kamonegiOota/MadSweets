@@ -9,6 +9,8 @@
 #include "EnemyRotationCtrl.h"
 #include "Velocity.h"
 
+#include "UtilVelocity.h"
+
 namespace basecross {
 
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr) :
@@ -49,6 +51,7 @@ namespace basecross {
 		//if (velocity) {
 		//	velocity->AddForce(moveVec);
 		//}
+
 		auto pos = transform->GetPosition();
 		pos += moveVec.GetNormalized() * delta * m_speed;
 

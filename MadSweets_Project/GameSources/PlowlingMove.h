@@ -26,6 +26,8 @@ namespace basecross {
 
 		float m_speed;
 
+		float m_maxSpeed = 2.0f;  //最大スピードを設定するplowlingMove時の
+
 		/// <summary>
 		/// 次のポジションまでのベクトルを計算して返す。
 		/// </summary>
