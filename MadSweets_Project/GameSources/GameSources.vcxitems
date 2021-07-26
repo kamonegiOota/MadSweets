@@ -98,6 +98,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
   </ItemGroup>
@@ -175,6 +176,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>

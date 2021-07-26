@@ -328,6 +328,9 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetChase">
       <UniqueIdentifier>{88435333-0cf8-4c34-aca3-f1aa1e4c23bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Velocity\UtilVelocity">
+      <UniqueIdentifier>{4a9494ff-e5c8-4fb6-9dea-206bbfa0ca64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -591,6 +594,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.h">
       <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowObjectCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h">
+      <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -817,6 +823,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.cpp">
       <Filter>Maru\Enemy\Component\Attack\HnadyAttack\ThrowObjectCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp">
+      <Filter>Maru\Component\Velocity\UtilVelocity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
