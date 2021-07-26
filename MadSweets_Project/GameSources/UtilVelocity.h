@@ -34,7 +34,7 @@ namespace basecross {
 		/// <param name="toVec">ターゲット方向のベクトル</param>
 		/// <param name="maxSpeed">最大速度</param>
 		/// <returns>「ターゲットの方向のベクトル」- 「現在の速度」</returns>
-		static Vec3 CalucSeekVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed);
+		static Vec3 CalucSeekVec(const Vec3& velocity, const Vec3& toVec,const float& maxSpeed);
 		/// <summary>
 		/// 到着ベクトルを返す(近づくと小さくなるベクトル)
 		/// </summary>
@@ -43,8 +43,11 @@ namespace basecross {
 		/// <param name="maxSpeed">最大速度</param>
 		/// <param name="decl"></param>
 		/// <returns>到着ベクトルを返す(近づくと小さくなるベクトル)を返す</returns>
-		static Vec3 CalucArriveVec(const Vec3& velocity, const Vec3& toVec, float maxSpeed, float decl = 3.0f);
+		static Vec3 CalucArriveVec(const Vec3& velocity, const Vec3& toVec,const float& maxSpeed,const float& decl = 3.0f);
 
+		//近くにいるときはArriveで,遠くにいるときはSeekで追いかける関数
+		static Vec3 CalucNearArriveFarSeek(const Vec3& velocity, const Vec3& toVec,
+			const float& maxSpeed, const float& nearRange, const float& decl = 3.0f);
 	};
 
 }
