@@ -261,5 +261,8 @@ namespace itbs
 				return !(*this == other);
 			}
 		};
+
+		template<class Friend, class T, class... Args>
+		class EventDelegate;
 	}
 }
