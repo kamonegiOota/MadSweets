@@ -11,6 +11,9 @@
 #include"PlayerCameraMover.h"
 #include"ForwardLookAtCameraComponent.h"
 #include"ChasingTarget.h"
+#include"SoundHelper.h"
+
+#include<x3daudio.h>
 
 namespace basecross
 {
@@ -56,11 +59,12 @@ namespace basecross
 
 		CreateAnimator();
 
+		AddComponent<SoundListener>();
 	}
 
 	void PlayerObject::OnUpdate()
 	{
-
+		GameObject::OnUpdate();
 	}
 
 	void PlayerObject::CreateAnimator()
