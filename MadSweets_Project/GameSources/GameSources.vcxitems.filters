@@ -298,6 +298,15 @@
     <Filter Include="Itabashi\Components\ChasingTarget">
       <UniqueIdentifier>{627eaf7f-f97a-4535-a265-5e282376da85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Patchs\basecross\SoundHelper">
+      <UniqueIdentifier>{f5bbe75a-cb84-4676-bc41-e38356472fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Settings">
+      <UniqueIdentifier>{97cf6a29-64fa-43b1-aa19-385adbf04a1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Settings\SoundSetting">
+      <UniqueIdentifier>{eb10112b-920a-428a-b852-285e5492db1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -534,6 +543,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h">
       <Filter>Itabashi\Components\ChasingTarget</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h">
+      <Filter>Patchs\basecross\SoundHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h">
+      <Filter>Itabashi\Settings\SoundSetting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -727,6 +742,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerCameraMover</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp">
+      <Filter>Patchs\basecross\SoundHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp">
+      <Filter>Itabashi\Settings\SoundSetting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

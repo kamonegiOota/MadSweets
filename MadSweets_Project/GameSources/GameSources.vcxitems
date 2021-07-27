@@ -81,6 +81,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpringArmComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h" />
@@ -150,6 +152,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
