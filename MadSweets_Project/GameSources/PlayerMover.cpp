@@ -68,7 +68,7 @@ namespace basecross
 
 		if (m_isCameraAffected)
 		{
-			Vec3 cameraForward = -m_camera->GetAt();
+			Vec3 cameraForward = m_camera->GetAt() - m_camera->GetEye();
 			cameraForward.y = 0;
 			cameraForward.normalize();
 			forward = cameraForward;
