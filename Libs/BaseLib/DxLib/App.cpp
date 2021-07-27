@@ -156,7 +156,7 @@ namespace basecross {
 		auto SoundRes = App::GetApp()->GetResource<AudioResource>(ResKey);
 		//ソースボイスの作成
 		SoundItem Item;
-		HRESULT hr = pImpl->m_IXAudio2->CreateSourceVoice(&Item.m_SourceVoice, SoundRes->GetOutputWaveFormatEx());
+		HRESULT hr = pImpl->m_IXAudio2->CreateSourceVoice(&Item.m_SourceVoice, SoundRes->GetOutputWaveFormatEx(), XAUDIO2_VOICE_USEFILTER);
 		if (FAILED(hr)) {
 			pImpl->m_IsAudioActive = false;
 			return nullptr;
