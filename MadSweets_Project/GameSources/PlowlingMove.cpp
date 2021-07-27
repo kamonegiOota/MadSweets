@@ -6,6 +6,10 @@
 #include "stdafx.h"
 #include "Project.h"
 #include "PlowlingMove.h"
+#include "EnemyRotationCtrl.h"
+#include "Velocity.h"
+
+#include "UtilVelocity.h"
 
 namespace basecross {
 
@@ -16,18 +20,20 @@ namespace basecross {
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions
 	) :
-		PlowlingMove(objPtr,positions,1.0f)
+		PlowlingMove(objPtr,positions,2.0f,10.0f)
 	{}
 
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions,
-		const float& speed
+		const float& speed,
+		const float& nearRange
 	):
 		Component(objPtr),
 		m_positions(positions),
 		m_index(0),
 		m_addIndexDirect(1),
-		m_speed(speed)
+		m_maxSpeed(speed),
+		m_nearRange(nearRange)
 	{}
 
 
@@ -39,17 +45,30 @@ namespace basecross {
 	}
 
 	void PlowlingMove::Move() {
+		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
+		if (!velocityComp) {
+			return;
+		}
+
 		auto delta = App::GetApp()->GetElapsedTime();
-
 		auto moveVec = CalucMoveVec();
-		auto pos = transform->GetPosition();
-		pos += moveVec.GetNormalized() * delta * m_speed;
 
-		transform->SetPosition(pos);
+		//実際の速度の計算
+		auto velocity = velocityComp->GetVelocity();
+		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, m_maxSpeed, m_nearRange);
 
-		if (IsNearArrival(pos)) {   //目的地に到達していたら
+		velocityComp->SetForce(force);
+
+		Rotation(moveVec);
+
+		if (IsNearArrival(transform->GetPosition())) {   //目的地に到達していたら
 			NextIndex();
 		}
+	}
+
+	void PlowlingMove::Rotation(const Vec3& moveVec) {
+		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>();
+		rotCtrl->SetDirect(moveVec);
 	}
 
 	bool PlowlingMove::IsNearArrival(const Vec3& pos) {

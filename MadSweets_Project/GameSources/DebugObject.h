@@ -15,6 +15,7 @@ namespace basecross {
 	{
 	public:
 		static wstringstream m_wss;
+		static bool sm_isResetDelta;  //毎フレームテクストをリセットするかどうかを判断
 
 		DebugObject(const std::shared_ptr<Stage>& stage):
 			GameObject(stage)
@@ -30,6 +31,9 @@ namespace basecross {
 		}
 
 		void OnUpdate2() override;
+
+		//アクセッサ----------------------------------------------------
+
 	};
 
 }

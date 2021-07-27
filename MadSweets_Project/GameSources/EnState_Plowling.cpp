@@ -11,15 +11,26 @@
 #include "DebugObject.h"
 
 #include "PlowlingMove.h"
+#include "Velocity.h"
 
 namespace basecross {
 
 	void EnState_Plowling::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
+
+		auto plow = obj->GetComponent<PlowlingMove>();
+
+		auto velocity = obj->GetComponent<Velocity>(false);
+		if (velocity) {
+			velocity->Reset();
+		}
+
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
 
 		StartChangeComps();
+
+		obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(0.0f, 1.0f, 0.0f, 1.0f));
 	}
 
 	void EnState_Plowling::OnUpdate() {

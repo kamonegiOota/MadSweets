@@ -24,7 +24,8 @@ namespace basecross {
 		int m_index;  //現在向かっているポジションのインデックス
 		int m_addIndexDirect;  //インデックスが増える方向
 
-		float m_speed;
+		float m_maxSpeed = 2.0f;  //最大スピードを設定する、plowlingMove時の
+		float m_nearRange = 3.5f; //近くにいるかどうかの判断をする。
 
 		/// <summary>
 		/// 次のポジションまでのベクトルを計算して返す。
@@ -35,6 +36,7 @@ namespace basecross {
 		/// 実際の移動処理
 		/// </summary>
 		void Move();
+		void Rotation(const Vec3& moveVec);
 		/// <summary>
 		/// 目的地に限りなく近い場所にいるならtrue
 		/// </summary>
@@ -46,6 +48,8 @@ namespace basecross {
 		/// </summary>
 		void NextIndex();
 
+		//void RandomAstarMove();
+
 	public:
 
 		PlowlingMove(const std::shared_ptr<GameObject>& objPtr);
@@ -54,7 +58,8 @@ namespace basecross {
 		);
 		PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 			const std::vector<Vec3>& positions,
-			const float& speed
+			const float& speed,
+			const float& nearRange
 		);
 		
 		void OnCreate() {}
@@ -70,11 +75,18 @@ namespace basecross {
 			m_positions.push_back(position);
 		}
 
-		float GetSpeed() const {
-			return m_speed;
+		float GetMaxSpeed() const {
+			return m_maxSpeed;
 		}
-		void SetSpeed(const float& speed) {
-			m_speed = speed;
+		void SetMaxSpeed(const float& speed) {
+			m_maxSpeed = speed;
+		}
+
+		float GetNearRange() const {
+			return m_nearRange;
+		}
+		void SetNearRange(const float& nearRange) {
+			m_nearRange = nearRange;
 		}
 
 		/// <summary>

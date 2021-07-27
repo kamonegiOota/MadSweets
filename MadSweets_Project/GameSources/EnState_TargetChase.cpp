@@ -10,6 +10,8 @@
 #include "DebugObject.h"
 
 #include "TargetChase.h"
+#include "ReturnPlowlingPosition.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -21,8 +23,11 @@ namespace basecross {
 		}
 
 		AddChangeComp(chase, true, false);
+		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(),false,false);
 		
 		StartChangeComps();
+
+		obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 
 	void EnState_TargetChase::OnUpdate() {
@@ -30,6 +35,7 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnExit() {
+
 		ExitChangeComps();
 	}
 

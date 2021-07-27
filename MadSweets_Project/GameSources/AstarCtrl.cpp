@@ -9,6 +9,7 @@
 #include "AstarCtrl.h"
 #include "MTestEnemyObject.h"
 #include "MTestBox.h"
+#include "CalucEscapeRoute.h"
 
 namespace basecross {
 
@@ -49,6 +50,18 @@ namespace basecross {
 
 	void AstarCtrl::SearchAstarForecastStart(const std::shared_ptr<GameObject>& target) {
 		m_astar.SearchAstarForecastStart(GetGameObject(),target);
+	}
+
+	void AstarCtrl::SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target) {
+		auto targetNode = CalucEscapeRoute::CalucRoute(m_astar,GetGameObject(),target);
+
+		m_astar.SearchAstarStart(GetGameObject(),targetNode.GetPosition());
+	}
+
+	void AstarCtrl::SearchAstarEscapeNextRoute(const std::shared_ptr<GameObject>& target) {
+		auto targetNode = CalucEscapeRoute::CalucNextRoute(m_astar,GetGameObject(),target);
+
+		m_astar.SearchAstarStart(GetGameObject(), targetNode.GetPosition());
 	}
 }
 

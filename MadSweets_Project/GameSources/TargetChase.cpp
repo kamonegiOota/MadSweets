@@ -7,12 +7,17 @@
 #include "Project.h"
 
 #include "TargetChase.h"
+#include "Velocity.h"
+#include "UtilVelocity.h"
 #include "MyUtility.h"
 
 #include "EyeSearchRange.h"
+#include "EnemyRotationCtrl.h"
 #include "AstarCtrl.h"
 #include "I_Chase.h"
 #include "DebugObject.h"
+
+#include "ProbeAstarMove.h"
 
 namespace basecross {
 
@@ -38,12 +43,20 @@ namespace basecross {
 
 	void TargetChase::LookMove() {
 		auto delta = App::GetApp()->GetElapsedTime();
+		auto velocity = GetGameObject()->GetComponent<Velocity>(false);
+		if (!velocity) {
+			return;
+		}
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
+		
+		auto maxSpeed = 4.0f;  //将来的にメンバ変数化
+		auto velo = velocity->GetVelocity();
+		auto force = UtilVelocity::CalucSeekVec(velo, toVec, maxSpeed);
 
-		auto pos = transform->GetPosition();
-		pos += toVec.GetNormalized() * m_speed * delta;
-		transform->SetPosition(pos);
+		velocity->AddForce(toVec);
+
+		Rotation(toVec);
 
 		LostCheck();
 	}
@@ -58,35 +71,62 @@ namespace basecross {
 
 		//視界外ならAstarを利用して追いかける。
 		if (!eyeRange->IsLookTarget(m_target)) {
-			auto astar = obj->GetComponent<AstarCtrl>();
-			if (astar) {
-				astar->SearchAstarForecastStart(m_target);
-				//astar->SearchAstarStart(m_target);
+			auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
+			if (probe) {
+				probe->CalucRoute(m_target);
 				m_updateFunc = &TargetChase::LostMove;
+
+				//テスト実装
+				obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
 			}
+
+			//auto astar = obj->GetComponent<AstarCtrl>();
+			//if (astar) {
+			//	astar->SearchAstarForecastStart(m_target);
+			//	m_updateFunc = &TargetChase::LostMove;
+
+			//	//テスト実装
+			//	obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
+			//}
 		}
 	}
 
-
 	void TargetChase::LostMove() {
-		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
-		if (!astar) {
-			return;
+		////将来的に別のコンポーネントで作業をする。
+		//auto obj = GetGameObject();
+		//auto astar = obj->GetComponent<AstarCtrl>(false);
+		//auto velocity = obj->GetComponent<Velocity>(false);
+		//if (!astar || !velocity) {
+		//	return;
+		//}
+
+		//auto delta = App::GetApp()->GetElapsedTime();
+
+		//auto selfPos = transform->GetPosition();
+		//auto targetPos = astar->GetCalucNodePos();
+
+		//if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、ステートを変更する
+		//	ChangeStateMachine();  //ステートの変更
+		//	return;
+		//}
+
+		//auto toVec = targetPos - selfPos;
+		//auto velo = velocity->GetVelocity();
+		//auto force = UtilVelocity::CalucNearArriveFarSeek(velo,toVec, 3.0f, 10.0f); //将来的に変数化
+		//velocity->SetForce(toVec);
+
+		//Rotation(toVec);
+
+		//LookCheck();
+
+		auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
+		if (probe) {
+			probe->Move();
+			if (probe->IsRouteEnd()) {
+				ChangeStateMachine();
+				return;
+			}
 		}
-
-		auto delta = App::GetApp()->GetElapsedTime();
-
-	 	auto selfPos = transform->GetPosition();
-		auto targetPos = astar->GetCalucNodePos();
-
-		if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、ステートを変更する
-			ChangeStateMachine();  //ステートの変更
-			return;
-		}
-
-		auto toVec = targetPos - selfPos;
-		selfPos += toVec.GetNormalized() * m_speed * delta;
-		transform->SetPosition(selfPos);
 
 		LookCheck();
 	}
@@ -99,8 +139,18 @@ namespace basecross {
 			return;
 		}
 
-		if (eyeRange->IsLookTarget(m_target)) {
+		if (eyeRange->IsLookTarget(m_target)) {  //一部のオブジェクトを障害物として扱わないようにする
 			m_updateFunc = &TargetChase::LookMove;
+
+			//テスト実装
+			obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		}
+	}
+
+	void TargetChase::Rotation(const Vec3& moveVec) {
+		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotCtrl) {
+			rotCtrl->SetDirect(moveVec);
 		}
 	}
 

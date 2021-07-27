@@ -21,6 +21,7 @@ namespace basecross {
 
 		void ChangeStateMachine();
 		void Move();
+		void Rotation(const Vec3& moveVec);
 
 	public:
 

@@ -13,6 +13,19 @@ namespace basecross {
 
 	}
 
+	void EnemyEar::SoundListen(const std::shared_ptr<GameObject>& target) {
+		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
+		if (m_astar) {
+			m_astar->SearchAstarStart(target);
+		}
+	}
+
+	void EnemyEar::SoundListen(const Vec3& targetPos) {
+		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
+		if (m_astar) {
+			m_astar->SearchAstarStart(targetPos);
+		}
+	}
 }
 
 //endbasecross

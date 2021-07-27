@@ -7,7 +7,8 @@
 #include "Project.h"
 #include "GraphAstar.h"
 #include "DebugObject.h"
-
+#include "MyUtility.h"
+#include "UtilityAstar.h"
 
 namespace basecross {
 
@@ -74,92 +75,85 @@ namespace basecross {
 		}
 	}
 
-	NavGraphNode GraphAstar::SearchNearNode(const std::shared_ptr<GameObject>& target) {
-		//一番近いノードの検索
-		auto targetTrans = target->GetComponent<Transform>();
-		auto targetPos = targetTrans->GetPosition();
-
-		auto reNode = SearchNearNode(targetPos);
-		return reNode;
-	}
-
-	NavGraphNode GraphAstar::SearchNearNode(const Vec3& targetPos) {
-		auto nodes = m_graph.GetNodes();
-
-		float minRange = 10000.0f;
-		NavGraphNode minNode;  //一番距離が短いノード
-
-		//検索開始
-		for (const auto& node : nodes) {
-			auto pos = node.GetPosition();
-			auto toNode = pos - targetPos;
-			const auto& range = toNode.length();
-
-			//距離が短かったらこれにする。
-			if (range <= minRange) {
-				minRange = range;
-				minNode = node;
-			}
-		}
-
-		return minNode;
-	}
-
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
 		SearchAstarStart(self, targetPos);
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
+		//m_selfObj = self;
+		auto selfPos = self->GetComponent<Transform>()->GetPosition();
+		SearchAstarStart(selfPos,targetPos);
+	}
+
+	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
+		ResetAstar();
+
+		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
+		DebugObject::m_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
+		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
+		//DebugObject::AddVector(targetNearNode.GetPosition());
+		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
+
+		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
+			m_shortRoutes.push_back(AstarExpectData(selfNearNode, targetNearNode, 0, 0));
+			return;
+		}
+
+		//ループして処理を行う。
+		AstarExpectData data;
+		data.nextNode = selfNearNode;
+		LoopSearchAstar(data);
+	}
+
+	void GraphAstar::SearchAstarForecastStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
+		m_isForecase = true;
+
+		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+
+	    auto targetNearNode = UtilityAstar::SearchNearNode(*this,target);
+		auto startNodePos = targetNearNode.GetPosition();
+		auto toTargetVec = targetPos - startNodePos;
+		toTargetVec.y = 0.0f;
+
+		//ターゲットノードの計算
+		auto targetNode = UtilityAstar::CalucTargetDirectNode(*this,targetNearNode,targetPos);
+
+		SearchAstarStart(targetPos, targetNode.GetPosition());
+	}
+
+	void GraphAstar::ResetAstar() {
 		m_isRouteEnd = false;
 		m_routeIndex = 0;
 		m_expectDatas.clear();
 		m_shortRoutes.clear();
 		m_isCreateNewData = true;
 		m_isReturnPhase = false;
-
-		auto selfNearNode = SearchNearNode(self);
-		auto targetNearNode = SearchNearNode(targetPos);
-		//DebugObject::AddVector(targetNearNode.GetPosition());
-		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
-
-		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
-			m_shortRoutes.push_back(AstarExpectData(selfNearNode,targetNearNode,0,0));
-			return;
-		}
-
-		//ループして処理を行う。
-		LoopSearchAstar(selfNearNode);
 	}
 
-	void GraphAstar::SearchAstarForecastStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
-		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+	void GraphAstar::LastAdjust(const AstarExpectData& startData) { //最終調整
+		//初期ノードと次のノードの間に自分がいる場合は処理をしない
+		//if (m_selfObj) {
+		//	auto startPos = startData.nextNode.GetPosition();
+		//	auto nextPos = m_shortRoutes[0].nextNode.GetPosition();
+		//	if (maru::MyUtility::IsRayObstacle(startPos, nextPos, m_selfObj) == false) {  //自分の間に二つのノードが存在しなかったら
+		//		return;
+		//	}
+		//}
 
-		auto targetNearNode = SearchNearNode(target);
-		auto startNodePos = targetNearNode.GetPosition();
-		auto toTargetVec = targetPos - startNodePos;
-		toTargetVec.y = 0.0f;
+		if (!m_isForecase) {  //予測状態出なかったら処理をしない
+			return;
+		}
+		m_isForecase = false;
 
-		float minRad = 360.0f;
-		NavGraphNode targetNode;
-		auto edges = m_graph.GetEdges(targetNearNode.GetIndex());
-		for (const auto& edge : edges) {
-			auto toIndex = edge.GetTo();
-			auto nextNode = m_graph.GetNode(toIndex);
-			auto nextPos = nextNode.GetPosition();
+		vector<AstarExpectData> newShortRoutes;
+		newShortRoutes.push_back(startData);
 
-			auto toNextNodeVec = nextPos - startNodePos;
-			toNextNodeVec.y = 0.0f;
-
-			auto newDot = dot(toTargetVec.GetNormalized(), toNextNodeVec.GetNormalized());
-			auto newRad = acosf(newDot);
-			if (newRad < minRad) {
-				minRad = newRad;
-				targetNode = nextNode;
-			}
+		for (const auto& route : m_shortRoutes) {
+			newShortRoutes.push_back(route);
 		}
 
-		SearchAstarStart(self, targetNode.GetPosition());
+		m_shortRoutes = newShortRoutes;
 	}
 
 	void GraphAstar::NextProcess(const AstarExpectData& newRoute, const vector<AstarExpectData>& newDatas) {
@@ -178,12 +172,12 @@ namespace basecross {
 		m_isReturnPhase = true;
 	}
 
-	void GraphAstar::LoopSearchAstar(const NavGraphNode& stdNode) {
+	void GraphAstar::LoopSearchAstar(const AstarExpectData& startData) {
 		//for (int i = 0; i < 5; i++) {
 		while(true){
 			NavGraphNode node;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
-				node = stdNode;
+				node = startData.nextNode;
 			}
 			else {
 				auto index = m_shortRoutes.size() - 1;
@@ -229,6 +223,12 @@ namespace basecross {
 					}
 				}
 			}
+		}
+
+		LastAdjust(startData);
+
+		for (auto route : m_shortRoutes) {
+			DebugObject::m_wss << route.nextNode.GetIndex() << L",";
 		}
 	}
 
@@ -351,7 +351,7 @@ namespace basecross {
 		}
 
 		//オブジェクトが探索ノードの近くにいたら、次のノードに切り替える。
-		float nearRange = 0.1f;  //近くと判断される距離
+		float nearRange = 1.0f;  //近くと判断される距離
 
 		auto trans = objPtr->GetComponent<Transform>();
 		auto objPos = trans->GetPosition();
@@ -369,6 +369,7 @@ namespace basecross {
 			m_isRouteEnd = true;//機能をoffにする。
 		}
 
+		//DebugObject::m_wss << to_wstring(m_shortRoutes[m_routeIndex].node.GetIndex());
 		return nodePos;
 	}
 }

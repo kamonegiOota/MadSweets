@@ -11,6 +11,8 @@
 #include "PlowlingMove.h"
 #include "BaseEnemy.h"
 #include "EnState_Plowling.h"
+#include "EnemyRotationCtrl.h"
+#include "Velocity.h"
 
 namespace basecross {
 
@@ -30,8 +32,22 @@ namespace basecross {
 		selfPos += toVec.GetNormalized() * m_speed * delta;
 		transform->SetPosition(selfPos);
 
+		//auto velocity = GetGameObject()->GetComponent<Velocity>();
+		//if (velocity) {
+		//	velocity->AddForce(toVec);
+		//}
+
+		Rotation(toVec);
+
 		if (m_astar->IsRouteEnd()) {
 			ChangeStateMachine();  //ステートの変更
+		}
+	}
+
+	void ReturnPlowlingPosition::Rotation(const Vec3& moveVec) {
+		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotCtrl) {
+			rotCtrl->SetDirect(moveVec);
 		}
 	}
 

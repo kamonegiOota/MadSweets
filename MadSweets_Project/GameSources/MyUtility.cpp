@@ -10,6 +10,7 @@
 #include "MyUtility.h"
 #include "Mathf.h"
 
+#include "ThrowObject.h"
 
 namespace basecross {
 
@@ -73,6 +74,79 @@ namespace basecross {
 			auto toVec = targetPos - selfPos;
 
 			return toVec;
+		}
+
+		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj) {
+			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
+			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+
+			for (const auto& object : startObj->GetStage()->GetGameObjectVec())
+			{
+				auto collision = object->GetComponent<Collision>(false);
+				if (!collision) {
+					continue;
+				}
+
+				if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
+					continue;
+				}
+
+				//仮で反応しないようにする。(将来的には何かで反応しないようにする。) 
+				auto throwObj = dynamic_pointer_cast<ThrowObject>(object);
+				if (throwObj) {
+					continue;
+				}
+
+				//ヒットしたら、障害物があることになる。
+				if (collision->IsRayHit(startPosition, endPosition)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition) {
+			auto stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+
+			for (const auto& object : stage->GetGameObjectVec())
+			{
+				auto collision = object->GetComponent<Collision>(false);
+				if (!collision) {
+					continue;
+				}
+
+				//ヒットしたら、障害物があることになる。
+				if (collision->IsRayHit(startPosition, endPosition)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+			const std::shared_ptr<GameObject>& endObj,
+			const std::shared_ptr<GameObject>& obstacleObj)
+		{
+			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
+			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+
+			return IsRayObstacle(startPosition, endPosition, obstacleObj);
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
+			const std::shared_ptr<GameObject>& obstacleObj)
+		{
+			auto collision = obstacleObj->GetComponent<Collision>();
+
+			//ヒットしたら、障害物があることになる。
+			if (collision->IsRayHit(startPosition, endPosition)) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 }

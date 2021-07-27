@@ -11,6 +11,7 @@
 #include "EnState_TargetChase.h"
 #include "EnState_Plowling.h"
 #include "EnState_LoseTarget.h"
+#include "EnState_Attack.h"
 #include "DebugObject.h"
 
 namespace basecross {
@@ -26,6 +27,14 @@ namespace basecross {
 	}
 
 	void ChaseEnemy::ChangeChaseState(const std::shared_ptr<GameObject>& target) {
+		//auto attackType = (type_index)(typeid(EnState_Attack));
+		//auto nowType = (type_index)(typeid(m_stateMachine));
+		//DebugObject::m_wss << to_wstring(attackType) << endl;
+		auto attack = dynamic_pointer_cast<EnState_Attack>(m_stateMachine);
+		if (attack) {
+			return;
+		}
+
 		ChangeStateMachine<EnState_TargetChase>(target);
 	}
 

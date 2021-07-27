@@ -19,10 +19,14 @@ namespace basecross {
 		virtual ~MargeTestStage() {}
 		//初期化
 		virtual void OnCreate() override;
-		virtual void OnUpdate() override {}
+		virtual void OnUpdate() override;
 
 		virtual void CreateMap(const wstring& fileName);
 
+		//テスト用-----------------------------------------------------------
+		virtual void TempLoad();
+		void CreateEnemy(const std::shared_ptr<GameObject>& player);
+		void CreateEatItems();
 	};
 
 }

@@ -22,7 +22,7 @@ namespace basecross {
 		{}
 
 		void OnCreate() override;
-
+		void OnUpdate() override;
 
 		//アクセッサ-----------------------------------------------------------
 		void SetColor(const Col4& color) {
@@ -30,8 +30,10 @@ namespace basecross {
 			draw->SetDiffuse(color);
 		}
 
-		//徘徊行動テスト
 		void StartPlowlingTest();
+		//徘徊行動テスト
+
+		void AnimationCtrl();
 
 		//ステート変更テスト
 	};

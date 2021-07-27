@@ -35,6 +35,23 @@ namespace basecross {
 			/// <returns>ターゲットに向かうベクトル</returns>
 			static Vec3 CalucToTargetVec(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
 
+			/// <summary>
+			/// Rayを飛ばしたとき、障害物があったらtrueを返す。
+			/// </summary>
+			/// <param name="startObj">Rayのスタートポジション</param>
+			/// <param name="endObj">Rayのエンドポジション</param>
+			/// <returns>障害物があったらtrue</returns>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj);
+			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos);
+
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, 
+				const std::shared_ptr<GameObject>& endObj,
+				const std::shared_ptr<GameObject>& obstacleObj);
+
+			//対象の障害物が二つのRayの間に合ったらtrue
+			static bool IsRayObstacle(const Vec3& startObj, const Vec3& endObj,
+				const std::shared_ptr<GameObject>& obstacleObj);
+
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//最初に取得できたものだけ返す。
 			template<class T>

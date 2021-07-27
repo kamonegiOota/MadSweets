@@ -29,6 +29,8 @@ namespace basecross {
 		void LostMove();
 		void LookCheck();
 
+		void Rotation(const Vec3& moveVec);
+
 		void ChangeStateMachine();
 
 	public:
@@ -49,6 +51,7 @@ namespace basecross {
 
 		//アクセッサ-----------------------------------------------------------------------
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
+			//m_updateFunc = &TargetChase::LookMove;
 			m_target = target;
 		}
 		std::shared_ptr<GameObject> GetTarget() const {

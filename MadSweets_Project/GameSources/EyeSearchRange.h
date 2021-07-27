@@ -28,7 +28,7 @@ namespace basecross {
 		float rad;    //索敵範囲(角度)
 
 		EyeSearchRangeParam()
-			:EyeSearchRangeParam(5.0f,3.0f,XMConvertToRadians(30.0f))
+			:EyeSearchRangeParam(20.0f,3.0f,XMConvertToRadians(30.0f))
 		{}
 
 		EyeSearchRangeParam(const float& lenght,
@@ -65,6 +65,12 @@ namespace basecross {
 		/// </summary>
 		/// <param name="target">索敵ターゲット</param>
 		void RadCheck(const EyeTargetParam& targetParam);
+		/// <summary>
+		/// Rayを飛ばしたときのチェック
+		/// </summary>
+		/// <param name="targetParam">索敵ターゲット</param>
+		void RayCheck(const EyeTargetParam& targetParam);
+
 		/// <summary>
 		/// ターゲットが索敵範囲内にいるときに呼び出される関数
 		/// </summary>

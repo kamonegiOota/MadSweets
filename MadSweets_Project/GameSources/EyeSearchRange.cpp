@@ -11,6 +11,9 @@
 #include "DebugObject.h"
 
 #include "I_Chase.h"
+#include "I_Escape.h"
+#include "BaseAttack.h"
+#include "MyUtility.h"
 
 namespace basecross {
 
@@ -44,6 +47,7 @@ namespace basecross {
 		auto subHeight = targetPos.y - selfPos.y;  //高さの差を求める。
 		if (std::abs(subHeight) <= m_param.height) {  //高さが小さかったら。
 			RadCheck(targetParam);  //角度チェック
+			//DebugObject::m_wss << L"Escape,";
 		}
 		else {
 			targetParam.isFind = false;
@@ -59,6 +63,18 @@ namespace basecross {
 		auto newDot = dot(forward.GetNormalized(), toVec.GetNormalized());
 		auto newRad = acosf(newDot);
 		if (newRad <= m_param.rad) {  //索敵範囲に入っていたら。
+			RayCheck(targetParam);
+		}
+		else {
+			targetParam.isFind = false;
+		}
+	}
+
+	void EyeSearchRange::RayCheck(const EyeTargetParam& targetParam) {
+		const auto& target = targetParam.target;
+	
+		//障害物にヒットしなかったら
+		if (!maru::MyUtility::IsRayObstacle(GetGameObject(),target)) {
 			Hit(targetParam);
 		}
 		else {
@@ -68,11 +84,25 @@ namespace basecross {
 
 	void EyeSearchRange::Hit(const EyeTargetParam& targetParam) {
 		targetParam.isFind = true;
+		auto obj = GetGameObject();
+		
+		auto attack = obj->GetComponent<BaseAttack>(false);
+		if (attack) {
+			attack->Attack(targetParam.target);
+			//attack->ChangeStateMachine(targetParam.target);
+		}
 
-		auto chase = GetGameObject()->GetComponent<I_Chase>(false);
+		auto chase = obj->GetComponent<I_Chase>(false);
 		if (chase) {
 			chase->ChangeChaseState(targetParam.target);
 			//DebugObject::m_wss << L"Chase,";
+			return;
+		}
+
+		auto escape = obj->GetComponent<I_Escape>(false);
+		if (escape) {
+			//DebugObject::m_wss << L"Escape,";
+			escape->ChangeEscapeState(targetParam.target);
 			return;
 		}
 	}
