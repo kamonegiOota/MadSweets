@@ -19,6 +19,43 @@ namespace basecross {
 
 	GameObject::~GameObject() {}
 
+	void GameObject::SetUpdateActive(bool b, bool isParent) {
+
+		bool updateActive = m_UpdateActive;
+
+		if (isParent)
+		{
+			m_UpdateActive = b;
+			m_isUpdateActive = b;
+		}
+		else
+		{
+			m_UpdateActive = b ? m_isUpdateActive : false;
+		}
+
+		if (updateActive != m_UpdateActive)
+		{
+			if (m_UpdateActive)
+			{
+				OnEnable();
+			}
+			else
+			{
+				OnDisable();
+			}
+		}
+
+		for (auto& child : m_children)
+		{
+
+			if (child)
+			{
+				child->SetUpdateActive(b, false);
+			}
+		}
+	}
+
+
 	shared_ptr<Stage> GameObject::GetStage(bool ExceptionActive) const {
 		auto shptr = m_Stage.lock();
 		if (shptr) {
@@ -92,6 +129,39 @@ namespace basecross {
 		}
 	}
 
+	void GameObject::OnEnable()
+	{
+		//マップを検証してUpdate
+		list<type_index>::iterator it = m_CompOrder.begin();
+		while (it != m_CompOrder.end()) {
+			map<type_index, shared_ptr<Component> >::const_iterator it2;
+			it2 = m_CompMap.find(*it);
+			if (it2 != m_CompMap.end()) {
+				//指定の型のコンポーネントが見つかった
+				if (it2->second->IsUpdateActive()) {
+					it2->second->OnEnable();
+				}
+			}
+			it++;
+		}
+	}
+
+	void GameObject::OnDisable()
+	{
+		//マップを検証してUpdate
+		list<type_index>::iterator it = m_CompOrder.begin();
+		while (it != m_CompOrder.end()) {
+			map<type_index, shared_ptr<Component> >::const_iterator it2;
+			it2 = m_CompMap.find(*it);
+			if (it2 != m_CompMap.end()) {
+				//指定の型のコンポーネントが見つかった
+				if (it2->second->IsUpdateActive()) {
+					it2->second->OnDisable();
+				}
+			}
+			it++;
+		}
+	}
 
 	void GameObject::TransformInit() {
 		auto Transptr = GetComponent<Transform>();

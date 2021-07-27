@@ -2128,6 +2128,17 @@ namespace basecross{
 		*/
 		//--------------------------------------------------------------------------------------
 		virtual void OnDestroy() {}
+
+		/// <summary>
+		/// アクティブになった時
+		/// </summary>
+		virtual void OnEnable() {}
+
+		/// <summary>
+		/// 非アクティブになった時
+		/// </summary>
+		virtual void OnDisable() {}
+
 	private:
 		//コピー禁止
 		ShapeInterface(const ShapeInterface&) = delete;

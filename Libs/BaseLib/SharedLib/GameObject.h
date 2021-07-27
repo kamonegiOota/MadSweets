@@ -23,8 +23,8 @@ namespace basecross {
 		bool m_AlphaActive = false;		//透明かどうか
 		bool m_SpriteDraw = false;	//スプライトとして描画するかどうか
 
-		bool m_isUpdateActive = true;
-		bool m_isDrawActive = true;
+		bool m_isUpdateActive = true; // 子オブジェクトの際のUpdateActive保存用
+		bool m_isDrawActive = true; // 子オブジェクトの際のDrawActive保存用
 
 		int m_DrawLayer = 0;	//描画レイヤー
 		set<wstring> m_TagSet;	//タグのセット
@@ -126,27 +126,7 @@ namespace basecross {
 		@return	なし
 		*/
 		//--------------------------------------------------------------------------------------
-		void SetUpdateActive(bool b, bool isParent = true) {
-
-			if (isParent)
-			{
-				m_UpdateActive = b;
-				m_isUpdateActive = b;
-			}
-			else
-			{
-				m_UpdateActive = b ? m_isUpdateActive : false;
-			}
-
-			for (auto& child : m_children)
-			{
-
-				if (child)
-				{
-					child->SetUpdateActive(b, false);
-				}
-			}
-		}
+		void SetUpdateActive(bool b, bool isParent = true);
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	描画処理が有効かどうかを得る
@@ -268,6 +248,11 @@ namespace basecross {
 		void Destroy();
 
 		void ChildDestroy(const std::shared_ptr<GameObject>& childObject);
+
+		void OnEnable() override;
+
+		void OnDisable() override;
+
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	スプライトとしてDrawするかどうかを得る
