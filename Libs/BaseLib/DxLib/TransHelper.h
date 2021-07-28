@@ -2565,14 +2565,17 @@ namespace basecross{
 		static bool RAY_OBB(const bsm::Vec3& startPos, const bsm::Vec3& direction, const OBB& obb,
 			float& length,bsm::Vec3& crossPosition)
 		{
-			AABB aabb = AABB(obb.m_Center, obb.m_Size.x * 2.0f, obb.m_Size.y * 2.0f, obb.m_Size.z);
+			AABB aabb = AABB(obb.m_Center, obb.m_Size.x * 2.0f, obb.m_Size.y * 2.0f, obb.m_Size.z * 2.0f);
 			
+			auto inverseMat = obb.GetRotMatrix();
+			inverseMat.inverse();
+
 			bsm::Vec3 center = (aabb.m_Min + aabb.m_Max) * 0.5f;
 			bsm::Vec3 rotStartPos = startPos - center;
-			rotStartPos *= obb.GetRotMatrix();
+			rotStartPos *= inverseMat;
 			bsm::Vec3 unitDirection = direction;
 			unitDirection.normalize();
-			bsm::Vec3 rotDirection = unitDirection * obb.GetRotMatrix();
+			bsm::Vec3 rotDirection = unitDirection * inverseMat;
 			
 
 			float inTime = -FLT_MAX;
