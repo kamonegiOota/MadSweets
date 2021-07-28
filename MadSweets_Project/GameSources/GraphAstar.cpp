@@ -351,7 +351,7 @@ namespace basecross {
 		}
 
 		//オブジェクトが探索ノードの近くにいたら、次のノードに切り替える。
-		float nearRange = 1.0f;  //近くと判断される距離
+		float nearRange = 3.0f;  //近くと判断される距離
 
 		auto trans = objPtr->GetComponent<Transform>();
 		auto objPos = trans->GetPosition();
