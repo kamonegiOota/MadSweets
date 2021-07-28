@@ -73,6 +73,8 @@ namespace basecross {
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
+			//player->RemoveComponent<CollisionCapsule>();
+			//player->AddComponent<CollisionObb>();
 			//player->SetDrawActive(false);
 			//player->AddComponent<CollisionObb>();
 			//場所を把握するための処理
@@ -84,7 +86,7 @@ namespace basecross {
 			//食べ物の生成
 			CreateEatItems();
 
-			AddGameObject<MTestEnemyObject>();
+			//AddGameObject<MTestEnemyObject>();
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
