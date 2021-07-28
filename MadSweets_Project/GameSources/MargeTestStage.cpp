@@ -70,6 +70,14 @@ namespace basecross {
 			auto rectTransform = gauge->GetComponent<RectTransform>();
 			rectTransform->SetAnchor(AnchorType::LeftUp);
 
+			//UIü‚è
+			auto go = Instantiate<UIObject>();
+			go->GetComponent<RectTransform>()->SetPosition(300, 0);
+			auto mo = go->AddComponent<ChoicesList>();
+			mo->OnStart();
+
+			SetSharedGameObject(L"PlayerChoicesList", go);
+
 			//ƒvƒŒƒCƒ„[‚Ì¶¬
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
