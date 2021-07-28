@@ -4,8 +4,6 @@ namespace basecross
 {
 	class PlayerChoicesManager : public Component
 	{
-		ex_weak_ptr<GameObject> m_playerCameraObject;
-
 		ex_weak_ptr<ChoicesList> m_playerChoicesList;
 
 		std::vector<ex_weak_ptr<GameObject>> m_rayCollisionObjects;
@@ -19,7 +17,7 @@ namespace basecross
 		}
 
 	public:
-		PlayerChoicesManager(std::shared_ptr<GameObject>& owner,const std::shared_ptr<GameObject>& playerCamera);
+		PlayerChoicesManager(std::shared_ptr<GameObject>& owner);
 
 		void SetSearchRange(const float searchRange);
 
