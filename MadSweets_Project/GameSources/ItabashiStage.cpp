@@ -64,29 +64,31 @@ namespace basecross
 
 		SetSharedGameObject(L"PlayerObject", playerObject);
 
-		std::vector<std::shared_ptr<GameObject>> gameobjects;
+		//std::vector<std::shared_ptr<GameObject>> gameobjects;
 
-		for (int i = 0; i < 4; i++)
-		{
-			auto gameobject = Instantiate<GameObject>();
+		//for (int i = 0; i < 4; i++)
+		//{
+		//	auto gameobject = Instantiate<GameObject>();
 
-			auto draw = gameobject->AddComponent<PNTStaticDraw>();
-			draw->SetMeshResource(L"DEFAULT_CUBE");
+		//	auto draw = gameobject->AddComponent<PNTStaticDraw>();
+		//	draw->SetMeshResource(L"DEFAULT_CUBE");
 
-			auto collision = gameobject->AddComponent<CollisionObb>();
-			collision->SetFixed(true);
-			gameobjects.push_back(gameobject);
-			gameobject->AddTag(L"Wall");
-		}
+		//	auto collision = gameobject->AddComponent<CollisionObb>();
+		//	collision->SetFixed(true);
+		//	gameobjects.push_back(gameobject);
+		//	gameobject->AddTag(L"Wall");
+		//}
 
-		gameobjects[0]->GetComponent<Transform>()->SetPosition(-2, 0, -2);
-		gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
-		gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
-		gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
+		//gameobjects[0]->GetComponent<Transform>()->SetPosition(-2, 0, -2);
+		//gameobjects[1]->GetComponent<Transform>()->SetPosition( 2, 0, -2);
+		//gameobjects[2]->GetComponent<Transform>()->SetPosition(-2, 0,  2);
+		//gameobjects[3]->GetComponent<Transform>()->SetPosition( 2, 0,  2);
 
 		auto testKashi = Instantiate<TestEatenObject>();
+		auto testKashi2 = Instantiate<TestEatenObject>();
 
 		testKashi->GetComponent<Transform>()->SetPosition(0, 0, 3);
+		testKashi2->GetComponent<Transform>()->SetPosition(0.5f, 0, 3);
 
 		auto a = itbs::Utility::Delegate<void()>(GetThis<ItabashiStage>(), &ItabashiStage::OnCreate);
 		itbs::Utility::Delegate<void()> b;
@@ -99,5 +101,63 @@ namespace basecross
 		}
 
 		SimpleSoundManager::ChangeBGM(L"Test2", 1.0f);
+
+		auto gameobject = Instantiate<GameObject>();
+		auto trans = gameobject->GetComponent<Transform>();
+		trans->SetScale(4.75f, 1.0f, 14.0f);
+		trans->SetPosition(0, 0, -10);
+		trans->SetRotation(0, XM_PIDIV2, XM_PIDIV2);
+		auto draw = gameobject->AddComponent<PNTStaticDraw>();
+		draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto collision = gameobject->AddComponent<CollisionObb>();
+		collision->SetFixed(true);
+		gameobject->AddTag(L"Wall");
+
+		float length = 0;
+		Vec3 kakarot;
+
+		bool ba =  HitTest::RAY_OBB(Vec3(12, 0, -12), Vec3(-1, 0, 0), collision->GetObb(), length, kakarot);
+
+		auto mat = collision->GetObb().GetRotMatrix();
+		auto vec = Vec3(1, 1, 0) * mat;
+
+		mat.inverse();
+		vec *= mat;
+
+		int asdfadsf = 0;
+		//gameobject = Instantiate<GameObject>();
+		//trans = gameobject->GetComponent<Transform>();
+		//trans->SetScale(1, 5, 5);
+		//trans->SetPosition(2.5f, 0, 0);
+		//draw = gameobject->AddComponent<PNTStaticDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		//collision = gameobject->AddComponent<CollisionObb>();
+		//collision->SetFixed(true);
+		//gameobject->AddTag(L"Wall");
+
+		//gameobject = Instantiate<GameObject>();
+		//trans = gameobject->GetComponent<Transform>();
+		//trans->SetScale(5, 5, 1);
+		//trans->SetPosition(0, 0, 2.5f);
+		//draw = gameobject->AddComponent<PNTStaticDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		//collision = gameobject->AddComponent<CollisionObb>();
+		//collision->SetFixed(true);
+		//gameobject->AddTag(L"Wall");
+
+		//gameobject = Instantiate<GameObject>();
+		//trans = gameobject->GetComponent<Transform>();
+		//trans->SetScale(5, 5, 1);
+		//trans->SetPosition(0, 0, -2.5f);
+		//draw = gameobject->AddComponent<PNTStaticDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		//collision = gameobject->AddComponent<CollisionObb>();
+		//collision->SetFixed(true);
+		//gameobject->AddTag(L"Wall");
+
 	}
 }
