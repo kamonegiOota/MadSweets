@@ -597,34 +597,30 @@ namespace basecross
 
 	class ChoicesList : public Component
 	{
-		struct ChoicesData
-		{
-			ex_weak_ptr<GameObject> textBox;
-
-			ChoicesObjectAndEvent choicesObjectAndEvent;
-
-			ChoicesData(const std::shared_ptr<GameObject>& textBox, const ChoicesObjectAndEvent& choicesObjectAndEvent);
-		};
 
 		ex_weak_ptr<GameObject> m_upTextBox;
 		ex_weak_ptr<GameObject> m_centerTextBox;
 		ex_weak_ptr<GameObject> m_downTextBox;
 
-		std::vector<ChoicesData> m_choicesDatas;
-
-		std::vector<ChoicesObjectAndEvent> m_choiceObjectAndEvent;
+		std::vector<ChoicesObjectAndEvent> m_choiceObjectAndEvents;
 
 		bool m_isEmpty = true;
 
 		int m_index = 0;
 
 		void UpdateChoices();
+
+		std::shared_ptr<GameObject> CreateChildTextBoxObject();
 	public:
 		ChoicesList(std::shared_ptr<GameObject>& owner);
 
 		void AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent);
 
 		void RemoveChoice(const std::shared_ptr<GameObject>& gameObject);
+
+		void AddIndex(const int addIndex);
+
+		void SetIndex(const int index);
 
 		void Invoke();
 

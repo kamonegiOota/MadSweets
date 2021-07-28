@@ -60,6 +60,9 @@ namespace basecross
 		CreateAnimator();
 
 		AddComponent<SoundListener>();
+
+		auto choiceManager = AddComponent<PlayerChoicesManager>();
+		choiceManager->SetSearchRange(2.0f);
 	}
 
 	void PlayerObject::OnUpdate()

@@ -38,5 +38,9 @@ namespace basecross
 		static bool IsMenuDown();
 
 		static bool IsDashPush();
+
+		static bool IsUpChoices();
+
+		static bool IsDownChoices();
 	};
 }

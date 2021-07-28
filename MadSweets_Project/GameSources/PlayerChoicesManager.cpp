@@ -4,9 +4,8 @@
 
 namespace basecross
 {
-	PlayerChoicesManager::PlayerChoicesManager(std::shared_ptr<GameObject>& owner,const std::shared_ptr<GameObject>& cameraObject) :
+	PlayerChoicesManager::PlayerChoicesManager(std::shared_ptr<GameObject>& owner) :
 		Component(owner),
-		m_playerCameraObject(cameraObject),
 		m_searchRange(2.0f)
 	{
 
@@ -29,9 +28,6 @@ namespace basecross
 
 	void PlayerChoicesManager::OnUpdate()
 	{
-		auto startPosition = m_playerCameraObject->GetComponent<Transform>()->GetWorldPosition();
-		auto searchEndPosition = startPosition + m_playerCameraObject->GetComponent<Transform>()->GetForword() * m_searchRange;
-
 		for (auto& object : GetStage()->GetGameObjectVec())
 		{
 			auto choicesComponent = object->GetComponent<ChoicesComponentBase>(false);
@@ -41,20 +37,15 @@ namespace basecross
 				continue;
 			}
 
-			auto collision = object->GetComponent<Collision>(false);
+			auto range = (object->GetComponent<Transform>()->GetWorldPosition() - transform->GetWorldPosition()).length();
 
-			if (!collision)
-			{
-				continue;
-			}
+			auto it = std::find(m_rayCollisionObjects.begin(), m_rayCollisionObjects.end(), object);
 
-			auto it = std::find(m_rayCollisionObjects.begin(), m_rayCollisionObjects.end(), collision->GetGameObject());
-
-			if (collision->IsRayHit(startPosition, searchEndPosition))
+			if (range <= m_searchRange)
 			{
 				if (it == m_rayCollisionObjects.end())
 				{
-					m_rayCollisionObjects.push_back(collision->GetGameObject());
+					m_rayCollisionObjects.push_back(object);
 
 					m_playerChoicesList->AddChoice(choicesComponent->GetChoicesObjectAndEvent(GetGameObject()));
 				}
@@ -64,9 +55,19 @@ namespace basecross
 				if (it != m_rayCollisionObjects.end())
 				{
 					m_rayCollisionObjects.erase(it);
-					m_playerChoicesList->RemoveChoice(collision->GetGameObject());
+					m_playerChoicesList->RemoveChoice(object);
 				}
 			}
+		}
+
+		if (PlayerInputer::IsUpChoices())
+		{
+			m_playerChoicesList->AddIndex(-1);
+		}
+
+		if (PlayerInputer::IsDownChoices())
+		{
+			m_playerChoicesList->AddIndex(1);
 		}
 
 		if (PlayerInputer::IsDecision())
