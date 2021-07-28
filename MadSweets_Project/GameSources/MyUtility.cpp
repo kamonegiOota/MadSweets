@@ -110,8 +110,8 @@ namespace basecross {
 				RayHitData data;
 				if (collision->IsRayHit(startPosition, direction, data)) {
 					auto length = direction.length();
-					if (direction.length() > data.length) {
-						object->GetComponent<BcPNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 0.0f));
+					if (direction.length() > data.length) {  //length‚ªŽè‘O‚¾‚Á‚½‚ç
+						//object->GetComponent<BcPNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 0.0f));
 						return true;
 					}
 				}
