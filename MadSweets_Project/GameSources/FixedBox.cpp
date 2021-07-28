@@ -28,6 +28,7 @@ namespace basecross {
         PtrDraw->SetSamplerState(SamplerState::LinearWrap);
 
         AddTag(L"FixedBox");
+        AddTag(L"Wall");
         coll->AddExcludeCollisionTag(L"FixedBox");
 	}
 

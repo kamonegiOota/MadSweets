@@ -54,6 +54,7 @@ namespace basecross {
 			light.m_DiffuseColor = Col4(0.1f);
 			//light.m_Directional = Vec3(0.0f);
 			light.m_SpecularColor = Col4(0.1f);
+			
 		}
 	}
 
@@ -72,8 +73,8 @@ namespace basecross {
 			//ÉvÉåÉCÉÑÅ[ÇÃê∂ê¨
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
-			player->SetDrawActive(false);
-			player->AddComponent<CollisionObb>();
+			//player->SetDrawActive(false);
+			//player->AddComponent<CollisionObb>();
 			//èÍèäÇîcà¨Ç∑ÇÈÇΩÇﬂÇÃèàóù
 			//player->AddComponent<PositionDrawComp>();
 
