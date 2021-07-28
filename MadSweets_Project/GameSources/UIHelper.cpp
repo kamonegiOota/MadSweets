@@ -1,6 +1,9 @@
 #include"UIHelper.h"
 #include"WindowSetting.h"
 #include"FontHelper.h"
+#include"MathHelper.h"
+
+using itbs::Math::MyMath;
 
 namespace basecross
 {
@@ -663,13 +666,6 @@ namespace basecross
 	}
 	// ChoicesList ------------------------------
 
-	ChoicesList::ChoicesData::ChoicesData(const std::shared_ptr<GameObject>& textBox, const ChoicesObjectAndEvent& choicesObjectAndEvent) :
-		textBox(textBox),
-		choicesObjectAndEvent(choicesObjectAndEvent)
-	{
-
-	}
-
 	ChoicesList::ChoicesList(std::shared_ptr<GameObject>& owner) :
 		Component(owner)
 	{
@@ -678,10 +674,9 @@ namespace basecross
 
 	void ChoicesList::UpdateChoices()
 	{
-		m_index = std::fminf(m_choicesDatas.size() - 1, m_index);
-		m_index = std::fmaxf(0, m_index);
+		m_index = MyMath::Clamp(m_index, 0, static_cast<int>(m_choiceObjectAndEvents.size() - 1));
 
-		if (m_choicesDatas.empty())
+		if (m_choiceObjectAndEvents.empty())
 		{
 			m_upTextBox->SetActive(false);
 			m_centerTextBox->SetActive(false);
@@ -690,15 +685,15 @@ namespace basecross
 			return;
 		}
 
-		std::wstring kari = m_choicesDatas[m_index].choicesObjectAndEvent.text;
+		std::wstring kari = m_choiceObjectAndEvents[m_index].text;
 
 		auto te = m_centerTextBox->GetComponent<TextBox>();
-		m_centerTextBox->GetComponent<TextBox>()->SetText(m_choicesDatas[m_index].choicesObjectAndEvent.text);
+		m_centerTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index].text);
 		m_centerTextBox->SetActive(true);
 		
 		if (m_index - 1 >= 0)
 		{
-			m_upTextBox->GetComponent<TextBox>()->SetText(m_choicesDatas[m_index - 1].choicesObjectAndEvent.text);
+			m_upTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index - 1].text);
 			m_upTextBox->SetActive(true);
 		}
 		else
@@ -706,9 +701,9 @@ namespace basecross
 			m_upTextBox->SetActive(false);
 		}
 
-		if (m_index + 1 < m_choicesDatas.size())
+		if (m_index + 1 < m_choiceObjectAndEvents.size())
 		{
-			m_downTextBox->GetComponent<TextBox>()->SetText(m_choicesDatas[m_index].choicesObjectAndEvent.text);
+			m_downTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index + 1].text);
 			m_downTextBox->SetActive(true);
 		}
 		else
@@ -717,101 +712,94 @@ namespace basecross
 		}
 	}
 
-	void ChoicesList::AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent)
+	std::shared_ptr<GameObject> ChoicesList::CreateChildTextBoxObject()
 	{
 		auto uiObject = dynamic_pointer_cast<UIObject>(GetGameObject());
-		auto child = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
 
-		auto rect = child->GetComponent<RectTransform>();
+		auto textBoxObject = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
+
+		auto rect = textBoxObject->GetComponent<RectTransform>();
 		rect->SetRectSize(200, 50);
-		auto textBox = child->AddComponent<TextBox>();
-		textBox->SetText(choicesObjectAndEvent.text);
+
+		auto textBox = textBoxObject->AddComponent<TextBox>();
+
 		textBox->SetBoxColor(0, 0, 0, 1);
 		textBox->SetFontColor(1, 1, 1, 1);
 		textBox->SetFontSize(32);
 		textBox->SetTextSideAlignment(TextBox::TextSideAlignment::Center);
 		textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
-		textBox->SetFontName(L"Xim Sans Žè‘‚«•—");
-		m_choicesDatas.push_back(ChoicesData(child, choicesObjectAndEvent));
 
-		m_isEmpty = false;
+		textBoxObject->SetDrawLayer(10);
+
+		return textBoxObject;
+	}
+
+	void ChoicesList::AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent)
+	{
+		m_choiceObjectAndEvents.push_back(choicesObjectAndEvent);
 
 		UpdateChoices();
 	}
 
-	void ChoicesList::RemoveChoice(const std::shared_ptr<GameObject>& choicesObjectAndEvent)
+	void ChoicesList::RemoveChoice(const std::shared_ptr<GameObject>& choicesObject)
 	{
-		auto it = m_choicesDatas.begin();
+		auto it = m_choiceObjectAndEvents.begin();
 
-		while (it != m_choicesDatas.end())
+		while (it != m_choiceObjectAndEvents.end())
 		{
-			auto& choicesData = (*it);
+			auto& choicesObjectAndEvent = (*it);
 
-			if (choicesData.choicesObjectAndEvent.choicesObject == choicesObjectAndEvent)
+			if (choicesObjectAndEvent.choicesObject == choicesObject)
 			{
-				choicesData.textBox->Destroy();
-
-				m_choicesDatas.erase(it);
-
-				if (m_choicesDatas.empty())
-				{
-					m_isEmpty = true;
-				}
-				return;
+				m_choiceObjectAndEvents.erase(it);
+				
+				break;
 			}
+
+			it++;
 		}
+
+		UpdateChoices();
+	}
+
+	void ChoicesList::AddIndex(const int addIndex)
+	{
+		SetIndex(m_index + addIndex);
+	}
+
+	void ChoicesList::SetIndex(const int index)
+	{
+		m_index = MyMath::Clamp(index, 0, static_cast<int>(m_choiceObjectAndEvents.size() - 1));
+
+		UpdateChoices();
 	}
 
 	void ChoicesList::Invoke()
 	{
-		if (m_isEmpty)
+		if (m_choiceObjectAndEvents.empty())
 		{
 			return;
 		}
 
-		auto& choicesObjectAndEvent = m_choicesDatas[m_index].choicesObjectAndEvent;
-		m_choicesDatas[m_index].choicesObjectAndEvent.eventFunction();
+		auto& choicesObjectAndEvent = m_choiceObjectAndEvents[m_index];
+		choicesObjectAndEvent.eventFunction();
 	}
 
 	void ChoicesList::OnStart()
 	{
 		auto uiObject = dynamic_pointer_cast<UIObject>(GetGameObject());
 
-		m_upTextBox = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
-		m_centerTextBox = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
-		m_downTextBox = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), uiObject);
+		m_upTextBox = CreateChildTextBoxObject();
+		m_centerTextBox = CreateChildTextBoxObject();
+		m_downTextBox = CreateChildTextBoxObject();
 
 		auto rect = m_upTextBox->GetComponent<RectTransform>();
-		rect->SetRectSize(150, 37.5f);
-		rect->SetPosition(0, 50);
-
-		auto SetTextBox = [](const std::shared_ptr<TextBox>& textBox)
-		{
-			textBox->SetBoxColor(0, 0, 0, 1);
-			textBox->SetFontColor(1, 1, 1, 1);
-			textBox->SetTextSideAlignment(TextBox::TextSideAlignment::Center);
-			textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
-		};
-
-		auto textBox = m_upTextBox->AddComponent<TextBox>();
-
-		SetTextBox(textBox);
-
-		rect = m_centerTextBox->GetComponent<RectTransform>();
-		rect->SetRectSize(200, 50);
-		rect->SetPosition(0, 0);
-
-		textBox = m_centerTextBox->AddComponent<TextBox>();
-
-		SetTextBox(textBox);
+		rect->SetPosition(0, -50);
+		rect->SetScale(Vec2(0.75f));
 
 		rect = m_downTextBox->GetComponent<RectTransform>();
-		rect->SetRectSize(150, 37.5f);
-		rect->SetPosition(0, -50);
-
-		textBox = m_downTextBox->AddComponent<TextBox>();
-
-		SetTextBox(textBox);
+		rect->SetPosition(0, 50);
+		rect->SetScale(Vec2(0.75f));
 
 		m_upTextBox->SetActive(false);
 		m_centerTextBox->SetActive(false);
@@ -820,33 +808,21 @@ namespace basecross
 
 	void ChoicesList::OnUpdate2()
 	{
-		auto it = m_choicesDatas.begin();
+		auto it = m_choiceObjectAndEvents.begin();
 
-		while (it != m_choicesDatas.end())
+		while (it != m_choiceObjectAndEvents.end())
 		{
-			if (!it->choicesObjectAndEvent.choicesObject)
+			if (!it->choicesObject)
 			{
-				it->textBox->Destroy();
+				it = m_choiceObjectAndEvents.erase(it);
 
-				it = m_choicesDatas.erase(it);
-
-				if (m_choicesDatas.empty())
-				{
-					m_isEmpty = true;
-				}
 				continue;
 			}
 
 			it++;
 		}
 
-		auto size = m_choicesDatas.size();
-
-		if (size <= 0)
-		{
-			return;
-		}
-
+		UpdateChoices();
 
 	}
 	// UIObject ---------------------------------
