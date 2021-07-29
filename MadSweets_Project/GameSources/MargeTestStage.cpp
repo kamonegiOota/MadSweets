@@ -137,6 +137,9 @@ namespace basecross {
 		std::wstring textureDir = mediaDir + L"Textures\\";
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
+		app->RegisterTexture(L"WallCake_Tx", textureDir + L"Tx_Cake.png");
+		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png");
+
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
