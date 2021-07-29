@@ -84,6 +84,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -175,6 +177,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />

@@ -373,6 +373,15 @@
     <Filter Include="Maru\Component\Velocity\BaseUseVelocity">
       <UniqueIdentifier>{b98cc198-7278-4d92-ade9-8b06f9526747}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Light">
+      <UniqueIdentifier>{43a7c77d-aa65-4ab5-a116-98056e820485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light\PointLight">
+      <UniqueIdentifier>{bcc5dfbb-1002-4262-bd2b-73c63b1d3e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light\PNTPointDraw">
+      <UniqueIdentifier>{96890631-c7a9-4d22-938b-39893d03e85e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -678,6 +687,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h">
       <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h">
+      <Filter>Maru\Light\PointLight</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h">
+      <Filter>Maru\Light\PNTPointDraw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -934,6 +949,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp">
       <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp">
+      <Filter>Maru\Light\PNTPointDraw</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
