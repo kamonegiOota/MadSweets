@@ -382,6 +382,9 @@
     <Filter Include="Maru\Light\PNTPointDraw">
       <UniqueIdentifier>{96890631-c7a9-4d22-938b-39893d03e85e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Light\MyShader">
+      <UniqueIdentifier>{5a6b88eb-ae18-4b8e-aa98-bcb0184e3b6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -953,5 +956,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp">
       <Filter>Maru\Light\PNTPointDraw</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">
+      <Filter>Maru\Light\MyShader</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\VSPNTPoint.hlsl">
+      <Filter>Maru\Light\MyShader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLightParametors.hlsli">
+      <Filter>Maru\Light\MyShader</Filter>
+    </None>
   </ItemGroup>
 </Project>
