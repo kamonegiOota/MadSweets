@@ -63,12 +63,6 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)VSShadowmap.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)VSShadowmapBone.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)VSShadowmapBoneWithTan.hlsl" />
-    <FxCompile Include="$(MSBuildThisFileDirectory)VSPNTPoint.hlsl">
-      <Filter>MyShader</Filter>
-    </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)PSPNTPoint.hlsl">
-      <Filter>MyShader</Filter>
-    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)BcINCCommon.hlsli" />
@@ -79,10 +73,5 @@
     <None Include="$(MSBuildThisFileDirectory)INCParameters.hlsli" />
     <None Include="$(MSBuildThisFileDirectory)INCShadowmap.hlsli" />
     <None Include="$(MSBuildThisFileDirectory)INCStructs.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="MyShader">
-      <UniqueIdentifier>{e736d1ac-4f8e-45ee-97ac-cde0bf779f4a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
