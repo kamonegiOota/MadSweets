@@ -35,7 +35,12 @@ namespace basecross {
 
         StartChangeComps();
 
-        obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
+        auto draw = obj->GetComponent<PNTStaticDraw>(false);
+        if (draw) {
+            draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
+        }
+
+       
     }
 
     void EnState_LoseTarget::OnUpdate() {
