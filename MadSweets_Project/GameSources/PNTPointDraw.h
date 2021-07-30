@@ -11,15 +11,15 @@
 
 namespace basecross {
 
-	class PNTPointDraw : Component
+	class PNTPointDraw :public BcBaseDraw
 	{
 
 	public :
 		PNTPointDraw(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+			:BcBaseDraw(objPtr)
 		{}
 
-		void OnCreate() override{}
+		void OnCreate() override;
 		void OnUpdate() override{}
 
 		void OnDraw() override;
