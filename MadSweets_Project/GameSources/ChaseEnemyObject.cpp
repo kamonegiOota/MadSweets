@@ -19,6 +19,7 @@
 #include "ThrowCtrl.h"
 #include "Velocity.h"
 #include "ProbeAstarMove.h"
+#include "PNTPointDraw.h"
 
 namespace basecross {
 
@@ -48,7 +49,8 @@ namespace basecross {
 	}
 
 	void ChaseEnemyObject::OnCreate() {
-		auto draw = AddComponent<PNTStaticDraw>();
+		//auto draw = AddComponent<PNTStaticDraw>();
+		auto draw = AddComponent<PNTPointDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 		draw->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
 
