@@ -1,4 +1,5 @@
-#include "BcINCParameters.hlsli"
+//#include "BcINCParameters.hlsli"
+#include "PointLightParametors.hlsli"
 #include "BcINCStructs.hlsli"
 #include "BcINCCommon.hlsli"
 #include "BcINCLighting.hlsli"

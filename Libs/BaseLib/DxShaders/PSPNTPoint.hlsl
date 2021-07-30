@@ -1,8 +1,17 @@
-#include "BcINCParameters.hlsli"
+//#include "BcINCParameters.hlsli"
+#include "PointLightParametors.hlsli"
 #include "BcINCStructs.hlsli"
 #include "BcINCCommon.hlsli"
 #include "BcINCLighting.hlsli"
 
+struct PSIntpuPixelPointLightingTx
+{
+	float2 TexCoord   : TEXCOORD0;
+	float4 PositionWS : TEXCOORD1;
+	float3 NormalWS   : TEXCOORD2;
+	float4 Diffuse    : COLOR0;
+	//vector<float4> linghtPos : POSITION;
+};
 
 // Pixel shader: pixel lighting + texture.
 // PSBasicPixelLightingTx
