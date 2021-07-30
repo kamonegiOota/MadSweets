@@ -24,7 +24,7 @@ namespace basecross {
 		{}
 
 		PointLight(const Vec3& dir, const Col4& def, const Col4& sp)
-			:PointLight(dir, def, sp, Vec3(0.0f),1.0f)
+			:PointLight(dir, def, sp, Vec3(0.0f), 1.0f)
 		{}
 
 		PointLight(const Vec3& dir, const Col4& def, const Col4& sp,
