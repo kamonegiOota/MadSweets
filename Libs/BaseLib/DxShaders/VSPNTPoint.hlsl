@@ -4,22 +4,33 @@
 #include "BcINCCommon.hlsli"
 #include "BcINCLighting.hlsli"
 
-VSOutputTx main(VSInputNmTx vin)
+VSOutputPixelLightingTx main(VSInputNmTx vin)
 {
-	VSOutputTx vout;
+	VSOutputPixelLightingTx vout;
 
-	CommonVSOutput cout;
+	CommonVSOutputPixelLighting cout = ComputeCommonVSOutputPixelLighting(vin.Position, vin.Normal);
+	SetCommonVSOutputParamsPixelLighting;
 
-	if (Activeflags.x > 0) {
-		cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, Activeflags.x);
-	}
-	else {
-		cout = ComputeCommonVSOutput(vin.Position);
-	}
-
-	SetCommonVSOutputParams;
-
+	vout.Diffuse = float4(1, 1, 1, DiffuseColor.a);
 	vout.TexCoord = vin.TexCoord;
 
 	return vout;
 }
+
+//VSOutputTx main(VSInputNmTx vin)
+//{
+//	VSOutputTx vout;
+//
+//	CommonVSOutput cout;
+//
+//	if (Activeflags.x > 0) {
+//		cout = ComputeCommonVSOutputWithLighting(vin.Position, vin.Normal, Activeflags.x);
+//	}
+//	else {
+//		cout = ComputeCommonVSOutput(vin.Position);
+//	}
+//
+//	SetCommonVSOutputParams;
+//
+//	return vout;
+//}
