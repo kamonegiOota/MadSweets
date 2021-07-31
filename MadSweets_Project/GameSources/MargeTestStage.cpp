@@ -51,13 +51,18 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 		//PtrMultiLight->SetAmbientLightColor(Col4(1.0f,0.1f,0.1f,0.1f));
 
+		//ƒ‰ƒCƒg‚Ìİ’è
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.01f);
+			light.m_DiffuseColor = Col4(0.0f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.01f);
-			
+			light.m_SpecularColor = Col4(0.0f);
 		}
+
+		//return;
+		//auto light = PtrMultiLight->GetLight(0);
+		//light.m_DiffuseColor = Col4(0.01f);
+		//light.m_SpecularColor = Col4(0.01f);
 	}
 
 	void MargeTestStage::OnCreate() {
