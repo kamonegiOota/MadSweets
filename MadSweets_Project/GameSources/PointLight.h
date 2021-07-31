@@ -18,22 +18,25 @@ namespace basecross {
 		Col4 power = Col4(1.0f, 1.0f, 1.0f, 1.0f);
 	};
 
-	class PointLightComp : public Component
+	class PointLight : public Component
 	{
 		PointLightParam m_param;
 
 	public:
-		PointLightComp(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr), m_param(PointLightParam())
-		{}
+		PointLight(const std::shared_ptr<GameObject>& objPtr);
+
+		PointLight(const std::shared_ptr<GameObject>& objPtr,
+			const PointLightParam& param
+		);
 
 		void OnCreate() override {}
-		void OnUpdate() override {
-			m_param.position = transform->GetPosition();
-		}
+		void OnUpdate() override;
 
 		//アクセッサ---------------------------------------------------------
-		PointLightParam GetLight() const {
+		void SetParametor(const PointLightParam& param) {
+			m_param = param;
+		}
+		PointLightParam GetParametor() const {
 			return m_param;
 		}
 	};
