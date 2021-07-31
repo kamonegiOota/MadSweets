@@ -2,6 +2,15 @@ Texture2D<float4> Texture : register(t0);
 sampler Sampler : register(s0);
 
 
+struct PointLightParam {
+    float4 direction;
+    float4 diffuse;
+    float4 specular;
+    float4 position : SV_Position;
+    float power;
+    bool isActive;
+};
+
 cbuffer PointLightParameters : register(b0)
 {
     float4 DiffuseColor             : packoffset(c0);
@@ -29,6 +38,7 @@ cbuffer PointLightParameters : register(b0)
     float4x4 LightView              : packoffset(c29);
     float4x4 LightProjection        : packoffset(c33);
 
-    float4x3 Bones[72] : packoffset(c37);
+    float4 PointLightPositions[256] : packoffset(c37);
 
+    float4x3 Bones[72] : packoffset(c293);
 };
