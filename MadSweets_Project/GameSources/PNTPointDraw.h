@@ -12,12 +12,10 @@
 namespace basecross {
 
 	struct PointLightParam {
-		Vec3 m_Directional;	//ライトの向き
 		Col4 m_DiffuseColor;	//ディフィーズ色
 		Col4 m_SpecularColor;	//スペキュラー色
-		Vec3 position = Vec3(0.0f);
-		float power = 1.0f;
-		bool isActive = false;
+		Vec4 position = Vec4(0.0f);
+		Col4 power = Col4(1.0f,1.0f,1.0f,1.0f);
 	};
 
 	struct PointConstants {
@@ -45,6 +43,8 @@ namespace basecross {
 		Mat4x4 lightView;
 		Mat4x4 lightProjection;
 
+		int usePointLightNum;
+		XMUINT3 null;
 		Vec4 poitnLightPositions[256];
 
 		Vec4 bones[3 * 72];
