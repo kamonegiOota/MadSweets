@@ -14,7 +14,7 @@ namespace basecross {
 	struct PointLight : Light 
 	{
 		Vec3 m_position;
-		float m_power;
+		Col4 m_power;
 
 		PointLight()
 			:PointLight(Vec3(0, -1.0f, 0),
@@ -24,11 +24,11 @@ namespace basecross {
 		{}
 
 		PointLight(const Vec3& dir, const Col4& def, const Col4& sp)
-			:PointLight(dir, def, sp, Vec3(0.0f), 1.0f)
+			:PointLight(dir, def, sp, Vec3(0.0f), Col4(1.0f))
 		{}
 
 		PointLight(const Vec3& dir, const Col4& def, const Col4& sp,
-			const Vec3& position, const float& power
+			const Vec3& position, const Col4& power
 		):
 			Light(dir, def , sp),
 			m_position(position), m_power(power)
