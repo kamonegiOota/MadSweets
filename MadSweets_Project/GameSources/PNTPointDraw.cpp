@@ -324,10 +324,13 @@ namespace basecross {
 				//pointCb.poitnLightParam[index].power = data.m_power;
 				//pointCb.poitnLightParam[index].isActive = true;
 
-				pointCb.lightDirection[index] = data.m_Directional;
-				pointCb.lightDiffuseColor[index] = data.m_DiffuseColor; //Col4(1.0f, 0.0f, 0.0f,1.0f); //
-				pointCb.lightSpecularColor[index] = data.m_SpecularColor;
-				pointCb.poitnLightPositions[index] = data.m_position;
+				//pointCb.lightDirection[index] = data.m_Directional;
+				//pointCb.lightDiffuseColor[index] = data.m_DiffuseColor; //Col4(1.0f, 0.0f, 0.0f,1.0f); //
+				//pointCb.lightSpecularColor[index] = data.m_SpecularColor;
+				pointCb.pointLightParams[index].diffuseColor = data.diffuseColor; //Col4(1.0f, 0.0f, 0.0f,1.0f); //
+				pointCb.pointLightParams[index].specularColor = data.specularColor;
+				pointCb.pointLightParams[index].position = data.position;
+				pointCb.pointLightParams[index].power = data.power;
 
 				index++;
 			}
