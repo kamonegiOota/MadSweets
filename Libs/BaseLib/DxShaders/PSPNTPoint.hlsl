@@ -104,7 +104,7 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		float3 worldNormal = normalize(pin.NormalWS);
 		ColorPair lightResult = ComputeLights(eyeVector, worldNormal, Activeflags.x);
 		
-        diffuse_total += float4(lightResult.Diffuse.r, lightResult.Diffuse.g, lightResult.Diffuse.b, 1);
+        diffuse_total += float4(lightResult.Diffuse.r, lightResult.Diffuse.g, lightResult.Diffuse.b, 1.0f);
 		
 		color *= diffuse_total;
 		ApplyFog(color, pin.PositionWS.w);
