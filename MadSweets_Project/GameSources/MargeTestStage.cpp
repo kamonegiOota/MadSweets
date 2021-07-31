@@ -58,11 +58,6 @@ namespace basecross {
 			//light.m_Directional = Vec3(0.0f);
 			light.m_SpecularColor = Col4(0.1f);
 		}
-
-		//return;
-		//auto light = PtrMultiLight->GetLight(0);
-		//light.m_DiffuseColor = Col4(0.01f);
-		//light.m_SpecularColor = Col4(0.01f);
 	}
 
 	void MargeTestStage::OnCreate() {
