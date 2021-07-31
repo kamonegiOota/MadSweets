@@ -36,6 +36,26 @@ namespace basecross {
 
 	};
 
+	class PointLightComp : public Component
+	{
+		PointLight m_light;
+
+	public:
+		PointLightComp(const std::shared_ptr<GameObject>& objPtr)
+			:Component(objPtr),m_light(PointLight())
+		{}
+
+		void OnCreate() override {}
+		void OnUpdate() override {
+			m_light.m_position = transform->GetPosition();
+		}
+
+		//アクセッサ---------------------------------------------------------
+		PointLight GetLight() const {
+			return m_light;
+		}
+	};
+
 }
 
 //endbasecorss
