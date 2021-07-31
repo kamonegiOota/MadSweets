@@ -84,7 +84,6 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		//減衰値
 		//将来的にはコンスタントバッファを利用して受け取りたい
 		float4 Attenuation = float4(0.5f, 0.5f, 0.5f, 0.5f);
-		//float power[3] = { PointLightPower.x, PointLightPower.y, PointLightPower.z };
 		float4 diffuse_total = float4(0, 0, 0, 0);
 
 		for (int i = 0; i < UsePointLight; i++) {
@@ -92,7 +91,7 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 			float len = length(dir);
 			//float attenuation = 1.0f / (Attenuation.x * len * len);
 			float attenuation = saturate(1.0f / (Attenuation.x + Attenuation.y * len + Attenuation.z * len * len));
-
+			
 			diffuse_total += PointLights[i].diffuse * //float4(LightDiffuseColor[i], 1.0f) *
 				pin.Diffuse * attenuation * PointLights[i].power; //* power[i]; //* 2.0f;// * power[i];// * power[i]; //* power[i];// * PointLightPower[i]; //* power[i]
 		}
