@@ -28,6 +28,8 @@
 #include "AstarCtrl.h"
 #include "MTestEnemyObject.h"
 
+#include "PointLight.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -93,6 +95,9 @@ namespace basecross {
 
 			//êHÇ◊ï®ÇÃê∂ê¨
 			CreateEatItems();
+
+			//ÉâÉCÉgÇÃê∂ê¨
+			CreatePointLight();
 
 			//AddGameObject<MTestEnemyObject>();
 
@@ -237,6 +242,21 @@ namespace basecross {
 			auto item = Instantiate<TestEatenObject>(pos,Quat());
 			item->GetComponent<Collision>()->SetAfterCollision(AfterCollision::None);
 			//item->GetComponent<Collision>()->AddExcludeCollisionGameObject(enemy);
+		}
+	}
+
+	void MargeTestStage::CreatePointLight() {
+		
+		Vec3 positions[] = {
+			{-12.0f,1.5f,-12.0f},
+			{0.0f,0.0f,0.0f},
+			
+		};
+
+		constexpr int num = 1;
+		for (int i = 0; i < num; i++) {
+			auto obj = Instantiate<GameObject>(positions[i],Quat());
+			obj->AddComponent<PointLightComp>();
 		}
 	}
 }
