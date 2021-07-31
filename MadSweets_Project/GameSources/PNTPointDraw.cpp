@@ -392,9 +392,10 @@ namespace basecross {
 
 				index++;
 			}
-
 			pointCb.usePointLightNum = index;  //使用するライトの数を指定する。
 
+
+			//ワールド系の情報を入れる。
 			pointCb.world = XMMatrixTranspose(world);
 
 			XMMATRIX worldInverse = XMMatrixInverse(nullptr, world);
@@ -402,7 +403,6 @@ namespace basecross {
 			pointCb.worldInverseTranspose[0] = worldInverse.r[0];
 			pointCb.worldInverseTranspose[1] = worldInverse.r[1];
 			pointCb.worldInverseTranspose[2] = worldInverse.r[2];
-
 
 			XMMATRIX viewInverse = XMMatrixInverse(nullptr, view);
 
