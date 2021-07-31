@@ -83,6 +83,7 @@ namespace basecross {
 			//ƒvƒŒƒCƒ„[‚Ì¶¬
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
+			player->AddComponent<PointLight>();
 			//player->RemoveComponent<CollisionCapsule>();
 			//player->AddComponent<CollisionObb>();
 			//player->SetDrawActive(false);
