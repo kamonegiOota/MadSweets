@@ -250,10 +250,9 @@ namespace basecross {
 		Vec3 positions[] = {
 			{-12.0f,1.5f,-12.0f},
 			{0.0f,0.0f,0.0f},
-			
 		};
 
-		constexpr int num = 1;
+		constexpr int num = 2;
 		for (int i = 0; i < num; i++) {
 			auto obj = Instantiate<GameObject>(positions[i],Quat());
 			obj->AddComponent<PointLightComp>();
