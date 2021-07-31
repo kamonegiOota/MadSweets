@@ -178,6 +178,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />

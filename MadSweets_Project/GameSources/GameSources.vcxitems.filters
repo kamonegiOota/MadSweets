@@ -956,6 +956,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp">
       <Filter>Maru\Light\PNTPointDraw</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp">
+      <Filter>Maru\Light\PointLight</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">
