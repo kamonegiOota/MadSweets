@@ -255,7 +255,7 @@ namespace basecross {
 		constexpr int num = 2;
 		for (int i = 0; i < num; i++) {
 			auto obj = Instantiate<GameObject>(positions[i],Quat());
-			obj->AddComponent<PointLightComp>();
+			obj->AddComponent<PointLight>();
 		}
 	}
 }
