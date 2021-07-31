@@ -248,13 +248,22 @@ namespace basecross {
 	void MargeTestStage::CreatePointLight() {
 		
 		Vec3 positions[] = {
-			{-12.0f,1.5f,-12.0f},
-			{0.0f,0.0f,0.0f},
+			//{-12.0f,1.5f,-12.0f},
+			//{0.0f,0.0f,0.0f},
+
+			{ +0.0f, +1.0f, +0.0f},//0
+			{-12.0f, +1.0f,-12.0f},
+			{+12.0f, +1.0f,-12.0f},//2
+			{+11.0f, +1.0f,+11.0f},
+			{ +0.0f, +1.0f,+12.0f},//4
+			{-10.0f, +1.0f,+12.0f},
+			{-12.0f, +1.0f, +7.0f},//6
+			{-12.0f, +1.0f, -6.0f},
 		};
 
-		constexpr int num = 2;
-		for (int i = 0; i < num; i++) {
-			auto obj = Instantiate<GameObject>(positions[i],Quat());
+		//constexpr int num = ;
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<GameObject>(pos,Quat());
 			obj->AddComponent<PointLight>();
 		}
 	}

@@ -8,6 +8,9 @@
 #include "Project.h"
 #include "FixedBox.h"
 
+#include "PointLight.h"
+#include "PNTPointDraw.h"
+
 namespace basecross {
 
     void FixedBox::OnCreate()
@@ -63,7 +66,8 @@ namespace basecross {
         }
 
         //描画コンポーネントの追加
-        auto PtrDraw = AddComponent<BcPNTStaticDraw>();
+        //auto PtrDraw = AddComponent<BcPNTStaticDraw>();
+        auto PtrDraw = AddComponent<PNTPointDraw>();
         //PtrDraw->SetMeshResource(L"DEFAULT_CUBE");
         PtrDraw->CreateOriginalMesh(vertices, indices);
 
