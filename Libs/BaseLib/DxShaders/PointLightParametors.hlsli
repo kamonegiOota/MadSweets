@@ -41,7 +41,7 @@ cbuffer PointLightParameters : register(b0)
     float4x4 LightProjection        : packoffset(c33);
 
     int UsePointLight : packoffset(c37);
-    TestParam PointLightPositions[256] : packoffset(c38);
+    PointLightParam PointLights[256] : packoffset(c38);
 
-    float4x3 Bones[72] : packoffset(c294);
+    float4x3 Bones[72] : packoffset(c1062);
 };
