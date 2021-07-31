@@ -972,7 +972,7 @@
     <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLightParametors.hlsli">
       <Filter>Maru\Light\MyShader</Filter>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)PointLighting.hlsli">
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLighting.hlsli">
       <Filter>Maru\Light\MyShader</Filter>
     </None>
   </ItemGroup>
