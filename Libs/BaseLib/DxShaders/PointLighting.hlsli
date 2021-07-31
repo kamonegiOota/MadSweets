@@ -1,4 +1,5 @@
 
+#include "PointLightParametors.hlsli"
 
 //平行ライトの計算
 float4 ComputeParallelLightDiffuse(const float3 selfNormalWS,const float numLight)

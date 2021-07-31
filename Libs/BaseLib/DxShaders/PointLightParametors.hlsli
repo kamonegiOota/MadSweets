@@ -1,6 +1,10 @@
+
+//インクルードガード
+#ifndef __PointLightParametors_HLSL__ 
+#define __PointLightParametors_HLSL__ 
+
 Texture2D<float4> Texture : register(t0);
 sampler Sampler : register(s0);
-
 
 struct PointLightParam {
     float4 diffuse : COLOR0;
@@ -45,3 +49,5 @@ cbuffer PointLightParameters : register(b0)
 
     float4x3 Bones[72] : packoffset(c1062);
 };
+
+#endif // __PointLightParametors_HLSL__ 
