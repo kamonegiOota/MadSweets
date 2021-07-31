@@ -87,8 +87,8 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		//float power[3] = { PointLightPower.x, PointLightPower.y, PointLightPower.z };
 		float4 diffuse_total = float4(0, 0, 0, 0);
 
-		for (int i = 0; i < 1; i++) {
-			float3 dir = PointLightPositions[i].xyz - pin.PositionWS.xyz;
+		for (int i = 0; i < UsePointLight; i++) {
+			float3 dir = PointLightPositions[i].position.xyz - pin.PositionWS.xyz;
 			float len = length(dir);
 			//float attenuation = 1.0f / (Attenuation.x * len * len);
 			float attenuation = saturate(1.0f / (Attenuation.x + Attenuation.y * len + Attenuation.z * len * len));
