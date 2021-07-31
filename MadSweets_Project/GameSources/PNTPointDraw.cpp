@@ -362,6 +362,22 @@ namespace basecross {
 		//ライトの設定
 		if (IsLightingEnabled())
 		{
+			//平行ライト
+			if (pointCb.activeFlg.x == 1) {
+				pointCb.lightDirection[0] = GetLightDirection(0);
+				pointCb.lightDiffuseColor[0] = GetLightDiffuseColor(0);
+				pointCb.lightSpecularColor[0] = GetLightSpecularColor(0);
+			}
+			else {
+				for (int i = 0; i < GetMaxDirectionalLights(); i++) {
+					if (IsLightEnabled(i)) {
+						pointCb.lightDirection[i] = GetLightDirection(i);
+						pointCb.lightDiffuseColor[i] = GetLightDiffuseColor(i);
+						pointCb.lightSpecularColor[i] = GetLightSpecularColor(i);
+					}
+				}
+			}
+
 			//ポイントライトの取得
 			auto lights = maru::MyUtility::GetComponents<PointLight>();
 
