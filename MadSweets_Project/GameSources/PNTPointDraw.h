@@ -53,9 +53,6 @@ namespace basecross {
 		struct Impl;
 		unique_ptr<Impl> pImpl;
 
-		void DrawStatic2(const MeshPrimData& data);
-		void SetPointConstants(PointConstants& pointCb, const MeshPrimData& data);
-
 	public :
 		PNTPointDraw(const std::shared_ptr<GameObject>& objPtr);
 
@@ -64,6 +61,11 @@ namespace basecross {
 
 		void OnDraw() override;
 
+
+	private:
+		
+		void DrawStatic2(const MeshPrimData& data);
+		void SetPointConstants(PointConstants& pointCb, const MeshPrimData& data);
 	};
 
 }

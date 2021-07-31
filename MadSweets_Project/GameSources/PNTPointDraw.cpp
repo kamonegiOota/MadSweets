@@ -106,6 +106,73 @@ namespace basecross {
 
 
 
+
+
+	PNTPointDraw::PNTPointDraw(const std::shared_ptr<GameObject>& objPtr)
+		:BcBaseDraw(objPtr), pImpl(new Impl())
+	{}
+
+	void PNTPointDraw::OnCreate() {
+		SetLightingEnabled(true);
+		//マルチライトの設定
+		for (int i = 0; i < GetMaxDirectionalLights(); i++) {
+			SetLightEnabled(i, true);
+		}
+	}
+
+	void PNTPointDraw::OnDraw() {
+
+		if (GetGameObject()->GetAlphaActive()) {
+			if (!(GetBlendState() == BlendState::AlphaBlend || GetBlendState() == BlendState::Additive)) {
+				SetBlendState(BlendState::AlphaBlend);
+			}
+			SetRasterizerState(RasterizerState::DoubleDraw);
+		}
+		
+		//メッシュリソースの取得
+		auto PtrMeshResource = GetMeshResource();
+		if (PtrMeshResource) {
+			DrawStatic2(PtrMeshResource->GetMashData());
+
+			//シェーダの設定
+			if (IsPerPixelLighting()) {
+				//ピクセルライティング
+				//DrawStatic<VSPNTPoint, PSPNTPoint>(PtrMeshResource->GetMashData());
+			}
+			else {
+				//頂点ライティング
+				//DrawStatic<VSPNTPoint, PSPNTPoint>(PtrMeshResource->GetMashData());
+			}
+		}
+
+		//下は現状使っていない
+		return;
+
+		//マルチメッシュリソースの取得
+		auto PtrMultiMeshResource = GetMultiMeshResource();
+		if (PtrMultiMeshResource) {
+			size_t count = PtrMultiMeshResource->GetMeshVecCount();
+			auto& vec = PtrMultiMeshResource->GetMeshVec();
+			for (size_t i = 0; i < count; i++) {
+				if (GetMultiMeshIsDraw(i)) {
+					//シェーダの設定
+					if (IsPerPixelLighting()) {
+						//ピクセルライティング
+						DrawStatic<VSPNTPoint, PSPNTPoint>(vec[i]);
+					}
+					else {
+						//頂点ライティング
+						DrawStatic<VSPNTPoint, PSPNTPoint>(vec[i]);
+					}
+				}
+			}
+		}
+
+		//後始末
+		auto Dev = App::GetApp()->GetDeviceResources();
+		Dev->InitializeStates();
+	}
+
 	void PNTPointDraw::DrawStatic2(const MeshPrimData& data) {
 		auto Dev = App::GetApp()->GetDeviceResources();
 		auto pD3D11DeviceContext = Dev->GetD3DDeviceContext();
@@ -127,8 +194,8 @@ namespace basecross {
 		//個別処理
 		PointConstants pointCb;  //使用するバッファによって変わる
 		//コンスタントバッファの作成
-			SetPointConstants(pointCb, data);  //これそもそも書き換える
-			//テクスチャ
+		SetPointConstants(pointCb, data);  //これそもそも書き換える
+		//テクスチャ
 		auto shTex = GetTextureResource();
 		if (shTex) {
 			//テクスチャがある
@@ -146,9 +213,9 @@ namespace basecross {
 		}
 		//コンスタントバッファの更新
 		//バッファの三洋は変わる
-		pD3D11DeviceContext->UpdateSubresource(CBBasic::GetPtr()->GetBuffer(), 0, nullptr, &pointCb, 0, 0);
+		pD3D11DeviceContext->UpdateSubresource(PointBuffer::GetPtr()->GetBuffer(), 0, nullptr, &pointCb, 0, 0);
 		//コンスタントバッファの設定
-		ID3D11Buffer* pConstantBuffer = CBBasic::GetPtr()->GetBuffer();
+		ID3D11Buffer* pConstantBuffer = PointBuffer::GetPtr()->GetBuffer();
 		ID3D11Buffer* pNullConstantBuffer = nullptr;
 		//頂点シェーダに渡す
 		pD3D11DeviceContext->VSSetConstantBuffers(0, 1, &pConstantBuffer);
@@ -225,7 +292,7 @@ namespace basecross {
 		//後始末
 		//Dev->InitializeStates();
 	}
-	
+
 
 	//引数が自分で生成したコンスタントバッファ用のコンストラクトに変える。
 	void PNTPointDraw::SetPointConstants(PointConstants& pointCb, const MeshPrimData& data) {
@@ -295,21 +362,6 @@ namespace basecross {
 		//ライトの設定
 		if (IsLightingEnabled())
 		{
-			//if (pointCb.activeFlg.x == 1) {
-			//	pointCb.lightDirection[0] = GetLightDirection(0);
-			//	pointCb.lightDiffuseColor[0] = GetLightDiffuseColor(0);
-			//	pointCb.lightSpecularColor[0] = GetLightSpecularColor(0);
-			//}
-			//else {
-			//	for (int i = 0; i < GetMaxDirectionalLights(); i++) {
-			//		if (IsLightEnabled(i)) {
-			//			pointCb.lightDirection[i] = GetLightDirection(i);
-			//			pointCb.lightDiffuseColor[i] = GetLightDiffuseColor(i);
-			//			pointCb.lightSpecularColor[i] = GetLightSpecularColor(i);
-			//		}
-			//	}
-			//}
-
 			//ポイントライトの取得
 			auto lights = maru::MyUtility::GetComponents<PointLight>();
 
@@ -317,16 +369,6 @@ namespace basecross {
 			for (auto& light : lights) {
 				auto data = light->GetParametor();
 
-				//pointCb.poitnLightParam[index].m_Directional = data.m_Directional;
-				//pointCb.poitnLightParam[index].m_DiffuseColor = data.m_DiffuseColor;
-				//pointCb.poitnLightParam[index].m_SpecularColor = data.m_SpecularColor;
-				//pointCb.poitnLightParam[index].position = data.m_position;
-				//pointCb.poitnLightParam[index].power = data.m_power;
-				//pointCb.poitnLightParam[index].isActive = true;
-
-				//pointCb.lightDirection[index] = data.m_Directional;
-				//pointCb.lightDiffuseColor[index] = data.m_DiffuseColor; //Col4(1.0f, 0.0f, 0.0f,1.0f); //
-				//pointCb.lightSpecularColor[index] = data.m_SpecularColor;
 				pointCb.pointLightParams[index].diffuseColor = data.diffuseColor; //Col4(1.0f, 0.0f, 0.0f,1.0f); //
 				pointCb.pointLightParams[index].specularColor = data.specularColor;
 				pointCb.pointLightParams[index].position = data.position;
@@ -335,11 +377,7 @@ namespace basecross {
 				index++;
 			}
 
-			pointCb.usePointLightNum = index;
-
-			//for (int i = index; i < 256; i++) {
-			//	pointCb.poitnLightParam[i].isActive = false;
-			//}
+			pointCb.usePointLightNum = index;  //使用するライトの数を指定する。
 
 			pointCb.world = XMMatrixTranspose(world);
 
@@ -376,18 +414,18 @@ namespace basecross {
 
 		//影用
 		if (GetOwnShadowActive()) {
-			bsm::Vec3 CalcLightDir(StageLight.m_Directional * -1.0);
-			bsm::Vec3 LightAt(CameraPtr->GetAt());
-			bsm::Vec3 LightEye(CalcLightDir);
+			Vec3 CalcLightDir(StageLight.m_Directional * -1.0);
+			Vec3 LightAt(CameraPtr->GetAt());
+			Vec3 LightEye(CalcLightDir);
 			LightEye *= Shadowmap::GetLightHeight();
 			LightEye = LightAt + LightEye;
-			bsm::Vec4 LightEye4(LightEye, 1.0f);
+			Vec4 LightEye4(LightEye, 1.0f);
 			LightEye4.w = 1.0f;
 			pointCb.lightPos = LightEye4;
-			bsm::Vec4 eyePos4(CameraPtr->GetEye(), 1.0f);
+			Vec4 eyePos4(CameraPtr->GetEye(), 1.0f);
 			eyePos4.w = 1.0f;
 			pointCb.eyePos = eyePos4;
-			bsm::Mat4x4 LightView, LightProj;
+			Mat4x4 LightView, LightProj;
 			//ライトのビューと射影を計算
 			LightView = XMMatrixLookAtLH(LightEye, LightAt, bsm::Vec3(0, 1.0f, 0));
 			LightProj = XMMatrixOrthographicLH(Shadowmap::GetViewWidth(), Shadowmap::GetViewHeight(),
@@ -428,75 +466,6 @@ namespace basecross {
 		//}
 	}
 
-
-	PNTPointDraw::PNTPointDraw(const std::shared_ptr<GameObject>& objPtr)
-		:BcBaseDraw(objPtr), pImpl(new Impl())
-	{}
-
-	void PNTPointDraw::OnCreate() {
-		SetLightingEnabled(true);
-		//マルチライトの設定
-		for (int i = 0; i < GetMaxDirectionalLights(); i++) {
-			SetLightEnabled(i, true);
-		}
-
-		return;
-		//仮実装
-		for (int i = 0; i < 256; i++) {
-			
-		}
-	}
-
-	void PNTPointDraw::OnDraw() {
-
-		if (GetGameObject()->GetAlphaActive()) {
-			if (!(GetBlendState() == BlendState::AlphaBlend || GetBlendState() == BlendState::Additive)) {
-				SetBlendState(BlendState::AlphaBlend);
-			}
-			SetRasterizerState(RasterizerState::DoubleDraw);
-		}
-		
-		//メッシュリソースの取得
-		auto PtrMeshResource = GetMeshResource();
-		if (PtrMeshResource) {
-			DrawStatic2(PtrMeshResource->GetMashData());
-
-			//シェーダの設定
-			if (IsPerPixelLighting()) {
-				//ピクセルライティング
-				//DrawStatic<VSPNTPoint, PSPNTPoint>(PtrMeshResource->GetMashData());
-			}
-			else {
-				//頂点ライティング
-				//DrawStatic<VSPNTPoint, PSPNTPoint>(PtrMeshResource->GetMashData());
-			}
-		}
-
-		return;
-		//マルチメッシュリソースの取得
-		auto PtrMultiMeshResource = GetMultiMeshResource();
-		if (PtrMultiMeshResource) {
-			size_t count = PtrMultiMeshResource->GetMeshVecCount();
-			auto& vec = PtrMultiMeshResource->GetMeshVec();
-			for (size_t i = 0; i < count; i++) {
-				if (GetMultiMeshIsDraw(i)) {
-					//シェーダの設定
-					if (IsPerPixelLighting()) {
-						//ピクセルライティング
-						DrawStatic<VSPNTPoint, PSPNTPoint>(vec[i]);
-					}
-					else {
-						//頂点ライティング
-						DrawStatic<VSPNTPoint, PSPNTPoint>(vec[i]);
-					}
-				}
-			}
-		}
-
-		//後始末
-		auto Dev = App::GetApp()->GetDeviceResources();
-		Dev->InitializeStates();
-	}
 
 }
 
