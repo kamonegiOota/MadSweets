@@ -92,6 +92,25 @@ namespace basecross {
 				return returnObjs;
 			}
 
+			template<class T>
+			static vector<shared_ptr<T>> GetComponents() {
+				auto& app = App::GetApp();
+				auto scene = app->GetScene<Scene>();
+				auto stage = scene->GetActiveStage();
+
+				vector<shared_ptr<T>> returnObjs;
+
+				auto objs = stage->GetGameObjectVec();
+				for (auto& obj : objs) {
+					auto t = obj->GetComponent<T>(false);
+					if (t) {
+						returnObjs.push_back(t);
+					}
+				}
+
+				return returnObjs;
+			}
+
 		};
 	}
 
