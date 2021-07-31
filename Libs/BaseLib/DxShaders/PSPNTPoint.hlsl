@@ -89,7 +89,8 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		for (int i = 0; i < UsePointLight; i++) {
 			float3 dir = PointLights[i].position.xyz - pin.PositionWS.xyz;
 			float len = length(dir);
-			//float attenuation = 1.0f / (Attenuation.x * len * len);
+			
+			//float diffuse = saturate(dot(normalize(pin.NormalWS.xyz), dir));
 			float attenuation = saturate(1.0f / (Attenuation.x + Attenuation.y * len + Attenuation.z * len * len));
 			
 			diffuse_total += PointLights[i].diffuse * //float4(LightDiffuseColor[i], 1.0f) *
@@ -98,15 +99,6 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 
 		color *= diffuse_total;
 		ApplyFog(color, pin.PositionWS.w);
-
-		//float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-		//float3 worldNormal = normalize(pin.NormalWS);
-		//ColorPair lightResult = ComputeLights(eyeVector, worldNormal, Activeflags.x);
-
-		//color.rgb *= lightResult.Diffuse;
-
-		//AddSpecular(color, lightResult.Specular);
-		//ApplyFog(color, pin.PositionWS.w);
 	}
 	else {
 		ApplyFog(color, pin.PositionWS.w);
