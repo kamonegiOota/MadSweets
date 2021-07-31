@@ -311,11 +311,11 @@ namespace basecross {
 			//}
 
 			//ポイントライトの取得
-			auto lights = maru::MyUtility::GetComponents<PointLightComp>();
+			auto lights = maru::MyUtility::GetComponents<PointLight>();
 
 			auto index = 0;
 			for (auto& light : lights) {
-				auto data = light->GetLight();
+				auto data = light->GetParametor();
 
 				//pointCb.poitnLightParam[index].m_Directional = data.m_Directional;
 				//pointCb.poitnLightParam[index].m_DiffuseColor = data.m_DiffuseColor;
@@ -335,7 +335,7 @@ namespace basecross {
 				index++;
 			}
 
-			pointCb.usePointLightNum = 2;
+			pointCb.usePointLightNum = index;
 
 			//for (int i = index; i < 256; i++) {
 			//	pointCb.poitnLightParam[i].isActive = false;
