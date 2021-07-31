@@ -216,5 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLightParametors.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)PointLighting.hlsli" />
   </ItemGroup>
 </Project>
