@@ -54,9 +54,9 @@ namespace basecross {
 		//ÉâÉCÉgÇÃê›íË
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.0f);
+			light.m_DiffuseColor = Col4(0.1f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.0f);
+			light.m_SpecularColor = Col4(0.1f);
 		}
 
 		//return;
