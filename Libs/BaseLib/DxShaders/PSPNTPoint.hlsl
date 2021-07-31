@@ -87,6 +87,7 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		float4 Attenuation = float4(1.0f, 1.0f, 1.0f, 1.0f);
 		float4 diffuse_total = float4(0, 0, 0, 0);
 
+		//ポイントライトの計算
 		for (int i = 0; i < UsePointLight; i++) {
 			float3 dir = PointLights[i].position.xyz - pin.PositionWS.xyz;
 			float len = length(dir);
@@ -98,8 +99,13 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 				DiffuseColor * attenuation * PointLights[i].power; //本来は DiffuseColor == pin.Diffuse
 		}
 		
+		//平行ライト
+		float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
+		float3 worldNormal = normalize(pin.NormalWS);
+		ColorPair lightResult = ComputeLights(eyeVector, worldNormal, Activeflags.x);
 		
-
+        diffuse_total += float4(lightResult.Diffuse.r, lightResult.Diffuse.g, lightResult.Diffuse.b, 1);
+		
 		color *= diffuse_total;
 		ApplyFog(color, pin.PositionWS.w);
 	}
