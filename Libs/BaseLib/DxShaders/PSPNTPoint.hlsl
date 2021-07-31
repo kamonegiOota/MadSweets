@@ -71,6 +71,7 @@ struct PSIntpuPixelPointLightingTx
 
 // Pixel shader: pixel lighting + texture.
 // PSBasicPixelLightingTx
+
 float4 main(PSInputPixelLightingTx pin) : SV_Target0
 {
 
@@ -83,7 +84,7 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 	if (Activeflags.x > 0) {
 		//減衰値
 		//将来的にはコンスタントバッファを利用して受け取りたい
-		float4 Attenuation = float4(0.5f, 0.5f, 0.5f, 0.5f);
+		float4 Attenuation = float4(1.0f, 1.0f, 1.0f, 1.0f);
 		float4 diffuse_total = float4(0, 0, 0, 0);
 
 		for (int i = 0; i < UsePointLight; i++) {
@@ -94,8 +95,10 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 			float attenuation = saturate(1.0f / (Attenuation.x + Attenuation.y * len + Attenuation.z * len * len));
 			
 			diffuse_total += PointLights[i].diffuse * //float4(LightDiffuseColor[i], 1.0f) *
-				pin.Diffuse * attenuation * PointLights[i].power; //* power[i]; //* 2.0f;// * power[i];// * power[i]; //* power[i];// * PointLightPower[i]; //* power[i]
+				DiffuseColor * attenuation * PointLights[i].power; //本来は DiffuseColor == pin.Diffuse
 		}
+		
+		
 
 		color *= diffuse_total;
 		ApplyFog(color, pin.PositionWS.w);

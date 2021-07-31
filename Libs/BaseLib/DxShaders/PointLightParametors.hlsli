@@ -3,8 +3,8 @@ sampler Sampler : register(s0);
 
 
 struct PointLightParam {
-    float4 diffuse;
-    float4 specular;
+    float4 diffuse : COLOR0;
+    float4 specular : COLOR1;
     float4 position : SV_Position;
     float4 power;
 };
