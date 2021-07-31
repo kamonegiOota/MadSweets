@@ -100,11 +100,24 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 		}
 		
 		//平行ライト
-		float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-		float3 worldNormal = normalize(pin.NormalWS);
-		ColorPair lightResult = ComputeLights(eyeVector, worldNormal, Activeflags.x);
+		//float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
+		//float3 worldNormal = normalize(pin.NormalWS);
+		//ColorPair lightResult = ComputeLights(eyeVector, worldNormal, Activeflags.x);
 		
-        diffuse_total += float4(lightResult.Diffuse.r, lightResult.Diffuse.g, lightResult.Diffuse.b, 1.0f);
+        //diffuse_total += float4(lightResult.Diffuse.r, lightResult.Diffuse.g, lightResult.Diffuse.b, 1.0f);
+		
+		//平行ライト
+        float3 nor = mul(pin.NormalWS, World).xyz;
+        nor = normalize(nor);
+		
+        for (int i = 0; i < Activeflags.x; i++)
+        {
+            float3 col = saturate(dot(nor, (float3) LightDirection[i]));
+            float3 tempCol = col * LightDiffuseColor[i] * LightSpecularColor[i];
+            diffuse_total += float4(tempCol.xyz, 1);
+        }
+		
+        //diffuse_total += float4(col.xyz,1);
 		
 		color *= diffuse_total;
 		ApplyFog(color, pin.PositionWS.w);
