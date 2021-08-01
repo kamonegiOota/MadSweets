@@ -8,6 +8,7 @@
 #include "PlowlingMove.h"
 #include "EnemyRotationCtrl.h"
 #include "Velocity.h"
+#include "AstarCtrl.h"
 
 #include "UtilVelocity.h"
 
@@ -45,25 +46,33 @@ namespace basecross {
 	}
 
 	void PlowlingMove::Move() {
-		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
-		if (!velocityComp) {
-			return;
-		}
 
-		auto delta = App::GetApp()->GetElapsedTime();
-		auto moveVec = CalucMoveVec();
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+		astar->UpdateVelocityMove(m_maxSpeed, m_nearRange);
 
-		//実際の速度の計算
-		auto velocity = velocityComp->GetVelocity();
-		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, m_maxSpeed, m_nearRange);
-
-		velocityComp->SetForce(force);
-
-		Rotation(moveVec);
-
-		if (IsNearArrival(transform->GetPosition())) {   //目的地に到達していたら
+		if (astar->IsRouteEnd()) {
 			NextIndex();
 		}
+
+		//auto velocityComp = GetGameObject()->GetComponent<Velocity>();
+		//if (!velocityComp) {
+		//	return;
+		//}
+
+		//auto delta = App::GetApp()->GetElapsedTime();
+		//auto moveVec = CalucMoveVec();
+
+		////実際の速度の計算
+		//auto velocity = velocityComp->GetVelocity();
+		//auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, m_maxSpeed, m_nearRange);
+
+		//velocityComp->SetForce(force);
+
+		//Rotation(moveVec);
+
+		//if (IsNearArrival(transform->GetPosition())) {   //目的地に到達していたら
+		//	NextIndex();
+		//}
 	}
 
 	void PlowlingMove::Rotation(const Vec3& moveVec) {
@@ -86,12 +95,21 @@ namespace basecross {
 			m_addIndexDirect *= -1;  //カウントを進める方向を逆にする。
 			m_index += m_addIndexDirect;
 		}
+
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+		astar->SearchAstarStart(m_positions[m_index]);
+		//m_astar->SearchAstarStart(m_positions[m_index]);
+	}
+
+	void PlowlingMove::OnStart() {
+		//m_astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 	}
 
 	void PlowlingMove::OnUpdate() {
 		if (m_positions.size() == 0) {  //徘徊する場所がない場合は処理を行わない。
 			return;
 		}
+		
 
 		Move();
 	}
