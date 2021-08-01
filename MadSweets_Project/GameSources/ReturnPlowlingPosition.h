@@ -10,11 +10,12 @@
 #include "Project.h"
 
 #include "AstarCtrl.h"
+#include "BaseUseVelocity.h"
 
 namespace basecross {
 
 	//徘徊状態の場所まで戻るコンポーンネント
-	class ReturnPlowlingPosition : public Component
+	class ReturnPlowlingPosition : public Component , public BaseUseVelocity
 	{
 		ex_weak_ptr<AstarCtrl> m_astar;
 		float m_speed;

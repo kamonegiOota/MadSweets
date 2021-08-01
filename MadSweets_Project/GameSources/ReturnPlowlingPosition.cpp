@@ -24,24 +24,27 @@ namespace basecross {
 	}
 
 	void ReturnPlowlingPosition::Move() {
-		auto delta = App::GetApp()->GetElapsedTime();
-		auto selfPos = transform->GetPosition();
-	 	auto nodePos = m_astar->GetCalucNodePos();
-
-		auto toVec = nodePos - selfPos;
-		selfPos += toVec.GetNormalized() * m_speed * delta;
-		transform->SetPosition(selfPos);
-
-		//auto velocity = GetGameObject()->GetComponent<Velocity>();
-		//if (velocity) {
-		//	velocity->AddForce(toVec);
-		//}
-
-		Rotation(toVec);
+		m_astar->UpdateVelocityMove(GetVelocityMaxSpeed(),GetNearRange());
 
 		if (m_astar->IsRouteEnd()) {
-			ChangeStateMachine();  //ステートの変更
+			ChangeStateMachine();
 		}
+
+		//return;
+
+		//auto delta = App::GetApp()->GetElapsedTime();
+		//auto selfPos = transform->GetPosition();
+		//	auto nodePos = m_astar->GetCalucNodePos();
+
+		//auto toVec = nodePos - selfPos;
+		//selfPos += toVec.GetNormalized() * m_speed * delta;
+		//transform->SetPosition(selfPos);
+
+		//Rotation(toVec);
+
+		//if (m_astar->IsRouteEnd()) {
+		//	ChangeStateMachine();  //ステートの変更
+		//}
 	}
 
 	void ReturnPlowlingPosition::Rotation(const Vec3& moveVec) {
