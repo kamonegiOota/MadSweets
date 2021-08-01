@@ -21,10 +21,10 @@ namespace basecross {
 
 		auto plow = obj->GetComponent<PlowlingMove>();
 
-		auto velocity = obj->GetComponent<Velocity>(false);
-		if (velocity) {
-			velocity->Reset();
-		}
+		//auto velocity = obj->GetComponent<Velocity>(false);
+		//if (velocity) {
+		//	velocity->Reset();
+		//}
 
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
 		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), true, false);
