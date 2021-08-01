@@ -16,13 +16,14 @@ namespace basecross {
 	{
 		int m_numCrack = 2;  //ヒビ割れる回数
 
+		void DestProcess();  //もう音が出ないときの処理
 		void SendListener();  //音を聞くものに送信
 		void MakeSound();  //音を出す処理
 		void Crack(); //ひび割れ
 
 	public:
 		SoundCookie(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+			:Component(objPtr),m_numCrack(2)
 		{}
 		
 		void OnCreate() override;
@@ -31,7 +32,13 @@ namespace basecross {
 		void OnCollisionEnter(std::shared_ptr<GameObject>& ohter) override;
 
 		//アクセッサ-----------------------------------------------------
-
+		//何回音が出るかをセットする。
+		void SetNumCrack(const float& num) {
+			m_numCrack = num;
+		}
+		float GetNumCrack() const {
+			return m_numCrack;
+		}
 
 	};
 

@@ -16,8 +16,15 @@
 
 #include "PNTPointDraw.h"
 
+#include "DebugObject.h"
+
 namespace basecross {
 
+	void SoundCookie::DestProcess() {
+		//–{—ˆ‚Í•²X‚Ìó‘Ô‚É‚·‚éB
+		GetGameObject()->SetUpdateActive(false);
+		GetGameObject()->SetDrawActive(false);
+	}
 
 	void SoundCookie::SendListener() {
 		auto ears = maru::MyUtility::GetComponents<EnemyEar>();
@@ -36,8 +43,9 @@ namespace basecross {
 	void SoundCookie::Crack() {
 		m_numCrack--;
 
-		if (m_numCrack < 0) {
+		if (m_numCrack <= 0) {
 			m_numCrack = 0;
+			DestProcess();
 		}
 	}
 
