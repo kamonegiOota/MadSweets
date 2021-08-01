@@ -133,9 +133,6 @@
     <Filter Include="Maru\Enemy\EnemyStateMachine">
       <UniqueIdentifier>{30be2354-38be-413d-82d9-8eef988daf03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\DebugObject">
-      <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Plowling">
       <UniqueIdentifier>{7894883d-bc8a-4d57-a199-3808bcd13059}</UniqueIdentifier>
     </Filter>
