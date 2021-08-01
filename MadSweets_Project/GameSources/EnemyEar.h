@@ -30,7 +30,6 @@ namespace basecross {
 
 		void SoundListen(const std::shared_ptr<GameObject>& target);  //音を聞く処理
 		void SoundListen(const Vec3& targetPos);
-
 		
 		//アクセッサ--------------------------------------------------------
 		void SetListenRange(const float& range) {
