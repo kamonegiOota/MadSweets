@@ -23,7 +23,7 @@ namespace basecross {
 	void ProbeAstarMove::OnStart() {
 		//Velocityを使うときの初期値を設定
 		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
-		BaseUseVelocity::SetNearRnage(10.0f);
+		BaseUseVelocity::SetNearRnage(15.0f);
 	}
 
 	void ProbeAstarMove::Move() {
@@ -33,22 +33,26 @@ namespace basecross {
 		if (!astar || !veloComp) {
 			return;
 		}
+
+		astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetNearRange());
 		
-		auto delta = App::GetApp()->GetElapsedTime();
+		//return;
 
-		auto selfPos = transform->GetPosition();
-		auto targetPos = astar->GetCalucNodePos();
+		//auto delta = App::GetApp()->GetElapsedTime();
 
-		if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、移動の処理をしない
-			return;
-		}
+		//auto selfPos = transform->GetPosition();
+		//auto targetPos = astar->GetCalucNodePos();
 
-		auto toVec = targetPos - selfPos;
-		auto velocity = veloComp->GetVelocity();
-		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, GetVelocityMaxSpeed(), GetNearRange()); //将来的に変数化
-		veloComp->SetForce(toVec);
+		//if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、移動の処理をしない
+		//	return;
+		//}
 
-		Rotation(toVec);
+		//auto toVec = targetPos - selfPos;
+		//auto velocity = veloComp->GetVelocity();
+		//auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, GetVelocityMaxSpeed(), GetNearRange()); //将来的に変数化
+		//veloComp->SetForce(toVec);
+
+		//Rotation(toVec);
 
 		//LookCheck();
 	}
