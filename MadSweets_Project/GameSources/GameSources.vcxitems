@@ -95,6 +95,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />

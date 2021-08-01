@@ -385,6 +385,12 @@
     <Filter Include="Maru\Light\MyShader">
       <UniqueIdentifier>{5a6b88eb-ae18-4b8e-aa98-bcb0184e3b6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Gimmick">
+      <UniqueIdentifier>{d76e2c6d-036c-4c5c-93ab-48e9ff4e14f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Gimmick\SoundCookie">
+      <UniqueIdentifier>{90f5726d-dd0f-4065-bf25-72e8c98a8222}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -696,6 +702,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h">
       <Filter>Maru\Light\PNTPointDraw</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h">
+      <Filter>Maru\Component\Gimmick\SoundCookie</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -958,6 +967,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp">
       <Filter>Maru\Light\PointLight</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp">
+      <Filter>Maru\Component\Gimmick\SoundCookie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
