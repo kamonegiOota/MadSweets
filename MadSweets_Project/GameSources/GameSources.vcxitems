@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
