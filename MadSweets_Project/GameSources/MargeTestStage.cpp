@@ -28,6 +28,7 @@
 #include "AstarCtrl.h"
 #include "MTestEnemyObject.h"
 #include "SoundCookieObject.h"
+#include "CrackCookieObject.h"
 
 #include "PointLight.h"
 
@@ -102,7 +103,8 @@ namespace basecross {
 			CreatePointLight();
 
 			//クッキーの生成
-			CreateCookies();
+			CreateSoundCookies();
+			CreateCrackCookies();
 
 			//AddGameObject<MTestEnemyObject>();
 
@@ -273,23 +275,24 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateCookies() {
+	void MargeTestStage::CreateSoundCookies() {
 		Vec3 positions[] = {
 			{-12.0f,1.0f,-12.0f},
-			//{0.0f,0.0f,0.0f},
-
-			//{ +0.0f, +1.0f, +0.0f},//0
-			//{-12.0f, +1.0f,-12.0f},
-			//{+12.0f, +1.0f,-12.0f},//2
-			//{+11.0f, +1.0f,+11.0f},
-			//{ +0.0f, +1.0f,+12.0f},//4
-			//{-10.0f, +1.0f,+12.0f},
-			//{-12.0f, +1.0f, +7.0f},//6
-			//{-12.0f, +1.0f, -6.0f},
 		};
 
 		for (const auto& pos : positions) {
 			auto obj = Instantiate<SoundCookieObject>(pos, Quat());
+			//obj->AddComponent<PointLight>();
+		}
+	}
+
+	void MargeTestStage::CreateCrackCookies() {
+		Vec3 positions[] = {
+			{13.0f,1.0f,12.0f},
+		};
+
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<CrackCookieObject>(pos, Quat());
 			//obj->AddComponent<PointLight>();
 		}
 	}

@@ -28,7 +28,8 @@ namespace basecross {
 		void CreateEnemy(const std::shared_ptr<GameObject>& player);
 		void CreateEatItems();
 		void CreatePointLight();
-		void CreateCookies();
+		void CreateSoundCookies();
+		void CreateCrackCookies();
 	};
 
 }
