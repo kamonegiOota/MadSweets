@@ -9,16 +9,27 @@
 #include "EnState_CheckSoundPos.h"
 #include "DebugObject.h"
 
+#include "CheckTargetPos.h"
 #include "TargetChase.h"
+#include "PlowlingMove.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
+
+#include "AstarCtrl.h"
 
 namespace basecross {
 
 	void EnState_CheckSoundPos::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
-		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(), false, false);
+		auto astar = obj->GetComponent<AstarCtrl>(false);
+		if (astar) {
+			astar->SearchAstarStart(m_targetPos);
+		}
+		
+		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), true, false);
+		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
+		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
 
 		StartChangeComps();
 
@@ -27,6 +38,7 @@ namespace basecross {
 			draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 
+		DebugObject::m_wss << L"Listen" << endl;
 	}
 
 	void EnState_CheckSoundPos::OnUpdate() {
