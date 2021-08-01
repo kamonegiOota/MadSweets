@@ -33,10 +33,10 @@ namespace basecross {
 
 		//アクセッサ-----------------------------------------------------
 		//何回音が出るかをセットする。
-		void SetNumCrack(const float& num) {
+		void SetNumCrack(const int& num) {
 			m_numCrack = num;
 		}
-		float GetNumCrack() const {
+		int GetNumCrack() const {
 			return m_numCrack;
 		}
 
