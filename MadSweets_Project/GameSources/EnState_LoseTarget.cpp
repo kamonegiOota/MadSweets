@@ -22,10 +22,10 @@ namespace basecross {
             returnPlow->StartReturn();
         }
 
-        auto velocity = obj->GetComponent<Velocity>();
-        if (velocity) {
-            velocity->Reset();
-        }
+        //auto velocity = obj->GetComponent<Velocity>();
+        //if (velocity) {
+        //    velocity->Reset();
+        //}
 
         AddChangeComp(returnPlow, true, false);
         AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
