@@ -28,6 +28,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookieObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
@@ -132,6 +134,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
@@ -193,6 +196,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookieObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />
