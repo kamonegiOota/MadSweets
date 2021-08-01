@@ -11,6 +11,7 @@
 #include "DebugObject.h"
 
 #include "PlowlingMove.h"
+#include "AstarPlowlingMove.h"
 #include "Velocity.h"
 
 namespace basecross {
@@ -26,6 +27,7 @@ namespace basecross {
 		}
 
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
+		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), true, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
 
 		StartChangeComps();

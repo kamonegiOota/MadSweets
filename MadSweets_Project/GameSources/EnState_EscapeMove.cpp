@@ -9,6 +9,7 @@
 #include "EnState_EscapeMove.h"
 
 #include "PlowlingMove.h"
+#include "AstarPlowlingMove.h"
 #include "TargetEscape.h"
 #include "AstarCtrl.h"
 
@@ -31,6 +32,7 @@ namespace basecross {
 		AddChangeComp(targetEscape, true, false);
 		AddChangeComp(astar, true, false);
 		AddChangeComp(obj->GetComponent<PlowlingMove>(), false, false);
+		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(), false, false);
 
 		StartChangeComps();
 
