@@ -406,6 +406,12 @@
     <Filter Include="Maru\Object\Gimmick\SoundCookieObject">
       <UniqueIdentifier>{21bb52dc-3dcf-4167-9ac5-79197cf3d9d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Gimmick\CrackCookie">
+      <UniqueIdentifier>{47bc8ffc-20d6-4e10-a1bf-1f00f8bdaa45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\Gimmick\CrackCookieObject">
+      <UniqueIdentifier>{ec74ff34-a5b3-4ac2-9b91-92a0b95ec260}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -732,6 +738,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookieObject.h">
       <Filter>Maru\Object\Gimmick\SoundCookieObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h">
+      <Filter>Maru\Component\Gimmick\CrackCookie</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h">
+      <Filter>Maru\Object\Gimmick\CrackCookieObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1009,6 +1021,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookieObject.cpp">
       <Filter>Maru\Object\Gimmick\SoundCookieObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp">
+      <Filter>Maru\Component\Gimmick\CrackCookie</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp">
+      <Filter>Maru\Object\Gimmick\CrackCookieObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
