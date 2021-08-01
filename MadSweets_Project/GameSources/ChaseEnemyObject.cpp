@@ -20,10 +20,19 @@
 #include "Velocity.h"
 #include "ProbeAstarMove.h"
 #include "PNTPointDraw.h"
+#include "AstarPlowlingMove.h"
 
 namespace basecross {
 
 	void ChaseEnemyObject::CreatePlowlingRoute() {
+
+		//PlowlingParam param;
+		//param.startPos = Vec3(0.0f, 1.0f, 0.0f);
+
+		//AddComponent<AstarPlowlingMove>();
+
+		//return;
+
 		std::vector<Vec3> poss = {
 			//{+0.0f ,+0.0f ,+0.0f},//0
 			//{+5.0f ,+0.0f ,+0.0f},
