@@ -56,7 +56,7 @@ namespace basecross {
 
 		velocity->AddForce(toVec);
 
-		Rotation(toVec);
+		Rotation(velo);
 
 		LostCheck();
 	}
@@ -83,14 +83,6 @@ namespace basecross {
 				}
 			}
 
-			//auto astar = obj->GetComponent<AstarCtrl>();
-			//if (astar) {
-			//	astar->SearchAstarForecastStart(m_target);
-			//	m_updateFunc = &TargetChase::LostMove;
-
-			//	//ƒeƒXƒgŽÀ‘•
-			//	obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
-			//}
 		}
 	}
 
