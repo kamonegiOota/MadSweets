@@ -9,21 +9,25 @@
 
 namespace basecross {
 
-	void EnemyEar::OnUpdate() {
+	bool EnemyEar::IsListenRnage(const Vec3& targetPos) {
+		auto toVec = targetPos - transform->GetPosition();
 
+		//•·‚±‚¦‚é”ÍˆÍ“à‚É‚¢‚½‚çtrue‚ğ•Ô‚·B
+		return toVec.length() < m_listenRange ? true : false;
 	}
 
 	void EnemyEar::SoundListen(const std::shared_ptr<GameObject>& target) {
-		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
-		if (m_astar) {
-			m_astar->SearchAstarStart(target);
-		}
+		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+
+		SoundListen(targetPos);
 	}
 
 	void EnemyEar::SoundListen(const Vec3& targetPos) {
-		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
-		if (m_astar) {
-			m_astar->SearchAstarStart(targetPos);
+		if (IsListenRnage(targetPos)) {  //•·‚±‚¦‚é”ÍˆÍ‚É‚¢‚é
+			auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+			if (astar) {
+				astar->SearchAstarStart(targetPos);
+			}
 		}
 	}
 }

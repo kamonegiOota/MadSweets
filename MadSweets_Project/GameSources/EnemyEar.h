@@ -16,18 +16,30 @@ namespace basecross {
 
 	class EnemyEar : public EarBase
 	{
-		ex_weak_ptr<AstarCtrl> m_astar;
+		float m_listenRange;  //聞こえる範囲
+
+		bool IsListenRnage(const Vec3& targetPos);  //聞こえる範囲かどうかを判断する。
 
 	public:
 		EnemyEar(const std::shared_ptr<GameObject>& objPtr)
-			:EarBase(objPtr)
+			:EarBase(objPtr),m_listenRange(10.0f)
 		{}
 
 		void OnCreate() override{}
-		void OnUpdate() override;
+		void OnUpdate() override{}
 
 		void SoundListen(const std::shared_ptr<GameObject>& target);  //音を聞く処理
 		void SoundListen(const Vec3& targetPos);
+
+		
+		//アクセッサ--------------------------------------------------------
+		void SetListenRange(const float& range) {
+			m_listenRange = range;
+		}
+		float GetListenRange() const {
+			return m_listenRange;
+		}
+
 	};
 
 }
