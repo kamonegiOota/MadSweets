@@ -14,6 +14,8 @@
 #include "MyUtility.h"
 #include "EnemyEar.h"
 
+#include "PNTPointDraw.h"
+
 namespace basecross {
 
 

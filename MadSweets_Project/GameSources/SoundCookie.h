@@ -14,7 +14,7 @@ namespace basecross {
 
 	class SoundCookie : public Component
 	{
-		int m_numCrack;  //ヒビ割れる回数
+		int m_numCrack = 2;  //ヒビ割れる回数
 
 		void SendListener();  //音を聞くものに送信
 		void MakeSound();  //音を出す処理
