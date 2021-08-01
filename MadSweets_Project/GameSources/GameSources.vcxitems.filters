@@ -394,6 +394,9 @@
     <Filter Include="Maru\Enemy\Component\Move\AstarPlowlingMove">
       <UniqueIdentifier>{84501501-e66b-491b-a329-f69def7541cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos">
+      <UniqueIdentifier>{9e76bf1d-16d0-4a15-aee8-ba7f96b8accd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -711,6 +714,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h">
       <Filter>Maru\Enemy\Component\Move\AstarPlowlingMove</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -979,6 +985,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp">
       <Filter>Maru\Enemy\Component\Move\AstarPlowlingMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

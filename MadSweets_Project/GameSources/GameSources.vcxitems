@@ -36,6 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
@@ -136,6 +137,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
