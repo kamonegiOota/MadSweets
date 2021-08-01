@@ -12,6 +12,7 @@
 #include "TargetChase.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
+#include "CheckTargetPos.h"
 
 namespace basecross {
 
@@ -23,6 +24,7 @@ namespace basecross {
 		}
 
 		AddChangeComp(chase, true, false);
+		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), false, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(),false,false);
 		
 		StartChangeComps();
