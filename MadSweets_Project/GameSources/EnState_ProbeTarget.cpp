@@ -18,8 +18,7 @@ namespace basecross {
 	void EnState_ProbTarget::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
-		//AddChangeComp(chase, true, false);
-		//AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(), false, false);
+
 
 		StartChangeComps();
 
