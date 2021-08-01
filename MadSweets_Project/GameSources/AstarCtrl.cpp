@@ -11,7 +11,18 @@
 #include "MTestBox.h"
 #include "CalucEscapeRoute.h"
 
+#include "Velocity.h"
+#include "UtilVelocity.h"
+#include "EnemyRotationCtrl.h"
+
 namespace basecross {
+
+	Vec3 AstarCtrl::CalucMoveVec() {
+		auto nodePos = m_astar.CalucTargetNode(GetGameObject());
+		auto toVec = nodePos - transform->GetPosition();
+
+		return toVec;
+	}
 
 	void AstarCtrl::UpdateMove() {
 		if (m_astar.IsRouteEnd()) { //ルートの最後まで来たら処理を止める。
@@ -28,16 +39,30 @@ namespace basecross {
 		transform->SetPosition(pos);
 	}
 
-	void AstarCtrl::OnCreate() {
-		//auto target = GetStage()->AddGameObject<MTestEnemyObject>();
-		//target->GetComponent<Transform>()->SetPosition(Vec3(5.0f,+5.0f,0.0f));
+	void AstarCtrl::UpdateVelocityMove(const float& maxSpeed, const float& nearRange) {
+		if (m_astar.IsRouteEnd()) {
+			return;
+		}
 
-		//transform->SetPosition(Vec3(-5.0f, 0.0f, 0.0f));
-		//m_astar.SearchAstarStart(GetGameObject(),target);
+		auto moveVec = CalucMoveVec();
+
+		//スピードの加算
+		auto veloComp = GetGameObject()->GetComponent<Velocity>(false);
+		if (veloComp) {
+			auto velocity = veloComp->GetVelocity();
+			auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, maxSpeed, nearRange);
+			veloComp->SetForce(force);
+		}
+
+		//向きの調整
+		auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotation) {
+			rotation->SetDirect(veloComp->GetVelocity());
+		}
 	}
 
-	void AstarCtrl::OnUpdate() {
-		//Move();
+	void AstarCtrl::OnCreate() {
+
 	}
 
 	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target) {

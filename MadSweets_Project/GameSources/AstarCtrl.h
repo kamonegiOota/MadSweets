@@ -15,6 +15,8 @@ namespace basecross {
 
 		float m_speed;
 
+		Vec3 CalucMoveVec();
+
 	public:
 		AstarCtrl(const std::shared_ptr<GameObject>& objPtr,
 			const GraphAstar& astar
@@ -25,10 +27,11 @@ namespace basecross {
 		{}
 
 		void OnCreate() override;
-		void OnUpdate() override;
-		void OnDraw() override {};
+		void OnUpdate() override{}
+		void OnDraw() override {}
 
 		void UpdateMove();
+		void UpdateVelocityMove(const float& maxSpeedd, const float& nearRange = 3.0f);
 
 		//アクセッサ-------------------------------------------------------------
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
@@ -56,7 +59,6 @@ namespace basecross {
 		void SetSpeed(const float& speed) {
 			m_speed = speed;
 		}
-
 		float GetSpeed() const {
 			return m_speed;
 		}
