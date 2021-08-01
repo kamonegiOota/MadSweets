@@ -50,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ForwardLookAtCameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
