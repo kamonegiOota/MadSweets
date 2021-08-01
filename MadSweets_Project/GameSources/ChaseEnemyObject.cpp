@@ -21,6 +21,8 @@
 #include "ProbeAstarMove.h"
 #include "PNTPointDraw.h"
 #include "AstarPlowlingMove.h"
+#include "EnemyEar.h"
+#include "CheckTargetPos.h"
 
 namespace basecross {
 
@@ -70,6 +72,8 @@ namespace basecross {
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
 		AddComponent<ProbeAstarMove>();
+		AddComponent<EnemyEar>();   //Ž¨
+		AddComponent<CheckTargetPos>();
 		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();
