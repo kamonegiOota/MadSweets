@@ -10,11 +10,7 @@ namespace basecross
 
 		float m_searchRange;
 
-		template<class T>
-		bool IsContains(const std::vector<T>& vector,const T& item) const
-		{
-			return std::find(vector.begin(), vector.end(), item) != vector.end();
-		}
+		bool m_isLocked = false;
 
 	public:
 		PlayerChoicesManager(std::shared_ptr<GameObject>& owner);
