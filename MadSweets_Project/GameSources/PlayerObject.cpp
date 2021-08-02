@@ -12,6 +12,7 @@
 #include"ForwardLookAtCameraComponent.h"
 #include"ChasingTarget.h"
 #include"SoundHelper.h"
+#include"PlayerHideManager.h"
 
 #include<x3daudio.h>
 
@@ -63,6 +64,8 @@ namespace basecross
 
 		auto choiceManager = AddComponent<PlayerChoicesManager>();
 		choiceManager->SetSearchRange(2.0f);
+
+		AddComponent<PlayerHideManager>();
 	}
 
 	void PlayerObject::OnUpdate()
