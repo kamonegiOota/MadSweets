@@ -99,5 +99,4 @@ namespace basecross
 
 		transform->SetForward(moveVector);
 	}
-
 }
