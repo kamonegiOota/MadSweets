@@ -4,6 +4,7 @@
 #include"TestEatenObject.h"
 #include"FontHelper.h"
 #include"SoundHelper.h"
+#include"HiddenComponent.h"
 
 namespace basecross
 {
@@ -114,18 +115,7 @@ namespace basecross
 		collision->SetFixed(true);
 		gameobject->AddTag(L"Wall");
 
-		float length = 0;
-		Vec3 kakarot;
-
-		bool ba =  HitTest::RAY_OBB(Vec3(12, 0, -12), Vec3(-1, 0, 0), collision->GetObb(), length, kakarot);
-
-		auto mat = collision->GetObb().GetRotMatrix();
-		auto vec = Vec3(1, 1, 0) * mat;
-
-		mat.inverse();
-		vec *= mat;
-
-		int asdfadsf = 0;
+		gameobject->AddComponent<HiddenComponent>(trans->GetWorldPosition(), trans->GetForword());
 		//gameobject = Instantiate<GameObject>();
 		//trans = gameobject->GetComponent<Transform>();
 		//trans->SetScale(1, 5, 5);
