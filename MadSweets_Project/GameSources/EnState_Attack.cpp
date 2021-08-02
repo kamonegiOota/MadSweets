@@ -32,7 +32,7 @@ namespace basecross {
 
 		StartChangeComps();
 
-		auto draw = obj->GetComponent<SmBaseDraw>(false);
+		auto draw = obj->GetComponent<BcBaseDraw>(false);
 		if (draw) {
 			draw->SetDiffuse(Col4(1.0f, 1.0f, 0.0f, 1.0f));
 		}
