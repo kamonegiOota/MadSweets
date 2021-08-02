@@ -28,8 +28,9 @@ namespace basecross
 		return m_eatenData;
 	}
 
-	ChoicesObjectAndEvent EatenComponent::GetChoicesObjectAndEvent(std::shared_ptr<GameObject>& selectorObject) const
+	std::shared_ptr<ChoicesObjectAndEvent const> EatenComponent::GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject)
 	{
+
 		auto weightManager = selectorObject->GetComponent<PlayerWeightManager>(false);
 
 		std::function<void()> eventFunction = []() {};
@@ -46,6 +47,15 @@ namespace basecross
 			};
 		}
 
-		return ChoicesObjectAndEvent(L"êHÇ◊ÇÈ", GetGameObject(), eventFunction);
+		if (m_choiceObjectAndEventPtr)
+		{
+			m_choiceObjectAndEventPtr->eventFunction = eventFunction;
+			return m_choiceObjectAndEventPtr;
+		}
+
+
+		m_choiceObjectAndEventPtr = std::make_shared<ChoicesObjectAndEvent>(ChoicesObjectAndEvent(L"êHÇ◊ÇÈ", GetGameObject(), eventFunction));
+
+		return m_choiceObjectAndEventPtr;
 	}
 }

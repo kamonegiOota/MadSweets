@@ -9,9 +9,8 @@ namespace basecross
 		ChoicesComponentBase(std::shared_ptr<GameObject>& owner) :
 			Component(owner)
 		{
-
 		}
 
-		virtual ChoicesObjectAndEvent GetChoicesObjectAndEvent(std::shared_ptr<GameObject>& selectorObject) const = 0;
+		virtual std::shared_ptr<ChoicesObjectAndEvent const> GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject) = 0;
 	};
 }

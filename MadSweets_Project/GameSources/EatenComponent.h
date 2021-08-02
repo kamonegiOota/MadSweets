@@ -17,13 +17,13 @@ namespace basecross
 	class EatenComponent : public ChoicesComponentBase
 	{
 		EatenData m_eatenData;
+
+		std::shared_ptr<ChoicesObjectAndEvent> m_choiceObjectAndEventPtr;
 	public:
 		EatenComponent(std::shared_ptr<GameObject>& owner,const EatenData& eatenData);
 
 		EatenData GetEatenData() const;
 
-		ChoicesObjectAndEvent GetChoicesObjectAndEvent(std::shared_ptr<GameObject>& selectorObject) const override;
-
-		void OnUpdate() override {}
+		std::shared_ptr<ChoicesObjectAndEvent const> GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject) override;
 	};
 }
