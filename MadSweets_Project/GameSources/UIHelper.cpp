@@ -685,15 +685,15 @@ namespace basecross
 			return;
 		}
 
-		std::wstring kari = m_choiceObjectAndEvents[m_index].text;
+		std::wstring kari = m_choiceObjectAndEvents[m_index]->text;
 
 		auto te = m_centerTextBox->GetComponent<TextBox>();
-		m_centerTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index].text);
+		m_centerTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index]->text);
 		m_centerTextBox->SetActive(true);
 		
 		if (m_index - 1 >= 0)
 		{
-			m_upTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index - 1].text);
+			m_upTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index - 1]->text);
 			m_upTextBox->SetActive(true);
 		}
 		else
@@ -703,7 +703,7 @@ namespace basecross
 
 		if (m_index + 1 < m_choiceObjectAndEvents.size())
 		{
-			m_downTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index + 1].text);
+			m_downTextBox->GetComponent<TextBox>()->SetText(m_choiceObjectAndEvents[m_index + 1]->text);
 			m_downTextBox->SetActive(true);
 		}
 		else
@@ -734,7 +734,7 @@ namespace basecross
 		return textBoxObject;
 	}
 
-	void ChoicesList::AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent)
+	void ChoicesList::AddChoice(const std::shared_ptr<ChoicesObjectAndEvent const>& choicesObjectAndEvent)
 	{
 		m_choiceObjectAndEvents.push_back(choicesObjectAndEvent);
 
@@ -749,11 +749,18 @@ namespace basecross
 		{
 			auto& choicesObjectAndEvent = (*it);
 
-			if (choicesObjectAndEvent.choicesObject == choicesObject)
+			if (!choicesObjectAndEvent)
 			{
-				m_choiceObjectAndEvents.erase(it);
+				it = m_choiceObjectAndEvents.erase(it);
+
+				continue;
+			}
+
+			if (choicesObjectAndEvent->choicesObject == choicesObject)
+			{
+				it = m_choiceObjectAndEvents.erase(it);
 				
-				break;
+				continue;
 			}
 
 			it++;
@@ -782,7 +789,7 @@ namespace basecross
 		}
 
 		auto& choicesObjectAndEvent = m_choiceObjectAndEvents[m_index];
-		choicesObjectAndEvent.eventFunction();
+		choicesObjectAndEvent->eventFunction();
 	}
 
 	void ChoicesList::OnStart()
@@ -794,11 +801,11 @@ namespace basecross
 		m_downTextBox = CreateChildTextBoxObject();
 
 		auto rect = m_upTextBox->GetComponent<RectTransform>();
-		rect->SetPosition(0, -50);
+		rect->SetPosition(0, 50);
 		rect->SetScale(Vec2(0.75f));
 
 		rect = m_downTextBox->GetComponent<RectTransform>();
-		rect->SetPosition(0, 50);
+		rect->SetPosition(0, -50);
 		rect->SetScale(Vec2(0.75f));
 
 		m_upTextBox->SetActive(false);
@@ -812,7 +819,7 @@ namespace basecross
 
 		while (it != m_choiceObjectAndEvents.end())
 		{
-			if (!it->choicesObject)
+			if (!(*it) || !(*it)->choicesObject)
 			{
 				it = m_choiceObjectAndEvents.erase(it);
 

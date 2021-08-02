@@ -602,7 +602,7 @@ namespace basecross
 		ex_weak_ptr<GameObject> m_centerTextBox;
 		ex_weak_ptr<GameObject> m_downTextBox;
 
-		std::vector<ChoicesObjectAndEvent> m_choiceObjectAndEvents;
+		std::vector<ex_weak_ptr<ChoicesObjectAndEvent const>> m_choiceObjectAndEvents;
 
 		bool m_isEmpty = true;
 
@@ -614,7 +614,7 @@ namespace basecross
 	public:
 		ChoicesList(std::shared_ptr<GameObject>& owner);
 
-		void AddChoice(const ChoicesObjectAndEvent& choicesObjectAndEvent);
+		void AddChoice(const std::shared_ptr<ChoicesObjectAndEvent const>& choicesObjectAndEvent);
 
 		void RemoveChoice(const std::shared_ptr<GameObject>& gameObject);
 
