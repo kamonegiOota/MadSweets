@@ -58,9 +58,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.5f);
+			light.m_DiffuseColor = Col4(0.25f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.5f);
+			light.m_SpecularColor = Col4(0.25f);
 		}
 	}
 
@@ -69,8 +69,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
-
+			CreateMap(L"StageTest2.csv");
+			
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
 			auto rectTransform = gauge->GetComponent<RectTransform>();
@@ -111,7 +111,7 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
-			//AddGameObject<MTestEnemyObject>();
+			AddGameObject<MTestEnemyObject>();
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
@@ -145,6 +145,10 @@ namespace basecross {
 
 		map->CreateObject<FixedBox>(L"StageRotBox");
 		map->CreateObject<FixedBox>(L"Plane");
+		map->CreateObject<FixedBox>(L"BoxCollision");
+		map->CreateObject<FixedBox>(L"Floor");
+		map->CreateObject<FixedBox>(L"RoomWall ");
+		//map->CreateObject<FixedBox>(L"");
 	}
 
 	void MargeTestStage::TempLoad() {
