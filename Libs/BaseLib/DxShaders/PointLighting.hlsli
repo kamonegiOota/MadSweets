@@ -2,7 +2,7 @@
 #include "PointLightParametors.hlsli"
 
 //平行ライトの計算
-float4 ComputeParallelLightDiffuse(const float3 selfNormalWS,const float numLight)
+float4 ComputeParallelLightDiffuse(const float3 selfNormalWS,const uint numLight)
 {
     float4 reDiffuse = 0;
     
@@ -42,4 +42,14 @@ float4 ComputePointLightDiffuse(const float4 selfPosWS, const uint numUseLight)
     }
     
     return reDiffuse;
+}
+
+//ベクターの便利関数
+float3 GetPosition(const float4x4 world)
+{
+    float x = (float) World._41;
+    float y = (float) World._42;
+    float z = (float) World._43;
+    
+    return float3(x, y, z);
 }
