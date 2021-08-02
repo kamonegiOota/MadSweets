@@ -29,6 +29,8 @@
 #include "MTestEnemyObject.h"
 #include "SoundCookieObject.h"
 #include "CrackCookieObject.h"
+#include "HiddenComponent.h"
+#include "PNTPointDraw.h"
 
 #include "PointLight.h"
 
@@ -106,6 +108,9 @@ namespace basecross {
 			CreateSoundCookies();
 			CreateCrackCookies();
 
+			//隠れるオブジェクトの生成
+			CreateHideObjects();
+
 			//AddGameObject<MTestEnemyObject>();
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
@@ -167,6 +172,11 @@ namespace basecross {
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Handy\\", L"Handy_Walk.bmf");
 		app->RegisterResource(L"Handy", modelMesh);
+
+		//音ロード
+		wstring SE_Dir = mediaDir + L"SEs\\";
+		App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
+		App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
@@ -293,6 +303,21 @@ namespace basecross {
 
 		for (const auto& pos : positions) {
 			auto obj = Instantiate<CrackCookieObject>(pos, Quat());
+			//obj->AddComponent<PointLight>();
+		}
+	}
+
+	void MargeTestStage::CreateHideObjects() {
+		Vec3 positions[] = {
+			{13.5f,1.0f,-12.0f},
+		};
+
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<GameObject>(pos, Quat());
+			obj->AddComponent<HiddenComponent>(pos,obj->GetComponent<Transform>()->GetForword());
+			obj->AddComponent<PNTPointDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+			obj->AddComponent<CollisionObb>()->SetFixed(true);
+			
 			//obj->AddComponent<PointLight>();
 		}
 	}

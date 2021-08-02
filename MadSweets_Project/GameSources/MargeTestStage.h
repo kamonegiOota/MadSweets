@@ -30,6 +30,7 @@ namespace basecross {
 		void CreatePointLight();
 		void CreateSoundCookies();
 		void CreateCrackCookies();
+		void CreateHideObjects();
 	};
 
 }
