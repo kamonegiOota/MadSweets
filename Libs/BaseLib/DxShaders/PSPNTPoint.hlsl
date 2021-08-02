@@ -19,9 +19,20 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 {
 
 	float4 color = float4(1,1,1,1);
-	if (Activeflags.y > 0) {
+	if (Activeflags.y > 0) {  //テクスチャがあるかどうか
+        //float3 toVec = EyePos - float4(x,y,z,1);
+		
+        //float range = length(toVec);
+		
+        //if (range > 50.0f){
+        //    range = 2.0f;
+        //}
+        //else{
+        //    range = 2.0f * (range / 50.0f);
+        //}
+		
 		color = Texture.Sample(Sampler, pin.TexCoord) * pin.Diffuse;
-	}
+    }
 
 	//float power[3] = { PointLightPower.x, PointLightPower.y, PointLightPower.z };
 	if (Activeflags.x > 0) {
