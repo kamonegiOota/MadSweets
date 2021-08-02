@@ -133,9 +133,6 @@
     <Filter Include="Maru\Enemy\EnemyStateMachine">
       <UniqueIdentifier>{30be2354-38be-413d-82d9-8eef988daf03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\DebugObject">
-      <UniqueIdentifier>{15ff17ff-1e78-4c4b-aaa5-ddd5c72f7273}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_Plowling">
       <UniqueIdentifier>{7894883d-bc8a-4d57-a199-3808bcd13059}</UniqueIdentifier>
     </Filter>
@@ -372,6 +369,51 @@
     </Filter>
     <Filter Include="Maru\Component\Velocity\BaseUseVelocity">
       <UniqueIdentifier>{b98cc198-7278-4d92-ade9-8b06f9526747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light">
+      <UniqueIdentifier>{43a7c77d-aa65-4ab5-a116-98056e820485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light\PointLight">
+      <UniqueIdentifier>{bcc5dfbb-1002-4262-bd2b-73c63b1d3e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light\PNTPointDraw">
+      <UniqueIdentifier>{96890631-c7a9-4d22-938b-39893d03e85e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Light\MyShader">
+      <UniqueIdentifier>{5a6b88eb-ae18-4b8e-aa98-bcb0184e3b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Gimmick">
+      <UniqueIdentifier>{d76e2c6d-036c-4c5c-93ab-48e9ff4e14f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Gimmick\SoundCookie">
+      <UniqueIdentifier>{90f5726d-dd0f-4065-bf25-72e8c98a8222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\AstarPlowlingMove">
+      <UniqueIdentifier>{84501501-e66b-491b-a329-f69def7541cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos">
+      <UniqueIdentifier>{9e76bf1d-16d0-4a15-aee8-ba7f96b8accd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\CheckTargetPos">
+      <UniqueIdentifier>{c366ed37-32c4-49fd-967f-a62afb802e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\Gimmick">
+      <UniqueIdentifier>{8e099c23-528b-4661-92f7-9a32ef333e8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\Gimmick\SoundCookieObject">
+      <UniqueIdentifier>{21bb52dc-3dcf-4167-9ac5-79197cf3d9d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Gimmick\CrackCookie">
+      <UniqueIdentifier>{47bc8ffc-20d6-4e10-a1bf-1f00f8bdaa45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\Gimmick\CrackCookieObject">
+      <UniqueIdentifier>{ec74ff34-a5b3-4ac2-9b91-92a0b95ec260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\MiniGame">
+      <UniqueIdentifier>{3683de24-d94c-4cdc-8891-c9f8d629a9f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\MiniGame\FlameMatch">
+      <UniqueIdentifier>{5549dfe7-4fa2-4efc-add5-088683c2c0b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -678,6 +720,36 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h">
       <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h">
+      <Filter>Maru\Light\PointLight</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h">
+      <Filter>Maru\Light\PNTPointDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h">
+      <Filter>Maru\Component\Gimmick\SoundCookie</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h">
+      <Filter>Maru\Enemy\Component\Move\AstarPlowlingMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h">
+      <Filter>Maru\Enemy\Component\Move\CheckTargetPos</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookieObject.h">
+      <Filter>Maru\Object\Gimmick\SoundCookieObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h">
+      <Filter>Maru\Component\Gimmick\CrackCookie</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h">
+      <Filter>Maru\Object\Gimmick\CrackCookieObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h">
+      <Filter>Maru\Component\MiniGame\FlameMatch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -935,5 +1007,51 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp">
       <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp">
+      <Filter>Maru\Light\PNTPointDraw</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp">
+      <Filter>Maru\Light\PointLight</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp">
+      <Filter>Maru\Component\Gimmick\SoundCookie</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp">
+      <Filter>Maru\Enemy\Component\Move\AstarPlowlingMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.cpp">
+      <Filter>Maru\Enemy\EnemyStateMachine\EnState_CheckSoundPos</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp">
+      <Filter>Maru\Enemy\Component\Move\CheckTargetPos</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookieObject.cpp">
+      <Filter>Maru\Object\Gimmick\SoundCookieObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp">
+      <Filter>Maru\Component\Gimmick\CrackCookie</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp">
+      <Filter>Maru\Object\Gimmick\CrackCookieObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp">
+      <Filter>Maru\Component\MiniGame\FlameMatch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">
+      <Filter>Maru\Light\MyShader</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\VSPNTPoint.hlsl">
+      <Filter>Maru\Light\MyShader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLightParametors.hlsli">
+      <Filter>Maru\Light\MyShader</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLighting.hlsli">
+      <Filter>Maru\Light\MyShader</Filter>
+    </None>
   </ItemGroup>
 </Project>

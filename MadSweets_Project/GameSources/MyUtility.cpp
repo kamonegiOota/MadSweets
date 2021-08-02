@@ -11,6 +11,7 @@
 #include "Mathf.h"
 
 #include "ThrowObject.h"
+#include "StageObject.h"
 
 namespace basecross {
 
@@ -78,8 +79,10 @@ namespace basecross {
 
 		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj) {
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
-			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+			auto endPosition = endObj->GetComponent<Transform>()->GetWorldPosition();
+			auto direction = endPosition - startPosition;
 
+			//return false;
 			for (const auto& object : startObj->GetStage()->GetGameObjectVec())
 			{
 				auto collision = object->GetComponent<Collision>(false);
@@ -91,16 +94,36 @@ namespace basecross {
 					continue;
 				}
 
-				//仮で反応しないようにする。(将来的には何かで反応しないようにする。) 
+				//仮でステージオブジェクトにしか反応しないようにする。
+				//auto stageObj = dynamic_pointer_cast<StageObject>(object);
+				//if (!stageObj) {
+				//	continue;
+				//}
+
+				//仮で反応しないようにする。(将来的には何かで反応しないようにする。)
 				auto throwObj = dynamic_pointer_cast<ThrowObject>(object);
 				if (throwObj) {
 					continue;
 				}
 
 				//ヒットしたら、障害物があることになる。
-				if (collision->IsRayHit(startPosition, endPosition)) {
-					return true;
+				RayHitData data;
+				if (collision->IsRayHit(startPosition, direction, data)) {
+					auto length = direction.length();
+					if (direction.length() > data.length) {  //lengthが手前だったら
+						//object->GetComponent<BcPNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 0.0f));
+						return true;
+					}
 				}
+
+				//現在IsRayHitは
+				//auto obb = dynamic_pointer_cast<CollisionObb>(collision);
+				//if (obb) {
+				//	if (HitTest::SEGMENT_OBB(startPosition, endPosition, obb->GetObb())) {
+				//		return true;
+				//	}
+				//}
+				
 			}
 
 			return false;
@@ -108,6 +131,7 @@ namespace basecross {
 
 		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition) {
 			auto stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
+			auto direction = endPosition - startPosition;
 
 			for (const auto& object : stage->GetGameObjectVec())
 			{
@@ -117,7 +141,7 @@ namespace basecross {
 				}
 
 				//ヒットしたら、障害物があることになる。
-				if (collision->IsRayHit(startPosition, endPosition)) {
+				if (collision->IsRayHit(startPosition, direction)) {
 					return true;
 				}
 			}
@@ -131,17 +155,19 @@ namespace basecross {
 		{
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
 			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
+			auto direction = endPosition - startPosition;
 
-			return IsRayObstacle(startPosition, endPosition, obstacleObj);
+			return IsRayObstacle(startPosition, direction, obstacleObj);
 		}
 
 		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
 			const std::shared_ptr<GameObject>& obstacleObj)
 		{
 			auto collision = obstacleObj->GetComponent<Collision>();
+			auto direction = endPosition - startPosition;
 
 			//ヒットしたら、障害物があることになる。
-			if (collision->IsRayHit(startPosition, endPosition)) {
+			if (collision->IsRayHit(startPosition, direction)) {
 				return true;
 			}
 			else {

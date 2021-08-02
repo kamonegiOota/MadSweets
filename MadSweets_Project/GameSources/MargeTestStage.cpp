@@ -27,6 +27,10 @@
 #include "GraphAstar.h"
 #include "AstarCtrl.h"
 #include "MTestEnemyObject.h"
+#include "SoundCookieObject.h"
+#include "CrackCookieObject.h"
+
+#include "PointLight.h"
 
 namespace basecross {
 
@@ -49,11 +53,12 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 		//PtrMultiLight->SetAmbientLightColor(Col4(1.0f,0.1f,0.1f,0.1f));
 
+		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.1f);
+			light.m_DiffuseColor = Col4(0.5f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.1f);
+			light.m_SpecularColor = Col4(0.5f);
 		}
 	}
 
@@ -69,11 +74,22 @@ namespace basecross {
 			auto rectTransform = gauge->GetComponent<RectTransform>();
 			rectTransform->SetAnchor(AnchorType::LeftUp);
 
+			//UI周り
+			auto go = Instantiate<UIObject>();
+			go->GetComponent<RectTransform>()->SetPosition(300, 0);
+			auto mo = go->AddComponent<ChoicesList>();
+			mo->OnStart();
+
+			SetSharedGameObject(L"PlayerChoicesList", go);
+
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
-			player->SetDrawActive(false);
-			player->AddComponent<CollisionObb>();
+			player->AddComponent<PointLight>();
+			//player->RemoveComponent<CollisionCapsule>();
+			//player->AddComponent<CollisionObb>();
+			//player->SetDrawActive(false);
+			//player->AddComponent<CollisionObb>();
 			//場所を把握するための処理
 			//player->AddComponent<PositionDrawComp>();
 
@@ -83,7 +99,14 @@ namespace basecross {
 			//食べ物の生成
 			CreateEatItems();
 
-			AddGameObject<MTestEnemyObject>();
+			//ライトの生成
+			CreatePointLight();
+
+			//クッキーの生成
+			CreateSoundCookies();
+			CreateCrackCookies();
+
+			//AddGameObject<MTestEnemyObject>();
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
@@ -126,6 +149,9 @@ namespace basecross {
 		std::wstring textureDir = mediaDir + L"Textures\\";
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
+		app->RegisterTexture(L"WallCake_Tx", textureDir + L"Tx_Cake.png");
+		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png");
+
 		//モデル
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
@@ -223,6 +249,51 @@ namespace basecross {
 			auto item = Instantiate<TestEatenObject>(pos,Quat());
 			item->GetComponent<Collision>()->SetAfterCollision(AfterCollision::None);
 			//item->GetComponent<Collision>()->AddExcludeCollisionGameObject(enemy);
+		}
+	}
+
+	void MargeTestStage::CreatePointLight() {
+		
+		Vec3 positions[] = {
+			//{-12.0f,1.5f,-12.0f},
+			//{0.0f,0.0f,0.0f},
+
+			{ +0.0f, +1.0f, +0.0f},//0
+			{-12.0f, +1.0f,-12.0f},
+			{+12.0f, +1.0f,-12.0f},//2
+			{+11.0f, +1.0f,+11.0f},
+			{ +0.0f, +1.0f,+12.0f},//4
+			{-10.0f, +1.0f,+12.0f},
+			{-12.0f, +1.0f, +7.0f},//6
+			{-12.0f, +1.0f, -6.0f},
+		};
+
+		//constexpr int num = ;
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<GameObject>(pos,Quat());
+			obj->AddComponent<PointLight>();
+		}
+	}
+
+	void MargeTestStage::CreateSoundCookies() {
+		Vec3 positions[] = {
+			{-12.0f,1.0f,-12.0f},
+		};
+
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<SoundCookieObject>(pos, Quat());
+			//obj->AddComponent<PointLight>();
+		}
+	}
+
+	void MargeTestStage::CreateCrackCookies() {
+		Vec3 positions[] = {
+			{13.0f,1.0f,12.0f},
+		};
+
+		for (const auto& pos : positions) {
+			auto obj = Instantiate<CrackCookieObject>(pos, Quat());
+			//obj->AddComponent<PointLight>();
 		}
 	}
 }

@@ -22,10 +22,10 @@ namespace basecross {
             returnPlow->StartReturn();
         }
 
-        auto velocity = obj->GetComponent<Velocity>();
-        if (velocity) {
-            velocity->Reset();
-        }
+        //auto velocity = obj->GetComponent<Velocity>();
+        //if (velocity) {
+        //    velocity->Reset();
+        //}
 
         AddChangeComp(returnPlow, true, false);
         AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
@@ -35,7 +35,12 @@ namespace basecross {
 
         StartChangeComps();
 
-        obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
+        auto draw = obj->GetComponent<SmBaseDraw>(false);
+        if (draw) {
+            draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
+        }
+
+       
     }
 
     void EnState_LoseTarget::OnUpdate() {

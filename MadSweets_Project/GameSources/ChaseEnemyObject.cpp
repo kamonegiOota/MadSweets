@@ -19,10 +19,22 @@
 #include "ThrowCtrl.h"
 #include "Velocity.h"
 #include "ProbeAstarMove.h"
+#include "PNTPointDraw.h"
+#include "AstarPlowlingMove.h"
+#include "EnemyEar.h"
+#include "CheckTargetPos.h"
 
 namespace basecross {
 
 	void ChaseEnemyObject::CreatePlowlingRoute() {
+
+		//PlowlingParam param;
+		//param.startPos = Vec3(0.0f, 1.0f, 0.0f);
+
+		//AddComponent<AstarPlowlingMove>();
+
+		//return;
+
 		std::vector<Vec3> poss = {
 			//{+0.0f ,+0.0f ,+0.0f},//0
 			//{+5.0f ,+0.0f ,+0.0f},
@@ -48,7 +60,8 @@ namespace basecross {
 	}
 
 	void ChaseEnemyObject::OnCreate() {
-		auto draw = AddComponent<PNTStaticDraw>();
+		//auto draw = AddComponent<PNTStaticDraw>();
+		auto draw = AddComponent<PNTPointDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 		draw->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
 
@@ -59,6 +72,8 @@ namespace basecross {
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
 		AddComponent<ProbeAstarMove>();
+		AddComponent<EnemyEar>();   //Ž¨
+		AddComponent<CheckTargetPos>();
 		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();

@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h" />
@@ -27,7 +28,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
@@ -35,6 +39,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h" />
@@ -45,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ForwardLookAtCameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
@@ -84,6 +90,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -93,6 +101,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookieObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h" />
@@ -118,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
@@ -126,11 +137,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_LoseTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Plowling.cpp" />
@@ -140,6 +155,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
@@ -175,6 +191,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
@@ -183,6 +201,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookieObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />
@@ -201,5 +221,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">
+      <ShaderType>Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\VSPNTPoint.hlsl">
+      <ShaderType>Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLighting.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PointLightParametors.hlsli" />
   </ItemGroup>
 </Project>

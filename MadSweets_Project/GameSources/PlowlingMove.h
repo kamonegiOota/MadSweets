@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include "AstarCtrl.h"
 
 namespace basecross {
 
@@ -16,6 +17,8 @@ namespace basecross {
 	/// </summary>
 	class PlowlingMove : public Component
 	{
+		//ex_weak_ptr<AstarCtrl> m_astar;
+
 		/// <summary>
 		/// œpœj‚·‚éƒ|ƒWƒVƒ‡ƒ“
 		/// </summary>
@@ -63,6 +66,7 @@ namespace basecross {
 		);
 		
 		void OnCreate() {}
+		void OnStart();
 		void OnUpdate();
 		void OnDraw(){}
 		

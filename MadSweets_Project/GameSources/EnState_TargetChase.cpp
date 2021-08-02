@@ -12,6 +12,7 @@
 #include "TargetChase.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
+#include "CheckTargetPos.h"
 
 namespace basecross {
 
@@ -23,11 +24,16 @@ namespace basecross {
 		}
 
 		AddChangeComp(chase, true, false);
+		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), false, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(),false,false);
 		
 		StartChangeComps();
 
-		obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		auto draw = obj->GetComponent<SmBaseDraw>(false);
+		if (draw) {
+			draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		}
+
 	}
 
 	void EnState_TargetChase::OnUpdate() {

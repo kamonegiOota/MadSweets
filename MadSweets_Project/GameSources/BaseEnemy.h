@@ -37,6 +37,9 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		void OnDraw() override {}
 
+
+		//アクセッサ--------------------------------------------------------------
+
 		/// <summary>
 		/// ステートマシンの変更
 		/// </summary>

@@ -56,7 +56,7 @@ namespace basecross {
 
 		velocity->AddForce(toVec);
 
-		Rotation(toVec);
+		Rotation(velo);
 
 		LostCheck();
 	}
@@ -77,17 +77,12 @@ namespace basecross {
 				m_updateFunc = &TargetChase::LostMove;
 
 				//テスト実装
-				obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
+				auto draw = obj->GetComponent<BcBaseDraw>(false);
+				if (draw) {
+					draw->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
+				}
 			}
 
-			//auto astar = obj->GetComponent<AstarCtrl>();
-			//if (astar) {
-			//	astar->SearchAstarForecastStart(m_target);
-			//	m_updateFunc = &TargetChase::LostMove;
-
-			//	//テスト実装
-			//	obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
-			//}
 		}
 	}
 
@@ -143,7 +138,10 @@ namespace basecross {
 			m_updateFunc = &TargetChase::LookMove;
 
 			//テスト実装
-			obj->GetComponent<PNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+			auto draw = obj->GetComponent<BcBaseDraw>(false);
+			if (draw) {
+				draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+			}
 		}
 	}
 

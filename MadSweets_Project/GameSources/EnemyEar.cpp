@@ -7,23 +7,34 @@
 #include "Project.h"
 #include "EnemyEar.h"
 
+#include "EnState_TargetChase.h"
+#include "EnState_CheckSoundPos.h"
+
 namespace basecross {
 
-	void EnemyEar::OnUpdate() {
+	bool EnemyEar::IsListenRnage(const Vec3& targetPos) {
+		auto toVec = targetPos - transform->GetPosition();
 
+		//聞こえる範囲内にいたらtrueを返す。
+		return toVec.length() < m_listenRange ? true : false;
 	}
 
 	void EnemyEar::SoundListen(const std::shared_ptr<GameObject>& target) {
-		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
-		if (m_astar) {
-			m_astar->SearchAstarStart(target);
-		}
+		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+
+		SoundListen(targetPos);
 	}
 
 	void EnemyEar::SoundListen(const Vec3& targetPos) {
-		m_astar = GetGameObject()->GetComponent<AstarCtrl>();
-		if (m_astar) {
-			m_astar->SearchAstarStart(targetPos);
+		
+		//特定のステートの時は変更できないようにする。
+		//敵を直接見ているときは目の前の敵を見るなど
+
+		if (IsListenRnage(targetPos)) {  //聞こえる範囲にいる時
+			auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+			if (enemy) {
+				enemy->ChangeStateMachine<EnState_CheckSoundPos>(targetPos);
+			}
 		}
 	}
 }
