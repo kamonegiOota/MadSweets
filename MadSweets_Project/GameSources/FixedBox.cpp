@@ -57,8 +57,15 @@ namespace basecross {
             else {
                 //‚»‚êˆÈŠOi‚Â‚Ü‚è‰¡–Êj
                 if (vertices[i].textureCoordinate.x >= 1.0f) {
-                    vertices[i].textureCoordinate.x = UCount;
+                    //z‚É’·‚¢‚©x‚É’·‚¢‚©‚ð”»’f
+                    if (LeftSideBetween < 0.01f || RightSideBetween < 0.01f) {
+                        vertices[i].textureCoordinate.x = m_scale.z;
+                    }
+                    else {
+                        vertices[i].textureCoordinate.x = m_scale.x;
+                    }
                 }
+
                 if (vertices[i].textureCoordinate.y >= 1.0f) {
                     vertices[i].textureCoordinate.y = YVCount;
                 }
