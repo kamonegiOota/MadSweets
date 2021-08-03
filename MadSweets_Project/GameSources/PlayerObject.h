@@ -23,6 +23,8 @@ namespace basecross
 	class PlayerObject : public GameObject
 	{
 		void CreateAnimator();
+
+		ex_weak_ptr<GameObject> m_springArm;
 	public:
 		PlayerObject(std::shared_ptr<Stage>& stage);
 

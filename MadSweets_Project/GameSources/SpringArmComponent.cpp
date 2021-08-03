@@ -54,11 +54,6 @@ namespace basecross
 		auto pos = m_childTransform->GetWorldPosition();
 		auto rayDirection = m_childTransform->GetWorldPosition() - startPosition;
 
-		if (rayDirection.lengthSqr() == 0)
-		{
-			return;
-		}
-
 		rayDirection.normalize();
 
 		RayHitData maxHitData;
