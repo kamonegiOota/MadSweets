@@ -27,6 +27,9 @@ namespace basecross
 	void PlayerObject::OnCreate()
 	{
 		auto springArm = GetStage()->Instantiate<GameObject>(Vec3(), Quat());
+
+		m_springArm = springArm;
+
 		auto chasingTarget = springArm->AddComponent<ChasingTarget>();
 		chasingTarget->SetTarget(GetThis<GameObject>());
 		auto cameraMover = springArm->AddComponent<PlayerCameraMover>();
@@ -71,6 +74,26 @@ namespace basecross
 	void PlayerObject::OnUpdate()
 	{
 		GameObject::OnUpdate();
+
+		static bool isTPS = true;
+		if (!App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::LeftThumb))
+		{
+			return;
+		}
+
+		auto springArm = m_springArm->GetComponent<SpringArmComponent>();
+		if (isTPS)
+		{
+			springArm->SetArmRange(0);
+
+			isTPS = false;
+		}
+		else
+		{
+			springArm->SetArmRange(10);
+
+			isTPS = true;
+		}
 	}
 
 	void PlayerObject::CreateAnimator()
