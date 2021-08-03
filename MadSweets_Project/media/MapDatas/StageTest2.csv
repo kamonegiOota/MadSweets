@@ -1,28 +1,28 @@
 ID,ScaleX,ScaleY,ScaleZ,RotX,RotY,Rotz,PosX,PosY,PosZ,
 Floor,60,0.1,60,0,0,0,0,0,0,WallSponge_Tx
-Floor,40,0.1,20,89.97202,90.0496,0,-29.5,10,0,WallCake_Tx
-Floor,40,0.1,20,90,180,0,-0.2,10,30,WallCake_Tx
-Floor,40,0.1,20,90,270,0,30,10,-0.3,WallCake_Tx
-Floor,40,0.1,20,90,0,0,-0.2,10,-30,WallCake_Tx
-RoomWall ,0.5,10,5,0,180,0,-14.75,5,27.55,WallCake_Tx
-RoomWall (2),0.5,10,5,0,180,0,4.400001,5,27.55,WallCake_Tx
-RoomWall (3),0.5,10,5,0,228.7421,0,17.9,5,28.35,WallCake_Tx
-RoomWall (4),0.5,10,5,0,228.7421,0,27.4,5,17.45,WallCake_Tx
-RoomWall (5),0.5,10,5,0,90,0,27.4,5,3.15,WallCake_Tx
-RoomWall (6),0.5,10,5,0,90,0,27.4,5,-11.45,WallCake_Tx
-RoomWall (7),0.5,10,5,0,122.4354,0,27.4,5,-21.65,WallCake_Tx
-BoxCollision,0.5,10,5,0,90,0,-27,5,9.95,WallCake_Tx
-BoxCollision,0.5,10,5,0,101.5954,0,-22,5,9.55,WallCake_Tx
-BoxCollision,0.5,10,5,0,116.9601,0,-17.26,5,7.892,WallCake_Tx
-BoxCollision,0.5,10,5.229,0,134.2635,0,-13.257,4.9959,5.024,WallCake_Tx
-BoxCollision,0.5,10,5,0,82.43021,0,-22.2,5,-14.55,WallCake_Tx
-BoxCollision,0.5,10,5,0,70.97242,0,-17.407,5,-13.417,WallCake_Tx
-BoxCollision,0.5,10,3.83615,0,41.39624,0,-13.669,5,-11.092,WallCake_Tx
-BoxCollision,0.5,10,5,0,23.51391,0,-11.445,5,-7.4263,WallCake_Tx
-BoxCollision,0.5,10,5,0.05339846,163.4944,0.9979312,-10.8408,4.987139,0.8804619,WallCake_Tx
-BoxCollision,0.5,10,3.64205,0,187.0206,0,-10.244,5,-3.3957,WallCake_Tx
-BoxCollision,0.5,10,5,0,90,0,-27,5,-14.86,WallCake_Tx
-RoomWall ,15,0.1,20,90,225,0,24.9,10,24.9,WallCake_Tx
-RoomWall ,15,0.1,20,90,135,0,-24.5,10,25.3,WallCake_Tx
-RoomWall ,15,0.1,20,90,315,0,24.8,10,-25.2,WallCake_Tx
-RoomWall ,15,0.1,20,90,45,0,-24.4,10,-25.2,WallCake_Tx
+Floor,40,0.1,20,89.97202,90.0496,0,-29.5,10,0,WallCake2_Tx
+Floor,40,0.1,20,90,180,0,-0.2,10,30,WallCake2_Tx
+Floor,40,0.1,20,90,270,0,30,10,-0.3,WallCake2_Tx
+Floor,40,0.1,20,90,0,0,-0.2,10,-30,WallCake2_Tx
+RoomWall ,0.5,10,5,0,180,0,-14.75,5,27.55,WallCake2_Tx
+RoomWall (2),0.5,10,5,0,180,0,4.400001,5,27.55,WallCake2_Tx
+RoomWall (3),0.5,10,5,0,228.7421,0,17.9,5,28.35,WallCake2_Tx
+RoomWall (4),0.5,10,5,0,228.7421,0,27.4,5,17.45,WallCake2_Tx
+RoomWall (5),0.5,10,5,0,90,0,27.4,5,3.15,WallCake2_Tx
+RoomWall (6),0.5,10,5,0,90,0,27.4,5,-11.45,WallCake2_Tx
+RoomWall (7),0.5,10,5,0,122.4354,0,27.4,5,-21.65,WallCake2_Tx
+BoxCollision,0.5,10,5,0,90,0,-27,5,9.95,WallCake2_Tx
+BoxCollision,0.5,10,5,0,101.5954,0,-22,5,9.55,WallCake2_Tx
+BoxCollision,0.5,10,5,0,116.9601,0,-17.26,5,7.892,WallCake2_Tx
+BoxCollision,0.5,10,5.229,0,134.2635,0,-13.257,4.9959,5.024,WallCake2_Tx
+BoxCollision,0.5,10,5,0,82.43021,0,-22.2,5,-14.55,WallCake2_Tx
+BoxCollision,0.5,10,5,0,70.97242,0,-17.407,5,-13.417,WallCake2_Tx
+BoxCollision,0.5,10,3.83615,0,41.39624,0,-13.669,5,-11.092,WallCake2_Tx
+BoxCollision,0.5,10,5,0,23.51391,0,-11.445,5,-7.4263,WallCake2_Tx
+BoxCollision,0.5,10,5,0.05339846,163.4944,0.9979312,-10.8408,4.987139,0.8804619,WallCake2_Tx
+BoxCollision,0.5,10,3.64205,0,187.0206,0,-10.244,5,-3.3957,WallCake2_Tx
+BoxCollision,0.5,10,5,0,90,0,-27,5,-14.86,WallCake2_Tx
+RoomWall ,15,0.1,20,90,225,0,24.9,10,24.9,WallCake2_Tx
+RoomWall ,15,0.1,20,90,135,0,-24.5,10,25.3,WallCake2_Tx
+RoomWall ,15,0.1,20,90,315,0,24.8,10,-25.2,WallCake2_Tx
+RoomWall ,15,0.1,20,90,45,0,-24.4,10,-25.2,WallCake2_Tx
