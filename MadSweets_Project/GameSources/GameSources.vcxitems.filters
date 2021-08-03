@@ -415,6 +415,9 @@
     <Filter Include="Maru\Component\MiniGame\FlameMatch">
       <UniqueIdentifier>{5549dfe7-4fa2-4efc-add5-088683c2c0b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\TestStage\TitleStage">
+      <UniqueIdentifier>{08487bd2-6746-48a7-97a3-0e2593b6b12f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -750,6 +753,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h">
       <Filter>Maru\Component\MiniGame\FlameMatch</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>Maru\TestStage\TitleStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1036,6 +1042,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp">
       <Filter>Maru\Component\MiniGame\FlameMatch</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
+      <Filter>Maru\TestStage\TitleStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
