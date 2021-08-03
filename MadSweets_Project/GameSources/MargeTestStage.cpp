@@ -69,8 +69,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest2.csv");
+			//CreateMap(L"TempStage.csv");
+			CreateMap(L"StageTest2.csv");
 			
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -163,6 +163,9 @@ namespace basecross {
 		app->RegisterTexture(L"WallCake2_Tx", textureDir + L"Tx_Cake2.png");
 		app->RegisterTexture(L"WallCake3_Tx", textureDir + L"Tx_Cake3.png");
 		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png"); 
+			app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
+		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
+		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png");
 
 		//モデル
 		std::wstring modelDir = mediaDir + L"Models\\";
