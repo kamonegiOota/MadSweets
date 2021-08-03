@@ -20,7 +20,8 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
 
 	float4 color = float4(1,1,1,1);
 	if (Activeflags.y > 0) {  //テクスチャがあるかどうか
-        //float3 toVec = EyePos - float4(x,y,z,1);
+        //float3 pos = GetPosition(World);
+        //float3 toVec = EyePos - pos;
 		
         //float range = length(toVec);
 		
@@ -28,6 +29,7 @@ float4 main(PSInputPixelLightingTx pin) : SV_Target0
         //    range = 2.0f;
         //}
         //else{
+		//    range = 1.0f;
         //    range = 2.0f * (range / 50.0f);
         //}
 		
