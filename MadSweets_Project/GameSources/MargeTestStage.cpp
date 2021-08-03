@@ -58,9 +58,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.25f);
+			light.m_DiffuseColor = Col4(0.5f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.25f);
+			light.m_SpecularColor = Col4(0.5f);
 		}
 	}
 
@@ -69,7 +69,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"StageTest2.csv");
+			CreateMap(L"TempStage.csv");
+			//CreateMap(L"StageTest2.csv");
 			
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -111,7 +112,7 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
-			AddGameObject<MTestEnemyObject>();
+			AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
@@ -159,7 +160,9 @@ namespace basecross {
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
 		app->RegisterTexture(L"WallCake_Tx", textureDir + L"Tx_Cake.png");
-		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png");
+		app->RegisterTexture(L"WallCake2_Tx", textureDir + L"Tx_Cake2.png");
+		app->RegisterTexture(L"WallCake3_Tx", textureDir + L"Tx_Cake3.png");
+		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png"); 
 
 		//モデル
 		std::wstring modelDir = mediaDir + L"Models\\";
@@ -313,7 +316,7 @@ namespace basecross {
 
 	void MargeTestStage::CreateHideObjects() {
 		Vec3 positions[] = {
-			{13.5f,1.0f,-12.0f},
+			{11.0f,1.0f,-11.0f},
 		};
 
 		for (const auto& pos : positions) {
