@@ -42,12 +42,12 @@ namespace basecross {
 		//本来はここでオブジェクトの中を覗く処理。
 		m_probCount++;
 
-		if (m_probCount >= m_numPorb) {
+		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
 			m_probCount = 0;
 			ChangeState();
 		}
 		else {  //まだカウントが過ぎていなかったら。
-			SetAstarRondomHideObject();
+			SetAstarRondomHideObject();  //もう一度調べる。
 		}
 	}
 
