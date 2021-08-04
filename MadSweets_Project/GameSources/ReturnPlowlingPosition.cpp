@@ -24,7 +24,7 @@ namespace basecross {
 	}
 
 	void ReturnPlowlingPosition::Move() {
-		m_astar->UpdateVelocityMove(GetVelocityMaxSpeed(),GetNearRange());
+		m_astar->UpdateVelocityMove(GetVelocityMaxSpeed(),GetArriveNearRange());
 
 		if (m_astar->IsRouteEnd()) {
 			ChangeStateMachine();

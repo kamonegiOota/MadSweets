@@ -29,7 +29,7 @@ namespace basecross {
 	void CheckTargetPos::Move() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
-			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetNearRange());
+			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
 
 			if (astar->IsRouteEnd()) {
 				ChangeStateMachine();

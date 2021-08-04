@@ -26,10 +26,11 @@ namespace basecross {
 			return m_maxSpeed;
 		}
 
-		virtual void SetNearRnage(const float& range) final{
+		//“’…s“®‚É‹ß‚­‚Æ”»’f‚·‚é‹——£
+		virtual void SetArriveNearRnage(const float& range) final{
 			m_nearRange = range;
 		}
-		virtual float GetNearRange() const final{
+		virtual float GetArriveNearRange() const final{
 			return m_nearRange;
 		}
 	};

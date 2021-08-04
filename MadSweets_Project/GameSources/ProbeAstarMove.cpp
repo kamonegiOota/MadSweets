@@ -23,7 +23,7 @@ namespace basecross {
 	void ProbeAstarMove::OnStart() {
 		//Velocity‚ðŽg‚¤‚Æ‚«‚Ì‰Šú’l‚ðÝ’è
 		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
-		BaseUseVelocity::SetNearRnage(15.0f);
+		BaseUseVelocity::SetArriveNearRnage(15.0f);
 	}
 
 	void ProbeAstarMove::Move() {
@@ -34,7 +34,7 @@ namespace basecross {
 			return;
 		}
 
-		astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetNearRange());
+		astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
 		
 		//return;
 
