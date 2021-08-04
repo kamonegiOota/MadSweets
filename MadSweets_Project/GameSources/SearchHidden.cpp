@@ -12,6 +12,8 @@
 #include "Mathf.h"
 #include "MyRandom.h"
 
+#include "DebugObject.h"
+
 namespace basecross {
 
 	vector<std::shared_ptr<GameObject>> SearchHidden::SearchNearHiddenObjects(const std::shared_ptr<GameObject>& self, const float& nearRange) {
@@ -28,10 +30,20 @@ namespace basecross {
 		return reTargets;
 	}
 
-	std::shared_ptr<GameObject> SearchHidden::SearchRandomHiddenObject(const std::shared_ptr<GameObject>& self, const float& nearRange) {
-		auto nearHides = SearchNearHiddenObjects(self ,nearRange);
+	std::shared_ptr<GameObject> SearchHidden::SearchRandomHiddenObject(const std::shared_ptr<GameObject>& self, const float& nearRange,
+		const std::shared_ptr<GameObject>& excluteObj
+	) 
+	{
+		auto nearHides = SearchNearHiddenObjects(self ,nearRange);  //近くの隠れるオブジェクトの検索
+		maru::MyUtility::RemoveVec(nearHides, excluteObj);  //一度確認したオブジェクトを排除
 
-		auto obj = maru::MyRandom::RandomArray(nearHides);
+		DebugObject::m_wss << endl << L"Hide::" + to_wstring(nearHides.size()) << endl;
+
+		if (nearHides.size() == 0) {  //対象が無かったらnullを返す。
+			return nullptr;
+		}
+
+		auto obj = maru::MyRandom::RandomArray(nearHides);  //配列の中からランダムに取得
 		return obj;
 	}
 
