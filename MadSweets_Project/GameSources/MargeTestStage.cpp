@@ -69,8 +69,9 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			//CreateMap(L"TempStage.csv");
-			CreateMap(L"StageTest2.csv");
+			CreateMap(L"TempStage.csv");
+			//CreateMap(L"StageTest2.csv");
+			//CreateMap(L"StageTest3.csv");
 			
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -149,7 +150,22 @@ namespace basecross {
 		map->CreateObject<FixedBox>(L"BoxCollision");
 		map->CreateObject<FixedBox>(L"Floor");
 		map->CreateObject<FixedBox>(L"RoomWall ");
-		//map->CreateObject<FixedBox>(L"");
+		map->CreateObject<FixedBox>(L"Wall");
+		map->CreateObject<FixedBox>(L"Partition");
+		map->CreateObject<FixedBox>(L"UpperWall");
+		map->CreateObject<FixedBox>(L"BoxCollision");
+		map->CreateObject<FixedBox>(L"Corner");
+		map->CreateObject<FixedBox>(L"InnerCorner");
+		map->CreateObject<FixedBox>(L"Pillar");
+
+		for (auto obj : GetGameObjectVec()) {
+			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
+			if (fixed) {
+				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
+					fixed->GetComponent<Collision>()->SetUpdateActive(false);
+				}
+			}
+		}
 	}
 
 	void MargeTestStage::TempLoad() {
