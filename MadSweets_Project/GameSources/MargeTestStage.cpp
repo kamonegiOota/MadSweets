@@ -336,6 +336,7 @@ namespace basecross {
 	void MargeTestStage::CreateHideObjects() {
 		Vec3 positions[] = {
 			{11.0f,1.0f,-11.0f},
+			{11.0f,1.0f, 11.0f},
 		};
 
 		for (const auto& pos : positions) {
