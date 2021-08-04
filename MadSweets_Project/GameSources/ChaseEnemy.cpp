@@ -11,6 +11,7 @@
 #include "EnState_TargetChase.h"
 #include "EnState_Plowling.h"
 #include "EnState_LoseTarget.h"
+#include "EnState_ProbeTarget.h"
 #include "EnState_Attack.h"
 #include "DebugObject.h"
 
@@ -38,8 +39,8 @@ namespace basecross {
 		ChangeStateMachine<EnState_TargetChase>(target);
 	}
 
-	void ChaseEnemy::ChangeTargetLostState() {
-		ChangeStateMachine<EnState_LoseTarget>();
+	void ChaseEnemy::ChangeTargetLostState(const std::shared_ptr<GameObject>& target) {
+		ChangeStateMachine<EnState_ProbTarget>(target);
 	}
 
 }
