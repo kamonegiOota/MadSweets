@@ -23,6 +23,7 @@
 #include "AstarPlowlingMove.h"
 #include "EnemyEar.h"
 #include "CheckTargetPos.h"
+#include "TargetProbe.h"
 
 namespace basecross {
 
@@ -78,6 +79,7 @@ namespace basecross {
 
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
+		AddComponent<TargetProbe>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
