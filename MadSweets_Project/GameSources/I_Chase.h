@@ -15,7 +15,7 @@ namespace basecross {
 	{
 	public:
 		virtual void ChangeChaseState(const std::shared_ptr<GameObject>& target) = 0;
-		virtual void ChangeTargetLostState() = 0;  //ターゲットを見失ったときの処理
+		virtual void ChangeTargetLostState(const std::shared_ptr<GameObject>& target) = 0;  //ターゲットを見失ったときの処理
 	};
 }
 
