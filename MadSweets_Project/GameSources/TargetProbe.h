@@ -16,11 +16,14 @@ namespace basecross {
 	/// </summary>
 	class TargetProbe : public Component, public BaseUseVelocity
 	{
-		std::shared_ptr<GameObject> m_target;
+		std::shared_ptr<GameObject> m_target;  //捜索対象
+		std::shared_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
 
 		//何回プレイヤーの捜索をするか？
-		int m_numPorb = 2;
+		int m_numPorb = 1;
 		int m_probCount = 0;  //実際に捜索した回数。
+
+		float m_searchRange = 20.0f;  //探索する範囲
 
 		//Astarに捜索先をセットする。
 		void SetAstarRondomHideObject();
