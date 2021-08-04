@@ -11,6 +11,7 @@
 #include "AstarCtrl.h"
 #include "TargetChase.h"
 #include "TargetEscape.h"
+#include "TargetProbe.h"
 #include "Velocity.h"
 
 namespace basecross {
@@ -22,16 +23,12 @@ namespace basecross {
             returnPlow->StartReturn();
         }
 
-        //auto velocity = obj->GetComponent<Velocity>();
-        //if (velocity) {
-        //    velocity->Reset();
-        //}
-
         AddChangeComp(returnPlow, true, false);
         AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
 
         AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
         AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
+        AddChangeComp(obj->GetComponent<TargetProbe>(false), false, false);
 
         StartChangeComps();
 
@@ -40,7 +37,7 @@ namespace basecross {
             draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
         }
 
-       
+        DebugObject::m_wss << L"Lose";
     }
 
     void EnState_LoseTarget::OnUpdate() {

@@ -12,20 +12,29 @@
 #include "TargetChase.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
+#include "TargetProbe.h"
 
 namespace basecross {
 
 	void EnState_ProbTarget::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
+		auto prob = obj->GetComponent<TargetProbe>(false);
+		if (prob) {
+			prob->SetTarget(m_target);
+			prob->StartProb();  //探索スタート
+		}
 
-
+		AddChangeComp(obj->GetComponent<TargetProbe>(false), true, false);
+		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
 
 		StartChangeComps();
 
 		auto draw = obj->GetComponent<BcBaseDraw>(false);
 		if (draw) {
-			draw->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
+			draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
+
+		DebugObject::m_wss << L"Probe";
 	}
 
 	void EnState_ProbTarget::OnUpdate() {
