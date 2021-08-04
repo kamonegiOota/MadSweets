@@ -41,7 +41,11 @@ namespace basecross {
 	}
 
 	void TitleStage::ChangeStage() {
+		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
+		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
+		}
 	}
 
 	void TitleStage::OnCreate() {
@@ -60,7 +64,7 @@ namespace basecross {
 	}
 
 	void TitleStage::OnUpdate() {
-
+		ChangeStage();
 	}
 
 	void TitleStage::LoadData() {
