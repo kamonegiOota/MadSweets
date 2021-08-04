@@ -768,6 +768,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h">
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h">
+      <Filter>Maru\Enemy\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">

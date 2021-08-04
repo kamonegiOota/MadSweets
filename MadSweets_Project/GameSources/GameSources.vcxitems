@@ -65,6 +65,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Chase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
