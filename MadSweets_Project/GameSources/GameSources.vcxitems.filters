@@ -418,6 +418,12 @@
     <Filter Include="Maru\TestStage\TitleStage">
       <UniqueIdentifier>{08487bd2-6746-48a7-97a3-0e2593b6b12f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruUthilyty\MyRandom">
+      <UniqueIdentifier>{1a11c067-f9b9-44f5-bf6c-b96b8031fbdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\TargetProbe\SearchHidden">
+      <UniqueIdentifier>{b1724102-59ae-429a-beca-c97bd7727636}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -756,6 +762,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
       <Filter>Maru\TestStage\TitleStage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SearchHidden.h">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe\SearchHidden</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h">
+      <Filter>Maru\MaruUthilyty\MyRandom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1045,6 +1057,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
       <Filter>Maru\TestStage\TitleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SearchHidden.cpp">
+      <Filter>Maru\Enemy\Component\Move\TargetProbe\SearchHidden</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp">
+      <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

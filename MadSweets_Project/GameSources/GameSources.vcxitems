@@ -74,6 +74,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SearchHidden.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundCookieObject.h" />
@@ -177,6 +179,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp" />
@@ -201,6 +204,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SearchHidden.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundCookieObject.cpp" />
