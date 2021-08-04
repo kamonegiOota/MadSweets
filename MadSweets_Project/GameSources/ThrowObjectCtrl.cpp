@@ -9,6 +9,8 @@
 #include "ThrowObjectCtrl.h"
 #include "Velocity.h"
 
+#include "I_Damaged.h"
+
 namespace basecross {
 
 	void ThrowObjectCtrl::Throw(const std::shared_ptr<GameObject>& owner, const Vec3& direct, const float& speed) {
@@ -29,6 +31,11 @@ namespace basecross {
 		}
 
 		//‚±‚±‚Åƒ_ƒ[ƒW‚ð—^‚¦‚é
+		auto damage = other->GetComponent<I_Damaged>(false);
+		if (damage) {
+			//damage->Damage(m_attackPower);
+		}
+
 		GetStage()->RemoveGameObject<GameObject>(GetGameObject());
 	}
 

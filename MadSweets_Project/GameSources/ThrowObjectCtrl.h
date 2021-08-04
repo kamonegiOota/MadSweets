@@ -17,10 +17,11 @@ namespace basecross {
 	class ThrowObjectCtrl : public Component
 	{
 		std::shared_ptr<GameObject> m_owner;
+		float m_attackPower;
 
 	public:
 		ThrowObjectCtrl(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+			:Component(objPtr), m_attackPower(2.0f)
 		{}
 
 		void OnCreate() override{}
