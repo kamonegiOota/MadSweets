@@ -51,30 +51,30 @@ namespace basecross {
 
 		EyeSearchRangeParam m_param;
 
-		bool IsRange(const std::shared_ptr<GameObject>& target);
-		bool IsHeight(const std::shared_ptr<GameObject>& target);
-		bool IsRad(const std::shared_ptr<GameObject>& target);
-		bool IsRay(const std::shared_ptr<GameObject>& target);
-
 		/// <summary>
 		/// ターゲットが自分を中心に球体状の範囲内にいるかどうか判断
 		/// </summary>
-		void LengthCheck();
+		/// <param name="target">索敵ターゲット</param>
+		/// <returns>範囲内ならtrue</returns>
+		bool IsRange(const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// ターゲットが自分の索敵範囲内の「高さ」にいるかどうかを判断
 		/// </summary>
 		/// <param name="target">索敵ターゲット</param>
-		void HeightCheck(const EyeTargetParam& tagetParam);
+		/// <returns>範囲内ならtrue</returns>
+		bool IsHeight(const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// ターゲットが自分の索敵範囲内の角度にいるか判断
 		/// </summary>
 		/// <param name="target">索敵ターゲット</param>
-		void RadCheck(const EyeTargetParam& targetParam);
+		/// <returns>範囲内ならtrue</returns>
+		bool IsRad(const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// Rayを飛ばしたときのチェック
 		/// </summary>
 		/// <param name="targetParam">索敵ターゲット</param>
-		void RayCheck(const EyeTargetParam& targetParam);
+		/// <returns>範囲内ならtrue</returns>
+		bool IsRay(const std::shared_ptr<GameObject>& target);
 
 		/// <summary>
 		/// ターゲットが索敵範囲内にいるときに呼び出される関数
@@ -89,6 +89,9 @@ namespace basecross {
 
 		void OnCreate() override {}
 		void OnUpdate() override;
+
+		//視界内にいるならtrue
+		bool IsInEyeRange(std::shared_ptr<GameObject>& target);
 
 		//アクセッサ-------------------------------------------------------------------------
 		void AddTarget(const std::shared_ptr<GameObject>& obj) {
@@ -112,9 +115,6 @@ namespace basecross {
 
 			return false;
 		}
-
-		//視界内にいるならtrue
-		bool IsInEyeRange(std::shared_ptr<GameObject>& target);
 
 	};
 
