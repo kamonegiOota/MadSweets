@@ -14,6 +14,7 @@
 #include "I_Escape.h"
 #include "BaseAttack.h"
 #include "MyUtility.h"
+#include "ThrowCtrl.h"
 
 namespace basecross {
 
@@ -72,10 +73,13 @@ namespace basecross {
 
 	void EyeSearchRange::RayCheck(const EyeTargetParam& targetParam) {
 		const auto& target = targetParam.target;
-	
+		
+		//対象外となるオブジェクトの指定。
+		vector<shared_ptr<GameObject>> excluteObjs;
+		maru::MyUtility::AddComponents<ThrowCtrl>(excluteObjs);
+
 		//障害物にヒットしなかったら
-		//if(true){
-		if (!maru::MyUtility::IsRayObstacle(GetGameObject(),target)) {
+		if (!maru::MyUtility::IsRayObstacle(GetGameObject(),target, excluteObjs)) {
 			Hit(targetParam);
 		}
 		else {
