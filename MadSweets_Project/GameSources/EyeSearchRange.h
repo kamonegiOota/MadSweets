@@ -51,6 +51,11 @@ namespace basecross {
 
 		EyeSearchRangeParam m_param;
 
+		bool IsRange(const std::shared_ptr<GameObject>& target);
+		bool IsHeight(const std::shared_ptr<GameObject>& target);
+		bool IsRad(const std::shared_ptr<GameObject>& target);
+		bool IsRay(const std::shared_ptr<GameObject>& target);
+
 		/// <summary>
 		/// ターゲットが自分を中心に球体状の範囲内にいるかどうか判断
 		/// </summary>
@@ -107,6 +112,9 @@ namespace basecross {
 
 			return false;
 		}
+
+		//視界内にいるならtrue
+		bool IsInEyeRange(std::shared_ptr<GameObject>& target);
 
 	};
 

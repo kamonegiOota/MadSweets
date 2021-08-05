@@ -31,6 +31,43 @@ namespace basecross {
 		m_param(param)
 	{}
 
+	bool EyeSearchRange::IsRange(const std::shared_ptr<GameObject>& target) {
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), target);
+		//長さチェック
+		return toVec.length() <= m_param.lenght ? true : false;
+	}
+
+	bool EyeSearchRange::IsHeight(const std::shared_ptr<GameObject>& target) {
+		auto selfPos = transform->GetPosition();
+		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+
+		auto subHeight = targetPos.y - selfPos.y;  //高さの差を求める。
+		//高さが小さかったら。
+		return std::abs(subHeight) <= m_param.height ? true : false;
+	}
+
+	bool EyeSearchRange::IsRad(const std::shared_ptr<GameObject>& target) {
+		auto forward = transform->GetForword();
+		forward.y = 0.0f;
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), target);
+		toVec.y = 0.0f;
+
+		auto newDot = dot(forward.GetNormalized(), toVec.GetNormalized());
+		auto newRad = acosf(newDot);
+		//索敵範囲に入っていたら。
+		return newRad <= m_param.rad ? true : false;
+	}
+
+	bool EyeSearchRange::IsRay(const std::shared_ptr<GameObject>& target){
+		//対象外となるオブジェクトの指定。
+		vector<shared_ptr<GameObject>> excluteObjs;
+		maru::MyUtility::AddComponents<ThrowObjectCtrl>(excluteObjs);
+		//maru::MyUtility::AddComponents<HiddenComponent>(excluteObjs);
+
+		//障害物にヒットしなかったら
+		return !maru::MyUtility::IsRayObstacle(GetGameObject(), target, excluteObjs) ? true : false;
+	}
+
 	void EyeSearchRange::LengthCheck() {
 		for (auto& param : m_targetParams) {
 			auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), param.target);
@@ -116,7 +153,26 @@ namespace basecross {
 	}
 
 	void EyeSearchRange::OnUpdate() {
-		LengthCheck();
+		//LengthCheck();
+
+		for (auto& param : m_targetParams) {
+			if (IsInEyeRange(param.target)) {  //ターゲットが視界に入っていたら。
+				Hit(param);
+			}
+			else {
+				param.isFind = false;
+			}
+		}
+	}
+
+	bool EyeSearchRange::IsInEyeRange(std::shared_ptr<GameObject>& target) {
+		//全ての条件がtrueなら視界内に対象がいる。
+		if (IsRange(target) && IsHeight(target) && IsRad(target) && IsRay(target)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }
