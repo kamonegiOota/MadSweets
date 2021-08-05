@@ -13,6 +13,9 @@ namespace basecross {
 
 	//ダメージを受ける側のインターフェース
 	class I_Damaged {
+
+	public:
+
 		virtual void Damage(const float& damage) = 0;
 	};
 
