@@ -31,6 +31,7 @@ namespace basecross {
 	}
 
 	void TargetProbe::ChangeState() {
+		m_probCount = 0;
 
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
 		if (enemy) {
@@ -43,7 +44,6 @@ namespace basecross {
 		m_probCount++;
 
 		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
-			m_probCount = 0;
 			ChangeState();
 		}
 		else {  //まだカウントが過ぎていなかったら。
