@@ -424,6 +424,12 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetProbe\SearchHidden">
       <UniqueIdentifier>{b1724102-59ae-429a-beca-c97bd7727636}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer">
+      <UniqueIdentifier>{93c46265-5c2e-4066-b14d-fd81dfc4f2b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component">
+      <UniqueIdentifier>{9d9d01c7-dbd6-48ab-bd75-08879bd869ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -771,6 +777,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h">
+      <Filter>Maru\MaruPlayer\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1066,6 +1075,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp">
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp">
+      <Filter>Maru\MaruPlayer\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

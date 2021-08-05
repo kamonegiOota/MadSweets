@@ -88,6 +88,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
