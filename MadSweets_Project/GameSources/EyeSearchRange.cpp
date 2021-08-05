@@ -14,7 +14,9 @@
 #include "I_Escape.h"
 #include "BaseAttack.h"
 #include "MyUtility.h"
-#include "ThrowCtrl.h"
+
+#include "ThrowObjectCtrl.h"
+#include "HiddenComponent.h"
 
 namespace basecross {
 
@@ -76,7 +78,8 @@ namespace basecross {
 		
 		//対象外となるオブジェクトの指定。
 		vector<shared_ptr<GameObject>> excluteObjs;
-		maru::MyUtility::AddComponents<ThrowCtrl>(excluteObjs);
+		maru::MyUtility::AddComponents<ThrowObjectCtrl>(excluteObjs);
+		//maru::MyUtility::AddComponents<HiddenComponent>(excluteObjs);
 
 		//障害物にヒットしなかったら
 		if (!maru::MyUtility::IsRayObstacle(GetGameObject(),target, excluteObjs)) {
