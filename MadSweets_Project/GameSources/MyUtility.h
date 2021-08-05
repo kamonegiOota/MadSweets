@@ -44,13 +44,50 @@ namespace basecross {
 			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj);
 			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos);
 
+			/// <summary>
+			/// 特定のオブジェクトがRay状に合ったらtrueを返す。
+			/// </summary>
+			/// <param name="startObj">Rayの開始</param>
+			/// <param name="endObj">Rayの終わり</param>
+			/// <param name="obstacleObj">間にあるかどうか判断したいオブジェクト</param>
+			/// <returns>Ray状に合ったらtrue</returns>
 			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, 
 				const std::shared_ptr<GameObject>& endObj,
 				const std::shared_ptr<GameObject>& obstacleObj);
 
+			/// <summary>
+			/// 対象のオブジェクトまでに障害物があるかどうか
+			/// </summary>
+			/// <param name="startObj">Rayのスタート</param>
+			/// <param name="endObj">Rayを飛ばす対象</param>
+			/// <param name="excluteObj">障害物として省く対象</param>
+			/// <returns>障害物が合ったらtrue</returns>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+				const std::shared_ptr<GameObject>& endObj,
+				const vector<shared_ptr<GameObject>>& excluteObjs);
+
+			/// <summary>
+			/// templateで指定されたクラスを覗いて、障害物判定を取る関数。
+			/// </summary>
+			template<class ExcluteClass>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+				const std::shared_ptr<GameObject>& endObj)
+			{
+				auto exclutes = maru::MyUtility::GetComponents<ExcluteClass>();
+				return IsRayObstacle(startObj, endObj, exclutes);
+			}
+			
 			//対象の障害物が二つのRayの間に合ったらtrue
 			static bool IsRayObstacle(const Vec3& startObj, const Vec3& endObj,
 				const std::shared_ptr<GameObject>& obstacleObj);
+
+			/// <summary>
+			/// 対象のオブジェクトが対象外かどうか判断する
+			/// </summary>
+			/// <param name="targetObj">対象のオブジェクト</param>
+			/// <param name="excluteObjs">対象外となる配列オブジェクト</param>
+			/// <returns>対象外ならtrue</returns>
+			static bool IsExclute(const shared_ptr<GameObject>& targetObj ,const vector<shared_ptr<GameObject>>& excluteObjs);
 
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//最初に取得できたものだけ返す。
