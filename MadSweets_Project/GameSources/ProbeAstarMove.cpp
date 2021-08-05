@@ -35,26 +35,6 @@ namespace basecross {
 		}
 
 		astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
-		
-		//return;
-
-		//auto delta = App::GetApp()->GetElapsedTime();
-
-		//auto selfPos = transform->GetPosition();
-		//auto targetPos = astar->GetCalucNodePos();
-
-		//if (astar->IsRouteEnd()) {  //ターゲットが最後の場所にたどり着いていたら、移動の処理をしない
-		//	return;
-		//}
-
-		//auto toVec = targetPos - selfPos;
-		//auto velocity = veloComp->GetVelocity();
-		//auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, GetVelocityMaxSpeed(), GetNearRange()); //将来的に変数化
-		//veloComp->SetForce(toVec);
-
-		//Rotation(toVec);
-
-		//LookCheck();
 	}
 
 	void ProbeAstarMove::CalucRoute(const std::shared_ptr<GameObject>& target) {
