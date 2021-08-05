@@ -33,7 +33,7 @@ namespace basecross {
 		//‚±‚±‚Åƒ_ƒ[ƒW‚ð—^‚¦‚é
 		auto damage = other->GetComponent<I_Damaged>(false);
 		if (damage) {
-			//damage->Damage(m_attackPower);
+			damage->Damage(m_attackPower);
 		}
 
 		GetStage()->RemoveGameObject<GameObject>(GetGameObject());
