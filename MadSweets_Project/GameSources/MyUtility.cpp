@@ -134,12 +134,6 @@ namespace basecross {
 					continue;
 				}
 
-				//仮で反応しないようにする。(将来的には何かで反応しないようにする。)
-				auto throwObj = dynamic_pointer_cast<ThrowObject>(object);
-				if (throwObj) {
-					continue;
-				}
-
 				//ヒットしたら、障害物があることになる。
 				RayHitData data;
 				if (collision->IsRayHit(startPosition, direction, data)) {

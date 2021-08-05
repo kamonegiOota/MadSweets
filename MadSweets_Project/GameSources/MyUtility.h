@@ -149,9 +149,29 @@ namespace basecross {
 			}
 
 			/// <summary>
+			/// 渡された配列にtemplateで指定したオブジェクト型のオブジェクトを追加する。
+			/// </summary>
+			template<class T,
+				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
+			static void AddObjects(vector<shared_ptr<GameObject>>& addVec) {
+				auto& app = App::GetApp();
+				auto scene = app->GetScene<Scene>();
+				auto stage = scene->GetActiveStage();
+
+				auto objs = stage->GetGameObjectVec();
+				for (auto& obj : objs) {
+					auto t = dynamic_pointer_cast<T>(obj);
+					if (t) {
+						addVec.push_back(t);  //オブジェクトの追加
+					}
+				}
+			}
+
+			/// <summary>
 			/// 渡された配列にtemplateで指定したコンポーネントを持つオブジェクトを追加する。
 			/// </summary>
-			template<class T>
+			template<class T ,
+				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
 			static void AddComponents(vector<shared_ptr<GameObject>>& addVec) {
 				auto& app = App::GetApp();
 				auto scene = app->GetScene<Scene>();
