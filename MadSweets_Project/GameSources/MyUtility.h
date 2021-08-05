@@ -148,6 +148,24 @@ namespace basecross {
 				return returnObjs;
 			}
 
+			/// <summary>
+			/// 渡された配列にtemplateで指定したコンポーネントを持つオブジェクトを追加する。
+			/// </summary>
+			template<class T>
+			static void AddComponents(vector<shared_ptr<GameObject>>& addVec) {
+				auto& app = App::GetApp();
+				auto scene = app->GetScene<Scene>();
+				auto stage = scene->GetActiveStage();
+
+				auto objs = stage->GetGameObjectVec();
+				for (auto& obj : objs) {
+					auto t = obj->GetComponent<T>(false);
+					if (t) {
+						addVec.push_back(obj);  //オブジェクトの追加
+					}
+				}
+			}
+
 			//ベクター配列から特定のオブジェクトを削除する関数。
 			template<class T>
 			//static void RemoveVec(vector<shared_ptr<T>>& vec, const shared_ptr<T>& removePtr) {
