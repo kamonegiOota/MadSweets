@@ -22,6 +22,9 @@ namespace basecross {
 		PlayerState state = PlayerState::Nomal;
 	};
 
+	/// <summary>
+	/// playerのステータスのコンポーネント
+	/// </summary>
 	class PlayerStatusMgr : public Component , public I_Damaged
 	{
 		PlayerStatusParam m_param;
