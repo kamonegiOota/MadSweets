@@ -12,6 +12,11 @@
 #include "BaseEnemy.h"
 #include "EnState_LoseTarget.h"
 
+#include "Velocity.h"
+#include "UtilVelocity.h"
+#include "MyUtility.h"
+#include "EnemyRotationCtrl.h"
+
 namespace basecross {
 
 	void TargetProbe::SetAstarRondomHideObject() {
@@ -25,8 +30,10 @@ namespace basecross {
 				return;
 			}
 
+			//StartProb(hideObj);
 			astar->SearchAstarStart(hideObj);
 			m_checkHideObj = hideObj;
+			m_moveFunc = &TargetProbe::AstarMove;
 		}
 	}
 
@@ -51,15 +58,46 @@ namespace basecross {
 		}
 	}
 
-	void TargetProbe::Move() {
+	void TargetProbe::TargetMove() {
+		auto veloComp = GetGameObject()->GetComponent<Velocity>();
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj);
+
+		if (veloComp) {
+			auto velocity = veloComp->GetVelocity();
+			auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, toVec, GetVelocityMaxSpeed(), GetArriveNearRange());
+
+			veloComp->SetForce(force);
+
+			//向きの調整
+			auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+			if (rotation) {
+				rotation->SetDirect(veloComp->GetVelocity());
+			}
+		}
+
+		//ターゲットの近くまで来たら
+		constexpr float NearRange = 2.0f;
+		if (toVec.length() <= NearRange) {
+			RouteEnd();
+		}
+	}
+
+	void TargetProbe::AstarMove() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>();
 		if (astar) {
 			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
 
+			//対象の障害物判定がなくなったらでもいいかも？
 			if (astar->IsRouteEnd()) {
-				RouteEnd();
+				m_moveFunc = &TargetProbe::TargetMove;
+				//RouteEnd();
 			}
 		}
+	}
+
+	void TargetProbe::ResetProbe() {
+		m_probCount = 0;
+		m_checkHideObj = nullptr;
 	}
 
 	void TargetProbe::OnCreate() {
@@ -67,13 +105,24 @@ namespace basecross {
 	}
 
 	void TargetProbe::OnUpdate() {
-		Move();
+		if (m_moveFunc) {
+			m_moveFunc(*this);
+		}
 	}
 
 	void TargetProbe::StartProb() {
-		m_probCount = 0;
-		m_checkHideObj = nullptr;
+		ResetProbe();
 		SetAstarRondomHideObject();
+	}
+
+	void TargetProbe::StartProb(const shared_ptr<GameObject>& target) {
+		ResetProbe();
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>();
+		if (astar) {
+			astar->SearchAstarStart(target);
+			m_checkHideObj = target;
+			m_moveFunc = &TargetProbe::TargetMove;
+		}
 	}
 
 }

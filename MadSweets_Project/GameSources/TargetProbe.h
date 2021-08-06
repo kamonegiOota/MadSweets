@@ -19,6 +19,8 @@ namespace basecross {
 		std::shared_ptr<GameObject> m_target;  //捜索対象
 		std::shared_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
 
+		std::function<void(TargetProbe&)> m_moveFunc;
+
 		//何回プレイヤーの捜索をするか？
 		int m_numPorb = 1;
 		int m_probCount = 0;  //実際に捜索した回数。
@@ -30,7 +32,11 @@ namespace basecross {
 
 		void ChangeState();
 		void RouteEnd();
-		void Move();
+
+		void TargetMove();
+		void AstarMove();
+
+		void ResetProbe();
 
 	public:
 
@@ -42,6 +48,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void StartProb();  //捜索開始
+		void StartProb(const shared_ptr<GameObject>& target);  //捜索開始
 
 		//アクセッサ--------------------------------------------------------
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
