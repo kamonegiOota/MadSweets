@@ -62,9 +62,24 @@ namespace basecross {
 
 	void ChaseEnemyObject::OnCreate() {
 		//auto draw = AddComponent<PNTStaticDraw>();
-		auto draw = AddComponent<PNTPointDraw>();
-		draw->SetMeshResource(L"DEFAULT_CUBE");
-		draw->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
+		
+		//auto draw = AddComponent<PNTPointDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
+		//draw->SetDiffuse(Col4(0.0f,0.0f,1.0f,1.0f));
+
+		//ƒƒbƒVƒ…‚Ì’²®—pMat
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f),
+			Vec3(0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -1.0f, 0.0f)
+		);
+
+		auto draw = AddComponent<BcPNTBoneModelDraw>();
+		draw->SetMeshResource(L"Handy");
+		draw->AddAnimation(L"Run", 5, 10, true, 30.0f);
+		draw->SetMeshToTransformMatrix(spanMat);
 
 		//AddComponent<AstarCtrl>();
 		AddComponent<TargetChase>();
@@ -85,6 +100,10 @@ namespace basecross {
 		AddComponent<ChaseEnemy>();
 
 		auto col = AddComponent<CollisionObb>();
+	}
+
+	void ChaseEnemyObject::OnUpdate() {
+
 	}
 
 }
