@@ -33,6 +33,7 @@
 #include "PNTPointDraw.h"
 
 #include "PointLight.h"
+#include "CookieHideObject.h"
 
 namespace basecross {
 
@@ -58,9 +59,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.5f);
+			light.m_DiffuseColor = Col4(0.25f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.5f);
+			light.m_SpecularColor = Col4(0.25f);
 		}
 	}
 
@@ -72,7 +73,8 @@ namespace basecross {
 			//CreateMap(L"TempStage.csv");
 			//CreateMap(L"StageTest2.csv");
 			//CreateMap(L"StageTest3.csv");
-			CreateMap(L"StageTest4.csv");
+			//CreateMap(L"StageTest4.csv");
+			CreateMap(L"StageTest5.csv");
 
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -93,7 +95,7 @@ namespace basecross {
 			player->AddComponent<PointLight>();
 			//player->RemoveComponent<CollisionCapsule>();
 			//player->AddComponent<CollisionObb>();
-			//player->SetDrawActive(false);
+			player->SetDrawActive(false);
 			//player->AddComponent<CollisionObb>();
 			//場所を把握するための処理
 			//player->AddComponent<PositionDrawComp>();
@@ -108,15 +110,15 @@ namespace basecross {
 			CreatePointLight();
 
 			//クッキーの生成
-			CreateSoundCookies();
-			CreateCrackCookies();
+			//CreateSoundCookies();
+			//CreateCrackCookies();
 
 			//隠れるオブジェクトの生成
-			CreateHideObjects();
+			//CreateHideObjects();
 
-			AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
+			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 		}
 		catch (...) {
@@ -158,6 +160,8 @@ namespace basecross {
 		map->CreateObject<FixedBox>(L"Corner");
 		map->CreateObject<FixedBox>(L"InnerCorner");
 		map->CreateObject<FixedBox>(L"Pillar");
+
+		map->CreateObject<CookieHideObject>(L"WallHide");
 
 		for (auto obj : GetGameObjectVec()) {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
@@ -213,14 +217,23 @@ namespace basecross {
 		
 		//Astar生成
 		std::vector<Vec3> poss = {
-			{ +0.0f, +1.0f, +0.0f},//0
-			{-12.0f, +1.0f,-12.0f},
-			{+12.0f, +1.0f,-12.0f},//2
-			{+11.0f, +1.0f,+11.0f},
-			{ +0.0f, +1.0f,+12.0f},//4
-			{-10.0f, +1.0f,+12.0f},
-			{-12.0f, +1.0f, +7.0f},//6
-			{-12.0f, +1.0f, -6.0f},
+			//{ +0.0f, +1.0f, +0.0f},//0
+			//{-12.0f, +1.0f,-12.0f},
+			//{+12.0f, +1.0f,-12.0f},//2
+			//{+11.0f, +1.0f,+11.0f},
+			//{ +0.0f, +1.0f,+12.0f},//4
+			//{-10.0f, +1.0f,+12.0f},
+			//{-12.0f, +1.0f, +7.0f},//6
+			//{-12.0f, +1.0f, -6.0f},
+
+			{ 11.19f,   0.87f,	3.89f},
+			{  2.94f, 	0.87f,  -5.83f	},
+			{ -2.25f,	0.87f,  -14.27f },
+			{ 10.73f,	0.87f,  -14.27f },
+			{ 16.35f,	0.87f,  -10.21f },
+			{ 16.35f,	0.87f,	2.64f },
+			{ -7.36f,	0.87f,  -1.05f },
+			{ 16.35f,	0.87f,  -6.6f },
 		};
 
 		int index = 0;
@@ -229,24 +242,48 @@ namespace basecross {
 		}
 
 		vector<GraphEdge> edges = {
-			{GraphEdge(0,1)},
-			{GraphEdge(0,2)},
-			{GraphEdge(0,4)},
-			{GraphEdge(1,0)},
-			{GraphEdge(1,2)},
-			{GraphEdge(1,7)},
-			{GraphEdge(2,0)},
-			{GraphEdge(2,1)},
-			{GraphEdge(2,3)},
-			{GraphEdge(3,2)},
-			{GraphEdge(3,4)},
-			{GraphEdge(4,0)},
-			{GraphEdge(4,3)},
-			{GraphEdge(4,5)},
-			{GraphEdge(5,4)},
-			{GraphEdge(5,6)},
-			{GraphEdge(6,5)},
-			{GraphEdge(7,1)},
+			  {GraphEdge(0,5)},
+			  {GraphEdge(0,1)},
+
+			  {GraphEdge(1,0)},
+			  {GraphEdge(1,2)},
+			  {GraphEdge(1,6)},
+
+			  {GraphEdge(2,1)},
+			  {GraphEdge(2,3)},
+
+			  {GraphEdge(3,2)},
+			  {GraphEdge(3,4)},
+
+			  {GraphEdge(4,3)},
+			  {GraphEdge(4,7)},
+
+			  {GraphEdge(5,0)},
+			  {GraphEdge(5,7)},
+
+			  {GraphEdge(6,1)},
+
+			  {GraphEdge(7,5)},
+			  {GraphEdge(7,4)},
+
+			//{GraphEdge(0,1)},
+			//{GraphEdge(0,2)},
+			//{GraphEdge(0,4)},
+			//{GraphEdge(1,0)},
+			//{GraphEdge(1,2)},
+			//{GraphEdge(1,7)},
+			//{GraphEdge(2,0)},
+			//{GraphEdge(2,1)},
+			//{GraphEdge(2,3)},
+			//{GraphEdge(3,2)},
+			//{GraphEdge(3,4)},
+			//{GraphEdge(4,0)},
+			//{GraphEdge(4,3)},
+			//{GraphEdge(4,5)},
+			//{GraphEdge(5,4)},
+			//{GraphEdge(5,6)},
+			//{GraphEdge(6,5)},
+			//{GraphEdge(7,1)},
 		};
 
 		for (auto& edge : edges) {
@@ -263,11 +300,12 @@ namespace basecross {
 			//{ +0.0f, +1.0f, +0.0f},//0
 			//{-12.0f, +1.0f,-12.0f},
 			//{+12.0f, +1.0f,-12.0f},//2
-			{+13.0f, +1.0f,+13.0f},
+			//{+13.0f, +1.0f,+13.0f},
 			//{ +0.0f, +1.0f,+12.0f},//4
 			//{-10.0f, +1.0f,+12.0f},
-			{-12.0f, +1.0f, +6.0f},//6
+			//{-12.0f, +1.0f, +6.0f},//6
 			//{-12.0f, +1.0f, -7.0f},
+			{-21.0f,1.0f,-20.0f}
 		};
 
 		std::shared_ptr<GameObject> enemy;
