@@ -18,7 +18,7 @@ namespace basecross
 
 		rectTransform->SetPivot(-0.5f, 0.5f);
 
-		rectTransform->SetPosition(10, -10);
+		rectTransform->SetPosition(10, -30);
 
 		auto childUI = GetStage()->Instantiate<UIObject>(Vec3(), Quat::Identity(), GetThis<UIObject>());
 
@@ -35,7 +35,7 @@ namespace basecross
 
 		gaugeManager->SetGuageBackgroundImage(L"WeightGaugeBackground");
 
-		gaugeManager->SetGaugeRectSize(512, 32);
+		gaugeManager->SetGaugeRectSize(512, 160);
 	}
 
 }
