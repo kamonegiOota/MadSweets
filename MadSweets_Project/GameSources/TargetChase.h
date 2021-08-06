@@ -23,8 +23,15 @@ namespace basecross {
 
 		std::function<void(TargetChase&)> m_updateFunc;
 
+		//視界の先に隠れるオブジェクトが合ってそこにtargetが隠れていたらそれをターゲットにする。
+		bool TargetEyeRangeHide();
+		//ターゲットを見失った時
+		void LostTarget();  
+		//ターゲットを見つけた時
+		void FindTarget();
+
 		void LookMove();
-		void LostCheck();
+		//void LostCheck();
 
 		void LostMove();
 		void LookCheck();
