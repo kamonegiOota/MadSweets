@@ -430,6 +430,24 @@
     <Filter Include="Maru\MaruPlayer\Component">
       <UniqueIdentifier>{9d9d01c7-dbd6-48ab-bd75-08879bd869ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr">
+      <UniqueIdentifier>{3635aded-36d5-468b-bf70-bd1f4b01f505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Hunger">
+      <UniqueIdentifier>{82129509-7fa9-40cd-924d-ac88b21da835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Hunger\TimerDamage">
+      <UniqueIdentifier>{f9177bcb-4a91-4038-9319-75b001bcf85e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Hunger\StomachSound">
+      <UniqueIdentifier>{328fb957-bb55-4569-a1f1-dab42a52d58c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Hunger\PulledSweets">
+      <UniqueIdentifier>{cfe132b7-bb47-4033-b042-f692550ecb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\StageObject\CookieHideObject">
+      <UniqueIdentifier>{c2bcafea-e548-49ae-8a9c-6d611fb863fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -778,7 +796,19 @@
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h">
-      <Filter>Maru\MaruPlayer\Component</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimerDamage.h">
+      <Filter>Maru\MaruPlayer\Component\Hunger\TimerDamage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StomachSound.h">
+      <Filter>Maru\MaruPlayer\Component\Hunger\StomachSound</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PulledSweets.h">
+      <Filter>Maru\MaruPlayer\Component\Hunger\PulledSweets</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h">
+      <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1077,7 +1107,10 @@
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp">
+      <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

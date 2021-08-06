@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PulledSweets.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
@@ -114,6 +116,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StomachSound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
@@ -122,6 +125,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimerDamage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
@@ -143,6 +147,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
