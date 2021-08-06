@@ -69,10 +69,11 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
+			//CreateMap(L"TempStage.csv");
 			//CreateMap(L"StageTest2.csv");
 			//CreateMap(L"StageTest3.csv");
-			
+			CreateMap(L"StageTest4.csv");
+
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
 			auto rectTransform = gauge->GetComponent<RectTransform>();
