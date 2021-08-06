@@ -96,8 +96,6 @@ namespace basecross {
 	}
 
 	void EyeSearchRange::OnUpdate() {
-		//LengthCheck();
-
 		for (auto& param : m_targetParams) {
 			if (IsInEyeRange(param.target)) {  //ターゲットが視界に入っていたら。
 				Hit(param);
