@@ -30,6 +30,10 @@ namespace basecross {
 		}
 	}
 
+	void TimerDamage::OnCreate() {
+		//SetUpdateActive(false);
+	}
+
 	void TimerDamage::OnUpdate() {
 		TimeMgr();
 	}
