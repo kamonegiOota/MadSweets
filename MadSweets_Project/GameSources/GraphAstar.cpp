@@ -90,7 +90,7 @@ namespace basecross {
 		ResetAstar();
 
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
-		DebugObject::m_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
+		DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
 		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
 		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
@@ -228,7 +228,7 @@ namespace basecross {
 		LastAdjust(startData);
 
 		for (auto route : m_shortRoutes) {
-			DebugObject::m_wss << route.nextNode.GetIndex() << L",";
+			DebugObject::sm_wss << route.nextNode.GetIndex() << L",";
 		}
 	}
 
