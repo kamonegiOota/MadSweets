@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "MyUtility.h"
+
 namespace basecross {
 
 	class EarBase : public Component
@@ -22,6 +24,8 @@ namespace basecross {
 	 	virtual void OnCreate() override {}
 		virtual void OnUpdate() override {}
 
+		virtual void Listen(const std::shared_ptr<GameObject>& target);
+		virtual void Listen(const Vec3& targetPos) = 0;
 	};
 
 }
