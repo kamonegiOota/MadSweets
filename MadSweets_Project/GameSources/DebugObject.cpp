@@ -9,7 +9,7 @@
 
 namespace basecross {
 
-	wstringstream DebugObject::m_wss;
+	wstringstream DebugObject::sm_wss;
 	bool DebugObject::sm_isResetDelta = false;
 	
 	void DebugObject::OnCreate() {
@@ -21,8 +21,8 @@ namespace basecross {
 	void DebugObject::OnUpdate() {
 		auto sprite = GetComponent<StringSprite>();
 
-		sprite->AddText(m_wss.str());
-		m_wss.str(L"");
+		sprite->AddText(sm_wss.str());
+		sm_wss.str(L"");
 	}
 
 	void DebugObject::OnUpdate2() {
