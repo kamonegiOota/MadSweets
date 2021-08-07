@@ -59,13 +59,13 @@ namespace basecross {
 	void SearchObject::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
 		if (IsSearchTarget(other)) {
 			AddObject(other);
-			DebugObject::m_wss << "Enter";
+			DebugObject::sm_wss << "Enter";
 		}
 	}
 
 	void SearchObject::OnCollisionExit(std::shared_ptr<GameObject>& other) {
 		if (IsSearchTarget(other)) {
-			DebugObject::m_wss << "Exit";
+			DebugObject::sm_wss << "Exit";
 			RemoveObject(other);
 		}
 	}

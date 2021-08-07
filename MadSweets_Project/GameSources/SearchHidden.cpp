@@ -37,7 +37,7 @@ namespace basecross {
 		auto nearHides = SearchNearHiddenObjects(self ,nearRange);  //近くの隠れるオブジェクトの検索
 		maru::MyUtility::RemoveVec(nearHides, excluteObj);  //一度確認したオブジェクトを排除
 
-		DebugObject::m_wss << endl << L"Hide::" + to_wstring(nearHides.size()) << endl;
+		DebugObject::sm_wss << endl << L"Hide::" + to_wstring(nearHides.size()) << endl;
 
 		if (nearHides.size() == 0) {  //対象が無かったらnullを返す。
 			return nullptr;
