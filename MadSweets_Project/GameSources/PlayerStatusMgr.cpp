@@ -17,8 +17,12 @@ namespace basecross {
 
 		if (m_param.hp <= 0.0f) {
 			m_param.hp = 0.0f;
-			ChangeState(PlayerState::Dest);
+			ChangeState(PlayerStaus::Dest);
 		}
+	}
+
+	void PlayerStatusMgr::OnUpdate() {
+		//DebugObject::AddFloat(m_param.hp);
 	}
 
 }

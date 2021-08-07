@@ -11,7 +11,7 @@
 
 namespace basecross {
 
-	enum class PlayerState {
+	enum class PlayerStaus {
 		Nomal,
 		Dest, //死亡状態
 		Destroy, //死亡演出が終了して完全に死んだ状態。
@@ -19,7 +19,7 @@ namespace basecross {
 
 	struct PlayerStatusParam {
 		float hp = 10.0f;
-		PlayerState state = PlayerState::Nomal;
+		PlayerStaus state = PlayerStaus::Nomal;
 	};
 
 	/// <summary>
@@ -35,16 +35,16 @@ namespace basecross {
 		{}
 		 
 		void OnCreate() override{}
-		void OnUpdate() override{}
+		void OnUpdate() override;
 
 		//インターフェースの実装
 		void Damage(const float& damage) override;
 
 		//アクセッサ---------------------------------------------------------
-		void ChangeState(const PlayerState& state) {
+		void ChangeState(const PlayerStaus& state) {
 			m_param.state = state;
 		}
-		PlayerState GetState() const {
+		PlayerStaus GetState() const {
 			return m_param.state;
 		}
 
