@@ -19,6 +19,7 @@ namespace basecross {
 
 	struct PlayerStatusParam {
 		float hp = 10.0f;
+		float maxHp = hp;
 		PlayerStaus state = PlayerStaus::Nomal;
 	};
 
@@ -46,6 +47,19 @@ namespace basecross {
 		}
 		PlayerStaus GetState() const {
 			return m_param.state;
+		}
+
+		float GetHP() const {
+			return m_param.hp;
+		}
+
+		float GetMaxHp() const {
+			return m_param.maxHp;
+		}
+		
+		//HP‚ÌŠ„‡‚ğŒvZ‚µ‚Ä•Ô‚·
+		float CalucHPRatio() const{
+			return m_param.hp / m_param.maxHp;
 		}
 
 	};
