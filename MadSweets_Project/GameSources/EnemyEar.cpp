@@ -19,13 +19,13 @@ namespace basecross {
 		return toVec.length() < m_listenRange ? true : false;
 	}
 
-	void EnemyEar::SoundListen(const std::shared_ptr<GameObject>& target) {
-		auto targetPos = target->GetComponent<Transform>()->GetPosition();
+	//void EnemyEar::SoundListen(const std::shared_ptr<GameObject>& target) {
+	//	auto targetPos = target->GetComponent<Transform>()->GetPosition();
 
-		SoundListen(targetPos);
-	}
+	//	Listen(targetPos);
+	//}
 
-	void EnemyEar::SoundListen(const Vec3& targetPos) {
+	void EnemyEar::Listen(const Vec3& targetPos) {
 		
 		//特定のステートの時は変更できないようにする。
 		//敵を直接見ているときは目の前の敵を見るなど

@@ -28,8 +28,8 @@ namespace basecross {
 		void OnCreate() override{}
 		void OnUpdate() override{}
 
-		void SoundListen(const std::shared_ptr<GameObject>& target);  //音を聞く処理
-		void SoundListen(const Vec3& targetPos);
+		//void SoundListen(const std::shared_ptr<GameObject>& target);  //音を聞く処理
+		void Listen(const Vec3& targetPos) override;
 		
 		//アクセッサ--------------------------------------------------------
 		void SetListenRange(const float& range) {
