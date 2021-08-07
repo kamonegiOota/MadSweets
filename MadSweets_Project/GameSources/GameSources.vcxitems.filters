@@ -1112,6 +1112,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp">
       <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeDamage.cpp">
+      <Filter>Maru\MaruPlayer\Component\Hunger\TimerDamage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StomachSound.cpp">
+      <Filter>Maru\MaruPlayer\Component\Hunger\StomachSound</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EarBase.cpp">
+      <Filter>Maru\Enemy\Component\Ear</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp">
+      <Filter>Maru\MaruPlayer\Component\Hunger\PulledSweets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">

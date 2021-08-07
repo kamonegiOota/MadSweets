@@ -151,6 +151,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EarBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
@@ -209,6 +210,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
@@ -221,6 +223,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SpringArmComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StomachSound.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp" />
@@ -229,6 +232,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObjectCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeDamage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />
