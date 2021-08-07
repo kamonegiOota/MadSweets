@@ -34,7 +34,7 @@ namespace basecross {
 			draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 
-		DebugObject::m_wss << L"Probe";
+		DebugObject::sm_wss << L"Probe";
 	}
 
 	void EnState_ProbTarget::OnUpdate() {

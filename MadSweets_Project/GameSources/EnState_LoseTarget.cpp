@@ -37,7 +37,7 @@ namespace basecross {
             draw->SetDiffuse(Col4(0.0f, 0.0f, 1.0f, 1.0f));
         }
 
-        DebugObject::m_wss << L"Lose";
+        DebugObject::sm_wss << L"Lose";
     }
 
     void EnState_LoseTarget::OnUpdate() {

@@ -38,7 +38,7 @@ namespace basecross {
 			draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 
-		DebugObject::m_wss << L"Listen" << endl;
+		DebugObject::sm_wss << L"Listen" << endl;
 	}
 
 	void EnState_CheckSoundPos::OnUpdate() {
