@@ -16,6 +16,12 @@
 
 #include<x3daudio.h>
 
+//丸山追記分インクルード
+#include "PlayerStatusMgr.h"
+#include "TimerDamage.h"
+#include "StomachSound.h"
+#include "PulledSweets.h"
+
 namespace basecross
 {
 	PlayerObject::PlayerObject(std::shared_ptr<Stage>& stage) :
@@ -69,6 +75,15 @@ namespace basecross
 		choiceManager->SetSearchRange(2.0f);
 
 		AddComponent<PlayerHideManager>();
+
+
+		//丸山追記文
+		AddComponent<PlayerStatusMgr>();  //ステータス管理コンポーネント
+		AddComponent<TimerDamage>()->SetUpdateActive(false);  //飢餓状態で一定時間ごとにダメージを受ける処理
+		AddComponent<StomachSound>()->SetUpdateActive(false); //飢餓状態で一定時間ごとに腹の音がなる処理。
+		AddComponent<PulledSweets>()->SetUpdateActive(true); //飢餓状態でお菓子の方向に引っ張られる処理
+		
+		
 	}
 
 	void PlayerObject::OnUpdate()
