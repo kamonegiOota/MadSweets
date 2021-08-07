@@ -75,26 +75,26 @@ namespace basecross {
 
 	void MaruStage::OnUpdate() {
 		
-		std::shared_ptr<BaseEnemy> enemy;
-		auto objs = GetGameObjectVec();
-		for (auto& obj : objs) {
-			auto search = obj->GetComponent<SearchObject>(false);
-			if (search) {
-				auto size = search->GetSearchComponents<AstarCtrl>().size();
-				DebugObject::m_wss << to_wstring(size);
-			}
-			auto ene = obj->GetComponent<BaseEnemy>(false);
-			if (ene) {
-				enemy = ene;
-			}
-		}
+		//std::shared_ptr<BaseEnemy> enemy;
+		//auto objs = GetGameObjectVec();
+		//for (auto& obj : objs) {
+		//	auto search = obj->GetComponent<SearchObject>(false);
+		//	if (search) {
+		//		auto size = search->GetSearchComponents<AstarCtrl>().size();
+		//		DebugObject::sm_wss << to_wstring(size);
+		//	}
+		//	auto ene = obj->GetComponent<BaseEnemy>(false);
+		//	if (ene) {
+		//		enemy = ene;
+		//	}
+		//}
 
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
-		if (key.IsInputDown(itbs::Input::KeyCode::T)) {
-			if (enemy) {
-				//enemy->ChangeStateMachine<>
-			}
-		}
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//if (key.IsInputDown(itbs::Input::KeyCode::T)) {
+		//	if (enemy) {
+		//		//enemy->ChangeStateMachine<>
+		//	}
+		//}
 	}
 
 	void MaruStage::CreateGraphTest() {
