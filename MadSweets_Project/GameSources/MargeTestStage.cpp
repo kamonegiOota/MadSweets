@@ -186,7 +186,8 @@ namespace basecross {
 		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png"); 
 			app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
-		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png");
+		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
+		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
 
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
