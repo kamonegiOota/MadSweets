@@ -29,7 +29,7 @@ namespace basecross {
 	void SoundCookie::SendListener() {
 		auto ears = maru::MyUtility::GetComponents<EnemyEar>();
 		for (auto& ear : ears) {
-			ear->SoundListen(transform->GetPosition());
+			ear->Listen(transform->GetPosition());
 		}
 	}
 
