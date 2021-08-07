@@ -91,7 +91,8 @@ namespace basecross {
 
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//最初に取得できたものだけ返す。
-			template<class T>
+			template<class T,
+				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 			static shared_ptr<T> GetGameObject() {
 				auto& app = App::GetApp();
 				auto scene = app->GetScene<Scene>();
@@ -110,7 +111,8 @@ namespace basecross {
 
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//ベクター配列として見つけたもの全て返す。
-			template<class T>
+			template<class T,
+				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 			static vector<shared_ptr<T>> GetGameObjects() {
 				auto& app = App::GetApp();
 				auto scene = app->GetScene<Scene>();
@@ -129,7 +131,8 @@ namespace basecross {
 				return returnObjs;
 			}
 
-			template<class T>
+			template<class T,
+				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
 			static vector<shared_ptr<T>> GetComponents() {
 				auto& app = App::GetApp();
 				auto scene = app->GetScene<Scene>();
