@@ -448,6 +448,12 @@
     <Filter Include="Maru\Object\StageObject\CookieHideObject">
       <UniqueIdentifier>{c2bcafea-e548-49ae-8a9c-6d611fb863fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Hunger\HungerCompCtrl">
+      <UniqueIdentifier>{478b2b8c-ad1b-4fda-ac76-0b64a8fcfff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr">
+      <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -810,6 +816,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h">
       <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HungerCompCtrl.h">
+      <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1123,6 +1135,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp">
       <Filter>Maru\MaruPlayer\Component\Hunger\PulledSweets</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HungerCompCtrl.cpp">
+      <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
