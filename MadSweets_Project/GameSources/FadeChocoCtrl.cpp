@@ -34,6 +34,7 @@ namespace basecross {
 		if (height >= maxSize) {
 			m_isEnd = true;
 			height = maxSize;
+			m_updateFunc = nullptr;
 		}
 
 		rectTrans->SetHeight(height);
@@ -44,11 +45,14 @@ namespace basecross {
 	}
 
 	void FadeChocoCtrl::OnUpdate() {
-		FadeUpdate();
+		if (m_updateFunc) {
+			m_updateFunc(*this);
+		}
 	}
 
-	void FadeChocoCtrl::FadeStart(const float& speed) {
-		m_speed = speed;
+	void FadeChocoCtrl::FadeStart() {
+		m_updateFunc = &FadeChocoCtrl::FadeUpdate;
+		m_isEnd = false;
 	}
 
 }
