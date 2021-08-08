@@ -14,15 +14,6 @@ namespace basecross {
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto image = m_chocoUI->GetComponent<Image>();
 		auto rectTrans = m_chocoUI->GetComponent<RectTransform>();
-		//auto height = rectTrans->GetHeight();
-		//height += m_speed * delta;
-
-		//if (height >= m_size.y) {
-		//	height = m_size.y;
-		//	m_updateFunc = nullptr;
-		//}
-
-		//rectTrans->SetHeight(height);
 
 		auto color = image->GetDiffuse();
 		color.w += m_speed * delta;
@@ -31,6 +22,9 @@ namespace basecross {
 			m_updateFunc = nullptr;
 			color.w = 1.0f;
 			m_isEnd = true;
+
+			m_delegate();
+			m_delegate.Clear();
 		}
 
 		image->SetDiffuse(color);
@@ -50,6 +44,7 @@ namespace basecross {
 	}
 
 	void TitleNameCtrl::FadeStart() {
+		m_isEnd = false;
 		m_updateFunc = &TitleNameCtrl::UpdateChoco;
 	}
 

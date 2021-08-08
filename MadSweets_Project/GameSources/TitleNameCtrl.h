@@ -11,8 +11,12 @@
 
 namespace basecross {
 
+	using itbs::Utility::Delegate;
+
 	class TitleNameCtrl : public Component
 	{
+		Delegate<void()> m_delegate;
+
 		ex_weak_ptr<UIObject> m_fontUI;
 		ex_weak_ptr<UIObject> m_chocoUI;
 
@@ -48,6 +52,15 @@ namespace basecross {
 
 		bool IsEnd() const {
 			return m_isEnd;
+		}
+
+		void SetDelegate(const Delegate<void()>& deleg) {
+			m_delegate = deleg;
+		}
+
+		template<class Obj>
+		void AddDelegateFunc(const std::shared_ptr<Obj>& obj, void(Obj::* fn)()) {
+
 		}
 	};
 
