@@ -454,6 +454,18 @@
     <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr">
       <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\TestStage\TitleStage\TitleName">
+      <UniqueIdentifier>{163091b9-7a70-41f0-ac28-9a90e8aaa24d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\TestStage\TitleStage\TitleName\TItleNameObject">
+      <UniqueIdentifier>{626adc60-0907-4958-b763-32bebfc1f0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\TestStage\TitleStage\TitleName\TitleNameCtrl">
+      <UniqueIdentifier>{7ff9a697-7ebc-4420-aeec-79a1d2dee19d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\TestStage\TitleStage\FadeCtrl">
+      <UniqueIdentifier>{6c822415-90ef-4480-869b-648bc137aca0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -822,6 +834,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleNameObject.h">
+      <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleNameCtrl.h">
+      <Filter>Maru\TestStage\TitleStage\TitleName\TitleNameCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleFadeCtrl.h">
+      <Filter>Maru\TestStage\TitleStage\FadeCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1141,6 +1162,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleNameObject.cpp">
+      <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleNameCtrl.cpp">
+      <Filter>Maru\TestStage\TitleStage\TitleName\TitleNameCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleFadeCtrl.cpp">
+      <Filter>Maru\TestStage\TitleStage\FadeCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
