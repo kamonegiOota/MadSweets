@@ -14,8 +14,6 @@
 
 namespace basecross {
 
-	using itbs::Utility::Delegate;
-
 	void TitleFadeCtrl::ChangeStage() {
 		float stayTime(0.0f); //ステージ遷移する場合に待つ時間
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
