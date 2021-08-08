@@ -42,16 +42,18 @@ namespace basecross {
 	}
 
 	void TitleFadeCtrl::FadeStart() {
+		//欲しい情報の取得
 		m_titleNameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
-		m_titleNameCtrl->FadeStart();
-
 		auto fadeCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
 
-		auto deleg = Delegate<void()>();
-		deleg.AddFunc<FadeChocoCtrl>(fadeCtrl, &FadeChocoCtrl::FadeStart);
-		m_titleNameCtrl->SetDelegate(deleg);
-
+		//それぞれの終了時に呼び出したい関数セット
+		m_titleNameCtrl->FadeStart();
+		m_titleNameCtrl->AddEndAction<FadeChocoCtrl>(fadeCtrl, &FadeChocoCtrl::FadeStart);
+		fadeCtrl->AddEndAction(GetThis<TitleFadeCtrl>(), &TitleFadeCtrl::ChangeStage);
+		
+		//後処理
 		//m_updateFunc = &TitleFadeCtrl::TitleNameMgr;
+		m_fadeChocoCtrl = fadeCtrl;
 	}
 
 }
