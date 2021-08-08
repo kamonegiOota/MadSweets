@@ -21,38 +21,18 @@ namespace basecross {
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
 	}
 
-	void TitleFadeCtrl::FadeChocoMgr() {
-		if (m_fadeChocoCtrl->IsEnd()) {
-			ChangeStage();
-			m_updateFunc = nullptr;
-		}
-	}
-
-	void TitleFadeCtrl::TitleNameMgr() {
-		if(m_titleNameCtrl->IsEnd()) {
-			m_fadeChocoCtrl->FadeStart();
-			m_updateFunc = &TitleFadeCtrl::FadeChocoMgr;
-		}
-	}
-
-	void TitleFadeCtrl::OnUpdate() {
-		if (m_updateFunc) {
-			m_updateFunc(*this);
-		}
-	}
-
 	void TitleFadeCtrl::FadeStart() {
 		//欲しい情報の取得
-		m_titleNameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
+		auto nameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
 		auto fadeCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
 
 		//それぞれの終了時に呼び出したい関数セット
-		m_titleNameCtrl->FadeStart();
-		m_titleNameCtrl->AddEndAction<FadeChocoCtrl>(fadeCtrl, &FadeChocoCtrl::FadeStart);
+		nameCtrl->FadeStart();
+		nameCtrl->AddEndAction(fadeCtrl, &FadeChocoCtrl::FadeStart);
 		fadeCtrl->AddEndAction(GetThis<TitleFadeCtrl>(), &TitleFadeCtrl::ChangeStage);
 		
 		//後処理
-		//m_updateFunc = &TitleFadeCtrl::TitleNameMgr;
+		m_titleNameCtrl = nameCtrl;
 		m_fadeChocoCtrl = fadeCtrl;
 	}
 
