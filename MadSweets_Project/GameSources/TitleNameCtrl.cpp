@@ -19,15 +19,19 @@ namespace basecross {
 		color.w += m_speed * delta;
 
 		if (color.w >= 1.0f) {
-			m_updateFunc = nullptr;
 			color.w = 1.0f;
-			m_isEnd = true;
-
-			m_delegate();
-			m_delegate.Clear();
+			EndProcess();
 		}
 
 		image->SetDiffuse(color);
+	}
+
+	void TitleNameCtrl::EndProcess() {
+		m_updateFunc = nullptr;
+		m_isEnd = true;
+
+		m_endAction();
+		m_endAction.Clear();
 	}
 
 	void TitleNameCtrl::OnCreate() {
