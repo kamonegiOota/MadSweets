@@ -51,6 +51,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />

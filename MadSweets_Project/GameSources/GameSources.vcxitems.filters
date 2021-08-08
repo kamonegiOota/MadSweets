@@ -472,6 +472,9 @@
     <Filter Include="Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl">
       <UniqueIdentifier>{bb5d218b-381b-4e5e-8d79-de4efd6a9873}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Fade">
+      <UniqueIdentifier>{bc3523d9-5134-4807-bc8d-24b2952c68bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -852,6 +855,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h">
       <Filter>Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
+      <Filter>Maru\Component\Fade</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1183,6 +1189,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp">
       <Filter>Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp">
+      <Filter>Maru\Component\Fade</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
