@@ -19,10 +19,17 @@ namespace basecross {
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
 	}
 
-	void TitleFadeCtrl::ChangeStageMgr() {
-		if(m_titleNameCtrl->IsEnd()) {
+	void TitleFadeCtrl::FadeChocoMgr() {
+		if (m_fadeChocoCtrl->IsEnd()) {
 			ChangeStage();
 			m_updateFunc = nullptr;
+		}
+	}
+
+	void TitleFadeCtrl::TitleNameMgr() {
+		if(m_titleNameCtrl->IsEnd()) {
+			m_fadeChocoCtrl->FadeStart();
+			m_updateFunc = &TitleFadeCtrl::FadeChocoMgr;
 		}
 	}
 
@@ -36,7 +43,9 @@ namespace basecross {
 		m_titleNameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
 		m_titleNameCtrl->FadeStart();
 
-		m_updateFunc = &TitleFadeCtrl::ChangeStageMgr;
+		m_fadeChocoCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
+
+		m_updateFunc = &TitleFadeCtrl::TitleNameMgr;
 	}
 
 }
