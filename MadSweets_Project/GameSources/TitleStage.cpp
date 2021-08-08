@@ -11,6 +11,10 @@
 #include "DebugObject.h"
 
 #include "UIHelper.h"
+#include "TitleNameCtrl.h"
+#include "TitleNameObject.h"
+#include "TitleFadeCtrl.h"
+#include "MyUtility.h"
 
 namespace basecross {
 
@@ -34,17 +38,21 @@ namespace basecross {
 
 	void TitleStage::CreateTitle() {
 		//タイトルの画像の表示
-		auto ui = Instantiate<UIObject>();
-		auto image = ui->AddComponent<Image>();
-		image->SetTextureResource(L"TitleFont_Tx");
-		image->GetGameObject()->GetComponent<RectTransform>()->SetRectSize(512.0f,256.0f);
+		Instantiate<TitleNameObject>();
+	}
+
+	void TitleStage::CreateFadeCtrl() {
+		//TitleFadeCtrlを生成
+		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
 	}
 
 	void TitleStage::ChangeStage() {
+		//将来的にしっかりとしたInputerを用意
 		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
 		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
+			auto fade = maru::MyUtility::GetComponent<TitleFadeCtrl>();
+			fade->FadeStart();
 		}
 	}
 
@@ -55,6 +63,7 @@ namespace basecross {
 			LoadData();
 
 			CreateTitle();
+			CreateFadeCtrl();
 
 			AddGameObject<DebugObject>();
 		}
@@ -80,7 +89,7 @@ namespace basecross {
 		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png");
 		app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
-		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png");
+		app->RegisterTexture(L"TitleChoco_Tx", textureDir + L"TitleChoco.png");
 
 	}
 

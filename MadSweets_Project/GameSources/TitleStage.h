@@ -17,6 +17,7 @@ namespace basecross {
 		void CreateViewLight();
 
 		void CreateTitle();
+		void CreateFadeCtrl();
 		void ChangeStage();
 
 	public:
