@@ -14,6 +14,7 @@
 #include "TitleNameCtrl.h"
 #include "TitleNameObject.h"
 #include "TitleFadeCtrl.h"
+#include "FadeChocoCtrl.h"
 #include "MyUtility.h"
 
 namespace basecross {
@@ -44,6 +45,9 @@ namespace basecross {
 	void TitleStage::CreateFadeCtrl() {
 		//TitleFadeCtrlを生成
 		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
+
+		//チョコフェードの実装
+		Instantiate<GameObject>()->AddComponent<FadeChocoCtrl>();
 	}
 
 	void TitleStage::ChangeStage() {
@@ -90,6 +94,7 @@ namespace basecross {
 		app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"TitleChoco_Tx", textureDir + L"TitleChoco.png");
+		app->RegisterTexture(L"FadeChoco_Tx", textureDir + L"FadeChoco.png");
 
 	}
 
