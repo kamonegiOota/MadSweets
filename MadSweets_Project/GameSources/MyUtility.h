@@ -19,6 +19,8 @@ namespace basecross {
 
 			static constexpr float FOWARD_ADJUST = -XM_PIDIV2;
 
+			static std::shared_ptr<Stage> GetStage();
+
 			//ëŒè€Ç™ê≥ñ Ç…Ç¢ÇÈÇ©Ç«Ç§Ç©
 			static bool IsTargetInFront(const std::shared_ptr<GameObject>& target, const std::shared_ptr<GameObject>& self);
 
@@ -94,9 +96,7 @@ namespace basecross {
 			template<class T,
 				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 			static shared_ptr<T> GetGameObject() {
-				auto& app = App::GetApp();
-				auto scene = app->GetScene<Scene>();
-				auto stage = scene->GetActiveStage();
+				auto stage = GetStage();
 
 				auto objs = stage->GetGameObjectVec();
 				for (auto& obj : objs) {
@@ -114,9 +114,7 @@ namespace basecross {
 			template<class T,
 				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 			static vector<shared_ptr<T>> GetGameObjects() {
-				auto& app = App::GetApp();
-				auto scene = app->GetScene<Scene>();
-				auto stage = scene->GetActiveStage();
+				auto stage = GetStage();
 
 				vector<shared_ptr<T>> returnObjs;
 
@@ -133,10 +131,24 @@ namespace basecross {
 
 			template<class T,
 				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
+			static shared_ptr<T> GetComponent() {
+				auto stage = GetStage();
+
+				auto objs = stage->GetGameObjectVec();
+				for (auto& obj : objs) {
+					auto t = obj->GetComponent<T>(false);
+					if (t) {
+						return t;
+					}
+				}
+
+				return nullptr;
+			}
+
+			template<class T,
+				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
 			static vector<shared_ptr<T>> GetComponents() {
-				auto& app = App::GetApp();
-				auto scene = app->GetScene<Scene>();
-				auto stage = scene->GetActiveStage();
+				auto stage = GetStage();
 
 				vector<shared_ptr<T>> returnObjs;
 
@@ -157,9 +169,7 @@ namespace basecross {
 			template<class T,
 				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 			static void AddObjects(vector<shared_ptr<GameObject>>& addVec) {
-				auto& app = App::GetApp();
-				auto scene = app->GetScene<Scene>();
-				auto stage = scene->GetActiveStage();
+				auto stage = GetStage();
 
 				auto objs = stage->GetGameObjectVec();
 				for (auto& obj : objs) {
@@ -176,9 +186,7 @@ namespace basecross {
 			template<class T ,
 				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
 			static void AddComponents(vector<shared_ptr<GameObject>>& addVec) {
-				auto& app = App::GetApp();
-				auto scene = app->GetScene<Scene>();
-				auto stage = scene->GetActiveStage();
+				auto stage = GetStage();
 
 				auto objs = stage->GetGameObjectVec();
 				for (auto& obj : objs) {

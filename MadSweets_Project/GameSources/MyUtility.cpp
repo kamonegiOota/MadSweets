@@ -17,6 +17,13 @@ namespace basecross {
 
 	namespace maru {
 
+		//ステージの取得
+		std::shared_ptr<Stage> MyUtility::GetStage() {
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
+			return scene->GetActiveStage();
+		}
+
 		//正面にいるかどうか
 		bool MyUtility::IsTargetInFront(const std::shared_ptr<GameObject>& target, const std::shared_ptr<GameObject>& self)
 		{
