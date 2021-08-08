@@ -14,6 +14,8 @@
 
 namespace basecross {
 
+	using itbs::Utility::Delegate;
+
 	void TitleFadeCtrl::ChangeStage() {
 		float stayTime(0.0f); //ステージ遷移する場合に待つ時間
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
@@ -43,9 +45,13 @@ namespace basecross {
 		m_titleNameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
 		m_titleNameCtrl->FadeStart();
 
-		m_fadeChocoCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
+		auto fadeCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
 
-		m_updateFunc = &TitleFadeCtrl::TitleNameMgr;
+		auto deleg = Delegate<void()>();
+		deleg.AddFunc<FadeChocoCtrl>(fadeCtrl, &FadeChocoCtrl::FadeStart);
+		m_titleNameCtrl->SetDelegate(deleg);
+
+		//m_updateFunc = &TitleFadeCtrl::TitleNameMgr;
 	}
 
 }
