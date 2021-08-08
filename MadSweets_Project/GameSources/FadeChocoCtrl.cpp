@@ -32,12 +32,19 @@ namespace basecross {
 
 		float maxSize = 6000.0f;
 		if (height >= maxSize) {
-			m_isEnd = true;
 			height = maxSize;
-			m_updateFunc = nullptr;
+			EndProcess();
 		}
 
 		rectTrans->SetHeight(height);
+	}
+
+	void FadeChocoCtrl::EndProcess() {
+		m_isEnd = true;
+		m_updateFunc = nullptr;
+
+		m_endAction();
+		m_endAction.Clear();
 	}
 
 	void FadeChocoCtrl::OnCreate() {

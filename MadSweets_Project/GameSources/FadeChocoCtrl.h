@@ -11,11 +11,12 @@
 #include "Project.h"
 
 #include "TitleNameCtrl.h"
-#include "DelegateSystem.h"
+
+#include "FadeCtrlBase.h"
 
 namespace basecross {
 
-	class FadeChocoCtrl : public Component
+	class FadeChocoCtrl : public FadeCtrlBase
 	{
 		ex_weak_ptr<UIObject> m_ui;
 
@@ -26,19 +27,21 @@ namespace basecross {
 		float m_speed = 3000.0f;
 		bool m_isEnd = false;
 
+
 		void CreateChocoUI();
 
 		void FadeUpdate();
+		void EndProcess();
 
 	public:
 		FadeChocoCtrl(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+			:FadeCtrlBase(objPtr)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		void FadeStart();
+		void FadeStart() override;
 
 		//アクセッサ--------------------------------------------------------
 		bool IsEnd() const {
