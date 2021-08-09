@@ -75,6 +75,27 @@ namespace basecross {
 		}
 	}
 
+	void GraphAstar::AddNode(const Vec3& position) {
+		//ノードの追加
+		auto index = m_graph.GetNextFreeNodeIndex();
+		NavGraphNode newNode(index, position);
+		m_graph.AddNode(newNode);
+
+		//エッジの追加
+		auto nodes = m_graph.GetNodes();
+		for (auto& node : nodes) {
+			//障害物がなかったらエッジを追加する。
+			if (maru::MyUtility::IsRayObstacle(newNode.GetPosition(), node.GetPosition())) {
+				m_graph.AddEdge(GraphEdge(newNode.GetIndex(), node.GetIndex()));
+				m_graph.AddEdge(GraphEdge(node.GetIndex(), newNode.GetIndex()));
+			}
+		}
+	}
+
+	void GraphAstar::RemoveNode(const int& index) {
+		m_graph.RemoveNode(index);
+	}
+
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
 		SearchAstarStart(self, targetPos);

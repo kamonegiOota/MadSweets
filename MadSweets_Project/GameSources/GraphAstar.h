@@ -66,11 +66,9 @@ namespace basecross {
 
 
 		const NavGraphNode *GetBeforeNode() const;  //前のノードの情報を取得する。
-		void RemoveData(const AstarExpectData& data);
+		void RemoveData(const AstarExpectData& data); //データのリムーブ
 		void BackShortRoute(); //一旦前のルートに戻る。
 		bool IsAstarEnd();  //Astarの終了を判断
-
-		//目的ノードの設定
 		
 	public:
 		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
@@ -108,6 +106,11 @@ namespace basecross {
 			m_isRouteEnd = false;
 			m_shortRoutes = shortRoutes;
 		}
+
+		//ノードの追加
+		void AddNode(const Vec3& position);
+		//ノードの削除
+		void RemoveNode(const int& index);
 
 	private:
 
