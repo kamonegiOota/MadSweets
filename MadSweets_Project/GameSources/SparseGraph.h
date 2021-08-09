@@ -12,7 +12,11 @@
 //#include "NavGraphNode.h"
 //#include "GraphEdge.h"
 
+#include "MyUtility.h"
+
 namespace basecross {
+
+	using maru::MyUtility;
 
 	template<class node_type, class edge_type>
 	class SparseGraph 
@@ -112,7 +116,20 @@ namespace basecross {
 		/// </summary>
 		/// <param name="index">削除したいノードのインデックス</param>
 		void RemoveNode(const int& index) {
-			
+			//ノードの削除
+			MyUtility::RemoveVec(m_nodes, m_nodes[index]);
+			//そのノードのedgesの削除
+			m_edges.erase(index);
+
+			//削除したインデクスが含まれるエッジを削除
+			for (int i = 0; i < m_edges.size(); i++) {
+				for (auto& edge : m_edges[i]) {
+					if (edge.GetTo() == index) {  //行先がindexと一緒なら
+						RemoveEdge(edge.GetFrom(), edge.GetTo());
+					}
+				}
+			}
+
 		}
 
 		/// <summary>
@@ -129,8 +146,25 @@ namespace basecross {
 		/// <param name="from"></param>
 		/// <param name="back"></param>
 		void RemoveEdge(const int& from, const int& to) {
+			auto& edges = m_edges[from];
+			auto iter = edges.begin();
+			while (iter != edges.end()) {
+				if (iter->GetTo() == to) {
+					iter = edges.erase(iter);
+					break;
+				}
 
+				iter++;
+			}
 		}
+
+		/// <summary>
+		/// 渡されたインデックスが含まれるエッジを全て削除する。
+		/// </summary>
+		/// <param name="index">削除したいインデックス</param>
+		//void RemoveEdge(const int& index) {
+		//	
+		//}
 
 		/// <summary>
 		/// このグラフ内のノードの個数を返す。
