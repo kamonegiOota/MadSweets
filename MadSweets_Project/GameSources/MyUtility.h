@@ -69,6 +69,16 @@ namespace basecross {
 				const vector<shared_ptr<GameObject>>& excluteObjs);
 
 			/// <summary>
+			/// 対象のオブジェクトまでに障害物があるかどうか
+			/// </summary>
+			/// <param name="startPos">Rayのスタート</param>
+			/// <param name="endPos">Rayを飛ばす対象</param>
+			/// <param name="excluteObjs">障害物として省く対象</param>
+			/// <returns>障害物が合ったらtrue</returns>
+			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos,
+				const vector<shared_ptr<GameObject>>& excluteObjs);
+
+			/// <summary>
 			/// templateで指定されたクラスを覗いて、障害物判定を取る関数。
 			/// </summary>
 			template<class ExcluteClass>
@@ -210,6 +220,7 @@ namespace basecross {
 					iter++;
 				}
 			}
+
 		};
 	}
 

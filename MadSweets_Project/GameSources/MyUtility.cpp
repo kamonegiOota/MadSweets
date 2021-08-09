@@ -123,16 +123,24 @@ namespace basecross {
 		{
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
 			auto endPosition = endObj->GetComponent<Transform>()->GetWorldPosition();
+
+			//excluteObjsにスタートオブジェクトと、エンドオブジェクトを省く。
+			auto newExcluteObjs = excluteObjs;
+			newExcluteObjs.push_back(startObj);
+			newExcluteObjs.push_back(endObj);
+
+			return IsRayObstacle(startPosition, endPosition, newExcluteObjs);
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
+			const vector<shared_ptr<GameObject>>& excluteObjs)
+		{
 			auto direction = endPosition - startPosition;
 
-			for (const auto& object : startObj->GetStage()->GetGameObjectVec())
+			for (const auto& object : GetStage()->GetGameObjectVec())
 			{
 				auto collision = object->GetComponent<Collision>(false);
 				if (!collision) {
-					continue;
-				}
-
-				if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
 					continue;
 				}
 
