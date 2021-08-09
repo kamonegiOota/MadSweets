@@ -71,9 +71,6 @@ namespace basecross {
 			CreateViewLight();
 			TempLoad();
 			CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest2.csv");
-			//CreateMap(L"StageTest3.csv");
-			//CreateMap(L"StageTest4.csv");
 			//CreateMap(L"StageTest5.csv");
 
 			//ÉQÅ[ÉWÇÃê∂ê¨
@@ -128,19 +125,19 @@ namespace basecross {
 
 	void MargeTestStage::OnUpdate() {
 		for (auto obj : GetGameObjectVec()) {
-			auto player = dynamic_pointer_cast<PlayerObject>(obj);
-			if (player) {
-				//DebugObject::m_wss << L"ss";
-				auto pos = player->GetComponent<Transform>()->GetPosition();
-				//auto forward = player->GetComponent<Transform>()->GetForword();
-				auto light = dynamic_pointer_cast<MultiLight>(GetLight());
-				auto newLight = light->GetLight(2);
-				//newLight.m_Directional = forward;
-				newLight.m_Directional = pos;
-				newLight.m_DiffuseColor = Col4(1.0f);
-				newLight.m_SpecularColor = Col4(1.0f);
-				//light->SetDefaultLighting();
-			}
+			//auto player = dynamic_pointer_cast<PlayerObject>(obj);
+			//if (player) {
+			//	//DebugObject::m_wss << L"ss";
+			//	auto pos = player->GetComponent<Transform>()->GetPosition();
+			//	//auto forward = player->GetComponent<Transform>()->GetForword();
+			//	auto light = dynamic_pointer_cast<MultiLight>(GetLight());
+			//	auto newLight = light->GetLight(2);
+			//	//newLight.m_Directional = forward;
+			//	newLight.m_Directional = pos;
+			//	newLight.m_DiffuseColor = Col4(1.0f);
+			//	newLight.m_SpecularColor = Col4(1.0f);
+			//	//light->SetDefaultLighting();
+			//}
 		}
 	}
 
@@ -167,7 +164,7 @@ namespace basecross {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
 			if (fixed) {
 				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
-					fixed->GetComponent<Collision>()->SetUpdateActive(false);
+					//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				}
 			}
 		}
