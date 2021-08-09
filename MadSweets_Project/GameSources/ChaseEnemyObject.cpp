@@ -84,7 +84,7 @@ namespace basecross {
 			Vec3(0.0f, -1.0f, 0.0f)
 		);
 
-		auto draw = AddComponent<BcPNTBoneModelDraw>();
+		auto draw = AddComponent<PNTBoneModelDraw>();
 		draw->SetMeshResource(L"Handy");
 		draw->AddAnimation(L"Run", 5, 10, true, 30.0f);
 		draw->SetMeshToTransformMatrix(spanMat);
