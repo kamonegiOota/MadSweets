@@ -39,9 +39,15 @@ namespace basecross {
 
 	void EnState_ProbTarget::OnUpdate() {
 		//DebugObject::m_wss << L"Chase";
+		DebugObject::sm_wss << L"Probe";
 	}
 
 	void EnState_ProbTarget::OnExit() {
+		//auto obj = GetOwner()->GetGameObject();
+		//auto prob = obj->GetComponent<TargetProbe>(false);
+		//if (prob) {
+		//	prob->RemoveNode();  //ノードのリムーブ
+		//}
 
 		ExitChangeComps();
 	}
