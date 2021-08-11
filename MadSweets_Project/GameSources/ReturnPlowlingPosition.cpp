@@ -29,22 +29,6 @@ namespace basecross {
 		if (m_astar->IsRouteEnd()) {
 			ChangeStateMachine();
 		}
-
-		//return;
-
-		//auto delta = App::GetApp()->GetElapsedTime();
-		//auto selfPos = transform->GetPosition();
-		//	auto nodePos = m_astar->GetCalucNodePos();
-
-		//auto toVec = nodePos - selfPos;
-		//selfPos += toVec.GetNormalized() * m_speed * delta;
-		//transform->SetPosition(selfPos);
-
-		//Rotation(toVec);
-
-		//if (m_astar->IsRouteEnd()) {
-		//	ChangeStateMachine();  //ステートの変更
-		//}
 	}
 
 	void ReturnPlowlingPosition::Rotation(const Vec3& moveVec) {
@@ -70,11 +54,14 @@ namespace basecross {
 		m_astar = obj->GetComponent<AstarCtrl>(false);
 		auto plowling = obj->GetComponent<PlowlingMove>(false);
 		if (!m_astar || !plowling) {
+			//ChangeStateMachine();
 			return;
 		}
 
 		auto targetPos = plowling->GetNowTargetPosition();
+
 		m_astar->SearchAstarStart(targetPos);
+		//ChangeStateMachine();
 
 		SetUpdateActive(true);
 	}
