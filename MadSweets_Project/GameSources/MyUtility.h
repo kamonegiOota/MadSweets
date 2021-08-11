@@ -245,15 +245,18 @@ namespace basecross {
 			//ベクター配列から特定のオブジェクトを削除する関数。
 			template<class T>
 			//static void RemoveVec(vector<shared_ptr<T>>& vec, const shared_ptr<T>& removePtr) {
-			static void RemoveVec(vector<T>& vec, const T& removePtr) {
+			static bool RemoveVec(vector<T>& vec, const T& removePtr) {
 				auto iter = vec.begin();
 				while (iter != vec.end()) {
 					if (*iter == removePtr) {
 						iter = vec.erase(iter);
-						break;
+						return true;
+						//break;
 					}
 					iter++;
 				}
+
+				return false;
 			}
 
 		};
