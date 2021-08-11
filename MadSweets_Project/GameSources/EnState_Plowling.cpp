@@ -42,7 +42,7 @@ namespace basecross {
 	}
 
 	void EnState_Plowling::OnUpdate() {
-		DebugObject::sm_wss << L"Plowling";
+		//DebugObject::sm_wss << L"Plowling";
 	}
 
 	void EnState_Plowling::OnExit() {

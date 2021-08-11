@@ -42,7 +42,7 @@ namespace basecross {
     }
 
     void EnState_LoseTarget::OnUpdate() {
-        DebugObject::sm_wss << L"Lose";
+        //DebugObject::sm_wss << L"Lose";
     }
 
     void EnState_LoseTarget::OnExit() {
