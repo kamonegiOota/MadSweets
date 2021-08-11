@@ -111,12 +111,12 @@ namespace basecross {
 			//CreateCrackCookies();
 
 			//隠れるオブジェクトの生成
-			//CreateHideObjects();
+			CreateHideObjects();
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
-			//DebugObject::sm_isResetDelta = true;
+			DebugObject::sm_isResetDelta = true;
 		}
 		catch (...) {
 			throw;
@@ -201,6 +201,14 @@ namespace basecross {
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Handy\\", L"Handy_Walk.bmf");
 		app->RegisterResource(L"Handy", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Ashi\\", L"Ashi_Wark.bmf");
+		app->RegisterResource(L"Ashi", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Cara\\", L"Cara_Wark.bmf");
+		app->RegisterResource(L"Cara", modelMesh);
 
 		//音ロード
 		wstring SE_Dir = mediaDir + L"SEs\\";
