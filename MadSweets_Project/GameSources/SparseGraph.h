@@ -96,7 +96,12 @@ namespace basecross {
 		/// 次のフリーノードのインデックスを参照する。
 		/// </summary>
 		/// <returns></returns>
-		int GetNextFreeNodeIndex() const{
+		int GetNextFreeNodeIndex(){
+			//見つかった場合は別のインデックスにしなければならない
+			if (m_edges.find(m_nextNodeIndex) != m_edges.end()) {
+				m_nextNodeIndex = CalucNextFreeNodeIndex();
+			}
+
 			return m_nextNodeIndex;
 		}
 
@@ -116,8 +121,13 @@ namespace basecross {
 		/// </summary>
 		/// <param name="index">削除したいノードのインデックス</param>
 		void RemoveNode(const int& index) {
+			if (m_edges.find(index) == m_edges.end()) { //見つからなかったら処理をしない。
+				return;
+			}
+
 			//ノードの削除
 			MyUtility::RemoveVec(m_nodes, m_nodes[index]);
+
 			//そのノードのedgesの削除
 			m_edges.erase(index);
 
@@ -130,6 +140,7 @@ namespace basecross {
 				}
 			}
 
+			m_nextNodeIndex = index;
 		}
 
 		/// <summary>
@@ -220,6 +231,24 @@ namespace basecross {
 			return false;
 		}
 
+
+		private:
+
+			/// <summary>
+			/// 現在空きのあるノードのインデックスを探し出す。
+			/// </summary>
+			/// <returns>空きのインデックス</returns>
+			int CalucNextFreeNodeIndex() {
+				int index = (int)m_edges.size();  //ループが最後までいったら最後のノードの次が空きノードになる。
+				for (int i = 0; i < m_edges.size(); i++) {
+					if (m_edges.find(i) == m_edges.end()) {  //endだったらそのノードがないから
+						index = i;
+						break;
+					}
+				}
+
+				return index;
+			}
 
 	};
 
