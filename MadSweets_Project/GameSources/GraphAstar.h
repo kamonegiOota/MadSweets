@@ -108,7 +108,9 @@ namespace basecross {
 		}
 
 		//ノードの追加
-		void AddNode(const Vec3& position);
+		int AddNode(const Vec3& position);
+		int AddNode(const Vec3& position,
+			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs);
 		//ノードの削除
 		void RemoveNode(const int& index);
 
