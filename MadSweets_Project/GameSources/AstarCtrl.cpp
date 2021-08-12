@@ -65,11 +65,17 @@ namespace basecross {
 
 	}
 
-	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target) {
-		m_astar.SearchAstarStart(GetGameObject(), target);
+	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target, const bool isCreateNode) {
+		//if (isCreateNode) {
+		//	m_astar.AddNode();
+		//}
+		SearchAstarStart(target->GetComponent<Transform>()->GetPosition(), isCreateNode);
 	}
 
-	void AstarCtrl::SearchAstarStart(const Vec3& targetPos) {
+	void AstarCtrl::SearchAstarStart(const Vec3& targetPos, const bool isCreateNode) {
+		if (isCreateNode) {
+			m_astar.AddNode(targetPos);
+		}
 		m_astar.SearchAstarStart(GetGameObject(), targetPos);
 	}
 
@@ -87,6 +93,16 @@ namespace basecross {
 		auto targetNode = CalucEscapeRoute::CalucNextRoute(m_astar,GetGameObject(),target);
 
 		m_astar.SearchAstarStart(GetGameObject(), targetNode.GetPosition());
+	}
+
+	int AstarCtrl::AddNode(const Vec3& position,
+		const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs) 
+	{
+		return m_astar.AddNode(position, obstacleObjs, excluteObjs);
+	}
+
+	void AstarCtrl::RemoveNode(const int& index) {
+		m_astar.RemoveNode(index);
 	}
 }
 
