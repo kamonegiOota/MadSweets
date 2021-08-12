@@ -34,6 +34,7 @@
 
 #include "PointLight.h"
 #include "CookieHideObject.h"
+#include "WeightGaugeUI.h"
 
 namespace basecross {
 
@@ -113,6 +114,8 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
+			Instantiate<WeightGaugeUI>();
+
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
@@ -185,6 +188,16 @@ namespace basecross {
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
+
+		//デブゲージ系
+		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
+		app->RegisterTexture(L"ChubbyGauge_Tx", textureDir + L"WeightTx_ChubbylGauge.png");
+		app->RegisterTexture(L"HungerFont_Tx", textureDir + L"WeightTx_HungerFont.png");
+		app->RegisterTexture(L"HungerGauge_Tx", textureDir + L"WeightTx_HungerGauge.png");
+		app->RegisterTexture(L"NomalFont_Tx", textureDir + L"WeightTx_NomalFont.png");
+		app->RegisterTexture(L"NomalGauge_Tx", textureDir + L"WeightTx_NomalGauge.png");
+		app->RegisterTexture(L"SkinnyFont_Tx", textureDir + L"WeightTx_SkinnyFont.png");
+		app->RegisterTexture(L"SkinnyGauge_Tx", textureDir + L"WeightTx_SkinnyGauge.png");
 
 		//モデル
 		std::wstring modelDir = mediaDir + L"Models\\";
