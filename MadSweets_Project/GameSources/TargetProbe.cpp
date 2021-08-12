@@ -38,7 +38,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::RemoveNode() {
-		//return;
 		if (m_checkHideObj == nullptr) {
 			return;
 		}
@@ -61,8 +60,8 @@ namespace basecross {
 			}
 			
 			//ƒm[ƒh‚Ì’Ç‰Á‚Æíœ
-			//RemoveNode();
-			//AddNode(hideObj->GetComponent<Transform>()->GetPosition()); 
+			RemoveNode();
+			AddNode(hideObj->GetComponent<Transform>()->GetPosition()); 
 
 			astar->SearchAstarStart(hideObj);
 			m_checkHideObj = hideObj;
