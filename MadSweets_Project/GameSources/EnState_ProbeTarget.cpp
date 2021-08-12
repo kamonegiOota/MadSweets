@@ -43,11 +43,11 @@ namespace basecross {
 	}
 
 	void EnState_ProbTarget::OnExit() {
-		//auto obj = GetOwner()->GetGameObject();
-		//auto prob = obj->GetComponent<TargetProbe>(false);
-		//if (prob) {
-		//	prob->RemoveNode();  //ノードのリムーブ
-		//}
+		auto obj = GetOwner()->GetGameObject();
+		auto prob = obj->GetComponent<TargetProbe>(false);
+		if (prob) {
+			prob->RemoveNode();  //ノードのリムーブ
+		}
 
 		ExitChangeComps();
 	}
