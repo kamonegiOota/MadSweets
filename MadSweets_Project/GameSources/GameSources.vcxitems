@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
@@ -139,6 +140,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +255,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

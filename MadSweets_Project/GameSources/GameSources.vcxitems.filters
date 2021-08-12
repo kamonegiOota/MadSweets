@@ -475,6 +475,24 @@
     <Filter Include="Maru\Component\Fade">
       <UniqueIdentifier>{bc3523d9-5134-4807-bc8d-24b2952c68bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Chubby">
+      <UniqueIdentifier>{2b51bb7d-f604-409b-9261-e0c00fb8db14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Chubby\ChubbyCompCtrl">
+      <UniqueIdentifier>{2f6d857f-054f-4156-b0e6-1f4b7f950e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge">
+      <UniqueIdentifier>{16577ca5-c50e-4753-8cba-57c9df8eed15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Object">
+      <UniqueIdentifier>{82d95c98-42ff-4d06-9071-351be0d241ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component">
+      <UniqueIdentifier>{fbbd6f18-d063-4842-9f85-ff19b326d0dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl">
+      <UniqueIdentifier>{60cde739-2f09-433d-a45e-eb63b9161a57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -858,6 +876,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
       <Filter>Maru\Component\Fade</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h">
+      <Filter>Maru\MaruPlayer\Component\Chubby\ChubbyCompCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1192,6 +1219,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp">
       <Filter>Maru\Component\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
