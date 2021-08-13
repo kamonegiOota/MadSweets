@@ -112,7 +112,7 @@ namespace basecross {
 
 			//クッキーの生成
 			CreateSoundCookies();
-			//CreateCrackCookies();
+			CreateCrackCookies();
 
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
