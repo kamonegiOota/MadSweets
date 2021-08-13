@@ -9,6 +9,7 @@
 
 #include "Mathf.h"
 #include "DebugObject.h"
+#include "PlayerWeightMgr.h"
 
 namespace basecross {
 
@@ -22,6 +23,7 @@ namespace basecross {
 		/// </summary>
 		float m_durability = 2.0f;
 
+		float CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr);
 		void DestProcess();
 		void Crack(const float& damage);
 

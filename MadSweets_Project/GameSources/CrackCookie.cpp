@@ -16,6 +16,12 @@
 
 namespace basecross {
 
+	float CrackCookie::CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr) {
+		//将来重さによって床が受けるダメージが変わる時用の関数
+		//現在は1.0f減るのみ
+		return 1.0f;
+	}
+
 	void CrackCookie::DestProcess() {
 		//本来ここで落っこちる。崩れる処理も入れる
 		GetGameObject()->SetUpdateActive(false);
@@ -36,11 +42,13 @@ namespace basecross {
 			return;
 		}
 
-		auto player = other->GetComponent<PlayerProvider>(false);
-		if (player) {
-			//本来ここでダメージの計算や、崩れるかどうかの判断をする。
-
-			Crack(1.0f);
+		auto weightMgr = other->GetComponent<PlayerWeightMgr>(false);
+		if (weightMgr) {
+			//太っていたら
+			if (weightMgr->GetState() == WeightState::Chubby) {
+				auto damage = CalucDamage(weightMgr);
+				Crack(damage);
+			}
 		}
 	}
 	
