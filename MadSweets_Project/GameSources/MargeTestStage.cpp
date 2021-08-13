@@ -87,6 +87,9 @@ namespace basecross {
 
 			SetSharedGameObject(L"PlayerChoicesList", go);
 
+			//ウェイトゲージの生成
+			Instantiate<WeightGaugeUI>();
+
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
@@ -114,12 +117,10 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
-			Instantiate<WeightGaugeUI>();
-
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
-			DebugObject::sm_isResetDelta = true;
+			//DebugObject::sm_isResetDelta = true;
 		}
 		catch (...) {
 			throw;
