@@ -28,7 +28,8 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		virtual void FadeStart() = 0;
+		virtual void FadeInStart() = 0;
+		virtual void FadeOutStart() = 0;
 
 		//アクセッサ-----------------------------------------------------------
 		virtual void SetEndAction(const Delegate<void()>& action) final {
