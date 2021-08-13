@@ -25,6 +25,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
@@ -54,7 +56,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ForwardLookAtCameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h" />
@@ -86,12 +87,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerDebuger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerHideManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerInputer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
@@ -150,6 +153,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
@@ -202,12 +207,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerDebuger.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerFPSCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerHideManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
