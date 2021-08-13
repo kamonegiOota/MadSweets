@@ -47,7 +47,7 @@ namespace basecross {
 		}
 	}
 
-	void TitleNameCtrl::FadeStart() {
+	void TitleNameCtrl::FadeOutStart() {
 		m_isEnd = false;
 		m_updateFunc = &TitleNameCtrl::UpdateChoco;
 	}

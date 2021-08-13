@@ -40,7 +40,8 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		void FadeStart() override;
+		void FadeInStart() override {};
+		void FadeOutStart() override;
 
 		//アクセッサ----------------------------------------------------------------
 		void SetSpeed(const float& speed) {
