@@ -9,12 +9,13 @@
 #include"PlayerChoicesManager.h"
 #include"SpringArmComponent.h"
 #include"PlayerCameraMover.h"
-#include"ForwardLookAtCameraComponent.h"
 #include"ChasingTarget.h"
 #include"SoundHelper.h"
 #include"PlayerHideManager.h"
-
-#include<x3daudio.h>
+#include"CameraComponent.h"
+#include"PlayerDebuger.h"
+#include"PlayerRotater.h"
+#include"CameraRotater.h"
 
 //丸山追記分インクルード
 #include "PlayerStatusMgr.h"
@@ -34,6 +35,12 @@ namespace basecross
 
 	void PlayerObject::OnCreate()
 	{
+		auto fpsCamera = GetStage()->Instantiate<GameObject>(Vec3(), Quat::Identity(), GetThis<GameObject>());
+		auto fpsCameraComponent = fpsCamera->AddComponent<CameraComponent>();
+		auto cameraRotater = fpsCamera->AddComponent<CameraRotater>();
+		cameraRotater->SetMinRotX(-XM_PIDIV4);
+		cameraRotater->SetMaxRotX(XM_PIDIV4);
+
 		auto springArm = GetStage()->Instantiate<GameObject>(Vec3(), Quat());
 
 		m_springArm = springArm;
@@ -48,7 +55,9 @@ namespace basecross
 		Quat quat = Quat::Identity();
 		quat.rotationY(XM_PI);
 		auto tpsCamera = GetStage()->Instantiate<GameObject>(Vec3(0, 0, 3), quat, springArm);
-		tpsCamera->AddComponent<ForwardLookAtCameraComponent>();
+		auto tpsCameraComponent = tpsCamera->AddComponent<CameraComponent>();
+
+		tpsCamera->SetActive(false);
 
 		springArmComponent->SetChildObject(tpsCamera);
 		springArmComponent->AddHitTag(L"Wall");
@@ -63,6 +72,8 @@ namespace basecross
 		AddComponent<PlayerProvider>();
 		AddComponent<PlayerStanceManager>();
 
+		AddComponent<PlayerRotater>();
+
 		AddComponent<CollisionCapsule>();
 
 		auto weightManager = AddComponent<PlayerWeightManager>();
@@ -76,7 +87,9 @@ namespace basecross
 		auto choiceManager = AddComponent<PlayerChoicesManager>();
 		choiceManager->SetSearchRange(2.0f);
 
-		AddComponent<PlayerHideManager>();
+		AddComponent<PlayerHideManager>(cameraMover);
+
+		AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
 
 
 		//丸山追記文
@@ -93,26 +106,6 @@ namespace basecross
 	void PlayerObject::OnUpdate()
 	{
 		GameObject::OnUpdate();
-
-		static bool isTPS = true;
-		if (!App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::LeftThumb))
-		{
-			return;
-		}
-
-		auto springArm = m_springArm->GetComponent<SpringArmComponent>();
-		if (isTPS)
-		{
-			springArm->SetArmRange(0);
-
-			isTPS = false;
-		}
-		else
-		{
-			springArm->SetArmRange(10);
-
-			isTPS = true;
-		}
 	}
 
 	void PlayerObject::CreateAnimator()
