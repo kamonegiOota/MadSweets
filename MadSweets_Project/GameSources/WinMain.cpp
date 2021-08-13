@@ -151,7 +151,7 @@ int MainLoop(HINSTANCE hInstance, HWND hWnd, bool isFullScreen, int iClientWidth
 		vector<DWORD> UseKeyVec = {};
 
 		while (WM_QUIT != msg.message) {
-			App::GetApp()->GetMyInputDevice()->UpdateDevice();
+			App::GetApp()->GetMyInputDevice()->UpdateDevice(hWnd);
 
 			if (!App::GetApp()->ResetInputState(hWnd, UseKeyVec)) {
 				//キー状態が何もなければウインドウメッセージを得る

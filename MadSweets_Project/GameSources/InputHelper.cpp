@@ -17,7 +17,6 @@ namespace itbs
 		void CursorSetting::SetIsDraw(const bool isDraw)
 		{
 			m_isDraw = isDraw;
-			ShowCursor(m_isDraw);
 		}
 
 		bool CursorSetting::GetIsLock()
@@ -32,15 +31,65 @@ namespace itbs
 
 		// MouseState ----------------------------------------
 		
-		void MouseState::UpdateMouseState()
+		void MouseState::UpdateMouseState(const HWND& hwnd)
 		{
+			if (!CursorSetting::GetIsLock() || GetActiveWindow() != hwnd)
+			{
+				m_mouseMoveRange = POINT();
+
+				if (!isCursorDraw)
+				{
+					ShowCursor(true);
+
+					isCursorDraw = true;
+
+					OutputDebugString(L"権限がなくなり表示されました\n");
+				}
+				return;
+			}
+
 			POINT point;
 			GetCursorPos(&point);
 
 			m_mouseMoveRange.x = point.x - m_mousePosition.x;
-			m_mouseMoveRange.y = point.y - m_mousePosition.y;
+			m_mouseMoveRange.y = -(point.y - m_mousePosition.y);
 
-			m_mousePosition = point;
+			Vec2 windowCenterPosition;
+
+			RECT windowRect;
+			GetWindowRect(hwnd, &windowRect);
+
+			RECT clientRect;
+			GetClientRect(hwnd, &clientRect);
+
+			m_mousePosition.x = clientRect.right / 2 + windowRect.left;
+			m_mousePosition.y = clientRect.bottom / 2 + windowRect.top;
+			
+			SetCursorPos(m_mousePosition.x, m_mousePosition.y);
+
+			if (CursorSetting::GetIsDraw())
+			{
+				if (!isCursorDraw)
+				{
+					ShowCursor(true);
+
+					isCursorDraw = true;
+
+					OutputDebugString(L"カーソルが表示されました\n");
+				}
+			}
+			else
+			{
+				if (isCursorDraw)
+				{
+					ShowCursor(false);
+
+					isCursorDraw = false;
+
+					OutputDebugString(L"カーソルが消えました\n");
+				}
+			}
+			//ShowCursor(CursorSetting::GetIsDraw());
 		}
 
 		POINT MouseState::GetMouseMove() const
@@ -290,9 +339,9 @@ namespace itbs
 			}
 		}
 
-		void InputDevice::UpdateDevice()
+		void InputDevice::UpdateDevice(const HWND& hwnd)
 		{
-			m_mouseState.UpdateMouseState();
+			m_mouseState.UpdateMouseState(hwnd);
 
 			m_keyBoardState.UpdateInputKeyState();
 

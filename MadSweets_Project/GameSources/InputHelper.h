@@ -146,9 +146,11 @@ namespace itbs
 			POINT m_mousePosition;
 
 			POINT m_mouseMoveRange;
+
+			bool isCursorDraw = true;
 		public:
 
-			void UpdateMouseState();
+			void UpdateMouseState(const HWND& hwnd);
 
 			POINT GetMouseMove() const;
 		};
@@ -494,7 +496,8 @@ namespace itbs
 			/// <summary>
 			/// 入力デバイスの更新
 			/// </summary>
-			void UpdateDevice();
+			/// <param name="hwnd">ウィンドウのハンドル</param>
+			void UpdateDevice(const HWND& hwnd);
 
 			/// <summary>
 			/// キー押下イベント
