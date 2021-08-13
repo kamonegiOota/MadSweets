@@ -29,6 +29,7 @@ namespace basecross
 		std::wstring textureDir = mediaDir + L"Textures\\";
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
+		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
@@ -115,7 +116,7 @@ namespace basecross
 		collision->SetFixed(true);
 		gameobject->AddTag(L"Wall");
 
-		gameobject->AddComponent<HiddenComponent>(trans->GetWorldPosition(), trans->GetForword());
+		gameobject->AddComponent<HiddenComponent>(trans->GetWorldPosition(), Vec3(0,0,1));
 		//gameobject = Instantiate<GameObject>();
 		//trans = gameobject->GetComponent<Transform>();
 		//trans->SetScale(1, 5, 5);
@@ -149,5 +150,7 @@ namespace basecross
 		//collision->SetFixed(true);
 		//gameobject->AddTag(L"Wall");
 
+		itbs::Input::CursorSetting::SetIsLock(true);
+		itbs::Input::CursorSetting::SetIsDraw(false);
 	}
 }
