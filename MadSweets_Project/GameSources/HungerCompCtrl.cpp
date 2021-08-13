@@ -29,8 +29,6 @@ namespace basecross {
 				}
 			}
 		}
-
-		//m_pulledSweets->SetUpdateActive(isActive);
 	}
 
 	void HungerCompCtrl::HungerMgr() {
