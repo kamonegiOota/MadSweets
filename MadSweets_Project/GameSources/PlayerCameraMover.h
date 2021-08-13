@@ -20,6 +20,8 @@ namespace basecross
 
 		float GetMaxRotX() const;
 
+		void SetForward(const Vec3& forward);
+
 		void OnUpdate() override;
 	};
 }
