@@ -110,6 +110,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PulledSweets.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchHidden.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchHidden.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />

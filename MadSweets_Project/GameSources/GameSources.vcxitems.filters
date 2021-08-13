@@ -496,6 +496,9 @@
     <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr">
       <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
+      <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -891,6 +894,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1234,6 +1240,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
