@@ -493,6 +493,9 @@
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl">
       <UniqueIdentifier>{60cde739-2f09-433d-a45e-eb63b9161a57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr">
+      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -885,6 +888,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1225,6 +1231,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
