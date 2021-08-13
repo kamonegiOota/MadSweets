@@ -975,7 +975,7 @@ namespace basecross {
 				return false;
 			}
 
-			m_inputDevice->UpdateDevice();
+			m_inputDevice->UpdateDevice(hWnd);
 
 			return m_InputDevice.ResetInputState(hWnd, UseKeyVec);
 		}
