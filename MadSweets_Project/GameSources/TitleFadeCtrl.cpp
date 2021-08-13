@@ -25,8 +25,8 @@ namespace basecross {
 		auto fadeCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
 
 		//それぞれの終了時に呼び出したい関数セット
-		nameCtrl->FadeStart();
-		nameCtrl->AddEndAction(fadeCtrl, &FadeChocoCtrl::FadeStart);
+		nameCtrl->FadeOutStart();
+		nameCtrl->AddEndAction(fadeCtrl, &FadeChocoCtrl::FadeOutStart);
 		fadeCtrl->AddEndAction(GetThis<TitleFadeCtrl>(), &TitleFadeCtrl::ChangeStage);
 		
 		//後処理
