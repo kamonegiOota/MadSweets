@@ -20,7 +20,8 @@ namespace basecross {
 		auto rectTrans = ui->GetComponent<RectTransform>();
 		rectTrans->SetRectSize(128.0f, 128.0f);
 
-		//rectTrans->SetAnchor(AnchorType::LeftUp);
+		rectTrans->SetAnchor(AnchorType::Center);
+		rectTrans->SetPivot(0.0f, 0.0f);
 		rectTrans->SetPosition(-550.0f, 250.0f);
 
 		return ui;
@@ -32,6 +33,10 @@ namespace basecross {
 		gauge->GetComponent<Image>()->SetBlendState(BlendState::Additive);
 
 		AddComponent<WeightGaugeCtrl>(frame,gauge);
+		//auto rectTrans = GetComponent<RectTransform>();
+		//rectTrans->SetAnchor(AnchorType::Center);
+		//rectTrans->SetPivot(0.0f, 0.0f);
+		//rectTrans->SetPosition(-550.0f, 250.0f);
 	}
 
 }

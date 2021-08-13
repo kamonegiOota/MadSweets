@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "WeightGaugeCtrl.h"
+#include "ScalePop.h"
 
 namespace basecross {
 
@@ -32,7 +33,6 @@ namespace basecross {
 		if (!m_params.empty()) {  //empty‚Å‚È‚©‚Á‚½‚ç‰Šú‰»‚Í‚µ‚È‚¢B
 			return;
 		}
-
 		//normal
 		m_params[WeightState::Nomal] = WeightGaugeParam(100.0f,L"NomalFont_Tx",L"NomalGauge_Tx",
 			WeightState::Chubby, WeightState::Skinny);
@@ -111,6 +111,9 @@ namespace basecross {
 
 	void WeightGaugeCtrl::OnCreate() {
 		CreateParametor();
+		//auto parent = m_frameUI->GetParent();
+		m_frameUI->AddComponent<ScalePop>();
+		m_gaugeUI->AddComponent<ScalePop>();
 	}
 
 	void WeightGaugeCtrl::OnUpdate() {
