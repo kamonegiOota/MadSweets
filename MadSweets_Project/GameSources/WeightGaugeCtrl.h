@@ -9,9 +9,9 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "StateMachine.h"
-
 namespace basecross {
+
+	//class PlayerWeightMgr;
 
 	enum class WeightState {
 		Nomal,
@@ -27,8 +27,8 @@ namespace basecross {
 		wstring frameTx = L"";  //フレームのテクスチャ
 		wstring gaugeTx = L"";  //ゲージのテクスチャ
 
-		WeightState upChangeState = WeightState::None;   //ゲージがmax時にどのステートに切り替えるか
-		WeightState downChangeState = WeightState::None; //ゲージがmin時にどのステートに切り替えるか
+		WeightState upChangeState;   //ゲージがmax時にどのステートに切り替えるか
+		WeightState downChangeState; //ゲージがmin時にどのステートに切り替えるか
 
 		WeightGaugeParam()
 			:WeightGaugeParam(100.0f,L"",L"", WeightState::None, WeightState::None)
@@ -45,6 +45,8 @@ namespace basecross {
 
 	class WeightGaugeCtrl : public Component
 	{
+		//ex_weak_ptr<PlayerWeightMgr> m_weightMgr;
+
 		std::shared_ptr<UIObject> m_frameUI;
 		std::shared_ptr<UIObject> m_gaugeUI;
 
@@ -99,6 +101,9 @@ namespace basecross {
 
 		void ChangeState(const WeightState& state) {
 			m_state = state;
+		}
+		WeightState GetState() const {
+			return m_state;
 		}
 	};
 
