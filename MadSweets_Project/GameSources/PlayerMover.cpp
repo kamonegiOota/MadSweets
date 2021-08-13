@@ -96,7 +96,5 @@ namespace basecross
 
 		position += moveVector;
 		transform->SetPosition(position);
-
-		transform->SetForward(moveVector);
 	}
 }
