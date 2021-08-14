@@ -35,6 +35,7 @@
 #include "PointLight.h"
 #include "CookieHideObject.h"
 #include "WeightGaugeUI.h"
+#include "HandyObject.h"
 
 namespace basecross {
 
@@ -217,12 +218,24 @@ namespace basecross {
 		app->RegisterResource(L"Handy", modelMesh);
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Handy\\", L"Handy_Attack.bmf");
+		app->RegisterResource(L"Handy_Attack", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Handy\\", L"Handy_Search.bmf");
+		app->RegisterResource(L"Handy_Search", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Ashi\\", L"Ashi_Wark.bmf");
-		app->RegisterResource(L"Ashi", modelMesh);
+		app->RegisterResource(L"Ashi_Wark", modelMesh);
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Cara\\", L"Cara_Wark.bmf");
-		app->RegisterResource(L"Cara", modelMesh);
+		app->RegisterResource(L"Cara_Wark", modelMesh);
+
+		modelMesh = MeshResource::CreateStaticModelMesh(
+			modelDir + L"Stick\\", L"Stick.bmf");
+		app->RegisterResource(L"Stick", modelMesh);
 
 		//âπÉçÅ[Éh
 		wstring SE_Dir = mediaDir + L"SEs\\";
@@ -231,8 +244,9 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
-		auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
+		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//Astarê∂ê¨
