@@ -16,11 +16,20 @@ namespace basecross {
 		float betweenSize = 0.1f;
 
 		if (abs(between.x) <= betweenSize &&
-			abs(between.y) <= betweenSize
-			) {  //最大スケールになったら。
+			abs(between.y) <= betweenSize)
+		{  //最大スケールになったら。
 			return true;
 		}
 
+		return false;
+	}
+
+	bool ScalePop::IsMinScale(const Vec3& nowScale) {
+		if (abs(nowScale.x) < m_minScale.x &&
+			abs(nowScale.y) < m_minScale.y)
+		{  //最大スケールになったら。
+			return true;
+		}
 		return false;
 	}
 
@@ -41,6 +50,10 @@ namespace basecross {
 		auto trans = GetGameObject()->GetComponent<RectTransform>();
 		
 		auto setScale = m_maxScale * rad;
+
+		//if (IsMinScale(setScale)) {
+		//	setScale = m_minScale;
+		//}
 
 		if (m_elapsed >= 1.0f) {   //一度最大になったら
 			if (StopScale(setScale, m_returnScale)) {
