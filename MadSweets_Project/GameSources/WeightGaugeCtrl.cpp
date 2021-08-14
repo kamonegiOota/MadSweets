@@ -71,6 +71,7 @@ namespace basecross {
 
 		ChangeState(m_params[m_state].upChangeState);
 		ChangeTexture();
+		PopScale();
 	}
 
 	void WeightGaugeCtrl::GaugeMinProcess() {
@@ -109,9 +110,15 @@ namespace basecross {
 		m_gaugeUI->GetComponent<Image>()->SetTextureResource(param.gaugeTx);
 	}
 
+	void WeightGaugeCtrl::PopScale() {
+		float speed = 3.0f;
+		float startSize = 0.5f;
+		m_frameUI->GetComponent<ScalePop>()->StartPop(speed, startSize);
+		m_gaugeUI->GetComponent<ScalePop>()->StartPop(speed, startSize);
+	}
+
 	void WeightGaugeCtrl::OnCreate() {
 		CreateParametor();
-		//auto parent = m_frameUI->GetParent();
 		m_frameUI->AddComponent<ScalePop>();
 		m_gaugeUI->AddComponent<ScalePop>();
 	}

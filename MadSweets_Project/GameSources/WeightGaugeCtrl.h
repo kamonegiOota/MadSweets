@@ -67,6 +67,7 @@ namespace basecross {
 
 		void GaugeUpdate();  //ゲージのコントロール
 		void ChangeTexture(); //テクスチャの変更
+		void PopScale();  //PopScaleをするための処理
 
 	public:
 
