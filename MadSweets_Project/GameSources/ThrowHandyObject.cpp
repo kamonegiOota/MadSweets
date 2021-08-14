@@ -15,10 +15,20 @@
 namespace basecross {
 
 	void ThrowHandyObject::OnCreate() {
-		//«—ˆ“I‚É‚ÍŒ©‚½–Ú‚Ì‚İÁ‚·
-		auto draw = AddComponent<PNTStaticDraw>();
-		draw->SetMeshResource(L"DEFAULT_SPHERE");
+		Mat4x4 spanMat;
+		spanMat.affineTransformation(
+			Vec3(1.0f),
+			Vec3(0.0f),
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -1.0f, 0.0f)
+		);
 
+		//«—ˆ“I‚É‚ÍŒ©‚½–Ú‚Ì‚İÁ‚·
+		auto draw = AddComponent<PNTStaticModelDraw>();
+		draw->SetMeshResource(L"Stick");
+		draw->SetMeshToTransformMatrix(spanMat);
+		transform->SetScale(Vec3(0.5f));
+		
 		auto col = AddComponent<CollisionSphere>();
 		col->SetAfterCollision(AfterCollision::None);
 
