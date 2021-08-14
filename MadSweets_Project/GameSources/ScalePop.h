@@ -13,19 +13,24 @@ namespace basecross {
 	{
 		Vec3 m_maxScale;
 		Vec3 m_returnScale;
+		Vec3 m_minScale;
 		float m_speed;
 
 		float m_elapsed = 0.0f;
 
+		bool IsMinScale(const Vec3& nowScale);
 		bool StopScale(const Vec3& scale, const Vec3& targetScale);
+
+		
 
 	public:
 
 		ScalePop(const std::shared_ptr<GameObject>& objPtr):
 			Component(objPtr),
-			m_maxScale(Vec3(1.5f)),
+			m_maxScale(Vec3(1.35f)),
 			m_returnScale(Vec3(1.0f)),
-			m_speed(3.0f)
+			m_minScale(Vec3(0.5f)),
+			m_speed(0.0f)
 		{}
 
 		void OnCreate() override;
@@ -42,6 +47,11 @@ namespace basecross {
 
 		void SetSpeed(const float speed) {
 			m_speed = speed;
+		}
+
+		void StartPop(const float& speed, const float& startScaleSize = 0.0f) {
+			m_speed = speed;
+			m_elapsed = startScaleSize;
 		}
 	};
 
