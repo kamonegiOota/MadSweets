@@ -499,6 +499,9 @@
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
       <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\HandyObject">
+      <UniqueIdentifier>{63477525-db0b-41c9-9f0c-34ffef8087bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -897,6 +900,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h">
+      <Filter>Maru\Enemy\Object\HandyObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1243,6 +1249,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp">
+      <Filter>Maru\Enemy\Object\HandyObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
