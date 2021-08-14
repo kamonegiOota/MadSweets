@@ -19,6 +19,8 @@ namespace basecross {
 		std::shared_ptr<GameObject> m_owner;
 		float m_attackPower;
 
+		void Rotation(const Vec3& direct);
+
 	public:
 		ThrowObjectCtrl(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr), m_attackPower(2.0f)
