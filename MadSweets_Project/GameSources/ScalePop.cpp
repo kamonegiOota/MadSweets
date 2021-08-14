@@ -25,12 +25,12 @@ namespace basecross {
 	}
 
 	bool ScalePop::IsMinScale(const Vec3& nowScale) {
-		if (abs(nowScale.x) < m_minScale.x &&
-			abs(nowScale.y) < m_minScale.y)
-		{  //最大スケールになったら。
-			return true;
-		}
-		return false;
+		//if (abs(nowScale.x) < m_minScale.x &&
+		//	abs(nowScale.y) < m_minScale.y)
+		//{  //最大スケールになったら。
+		//	return true;
+		//}
+		//return false;
 	}
 
 	void ScalePop::OnCreate() {
@@ -50,10 +50,6 @@ namespace basecross {
 		auto trans = GetGameObject()->GetComponent<RectTransform>();
 		
 		auto setScale = m_maxScale * rad;
-
-		//if (IsMinScale(setScale)) {
-		//	setScale = m_minScale;
-		//}
 
 		if (m_elapsed >= 1.0f) {   //一度最大になったら
 			if (StopScale(setScale, m_returnScale)) {

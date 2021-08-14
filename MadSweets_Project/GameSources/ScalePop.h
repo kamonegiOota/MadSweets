@@ -13,7 +13,6 @@ namespace basecross {
 	{
 		Vec3 m_maxScale;
 		Vec3 m_returnScale;
-		Vec3 m_minScale;
 		float m_speed;
 
 		float m_elapsed = 0.0f;
@@ -29,7 +28,6 @@ namespace basecross {
 			Component(objPtr),
 			m_maxScale(Vec3(1.35f)),
 			m_returnScale(Vec3(1.0f)),
-			m_minScale(Vec3(0.5f)),
 			m_speed(0.0f)
 		{}
 
