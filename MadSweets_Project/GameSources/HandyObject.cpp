@@ -25,6 +25,8 @@
 #include "CheckTargetPos.h"
 #include "TargetProbe.h"
 
+#include"AnimationHelper.h"
+
 namespace basecross {
 
 	void HandyObject::CreatePlowlingRoute() {
@@ -43,6 +45,30 @@ namespace basecross {
 		transform->SetPosition(poss[0]);
 	}
 
+	void HandyObject::CreateAnimetor() {
+		auto animator = AddComponent<Animator<HandyAnimationMember, HandyAnimationState>>();
+		
+		auto stateMachine = animator->CreateAnimationStateMchine(GetComponent<PNTBoneModelDraw>());
+
+		CreateWalkAnime(stateMachine);
+		CreateAttackAnime(stateMachine);
+	}
+
+	void HandyObject::CreateWalkAnime(const std::shared_ptr<AnimatorMainStateMachine<HandyAnimationMember, HandyAnimationState>>& stateMachine) {
+		auto state = stateMachine->CreateAnimationState(HandyAnimationState::Walk, L"Handy_Walk", 30, true);
+
+		//UŒ‚ƒgƒŠƒK[‚ªOn‚È‚çUŒ‚ó‘Ô‚É‘JˆÚ
+		state->AddTransition([](const HandyAnimationMember& member) { return member.attackTrigger.Get(); }, HandyAnimationState::Attack, false);
+		//°‚ğ”`‚­ƒgƒŠƒK[‚ªOn‚È‚çA”`‚­ó‘Ô‚É‘JˆÚ
+		state->AddTransition([](const HandyAnimationMember& member) { return member.hideSearchTrigger.Get(); }, HandyAnimationState::hideSearch, false);
+	}
+
+	void HandyObject::CreateAttackAnime(const std::shared_ptr<AnimatorMainStateMachine<HandyAnimationMember, HandyAnimationState>>& stateMachine) {
+		auto state = stateMachine->CreateAnimationState(HandyAnimationState::Attack, L"Handy_Attack", 60, false);
+
+		state->AddTransition([](const HandyAnimationMember& member) { return true; }, HandyAnimationState::Walk, true);
+	}
+
 	void HandyObject::OnCreate() {
 		//ƒƒbƒVƒ…‚Ì’²®—pMat
 		Mat4x4 spanMat;
@@ -53,11 +79,11 @@ namespace basecross {
 			Vec3(0.0f, -1.0f, 0.0f)
 		);
 
-		auto draw = AddComponent<BcPNTBoneModelDraw>();
-		draw->SetMeshResource(L"Handy_Search");
-		//draw->SetMeshResource(L"Cara_Wark");
-		//draw->SetMeshResource(L"Ashi_Wark");
-		draw->AddAnimation(L"Run", 0, 60, true, 30.0f);
+		auto draw = AddComponent<PNTBoneModelDraw>();
+		draw->SetMeshResource(L"Handy_Walk");
+		//draw->SetMeshResource(L"Cara_Walk");
+		//draw->SetMeshResource(L"Ashi_Walk");
+		//draw->AddAnimation(L"Run", 0, 60, true, 30.0f);
 		draw->SetMeshToTransformMatrix(spanMat);
 
 		//AddComponent<AstarCtrl>();
@@ -81,15 +107,16 @@ namespace basecross {
 		auto col = AddComponent<CollisionObb>();
 
 		CreatePlowlingRoute();
+		CreateAnimetor();
 	}
 
 	void HandyObject::OnUpdate() {
 		//testƒAƒjƒ[ƒVƒ‡ƒ“À‘•
-		auto anime = GetComponent<BcPNTBoneModelDraw>();
-		auto delta = App::GetApp()->GetElapsedTime();
-		float speed = 1.0f;
+		//auto anime = GetComponent<PNTBoneModelDraw>();
+		//auto delta = App::GetApp()->GetElapsedTime();
+		//float speed = 1.0f;
 
-		anime->UpdateAnimation(delta * speed);
+		//anime->UpdateAnimation(delta * speed);
 	}
 
 }
