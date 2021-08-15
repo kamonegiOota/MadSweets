@@ -46,33 +46,12 @@ namespace basecross {
 	}
 
 	void PlowlingMove::Move() {
-
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		astar->UpdateVelocityMove(m_maxSpeed, m_nearRange);
 
 		if (astar->IsRouteEnd()) {
 			NextIndex();
 		}
-
-		//auto velocityComp = GetGameObject()->GetComponent<Velocity>();
-		//if (!velocityComp) {
-		//	return;
-		//}
-
-		//auto delta = App::GetApp()->GetElapsedTime();
-		//auto moveVec = CalucMoveVec();
-
-		////実際の速度の計算
-		//auto velocity = velocityComp->GetVelocity();
-		//auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, m_maxSpeed, m_nearRange);
-
-		//velocityComp->SetForce(force);
-
-		//Rotation(moveVec);
-
-		//if (IsNearArrival(transform->GetPosition())) {   //目的地に到達していたら
-		//	NextIndex();
-		//}
 	}
 
 	void PlowlingMove::Rotation(const Vec3& moveVec) {
@@ -109,7 +88,6 @@ namespace basecross {
 		if (m_positions.size() == 0) {  //徘徊する場所がない場合は処理を行わない。
 			return;
 		}
-		
 
 		Move();
 	}

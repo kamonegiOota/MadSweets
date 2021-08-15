@@ -10,8 +10,19 @@
 #include "Velocity.h"
 
 #include "I_Damaged.h"
+#include <DirectXMath.h>
 
 namespace basecross {
+
+	void ThrowObjectCtrl::Rotation(const Vec3& direct) {
+		auto newDirect = direct;
+		auto rotMat = (Mat4x4)XMMatrixRotationAxis(newDirect.GetNormalized(), XM_PIDIV2);  //向きを合わせる
+		rotMat *= (Mat4x4)XMMatrixRotationY(XM_PIDIV2);  //90度のずれがあるため直す。
+		auto mat = transform->GetWorldMatrix();
+		mat *= rotMat;
+
+		transform->SetQuaternion(mat.quatInMatrix());
+	}
 
 	void ThrowObjectCtrl::Throw(const std::shared_ptr<GameObject>& owner, const Vec3& direct, const float& speed) {
 		SetOwner(owner);
@@ -23,6 +34,8 @@ namespace basecross {
 		
 		auto newDirect = direct;
 		velocity->SetVelocity(newDirect.GetNormalized() * speed);
+
+		Rotation(direct);  //方向をセットするための処理
 	}
 
 	void ThrowObjectCtrl::OnCollisionEnter(std::shared_ptr<GameObject>& other) {

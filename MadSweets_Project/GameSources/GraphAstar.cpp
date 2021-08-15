@@ -10,6 +10,8 @@
 #include "MyUtility.h"
 #include "UtilityAstar.h"
 
+#include "HiddenComponent.h"
+
 namespace basecross {
 
 	const NavGraphNode *GraphAstar::GetBeforeNode() const {
@@ -75,13 +77,43 @@ namespace basecross {
 		}
 	}
 
+	int GraphAstar::AddNode(const Vec3& position) {
+		//仮の対象に入れないオブジェクト
+		vector<shared_ptr<GameObject>> excluteObjs;
+		maru::MyUtility::AddComponents<HiddenComponent>(excluteObjs);
+
+		return AddNode(position, MyUtility::GetStage()->GetGameObjectVec(), excluteObjs);
+	}
+
+	int GraphAstar::AddNode(const Vec3& position,
+		const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
+	{
+		//ノードの生成
+		auto index = m_graph.GetNextFreeNodeIndex();
+		NavGraphNode newNode(index, position);
+
+		auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, newNode, obstacleObjs, excluteObjs);
+
+		//現在はエッジが作成されたときのみ生成するようにする。(繋がってないノードを対象にした場合に処理が止まってしまうため。)
+		//改善され次第外す。
+		if (edges.size() != 0) {
+			//ノードの追加
+			m_graph.AddNode(newNode);
+		}
+
+		return index;
+	}
+
+	void GraphAstar::RemoveNode(const int& index) {
+		m_graph.RemoveNode(index);
+	}
+
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
 		SearchAstarStart(self, targetPos);
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
-		//m_selfObj = self;
 		auto selfPos = self->GetComponent<Transform>()->GetPosition();
 		SearchAstarStart(selfPos,targetPos);
 	}
@@ -90,7 +122,7 @@ namespace basecross {
 		ResetAstar();
 
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
-		DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
+		//DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
 		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
 		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
@@ -174,7 +206,9 @@ namespace basecross {
 
 	void GraphAstar::LoopSearchAstar(const AstarExpectData& startData) {
 		//for (int i = 0; i < 5; i++) {
+		int tempIndex = 0;
 		while(true){
+			tempIndex++;
 			NavGraphNode node;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
 				node = startData.nextNode;
@@ -228,7 +262,7 @@ namespace basecross {
 		LastAdjust(startData);
 
 		for (auto route : m_shortRoutes) {
-			DebugObject::sm_wss << route.nextNode.GetIndex() << L",";
+			//DebugObject::sm_wss << route.nextNode.GetIndex() << L",";
 		}
 	}
 

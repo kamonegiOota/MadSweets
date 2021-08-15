@@ -47,17 +47,6 @@ namespace basecross {
 			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos);
 
 			/// <summary>
-			/// 特定のオブジェクトがRay状に合ったらtrueを返す。
-			/// </summary>
-			/// <param name="startObj">Rayの開始</param>
-			/// <param name="endObj">Rayの終わり</param>
-			/// <param name="obstacleObj">間にあるかどうか判断したいオブジェクト</param>
-			/// <returns>Ray状に合ったらtrue</returns>
-			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, 
-				const std::shared_ptr<GameObject>& endObj,
-				const std::shared_ptr<GameObject>& obstacleObj);
-
-			/// <summary>
 			/// 対象のオブジェクトまでに障害物があるかどうか
 			/// </summary>
 			/// <param name="startObj">Rayのスタート</param>
@@ -69,18 +58,73 @@ namespace basecross {
 				const vector<shared_ptr<GameObject>>& excluteObjs);
 
 			/// <summary>
+			/// 対象のオブジェクトまでに障害物があるかどうか
+			/// </summary>
+			/// <param name="startPos">Rayのスタート</param>
+			/// <param name="endPos">Rayを飛ばす対象</param>
+			/// <param name="excluteObjs">障害物として省く対象</param>
+			/// <returns>障害物が合ったらtrue</returns>
+			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos,
+				const vector<shared_ptr<GameObject>>& excluteObjs);
+
+			/// <summary>
+			/// 対象オブジェクトまでに障害物があるかどうか
+			/// </summary>
+			/// <param name="startObj">Rayのスタート</param>
+			/// <param name="endObj">対象オブジェクト</param>
+			/// <param name="obstacleObjs">障害物の対象になるオブジェクト</param>
+			/// <param name="excluteObjs">障害物の対象になるオブジェクトの中でも特定のオブジェクトを対象外にしたい場合に記述</param>
+			/// <returns>障害物が合ったらtrue</returns>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj,
+				const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs);
+
+			/// <summary>
+			/// 対象オブジェクトまでに障害物があるかどうか
+			/// </summary>
+			/// <param name="startPos">Rayのスタート</param>
+			/// <param name="endPos">対象オブジェクト</param>
+			/// <param name="obstacleObjs">障害物の対象になるオブジェクト</param>
+			/// <param name="excluteObjs">障害物の対象になるオブジェクトの中でも特定のオブジェクトを対象外にしたい場合に記述</param>
+			/// <returns>障害物が合ったらtrue</returns>
+			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos,
+				const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs);
+
+			/// <summary>
 			/// templateで指定されたクラスを覗いて、障害物判定を取る関数。
 			/// </summary>
 			template<class ExcluteClass>
-			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+			static bool IsRayObstacleExclute(const std::shared_ptr<GameObject>& startObj,
 				const std::shared_ptr<GameObject>& endObj)
 			{
 				auto exclutes = maru::MyUtility::GetComponents<ExcluteClass>();
 				return IsRayObstacle(startObj, endObj, exclutes);
 			}
+
+			/// <summary>
+			/// Templateで指定したコンポーネントのついているオブジェクトを指定障害物判定して探す。
+			/// </summary>
+			template<class ObstacleClass>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+				const std::shared_ptr<GameObject>& endObj)
+			{
+				auto obstacleObjs = maru::MyUtility::GetComponents<ObstacleClass>();
+
+				return IsRayObstacle(startObj, endObjs, obstacleObjs, vector<shared_ptr<GameObject>>());
+			}
+
+			/// <summary>
+			/// 特定のオブジェクトがRay状に合ったらtrueを返す。
+			/// </summary>
+			/// <param name="startObj">Rayの開始</param>
+			/// <param name="endObj">Rayの終わり</param>
+			/// <param name="obstacleObj">間にあるかどうか判断したいオブジェクト</param>
+			/// <returns>Ray状に合ったらtrue</returns>
+			static bool IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
+				const std::shared_ptr<GameObject>& endObj,
+				const std::shared_ptr<GameObject>& obstacleObj);
 			
 			//対象の障害物が二つのRayの間に合ったらtrue
-			static bool IsRayObstacle(const Vec3& startObj, const Vec3& endObj,
+			static bool IsRayObstacle(const Vec3& startPos, const Vec3& endPos,
 				const std::shared_ptr<GameObject>& obstacleObj);
 
 			/// <summary>
@@ -90,6 +134,7 @@ namespace basecross {
 			/// <param name="excluteObjs">対象外となる配列オブジェクト</param>
 			/// <returns>対象外ならtrue</returns>
 			static bool IsExclute(const shared_ptr<GameObject>& targetObj ,const vector<shared_ptr<GameObject>>& excluteObjs);
+
 
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//最初に取得できたものだけ返す。
@@ -200,16 +245,20 @@ namespace basecross {
 			//ベクター配列から特定のオブジェクトを削除する関数。
 			template<class T>
 			//static void RemoveVec(vector<shared_ptr<T>>& vec, const shared_ptr<T>& removePtr) {
-			static void RemoveVec(vector<T>& vec, const T& removePtr) {
+			static bool RemoveVec(vector<T>& vec, const T& removePtr) {
 				auto iter = vec.begin();
 				while (iter != vec.end()) {
 					if (*iter == removePtr) {
 						iter = vec.erase(iter);
-						break;
+						return true;
+						//break;
 					}
 					iter++;
 				}
+
+				return false;
 			}
+
 		};
 	}
 

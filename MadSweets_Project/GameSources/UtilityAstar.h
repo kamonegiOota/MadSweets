@@ -26,6 +26,33 @@ namespace basecross {
 		static NavGraphNode CalucTargetEscapeDirectNode(const GraphAstar& astar,
 			const NavGraphNode& startNode,
 			const Vec3& targetPos);
+
+		//nodeのインデックスから隣接するエッジの生成する。
+		//生成する場合に直接渡されたSparseGraphにAddする。
+		template<class NodeClass, class EdgeClass>
+		static vector<GraphEdge> CreateAdjacendEdges(SparseGraph<NodeClass, EdgeClass>& graph, const NavGraphNode& newNode,
+			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
+		{
+			auto nodes = graph.GetNodes();
+
+			vector<GraphEdge> reEdges;
+			for (const auto& node : nodes) {
+				for (auto& node : nodes) {
+					//障害物がなかったらエッジを追加する。
+					if (!maru::MyUtility::IsRayObstacle(newNode.GetPosition(), node.GetPosition(), obstacleObjs, excluteObjs)) {
+						//双方向にエッジを生成
+						graph.AddEdge(GraphEdge(newNode.GetIndex(), node.GetIndex()));
+						graph.AddEdge(GraphEdge(node.GetIndex(), newNode.GetIndex()));
+						//どのようなエッジを生成したか返せるように別の配列に入れる。
+						reEdges.push_back(GraphEdge(newNode.GetIndex(), node.GetIndex()));
+						reEdges.push_back(GraphEdge(node.GetIndex(), newNode.GetIndex()));
+						//isCreate = true;
+					}
+				}
+			}
+
+			return reEdges;
+		}
 	};
 
 }

@@ -9,14 +9,14 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "FadeCtrlBase.h"
+
 namespace basecross {
 
 	using itbs::Utility::Delegate;
 
-	class TitleNameCtrl : public Component
+	class TitleNameCtrl : public FadeCtrlBase
 	{
-		Delegate<void()> m_delegate;
-
 		ex_weak_ptr<UIObject> m_fontUI;
 		ex_weak_ptr<UIObject> m_chocoUI;
 
@@ -26,6 +26,7 @@ namespace basecross {
 		std::function<void(TitleNameCtrl&)> m_updateFunc;
 
 		void UpdateChoco();
+		void EndProcess();
 
 	public:
 
@@ -33,16 +34,16 @@ namespace basecross {
 			const std::shared_ptr<UIObject>& fontUI,
 			const std::shared_ptr<UIObject>& chocoUI
 		) :
-			Component(objPtr),m_fontUI(fontUI),m_chocoUI(chocoUI)
+			FadeCtrlBase(objPtr),m_fontUI(fontUI),m_chocoUI(chocoUI)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
 
+		void FadeInStart() override {};
+		void FadeOutStart() override;
 
 		//アクセッサ----------------------------------------------------------------
-		void FadeStart();
-
 		void SetSpeed(const float& speed) {
 			m_speed = speed;
 		}
@@ -52,15 +53,6 @@ namespace basecross {
 
 		bool IsEnd() const {
 			return m_isEnd;
-		}
-
-		void SetDelegate(const Delegate<void()>& deleg) {
-			m_delegate = deleg;
-		}
-
-		template<class Obj>
-		void AddDelegateFunc(const std::shared_ptr<Obj>& obj, void(Obj::* fn)()) {
-
 		}
 	};
 

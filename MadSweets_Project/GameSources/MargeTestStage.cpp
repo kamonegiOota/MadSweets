@@ -34,6 +34,8 @@
 
 #include "PointLight.h"
 #include "CookieHideObject.h"
+#include "WeightGaugeUI.h"
+#include "HandyObject.h"
 
 namespace basecross {
 
@@ -71,9 +73,6 @@ namespace basecross {
 			CreateViewLight();
 			TempLoad();
 			CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest2.csv");
-			//CreateMap(L"StageTest3.csv");
-			//CreateMap(L"StageTest4.csv");
 			//CreateMap(L"StageTest5.csv");
 
 			//ゲージの生成
@@ -88,6 +87,9 @@ namespace basecross {
 			mo->OnStart();
 
 			SetSharedGameObject(L"PlayerChoicesList", go);
+
+			//ウェイトゲージの生成
+			Instantiate<WeightGaugeUI>();
 
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
@@ -111,10 +113,10 @@ namespace basecross {
 
 			//クッキーの生成
 			CreateSoundCookies();
-			//CreateCrackCookies();
+			CreateCrackCookies();
 
 			//隠れるオブジェクトの生成
-			//CreateHideObjects();
+			CreateHideObjects();
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
@@ -128,19 +130,19 @@ namespace basecross {
 
 	void MargeTestStage::OnUpdate() {
 		for (auto obj : GetGameObjectVec()) {
-			auto player = dynamic_pointer_cast<PlayerObject>(obj);
-			if (player) {
-				//DebugObject::m_wss << L"ss";
-				auto pos = player->GetComponent<Transform>()->GetPosition();
-				//auto forward = player->GetComponent<Transform>()->GetForword();
-				auto light = dynamic_pointer_cast<MultiLight>(GetLight());
-				auto newLight = light->GetLight(2);
-				//newLight.m_Directional = forward;
-				newLight.m_Directional = pos;
-				newLight.m_DiffuseColor = Col4(1.0f);
-				newLight.m_SpecularColor = Col4(1.0f);
-				//light->SetDefaultLighting();
-			}
+			//auto player = dynamic_pointer_cast<PlayerObject>(obj);
+			//if (player) {
+			//	//DebugObject::m_wss << L"ss";
+			//	auto pos = player->GetComponent<Transform>()->GetPosition();
+			//	//auto forward = player->GetComponent<Transform>()->GetForword();
+			//	auto light = dynamic_pointer_cast<MultiLight>(GetLight());
+			//	auto newLight = light->GetLight(2);
+			//	//newLight.m_Directional = forward;
+			//	newLight.m_Directional = pos;
+			//	newLight.m_DiffuseColor = Col4(1.0f);
+			//	newLight.m_SpecularColor = Col4(1.0f);
+			//	//light->SetDefaultLighting();
+			//}
 		}
 	}
 
@@ -167,7 +169,7 @@ namespace basecross {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
 			if (fixed) {
 				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
-					fixed->GetComponent<Collision>()->SetUpdateActive(false);
+					//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				}
 			}
 		}
@@ -189,6 +191,16 @@ namespace basecross {
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
 
+		//デブゲージ系
+		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
+		app->RegisterTexture(L"ChubbyGauge_Tx", textureDir + L"WeightTx_ChubbylGauge.png");
+		app->RegisterTexture(L"HungerFont_Tx", textureDir + L"WeightTx_HungerFont.png");
+		app->RegisterTexture(L"HungerGauge_Tx", textureDir + L"WeightTx_HungerGauge.png");
+		app->RegisterTexture(L"NomalFont_Tx", textureDir + L"WeightTx_NomalFont.png");
+		app->RegisterTexture(L"NomalGauge_Tx", textureDir + L"WeightTx_NomalGauge.png");
+		app->RegisterTexture(L"SkinnyFont_Tx", textureDir + L"WeightTx_SkinnyFont.png");
+		app->RegisterTexture(L"SkinnyGauge_Tx", textureDir + L"WeightTx_SkinnyGauge.png");
+
 		//モデル
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
@@ -203,7 +215,27 @@ namespace basecross {
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Handy\\", L"Handy_Walk.bmf");
-		app->RegisterResource(L"Handy", modelMesh);
+		app->RegisterResource(L"Handy_Walk", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Handy\\", L"Handy_Attack.bmf");
+		app->RegisterResource(L"Handy_Attack", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Handy\\", L"Handy_Search.bmf");
+		app->RegisterResource(L"Handy_Search", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Ashi\\", L"Ashi_Wark.bmf");
+		app->RegisterResource(L"Ashi_Walk", modelMesh);
+
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Cara\\", L"Cara_Wark.bmf");
+		app->RegisterResource(L"Cara_Walk", modelMesh);
+
+		modelMesh = MeshResource::CreateStaticModelMesh(
+			modelDir + L"Stick\\", L"Stick.bmf");
+		app->RegisterResource(L"Stick", modelMesh);
 
 		//音ロード
 		wstring SE_Dir = mediaDir + L"SEs\\";
@@ -212,8 +244,9 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
-		auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
+		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//Astar生成

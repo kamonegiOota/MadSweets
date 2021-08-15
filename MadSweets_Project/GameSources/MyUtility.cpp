@@ -86,53 +86,48 @@ namespace basecross {
 
 		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj) {
 			return IsRayObstacle(startObj, endObj, vector<std::shared_ptr<GameObject>>());
+		}
 
-
-			//auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
-			//auto endPosition = endObj->GetComponent<Transform>()->GetWorldPosition();
-			//auto direction = endPosition - startPosition;
-
-			//for (const auto& object : startObj->GetStage()->GetGameObjectVec())
-			//{
-			//	auto collision = object->GetComponent<Collision>(false);
-			//	if (!collision) {
-			//		continue;
-			//	}
-
-			//	if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
-			//		continue;
-			//	}
-
-			//	//ヒットしたら、障害物があることになる。
-			//	RayHitData data;
-			//	if (collision->IsRayHit(startPosition, direction, data)) {
-			//		auto length = direction.length();
-			//		if (direction.length() > data.length) {  //lengthが手前だったら
-			//			//object->GetComponent<BcPNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 0.0f));
-			//			return true;
-			//		}
-			//	}
-			//}
-
-			//return false;
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition) {
+			return IsRayObstacle(startPosition, endPosition, vector<std::shared_ptr<GameObject>>());
 		}
 
 		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
 			const std::shared_ptr<GameObject>& endObj,
 			const vector<shared_ptr<GameObject>>& excluteObjs)
 		{
+			return IsRayObstacle(startObj, endObj, GetStage()->GetGameObjectVec(), excluteObjs);
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
+			const vector<shared_ptr<GameObject>>& excluteObjs)
+		{
+			return IsRayObstacle(startPosition, endPosition, GetStage()->GetGameObjectVec(), excluteObjs);
+		}
+
+		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj, const std::shared_ptr<GameObject>& endObj,
+			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
+		{
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
 			auto endPosition = endObj->GetComponent<Transform>()->GetWorldPosition();
+
+			//excluteObjsにスタートオブジェクトと、エンドオブジェクトを省く。
+			auto newExcluteObjs = excluteObjs;
+			newExcluteObjs.push_back(startObj);
+			newExcluteObjs.push_back(endObj);
+
+			return IsRayObstacle(startPosition, endPosition, obstacleObjs,newExcluteObjs);
+		}
+
+		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
+			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
+		{
 			auto direction = endPosition - startPosition;
 
-			for (const auto& object : startObj->GetStage()->GetGameObjectVec())
+			for (const auto& object : obstacleObjs)
 			{
 				auto collision = object->GetComponent<Collision>(false);
 				if (!collision) {
-					continue;
-				}
-
-				if (startObj == object || endObj == object) {  //スタートもしくはエンドオブジェクトなら処理を飛ばす。
 					continue;
 				}
 
@@ -146,7 +141,6 @@ namespace basecross {
 				if (collision->IsRayHit(startPosition, direction, data)) {
 					auto length = direction.length();
 					if (direction.length() > data.length) {  //lengthが手前だったら
-						//object->GetComponent<BcPNTStaticDraw>()->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 0.0f));
 						return true;
 					}
 				}
@@ -155,25 +149,6 @@ namespace basecross {
 			return false;
 		}
 
-		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition) {
-			auto stage = App::GetApp()->GetScene<Scene>()->GetActiveStage();
-			auto direction = endPosition - startPosition;
-
-			for (const auto& object : stage->GetGameObjectVec())
-			{
-				auto collision = object->GetComponent<Collision>(false);
-				if (!collision) {
-					continue;
-				}
-
-				//ヒットしたら、障害物があることになる。
-				if (collision->IsRayHit(startPosition, direction)) {
-					return true;
-				}
-			}
-
-			return false;
-		}
 
 		bool MyUtility::IsRayObstacle(const std::shared_ptr<GameObject>& startObj,
 			const std::shared_ptr<GameObject>& endObj,
@@ -181,9 +156,9 @@ namespace basecross {
 		{
 			auto startPosition = startObj->GetComponent<Transform>()->GetWorldPosition();
 			auto endPosition = endObj->GetComponent<Transform>()->GetPosition();
-			auto direction = endPosition - startPosition;
+			//auto direction = endPosition - startPosition;
 
-			return IsRayObstacle(startPosition, direction, obstacleObj);
+			return IsRayObstacle(startPosition, endPosition, obstacleObj);
 		}
 
 		bool MyUtility::IsRayObstacle(const Vec3& startPosition, const Vec3& endPosition,
@@ -193,13 +168,17 @@ namespace basecross {
 			auto direction = endPosition - startPosition;
 
 			//ヒットしたら、障害物があることになる。
-			if (collision->IsRayHit(startPosition, direction)) {
-				return true;
+			RayHitData data;
+			if (collision->IsRayHit(startPosition, direction, data)) {
+				if (direction.length() > data.length) {
+					return true;
+				}
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
+
+		
 
 		bool MyUtility::IsExclute(const shared_ptr<GameObject>& targetObj,const vector<shared_ptr<GameObject>>& excluteObjs) {
 			for (auto& exclute : excluteObjs) {

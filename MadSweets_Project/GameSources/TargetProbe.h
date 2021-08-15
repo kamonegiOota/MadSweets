@@ -18,7 +18,8 @@ namespace basecross {
 	{
 		std::shared_ptr<GameObject> m_target;  //捜索対象
 		std::shared_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
-
+		int m_newNodeIndex = 0;
+		
 		std::function<void(TargetProbe&)> m_moveFunc;
 
 		//何回プレイヤーの捜索をするか？
@@ -26,6 +27,11 @@ namespace basecross {
 		int m_probCount = 0;  //実際に捜索した回数。
 
 		float m_searchRange = 20.0f;  //探索する範囲
+
+		//Nodeの追加
+		void AddNode(const Vec3& position);
+		//Nodeの削除
+		//void RemoveNode();
 
 		//Astarに捜索先をセットする。
 		void SetAstarRondomHideObject();
@@ -57,6 +63,8 @@ namespace basecross {
 		std::shared_ptr<GameObject> GetTarget() const {
 			return m_target;
 		}
+
+		void RemoveNode();
 	};
 
 }

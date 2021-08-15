@@ -484,6 +484,42 @@
     <Filter Include="Itabashi\Stage\ItabashiStage">
       <UniqueIdentifier>{8963f805-7817-4e0d-ba72-f81d6d95b839}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Fade">
+      <UniqueIdentifier>{bc3523d9-5134-4807-bc8d-24b2952c68bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Chubby">
+      <UniqueIdentifier>{2b51bb7d-f604-409b-9261-e0c00fb8db14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Chubby\ChubbyCompCtrl">
+      <UniqueIdentifier>{2f6d857f-054f-4156-b0e6-1f4b7f950e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge">
+      <UniqueIdentifier>{16577ca5-c50e-4753-8cba-57c9df8eed15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Object">
+      <UniqueIdentifier>{82d95c98-42ff-4d06-9071-351be0d241ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component">
+      <UniqueIdentifier>{fbbd6f18-d063-4842-9f85-ff19b326d0dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl">
+      <UniqueIdentifier>{60cde739-2f09-433d-a45e-eb63b9161a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr">
+      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
+      <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\HandyObject">
+      <UniqueIdentifier>{63477525-db0b-41c9-9f0c-34ffef8087bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Handy">
+      <UniqueIdentifier>{aa3d501d-2f63-4e8b-902d-eaa59a2a6d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Handy\HandyAnimator">
+      <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -873,6 +909,30 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h">
       <Filter>Itabashi\Stage\ItabashiStage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
+      <Filter>Maru\Component\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h">
+      <Filter>Maru\MaruPlayer\Component\Chubby\ChubbyCompCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h">
+      <Filter>Maru\Enemy\Object\HandyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h">
+      <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1216,6 +1276,27 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp">
       <Filter>Itabashi\Stage\ItabashiStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp">
+      <Filter>Maru\Component\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
+      <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp">
+      <Filter>Maru\Enemy\Object\HandyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp">
+      <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

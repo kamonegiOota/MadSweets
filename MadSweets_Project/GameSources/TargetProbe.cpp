@@ -11,13 +11,40 @@
 #include "SearchHidden.h"
 #include "BaseEnemy.h"
 #include "EnState_LoseTarget.h"
+#include "EnState_Plowling.h"
 
 #include "Velocity.h"
 #include "UtilVelocity.h"
 #include "MyUtility.h"
 #include "EnemyRotationCtrl.h"
 
+#include "FixedBox.h"
+#include "PlayerObject.h"
+
 namespace basecross {
+
+	void TargetProbe::AddNode(const Vec3& position) {
+		//return;
+		vector<shared_ptr<GameObject>> obstacleObjs;
+		vector<shared_ptr<GameObject>> excluteObjs;
+
+		MyUtility::AddObjects<StageObject>(obstacleObjs); //障害物の対象をStageObjectにする
+		excluteObjs.push_back(GetGameObject()); //自分を障害物から省く
+		MyUtility::AddObjects<PlayerObject>(excluteObjs);
+		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
+
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+		m_newNodeIndex = astar->AddNode(position, obstacleObjs, excluteObjs);
+	}
+
+	void TargetProbe::RemoveNode() {
+		if (m_checkHideObj == nullptr) {
+			return;
+		}
+
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+		astar->RemoveNode(m_newNodeIndex);
+	}
 
 	void TargetProbe::SetAstarRondomHideObject() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
@@ -25,12 +52,17 @@ namespace basecross {
 			//近くのオブジェクトからランダムに捜索対象のオブジェクトを選択。
 			auto hideObj = SearchHidden::SearchRandomHiddenObject(GetGameObject(), m_searchRange, m_checkHideObj);
 
+			DebugObject::sm_wss << endl << L"RandomHide" <<  endl;
+
 			if (hideObj == nullptr) {  //近くに隠れるオブジェクトが無かったら
-				ChangeState();
+				//ChangeState();
 				return;
 			}
+			
+			//ノードの追加と削除
+			RemoveNode();
+			AddNode(hideObj->GetComponent<Transform>()->GetPosition()); 
 
-			//StartProb(hideObj);
 			astar->SearchAstarStart(hideObj);
 			m_checkHideObj = hideObj;
 			m_moveFunc = &TargetProbe::AstarMove;
@@ -97,6 +129,7 @@ namespace basecross {
 
 	void TargetProbe::ResetProbe() {
 		m_probCount = 0;
+		m_moveFunc = nullptr;
 		m_checkHideObj = nullptr;
 	}
 
@@ -107,6 +140,9 @@ namespace basecross {
 	void TargetProbe::OnUpdate() {
 		if (m_moveFunc) {
 			m_moveFunc(*this);
+		}
+		else {
+			ChangeState();
 		}
 	}
 

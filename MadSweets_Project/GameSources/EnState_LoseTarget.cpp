@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "EnState_LoseTarget.h"
+#include "PlowlingMove.h"
 #include "ReturnPlowlingPosition.h"
 #include "AstarCtrl.h"
 #include "TargetChase.h"
@@ -24,7 +25,7 @@ namespace basecross {
         }
 
         AddChangeComp(returnPlow, true, false);
-        AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
+       // AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
 
         AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
         AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
@@ -41,7 +42,7 @@ namespace basecross {
     }
 
     void EnState_LoseTarget::OnUpdate() {
-
+        //DebugObject::sm_wss << L"Lose";
     }
 
     void EnState_LoseTarget::OnExit() {

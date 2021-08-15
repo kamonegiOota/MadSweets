@@ -10,6 +10,8 @@
 #include "DebugObject.h"
 
 #include "TargetChase.h"
+#include "TargetEscape.h"
+#include "TargetProbe.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
 #include "CheckTargetPos.h"
@@ -25,7 +27,10 @@ namespace basecross {
 
 		AddChangeComp(chase, true, false);
 		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), false, false);
-		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(),false,false);
+		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
+		//AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
+		AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
+		AddChangeComp(obj->GetComponent<TargetProbe>(false), false, false);
 		
 		StartChangeComps();
 
@@ -37,7 +42,7 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnUpdate() {
-		//DebugObject::m_wss << L"Chase";
+		//DebugObject::sm_wss << L"Chase";
 	}
 
 	void EnState_TargetChase::OnExit() {

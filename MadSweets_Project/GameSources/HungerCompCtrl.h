@@ -22,7 +22,7 @@ namespace basecross {
 		ex_weak_ptr<StomachSound> m_stomachSound;
 
 		//‹Q‰ìó‘Ô‚É•ÏX
-		void ChangeHunger(const bool isActive);
+		void ChangeUpdateActive(const bool isActive);
 
 		//‹Q‰ìó‘Ô‚ÌŠÄ‹
 		void HungerMgr();

@@ -25,6 +25,8 @@
 #include "HungerCompCtrl.h"
 #include "HpDrawMgr.h"
 
+#include "PlayerWeightMgr.h"
+
 namespace basecross
 {
 	PlayerObject::PlayerObject(std::shared_ptr<Stage>& stage) :
@@ -100,6 +102,8 @@ namespace basecross
 		AddComponent<HungerCompCtrl>();
 		
 		AddComponent<HpDrawMgr>();
+
+		AddComponent<PlayerWeightMgr>();
 		
 	}
 

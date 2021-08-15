@@ -12,7 +12,11 @@
 //#include "NavGraphNode.h"
 //#include "GraphEdge.h"
 
+#include "MyUtility.h"
+
 namespace basecross {
+
+	using maru::MyUtility;
 
 	template<class node_type, class edge_type>
 	class SparseGraph 
@@ -92,7 +96,12 @@ namespace basecross {
 		/// 次のフリーノードのインデックスを参照する。
 		/// </summary>
 		/// <returns></returns>
-		int GetNextFreeNodeIndex() const{
+		int GetNextFreeNodeIndex(){
+			//見つかった場合は別のインデックスにしなければならない
+			if (m_edges.find(m_nextNodeIndex) != m_edges.end()) {
+				m_nextNodeIndex = CalucNextFreeNodeIndex();
+			}
+
 			return m_nextNodeIndex;
 		}
 
@@ -112,7 +121,26 @@ namespace basecross {
 		/// </summary>
 		/// <param name="index">削除したいノードのインデックス</param>
 		void RemoveNode(const int& index) {
-			
+			if (m_edges.find(index) == m_edges.end()) { //見つからなかったら処理をしない。
+				return;
+			}
+
+			//ノードの削除
+			MyUtility::RemoveVec(m_nodes, m_nodes[index]);
+
+			//そのノードのedgesの削除
+			m_edges.erase(index);
+
+			//削除したインデクスが含まれるエッジを削除
+			for (int i = 0; i < m_edges.size(); i++) {
+				for (auto& edge : m_edges[i]) {
+					if (edge.GetTo() == index) {  //行先がindexと一緒なら
+						RemoveEdge(edge.GetFrom(), edge.GetTo());
+					}
+				}
+			}
+
+			m_nextNodeIndex = index;
 		}
 
 		/// <summary>
@@ -129,8 +157,25 @@ namespace basecross {
 		/// <param name="from"></param>
 		/// <param name="back"></param>
 		void RemoveEdge(const int& from, const int& to) {
+			auto& edges = m_edges[from];
+			auto iter = edges.begin();
+			while (iter != edges.end()) {
+				if (iter->GetTo() == to) {
+					iter = edges.erase(iter);
+					break;
+				}
 
+				iter++;
+			}
 		}
+
+		/// <summary>
+		/// 渡されたインデックスが含まれるエッジを全て削除する。
+		/// </summary>
+		/// <param name="index">削除したいインデックス</param>
+		//void RemoveEdge(const int& index) {
+		//	
+		//}
 
 		/// <summary>
 		/// このグラフ内のノードの個数を返す。
@@ -186,6 +231,24 @@ namespace basecross {
 			return false;
 		}
 
+
+		private:
+
+			/// <summary>
+			/// 現在空きのあるノードのインデックスを探し出す。
+			/// </summary>
+			/// <returns>空きのインデックス</returns>
+			int CalucNextFreeNodeIndex() {
+				int index = (int)m_edges.size();  //ループが最後までいったら最後のノードの次が空きノードになる。
+				for (int i = 0; i < m_edges.size(); i++) {
+					if (m_edges.find(i) == m_edges.end()) {  //endだったらそのノードがないから
+						index = i;
+						break;
+					}
+				}
+
+				return index;
+			}
 
 	};
 

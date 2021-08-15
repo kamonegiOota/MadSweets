@@ -32,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
@@ -62,6 +64,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
@@ -97,6 +101,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
@@ -110,6 +115,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PulledSweets.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchHidden.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SearchObject.h" />
@@ -141,6 +147,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +185,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
@@ -186,6 +195,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
@@ -217,6 +228,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
@@ -229,6 +241,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchHidden.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SearchObject.cpp" />
@@ -257,6 +270,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

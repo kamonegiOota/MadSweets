@@ -40,6 +40,10 @@ namespace basecross {
 			return m_position;
 		}
 
+		bool operator==(NavGraphNode node) const{
+			return m_index == node.GetIndex() ? true : false;
+		}
+
 	};
 
 }

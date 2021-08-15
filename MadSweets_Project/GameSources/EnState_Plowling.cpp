@@ -14,21 +14,24 @@
 #include "AstarPlowlingMove.h"
 #include "Velocity.h"
 
+#include "TargetChase.h"
+#include "TargetEscape.h"
+#include "TargetProbe.h"
+
 namespace basecross {
 
 	void EnState_Plowling::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
-		auto plow = obj->GetComponent<PlowlingMove>();
-
-		//auto velocity = obj->GetComponent<Velocity>(false);
-		//if (velocity) {
-		//	velocity->Reset();
-		//}
+		//auto plow = obj->GetComponent<PlowlingMove>();
 
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
-		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), true, false);
+		//AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), true, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
+
+		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
+		AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
+		AddChangeComp(obj->GetComponent<TargetProbe>(false), false, false);
 
 		StartChangeComps();
 
@@ -39,7 +42,7 @@ namespace basecross {
 	}
 
 	void EnState_Plowling::OnUpdate() {
-		
+		//DebugObject::sm_wss << L"Plowling";
 	}
 
 	void EnState_Plowling::OnExit() {

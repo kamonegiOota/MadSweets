@@ -19,12 +19,7 @@ namespace basecross {
 		ex_weak_ptr<TitleNameCtrl> m_titleNameCtrl;
 		ex_weak_ptr<FadeChocoCtrl> m_fadeChocoCtrl;
 
-		std::function<void(TitleFadeCtrl&)> m_updateFunc;
-
 		void ChangeStage();
-
-		void FadeChocoMgr();
-		void TitleNameMgr();
 
 	public:
 		TitleFadeCtrl(const std::shared_ptr<GameObject>& objPtr)
@@ -32,7 +27,7 @@ namespace basecross {
 		{}
 
 		void OnCreate() override {}
-		void OnUpdate() override;
+		void OnUpdate() override {}
 
 		void FadeStart();
 

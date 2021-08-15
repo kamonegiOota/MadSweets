@@ -17,7 +17,7 @@ namespace basecross {
 		AddComponent<MTestEnemy>();
 		AddTag(L"MTestEnemy");
 
-		auto draw = AddComponent<BcPNTBoneModelDraw>();
+		auto draw = AddComponent<PNTBoneModelDraw>();
 		draw->SetMeshResource(L"Handy");
 		draw->AddAnimation(L"Run",5,10,true,30.0f);
 		
@@ -45,7 +45,7 @@ namespace basecross {
 	}
 
 	void MTestEnemyObject::AnimationCtrl() {
-		auto anime = GetComponent<BcPNTBoneModelDraw>();
+		auto anime = GetComponent<PNTBoneModelDraw>();
 		
 		auto delta = App::GetApp()->GetElapsedTime();
 		float speed = 1.0f;
