@@ -502,6 +502,12 @@
     <Filter Include="Maru\Enemy\Object\HandyObject">
       <UniqueIdentifier>{63477525-db0b-41c9-9f0c-34ffef8087bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Handy">
+      <UniqueIdentifier>{aa3d501d-2f63-4e8b-902d-eaa59a2a6d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Handy\HandyAnimator">
+      <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -903,6 +909,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h">
       <Filter>Maru\Enemy\Object\HandyObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h">
+      <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1252,6 +1261,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp">
       <Filter>Maru\Enemy\Object\HandyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp">
+      <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
