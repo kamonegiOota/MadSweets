@@ -15,18 +15,18 @@ namespace basecross {
 
 	class Handy_Attack : public BaseAttack
 	{
-		std::function<void(Handy_Attack&)> m_updateFunc = nullptr;
+		//std::function<void(Handy_Attack&)> m_updateFunc = nullptr;
 
 		float m_delay = 1.0f;
+
+		bool IsNowAnimeStateAttack();  //現在攻撃中だったら
 
 		void CreateThrowObject();  //投げる指を生成
 
 		void ChangeAttackState() override;
-		void ChangeEndState() override;
 		void ChangeAttackAnimation();
 
-		bool IsEnd();
-		void UpdateAttack();
+		//void UpdateAttack();
 
 	public:
 		Handy_Attack(const std::shared_ptr<GameObject>& objPtr);
@@ -38,6 +38,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void Attack(const std::shared_ptr<GameObject>& target) override;
+		void ChangeEndState() override;  //ステート終了時にやる処理
 	};
 
 }

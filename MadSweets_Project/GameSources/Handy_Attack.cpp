@@ -17,6 +17,10 @@
 #include "DebugObject.h"
 
 #include "HandyObject.h"
+#include "HandyAnimator.h"
+#include "BaseEnemy.h"
+
+#include "DebugObject.h"
 
 namespace basecross {
 
@@ -30,6 +34,21 @@ namespace basecross {
 		BaseAttack(objPtr,param)
 	{}
 
+
+	bool Handy_Attack::IsNowAnimeStateAttack() {
+		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
+		if (animeCtrl) {
+			auto anime = animeCtrl->GetAnimator();
+			//DebugObject::sm_wss << to_wstring((int)anime->GetNowState());
+			//DebugObject::sm_isResetDelta = true;
+			//DebugObject::AddFloat(anime->GetStateRateOfTime());
+			if (anime->GetNowState() == HandyAnimationState::Attack) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	void Handy_Attack::CreateThrowObject() {
 		float speed = 10.0f;
@@ -54,40 +73,34 @@ namespace basecross {
 	}
 
 	void Handy_Attack::ChangeAttackAnimation() {
-		auto anime = GetGameObject()->GetComponent<Animator<HandyAnimationMember, HandyAnimationState>>(false);
-		if (anime) {
+		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
+		if (animeCtrl) {
+			auto anime = animeCtrl->GetAnimator();
 			anime->GetMemberRefarence().attackTrigger.Fire();
 		}	
 	}
 
-
-	bool Handy_Attack::IsEnd() {
-		//ここに終わる条件の記述
-		//現在仮状態
-		return true;
-	}
-
-	void Handy_Attack::UpdateAttack() {
-		//AddAction<Handy_Attack>(GetThis<Handy_Attack>(), &Handy_Attack::ChangeEndState,5.0f);
-		//アニメーションが終わったら移動のステートに戻るように調整する。
-		auto anime = GetGameObject()->GetComponent<PNTBoneModelDraw>();
-		if (anime) {
-			if (anime->GetCurrentAnimation() != L"Handy_Attack") {
-				ChangeEndState();
-				m_updateFunc = nullptr;
-			}
-		}
-	}
+	//void Handy_Attack::UpdateAttack() {
+	//	if (!IsNowAnimeStateAttack()) {  //攻撃状態でなかったら
+	//		//ChangeEndState();
+	//		//m_updateFunc = nullptr;
+	//	}
+	//}
 
 	void Handy_Attack::Attack(const std::shared_ptr<GameObject>& target) {
+		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		if (enemy->IsEqualStateType<EnState_Attack>()) {
+			return;
+		}
+
 		SetTarget(target);
 
 		if (IsAttackRange()) {
-			m_updateFunc = &Handy_Attack::UpdateAttack;
-
 			CreateThrowObject();
 			ChangeAttackAnimation();
 			ChangeAttackState();
+
+			//m_updateFunc = &Handy_Attack::UpdateAttack;
 		}
 	}
 
@@ -96,9 +109,9 @@ namespace basecross {
 	}
 
 	void Handy_Attack::OnUpdate() {
-		if (m_updateFunc) {
-			m_updateFunc(*this);
-		}
+		//if (m_updateFunc) {
+		//	m_updateFunc(*this);
+		//}
 	}
 
 }
