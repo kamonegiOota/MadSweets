@@ -87,7 +87,7 @@ namespace basecross
 		auto choiceManager = AddComponent<PlayerChoicesManager>();
 		choiceManager->SetSearchRange(2.0f);
 
-		AddComponent<PlayerHideManager>(cameraMover);
+		AddComponent<PlayerHideManager>();
 
 		AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
 
