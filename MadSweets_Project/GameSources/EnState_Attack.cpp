@@ -39,7 +39,7 @@ namespace basecross {
 	}
 
 	void EnState_Attack::OnUpdate() {
-		//DebugObject::m_wss << L"Chase";
+		//DebugObject::sm_wss << L"Attack";
 	}
 
 	void EnState_Attack::OnExit() {
