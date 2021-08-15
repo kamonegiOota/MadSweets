@@ -12,20 +12,6 @@ namespace basecross {
 
 	class BaseEnemy :public Component
 	{
-		/// <summary>
-		/// 同じステートに変更仕様とした場合trueを返す
-		/// </summary>
-		/// <returns>同じステートの場合true</returns>
-		template<class T>
-		bool IsEqualStateType() {  
-			auto t = dynamic_pointer_cast<T>(m_stateMachine);
-			if (t) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
 
 	protected:
 	 	std::shared_ptr<maru::StateMachine<BaseEnemy>> m_stateMachine;
@@ -78,6 +64,22 @@ namespace basecross {
 			newState->OnStart();
 			m_stateMachine = newState;
 		}
+
+		/// <summary>
+		/// 同じステートに変更仕様とした場合trueを返す
+		/// </summary>
+		/// <returns>同じステートの場合true</returns>
+		template<class T>
+		bool IsEqualStateType() {
+			auto t = dynamic_pointer_cast<T>(m_stateMachine);
+			if (t) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
 	};
 
 }
