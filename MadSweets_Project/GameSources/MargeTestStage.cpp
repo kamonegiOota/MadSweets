@@ -215,7 +215,7 @@ namespace basecross {
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Handy\\", L"Handy_Walk.bmf");
-		app->RegisterResource(L"Handy", modelMesh);
+		app->RegisterResource(L"Handy_Walk", modelMesh);
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Handy\\", L"Handy_Attack.bmf");
@@ -227,11 +227,11 @@ namespace basecross {
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Ashi\\", L"Ashi_Wark.bmf");
-		app->RegisterResource(L"Ashi_Wark", modelMesh);
+		app->RegisterResource(L"Ashi_Walk", modelMesh);
 
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Cara\\", L"Cara_Wark.bmf");
-		app->RegisterResource(L"Cara_Wark", modelMesh);
+		app->RegisterResource(L"Cara_Walk", modelMesh);
 
 		modelMesh = MeshResource::CreateStaticModelMesh(
 			modelDir + L"Stick\\", L"Stick.bmf");
