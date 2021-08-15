@@ -37,11 +37,22 @@ namespace basecross
 				continue;
 			}
 
-			auto range = (object->GetComponent<Transform>()->GetWorldPosition() - transform->GetWorldPosition()).length();
+			auto collision = object->GetComponent<Collision>(false);
+
+			if (!collision)
+			{
+				continue;
+			}
+
+			auto startPosition = transform->GetWorldPosition();
+			auto rayDirection = transform->GetForword();
+
+			RayHitData hitData;
+			bool isHit = collision->IsRayHit(startPosition, rayDirection, hitData);
 
 			auto it = std::find(m_rayCollisionObjects.begin(), m_rayCollisionObjects.end(), object);
 
-			if (range <= m_searchRange)
+			if(isHit && hitData.length <= m_searchRange)
 			{
 				if (it == m_rayCollisionObjects.end())
 				{
