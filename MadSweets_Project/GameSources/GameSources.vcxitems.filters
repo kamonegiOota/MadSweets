@@ -481,6 +481,9 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerRotater">
       <UniqueIdentifier>{e1b0e01d-47df-4ffd-a82e-b036a499d67b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Stage\ItabashiStage">
+      <UniqueIdentifier>{8963f805-7817-4e0d-ba72-f81d6d95b839}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -563,9 +566,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h">
       <Filter>Itabashi\PlayerObject</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h">
-      <Filter>Itabashi\Stage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h">
       <Filter>Patchs\Maths\MyMath</Filter>
@@ -870,6 +870,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h">
       <Filter>Itabashi\Components\CameraRotater</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h">
+      <Filter>Itabashi\Stage\ItabashiStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -919,9 +922,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp">
       <Filter>Itabashi\PlayerObject</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp">
-      <Filter>Itabashi\Stage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp">
       <Filter>Patchs\Maths\MyMath</Filter>
@@ -1213,6 +1213,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp">
       <Filter>Itabashi\Components\CameraRotater</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp">
+      <Filter>Itabashi\Stage\ItabashiStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
