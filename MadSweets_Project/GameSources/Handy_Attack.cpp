@@ -16,6 +16,8 @@
 
 #include "DebugObject.h"
 
+#include "HandyObject.h"
+
 namespace basecross {
 
 	Handy_Attack::Handy_Attack(const std::shared_ptr<GameObject>& objPtr)
@@ -27,6 +29,15 @@ namespace basecross {
 	):
 		BaseAttack(objPtr,param)
 	{}
+
+
+	void Handy_Attack::CreateThrowObject() {
+		float speed = 10.0f;
+		auto throwCtrl = GetGameObject()->GetComponent<ThrowCtrl>();
+		if (throwCtrl) {
+			throwCtrl->Throw<ThrowHandyObject>(GetGameObject(), transform->GetForword(), speed);
+		}
+	}
 
 	void Handy_Attack::ChangeAttackState() {
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
@@ -42,6 +53,13 @@ namespace basecross {
 		}
 	}
 
+	void Handy_Attack::ChangeAttackAnimation() {
+		auto anime = GetGameObject()->GetComponent<Animator<HandyAnimationMember, HandyAnimationState>>(false);
+		if (anime) {
+			anime->GetMemberRefarence().attackTrigger.Fire();
+		}	
+	}
+
 
 	bool Handy_Attack::IsEnd() {
 		//ここに終わる条件の記述
@@ -51,22 +69,13 @@ namespace basecross {
 
 	void Handy_Attack::UpdateAttack() {
 		//AddAction<Handy_Attack>(GetThis<Handy_Attack>(), &Handy_Attack::ChangeEndState,5.0f);
-
-
-		//仮の状態
-		auto delta = App::GetApp()->GetElapsedTime();
-
-		m_delay += -1.0f * delta;
-
-		if (IsEnd() && m_delay <= 0.0f) {
-			m_delay = 1.0f;
-			auto throwCtrl = GetGameObject()->GetComponent<ThrowCtrl>();
-			if (throwCtrl) {
-				throwCtrl->Throw<ThrowHandyObject>(GetGameObject(),transform->GetForword(), 10.0f);
+		//アニメーションが終わったら移動のステートに戻るように調整する。
+		auto anime = GetGameObject()->GetComponent<PNTBoneModelDraw>();
+		if (anime) {
+			if (anime->GetCurrentAnimation() != L"Handy_Attack") {
+				ChangeEndState();
+				m_updateFunc = nullptr;
 			}
-
-			ChangeEndState();
-			m_updateFunc = nullptr;
 		}
 	}
 
@@ -75,6 +84,9 @@ namespace basecross {
 
 		if (IsAttackRange()) {
 			m_updateFunc = &Handy_Attack::UpdateAttack;
+
+			CreateThrowObject();
+			ChangeAttackAnimation();
 			ChangeAttackState();
 		}
 	}

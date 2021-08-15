@@ -19,8 +19,11 @@ namespace basecross {
 
 		float m_delay = 1.0f;
 
+		void CreateThrowObject();  //“Š‚°‚éw‚ğ¶¬
+
 		void ChangeAttackState() override;
 		void ChangeEndState() override;
+		void ChangeAttackAnimation();
 
 		bool IsEnd();
 		void UpdateAttack();
