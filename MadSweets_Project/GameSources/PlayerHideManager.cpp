@@ -2,16 +2,16 @@
 
 namespace basecross
 {
-	PlayerHideManager::PlayerHideManager(std::shared_ptr<GameObject>& owner,std::shared_ptr<PlayerCameraMover>& playerCameraMover) :
-		Component(owner),
-		m_playerCameraMover(playerCameraMover)
+	PlayerHideManager::PlayerHideManager(std::shared_ptr<GameObject>& owner) :
+		Component(owner)
 	{
-		m_springArm = m_playerCameraMover->GetGameObject()->GetComponent<SpringArmComponent>();
 	}
 
 	void PlayerHideManager::OnStart()
 	{
 		m_playerMover = GetGameObject()->GetComponent<PlayerMover>();
+
+		m_playerRotater = GetGameObject()->GetComponent<PlayerRotater>();
 
 		m_collision = GetGameObject()->GetComponent<Collision>();
 	}
@@ -23,15 +23,11 @@ namespace basecross
 	void PlayerHideManager::OnHide(const HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(false);
-		m_playerCameraMover->SetUpdateActive(false);
-
-		m_playerCameraMover->SetForward(-hideData.hideForward);
-
-		m_springArm->SetArmRange(0);
-
 
 		transform->SetWorldPosition(hideData.hideWorldPosition);
 		transform->SetForward(hideData.hideForward);
+
+		m_playerRotater->Restrict(XM_PIDIV4);
 
 		m_collision->SetAfterCollision(AfterCollision::None);
 	}
@@ -39,12 +35,11 @@ namespace basecross
 	void PlayerHideManager::OnEndHide(const HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(true);
-		m_playerCameraMover->SetUpdateActive(true);
-
-		m_springArm->SetArmRange(10);
 
 		auto worldPosition = transform->GetWorldPosition();
 		transform->SetWorldPosition(worldPosition + hideData.hideForward);
+
+		m_playerRotater->UnRestrict();
 
 		m_collision->SetAfterCollision(AfterCollision::Auto);
 	}
