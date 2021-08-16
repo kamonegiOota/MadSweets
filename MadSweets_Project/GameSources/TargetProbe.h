@@ -30,19 +30,30 @@ namespace basecross {
 
 		//Nodeの追加
 		void AddNode(const Vec3& position);
-		//Nodeの削除
-		//void RemoveNode();
 
 		//Astarに捜索先をセットする。
 		void SetAstarRondomHideObject();
 
-		void ChangeState();
+		void InvestigateHideObj();  //隠れるオブジェクトを調べる処理。
 		void RouteEnd();
 
+		//隠れるオブジェクトを探すアニメーションの再生の終了を待つ
+		void WaitInvestigateAnimationUpdateEnd();
 		void TargetMove();
 		void AstarMove();
 
 		void ResetProbe();
+
+		template<class T, class... Ts>
+		void ChangeState(Ts&&... params) {
+			//m_probCount = 0;
+			ResetProbe();
+
+			auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
+			if (enemy) {
+				enemy->ChangeStateMachine<T>(params...);  //見失った状態にする。
+			}
+		}
 
 	public:
 
@@ -55,6 +66,9 @@ namespace basecross {
 
 		void StartProb();  //捜索開始
 		void StartProb(const shared_ptr<GameObject>& target);  //捜索開始
+
+		//探すアニメーションが終了したときの処理
+		void EndInvestigateHideAnimation();
 
 		//アクセッサ--------------------------------------------------------
 		void SetTarget(const std::shared_ptr<GameObject>& target) {

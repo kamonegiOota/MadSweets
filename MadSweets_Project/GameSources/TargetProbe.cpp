@@ -20,6 +20,10 @@
 
 #include "FixedBox.h"
 #include "PlayerObject.h"
+#include "HandyAnimator.h"
+#include "EnState_ProbeTarget.h"
+#include "HiddenComponent.h"
+#include "EnState_Attack.h"
 
 namespace basecross {
 
@@ -55,7 +59,6 @@ namespace basecross {
 			DebugObject::sm_wss << endl << L"RandomHide" <<  endl;
 
 			if (hideObj == nullptr) {  //近くに隠れるオブジェクトが無かったら
-				//ChangeState();
 				return;
 			}
 			
@@ -69,25 +72,41 @@ namespace basecross {
 		}
 	}
 
-	void TargetProbe::ChangeState() {
-		m_probCount = 0;
+	void TargetProbe::InvestigateHideObj() {
+		//アニメーションの再生
+		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>();
+		if (animeCtrl) {
+			auto animator = animeCtrl->GetAnimator();
+			animator->GetMemberRefarence().hideSearchTrigger.Fire();
+		}
 
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_LoseTarget>();  //見失った状態にする。
+		//敵が発見できるかどうか?
+		//現在は仮で判断している。
+		auto hideComp = m_checkHideObj->GetComponent<HiddenComponent>(false);
+		if (hideComp) {
+			auto pos = hideComp->GetHideData().hideWorldPosition;
+			auto toVec = m_target->GetComponent<Transform>()->GetPosition() - pos;
+			if (toVec.length() <= 0.01f) {
+				//ChangeState<EnState_Attack>(m_target);
+			}
 		}
 	}
 
 	void TargetProbe::RouteEnd() {
 		//本来はここでオブジェクトの中を覗く処理。
-		m_probCount++;
+		InvestigateHideObj();
+		
+		m_moveFunc = &TargetProbe::WaitInvestigateAnimationUpdateEnd;
 
-		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
-			ChangeState();
+		//速度を0にする。
+		auto velocityComp = GetGameObject()->GetComponent<Velocity>(false);
+		if (velocityComp) {
+			velocityComp->Reset();
 		}
-		else {  //まだカウントが過ぎていなかったら。
-			SetAstarRondomHideObject();  //もう一度調べる。
-		}
+	}
+
+	void TargetProbe::WaitInvestigateAnimationUpdateEnd() {
+
 	}
 
 	void TargetProbe::TargetMove() {
@@ -142,7 +161,7 @@ namespace basecross {
 			m_moveFunc(*this);
 		}
 		else {
-			ChangeState();
+			ChangeState<EnState_LoseTarget>();
 		}
 	}
 
@@ -158,6 +177,28 @@ namespace basecross {
 			astar->SearchAstarStart(target);
 			m_checkHideObj = target;
 			m_moveFunc = &TargetProbe::TargetMove;
+		}
+	}
+
+	void TargetProbe::EndInvestigateHideAnimation() {
+		//AnimatorのExitFuncで呼び出すからステートが違う場合は処理をしないようにする。
+		//もしバグが生じるようなら、こちらのUpdateでアニメーションの終了を監視するようにする。
+		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		if (enemy) {
+			//TargetProbe状態で無かったら処理をしない。
+			if (!enemy->IsEqualStateType<EnState_ProbTarget>()) {
+				return;
+			}
+		}
+
+		m_probCount++;
+
+		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
+			m_moveFunc = nullptr;
+			ChangeState<EnState_LoseTarget>();
+		}
+		else {  //まだカウントが過ぎていなかったら。
+			SetAstarRondomHideObject();  //もう一度調べる。
 		}
 	}
 
