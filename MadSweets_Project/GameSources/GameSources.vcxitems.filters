@@ -520,6 +520,9 @@
     <Filter Include="Maru\Enemy\Handy\HandyAnimator">
       <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\WallEvasion">
+      <UniqueIdentifier>{451614e7-8b3c-45df-bb1c-718b038f570f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -933,6 +936,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h">
       <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1297,6 +1303,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp">
       <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
