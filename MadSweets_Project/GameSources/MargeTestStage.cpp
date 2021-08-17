@@ -37,6 +37,8 @@
 #include "WeightGaugeUI.h"
 #include "HandyObject.h"
 
+#include "WallEvasion.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -327,6 +329,17 @@ namespace basecross {
 		GraphAstar astar(graph);
 		enemy->AddComponent<AstarCtrl>(graph);
 		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
+
+		auto wallEvasion = enemy->GetComponent<WallEvasion>();
+		if (wallEvasion) {
+			for (auto& obj : GetGameObjectVec()) {
+				auto stageObj = dynamic_pointer_cast<StageObject>(obj);
+				if(stageObj){
+					wallEvasion->AddObstacleObjs(stageObj);
+				}
+			}
+			
+		}
 	}
 
 	void MargeTestStage::CreateEatItems() {
