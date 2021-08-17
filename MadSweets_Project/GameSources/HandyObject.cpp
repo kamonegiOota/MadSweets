@@ -28,6 +28,7 @@
 #include"AnimationHelper.h"
 
 #include "HandyAnimator.h"
+#include "WallEvasion.h"
 
 namespace basecross {
 
@@ -80,6 +81,8 @@ namespace basecross {
 
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
+
+		AddComponent<WallEvasion>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
