@@ -69,10 +69,13 @@ namespace basecross {
 		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
 		if (velocityComp) {
 			auto velocity = velocityComp->GetVelocity();
-			auto vec = newForce - velocity;
-			auto power = vec.length();
+			auto vec = newForce;
+			//auto vec = newForce - velocity;
+			//auto vec = velocity - newForce;
+			//auto length = vec.length();
 			
-			power = maru::Mathf::Max(power, m_maxSpeed);
+			auto power = m_maxSpeed - vec.length();
+			//power = maru::Mathf::Max(power, m_maxSpeed);
 
 			auto force = vec.normalize() * power * delta;
 
