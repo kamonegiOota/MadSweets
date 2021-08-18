@@ -1,0 +1,27 @@
+/*!
+@file PlowlingMove.cpp
+@brief PlowlingMoveÇ»Ç«é¿ëÃ
+*/
+
+#include "stdafx.h"
+#include "Project.h"
+
+#include "TactileObject.h"
+#include "WallEvasionTactile.h"
+
+namespace basecross {
+
+	void TactileObject::OnCreate() {
+		AddComponent<WallEvasionTactile>();
+
+		auto col = AddComponent<CollisionObb>();
+		col->SetAfterCollision(AfterCollision::None);
+
+		//âºÇ≈ë∂ç›Ç∑ÇÈÇ©å©ÇΩñ⁄ÇÇ¬ÇØÇÈ
+		auto draw = AddComponent<PNTStaticDraw>();
+		draw->SetMeshResource(L"DEFAULT_CUBE");
+	}
+
+}
+
+//endbasecross
