@@ -62,7 +62,9 @@ namespace basecross {
 		return returnVec;
 	}
 
-	void WallEvasion::EvasionUpdate() {
+	void WallEvasion::EvasionUpdate(const std::shared_ptr<GameObject>& other) {
+
+		//DebugObject::sm_wss << L"Hit";
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto newForce = CalucForce();
 
@@ -83,8 +85,16 @@ namespace basecross {
 		}
 	}
 
+	void WallEvasion::OnCreate() {
+		if (m_tactile) {
+			m_tactile->AddExcuteAction([this](const std::shared_ptr<GameObject>& other) {
+				EvasionUpdate(other);
+			});
+		}
+	}
+
 	void WallEvasion::OnUpdate() {
-		EvasionUpdate();
+		//EvasionUpdate();
 	}
 
 }

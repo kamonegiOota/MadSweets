@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "Project.h"
 #include "AstarCtrl.h"
+#include "WallEvasionTactile.h"
 
 namespace basecross {
 
@@ -28,6 +29,8 @@ namespace basecross {
 
 	class WallEvasion : public Component
 	{
+		ex_weak_ptr<WallEvasionTactile> m_tactile;  //触覚
+
 		vector<ex_weak_ptr<GameObject>> m_obstacleObjs;
 		float m_range = 2.0f;
 		float m_maxSpeed = 20.0f;
@@ -38,20 +41,26 @@ namespace basecross {
 		Vec3 CalucForce();
 
 		//壁回避処理
-		void EvasionUpdate();
+		void EvasionUpdate(const std::shared_ptr<GameObject>& other);
 
 	public:
-		WallEvasion(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+		WallEvasion(const std::shared_ptr<GameObject>& objPtr,
+			const std::shared_ptr<WallEvasionTactile>& tactile	
+		)
+			:Component(objPtr),m_tactile(tactile)
 		{}
-
-		void OnCreate() override {}
+		
+		void OnCreate() override;
 		void OnUpdate() override;
 
 
 		//アクセッサ----------------------------------------------------
 		void AddObstacleObjs(const std::shared_ptr<GameObject>& obj) {
 			m_obstacleObjs.push_back(obj);
+		}
+
+		void SetTactile(const std::shared_ptr<WallEvasionTactile>& tactile) {
+			m_tactile = tactile;
 		}
 
 		void SetRange(const float& range) {
