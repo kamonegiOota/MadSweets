@@ -7,19 +7,19 @@
 #include "Project.h"
 
 #include "TactileObject.h"
-#include "WallEvasionTactile.h"
+#include "TactileCtrl.h"
 
 namespace basecross {
 
 	void TactileObject::OnCreate() {
-		AddComponent<WallEvasionTactile>();
+		AddComponent<TactileCtrl>();
 
 		auto col = AddComponent<CollisionObb>();
 		col->SetAfterCollision(AfterCollision::None);
 
 		//âºÇ≈ë∂ç›Ç∑ÇÈÇ©å©ÇΩñ⁄ÇÇ¬ÇØÇÈ
-		auto draw = AddComponent<PNTStaticDraw>();
-		draw->SetMeshResource(L"DEFAULT_CUBE");
+		//auto draw = AddComponent<PNTStaticDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
 
 		transform->SetScale(0.1f, 0.1f, 1.5f);
 	}
