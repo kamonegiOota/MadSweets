@@ -30,6 +30,8 @@
 #include "HandyAnimator.h"
 #include "WallEvasion.h"
 
+#include "TactileObject.h"
+
 namespace basecross {
 
 	void HandyObject::CreatePlowlingRoute() {
@@ -46,6 +48,13 @@ namespace basecross {
 
 		AddComponent<PlowlingMove>(poss);
 		transform->SetPosition(poss[0]);
+	}
+
+	void HandyObject::CreateTactle() {
+		auto tactile = GetStage()->Instantiate<TactileObject>();
+		tactile->SetParent(GetThis<GameObject>());
+
+		AddComponent<WallEvasion>(tactile->GetComponent<WallEvasionTactile>(false));
 	}
 
 	void HandyObject::OnCreate() {
@@ -82,14 +91,13 @@ namespace basecross {
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
 
-		AddComponent<WallEvasion>();
-
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
 
 		auto col = AddComponent<CollisionObb>();
 
 		CreatePlowlingRoute();
+		CreateTactle();
 		//CreateAnimetor();
 	}
 

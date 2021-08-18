@@ -18,6 +18,7 @@ namespace basecross {
 	class HandyObject : public GameObject
 	{
 		void CreatePlowlingRoute();
+		void CreateTactle();  //•Ç‰ñ”ğ—p‚ÌGŠo‚Ì¶¬
 
 	public:
 		HandyObject(std::shared_ptr<Stage>& stage)
