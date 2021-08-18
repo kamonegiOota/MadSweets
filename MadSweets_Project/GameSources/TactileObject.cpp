@@ -20,6 +20,8 @@ namespace basecross {
 		//‰¼‚Å‘¶İ‚·‚é‚©Œ©‚½–Ú‚ğ‚Â‚¯‚é
 		auto draw = AddComponent<PNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
+
+		transform->SetScale(0.1f, 0.1f, 1.5f);
 	}
 
 }
