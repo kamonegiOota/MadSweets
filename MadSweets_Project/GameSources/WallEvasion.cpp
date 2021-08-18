@@ -56,7 +56,7 @@ namespace basecross {
 		return returnVec;
 	}
 
-	void WallEvasion::EvasionUpdate(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other) {
+	void WallEvasion::EvasionUpdate(const std::shared_ptr<TactileCtrl>& tactile, const std::shared_ptr<GameObject>& other) {
 		if (GetUpdateActive() == false) {
 			return;
 		}

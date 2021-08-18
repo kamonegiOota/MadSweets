@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "Project.h"
 #include "AstarCtrl.h"
-#include "WallEvasionTactile.h"
+#include "TactileCtrl.h"
 
 namespace basecross {
 
@@ -41,7 +41,7 @@ namespace basecross {
 		Vec3 CalucForce(const std::shared_ptr<GameObject>& tactile);
 
 		//壁回避処理
-		void EvasionUpdate(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other);
+		void EvasionUpdate(const std::shared_ptr<TactileCtrl>& tactile, const std::shared_ptr<GameObject>& other);
 
 	public:
 		WallEvasion(const std::shared_ptr<GameObject>& objPtr
@@ -59,8 +59,8 @@ namespace basecross {
 		}
 
 		//触覚のセット
-		void SetTactile(const std::shared_ptr<WallEvasionTactile>& tactile) {
-			tactile->AddExcuteAction([this](const std::shared_ptr<WallEvasionTactile>& tactile,const std::shared_ptr<GameObject>& other) {
+		void SetTactile(const std::shared_ptr<TactileCtrl>& tactile) {
+			tactile->AddExcuteAction([this](const std::shared_ptr<TactileCtrl>& tactile,const std::shared_ptr<GameObject>& other) {
 				EvasionUpdate(tactile,other);
 			});
 		}

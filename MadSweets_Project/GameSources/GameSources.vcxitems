@@ -149,7 +149,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasionTactile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
@@ -275,7 +275,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasionTactile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TactileCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />

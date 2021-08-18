@@ -73,7 +73,7 @@ namespace basecross {
 			trans->SetRotation(pair.rotation);
 			tactile->SetParent(GetThis<GameObject>());
 
-			auto tactileComp = tactile->GetComponent<WallEvasionTactile>(false);
+			auto tactileComp = tactile->GetComponent<TactileCtrl>(false);
 			if (tactileComp) {
 				AddComponent<WallEvasion>()->SetTactile(tactileComp);
 			}

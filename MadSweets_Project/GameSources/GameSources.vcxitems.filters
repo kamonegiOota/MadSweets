@@ -945,7 +945,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h">
       <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasionTactile.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h">
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h">
@@ -1319,7 +1319,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp">
       <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasionTactile.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)TactileCtrl.cpp">
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TactileObject.cpp">
