@@ -51,10 +51,41 @@ namespace basecross {
 	}
 
 	void HandyObject::CreateTactle() {
-		auto tactile = GetStage()->Instantiate<TactileObject>();
-		tactile->SetParent(GetThis<GameObject>());
+		struct Pair {
+			Vec3 offset;
+			Vec3 rotation;
 
-		AddComponent<WallEvasion>(tactile->GetComponent<WallEvasionTactile>(false));
+			Pair(const Vec3& offset, const Vec3& rotation):
+				offset(offset), rotation(rotation)
+			{}
+		};
+
+		auto pos = transform->GetPosition();
+		Pair pairs[] = {
+			{Pair(Vec3(+0.75f, 0.15f, 0.5f), Vec3(0.0f, +XM_PIDIV4, 0.0f))},
+			{Pair(Vec3(-0.75f, 0.15f, 0.5f), Vec3(0.0f, -XM_PIDIV4, 0.0f))},
+		};
+
+		for (const auto& pair : pairs) {
+			auto tactile = GetStage()->Instantiate<TactileObject>();
+			auto trans = tactile->GetComponent<Transform>();
+			trans->SetPosition(pos + pair.offset);
+			trans->SetRotation(pair.rotation);
+			tactile->SetParent(GetThis<GameObject>());
+
+			auto tactileComp = tactile->GetComponent<WallEvasionTactile>(false);
+			if (tactileComp) {
+				AddComponent<WallEvasion>()->SetTactile(tactileComp);
+			}
+		}
+
+		//auto tactile = GetStage()->Instantiate<TactileObject>();
+		//auto trans = tactile->GetComponent<Transform>();
+		//trans->SetPosition(pos + offset);
+		//trans->SetRotation(rotation);
+		//tactile->SetParent(GetThis<GameObject>());
+
+		
 	}
 
 	void HandyObject::OnCreate() {
