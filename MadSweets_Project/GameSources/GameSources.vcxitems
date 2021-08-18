@@ -129,6 +129,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StomachSound.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasionTactile.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeUI.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WindowSetting.h" />
@@ -254,6 +256,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StomachSound.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TactileObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp" />
@@ -272,6 +275,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasionTactile.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
