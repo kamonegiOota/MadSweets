@@ -23,7 +23,7 @@ namespace basecross {
 		}
 
 		for (auto& action : m_excuteActions) {
-			action(other);
+			action(GetThis<WallEvasionTactile>(),other);
 		}
 	}
 }

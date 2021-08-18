@@ -9,11 +9,16 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "ThrowHandyObject.h"
+#include "ThrowObjectCtrl.h"
+
 namespace basecross {
 
 	class WallEvasionTactile : public Component
 	{
-		vector<std::function<void(const std::shared_ptr<GameObject>& other)>> m_excuteActions;
+		using ActionFunc = std::function<void(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other)>;
+
+		vector<ActionFunc> m_excuteActions;
 
 	public:
 		WallEvasionTactile(const std::shared_ptr<GameObject>& objPtr) 
@@ -26,7 +31,7 @@ namespace basecross {
 
 		
 		//アクセッサ-----------------------------------------------------------
-		void AddExcuteAction(const std::function<void(const std::shared_ptr<GameObject>& other)>& enterAction) {
+		void AddExcuteAction(const ActionFunc& enterAction) {
 			m_excuteActions.push_back(enterAction);
 		}
 	};
