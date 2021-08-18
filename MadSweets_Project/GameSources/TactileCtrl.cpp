@@ -6,24 +6,22 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "WallEvasionTactile.h"
+#include "TactileCtrl.h"
 #include "MyUtility.h"
-
-#include "WallEvasion.h"
 
 namespace basecross {
 
-	void WallEvasionTactile::OnCreate() {
+	void TactileCtrl::OnCreate() {
 
 	}
 
-	void WallEvasionTactile::OnCollisionExcute(std::shared_ptr<GameObject>& other) {
+	void TactileCtrl::OnCollisionExcute(std::shared_ptr<GameObject>& other) {
 		if (other == GetGameObject()->GetParent()) {  //自分の親オブジェクトだったら省く
 			return;
 		}
 
 		for (auto& action : m_excuteActions) {
-			action(GetThis<WallEvasionTactile>(),other);
+			action(GetThis<TactileCtrl>(),other);
 		}
 	}
 }

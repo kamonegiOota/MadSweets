@@ -14,14 +14,14 @@
 
 namespace basecross {
 
-	class WallEvasionTactile : public Component
+	class TactileCtrl : public Component
 	{
-		using ActionFunc = std::function<void(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other)>;
+		using ActionFunc = std::function<void(const std::shared_ptr<TactileCtrl>& tactile, const std::shared_ptr<GameObject>& other)>;
 
 		vector<ActionFunc> m_excuteActions;
 
 	public:
-		WallEvasionTactile(const std::shared_ptr<GameObject>& objPtr) 
+		TactileCtrl(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 
