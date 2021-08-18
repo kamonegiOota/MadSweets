@@ -191,7 +191,8 @@ namespace basecross {
 		app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
-		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
+		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png"); 
+			app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
 
 		//ƒfƒuƒQ[ƒWŒn
 		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
@@ -411,7 +412,7 @@ namespace basecross {
 
 	void MargeTestStage::CreateCrackCookies() {
 		Vec3 positions[] = {
-			{13.0f,1.0f,12.0f},
+			{13.0f,0.2f,12.0f},
 		};
 
 		for (const auto& pos : positions) {
