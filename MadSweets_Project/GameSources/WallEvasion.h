@@ -29,29 +29,28 @@ namespace basecross {
 
 	class WallEvasion : public Component
 	{
-		ex_weak_ptr<WallEvasionTactile> m_tactile;  //触覚
+		//vector<ex_weak_ptr<WallEvasionTactile>> m_tactiles;  //触覚
 
 		vector<ex_weak_ptr<GameObject>> m_obstacleObjs;
 		float m_range = 2.0f;
-		float m_maxSpeed = 20.0f;
+		float m_maxSpeed = 30.0f;
 
 		//bool SortObstacleRange(const ObstacleRangePair& left, const ObstacleRangePair& right);
 		//壁との距離を測定する。
 		vector<ObstacleRangePair> CalucWallRangeSort();
-		Vec3 CalucForce();
+		Vec3 CalucForce(const std::shared_ptr<GameObject>& tactile);
 
 		//壁回避処理
-		void EvasionUpdate(const std::shared_ptr<GameObject>& other);
+		void EvasionUpdate(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other);
 
 	public:
-		WallEvasion(const std::shared_ptr<GameObject>& objPtr,
-			const std::shared_ptr<WallEvasionTactile>& tactile	
+		WallEvasion(const std::shared_ptr<GameObject>& objPtr
 		)
-			:Component(objPtr),m_tactile(tactile)
+			:Component(objPtr)
 		{}
 		
-		void OnCreate() override;
-		void OnUpdate() override;
+		void OnCreate() override {}
+		void OnUpdate() override {}
 
 
 		//アクセッサ----------------------------------------------------
@@ -59,8 +58,11 @@ namespace basecross {
 			m_obstacleObjs.push_back(obj);
 		}
 
+		//触覚のセット
 		void SetTactile(const std::shared_ptr<WallEvasionTactile>& tactile) {
-			m_tactile = tactile;
+			tactile->AddExcuteAction([this](const std::shared_ptr<WallEvasionTactile>& tactile,const std::shared_ptr<GameObject>& other) {
+				EvasionUpdate(tactile,other);
+			});
 		}
 
 		void SetRange(const float& range) {

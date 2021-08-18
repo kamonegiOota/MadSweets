@@ -31,7 +31,7 @@ namespace basecross {
 		return rangePairs;
 	}
 
-	Vec3 WallEvasion::CalucForce() {
+	Vec3 WallEvasion::CalucForce(const std::shared_ptr<GameObject>& tactile) {
 		Vec3 returnVec(0.0f);
 
 		auto obstacleRangePairs = CalucWallRangeSort();
@@ -44,17 +44,11 @@ namespace basecross {
 			}
 
 			RayHitData data;
-			auto toVec = obj->GetComponent<Transform>()->GetPosition() - startPos;
-			toVec.y = 0.0f;
-			if (col->IsRayHit(startPos, toVec.GetNormalized(), data)) {
-				if (data.length <= m_range) {
-					//float t;
-					//Vec3 d;
-					//auto Matrix = GetGameObject()->GetComponent<Transform>()->GetWorldMatrix();
-					//auto velocity = GetGameObject()->GetComponent<Velocity>()->GetVelocity();
-					//returnVec += d - data.point;
-					returnVec += startPos - data.point;
-				}
+			auto tactileTrans = tactile->GetComponent<Transform>();
+			
+			if (col->IsRayHit(startPos, tactileTrans->GetForword(), data)) {
+				returnVec += startPos - data.point;
+				break;
 			}
 		}
 
@@ -62,39 +56,24 @@ namespace basecross {
 		return returnVec;
 	}
 
-	void WallEvasion::EvasionUpdate(const std::shared_ptr<GameObject>& other) {
+	void WallEvasion::EvasionUpdate(const std::shared_ptr<WallEvasionTactile>& tactile, const std::shared_ptr<GameObject>& other) {
+		if (GetUpdateActive() == false) {
+			return;
+		}
 
-		//DebugObject::sm_wss << L"Hit";
 		auto delta = App::GetApp()->GetElapsedTime();
-		auto newForce = CalucForce();
+		auto newForce = CalucForce(tactile->GetGameObject());
+		DebugObject::AddVector(newForce);
 
 		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
 		if (velocityComp) {
 			auto velocity = velocityComp->GetVelocity();
-			auto vec = newForce;
-			//auto vec = newForce - velocity;
-			//auto vec = velocity - newForce;
-			//auto length = vec.length();
 			
-			auto power = m_maxSpeed - vec.length();
-			//power = maru::Mathf::Max(power, m_maxSpeed);
-
-			auto force = vec.normalize() * power * delta;
+			auto power = m_maxSpeed - newForce.length();
+			auto force = newForce.normalize() * power * delta;
 
 			velocityComp->AddForce(force);
 		}
-	}
-
-	void WallEvasion::OnCreate() {
-		if (m_tactile) {
-			m_tactile->AddExcuteAction([this](const std::shared_ptr<GameObject>& other) {
-				EvasionUpdate(other);
-			});
-		}
-	}
-
-	void WallEvasion::OnUpdate() {
-		//EvasionUpdate();
 	}
 
 }
