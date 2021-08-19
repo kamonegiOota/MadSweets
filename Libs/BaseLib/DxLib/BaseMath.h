@@ -846,11 +846,11 @@ namespace bsm {
 		//--------------------------------------------------------------------------------------
 		inline bool isInfinite() const;
 
-		inline Flt3 Up() const;
+		static inline Flt3 Up();
 
-		inline Flt3 Right() const;
+		static inline Flt3 Right();
 
-		inline Flt3 Forward() const;
+		static inline Flt3 Forward();
 	};
 
 	//--------------------------------------------------------------------------------------
@@ -1562,6 +1562,13 @@ namespace bsm {
 		*/
 		//--------------------------------------------------------------------------------------
 		inline const Quat operator *(const Quat& quat) const;
+
+		/// <summary>
+		/// ベクトルの回転
+		/// </summary>
+		/// <param name="vec">回転するベクトル</param>
+		/// <returns>回転されたベクトル</returns>
+		inline const Flt3 operator * (const Flt3& vec) const;
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	乗算(float)

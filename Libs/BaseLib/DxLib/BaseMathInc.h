@@ -631,17 +631,17 @@ namespace bsm {
 		return XMVector3IsInfinite(*this);
 	}
 
-	inline Flt3 Flt3::Up() const
+	inline Flt3 Flt3::Up()
 	{
 		return Flt3(0, 1, 0);
 	}
 
-	inline Flt3 Flt3::Right() const
+	inline Flt3 Flt3::Right()
 	{
 		return Flt3(1, 0, 0);
 	}
 
-	inline Flt3 Flt3::Forward() const
+	inline Flt3 Flt3::Forward()
 	{
 		return Flt3(0, 0, 1);
 	}
@@ -1160,6 +1160,17 @@ namespace bsm {
 	inline const Quat Quat::operator *(const Quat & quat) const
 	{
 		return (Quat)XMQuaternionMultiply(*this, quat);
+	}
+
+	inline const Flt3 Quat::operator *(const Flt3& vec) const
+	{
+		Quat vecQuat = Quat(vec.x, vec.y, vec.z, 0);
+		Quat inverse = *this;
+		inverse.inverse();
+
+		Quat resultQuat = (*this) * vecQuat * inverse;
+
+		return Flt3(resultQuat.x, resultQuat.y, resultQuat.z);
 	}
 
 	inline const Quat Quat::operator *(float val) const
