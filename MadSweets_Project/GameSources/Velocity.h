@@ -86,6 +86,10 @@ namespace basecross {
 			return m_force;
 		}
 
+		//void AddVelocity(const Vec3& velocity) {
+		//	m_velocity += velocity;
+		//}
+
 		void SetVelocity(const Vec3& velocity) {
 			m_velocity = velocity;
 		}

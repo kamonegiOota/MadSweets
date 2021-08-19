@@ -28,6 +28,9 @@
 #include"AnimationHelper.h"
 
 #include "HandyAnimator.h"
+#include "WallEvasion.h"
+
+#include "TactileObject.h"
 
 namespace basecross {
 
@@ -45,6 +48,44 @@ namespace basecross {
 
 		AddComponent<PlowlingMove>(poss);
 		transform->SetPosition(poss[0]);
+	}
+
+	void HandyObject::CreateTactle() {
+		struct Pair {
+			Vec3 offset;
+			Vec3 rotation;
+
+			Pair(const Vec3& offset, const Vec3& rotation):
+				offset(offset), rotation(rotation)
+			{}
+		};
+
+		auto pos = transform->GetPosition();
+		Pair pairs[] = {
+			{Pair(Vec3(+0.75f, 0.15f, 0.5f), Vec3(0.0f, +XM_PIDIV4, 0.0f))},
+			{Pair(Vec3(-0.75f, 0.15f, 0.5f), Vec3(0.0f, -XM_PIDIV4, 0.0f))},
+		};
+
+		for (const auto& pair : pairs) {
+			auto tactile = GetStage()->Instantiate<TactileObject>();
+			auto trans = tactile->GetComponent<Transform>();
+			trans->SetPosition(pos + pair.offset);
+			trans->SetRotation(pair.rotation);
+			tactile->SetParent(GetThis<GameObject>());
+
+			auto tactileComp = tactile->GetComponent<TactileCtrl>(false);
+			if (tactileComp) {
+				AddComponent<WallEvasion>()->SetTactile(tactileComp);
+			}
+		}
+
+		//auto tactile = GetStage()->Instantiate<TactileObject>();
+		//auto trans = tactile->GetComponent<Transform>();
+		//trans->SetPosition(pos + offset);
+		//trans->SetRotation(rotation);
+		//tactile->SetParent(GetThis<GameObject>());
+
+		
 	}
 
 	void HandyObject::OnCreate() {
@@ -87,6 +128,7 @@ namespace basecross {
 		auto col = AddComponent<CollisionObb>();
 
 		CreatePlowlingRoute();
+		CreateTactle();
 		//CreateAnimetor();
 	}
 

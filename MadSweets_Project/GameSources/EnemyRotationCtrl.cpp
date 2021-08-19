@@ -11,7 +11,10 @@ namespace basecross {
 
 	void EnemyRotationCtrl::RotationProcess() {
 		//«—ˆ“I‚É‚Í‚ä‚Á‚­‚è‰ñ“]‚·‚é‚æ‚¤‚É‚·‚éB
-		transform->SetForward(m_direct);
+		auto direct = m_direct;
+		direct.y = 0.0f;
+		direct.normalize();
+		transform->SetForward(direct);
 	}
 
 	void EnemyRotationCtrl::OnCreate() {

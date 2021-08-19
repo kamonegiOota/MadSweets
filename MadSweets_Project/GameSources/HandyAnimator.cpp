@@ -12,6 +12,9 @@
 
 #include "HandyAnimator.h"
 #include "Handy_Attack.h"
+#include "BaseEnemy.h"
+
+#include "TargetProbe.h"
 
 namespace basecross {
 
@@ -48,9 +51,16 @@ namespace basecross {
 	}
 
 	void HandyAnimatorCtrl::CreateHideSearchAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine) {
-		auto state = stateMachine->CreateAnimationState(AnimeState::HideSearch, L"Handy_Search", 30, false);
+		auto state = stateMachine->CreateAnimationState(AnimeState::HideSearch, L"Handy_Search", 60, false);
 
-		state->AddTransition([](const AnimeMember& member) { return true; }, AnimeState::Walk, false);
+		state->AddTransition([](const AnimeMember& member) { return true; }, AnimeState::Walk, true);
+		
+		state->AddExitEvent([this] {
+			auto probe = GetGameObject()->GetComponent<TargetProbe>(false);
+			if (probe) {
+				probe->EndInvestigateHideAnimation();
+			}
+		});
 	}
 
 	void HandyAnimatorCtrl::OnCreate() {

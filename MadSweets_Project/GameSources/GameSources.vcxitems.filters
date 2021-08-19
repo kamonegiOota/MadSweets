@@ -526,6 +526,15 @@
     <Filter Include="Patchs\Maths\Random">
       <UniqueIdentifier>{da0036d4-86c2-4837-8344-183dba79e461}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\WallEvasion">
+      <UniqueIdentifier>{451614e7-8b3c-45df-bb1c-718b038f570f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile">
+      <UniqueIdentifier>{9de7d5ba-291c-4748-86bd-15722227173d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject">
+      <UniqueIdentifier>{b2c7da68-2a54-4f0d-a045-05fe7d6d987c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -945,6 +954,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Random.h">
       <Filter>Patchs\Maths\Random</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1315,6 +1333,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Random.cpp">
       <Filter>Patchs\Maths\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TactileCtrl.cpp">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TactileObject.cpp">
+      <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
