@@ -5,6 +5,7 @@
 #include"FontHelper.h"
 #include"SoundHelper.h"
 #include"HiddenComponent.h"
+#include"ParticleSystem.h"
 
 namespace basecross
 {
@@ -30,6 +31,7 @@ namespace basecross
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
+
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
 		auto modelMesh = MeshResource::CreateBoneModelMesh(
@@ -152,5 +154,17 @@ namespace basecross
 
 		itbs::Input::CursorSetting::SetIsLock(true);
 		itbs::Input::CursorSetting::SetIsDraw(false);
+
+
+		auto karipos = Vec3();
+		for (int i = 0; i < 1; i++)
+		{
+			auto particle = Instantiate<GameObject>();
+
+			particle->AddComponent<ParticleSystem>();
+			particle->GetComponent<Transform>()->SetPosition(karipos);
+
+			karipos.x += 1;
+		}
 	}
 }
