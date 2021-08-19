@@ -87,6 +87,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ParticleSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PulledSweets.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Random.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResetStageObj.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h" />
@@ -214,6 +216,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ParticleSystem.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
@@ -239,6 +242,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Random.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResetStageObj.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReturnPlowlingPosition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp" />

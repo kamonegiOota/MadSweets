@@ -520,6 +520,12 @@
     <Filter Include="Maru\Enemy\Handy\HandyAnimator">
       <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Components\ParticleSystem">
+      <UniqueIdentifier>{216afc2d-1770-4986-b046-19df7f429e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Maths\Random">
+      <UniqueIdentifier>{da0036d4-86c2-4837-8344-183dba79e461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -933,6 +939,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h">
       <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ParticleSystem.h">
+      <Filter>Itabashi\Components\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Random.h">
+      <Filter>Patchs\Maths\Random</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1297,6 +1309,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp">
       <Filter>Maru\Enemy\Handy\HandyAnimator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ParticleSystem.cpp">
+      <Filter>Itabashi\Components\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Random.cpp">
+      <Filter>Patchs\Maths\Random</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
