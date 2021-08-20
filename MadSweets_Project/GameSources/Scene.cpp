@@ -6,6 +6,10 @@
 
 #include "stdafx.h"
 #include "Project.h"
+#include "ItabashiStage.h"
+#include"MargeTestStage.h"
+#include"TitleStage.h"
+#include "LoadStage.h"
 
 namespace basecross{
 
@@ -20,7 +24,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToLoadStage");
 		}
 		catch (...) {
 			throw;
@@ -34,6 +38,22 @@ namespace basecross{
 		if (event->m_MsgStr == L"ToGameStage") {
 			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
+		}
+		if (event->m_MsgStr == L"ToItabashiStage")
+		{
+			ResetActiveStage<ItabashiStage>();
+		}
+		if (event->m_MsgStr == L"ToLoadStage")
+		{
+			ResetActiveStage<LoadStage>(L"ToMargeTestStage");
+		}
+		if (event->m_MsgStr == L"ToTitleStage")
+		{
+			ResetActiveStage<TitleStage>();
+		}
+		if (event->m_MsgStr == L"ToMargeTestStage")
+		{
+			ResetActiveStage<MargeTestStage>();
 		}
 	}
 

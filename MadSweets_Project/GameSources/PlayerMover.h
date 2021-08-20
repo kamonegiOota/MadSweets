@@ -1,5 +1,7 @@
 #pragma once
 #include"PlayerWeightManager.h"
+#include"AnimationHelper.h"
+#include"PlayerObject.h"
 
 namespace basecross
 {
@@ -18,6 +20,8 @@ namespace basecross
 		ex_weak_ptr<PlayerWeightManager> m_playerWeightManager;
 
 		ex_weak_ptr<Camera> m_camera;
+
+		ex_weak_ptr<Animator<PlayerAnimationMember, PlayerState>> m_animator;
 	public:
 		PlayerMover(std::shared_ptr<GameObject>& owner);
 

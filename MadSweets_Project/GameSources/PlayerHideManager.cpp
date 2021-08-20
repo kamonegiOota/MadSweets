@@ -1,4 +1,5 @@
 #include"PlayerHideManager.h"
+#include"SoundHelper.h"
 
 namespace basecross
 {
@@ -30,6 +31,8 @@ namespace basecross
 		m_playerRotater->Restrict(XM_PIDIV4);
 
 		m_collision->SetAfterCollision(AfterCollision::None);
+
+		SimpleSoundManager::OnePlaySE(L"HideSE",0.01f);
 	}
 
 	void PlayerHideManager::OnEndHide(const HideData& hideData)

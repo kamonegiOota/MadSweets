@@ -47,6 +47,8 @@ namespace basecross
 	{
 		m_playerWeightManager = GetGameObject()->GetComponent<PlayerWeightManager>();
 		m_camera = GetStage()->GetView()->GetTargetCamera();
+
+		m_animator = GetGameObject()->GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
 	}
 
 	void PlayerMover::OnUpdate()
@@ -57,6 +59,8 @@ namespace basecross
 
 		if (inputMove.lengthSqr() == 0)
 		{
+			m_animator->GetMemberRefarence().moveSpeed = 0;
+
 			return;
 		}
 
@@ -96,5 +100,7 @@ namespace basecross
 
 		position += moveVector;
 		transform->SetPosition(position);
+
+		m_animator->GetMemberRefarence().moveSpeed = moveVector.length();
 	}
 }

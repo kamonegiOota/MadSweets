@@ -66,6 +66,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
@@ -77,6 +78,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
@@ -100,6 +102,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h" />
@@ -202,6 +205,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
@@ -210,6 +214,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadData.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />
@@ -232,6 +237,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp" />

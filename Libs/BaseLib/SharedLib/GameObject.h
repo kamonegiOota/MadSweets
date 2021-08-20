@@ -2278,7 +2278,8 @@ namespace basecross {
 		@return	コンポーネント
 		*/
 		//--------------------------------------------------------------------------------------
-		template<typename T, typename... Ts>
+		template<typename T, typename... Ts,
+		    std::enable_if_t<std::is_constructible_v<T,Ts...>,std::nullptr_t> = nullptr>
 		shared_ptr<T> ResetActiveStage(Ts&&... params) {
 			auto ActStagePtr = GetActiveStage(false);
 			if (ActStagePtr) {

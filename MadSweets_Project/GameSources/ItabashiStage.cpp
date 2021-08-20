@@ -104,7 +104,7 @@ namespace basecross
 			OutputDebugString((fontName + L"\n").c_str());
 		}
 
-		SimpleSoundManager::ChangeBGM(L"Test2", 1.0f);
+		SimpleSoundManager::ChangeBGM(L"TitleBGM2", 0.1f);
 
 		auto gameobject = Instantiate<GameObject>();
 		auto trans = gameobject->GetComponent<Transform>();

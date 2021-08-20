@@ -16,4 +16,9 @@ namespace basecross
 	{
 
 	}
+
+	void PlayerProvider::TestFunction()
+	{
+		MessageBox(0, L"Ÿè‚ÉŒÄ‚Î‚ê‚½", L"‚Ç‚¤‚µ‚æ‚¤", 0);
+	}
 }
