@@ -255,7 +255,7 @@ namespace basecross
 		m_radius = MyMath::Max(radius, 0.0f);
 	}
 
-	void ParticleShapeSphere::CreateEmissionPosition(Vec3& position, Vec3& direction) const
+	void ParticleShapeSphere::CreateEmission(Vec3& position, Vec3& direction) const
 	{
 		direction = Vec3::Right();
 
@@ -280,7 +280,7 @@ namespace basecross
 		m_radius = MyMath::Max(radius, 0.0f);
 	}
 
-	void ParticleShapeHemisphere::CreateEmissionPosition(Vec3& position, Vec3& direction) const
+	void ParticleShapeHemisphere::CreateEmission(Vec3& position, Vec3& direction) const
 	{
 		direction = Vec3::Right();
 
@@ -342,7 +342,7 @@ namespace basecross
 		m_localRotation.rotationRollPitchYawFromVector(localRotation);
 	}
 
-	void ParticleShapeCone::CreateEmissionPosition(Vec3& position, Vec3& direction) const
+	void ParticleShapeCone::CreateEmission(Vec3& position, Vec3& direction) const
 	{
 		Vec3 circleDirection = Vec3::Right();
 
@@ -479,7 +479,7 @@ namespace basecross
 		{
 			auto& sprite = particleSprites[i];
 
-			m_particleShape->CreateEmissionPosition(emissionPosition, direction);
+			m_particleShape->CreateEmission(emissionPosition, direction);
 			
 			sprite.m_LocalPos = emissionPosition;
 			sprite.m_LocalScale = m_startSize->GetVec3ToTime(time);
@@ -535,6 +535,8 @@ namespace basecross
 				auto maxTime = particle->GetMaxTime();
 
 				sprite.m_Velocity -= Vec3(0, DEFAULT_GRAVITY_VALUE, 0) * startDatas[i].gravityScale;
+
+				sprite.m_Velocity += m_ForceOverLifeTime->GetVec3ToTime(it->nowTime / particle->GetMaxTime());
 
 				sprite.m_LocalScale = startDatas[i].m_LocalScale;
 
@@ -637,6 +639,11 @@ namespace basecross
 		m_particleShape = particleShape;
 	}
 
+	void ParticleSystem::SetForceOverLifeTime(const std::shared_ptr<I_ParticleVec3>& forceOverLifeTime)
+	{
+		m_ForceOverLifeTime = forceOverLifeTime;
+	}
+
 	void ParticleSystem::SetSizeOverLifeTime(const std::shared_ptr<I_ParticleVec3>& sizeOverLifeTime)
 	{
 		m_sizeOverLifeTime = sizeOverLifeTime;
@@ -647,47 +654,16 @@ namespace basecross
 		m_textureKey = textureKey;
 	}
 
+	void ParticleSystem::SetIsFinishedDestroy(const bool isFinishedDestroy)
+	{
+		m_isFinishedDestroy = isFinishedDestroy;
+	}
+
 	void ParticleSystem::OnPreCreate()
 	{
 		Component::OnPreCreate();
 
 		m_multiParticle = GetStage()->AddGameObject<MultiParticle>();
-
-		SetStartLifeTime(std::make_shared<ParticleValueConstant>(1.0f));
-
-		BezierManager bezier = BezierManager(5.0f);
-		bezier.AddAnchorPoint(itbs::Math::BezierAnchorPoint(0.5f, 0.0f));
-		bezier.AddAnchorPoint(itbs::Math::BezierAnchorPoint(1.0f, 5.0f));
-
-		//‚±‚Ì‘‚«•û‚¾‚Æƒ‹[ƒv‚·‚é‚Ü‚Å‚ÌŠÔ‚É‘Î‚µ‚Ä‚»‚ê‚ğ0`1‚É‚µ‚½‚Æ‚«‚É
-		//0 ‚Ì‚É 5, 0.5 ‚Ì‚É 0, 1 ‚Ì‚É5‚É‚È‚é‚æ‚¤‚É‚È‚Á‚Ä‚é
-		//SetStartSpeed(std::make_shared<ParticleValueCurve>(bezier));
-
-		SetStartSpeed(std::make_shared<ParticleValueConstant>(10));
-
-		SetStartSize(std::make_shared<ParticleVec3Constant>(Vec3(1.0f)));
-
-		SetStartRotation(std::make_shared<ParticleValueRandomBitweenConstants>(0.0f, XM_2PI));
-
-		SetStartColor(std::make_shared<ParticleColorConstant>(Col4(1, 1, 0, 1)));
-
-		//‚±‚ê‚ª–ˆ•b‰½ŒÂo‚·‚©
-		SetRateOverTime(std::make_shared<ParticleValueConstant>(10.0f));
-
-		//AddEmissionBurst(ParticleBurst(0.0f, 20, 10,1.0f,1.0f));
-		auto shape = std::make_shared<ParticleShapeCone>(XM_PIDIV4, 0.0f);
-		//shape->SetLocalRotation(Vec3(XM_PIDIV2, 0, 0));
-		SetShape(shape);
-
-		SetGravityScale(std::make_shared<ParticleValueConstant>(0.0f));
-		SetTextureKey(L"HpDraw_Tx");
-
-		bezier = BezierManager(1.0f);
-		bezier.AddAnchorPoint(itbs::Math::BezierAnchorPoint(1.0f, 0.0f));
-
-		SetSizeOverLifeTime(std::make_shared<ParticleVec3Curve>(bezier));
-
-		SetDuration(10.0f);
 	}
 
 	void ParticleSystem::OnUpdate()
