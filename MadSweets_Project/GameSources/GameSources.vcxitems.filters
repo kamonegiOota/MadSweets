@@ -535,6 +535,18 @@
     <Filter Include="Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject">
       <UniqueIdentifier>{b2c7da68-2a54-4f0d-a045-05fe7d6d987c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\Stage\LoadScene">
+      <UniqueIdentifier>{5b97b014-37df-4bb9-89a5-ebab6f9f89f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\Enemy">
+      <UniqueIdentifier>{523db174-c3f7-497c-b473-dc61ce5db2f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\Enemy\HandySounder">
+      <UniqueIdentifier>{657c4914-19c9-4365-8bb9-09e6649171e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerSounder">
+      <UniqueIdentifier>{97bc9cc4-c2c7-43d8-813c-e06da8a6a675}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -963,6 +975,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h">
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h">
+      <Filter>Itabashi\Stage\LoadScene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h">
+      <Filter>Itabashi\Components\Enemy\HandySounder</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1342,6 +1363,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TactileObject.cpp">
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp">
+      <Filter>Itabashi\Stage\LoadScene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp">
+      <Filter>Itabashi\Components\Enemy\HandySounder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
