@@ -13,6 +13,8 @@ namespace basecross
 
 		void OnUpdate() override;
 
+		void TestFunction();
+
 		void OnDraw() override {}
 	};
 }
