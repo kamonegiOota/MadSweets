@@ -25,11 +25,5 @@ namespace basecross
 
 	void TestEatenObject::OnUpdate()
 	{
-		if (PlayerInputer::IsDecision() || PlayerInputer::IsCancel())
-		{
-			SoundClip soundClip = SoundClip(L"Test", false, 1.0f);
-			GetComponent<SoundEmitter>()->PlaySoundClip(soundClip);
-		}
-
 	}
 }
