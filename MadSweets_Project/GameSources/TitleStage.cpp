@@ -17,6 +17,8 @@
 #include "FadeChocoCtrl.h"
 #include "MyUtility.h"
 
+#include "SoundHelper.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -70,6 +72,8 @@ namespace basecross {
 			CreateFadeCtrl();
 
 			AddGameObject<DebugObject>();
+
+			SimpleSoundManager::ChangeBGM(L"TitleBGM1");
 		}
 		catch (...) {
 			throw;
