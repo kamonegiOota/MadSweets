@@ -112,7 +112,7 @@ namespace basecross
 		/// </summary>
 		/// <param name="bgmName">BGM–¼</param>
 		/// <param name="volume">‰¹—Ê</param>
-		static void ChangeBGM(const std::wstring& bgmName,const float volume);
+		static void ChangeBGM(const std::wstring& bgmName,const float volume = 1.0f);
 
 		/// <summary>
 		/// BGM‚ðˆêŽž’âŽ~‚·‚é
@@ -132,7 +132,7 @@ namespace basecross
 		/// </summary>
 		/// <param name="soundName">SE–¼</param>
 		/// <param name="volume">‰¹—Ê</param>
-		static void OnePlaySE(const std::wstring& soundName,const float volume);
+		static void OnePlaySE(const std::wstring& soundName,const float volume = 1.0f);
 
 		/// <summary>
 		/// SE‚ðˆêŽž’âŽ~‚·‚é
