@@ -32,6 +32,13 @@
 
 #include "TactileObject.h"
 
+
+// ”Â‹´@’Ç‰Á•ª --------------------
+
+#include "SoundHelper.h"
+#include "HandySounder.h"
+
+// ---------------------------------
 namespace basecross {
 
 	void HandyObject::CreatePlowlingRoute() {
@@ -130,6 +137,13 @@ namespace basecross {
 		CreatePlowlingRoute();
 		CreateTactle();
 		//CreateAnimetor();
+
+		// ”Â‹´@’Ç‰Á•ª ------------------------
+
+		AddComponent<SoundEmitter>();
+		AddComponent<HandySounder>();
+
+		// -------------------------------------
 	}
 
 	void HandyObject::OnUpdate() {
