@@ -16,6 +16,11 @@
 
 #include "TargetProbe.h"
 
+// ”Â‹´@’Ç‰Á•ª -----------------------
+
+#include "HandySounder.h"
+
+// ------------------------------------
 namespace basecross {
 
 	using AnimeMember = HandyAnimationMember;
@@ -23,7 +28,7 @@ namespace basecross {
 
 	void HandyAnimatorCtrl::CreateAnimator() {
 		auto animator = GetGameObject()->AddComponent<HandyAnimator>();
-		auto stateMachine = animator->CreateAnimationStateMchine(m_draw.GetShard());
+		auto stateMachine = animator->CreateAnimationStateMchine();
 
 		CreateWalkAnimator(stateMachine);
 		CreateAttackAnimator(stateMachine);
@@ -35,6 +40,12 @@ namespace basecross {
 
 		state->AddTransition([](const AnimeMember& member) { return member.attackTrigger.Get(); }, AnimeState::Attack, false);
 		state->AddTransition([](const AnimeMember& member) { return member.hideSearchTrigger.Get(); }, AnimeState::HideSearch, false);
+
+		// ”Â‹´@’Ç‰Á•ª -------------------------
+
+		state->AddAnimationEvent(0.0f, &HandySounder::WalkSound);
+		state->AddAnimationEvent(0.2f, &HandySounder::WalkSound);
+		// --------------------------------------
 	}
 
 	void HandyAnimatorCtrl::CreateAttackAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine) {
