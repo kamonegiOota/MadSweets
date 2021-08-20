@@ -16,6 +16,8 @@
 #include"PlayerDebuger.h"
 #include"PlayerRotater.h"
 #include"CameraRotater.h"
+#include"PlayerSounder.h"
+
 
 //丸山追記分インクルード
 #include "PlayerStatusMgr.h"
@@ -81,6 +83,7 @@ namespace basecross
 		auto weightManager = AddComponent<PlayerWeightManager>();
 		weightManager->SetGaugeManager(GetStage()->GetSharedGameObject<GameObject>(L"PlayerWeightGauge")->GetComponent<GaugeManager>());
 
+		AddComponent<PlayerSounder>();
 
 		CreateAnimator();
 
@@ -116,11 +119,13 @@ namespace basecross
 	{
 		auto animator = GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
 
-		auto stateMachine = animator->CreateAnimationStateMchine(GetComponent<PNTBoneModelDraw>());
+		auto stateMachine = animator->CreateAnimationStateMchine();
 
 		auto state = stateMachine->CreateAnimationState(PlayerState::StandStay, L"PlayerStandStay", 30, true);
 
 		state->AddTransition([](const PlayerAnimationMember& member) {return member.changeStance.Get(); }, PlayerState::StandToCrouch, false);
+
+		state->AddTransition([](const PlayerAnimationMember& member) {return member.moveSpeed > 0.01f; }, PlayerState::StandMove, false);
 
 		auto mover = GetComponent<PlayerMover>();
 
@@ -144,5 +149,10 @@ namespace basecross
 		state->AddTransition([](const PlayerAnimationMember& member) {return true; }, PlayerState::StandStay, true);
 
 		state = stateMachine->CreateAnimationState(PlayerState::StandMove, L"PlayerStandStay", 30, true);
+
+		state->AddAnimationEvent(0.25f, &PlayerSounder::PlayerWalk);
+		state->AddAnimationEvent(0.75f, &PlayerSounder::PlayerWalk);
+
+		state->AddTransition([](const PlayerAnimationMember& member) {return member.moveSpeed < 0.01f; }, PlayerState::StandStay, false);
 	}
 }
