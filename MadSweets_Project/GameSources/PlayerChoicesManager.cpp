@@ -44,6 +44,11 @@ namespace basecross
 				continue;
 			}
 
+			if (!collision->IsUpdateActive())
+			{
+				continue;
+			}
+
 			auto startPosition = transform->GetWorldPosition();
 			auto rayDirection = transform->GetForword();
 
@@ -86,5 +91,15 @@ namespace basecross
 			m_playerChoicesList->Invoke();
 		}
 
+	}
+
+	void PlayerChoicesManager::AddPlayerChoice(const std::shared_ptr<ChoicesObjectAndEvent>& choicesObjectAndEvent)
+	{
+		m_playerChoicesList->AddChoice(choicesObjectAndEvent);
+	}
+
+	void PlayerChoicesManager::RemovePlayerChoice(const std::shared_ptr<GameObject>& choicesObject)
+	{
+		m_playerChoicesList->RemoveChoice(choicesObject);
 	}
 }

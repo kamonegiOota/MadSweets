@@ -15,6 +15,10 @@ namespace basecross
 		m_playerRotater = GetGameObject()->GetComponent<PlayerRotater>();
 
 		m_collision = GetGameObject()->GetComponent<Collision>();
+
+		m_playerChoicesManager = GetGameObject()->GetComponent<PlayerChoicesManager>();
+
+		m_unHideObject = GetStage()->Instantiate<GameObject>();
 	}
 
 	void PlayerHideManager::OnUpdate()
@@ -33,6 +37,9 @@ namespace basecross
 		m_collision->SetAfterCollision(AfterCollision::None);
 
 		SimpleSoundManager::OnePlaySE(L"HideSE",0.01f);
+
+		m_choice = std::make_shared<ChoicesObjectAndEvent>(L"o‚é", m_unHideObject, [&hideData, this]() {OnEndHide(hideData); });
+		m_playerChoicesManager->AddPlayerChoice(m_choice);
 	}
 
 	void PlayerHideManager::OnEndHide(const HideData& hideData)
@@ -45,5 +52,7 @@ namespace basecross
 		m_playerRotater->UnRestrict();
 
 		m_collision->SetAfterCollision(AfterCollision::Auto);
+
+		m_playerChoicesManager->RemovePlayerChoice(m_unHideObject);
 	}
 }

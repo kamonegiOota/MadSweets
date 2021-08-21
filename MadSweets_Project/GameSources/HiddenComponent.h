@@ -60,9 +60,6 @@ namespace basecross
 
 		std::shared_ptr<ChoicesObjectAndEvent> m_choicesObjectAndEvent;
 
-		bool m_isHidden = false;
-
-		void ChangeHidden(const bool isHidden);
 	public:
 		/// <summary>
 		/// コンストラクタ
