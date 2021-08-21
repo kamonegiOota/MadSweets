@@ -10,13 +10,15 @@ namespace basecross
 		float m_maxGauge = 100.0f;
 		float m_nowGauge = m_maxGauge;
 
+		ImageFillType m_imageFillType = ImageFillType::Horizontal;
+
 		void UpdateGauge();
 	public:
 		GaugeManager(std::shared_ptr<GameObject>& owner,std::shared_ptr<Image>& gaugeImage,std::shared_ptr<Image>& gaugeBackgroundImage);
 
 		void SetGaugeImage(const std::wstring& imageKey);
 
-		void SetGuageBackgroundImage(const std::wstring& imageKey);
+		void SetGaugeBackgroundImage(const std::wstring& imageKey);
 
 		void SetGaugeRectSize(const float width, const float height);
 
@@ -29,6 +31,8 @@ namespace basecross
 		float GetNowGauge() const;
 
 		void AddGaugeValue(const float gaugeValue);
+
+		void SetGaugeFillType(const ImageFillType imageFillType);
 
 		void OnCreate() override;
 

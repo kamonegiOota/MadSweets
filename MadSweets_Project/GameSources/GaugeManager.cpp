@@ -26,7 +26,7 @@ namespace basecross
 		m_gaugeImage->SetTextureResource(imageKey);
 	}
 
-	void GaugeManager::SetGuageBackgroundImage(const std::wstring& imageKey)
+	void GaugeManager::SetGaugeBackgroundImage(const std::wstring& imageKey)
 	{
 		m_gaugeBackgroundImage->SetTextureResource(imageKey);
 	}
@@ -67,6 +67,11 @@ namespace basecross
 	void GaugeManager::AddGaugeValue(const float gaugeValue)
 	{
 		SetNowGauge(m_nowGauge + gaugeValue);
+	}
+
+	void GaugeManager::SetGaugeFillType(const ImageFillType imageFillType)
+	{
+		m_gaugeImage->SetFillType(imageFillType);
 	}
 
 	void GaugeManager::OnCreate()
