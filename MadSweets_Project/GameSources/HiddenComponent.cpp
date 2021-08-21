@@ -27,20 +27,6 @@ namespace basecross
 
 	}
 
-	void HiddenComponent::ChangeHidden(const bool isHidden)
-	{
-		m_isHidden = isHidden;
-
-		if (isHidden)
-		{
-			m_choicesObjectAndEvent->text = L"o‚é";
-		}
-		else
-		{
-			m_choicesObjectAndEvent->text = L"‰B‚ê‚é";
-		}
-	}
-
 	HideData HiddenComponent::GetHideData() const
 	{
 		return m_hideData;
@@ -50,30 +36,8 @@ namespace basecross
 	{
 		auto hideComponent = selectorObject->GetComponent<I_HideComponent>(false);
 
-		std::function<void()> eventFunction = []() {};
-
-		if (hideComponent)
-		{
-			eventFunction = [&,hideComponent]()
-			{
-				if (m_isHidden)
-				{
-					hideComponent->OnEndHide(m_hideData);
-				}
-				else
-				{
-					hideComponent->OnHide(m_hideData);
-				}
-
-				ChangeHidden(!m_isHidden);
-			};
-		}
-
-		if (m_choicesObjectAndEvent)
-		{
-			m_choicesObjectAndEvent->eventFunction = eventFunction;
-			return m_choicesObjectAndEvent;
-		}
+		auto& hideData = m_hideData;
+		auto eventFunction = [hideComponent, &hideData]() {hideComponent->OnHide(hideData); };
 
 		m_choicesObjectAndEvent = std::make_shared<ChoicesObjectAndEvent>(L"‰B‚ê‚é", GetGameObject(), eventFunction);
 
