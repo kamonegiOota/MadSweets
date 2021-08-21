@@ -287,7 +287,7 @@ namespace basecross
 			break;
 		case basecross::ImageFillType::Vertical:
 			uvLeftUp.y += (1.0f - m_fillAmount);
-			uvRightDowm.y += (1.0f - m_fillAmount);
+			uvRightUp.y += (1.0f - m_fillAmount);
 			break;
 		default:
 			break;
