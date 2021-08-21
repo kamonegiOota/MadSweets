@@ -19,6 +19,18 @@ namespace basecross
 
 		float GetSearchRange() const;
 
+		/// <summary>
+		/// 直接選択肢を追加する
+		/// </summary>
+		/// <param name="choicesObjectAndEvent">選択肢のデータ</param>
+		void AddPlayerChoice(const std::shared_ptr<ChoicesObjectAndEvent>& choicesObjectAndEvent);
+
+		/// <summary>
+		/// 直接選択肢を削除する
+		/// </summary>
+		/// <param name="choicesObject">選択肢のオブジェクト</param>
+		void RemovePlayerChoice(const std::shared_ptr<GameObject>& choicesObject);
+
 		void OnStart() override;
 
 		void OnUpdate() override;
