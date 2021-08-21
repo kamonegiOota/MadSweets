@@ -547,6 +547,9 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerSounder">
       <UniqueIdentifier>{97bc9cc4-c2c7-43d8-813c-e06da8a6a675}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Load\LoadStageTrigger">
+      <UniqueIdentifier>{e5a4dad2-0ec8-46dc-946a-3aa5f4579a74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -984,6 +987,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h">
+      <Filter>Maru\Load\LoadStageTrigger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1372,6 +1378,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTrigger.cpp">
+      <Filter>Maru\Load\LoadStageTrigger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
