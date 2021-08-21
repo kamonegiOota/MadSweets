@@ -21,7 +21,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-		virtual void CreateMap(const wstring& fileName);
+		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
 
 		//テスト用-----------------------------------------------------------
 		virtual void TempLoad();

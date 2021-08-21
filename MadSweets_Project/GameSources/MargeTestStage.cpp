@@ -63,9 +63,10 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.25f);
+			light.m_DiffuseColor = Col4(0.4f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.25f);
+			light.m_SpecularColor = Col4(0.4f);
+			light.m_Directional = Vec3();
 		}
 	}
 
@@ -74,8 +75,10 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest5.csv");
+			//CreateMap(L"TempStage.csv");
+			CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
+			CreateMap(L"Stage2.csv",Vec3(0.0f,150.0f,0.0f));
+			//CreateMap(L"Stage3.csv",Vec3(0.0f,200.0f,0.0f));
 
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -148,28 +151,40 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateMap(const wstring& fileName)
+	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
-		map->CreateObject<FixedBox>(L"StageRotBox");
-		map->CreateObject<FixedBox>(L"Plane");
-		map->CreateObject<FixedBox>(L"BoxCollision");
-		map->CreateObject<FixedBox>(L"Floor");
-		map->CreateObject<FixedBox>(L"RoomWall ");
-		map->CreateObject<FixedBox>(L"Wall");
-		map->CreateObject<FixedBox>(L"Partition");
-		map->CreateObject<FixedBox>(L"UpperWall");
-		map->CreateObject<FixedBox>(L"BoxCollision");
-		map->CreateObject<FixedBox>(L"Corner");
-		map->CreateObject<FixedBox>(L"InnerCorner");
-		map->CreateObject<FixedBox>(L"Pillar");
+		vector<wstring> objNames = {
+			{L"StageRotBox"},
+			{L"Plane"},
+			{L"BoxCollision"},
+			{L"Floor"},
+			{L"RoomWall"},
+			{L"Wall"},
+			{L"Partition"},
+			{L"UpperWall"},
+			{L"Corner"},
+			{L"RoomCorner"},
+			{L"InnerCorner"},
+			{L"FrontWall"},
+			{L"RightWall"},
+			{L"BackWall"},
+			{L"LeftWall"},
+			{L"LeftWall"},
+			{L"CandyDoor"}
+		};
 
-		map->CreateObject<CookieHideObject>(L"WallHide");
+		for (const auto& objName : objNames) {
+			map->CreateObject<FixedBox>(objName,offset);
+		}
+
+		map->CreateObject<CookieHideObject>(L"WallHide", offset);
 
 		for (auto obj : GetGameObjectVec()) {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
 			if (fixed) {
+				//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
 					//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				}
