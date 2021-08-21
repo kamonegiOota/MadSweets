@@ -30,12 +30,7 @@ namespace basecross
 
 		auto gaugeManager = AddComponent<GaugeManager>(gaugeImage, gaugeBackgroundImage);
 
-
-		gaugeManager->SetGaugeImage(L"WeightGaugeColor");
-
-		gaugeManager->SetGuageBackgroundImage(L"WeightGaugeBackground");
-
-		gaugeManager->SetGaugeRectSize(512, 160);
+		gaugeManager->SetGaugeRectSize(100, 100);
 	}
 
 }

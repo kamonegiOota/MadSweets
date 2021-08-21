@@ -6,6 +6,7 @@
 #include"SoundHelper.h"
 #include"HiddenComponent.h"
 #include"ParticleSystem.h"
+#include"GaugeManager.h"
 
 namespace basecross
 {
@@ -49,6 +50,11 @@ namespace basecross
 		App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
 
 		auto gauge = Instantiate<GaugeUI>();
+		auto gaugeManager = gauge->GetComponent<GaugeManager>();
+
+		gaugeManager->SetGaugeImage(L"WeightGaugeColor");
+		gaugeManager->SetGaugeBackgroundImage(L"WeightGaugeBackground");
+		gaugeManager->SetGaugeRectSize(512, 160);
 
 		auto rectTransform = gauge->GetComponent<RectTransform>();
 
@@ -154,7 +160,6 @@ namespace basecross
 
 		itbs::Input::CursorSetting::SetIsLock(true);
 		itbs::Input::CursorSetting::SetIsDraw(false);
-
 
 		auto karipos = Vec3();
 		for (int i = 0; i < 1; i++)

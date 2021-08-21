@@ -33,23 +33,32 @@ namespace itbs
 		
 		void MouseState::UpdateMouseState(const HWND& hwnd)
 		{
-			if (!CursorSetting::GetIsLock() || GetActiveWindow() != hwnd)
+			if (!CursorSetting::GetIsLock() || GetForegroundWindow() != hwnd)
 			{
 				m_mouseMoveRange = POINT();
 
-				if (!isCursorDraw)
+				if (!m_isCursorDraw)
 				{
 					ShowCursor(true);
 
-					isCursorDraw = true;
+					m_isCursorDraw = true;
 
 					OutputDebugString(L"権限がなくなり表示されました\n");
 				}
+
+				m_isBeforeLock = CursorSetting::GetIsLock();
+
 				return;
 			}
 
+
 			POINT point;
 			GetCursorPos(&point);
+
+			if (!m_isBeforeLock)
+			{
+				m_mousePosition = point;
+			}
 
 			m_mouseMoveRange.x = point.x - m_mousePosition.x;
 			m_mouseMoveRange.y = -(point.y - m_mousePosition.y);
@@ -69,27 +78,28 @@ namespace itbs
 
 			if (CursorSetting::GetIsDraw())
 			{
-				if (!isCursorDraw)
+				if (!m_isCursorDraw)
 				{
 					ShowCursor(true);
 
-					isCursorDraw = true;
+					m_isCursorDraw = true;
 
 					OutputDebugString(L"カーソルが表示されました\n");
 				}
 			}
 			else
 			{
-				if (isCursorDraw)
+				if (m_isCursorDraw)
 				{
 					ShowCursor(false);
 
-					isCursorDraw = false;
+					m_isCursorDraw = false;
 
 					OutputDebugString(L"カーソルが消えました\n");
 				}
 			}
-			//ShowCursor(CursorSetting::GetIsDraw());
+
+			m_isBeforeLock = CursorSetting::GetIsLock();
 		}
 
 		POINT MouseState::GetMouseMove() const

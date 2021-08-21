@@ -147,7 +147,10 @@ namespace itbs
 
 			POINT m_mouseMoveRange;
 
-			bool isCursorDraw = true;
+			bool m_isCursorDraw = true;
+
+			bool m_isBeforeLock = false;
+			
 		public:
 
 			void UpdateMouseState(const HWND& hwnd);
