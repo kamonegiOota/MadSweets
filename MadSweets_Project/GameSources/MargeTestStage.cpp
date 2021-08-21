@@ -77,7 +77,7 @@ namespace basecross {
 			TempLoad();
 			//CreateMap(L"TempStage.csv");
 			CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
-			CreateMap(L"Stage2.csv",Vec3(0.0f,150.0f,0.0f));
+			//CreateMap(L"Stage2.csv",Vec3(0.0f,150.0f,0.0f));
 			//CreateMap(L"Stage3.csv",Vec3(0.0f,200.0f,0.0f));
 
 			//ÉQÅ[ÉWÇÃê∂ê¨
@@ -190,6 +190,10 @@ namespace basecross {
 				}
 			}
 		}
+	}
+
+	void MargeTestStage::ChangeMap(const wstring& fileName, const Vec3& offset) {
+
 	}
 
 	void MargeTestStage::TempLoad() {
