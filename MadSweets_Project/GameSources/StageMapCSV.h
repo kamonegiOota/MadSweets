@@ -62,7 +62,7 @@ namespace basecross {
 
 		//マップ上にオブジェクトを生成
 		template<class T>
-		void CreateObject(const wstring& objName)
+		void CreateObject(const wstring& objName, const Vec3& offset = Vec3(0.0f))
 		{
 			vector<wstring> lineVec;
 			m_csvFile.GetSelect(lineVec, 0, objName);
@@ -91,8 +91,8 @@ namespace basecross {
 				);
 
 				wstring texture = tokens[CsvIndex::texture].c_str();  //テクスチャの取得
-
-				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position, texture);  //オブジェクトの生成
+				
+				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
 				m_stageObjs.push_back(stageObj);  //オブジェクトを自分のリストに追加
 				//InstantiateSRP<FixedBox>(scale,rotation,position,L"FixedBox");
 
