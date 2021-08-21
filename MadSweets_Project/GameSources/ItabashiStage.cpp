@@ -32,6 +32,7 @@ namespace basecross
 		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
 		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
+		app->RegisterTexture(L"Tx_Cake", textureDir + L"Tx_Cake.png");
 
 		//ƒ‚ƒfƒ‹
 		std::wstring modelDir = mediaDir + L"Models\\";
@@ -52,18 +53,19 @@ namespace basecross
 		auto gauge = Instantiate<GaugeUI>();
 		auto gaugeManager = gauge->GetComponent<GaugeManager>();
 
-		gaugeManager->SetGaugeImage(L"WeightGaugeColor");
-		gaugeManager->SetGaugeBackgroundImage(L"WeightGaugeBackground");
-		gaugeManager->SetGaugeRectSize(512, 160);
+		gaugeManager->SetGaugeImage(L"Tx_Cake");
+		gaugeManager->SetGaugeRectSize(160, 160);
+		gaugeManager->SetGaugeFillType(ImageFillType::Vertical);
 
 		auto rectTransform = gauge->GetComponent<RectTransform>();
 
-		rectTransform->SetAnchor(AnchorType::LeftUp);
+		//rectTransform->SetAnchor(AnchorType::LeftUp);
 
 		SetSharedGameObject(L"PlayerWeightGauge", gauge);
 
 		auto go = Instantiate<UIObject>();
 		go->GetComponent<RectTransform>()->SetPosition(300, 0);
+
 		auto mo = go->AddComponent<ChoicesList>();
 		mo->OnStart();
 
