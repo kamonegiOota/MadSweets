@@ -79,8 +79,8 @@ namespace basecross {
 			TempLoad();
 			CreateMap(L"TempStage.csv");
 			//CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
-			//CreateMap(L"Stage2.csv",Vec3(0.0f,150.0f,0.0f));
-			//CreateMap(L"Stage3.csv",Vec3(0.0f,200.0f,0.0f));
+			//CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage3.csv");
 
 			//ƒQ[ƒW‚Ì¶¬
 			auto gauge = Instantiate<GaugeUI>();
@@ -232,6 +232,8 @@ namespace basecross {
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png"); 
 		app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
+		app->RegisterTexture(L"Cokie_Crack_Tx", textureDir + L"Cokie_Crack.png");
+		app->RegisterTexture(L"Cokie_Crack_Last_Tx", textureDir + L"Cokie_Crack_Last.png");
 		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
 		
 
