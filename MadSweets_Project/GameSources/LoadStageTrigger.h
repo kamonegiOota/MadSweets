@@ -8,13 +8,16 @@
 #pragma once
 #include "stdafx.h"
 
-#include "FadeChocoCtrl.h"
+#include "AlphaFadeCtrl.h"
+#include "AlphaFadeObject.h"
 
 namespace basecross {
 
-	class LoadStageTrigger : Component
+	class LoadStageTrigger : public Component
 	{
-		ex_weak_ptr<FadeChocoCtrl> m_chocoCtrl;
+		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
+
+		wstring m_nextMap;
 
 		void ChangeStage();
 		void FadeStart();
@@ -29,6 +32,10 @@ namespace basecross {
 		
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 
+		//アクセッサ---------------------------------------------------------------
+		void SetNextMap(const wstring& nextMap) {
+			m_nextMap = nextMap;
+		}
 	};
 
 }
