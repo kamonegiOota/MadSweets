@@ -19,6 +19,9 @@
 
 #include "SoundHelper.h"
 
+//#include "AlphaFadeObject.h"
+//#include "AlphaFadeCtrl.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -59,6 +62,8 @@ namespace basecross {
 		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
 			auto fade = maru::MyUtility::GetComponent<TitleFadeCtrl>();
 			fade->FadeStart();
+
+			//Instantiate<AlphaFadeObject>()->GetComponent<AlphaFadeCtrl>()->FadeOutStart();
 		}
 	}
 
@@ -99,7 +104,7 @@ namespace basecross {
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"TitleChoco_Tx", textureDir + L"TitleChoco.png");
 		app->RegisterTexture(L"FadeChoco_Tx", textureDir + L"FadeChoco.png");
-
+		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
 	}
 
 }
