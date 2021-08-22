@@ -39,6 +39,8 @@
 
 #include "WallEvasion.h"
 
+#include "LoadStageTrigger.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -75,8 +77,8 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			//CreateMap(L"TempStage.csv");
-			CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
+			CreateMap(L"TempStage.csv");
+			//CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
 			//CreateMap(L"Stage2.csv",Vec3(0.0f,150.0f,0.0f));
 			//CreateMap(L"Stage3.csv",Vec3(0.0f,200.0f,0.0f));
 
@@ -123,6 +125,10 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
+			auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
+			loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
+			loadTrigger->GetGameObject()->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
@@ -153,6 +159,7 @@ namespace basecross {
 
 	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
+		m_nowMap = fileName;
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
 		vector<wstring> objNames = {
@@ -190,10 +197,26 @@ namespace basecross {
 				}
 			}
 		}
+
+		m_mapCsv = map;
 	}
 
-	void MargeTestStage::ChangeMap(const wstring& fileName, const Vec3& offset) {
+	void MargeTestStage::DeleteMap() {
+		m_mapCsv->CollisionOffAll(m_nowMap);
+	}
 
+	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
+		//現在のマップの消去
+		//DeleteMap();
+
+		//CreateMap(fileName,offset);
+
+		//playerの移動
+		
+		//フェードイン
+		fade->FadeInStart();
+
+		m_nowMap = fileName;
 	}
 
 	void MargeTestStage::TempLoad() {
