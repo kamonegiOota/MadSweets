@@ -550,6 +550,18 @@
     <Filter Include="Maru\Load\LoadStageTrigger">
       <UniqueIdentifier>{e5a4dad2-0ec8-46dc-946a-3aa5f4579a74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\Fade\Object">
+      <UniqueIdentifier>{b7558ec0-0f7a-4ad4-82cf-4cd5ff8a648b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Fade\Object\AlphaFadeObject">
+      <UniqueIdentifier>{d37e9b8b-ccc3-4119-816f-81b31a10be56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Fade\Component">
+      <UniqueIdentifier>{ae5e50be-134c-4333-8886-b6f7e54e48b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\Fade\Component\AlphaFade">
+      <UniqueIdentifier>{8b29f68d-2d6c-4937-9048-32db097ab9d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -939,9 +951,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h">
       <Filter>Itabashi\Stage\ItabashiStage</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
-      <Filter>Maru\Component\Fade</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h">
       <Filter>Maru\MaruPlayer\Component\Chubby\ChubbyCompCtrl</Filter>
     </ClInclude>
@@ -989,6 +998,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h">
       <Filter>Maru\Load\LoadStageTrigger</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.h">
+      <Filter>Maru\Component\Fade\Component\AlphaFade</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeObject.h">
+      <Filter>Maru\Component\Fade\Object\AlphaFadeObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
+      <Filter>Maru\Component\Fade\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1334,9 +1352,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp">
       <Filter>Itabashi\Stage\ItabashiStage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp">
-      <Filter>Maru\Component\Fade</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeUI.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Object</Filter>
     </ClCompile>
@@ -1381,6 +1396,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTrigger.cpp">
       <Filter>Maru\Load\LoadStageTrigger</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.cpp">
+      <Filter>Maru\Component\Fade\Component\AlphaFade</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp">
+      <Filter>Maru\Component\Fade\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeObject.cpp">
+      <Filter>Maru\Component\Fade\Object\AlphaFadeObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
