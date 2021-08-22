@@ -62,4 +62,12 @@ namespace basecross {
 		//m_stageObjs.clear();
 	}
 
+	void StageMapCSV::CollisionOffAll(const wstring& name) {
+		for (auto& obj : m_stageObjs) {
+			auto col = obj->GetComponent<Collision>();
+			if (col) {
+				col->SetUpdateActive(false);
+			}
+		}
+	}
 }

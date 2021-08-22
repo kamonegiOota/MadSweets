@@ -56,6 +56,8 @@ namespace basecross {
 
 		void ResetMap();
 
+		void CollisionOffAll(const wstring& name);
+
 		void AddStageObject(const std::shared_ptr<StageObject>& obj) {
 			m_stageObjs.push_back(obj);
 		}
