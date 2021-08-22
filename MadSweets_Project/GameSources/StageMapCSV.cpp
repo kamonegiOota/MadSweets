@@ -27,21 +27,13 @@ namespace basecross {
 	void StageMapCSV::LoadCSV()
 	{
 		auto load = LoadData(m_folderName);
-		load.LoadCSV(m_csvFile,m_fileName);
-		m_csvFile.ReadCsv();
+		load.LoadCSV(m_csvFiles[m_fileName],m_fileName);
+		m_csvFiles[m_fileName].ReadCsv();
 	}
 
 
 	void StageMapCSV::ResetMap()
 	{
-		//for (auto& obj : m_stageObjs)
-		//{
-		//	//obj->GetComponent<Collision>()->SetUpdateActive(false);
-		//	obj->GetComponent<ResetStageObj>()->ResetAll();
-		//	obj->StageReset();
-		//	//GetStage()->RemoveGameObject<GameObject>(obj);
-		//}
-
 		auto objs = GetStage()->GetGameObjectVec();
 		for (auto obj : objs) {
 			auto reset = obj->GetComponent<ResetStageObj>(false);
@@ -53,21 +45,28 @@ namespace basecross {
 				}
 			}
 		}
-
-		//for (auto& obj : m_stageObjs)
-		//{
-		//	//obj->GetComponent<Collision>()->SetUpdateActive(true);
-		//}
-
-		//m_stageObjs.clear();
 	}
 
-	void StageMapCSV::CollisionOffAll(const wstring& name) {
-		for (auto& obj : m_stageObjs) {
-			auto col = obj->GetComponent<Collision>();
-			if (col) {
-				col->SetUpdateActive(false);
-			}
+	bool StageMapCSV::ChangeMap(const wstring& fileName) {
+		StageObjectActiveChange(false); //現在のステージを当たり判定と見た目をfalse
+
+		m_fileName = fileName;
+
+		//ロード用のCSVが存在しなかったら
+		if (m_csvFiles.find(fileName) == m_csvFiles.end()) {
+			LoadCSV();  //新しくロード系にセット
+			return true;
+		}
+		else {
+			StageObjectActiveChange(true);  //見た目とコリジョンを回復。
+			return false;
+		}
+	}
+
+	void StageMapCSV::StageObjectActiveChange(const bool isActive) {
+		for (auto& obj : m_stageObjs[m_fileName]) {
+			obj->SetUpdateActive(isActive);
+			obj->SetDrawActive(isActive);
 		}
 	}
 }
