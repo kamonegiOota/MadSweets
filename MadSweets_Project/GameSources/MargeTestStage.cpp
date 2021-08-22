@@ -211,7 +211,9 @@ namespace basecross {
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png"); 
-			app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
+		app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
+		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
+		
 
 		//ƒfƒuƒQ[ƒWŒn
 		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
