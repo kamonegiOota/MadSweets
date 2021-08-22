@@ -28,6 +28,13 @@ namespace basecross {
 		GetGameObject()->SetDrawActive(false);
 	}
 
+	void CrackCookie::TextureCheck() {
+		auto prob = m_durability / m_maxDurability;
+		if (prob <= 0.5f) {  //‘Ï‹v’l‚ª”¼•ª‚É‚È‚Á‚½‚çB
+			GetGameObject()->GetComponent<BcBaseDraw>()->SetTextureResource(m_textures[(int)CrackState::Crack]);
+		}
+	}
+
 	void CrackCookie::Crack(const float& damage) {
 		m_durability += -damage;
 
@@ -35,6 +42,18 @@ namespace basecross {
 			m_durability = 0.0f;
 			DestProcess();
 		}
+
+		TextureCheck();
+	}
+
+	void CrackCookie::OnCreate() {
+		m_textures = {
+			{L"Cokie_Tx"},
+			{L"Cokie_Crack_Tx"},
+			{L"Cokie_Crack_Last_Tx"},
+		};
+
+		GetGameObject()->GetComponent<BcBaseDraw>()->SetTextureResource(m_textures[(int)CrackState::Normal]);
 	}
 
 	void CrackCookie::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
