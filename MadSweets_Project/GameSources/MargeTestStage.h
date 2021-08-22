@@ -13,14 +13,14 @@ namespace basecross {
 
 	class MargeTestStage : public Stage
 	{
-		wstring m_nowMap;
+		//wstring m_nowMap;
 		std::shared_ptr<StageMapCSV> m_mapCsv;
 
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
-		virtual void DeleteMap();
+		//virtual void DeleteMap();
 
 	public:
 		//\’z‚Æ”jŠü

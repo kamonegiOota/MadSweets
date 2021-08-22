@@ -159,7 +159,7 @@ namespace basecross {
 
 	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
-		m_nowMap = fileName;
+		//m_nowMap = fileName;
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
 		vector<wstring> objNames = {
@@ -201,22 +201,19 @@ namespace basecross {
 		m_mapCsv = map;
 	}
 
-	void MargeTestStage::DeleteMap() {
-		m_mapCsv->CollisionOffAll(m_nowMap);
-	}
-
 	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
-		//現在のマップの消去
-		//DeleteMap();
-
-		//CreateMap(fileName,offset);
-
+		//マップ情報の切り替え
+		bool isNewCreate = m_mapCsv->ChangeMap(fileName);
+		if (isNewCreate) {
+			CreateMap(fileName, offset);
+		}
+		
 		//playerの移動
 		
 		//フェードイン
 		fade->FadeInStart();
 
-		m_nowMap = fileName;
+		//m_nowMap = fileName;
 	}
 
 	void MargeTestStage::TempLoad() {
