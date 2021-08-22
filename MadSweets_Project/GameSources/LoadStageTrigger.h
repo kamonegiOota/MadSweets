@@ -17,7 +17,7 @@ namespace basecross {
 	{
 		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
 
-		wstring m_nextMap;
+		wstring m_nextMap = L"Stage2.csv";
 
 		void ChangeStage();
 		void FadeStart();
