@@ -102,8 +102,6 @@ namespace basecross {
 				
 				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
 				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
-				//InstantiateSRP<FixedBox>(scale,rotation,position,L"FixedBox");
-
 			}
 		}
 	};
