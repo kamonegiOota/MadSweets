@@ -64,6 +64,17 @@ namespace basecross {
 		return pImpl->m_UpdateActive;
 	}
 	void Component::SetUpdateActive(bool b) {
+		if (pImpl->m_UpdateActive != b)
+		{
+			if (b)
+			{
+				OnEnable();
+			}
+			else
+			{
+				OnDisable();
+			}
+		}
 		pImpl->m_UpdateActive = b;
 	}
 

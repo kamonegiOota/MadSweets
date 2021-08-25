@@ -25,7 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CameraComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
@@ -36,6 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DebugCameraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
@@ -169,7 +170,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CameraComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DebugCameraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EarBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />

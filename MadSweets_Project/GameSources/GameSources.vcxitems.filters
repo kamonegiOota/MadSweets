@@ -469,9 +469,6 @@
     <Filter Include="Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl">
       <UniqueIdentifier>{bb5d218b-381b-4e5e-8d79-de4efd6a9873}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\Components\CameraComponent">
-      <UniqueIdentifier>{374a0f0b-6b30-48c8-b727-f8cf4e2d7778}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerDebuger">
       <UniqueIdentifier>{8ce7bef4-08b7-4536-92cc-a28faa3fe9e7}</UniqueIdentifier>
     </Filter>
@@ -546,6 +543,12 @@
     </Filter>
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerSounder">
       <UniqueIdentifier>{97bc9cc4-c2c7-43d8-813c-e06da8a6a675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\basecross\CameraHelper">
+      <UniqueIdentifier>{90c9bb49-8222-4ead-b651-69f370cd4b26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\DebugCameraObject">
+      <UniqueIdentifier>{75b5110b-2d41-4f73-ab92-5d2667d60f50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -921,9 +924,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h">
       <Filter>Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CameraComponent.h">
-      <Filter>Itabashi\Components\CameraComponent</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerDebuger.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerDebuger</Filter>
     </ClInclude>
@@ -983,6 +983,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraHelper.h">
+      <Filter>Patchs\basecross\CameraHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DebugCameraObject.h">
+      <Filter>Itabashi\DebugCameraObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1313,9 +1319,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp">
       <Filter>Maru\TestStage\TitleStage\FadeCtrl\FadeChocoCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)CameraComponent.cpp">
-      <Filter>Itabashi\Components\CameraComponent</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerDebuger.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerDebuger</Filter>
     </ClCompile>
@@ -1372,6 +1375,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerSounder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraHelper.cpp">
+      <Filter>Patchs\basecross\CameraHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DebugCameraObject.cpp">
+      <Filter>Itabashi\DebugCameraObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

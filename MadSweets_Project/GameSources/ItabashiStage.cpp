@@ -7,6 +7,7 @@
 #include"HiddenComponent.h"
 #include"ParticleSystem.h"
 #include"GaugeManager.h"
+#include"CameraHelper.h"
 
 namespace basecross
 {
@@ -49,6 +50,10 @@ namespace basecross
 		wstring SE_Dir = mediaDir + L"SEs\\";
 		App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
 		App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
+
+		auto cameraobj = Instantiate<CameraObject>();
+		auto brain = cameraobj->GetComponent<CameraBrain>();
+		brain->SetCameraBlend(std::make_shared<CameraBlendLinear>(1));
 
 		auto gauge = Instantiate<GaugeUI>();
 		auto gaugeManager = gauge->GetComponent<GaugeManager>();
