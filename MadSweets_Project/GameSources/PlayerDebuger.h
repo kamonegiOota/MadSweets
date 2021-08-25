@@ -1,5 +1,5 @@
 #pragma once
-#include"CameraComponent.h"
+#include"CameraHelper.h"
 #include"PlayerObject.h"
 #include"PlayerRotater.h"
 namespace basecross

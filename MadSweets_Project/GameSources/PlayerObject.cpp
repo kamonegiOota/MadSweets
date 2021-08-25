@@ -12,12 +12,12 @@
 #include"ChasingTarget.h"
 #include"SoundHelper.h"
 #include"PlayerHideManager.h"
-#include"CameraComponent.h"
+#include"CameraHelper.h"
 #include"PlayerDebuger.h"
 #include"PlayerRotater.h"
 #include"CameraRotater.h"
 #include"PlayerSounder.h"
-
+#include"DebugCameraObject.h"
 
 //丸山追記分インクルード
 #include "PlayerStatusMgr.h"
@@ -40,7 +40,9 @@ namespace basecross
 	void PlayerObject::OnCreate()
 	{
 		auto fpsCamera = GetStage()->Instantiate<GameObject>(Vec3(), Quat::Identity(), GetThis<GameObject>());
-		auto fpsCameraComponent = fpsCamera->AddComponent<CameraComponent>();
+		fpsCamera->GetComponent<Transform>()->SetRotation(Vec3(XM_PIDIV4 / 4, XM_PIDIV4, 0));
+		//auto fpsCameraComponent = fpsCamera->AddComponent<CameraComponent>();
+		auto virtualCamera = fpsCamera->AddComponent<VirtualCamera>(10);
 		auto cameraRotater = fpsCamera->AddComponent<CameraRotater>();
 		cameraRotater->SetMinRotX(-XM_PIDIV4);
 		cameraRotater->SetMaxRotX(XM_PIDIV4);
@@ -58,10 +60,8 @@ namespace basecross
 
 		Quat quat = Quat::Identity();
 		quat.rotationY(XM_PI);
-		auto tpsCamera = GetStage()->Instantiate<GameObject>(Vec3(0, 0, 3), quat, springArm);
-		auto tpsCameraComponent = tpsCamera->AddComponent<CameraComponent>();
-
-		tpsCamera->SetActive(false);
+		auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
+		//auto tpsCameraComponent = tpsCamera->AddComponent<CameraComponent>();
 
 		springArmComponent->SetChildObject(tpsCamera);
 		springArmComponent->AddHitTag(L"Wall");
@@ -94,7 +94,16 @@ namespace basecross
 
 		AddComponent<PlayerHideManager>();
 
-		AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
+		//auto gameobj = GetStage()->Instantiate<GameObject>(Vec3(), Quat(), GetThis<GameObject>());
+
+		//auto trans = gameobj->GetComponent<Transform>();
+		////trans->Rotate(0, 0, 0);
+		//std::wstringstream wss;
+		//auto rot = trans->GetForword();
+		//wss << L"x : " << rot.x << L" y : " << rot.y << L" z : " << rot.z;
+		//MessageBox(0, wss.str().c_str(), L"フォワード", 0);
+
+		//AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
 
 
 		//丸山追記文
