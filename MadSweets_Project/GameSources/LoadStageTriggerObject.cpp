@@ -17,11 +17,11 @@ namespace basecross {
 
 	void LoadStageTriggerObject::OnCreate() {
 		auto trigger = AddComponent<LoadStageTrigger>();
-		//trigger->SetNextMap(m_nextMap);
+		trigger->SetNextMap(m_nextMap);
 
 		//‰¼‚ÌŒ©‚½
-		//auto draw = AddComponent<BcPNTStaticDraw>();
-		//draw->SetMeshResource(L"DEFAULT_CUBE");
+		auto draw = AddComponent<BcPNTStaticDraw>();
+		draw->SetMeshResource(L"DEFAULT_CUBE");
 	}
 
 }
