@@ -74,10 +74,6 @@ namespace basecross {
 		});
 	}
 
-	void HandyAnimatorCtrl::OnCreate() {
-		
-	}
-
 	void HandyAnimatorCtrl::OnStart() {
 		CreateAnimator();
 	}

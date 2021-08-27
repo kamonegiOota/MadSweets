@@ -47,7 +47,7 @@ namespace basecross {
 			m_draw(draw)
 		{}
 
-		void OnCreate() override;
+		void OnCreate() override {};
 		void OnStart() override;
 		void OnUpdate() override {};
 
