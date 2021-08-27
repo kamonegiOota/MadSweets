@@ -19,6 +19,7 @@ namespace basecross {
 	void AlphaFadeCtrl::EndProcess() {
 		m_isUpdate = false;
 		m_endAction();
+		m_endAction.Clear();
 	}
 
 	void AlphaFadeCtrl::FadeUpdate() {
