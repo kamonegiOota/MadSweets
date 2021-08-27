@@ -29,8 +29,6 @@ namespace basecross {
 
 	class WallEvasion : public Component
 	{
-		//vector<ex_weak_ptr<WallEvasionTactile>> m_tactiles;  //触覚
-
 		vector<ex_weak_ptr<GameObject>> m_obstacleObjs;
 		float m_range = 2.0f;
 		float m_maxSpeed = 30.0f;
@@ -60,9 +58,11 @@ namespace basecross {
 
 		//触覚のセット
 		void SetTactile(const std::shared_ptr<TactileCtrl>& tactile) {
-			tactile->AddExcuteAction([this](const std::shared_ptr<TactileCtrl>& tactile,const std::shared_ptr<GameObject>& other) {
-				EvasionUpdate(tactile,other);
-			});
+			tactile->AddExcuteAction(
+				[this](const std::shared_ptr<TactileCtrl>& tactile,const std::shared_ptr<GameObject>& other) {
+					EvasionUpdate(tactile,other);
+				}
+			);
 		}
 
 		void SetRange(const float& range) {
