@@ -185,6 +185,10 @@ namespace basecross {
 				if (targetObj == exclute) {
 					return true;
 				}
+				
+				if (targetObj->GetParent() == exclute) {
+					return true;
+				}
 			}
 
 			return false;
