@@ -122,7 +122,6 @@ namespace basecross {
 		AddComponent<ProbeAstarMove>();
 		AddComponent<EnemyEar>();   //Ž¨
 		AddComponent<CheckTargetPos>();
-		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
