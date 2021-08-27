@@ -21,8 +21,10 @@ namespace basecross {
 	void LoadStageTrigger::ChangeStage() {
 		auto stage = dynamic_pointer_cast<MargeTestStage>(GetStage());
 		if (stage) {
-			DebugObject::sm_wss << endl <<L"LoadStageTrigger :: MargeTestStage‚ª‘¶Ý‚µ‚Ü‚¹‚ñB";
 			stage->ChangeMap(m_nextMap, m_fadeCtrl.GetShard());
+		}
+		else {
+			DebugObject::sm_wss << endl << L"LoadStageTrigger :: MargeTestStage‚ª‘¶Ý‚µ‚Ü‚¹‚ñB";
 		}
 	}
 
