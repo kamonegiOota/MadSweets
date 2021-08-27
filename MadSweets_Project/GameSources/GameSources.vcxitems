@@ -29,6 +29,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cara_Attack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
@@ -63,6 +66,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
@@ -177,6 +181,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cara_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
@@ -206,6 +213,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
