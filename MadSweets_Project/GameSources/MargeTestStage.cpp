@@ -72,10 +72,10 @@ namespace basecross {
 		//ÉâÉCÉgÇÃê›íË
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.75f);
+			light.m_DiffuseColor = Col4(0.3f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.75f);
-			light.m_Directional = poss[i];
+			light.m_SpecularColor = Col4(0.3f);
+			//light.m_Directional = poss[i];
 		}
 	}
 
@@ -189,6 +189,7 @@ namespace basecross {
 			{L"LeftWall"},
 			{L"CandyDoor"},
 			{L"Stairs"},
+			//{L"Cube"},
 		};
 
 		for (const auto& objName : objNames) {
