@@ -562,6 +562,9 @@
     <Filter Include="Maru\Component\Fade\Component\AlphaFade">
       <UniqueIdentifier>{8b29f68d-2d6c-4937-9048-32db097ab9d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Object\StageObject\LoadStageTriggerObject">
+      <UniqueIdentifier>{1ec38193-0b06-4c8b-941f-bf36173d69e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1008,6 +1011,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h">
       <Filter>Maru\Component\Fade\Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.h">
+      <Filter>Maru\Object\StageObject\LoadStageTriggerObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1405,6 +1411,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeObject.cpp">
       <Filter>Maru\Component\Fade\Object\AlphaFadeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.cpp">
+      <Filter>Maru\Object\StageObject\LoadStageTriggerObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

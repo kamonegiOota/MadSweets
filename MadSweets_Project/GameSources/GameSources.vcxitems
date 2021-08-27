@@ -82,6 +82,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadData.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTrigger.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />
