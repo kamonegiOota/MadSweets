@@ -40,6 +40,7 @@
 #include "WallEvasion.h"
 
 #include "LoadStageTrigger.h"
+#include "LoadStageTriggerObject.h"
 
 namespace basecross {
 
@@ -62,13 +63,19 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 		//PtrMultiLight->SetAmbientLightColor(Col4(1.0f,0.1f,0.1f,0.1f));
 
+		Vec3 poss[] = {
+			{Vec3(0.0f,0.5f,0.0f)},
+			{Vec3(0.0f,-0.5f,0.0f)},
+			{Vec3(-0.5f,0.0f,0.0f)},
+		};
+
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.4f);
+			light.m_DiffuseColor = Col4(0.75f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.4f);
-			light.m_Directional = Vec3();
+			light.m_SpecularColor = Col4(0.75f);
+			light.m_Directional = poss[i];
 		}
 	}
 
@@ -77,9 +84,10 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
+			//CreateMap(L"TempStage.csv");
 			//CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
-			//CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage1.csv");
+			CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
@@ -125,9 +133,9 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
-			auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
-			loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
-			loadTrigger->GetGameObject()->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+			//auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
+			//loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
+			//loadTrigger->GetGameObject()->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
@@ -179,7 +187,8 @@ namespace basecross {
 			{L"BackWall"},
 			{L"LeftWall"},
 			{L"LeftWall"},
-			{L"CandyDoor"}
+			{L"CandyDoor"},
+			{L"Stairs"},
 		};
 
 		for (const auto& objName : objNames) {
@@ -187,6 +196,7 @@ namespace basecross {
 		}
 
 		map->CreateObject<CookieHideObject>(L"WallHide", offset);
+		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 
 		for (auto obj : GetGameObjectVec()) {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
@@ -235,7 +245,15 @@ namespace basecross {
 		app->RegisterTexture(L"Cokie_Crack_Tx", textureDir + L"Cokie_Crack.png");
 		app->RegisterTexture(L"Cokie_Crack_Last_Tx", textureDir + L"Cokie_Crack_Last.png");
 		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
-		
+
+		app->RegisterTexture(L"Beans_Tx", textureDir + L"Beans.png");  //背景二階
+		//お菓子
+		app->RegisterTexture(L"SweetCokie_Tx", textureDir + L"Sweet_Cokie.png");
+		app->RegisterTexture(L"SweetEye_Tx", textureDir + L"Sweet_Eye.png");
+		app->RegisterTexture(L"SweetHand_Tx", textureDir + L"Sweet_Hand.png");
+		//タイトル
+		app->RegisterTexture(L"TitleBack_Tx", textureDir + L"TitleBack.png");
+		app->RegisterTexture(L"TitleStartPress_Tx", textureDir + L"TitleStartPress.png");
 
 		//デブゲージ系
 		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
@@ -279,9 +297,17 @@ namespace basecross {
 			modelDir + L"Cara\\", L"Cara_Wark.bmf");
 		app->RegisterResource(L"Cara_Walk", modelMesh);
 
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Cara\\", L"Cara_Attack.bmf");
+		app->RegisterResource(L"Cara_Attack", modelMesh);
+
 		modelMesh = MeshResource::CreateStaticModelMesh(
 			modelDir + L"Stick\\", L"Stick.bmf");
 		app->RegisterResource(L"Stick", modelMesh);
+
+		modelMesh = MeshResource::CreateStaticModelMesh(
+			modelDir + L"Gra\\", L"Gra_Standby.bmf");
+		app->RegisterResource(L"Gra_Standby", modelMesh);
 
 		//音ロード
 		wstring SE_Dir = mediaDir + L"SEs\\";
