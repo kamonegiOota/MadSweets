@@ -16,12 +16,14 @@
 namespace basecross {
 
 	void LoadStageTriggerObject::OnCreate() {
+		StageObject::OnCreate();
+
 		auto trigger = AddComponent<LoadStageTrigger>();
 		trigger->SetNextMap(m_nextMap);
 
-		//‰¼‚ÌŒ©‚½
-		auto draw = AddComponent<BcPNTStaticDraw>();
-		draw->SetMeshResource(L"DEFAULT_CUBE");
+		//‰¼‚ÌŒ©‚½–Ú
+		//auto draw = AddComponent<BcPNTStaticDraw>();
+		//draw->SetMeshResource(L"DEFAULT_CUBE");
 	}
 
 }
