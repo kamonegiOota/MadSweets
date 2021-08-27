@@ -36,6 +36,7 @@
 #include "CookieHideObject.h"
 #include "WeightGaugeUI.h"
 #include "HandyObject.h"
+#include "CaraObject.h"
 
 #include "WallEvasion.h"
 
@@ -72,9 +73,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.3f);
+			light.m_DiffuseColor = Col4(0.25f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.3f);
+			light.m_SpecularColor = Col4(0.25f);
 			//light.m_Directional = poss[i];
 		}
 	}
@@ -84,10 +85,9 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			//CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest5.csv", Vec3(0.0f, 0.0f,0.0f));
+			CreateMap(L"TempStage.csv");
 			//CreateMap(L"Stage1.csv");
-			CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
@@ -247,6 +247,7 @@ namespace basecross {
 		app->RegisterTexture(L"Cokie_Crack_Last_Tx", textureDir + L"Cokie_Crack_Last.png");
 		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
 
+		//8/27追加分
 		app->RegisterTexture(L"Beans_Tx", textureDir + L"Beans.png");  //背景二階
 		//お菓子
 		app->RegisterTexture(L"SweetCokie_Tx", textureDir + L"Sweet_Cokie.png");
@@ -319,7 +320,9 @@ namespace basecross {
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//Astar生成
@@ -409,7 +412,6 @@ namespace basecross {
 					wallEvasion->AddObstacleObjs(stageObj);
 				}
 			}
-			
 		}
 	}
 
