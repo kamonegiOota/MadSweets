@@ -21,11 +21,7 @@ namespace basecross {
 			rotX, rotY, rotZ,
 			posX, posY, posZ,
 			texture,
-			TorRotDirect,
-			TorRotDegree,
-			TorFrontRoom,
-			TorBackRoom,
-			tiling,
+			nextMap,
 		};
 
 		enum RotBoxIndex {
