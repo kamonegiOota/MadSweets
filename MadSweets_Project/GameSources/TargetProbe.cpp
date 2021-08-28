@@ -81,6 +81,10 @@ namespace basecross {
 		}
 
 		//敵が発見できるかどうか?
+		//hideObjectのコライダーをoffにすることで判断
+		SetHideObjCollisionUpdate(false);
+
+		return;
 		//現在は仮で判断している。
 		auto hideComp = m_checkHideObj->GetComponent<HiddenComponent>(false);
 		if (hideComp) {
@@ -152,6 +156,15 @@ namespace basecross {
 		m_checkHideObj = nullptr;
 	}
 
+	void TargetProbe::SetHideObjCollisionUpdate(const bool isUpdate) {
+		auto col = m_checkHideObj->GetComponent<Collision>(false);
+		if (col) {
+			if (col->GetUpdateActive() != isUpdate) {
+				col->SetUpdateActive(isUpdate);
+			}
+		}
+	}
+
 	void TargetProbe::OnCreate() {
 		SetUpdateActive(false);
 	}
@@ -161,6 +174,7 @@ namespace basecross {
 			m_moveFunc(*this);
 		}
 		else {
+			SetHideObjCollisionUpdate(true);
 			ChangeState<EnState_LoseTarget>();
 		}
 	}
@@ -195,13 +209,18 @@ namespace basecross {
 
 		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
 			m_moveFunc = nullptr;
-			ChangeState<EnState_LoseTarget>();
+			//ChangeState<EnState_LoseTarget>();
 		}
 		else {  //まだカウントが過ぎていなかったら。
+			SetHideObjCollisionUpdate(true);
 			SetAstarRondomHideObject();  //もう一度調べる。
 		}
 	}
 
+	void TargetProbe::ExitProbState() {
+		//SetHideObjCollisionUpdate(true);
+		RemoveNode();
+	}
 }
 
 //endbasecross
