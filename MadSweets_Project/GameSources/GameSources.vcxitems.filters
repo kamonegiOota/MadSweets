@@ -583,6 +583,15 @@
     <Filter Include="Maru\Enemy\Object\GraObject">
       <UniqueIdentifier>{28d1e66f-895e-4113-bf3b-d23f9d9e0e60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject">
+      <UniqueIdentifier>{60ce107e-aed0-4ccd-bb42-465aac794e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp">
+      <UniqueIdentifier>{45d57371-1692-4515-a48d-8c1a0443a1aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator">
+      <UniqueIdentifier>{00d1cdcf-6fcf-430d-9b04-49a2334368e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1044,6 +1053,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraObject.h">
       <Filter>Maru\Enemy\Object\GraObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiObject.h">
+      <Filter>Maru\Enemy\Object\AshiObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.h">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1456,6 +1471,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraObject.cpp">
       <Filter>Maru\Enemy\Object\GraObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiObject.cpp">
+      <Filter>Maru\Enemy\Object\AshiObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.cpp">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
