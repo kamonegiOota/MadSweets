@@ -130,6 +130,9 @@ namespace basecross {
 				if (!collision) {
 					continue;
 				}
+				if (collision->GetUpdateActive() == false) {
+					continue;
+				}
 
 				//対象外のオブジェクトだったら
 				if (IsExclute(object, excluteObjs)) {
