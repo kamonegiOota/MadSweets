@@ -46,7 +46,7 @@ namespace basecross {
 		auto obj = GetOwner()->GetGameObject();
 		auto prob = obj->GetComponent<TargetProbe>(false);
 		if (prob) {
-			prob->RemoveNode();  //ノードのリムーブ
+			prob->ExitProbState();  //ノードのリムーブ
 		}
 
 		ExitChangeComps();
