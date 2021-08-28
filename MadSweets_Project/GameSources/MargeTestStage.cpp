@@ -223,8 +223,6 @@ namespace basecross {
 		
 		//フェードイン
 		fade->FadeInStart();
-
-		//m_nowMap = fileName;
 	}
 
 	void MargeTestStage::TempLoad() {
@@ -320,8 +318,8 @@ namespace basecross {
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
@@ -496,7 +494,7 @@ namespace basecross {
 	void MargeTestStage::CreateHideObjects() {
 		Vec3 positions[] = {
 			{14.0f,1.0f,-6.0f},
-			{11.0f,1.0f, 11.0f},
+			//{11.0f,1.0f, 11.0f},
 		};
 
 		for (const auto& pos : positions) {
