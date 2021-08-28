@@ -37,6 +37,8 @@
 #include "WeightGaugeUI.h"
 #include "HandyObject.h"
 #include "CaraObject.h"
+#include "AshiObject.h"
+#include "GraObject.h"
 
 #include "WallEvasion.h"
 
@@ -318,8 +320,9 @@ namespace basecross {
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
