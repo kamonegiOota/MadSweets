@@ -664,7 +664,7 @@
     <Filter Include="Itabashi\GameOver\GameOveEventer">
       <UniqueIdentifier>{3cdbbe9c-4800-4faf-bcf5-a087b683cfba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Object\StageObject\TableObject">
+    <Filter Include="Maru\Object\StageObject\OriginalMeshObject">
       <UniqueIdentifier>{c60b9d60-ba8c-4299-b0bc-c96236728c48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -1200,8 +1200,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverEventer.h">
       <Filter>Itabashi\GameOver\GameOveEventer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TableObject.h">
-      <Filter>Maru\Object\StageObject\TableObject</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OriginalMeshObject.h">
+      <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1679,8 +1679,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverEventer.cpp">
       <Filter>Itabashi\GameOver\GameOveEventer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TableObject.cpp">
-      <Filter>Maru\Object\StageObject\TableObject</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OriginalMeshObject.cpp">
+      <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
