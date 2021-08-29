@@ -502,9 +502,6 @@
     <Filter Include="Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject">
       <UniqueIdentifier>{b2c7da68-2a54-4f0d-a045-05fe7d6d987c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\Stage\LoadScene">
-      <UniqueIdentifier>{5b97b014-37df-4bb9-89a5-ebab6f9f89f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\Components\Enemy">
       <UniqueIdentifier>{523db174-c3f7-497c-b473-dc61ce5db2f3}</UniqueIdentifier>
     </Filter>
@@ -654,6 +651,18 @@
     </Filter>
     <Filter Include="Maru\Component\EventSprite">
       <UniqueIdentifier>{ab9adde1-5d41-4032-b5ce-0a90a017f6c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Stage\GameOverStage">
+      <UniqueIdentifier>{d747e508-06a4-4070-8e71-2de6620d9d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Stage\LoadStage">
+      <UniqueIdentifier>{5b97b014-37df-4bb9-89a5-ebab6f9f89f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GameOver">
+      <UniqueIdentifier>{62857c13-dcc9-48c1-bc17-28bf0dccec84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GameOver\GameOveEventer">
+      <UniqueIdentifier>{3cdbbe9c-4800-4faf-bcf5-a087b683cfba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1075,7 +1084,7 @@
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h">
-      <Filter>Itabashi\Stage\LoadScene</Filter>
+      <Filter>Itabashi\Stage\LoadStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h">
       <Filter>Itabashi\Components\Enemy\HandySounder</Filter>
@@ -1181,6 +1190,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EventSprite.h">
       <Filter>Maru\Component\EventSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h">
+      <Filter>Itabashi\Stage\GameOverStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameOverEventer.h">
+      <Filter>Itabashi\GameOver\GameOveEventer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1554,7 +1569,7 @@
       <Filter>Maru\Enemy\Component\Move\WallEvasion\WallEvasionTactile\TactileObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp">
-      <Filter>Itabashi\Stage\LoadScene</Filter>
+      <Filter>Itabashi\Stage\LoadStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp">
       <Filter>Itabashi\Components\Enemy\HandySounder</Filter>
@@ -1651,6 +1666,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EventSprite.cpp">
       <Filter>Maru\Component\EventSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp">
+      <Filter>Itabashi\Stage\GameOverStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameOverEventer.cpp">
+      <Filter>Itabashi\GameOver\GameOveEventer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
