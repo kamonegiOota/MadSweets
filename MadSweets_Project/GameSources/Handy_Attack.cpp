@@ -19,6 +19,7 @@
 #include "HandyObject.h"
 #include "HandyAnimator.h"
 #include "BaseEnemy.h"
+#include "MyUtility.h"
 
 #include "DebugObject.h"
 
@@ -69,6 +70,7 @@ namespace basecross {
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 		if (enemy) {
 			enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
+			SetUpdateActive(false);
 		}
 	}
 
@@ -80,38 +82,33 @@ namespace basecross {
 		}	
 	}
 
-	//void Handy_Attack::UpdateAttack() {
-	//	if (!IsNowAnimeStateAttack()) {  //UŒ‚ó‘Ô‚Å‚È‚©‚Á‚½‚ç
-	//		//ChangeEndState();
-	//		//m_updateFunc = nullptr;
-	//	}
-	//}
+	void Handy_Attack::Rotation(const Vec3& direction) {
+		transform->SetForward(direction);
+	}
 
 	void Handy_Attack::Attack(const std::shared_ptr<GameObject>& target) {
+		//UŒ‚ó‘Ô‚È‚ç‘JˆÚ‚ð‚µ‚È‚¢
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 		if (enemy->IsEqualStateType<EnState_Attack>()) {
 			return;
 		}
-
 		SetTarget(target);
 
 		if (IsAttackRange()) {
 			CreateThrowObject();
 			ChangeAttackAnimation();
 			ChangeAttackState();
-
+			SetUpdateActive(true);
 			//m_updateFunc = &Handy_Attack::UpdateAttack;
 		}
 	}
 
 	void Handy_Attack::OnCreate() {
-
+		SetUpdateActive(false);
 	}
 
 	void Handy_Attack::OnUpdate() {
-		//if (m_updateFunc) {
-		//	m_updateFunc(*this);
-		//}
+		Rotation(maru::MyUtility::CalucToTargetVec(GetGameObject(),m_target));
 	}
 
 }

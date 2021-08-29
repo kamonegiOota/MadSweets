@@ -30,6 +30,7 @@ namespace basecross {
 
 		//Nodeの追加
 		void AddNode(const Vec3& position);
+		void RemoveNode();
 
 		//Astarに捜索先をセットする。
 		void SetAstarRondomHideObject();
@@ -43,6 +44,7 @@ namespace basecross {
 		void AstarMove();
 
 		void ResetProbe();
+		void SetHideObjCollisionUpdate(const bool isUpdate);
 
 		template<class T, class... Ts>
 		void ChangeState(Ts&&... params) {
@@ -78,7 +80,7 @@ namespace basecross {
 			return m_target;
 		}
 
-		void RemoveNode();
+		void ExitProbState();
 	};
 
 }

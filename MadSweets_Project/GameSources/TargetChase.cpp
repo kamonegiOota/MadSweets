@@ -115,16 +115,15 @@ namespace basecross {
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
 		
-		auto maxSpeed = 4.0f;  //将来的にメンバ変数化
+		auto maxSpeed = 10.0f;  //将来的にメンバ変数化
 		auto velo = velocity->GetVelocity();
 		auto force = UtilVelocity::CalucSeekVec(velo, toVec, maxSpeed);
 
-		velocity->AddForce(toVec);
+		velocity->AddForce(force);
 
-		Rotation(velo);
+		Rotation(velocity->GetVelocity());
 
 		LookCheck();
-		//LostCheck();
 	}
 
 	void TargetChase::LostMove() {

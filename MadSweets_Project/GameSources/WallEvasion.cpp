@@ -63,7 +63,6 @@ namespace basecross {
 
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto newForce = CalucForce(tactile->GetGameObject());
-		DebugObject::AddVector(newForce);
 
 		auto velocityComp = GetGameObject()->GetComponent<Velocity>();
 		if (velocityComp) {

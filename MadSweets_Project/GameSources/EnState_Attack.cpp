@@ -12,6 +12,7 @@
 #include "TargetChase.h"
 #include "BaseAttack.h"
 #include "ReturnPlowlingPosition.h"
+#include "EnemyRotationCtrl.h"
 
 #include "Velocity.h"
 #include "WallEvasion.h"
@@ -31,6 +32,8 @@ namespace basecross {
 		AddChangeComp(attack, true, false);
 		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
 		AddChangeComp(obj->GetComponent<WallEvasion>(false), false, true);
+		AddChangeComp(obj->GetComponent<EnemyRotationCtrl>(false), false, true);
+		AddChangeComp(obj->GetComponent<Velocity>(false), false, true);
 
 		StartChangeComps();
 

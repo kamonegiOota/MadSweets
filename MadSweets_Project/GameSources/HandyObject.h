@@ -18,7 +18,7 @@ namespace basecross {
 	class HandyObject : public GameObject
 	{
 		void CreatePlowlingRoute();
-		void CreateTactle();  //壁回避用の触覚の生成
+		void CreateTactile();  //壁回避用の触覚の生成
 
 	public:
 		HandyObject(std::shared_ptr<Stage>& stage)

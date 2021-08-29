@@ -36,8 +36,16 @@
 #include "CookieHideObject.h"
 #include "WeightGaugeUI.h"
 #include "HandyObject.h"
+#include "CaraObject.h"
+#include "AshiObject.h"
+#include "GraObject.h"
 
 #include "WallEvasion.h"
+
+#include "LoadStageTrigger.h"
+#include "LoadStageTriggerObject.h"
+
+#include "EatenObject.h"
 
 namespace basecross {
 
@@ -60,22 +68,34 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 		//PtrMultiLight->SetAmbientLightColor(Col4(1.0f,0.1f,0.1f,0.1f));
 
+		Vec3 poss[] = {
+			{Vec3(0.0f,0.5f,0.0f)},
+			{Vec3(0.0f,-0.5f,0.0f)},
+			{Vec3(-0.5f,0.0f,0.0f)},
+		};
+
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
 			light.m_DiffuseColor = Col4(0.25f);
 			//light.m_Directional = Vec3(0.0f);
 			light.m_SpecularColor = Col4(0.25f);
+			//light.m_Directional = poss[i];
 		}
 	}
 
 	void MargeTestStage::OnCreate() {
 		try {
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//DebugObject::sm_isResetDelta = true;
+
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
 			CreateMap(L"TempStage.csv");
-			//CreateMap(L"StageTest5.csv");
+			//CreateMap(L"Stage1.csv");
+			//CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -108,7 +128,7 @@ namespace basecross {
 			CreateEnemy(player);
 
 			//食べ物の生成
-			CreateEatItems();
+			//CreateEatItems();
 
 			//ライトの生成
 			CreatePointLight();
@@ -120,10 +140,13 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			CreateHideObjects();
 
+			//auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
+			//loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
+			//loadTrigger->GetGameObject()->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
-			//DebugObject::sm_isResetDelta = true;
+
 		}
 		catch (...) {
 			throw;
@@ -148,33 +171,65 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateMap(const wstring& fileName)
+	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
+		//m_nowMap = fileName;
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
-		map->CreateObject<FixedBox>(L"StageRotBox");
-		map->CreateObject<FixedBox>(L"Plane");
-		map->CreateObject<FixedBox>(L"BoxCollision");
-		map->CreateObject<FixedBox>(L"Floor");
-		map->CreateObject<FixedBox>(L"RoomWall ");
-		map->CreateObject<FixedBox>(L"Wall");
-		map->CreateObject<FixedBox>(L"Partition");
-		map->CreateObject<FixedBox>(L"UpperWall");
-		map->CreateObject<FixedBox>(L"BoxCollision");
-		map->CreateObject<FixedBox>(L"Corner");
-		map->CreateObject<FixedBox>(L"InnerCorner");
-		map->CreateObject<FixedBox>(L"Pillar");
+		vector<wstring> objNames = {
+			{L"StageRotBox"},
+			{L"Plane"},
+			{L"BoxCollision"},
+			{L"Floor"},
+			{L"RoomWall"},
+			{L"Wall"},
+			{L"Partition"},
+			{L"UpperWall"},
+			{L"Corner"},
+			{L"RoomCorner"},
+			{L"InnerCorner"},
+			{L"FrontWall"},
+			{L"RightWall"},
+			{L"BackWall"},
+			{L"LeftWall"},
+			{L"LeftWall"},
+			{L"CandyDoor"},
+			{L"Stairs"},
+			//{L"Cube"},
+		};
 
-		map->CreateObject<CookieHideObject>(L"WallHide");
+		for (const auto& objName : objNames) {
+			map->CreateObject<FixedBox>(objName,offset);
+		}
+
+		map->CreateObject<CookieHideObject>(L"WallHide", offset);
+		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
+		map->CreateObject<EatenObject>(L"EatenObject",offset);
 
 		for (auto obj : GetGameObjectVec()) {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
 			if (fixed) {
+				//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
 					//fixed->GetComponent<Collision>()->SetUpdateActive(false);
 				}
 			}
 		}
+
+		m_mapCsv = map;
+	}
+
+	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
+		//マップ情報の切り替え
+		bool isNewCreate = m_mapCsv->ChangeMap(fileName);
+		if (isNewCreate) {
+			CreateMap(fileName, offset);
+		}
+		
+		//playerの移動
+		
+		//フェードイン
+		fade->FadeInStart();
 	}
 
 	void MargeTestStage::TempLoad() {
@@ -192,7 +247,20 @@ namespace basecross {
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
 		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png"); 
-			app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
+		app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
+		app->RegisterTexture(L"Cokie_Crack_Tx", textureDir + L"Cokie_Crack.png");
+		app->RegisterTexture(L"Cokie_Crack_Last_Tx", textureDir + L"Cokie_Crack_Last.png");
+		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
+
+		//8/27追加分
+		app->RegisterTexture(L"Beans_Tx", textureDir + L"Beans.png");  //背景二階
+		//お菓子
+		app->RegisterTexture(L"SweetCokie_Tx", textureDir + L"Sweet_Cokie.png");
+		app->RegisterTexture(L"SweetEye_Tx", textureDir + L"Sweet_Eye.png");
+		app->RegisterTexture(L"SweetHand_Tx", textureDir + L"Sweet_Hand.png");
+		//タイトル
+		app->RegisterTexture(L"TitleBack_Tx", textureDir + L"TitleBack.png");
+		app->RegisterTexture(L"TitleStartPress_Tx", textureDir + L"TitleStartPress.png");
 
 		//デブゲージ系
 		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
@@ -236,9 +304,17 @@ namespace basecross {
 			modelDir + L"Cara\\", L"Cara_Wark.bmf");
 		app->RegisterResource(L"Cara_Walk", modelMesh);
 
+		modelMesh = MeshResource::CreateBoneModelMesh(
+			modelDir + L"Cara\\", L"Cara_Attack.bmf");
+		app->RegisterResource(L"Cara_Attack", modelMesh);
+
 		modelMesh = MeshResource::CreateStaticModelMesh(
 			modelDir + L"Stick\\", L"Stick.bmf");
 		app->RegisterResource(L"Stick", modelMesh);
+
+		modelMesh = MeshResource::CreateStaticModelMesh(
+			modelDir + L"Gra\\", L"Gra_Standby.bmf");
+		app->RegisterResource(L"Gra_Standby", modelMesh);
 
 		//音ロード
 		wstring SE_Dir = mediaDir + L"SEs\\";
@@ -249,7 +325,10 @@ namespace basecross {
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
 		//Astar生成
@@ -339,7 +418,6 @@ namespace basecross {
 					wallEvasion->AddObstacleObjs(stageObj);
 				}
 			}
-			
 		}
 	}
 
@@ -357,14 +435,14 @@ namespace basecross {
 			//{-21.0f,1.0f,-20.0f}
 		};
 
-		std::shared_ptr<GameObject> enemy;
-		for (auto& obj : GetGameObjectVec()) {
-			auto ene = obj->GetComponent<ChaseEnemyObject>(false);
-			if (ene) {
-				enemy = ene;
-				break;
-			}
-		}
+		//std::shared_ptr<GameObject> enemy;
+		//for (auto& obj : GetGameObjectVec()) {
+		//	auto ene = obj->GetComponent<ChaseEnemyObject>(false);
+		//	if (ene) {
+		//		enemy = ene;
+		//		break;
+		//	}
+		//}
 
 		for (auto& pos : poss) {
 			pos.y += -0.5f;
@@ -424,7 +502,7 @@ namespace basecross {
 	void MargeTestStage::CreateHideObjects() {
 		Vec3 positions[] = {
 			{14.0f,1.0f,-6.0f},
-			{11.0f,1.0f, 11.0f},
+			//{11.0f,1.0f, 11.0f},
 		};
 
 		for (const auto& pos : positions) {

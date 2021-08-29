@@ -25,6 +25,8 @@
 #include "CheckTargetPos.h"
 #include "TargetProbe.h"
 
+#include "WallEvasion.h"
+
 namespace basecross {
 
 	void ChaseEnemyObject::CreatePlowlingRoute() {
@@ -84,8 +86,9 @@ namespace basecross {
 			Vec3(0.0f, -1.0f, 0.0f)
 		);
 
-		auto draw = AddComponent<PNTBoneModelDraw>();
-		draw->SetMeshResource(L"Handy");
+		//auto draw = AddComponent<PNTBoneModelDraw>();
+		auto draw = AddComponent<PNTStaticModelDraw>();
+		draw->SetMeshResource(L"Gra_Standby");
 		draw->AddAnimation(L"Run", 5, 10, true, 30.0f);
 		draw->SetMeshToTransformMatrix(spanMat);
 
@@ -106,6 +109,8 @@ namespace basecross {
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
+
+		AddComponent<WallEvasion>();
 
 		auto col = AddComponent<CollisionObb>();
 	}

@@ -15,6 +15,7 @@
 #include "BaseEnemy.h"
 
 #include "TargetProbe.h"
+#include "Velocity.h"
 
 // ”Â‹´@’Ç‰Á•ª -----------------------
 
@@ -66,16 +67,26 @@ namespace basecross {
 
 		state->AddTransition([](const AnimeMember& member) { return true; }, AnimeState::Walk, true);
 		
+		state->AddEntryEvent([this] {
+			auto velocity = GetGameObject()->GetComponent<Velocity>(false);
+			if (velocity) {
+				velocity->SetUpdateActive(false);
+			}
+		});
+		
+
 		state->AddExitEvent([this] {
 			auto probe = GetGameObject()->GetComponent<TargetProbe>(false);
 			if (probe) {
 				probe->EndInvestigateHideAnimation();
 			}
 		});
-	}
-
-	void HandyAnimatorCtrl::OnCreate() {
-		
+		state->AddExitEvent([this] {
+			auto velocity = GetGameObject()->GetComponent<Velocity>(false);
+			if (velocity) {
+				velocity->SetUpdateActive(true);
+			}
+		});
 	}
 
 	void HandyAnimatorCtrl::OnStart() {

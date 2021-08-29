@@ -15,7 +15,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionTimer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
@@ -24,9 +28,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BillBoard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BoardObj.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cara_Attack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
@@ -41,6 +51,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
@@ -52,6 +63,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h" />
@@ -66,6 +78,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeUI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
@@ -84,6 +97,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
@@ -167,6 +182,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)VertexPCTParam.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
@@ -175,6 +191,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp" />
@@ -182,9 +202,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BillBoard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BoardObj.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cara_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
@@ -195,6 +221,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EarBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
@@ -206,6 +233,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />
@@ -219,6 +247,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeUI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
@@ -234,6 +263,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadData.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTrigger.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />

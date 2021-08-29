@@ -57,7 +57,7 @@ namespace basecross {
 		transform->SetPosition(poss[0]);
 	}
 
-	void HandyObject::CreateTactle() {
+	void HandyObject::CreateTactile() {
 		struct Pair {
 			Vec3 offset;
 			Vec3 rotation;
@@ -91,8 +91,6 @@ namespace basecross {
 		//trans->SetPosition(pos + offset);
 		//trans->SetRotation(rotation);
 		//tactile->SetParent(GetThis<GameObject>());
-
-		
 	}
 
 	void HandyObject::OnCreate() {
@@ -124,7 +122,6 @@ namespace basecross {
 		AddComponent<ProbeAstarMove>();
 		AddComponent<EnemyEar>();   //é®
 		AddComponent<CheckTargetPos>();
-		CreatePlowlingRoute();
 
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
@@ -135,7 +132,7 @@ namespace basecross {
 		auto col = AddComponent<CollisionObb>();
 
 		CreatePlowlingRoute();
-		CreateTactle();
+		CreateTactile();
 		//CreateAnimetor();
 
 		// î¬ã¥Å@í«â¡ï™ ------------------------

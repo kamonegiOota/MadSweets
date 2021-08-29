@@ -83,13 +83,11 @@ namespace basecross {
 		auto chase = obj->GetComponent<I_Chase>(false);
 		if (chase) {
 			chase->ChangeChaseState(targetParam.target);
-			//DebugObject::m_wss << L"Chase,";
 			return;
 		}
 
 		auto escape = obj->GetComponent<I_Escape>(false);
 		if (escape) {
-			//DebugObject::m_wss << L"Escape,";
 			escape->ChangeEscapeState(targetParam.target);
 			return;
 		}

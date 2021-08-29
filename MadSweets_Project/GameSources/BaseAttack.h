@@ -15,7 +15,7 @@ namespace basecross {
 	/// 攻撃パラメータの構造体
 	/// </summary>
 	struct AttackParam {
-		float range = 0.0f;
+		float range = 1.0f;
 		float power = 1.0f;
 
 		AttackParam()
