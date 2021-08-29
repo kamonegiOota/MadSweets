@@ -23,14 +23,13 @@ namespace basecross {
 	}
 
 	void EventSprite::CreateImage() {
-		auto ui = GetStage()->Instantiate<UIObject>();
+		auto ui = GetStage()->Instantiate<UIObject>(Vec3(0.0f),Quat::Identity(), dynamic_pointer_cast<UIObject>(GetGameObject()));
 		auto image = ui->AddComponent<Image>();
 
 		auto rect = ui->GetComponent<RectTransform>();
 		rect->SetRectSize(1280.0f, 800.0f);
-
+		
 		m_image = image;
-		NextSprite();
 	}
 
 	void EventSprite::CreateFadeCtrl() {
@@ -46,7 +45,7 @@ namespace basecross {
 	}
 
 	void EventSprite::NextSprite() {
-		if (m_sprites.size() < m_index) {
+		if (m_sprites.size() > m_index) {
 			m_image->SetTextureResource(m_sprites[m_index]);
 			m_index++;
 		}
@@ -58,18 +57,26 @@ namespace basecross {
 	void EventSprite::InputMgr() {
 		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
-		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
+		if (key.IsInputDown(itbs::Input::KeyCode::G)) {
 			NextSprite();
 		}
 	}
 
-	void EventSprite::OnStart() {
+	void EventSprite::OnCreate() {
 		CreateImage();
 		CreateFadeCtrl();
 	}
 
+	void EventSprite::OnStart() {
+
+	}
+
 	void EventSprite::OnUpdate() {
 		InputMgr();
+	}
+
+	void EventSprite::EventStart() {
+		NextSprite();
 	}
 
 }

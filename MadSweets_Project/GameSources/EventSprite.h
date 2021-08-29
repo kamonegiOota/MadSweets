@@ -20,6 +20,7 @@ namespace basecross {
 		int m_index = 0;
 
 		void ChangeStage();
+
 		void CreateImage();
 		void CreateFadeCtrl();
 
@@ -34,11 +35,11 @@ namespace basecross {
 			Component(objPtr),m_sprites(sprites)
 		{}
 
-		void OnCreate() override {}
+		void OnCreate() override;
 		void OnStart() override;
 		void OnUpdate() override;
 
-
+		void EventStart();
 		//アクセッサ--------------------------------------------------
 
 

@@ -36,7 +36,41 @@ namespace basecross
 		ResourceLoadData(L"GameOverBackGround_TX", L"GameOverBackGround.png"),
 		ResourceLoadData(L"GameOverImage_TX", L"GameOverImage.png"),
 		ResourceLoadData(L"Retry_TX", L"Retry.png"),
-		ResourceLoadData(L"BackTitle_TX", L"BackTitle.png")
+		ResourceLoadData(L"BackTitle_TX", L"BackTitle.png"),
+		ResourceLoadData(L"Beans_TX", L"Beans.png"),
+		ResourceLoadData(L"SweetCokie_Tx", L"Sweet_Cokie.png"),
+		ResourceLoadData(L"SweetEye_Tx", L"Sweet_Eye.png"),
+		ResourceLoadData(L"SweetHand_Tx", L"Sweet_Hand.png"),
+		ResourceLoadData(L"TitleBack_Tx", L"TitleBack.png"),
+		ResourceLoadData(L"TitleStartPress_Tx", L"TitleStartPress.png"),
+		ResourceLoadData(L"WeightGaugeBackground", L"WeightGaugeBackGround.png"),
+		ResourceLoadData(L"WeightGaugeColor"     , L"WeightGaugeColor.png"),
+		ResourceLoadData(L"WallCake_Tx"          , L"Tx_Cake.png"),
+		ResourceLoadData(L"WallCake2_Tx"         , L"Tx_Cake2.png"),
+		ResourceLoadData(L"WallCake3_Tx"         , L"Tx_Cake3.png"),
+		ResourceLoadData(L"WallSponge_Tx"        , L"Tx_Sponge.png"),
+		ResourceLoadData(L"WallSponge2_Tx"       , L"Tx_Sponge2.png"),
+		ResourceLoadData(L"TitleFont_Tx"         , L"TitleFont.png"),
+		ResourceLoadData(L"Title_Tx"             , L"TitleChoco.png"),
+		ResourceLoadData(L"HpDraw_Tx"            , L"HPPinch.png"),
+		ResourceLoadData(L"Cokie_Tx"             , L"Cokie.png"),
+		ResourceLoadData(L"Cokie_Crack_Tx"       , L"Cokie_Crack.png"),
+		ResourceLoadData(L"Cokie_Crack_Last_Tx"  , L"Cokie_Crack_Last.png"),
+		ResourceLoadData(L"FadeBack_Tx"          , L"FadeBack.png"),
+
+		//プロローグ用
+		ResourceLoadData(L"Prologue_Tx"          , L"Prologue.png"),
+		ResourceLoadData(L"PrologueScond_Tx"     , L"Prologue_second.png"),
+
+		//デブゲージ
+		ResourceLoadData(L"ChubbyFont_Tx"  , L"WeightTx_ChubbyFont.png"),
+		ResourceLoadData(L"ChubbyGauge_Tx" , L"WeightTx_ChubbylGauge.png"),
+		ResourceLoadData(L"HungerFont_Tx"  , L"WeightTx_HungerFont.png"),
+		ResourceLoadData(L"HungerGauge_Tx" , L"WeightTx_HungerGauge.png"),
+		ResourceLoadData(L"NomalFont_Tx"   , L"WeightTx_NomalFont.png"),
+		ResourceLoadData(L"NomalGauge_Tx"  , L"WeightTx_NomalGauge.png"),
+		ResourceLoadData(L"SkinnyFont_Tx"  , L"WeightTx_SkinnyFont.png"),
+		ResourceLoadData(L"SkinnyGauge_Tx" , L"WeightTx_SkinnyGauge.png")
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_seResourceLoadDatas =
