@@ -18,9 +18,18 @@
 
 namespace basecross {
 
+	void LoadStageTrigger::MovePosition() {
+		if (m_target) {
+			auto trans = m_target->GetComponent<Transform>();
+			trans->SetPosition(m_position);
+			DebugObject::AddVector(m_position);
+		}
+	}
+
 	void LoadStageTrigger::ChangeStage() {
 		auto stage = dynamic_pointer_cast<MargeTestStage>(GetStage());
 		if (stage) {
+			MovePosition();
 			stage->ChangeMap(m_nextMap, m_fadeCtrl.GetShard());
 		}
 		else {
@@ -43,6 +52,7 @@ namespace basecross {
 	void LoadStageTrigger::OnCollisionEnter(std::shared_ptr<GameObject>& other){
 		auto player = other->GetComponent<PlayerProvider>(false);
 		if (player) {
+			m_target = other;
 			FadeStart();
 		}
 	}

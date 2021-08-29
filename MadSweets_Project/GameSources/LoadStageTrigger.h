@@ -16,9 +16,12 @@ namespace basecross {
 	class LoadStageTrigger : public Component
 	{
 		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
+		std::shared_ptr<GameObject> m_target;
 
 		wstring m_nextMap = L"Stage2.csv";
+		Vec3 m_position = Vec3(0.0f);
 
+		void MovePosition();
 		void ChangeStage();
 		void FadeStart();
 
@@ -35,6 +38,10 @@ namespace basecross {
 		//アクセッサ---------------------------------------------------------------
 		void SetNextMap(const wstring& nextMap) {
 			m_nextMap = nextMap;
+		}
+
+		void SetMovePosition(const Vec3& position) {
+			m_position = position;
 		}
 	};
 
