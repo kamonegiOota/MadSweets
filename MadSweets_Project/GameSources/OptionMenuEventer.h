@@ -7,6 +7,8 @@ namespace basecross
 	public:
 		OptionMenuEventer(std::shared_ptr<GameObject>& owner);
 
+		void OnFadeOut();
+
 		void GoTitleStage();
 
 		void OnBackMainOptionMenu();
