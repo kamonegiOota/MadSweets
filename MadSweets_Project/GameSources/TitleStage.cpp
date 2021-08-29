@@ -16,6 +16,7 @@
 #include "TitleFadeCtrl.h"
 #include "AlphaFadeCtrl.h"
 #include "FadeChocoCtrl.h"
+#include "EventSprite.h"
 #include "MyUtility.h"
 
 #include "SoundHelper.h"
@@ -53,6 +54,12 @@ namespace basecross {
 		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
 		//チョコフェードの実装
 		Instantiate<GameObject>()->AddComponent<FadeChocoCtrl>();
+		//イベントスプライトの設定
+		vector<wstring> sprites = {
+			L"Prologue_Tx",
+			L"PrologueScond_Tx",
+		};
+		Instantiate<UIObject>()->AddComponent<EventSprite>(sprites);
 		//アルファフェードの実装
 		Instantiate<GameObject>()->AddComponent<AlphaFadeCtrl>();
 	}
@@ -71,14 +78,14 @@ namespace basecross {
 
 	void TitleStage::OnCreate() {
 		try {
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
+
 			//ビューとライトの作成
 			CreateViewLight();
 			LoadData();
 
 			CreateTitle();
 			CreateFadeCtrl();
-
-			AddGameObject<DebugObject>();
 
 			SimpleSoundManager::ChangeBGM(L"TitleBGM1");
 		}
