@@ -289,9 +289,6 @@
     <Filter Include="Itabashi\Settings">
       <UniqueIdentifier>{97cf6a29-64fa-43b1-aa19-385adbf04a1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\Settings\SoundSetting">
-      <UniqueIdentifier>{eb10112b-920a-428a-b852-285e5492db1f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\MaruUthilyty\PositionDrawComp">
       <UniqueIdentifier>{ff6d4292-e1ac-4275-ba4e-9e3845080071}</UniqueIdentifier>
     </Filter>
@@ -550,6 +547,51 @@
     <Filter Include="Itabashi\DebugCameraObject">
       <UniqueIdentifier>{75b5110b-2d41-4f73-ab92-5d2667d60f50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Itabashi\MenuButtonObject">
+      <UniqueIdentifier>{b5d54f1c-c6b7-4f9d-81df-9ee10ef58be5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\MenuButtonObject\MenuButtonSounder">
+      <UniqueIdentifier>{b6687545-1ac5-4401-a921-e4ad629b2ca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\StageTransitionOfTitle">
+      <UniqueIdentifier>{15e3a530-3958-49df-82ce-e49dacd2ff54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Stage\OptionStage">
+      <UniqueIdentifier>{bfedefc1-69f5-4580-b656-8ed15f1bfc3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Option">
+      <UniqueIdentifier>{aeaf4170-be73-4749-a8e9-893e48926e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Option\OptionMenuEventer">
+      <UniqueIdentifier>{93fe9c26-02db-4cd3-be53-301d122d9aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\MenuButtonObject\MenuButtonEventer">
+      <UniqueIdentifier>{c0272951-7dc0-41c0-aba6-2bc65896f468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Option\OptionMenuButtonEventer">
+      <UniqueIdentifier>{04d83e63-f225-4eb8-8438-66830ff22eae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GaugeLinkedButtonObject">
+      <UniqueIdentifier>{09eef863-d910-4081-a409-cca23e2232cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\OptionGaugeOperator">
+      <UniqueIdentifier>{bde2bf9a-27ba-493b-9804-4b6bef9bf518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonEventer">
+      <UniqueIdentifier>{2bd48d65-2da9-423a-a403-982afcd54ec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\Utilitys\StructIOFileStream">
+      <UniqueIdentifier>{781ca23e-9cf3-4c95-bd6c-53b6d907f5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patchs\basecross\SaveHelper">
+      <UniqueIdentifier>{3e1871c4-c066-4870-afc7-cd9ff00fb108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GameSaveManager">
+      <UniqueIdentifier>{b66fe4db-f11a-4919-9043-04b373e1995c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonOperator">
+      <UniqueIdentifier>{708ae1c4-1b5b-4cf2-814b-cae77f47bed2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -783,9 +825,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SoundHelper.h">
       <Filter>Patchs\basecross\SoundHelper</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SoundSetting.h">
-      <Filter>Itabashi\Settings\SoundSetting</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h">
       <Filter>Maru\MaruUthilyty\PositionDrawComp</Filter>
     </ClInclude>
@@ -990,6 +1029,48 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugCameraObject.h">
       <Filter>Itabashi\DebugCameraObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonObject.h">
+      <Filter>Itabashi\MenuButtonObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonSounder.h">
+      <Filter>Itabashi\MenuButtonObject\MenuButtonSounder</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageTransitionOfTitle.h">
+      <Filter>Itabashi\StageTransitionOfTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OptionStage.h">
+      <Filter>Itabashi\Stage\OptionStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OptionMenuEventer.h">
+      <Filter>Itabashi\Option\OptionMenuEventer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonEventer.h">
+      <Filter>Itabashi\MenuButtonObject\MenuButtonEventer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.h">
+      <Filter>Itabashi\Option\OptionMenuButtonEventer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.h">
+      <Filter>Itabashi\OptionGaugeOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonEventer.h">
+      <Filter>Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonEventer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonObject.h">
+      <Filter>Itabashi\GaugeLinkedButtonObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StructIOFileStream.h">
+      <Filter>Patchs\Utilitys\StructIOFileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SaveHelper.h">
+      <Filter>Patchs\basecross\SaveHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameSaveManager.h">
+      <Filter>Itabashi\GameSaveManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.h">
+      <Filter>Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonOperator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1183,9 +1264,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundHelper.cpp">
       <Filter>Patchs\basecross\SoundHelper</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SoundSetting.cpp">
-      <Filter>Itabashi\Settings\SoundSetting</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp">
       <Filter>Maru\MaruUthilyty\PositionDrawComp</Filter>
@@ -1381,6 +1459,42 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugCameraObject.cpp">
       <Filter>Itabashi\DebugCameraObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonObject.cpp">
+      <Filter>Itabashi\MenuButtonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonSounder.cpp">
+      <Filter>Itabashi\MenuButtonObject\MenuButtonSounder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageTransitionOfTitle.cpp">
+      <Filter>Itabashi\StageTransitionOfTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OptionStage.cpp">
+      <Filter>Itabashi\Stage\OptionStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OptionMenuEventer.cpp">
+      <Filter>Itabashi\Option\OptionMenuEventer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonEventer.cpp">
+      <Filter>Itabashi\MenuButtonObject\MenuButtonEventer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.cpp">
+      <Filter>Itabashi\Option\OptionMenuButtonEventer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.cpp">
+      <Filter>Itabashi\OptionGaugeOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonEventer.cpp">
+      <Filter>Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonEventer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonObject.cpp">
+      <Filter>Itabashi\GaugeLinkedButtonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameSaveManager.cpp">
+      <Filter>Itabashi\GameSaveManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.cpp">
+      <Filter>Itabashi\GaugeLinkedButtonObject\GaugeLinkedButtonOperator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
