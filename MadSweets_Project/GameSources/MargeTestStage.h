@@ -20,6 +20,7 @@ namespace basecross {
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
+		virtual void CreateAstar();
 		//virtual void DeleteMap();
 
 	public:
