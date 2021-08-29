@@ -8,6 +8,8 @@
 #include"ParticleSystem.h"
 #include"GaugeManager.h"
 #include"CameraHelper.h"
+#include"MenuButtonObject.h"
+#include"StageTransitionOfTitle.h"
 
 namespace basecross
 {
@@ -46,10 +48,6 @@ namespace basecross
 		modelMesh = MeshResource::CreateBoneModelMesh(
 			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
 		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
-
-		wstring SE_Dir = mediaDir + L"SEs\\";
-		App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
-		App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
 
 		auto cameraobj = Instantiate<CameraObject>();
 		auto brain = cameraobj->GetComponent<CameraBrain>();
@@ -117,7 +115,7 @@ namespace basecross
 			OutputDebugString((fontName + L"\n").c_str());
 		}
 
-		SimpleSoundManager::ChangeBGM(L"TitleBGM2", 0.1f);
+		SimpleSoundManager::ChangeBGM(L"TitleBGM2", 1.0f);
 
 		auto gameobject = Instantiate<GameObject>();
 		auto trans = gameobject->GetComponent<Transform>();
@@ -178,5 +176,33 @@ namespace basecross
 
 			karipos.x += 1;
 		}
+
+		gameobject = Instantiate<GameObject>();
+		auto stageTransition = gameobject->AddComponent<StageTransitionOfTitle>();
+
+		auto button = Instantiate<MenuButtonObject>();
+		auto m_button = button->GetComponent<Button>();
+		m_button->SetAllButtonImage(L"MenuPressAToStart_TX");
+		m_button->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoGameStage);
+
+		auto rectTransform2 = button->GetComponent<RectTransform>();
+
+		rectTransform2->SetRectSize(645, 100);
+
+		auto button2 = Instantiate<MenuButtonObject>();
+		auto m_button2 = button2->GetComponent<Button>();
+		m_button2->SetAllButtonImage(L"MenuOption_TX");
+		m_button2->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoOptionStage);
+
+		rectTransform2 = button2->GetComponent<RectTransform>();
+
+		rectTransform2->SetRectSize(250, 100);
+		rectTransform2->SetPosition(0, -100);
+
+		m_button->SetVerticalNextSelectable(m_button2);
+
+		m_button2->SetVerticalBeforeSelectable(m_button);
+
+		EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(m_button);
 	}
 }
