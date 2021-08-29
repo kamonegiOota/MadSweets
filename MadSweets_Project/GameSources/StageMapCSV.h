@@ -76,6 +76,8 @@ namespace basecross {
 			m_stageObjs[fileName].push_back(obj);
 		}
 
+		vector<Vec3> GetPositions(const wstring& objName);
+
 		//マップ上にオブジェクトを生成
 		template<class T>
 		void CreateObject(const wstring& objName, const Vec3& offset = Vec3(0.0f))

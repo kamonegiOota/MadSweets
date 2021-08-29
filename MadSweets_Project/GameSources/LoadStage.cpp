@@ -57,6 +57,7 @@ namespace basecross
 		ResourceLoadData(L"Cokie_Tx"             , L"Cokie.png"),
 		ResourceLoadData(L"Cokie_Crack_Tx"       , L"Cokie_Crack.png"),
 		ResourceLoadData(L"Cokie_Crack_Last_Tx"  , L"Cokie_Crack_Last.png"),
+		ResourceLoadData(L"FadeChoco_Tx"          , L"FadeChoco.png"),
 		ResourceLoadData(L"FadeBack_Tx"          , L"FadeBack.png"),
 
 		//プロローグ用
@@ -94,7 +95,28 @@ namespace basecross
 
 	const std::vector<LoadStage::ModelResourceLoadData> LoadStage::m_modelResourceLoadDatas =
 	{
+		//Handy
+		ModelResourceLoadData(L"Handy_Walk",  L"Handy_Walk.bmf", ModelType::Bone,  L"Handy\\"),
+		ModelResourceLoadData(L"Handy_Attack",  L"Handy_Attack.bmf", ModelType::Bone,  L"Handy\\"),
+		ModelResourceLoadData(L"Handy_Search",  L"Handy_Search.bmf", ModelType::Bone,  L"Handy\\"),
 
+		//Stick
+		ModelResourceLoadData(L"Stick",  L"Stick.bmf", ModelType::Static,  L"Stick\\"),
+
+		//Cara
+		ModelResourceLoadData(L"Cara_Walk",  L"Cara_Wark.bmf", ModelType::Bone,  L"Cara\\"),
+		ModelResourceLoadData(L"Cara_Attack",  L"Cara_Attack.bmf", ModelType::Bone,  L"Cara\\"),
+
+		//Ashi
+		ModelResourceLoadData(L"Ashi_Walk",  L"Ashi_Wark.bmf", ModelType::Bone,  L"Ashi\\"),
+
+		//Gra
+		ModelResourceLoadData(L"Gra_Standby",  L"Gra_Standby.bmf", ModelType::Static,  L"Gra\\"),
+
+		//Player
+		ModelResourceLoadData(L"PlayerStandStay",  L"PlayerStandStay.bmf", ModelType::Bone,  L"Player\\StandStay\\"),
+		ModelResourceLoadData(L"PlayerCrouchStay",  L"PlayerCrouchStay.bmf", ModelType::Bone,  L"Player\\CrouchStay\\"),
+		ModelResourceLoadData(L"PlayerStandToCrouch",  L"PlayerStandToCrouch.bmf", ModelType::Bone,  L"Player\\StandToCrouch\\"),
 	};
 
 	LoadStage::LoadStage(const std::wstring& nextStageKey) :

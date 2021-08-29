@@ -69,4 +69,27 @@ namespace basecross {
 			obj->SetDrawActive(isActive);
 		}
 	}
+
+	vector<Vec3> StageMapCSV::GetPositions(const wstring& objName) {
+		vector<Vec3> rePositions;
+
+		vector<wstring> lineVec;
+		m_csvFiles[m_fileName].GetSelect(lineVec, 0, objName);
+
+		for (auto& line : lineVec)
+		{
+			vector<wstring> tokens;
+			Util::WStrToTokenVector(tokens, line, L',');
+
+			Vec3 position(  //ƒ|ƒWƒVƒ‡ƒ“Žæ“¾
+				static_cast<float>(_wtof(tokens[CsvIndex::posX].c_str())),
+				static_cast<float>(_wtof(tokens[CsvIndex::posY].c_str())),
+				static_cast<float>(_wtof(tokens[CsvIndex::posZ].c_str()))
+			);
+
+			rePositions.push_back(position);
+		}
+
+		return rePositions;
+	}
 }
