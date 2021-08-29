@@ -17,8 +17,7 @@ namespace basecross {
 		void CreateViewLight();
 
 		void CreateTitle();
-		void CreateFadeCtrl();
-		void ChangeStage();
+		void CreateFadeCtrl(std::shared_ptr<Button>& startButton, std::shared_ptr<Button>& goOptionButton);
 
 	public:
 		//構築と破棄
@@ -28,10 +27,7 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 
-
-	private:
-		//テスト実装用の関数----------------------------------------------------
-		void LoadData();
+		void GoOption();
 	};
 
 }

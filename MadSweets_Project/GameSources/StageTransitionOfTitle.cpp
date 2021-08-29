@@ -11,13 +11,12 @@ namespace basecross
 
 	void StageTransitionOfTitle::GoGameStage()
 	{
+		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
 	}
 
 	void StageTransitionOfTitle::GoOptionStage()
 	{
 		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
-
-		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToOptionStage");
 	}
 
 }

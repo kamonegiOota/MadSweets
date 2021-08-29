@@ -19,7 +19,16 @@
 #include "EventSprite.h"
 #include "MyUtility.h"
 
+
+// 板橋 追加分 --------------------------
 #include "SoundHelper.h"
+
+#include "MenuButtonObject.h"
+#include "StageTransitionOfTitle.h"
+
+#include "PlayerInputer.h"
+
+// --------------------------------------
 
 //#include "AlphaFadeObject.h"
 //#include "AlphaFadeCtrl.h"
@@ -46,48 +55,97 @@ namespace basecross {
 
 	void TitleStage::CreateTitle() {
 		//タイトルの画像の表示
-		Instantiate<TitleNameObject>();
+		auto title  = Instantiate<TitleNameObject>();
+		title->GetComponent<RectTransform>()->SetPosition(0, 200);
 	}
 
-	void TitleStage::CreateFadeCtrl() {
+	void TitleStage::CreateFadeCtrl(std::shared_ptr<Button>& startButton, std::shared_ptr<Button>& goOptionButton) {
 		//TitleFadeCtrlを生成
-		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
+		auto titleFadeObject = Instantiate<UIObject>();
+		auto fade = titleFadeObject->AddComponent<TitleFadeCtrl>();
+
+		startButton->pushEvent.AddFunc(fade, &TitleFadeCtrl::FadeStart);
+
 		//チョコフェードの実装
-		Instantiate<GameObject>()->AddComponent<FadeChocoCtrl>();
+		auto chocoFadeObject = Instantiate<UIObject>(Vec3(), Quat::Identity(), titleFadeObject);
+		chocoFadeObject->AddComponent<FadeChocoCtrl>();
+		chocoFadeObject->SetDrawLayer(10000);
+		
+
 		//イベントスプライトの設定
 		vector<wstring> sprites = {
 			L"Prologue_Tx",
 			L"PrologueScond_Tx",
 		};
-		Instantiate<UIObject>()->AddComponent<EventSprite>(sprites);
+		Instantiate<UIObject>(Vec3(), Quat::Identity(), titleFadeObject)->AddComponent<EventSprite>(sprites);
 		//アルファフェードの実装
-		Instantiate<GameObject>()->AddComponent<AlphaFadeCtrl>();
-	}
+		Instantiate<GameObject>(Vec3(), Quat::Identity(), titleFadeObject)->AddComponent<AlphaFadeCtrl>();
 
-	void TitleStage::ChangeStage() {
-		//将来的にしっかりとしたInputerを用意
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		auto alphaFade = Instantiate<GameObject>(Vec3(), Quat::Identity(), titleFadeObject)->AddComponent<AlphaFadeCtrl>();
 
-		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
-			auto fade = maru::MyUtility::GetComponent<TitleFadeCtrl>();
-			fade->FadeStart();
+		alphaFade->AddEndAction(GetThis<TitleStage>(), &TitleStage::GoOption);
+		alphaFade->SetSpeed(7.5f);
+		goOptionButton->pushEvent.AddFunc(alphaFade, &AlphaFadeCtrl::FadeOutStart);
 
-			//Instantiate<AlphaFadeObject>()->GetComponent<AlphaFadeCtrl>()->FadeOutStart();
-		}
+		alphaFade = Instantiate<GameObject>(Vec3(), Quat::Identity(), titleFadeObject)->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+		alphaFade->FadeInStart();
 	}
 
 	void TitleStage::OnCreate() {
 		try {
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
-
 			//ビューとライトの作成
 			CreateViewLight();
-			LoadData();
+
+			if (!SimpleSoundManager::IsPlayingBGM(L"TitleBGM1"))
+			{
+				SimpleSoundManager::ChangeBGM(L"TitleBGM1");
+			}
+
+			auto backGroundObject = Instantiate<UIObject>();
+			auto image = backGroundObject->AddComponent<Image>();
+			image->SetTextureResource(L"TitleBack_Tx");
+			auto rectTransform = backGroundObject->GetComponent<RectTransform>();
+			rectTransform->SetRectSize(1280, 800);
+
+			auto stageTransition = Instantiate<GameObject>()->AddComponent<StageTransitionOfTitle>();
+
+			auto titleObject = Instantiate<UIObject>();
+			image = titleObject->AddComponent<Image>();
+			image->SetTextureResource(L"TitleFont_Tx");
+			rectTransform = titleObject->GetComponent<RectTransform>();
+
+			rectTransform->SetRectSize(512, 256);
+			rectTransform->SetPosition(0, 200);
+
+			auto menuButtonObject = Instantiate<MenuButtonObject>();
+			auto startButton = menuButtonObject->GetComponent<Button>();
+			startButton->SetAllButtonImage(L"MenuPressAToStart_TX");
+			startButton->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoGameStage);
+
+			rectTransform = menuButtonObject->GetComponent<RectTransform>();
+
+			rectTransform->SetRectSize(645, 100);
+			rectTransform->SetPosition(0, -100);
+
+			menuButtonObject = Instantiate<MenuButtonObject>();
+			auto goOptionButton = menuButtonObject->GetComponent<Button>();
+			goOptionButton->SetAllButtonImage(L"MenuOption_TX");
+			goOptionButton->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoOptionStage);
+
+			rectTransform = menuButtonObject->GetComponent<RectTransform>();
+
+			rectTransform->SetRectSize(250, 100);
+			rectTransform->SetPosition(0, -200);
+
+			startButton->SetVerticalNextSelectable(goOptionButton);
+			goOptionButton->SetVerticalBeforeSelectable(startButton);
+
+			EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(startButton);
 
 			CreateTitle();
-			CreateFadeCtrl();
+			CreateFadeCtrl(startButton, goOptionButton);
 
-			SimpleSoundManager::ChangeBGM(L"TitleBGM1");
 		}
 		catch (...) {
 			throw;
@@ -95,27 +153,12 @@ namespace basecross {
 	}
 
 	void TitleStage::OnUpdate() {
-		ChangeStage();
 	}
 
-	void TitleStage::LoadData() {
-		std::wstring mediaDir = App::GetApp()->GetDataDirWString();
-		auto& app = App::GetApp();
-
-		std::wstring textureDir = mediaDir + L"Textures\\";
-		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
-		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
-		app->RegisterTexture(L"WallCake_Tx", textureDir + L"Tx_Cake.png");
-		app->RegisterTexture(L"WallCake2_Tx", textureDir + L"Tx_Cake2.png");
-		app->RegisterTexture(L"WallCake3_Tx", textureDir + L"Tx_Cake3.png");
-		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png");
-		app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
-		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
-		app->RegisterTexture(L"TitleChoco_Tx", textureDir + L"TitleChoco.png");
-		app->RegisterTexture(L"FadeChoco_Tx", textureDir + L"FadeChoco.png");
-		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
+	void TitleStage::GoOption()
+	{
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<SceneBase>(), L"ToOptionStage");
 	}
-
 }
 
 //endbasecross

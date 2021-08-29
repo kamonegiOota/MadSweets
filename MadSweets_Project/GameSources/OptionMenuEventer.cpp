@@ -11,6 +11,11 @@ namespace basecross
 
 	}
 
+	void OptionMenuEventer::OnFadeOut()
+	{
+		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
+	}
+
 	void OptionMenuEventer::GoTitleStage()
 	{
 		GameSaveManager::GetSoundSetting()->Save();

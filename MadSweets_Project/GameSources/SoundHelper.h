@@ -64,7 +64,7 @@ namespace basecross
 	/// <summary>
 	/// SoundItemと音量のペア
 	/// </summary>
-	struct SoundItemAndVolume
+	struct SoundData
 	{
 		/// <summary>
 		/// サウンドアイテム
@@ -74,17 +74,21 @@ namespace basecross
 		/// 音量
 		/// </summary>
 		float volume;
-
+		/// <summary>
+		/// 音素材のキー
+		/// </summary>
+		std::wstring soundKey;
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
-		SoundItemAndVolume();
+		SoundData();
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="soundItem">サウンドアイテム</param>
 		/// <param name="volume">音量</param>
-		SoundItemAndVolume(const std::shared_ptr<SoundItem>& soundItem, const float volume);
+		/// <param name="soundKey">音素材のキー</param>
+		SoundData(const std::shared_ptr<SoundItem>& soundItem, const float volume, const std::wstring& soundKey);
 	};
 
 
@@ -101,12 +105,12 @@ namespace basecross
 		/// <summary>
 		/// BGMのサウンドアイテムの音量
 		/// </summary>
-		static SoundItemAndVolume m_bgmSoundItemAndVolume;
+		static SoundData m_bgmSoundData;
 
 		/// <summary>
 		/// SEのサウンドアイテムと音量構造体
 		/// </summary>
-		static std::vector<SoundItemAndVolume> m_seSoundItemAndVolumes;
+		static std::vector<SoundData> m_seSoundDatas;
 
 		/// <summary>
 		/// サウンドアイテムを作成する
@@ -125,13 +129,13 @@ namespace basecross
 		/// </summary>
 		/// <param name="soundItemAndVolume">更新するサウンドアイテムと音量構造体</param>
 		/// <param name="baseVolume">更新する音量の基本音量</param>
-		static void SettingSoundVolume(const SoundItemAndVolume& soundItemAndVolume, const float baseVolume);
+		static void SettingSoundVolume(const SoundData& soundItemAndVolume, const float baseVolume);
 
 		/// <summary>
 		/// SEの管理データ配列を関数で更新する
 		/// </summary>
 		/// <param name="func">呼びたい関数</param>
-		static void UpdateSESoundItemAndVolumes(void(*func)(SoundItemAndVolume&));
+		static void UpdateSESoundItemAndVolumes(void(*func)(SoundData&));
 	public:
 		/// <summary>
 		/// BGMを切り替える
@@ -152,6 +156,13 @@ namespace basecross
 		/// BGMを終了停止する
 		/// </summary>
 		static void StopBGM();
+
+		/// <summary>
+		/// 渡されたキーのBGMが流れているか
+		/// </summary>
+		/// <param name="bgmName">BGMのキー</param>
+		/// <returns>流れているか</returns>
+		static bool IsPlayingBGM(const std::wstring& bgmName);
 
 		/// <summary>
 		/// SEを一回再生する
@@ -232,7 +243,7 @@ namespace basecross
 		/// <summary>
 		/// SoundItem管理配列
 		/// </summary>
-		std::vector<SoundItemAndVolume> m_soundItemAndVolumes;
+		std::vector<SoundData> m_soundItemAndVolumes;
 
 		/// <summary>
 		/// 音響計算で使うオブジェクトのエミッター構造体を作成する
@@ -251,7 +262,7 @@ namespace basecross
 		/// </summary>
 		/// <param name="soundItemAndVolome">サウンドアイテム</param>
 		/// <param name="dspSetting">更新用のデータ構造体</param>
-		void UpdateSoundItemAndVolume(const SoundItemAndVolume& soundItemAndVolome, const X3DAUDIO_DSP_SETTINGS& dspSetting) const;
+		void UpdateSoundItemAndVolume(const SoundData& soundItemAndVolome, const X3DAUDIO_DSP_SETTINGS& dspSetting) const;
 	public:
 		/// <summary>
 		/// コンストラクタ

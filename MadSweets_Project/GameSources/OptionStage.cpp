@@ -6,6 +6,7 @@
 #include"GameSaveManager.h"
 #include"SoundHelper.h"
 #include"GaugeLinkedButtonOperator.h"
+#include"AlphaFadeCtrl.h"
 
 namespace basecross
 {
@@ -79,6 +80,12 @@ namespace basecross
 
 		OptionSaveLoad();
 
+		auto backGroundObject = Instantiate<UIObject>();
+		auto image = backGroundObject->AddComponent<Image>();
+		image->SetTextureResource(L"TitleBack_Tx");
+		auto rectTransform = backGroundObject->GetComponent<RectTransform>();
+		rectTransform->SetRectSize(1280, 800);
+
 		float mainToSubLength = 100.0f;
 
 		auto soundManageMenu = CreateSoundManageMenuObject(Vec2(mainToSubLength, 0));
@@ -88,7 +95,7 @@ namespace basecross
 		auto buttonObject = Instantiate<MenuButtonObject>(Vec3(0, 100, 0), Quat::Identity(), mainOptionMenuObject);
 		auto soundManageButton = buttonObject->GetComponent<Button>();
 		soundManageButton->SetAllButtonImage(L"MenuSoundManage_TX");
-		auto rectTransform = buttonObject->GetComponent<RectTransform>();
+		rectTransform = buttonObject->GetComponent<RectTransform>();
 		rectTransform->SetRectSize(250, 100);
 		auto mainMenuButtonEventer = buttonObject->AddComponent<OptionMainMenuButtonEventer>(soundManageMenu);
 		soundManageButton->selectEvent.AddFunc(mainMenuButtonEventer, &OptionMainMenuButtonEventer::OnSelect);
@@ -108,6 +115,18 @@ namespace basecross
 
 		soundManageButton->SetVerticalNextSelectable(backButton);
 		backButton->SetVerticalBeforeSelectable(soundManageButton);
+
+		auto alphaFade = Instantiate<UIObject>()->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+		alphaFade->FadeInStart();
+
+		alphaFade = Instantiate<UIObject>()->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+		
+		alphaFade->AddEndAction(eventer, &OptionMenuEventer::GoTitleStage);
+
+		backButton->pushEvent.AddFunc(eventer, &OptionMenuEventer::OnFadeOut);
+		backButton->pushEvent.AddFunc(alphaFade, &AlphaFadeCtrl::FadeOutStart);
 
 		EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(soundManageButton);
 	}
