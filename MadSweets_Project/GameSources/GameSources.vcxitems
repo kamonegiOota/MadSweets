@@ -62,6 +62,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EyeSearchRange.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeChocoCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />

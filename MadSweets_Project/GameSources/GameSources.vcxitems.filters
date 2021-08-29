@@ -607,6 +607,9 @@
     <Filter Include="Maru\Object\BoardObj">
       <UniqueIdentifier>{52eb124e-1896-47a5-9139-537be43c58db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Component\EventSprite">
+      <UniqueIdentifier>{ab9adde1-5d41-4032-b5ce-0a90a017f6c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1089,6 +1092,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BoardObj.h">
       <Filter>Maru\Object\BoardObj</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventSprite.h">
+      <Filter>Maru\Component\EventSprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1519,6 +1525,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)BoardObj.cpp">
       <Filter>Maru\Object\BoardObj</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventSprite.cpp">
+      <Filter>Maru\Component\EventSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
