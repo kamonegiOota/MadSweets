@@ -34,6 +34,8 @@ namespace basecross
 
 		void SetGaugeFillType(const ImageFillType imageFillType);
 
+		void SetDiffuse(const Col4& diffuse);
+
 		void OnCreate() override;
 
 		void OnUpdate() override;
