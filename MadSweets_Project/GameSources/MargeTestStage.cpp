@@ -246,101 +246,18 @@ namespace basecross {
 	}
 
 	void MargeTestStage::TempLoad() {
-		std::wstring mediaDir = App::GetApp()->GetDataDirWString();
-		auto& app = App::GetApp();
-
-		std::wstring textureDir = mediaDir + L"Textures\\";
-		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
-		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
-		app->RegisterTexture(L"WallCake_Tx", textureDir + L"Tx_Cake.png");
-		app->RegisterTexture(L"WallCake2_Tx", textureDir + L"Tx_Cake2.png");
-		app->RegisterTexture(L"WallCake3_Tx", textureDir + L"Tx_Cake3.png");
-		app->RegisterTexture(L"WallSponge_Tx", textureDir + L"Tx_Sponge.png"); 
-		app->RegisterTexture(L"WallSponge2_Tx", textureDir + L"Tx_Sponge2.png");
-		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
-		app->RegisterTexture(L"Title_Tx", textureDir + L"TitleChoco.png"); 
-		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png"); 
-		app->RegisterTexture(L"Cokie_Tx", textureDir + L"Cokie.png");
-		app->RegisterTexture(L"Cokie_Crack_Tx", textureDir + L"Cokie_Crack.png");
-		app->RegisterTexture(L"Cokie_Crack_Last_Tx", textureDir + L"Cokie_Crack_Last.png");
-		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
-
-		//8/27追加分
-		app->RegisterTexture(L"Beans_Tx", textureDir + L"Beans.png");  //背景二階
-		//お菓子
-		app->RegisterTexture(L"SweetCokie_Tx", textureDir + L"Sweet_Cokie.png");
-		app->RegisterTexture(L"SweetEye_Tx", textureDir + L"Sweet_Eye.png");
-		app->RegisterTexture(L"SweetHand_Tx", textureDir + L"Sweet_Hand.png");
-		//タイトル
-		app->RegisterTexture(L"TitleBack_Tx", textureDir + L"TitleBack.png");
-		app->RegisterTexture(L"TitleStartPress_Tx", textureDir + L"TitleStartPress.png");
-
-		//デブゲージ系
-		app->RegisterTexture(L"ChubbyFont_Tx", textureDir + L"WeightTx_ChubbyFont.png");
-		app->RegisterTexture(L"ChubbyGauge_Tx", textureDir + L"WeightTx_ChubbylGauge.png");
-		app->RegisterTexture(L"HungerFont_Tx", textureDir + L"WeightTx_HungerFont.png");
-		app->RegisterTexture(L"HungerGauge_Tx", textureDir + L"WeightTx_HungerGauge.png");
-		app->RegisterTexture(L"NomalFont_Tx", textureDir + L"WeightTx_NomalFont.png");
-		app->RegisterTexture(L"NomalGauge_Tx", textureDir + L"WeightTx_NomalGauge.png");
-		app->RegisterTexture(L"SkinnyFont_Tx", textureDir + L"WeightTx_SkinnyFont.png");
-		app->RegisterTexture(L"SkinnyGauge_Tx", textureDir + L"WeightTx_SkinnyGauge.png");
-
-		//モデル
-		std::wstring modelDir = mediaDir + L"Models\\";
-		auto modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\StandStay\\", L"PlayerStandStay.bmf");
-		app->RegisterResource(L"PlayerStandStay", modelMesh);
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\CrouchStay\\", L"PlayerCrouchStay.bmf");
-		app->RegisterResource(L"PlayerCrouchStay", modelMesh);
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
-		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Handy\\", L"Handy_Walk.bmf");
-		app->RegisterResource(L"Handy_Walk", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Handy\\", L"Handy_Attack.bmf");
-		app->RegisterResource(L"Handy_Attack", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Handy\\", L"Handy_Search.bmf");
-		app->RegisterResource(L"Handy_Search", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Ashi\\", L"Ashi_Wark.bmf");
-		app->RegisterResource(L"Ashi_Walk", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Cara\\", L"Cara_Wark.bmf");
-		app->RegisterResource(L"Cara_Walk", modelMesh);
-
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Cara\\", L"Cara_Attack.bmf");
-		app->RegisterResource(L"Cara_Attack", modelMesh);
-
-		modelMesh = MeshResource::CreateStaticModelMesh(
-			modelDir + L"Stick\\", L"Stick.bmf");
-		app->RegisterResource(L"Stick", modelMesh);
-
-		modelMesh = MeshResource::CreateStaticModelMesh(
-			modelDir + L"Gra\\", L"Gra_Standby.bmf");
-		app->RegisterResource(L"Gra_Standby", modelMesh);
-
 		//音ロード
-		wstring SE_Dir = mediaDir + L"SEs\\";
-		App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
-		App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
+		//wstring SE_Dir = mediaDir + L"SEs\\";
+		//App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
+		//App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
 		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
