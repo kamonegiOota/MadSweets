@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "TableObject.h"
+#include "OriginalMeshObject.h"
 #include "EatenComponent.h"
 #include "SoundHelper.h"
 
@@ -15,7 +15,7 @@
 
 namespace basecross {
 
-	void TableObject::OnCreate() {
+	void OriginalMeshObject::OnCreate() {
 		StageObject::OnCreate();
 
 		//ƒƒbƒVƒ…‚Ì’²®—pMat

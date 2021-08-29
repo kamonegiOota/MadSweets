@@ -11,12 +11,12 @@
 
 namespace basecross {
 
-	class TableObject : public StageObject
+	class OriginalMeshObject : public StageObject
 	{
 		wstring m_mesh;
 
 	public:
-		TableObject(const std::shared_ptr<Stage>& stage,
+		OriginalMeshObject(const std::shared_ptr<Stage>& stage,
 			const std::wstring& name,
 			const Vec3& scale,
 			const Vec3& rotation,
