@@ -592,6 +592,21 @@
     <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator">
       <UniqueIdentifier>{00d1cdcf-6fcf-430d-9b04-49a2334368e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Object\StageObject\EatenObject">
+      <UniqueIdentifier>{589dcdd5-42e2-404a-af25-3d2ea49bdfba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Builder">
+      <UniqueIdentifier>{8d62cd14-0af9-4b24-8a4c-203a5f9d79b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Builder\VertexPCTParam">
+      <UniqueIdentifier>{42796824-c6d9-40b4-9f47-1ce2a960687d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\BillBoard">
+      <UniqueIdentifier>{18607b5a-c597-4c6a-b269-a39c683cf1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\BoardObj">
+      <UniqueIdentifier>{52eb124e-1896-47a5-9139-537be43c58db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1059,6 +1074,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.h">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EatenObject.h">
+      <Filter>Maru\Object\StageObject\EatenObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.h">
+      <Filter>Maru\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)VertexPCTParam.h">
+      <Filter>Maru\Builder\VertexPCTParam</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BillBoard.h">
+      <Filter>Maru\Component\BillBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BoardObj.h">
+      <Filter>Maru\Object\BoardObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1477,6 +1507,18 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiAnimator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EatenObject.cpp">
+      <Filter>Maru\Object\StageObject\EatenObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.cpp">
+      <Filter>Maru\Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BillBoard.cpp">
+      <Filter>Maru\Component\BillBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BoardObj.cpp">
+      <Filter>Maru\Object\BoardObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

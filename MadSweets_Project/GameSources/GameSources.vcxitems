@@ -28,6 +28,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Bezier.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BezierTransitioner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BillBoard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BoardObj.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
@@ -47,6 +50,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)DelegateSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
@@ -163,6 +167,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)VertexPCTParam.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
@@ -182,6 +187,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Bezier.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BezierTransitioner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BillBoard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BoardObj.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)BuildeVertexPCTSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CalucEscapeRoute.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
@@ -197,6 +205,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EarBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
