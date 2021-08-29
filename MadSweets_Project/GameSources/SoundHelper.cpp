@@ -63,15 +63,16 @@ namespace basecross
 
 	// SoundItemVolume ------------------------------
 
-	SoundItemAndVolume::SoundItemAndVolume() :
-		SoundItemAndVolume(nullptr, 0.0f)
+	SoundData::SoundData() :
+		SoundData(nullptr, 0.0f, L"")
 	{
 
 	}
 
-	SoundItemAndVolume::SoundItemAndVolume(const std::shared_ptr<SoundItem>& soundItem, const float volume) :
+	SoundData::SoundData(const std::shared_ptr<SoundItem>& soundItem, const float volume, const std::wstring& soundKey) :
 		soundItem(soundItem),
-		volume(volume)
+		volume(volume),
+		soundKey(soundKey)
 	{
 
 	}
@@ -81,9 +82,9 @@ namespace basecross
 
 	bool SimpleSoundManager::m_canSetting = false;
 
-	SoundItemAndVolume SimpleSoundManager::m_bgmSoundItemAndVolume;
+	SoundData SimpleSoundManager::m_bgmSoundData;
 
-	std::vector<SoundItemAndVolume> SimpleSoundManager::m_seSoundItemAndVolumes;
+	std::vector<SoundData> SimpleSoundManager::m_seSoundDatas;
 
 	std::shared_ptr<SoundItem> SimpleSoundManager::CreateSoundItem(const SoundClip& soundClip)
 	{
@@ -107,33 +108,33 @@ namespace basecross
 
 	void SimpleSoundManager::UpdateSoundItemVolume()
 	{
-		if (m_bgmSoundItemAndVolume.soundItem->m_SourceVoice)
+		if (m_bgmSoundData.soundItem->m_SourceVoice)
 		{
-			SettingSoundVolume(m_bgmSoundItemAndVolume, GameSaveManager::GetSoundSetting()->GetBGMVolume());
+			SettingSoundVolume(m_bgmSoundData, GameSaveManager::GetSoundSetting()->GetBGMVolume());
 		}
 
 		auto seUpdateFunc =
-			[](SoundItemAndVolume& soundItemAndVolume) {SettingSoundVolume(soundItemAndVolume, GameSaveManager::GetSoundSetting()->GetSEVolume()); };
+			[](SoundData& soundItemAndVolume) {SettingSoundVolume(soundItemAndVolume, GameSaveManager::GetSoundSetting()->GetSEVolume()); };
 
 		UpdateSESoundItemAndVolumes(seUpdateFunc);
 	}
 
-	void SimpleSoundManager::SettingSoundVolume(const SoundItemAndVolume& soundItemAndVolume, const float baseVolume)
+	void SimpleSoundManager::SettingSoundVolume(const SoundData& soundItemAndVolume, const float baseVolume)
 	{
 		soundItemAndVolume.soundItem->m_SourceVoice->SetVolume(soundItemAndVolume.volume * baseVolume);
 	}
 
-	void SimpleSoundManager::UpdateSESoundItemAndVolumes(void(*func)(SoundItemAndVolume&))
+	void SimpleSoundManager::UpdateSESoundItemAndVolumes(void(*func)(SoundData&))
 	{
-		auto it = m_seSoundItemAndVolumes.begin();
+		auto it = m_seSoundDatas.begin();
 
-		while (it != m_seSoundItemAndVolumes.end())
+		while (it != m_seSoundDatas.end())
 		{
 			auto& soundItemAndVolume = (*it);
 
 			if (!soundItemAndVolume.soundItem->m_SourceVoice)
 			{
-				it = m_seSoundItemAndVolumes.erase(it);
+				it = m_seSoundDatas.erase(it);
 				continue;
 			}
 
@@ -145,14 +146,16 @@ namespace basecross
 
 	void SimpleSoundManager::ChangeBGM(const std::wstring& bgmName, const float volume)
 	{
-		auto& soundItem = m_bgmSoundItemAndVolume.soundItem;
+		auto& soundItem = m_bgmSoundData.soundItem;
 
 		if (soundItem && soundItem->m_SourceVoice)
 		{
 			soundItem->m_SourceVoice->Stop();
 		}
 
-		m_bgmSoundItemAndVolume.volume = volume;
+		m_bgmSoundData.volume = volume;
+
+		m_bgmSoundData.soundKey = bgmName;
 
 		SoundClip soundClip = SoundClip(bgmName, true, volume * GameSaveManager::GetSoundSetting()->GetBGMVolume());
 
@@ -161,7 +164,7 @@ namespace basecross
 
 	void SimpleSoundManager::PauseBGM()
 	{
-		auto& soundItem = m_bgmSoundItemAndVolume.soundItem;
+		auto& soundItem = m_bgmSoundData.soundItem;
 
 		if (!soundItem || !soundItem->m_SourceVoice)
 		{
@@ -173,7 +176,7 @@ namespace basecross
 
 	void SimpleSoundManager::UnPauseBGM()
 	{
-		auto& soundItem = m_bgmSoundItemAndVolume.soundItem;
+		auto& soundItem = m_bgmSoundData.soundItem;
 
 		if (!soundItem || !soundItem->m_SourceVoice)
 		{
@@ -185,7 +188,7 @@ namespace basecross
 
 	void SimpleSoundManager::StopBGM()
 	{
-		auto& soundItem = m_bgmSoundItemAndVolume.soundItem;
+		auto& soundItem = m_bgmSoundData.soundItem;
 
 		if (!soundItem || !soundItem->m_SourceVoice)
 		{
@@ -196,6 +199,11 @@ namespace basecross
 		soundItem->m_SourceVoice->FlushSourceBuffers();
 	}
 
+	bool SimpleSoundManager::IsPlayingBGM(const std::wstring& bgmName)
+	{
+		return m_bgmSoundData.soundKey == bgmName;
+	}
+
 	void SimpleSoundManager::OnePlaySE(const wstring& soundName, const float volume)
 	{
 		auto& xAudio2Manager = App::GetApp()->GetXAudio2Manager();
@@ -204,15 +212,15 @@ namespace basecross
 
 		auto soundItem = xAudio2Manager->Start(soundName, 0, setVolume * GameSaveManager::GetSoundSetting()->GetSEVolume());
 
-		auto soundItemAndVolume = SoundItemAndVolume(soundItem, setVolume);
+		auto soundItemAndVolume = SoundData(soundItem, setVolume, soundName);
 
-		m_seSoundItemAndVolumes.push_back(soundItemAndVolume);
+		m_seSoundDatas.push_back(soundItemAndVolume);
 	}
 
 	void SimpleSoundManager::PauseSE()
 	{
 		auto seUpdateFunc =
-			[](SoundItemAndVolume& soundItemAndVolume) {soundItemAndVolume.soundItem->m_SourceVoice->Stop(); };
+			[](SoundData& soundItemAndVolume) {soundItemAndVolume.soundItem->m_SourceVoice->Stop(); };
 
 		UpdateSESoundItemAndVolumes(seUpdateFunc);
 	}
@@ -220,7 +228,7 @@ namespace basecross
 	void SimpleSoundManager::UnPauseSE()
 	{
 		auto seUpdateFunc =
-			[](SoundItemAndVolume& soundItemAndVolume) {soundItemAndVolume.soundItem->m_SourceVoice->Start(); };
+			[](SoundData& soundItemAndVolume) {soundItemAndVolume.soundItem->m_SourceVoice->Start(); };
 
 		UpdateSESoundItemAndVolumes(seUpdateFunc);
 	}
@@ -228,7 +236,7 @@ namespace basecross
 	void SimpleSoundManager::StopSE()
 	{
 		auto seUpdateFunc =
-			[](SoundItemAndVolume& soundItemAndVolume)
+			[](SoundData& soundItemAndVolume)
 		{
 			soundItemAndVolume.soundItem->m_SourceVoice->Stop();
 			soundItemAndVolume.soundItem->m_SourceVoice->FlushSourceBuffers();
@@ -360,7 +368,7 @@ namespace basecross
 	}
 
 
-	void SoundEmitter::UpdateSoundItemAndVolume(const SoundItemAndVolume& soundItemAndVolume, const X3DAUDIO_DSP_SETTINGS& dspSetting) const
+	void SoundEmitter::UpdateSoundItemAndVolume(const SoundData& soundItemAndVolume, const X3DAUDIO_DSP_SETTINGS& dspSetting) const
 	{
 		auto& sourceVoice = soundItemAndVolume.soundItem->m_SourceVoice;
 
@@ -401,7 +409,7 @@ namespace basecross
 		float volume = MyMath::Clamp(soundClip.volume, 0.0f, 1.0f);
 		auto soundItem = App::GetApp()->GetXAudio2Manager()->Start(soundClip.soundName, loopCount, volume * GameSaveManager::GetSoundSetting()->GetSEVolume());
 
-		auto soundItemAndVolume = SoundItemAndVolume(soundItem, volume);
+		auto soundItemAndVolume = SoundData(soundItem, volume, soundClip.soundName);
 
 		auto& dspSetting = m_listener->SoundCalculate(CreateEmitter(soundItem));
 
