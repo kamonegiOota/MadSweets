@@ -84,12 +84,15 @@ namespace basecross {
 
 	void MargeTestStage::OnCreate() {
 		try {
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//DebugObject::sm_isResetDelta = true;
+
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			CreateMap(L"TempStage.csv");
+			//CreateMap(L"TempStage.csv");
 			//CreateMap(L"Stage1.csv");
-			//CreateMap(L"Stage2.csv");
+			CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
@@ -141,8 +144,7 @@ namespace basecross {
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
-			//DebugObject::sm_isResetDelta = true;
+
 		}
 		catch (...) {
 			throw;
