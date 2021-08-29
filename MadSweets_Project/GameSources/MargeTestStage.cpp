@@ -45,6 +45,8 @@
 #include "LoadStageTrigger.h"
 #include "LoadStageTriggerObject.h"
 
+#include "EatenObject.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -90,9 +92,9 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			TempLoad();
-			//CreateMap(L"TempStage.csv");
+			CreateMap(L"TempStage.csv");
 			//CreateMap(L"Stage1.csv");
-			CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
@@ -126,7 +128,7 @@ namespace basecross {
 			CreateEnemy(player);
 
 			//食べ物の生成
-			CreateEatItems();
+			//CreateEatItems();
 
 			//ライトの生成
 			CreatePointLight();
@@ -202,6 +204,7 @@ namespace basecross {
 
 		map->CreateObject<CookieHideObject>(L"WallHide", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
+		map->CreateObject<EatenObject>(L"EatenObject",offset);
 
 		for (auto obj : GetGameObjectVec()) {
 			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
@@ -432,14 +435,14 @@ namespace basecross {
 			//{-21.0f,1.0f,-20.0f}
 		};
 
-		std::shared_ptr<GameObject> enemy;
-		for (auto& obj : GetGameObjectVec()) {
-			auto ene = obj->GetComponent<ChaseEnemyObject>(false);
-			if (ene) {
-				enemy = ene;
-				break;
-			}
-		}
+		//std::shared_ptr<GameObject> enemy;
+		//for (auto& obj : GetGameObjectVec()) {
+		//	auto ene = obj->GetComponent<ChaseEnemyObject>(false);
+		//	if (ene) {
+		//		enemy = ene;
+		//		break;
+		//	}
+		//}
 
 		for (auto& pos : poss) {
 			pos.y += -0.5f;
