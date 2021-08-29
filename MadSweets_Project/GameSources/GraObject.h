@@ -13,6 +13,8 @@ namespace basecross {
 
 	class GraObject : public GameObject 
 	{
+		void CreatePlowlingRoute();
+		void CreateTactile();  //•Ç‰ñ”ğ—p‚ÌGŠo‚Ì¶¬
 
 	public:
 		GraObject(const std::shared_ptr<Stage>& stage)
