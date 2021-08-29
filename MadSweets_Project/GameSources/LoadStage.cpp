@@ -32,7 +32,11 @@ namespace basecross
 		ResourceLoadData(L"MenuSoundManage_TX", L"MenuSoundManage.png"),
 		ResourceLoadData(L"OptionBGMVolume_TX", L"OptionBGMVolume.png"),
 		ResourceLoadData(L"OptionSEVolume_TX", L"OptionSEVolume.png"),
-		ResourceLoadData(L"OptionGauge_TX", L"OptionGauge.png")
+		ResourceLoadData(L"OptionGauge_TX", L"OptionGauge.png"),
+		ResourceLoadData(L"GameOverBackGround_TX", L"GameOverBackGround.png"),
+		ResourceLoadData(L"GameOverImage_TX", L"GameOverImage.png"),
+		ResourceLoadData(L"Retry_TX", L"Retry.png"),
+		ResourceLoadData(L"BackTitle_TX", L"BackTitle.png")
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_seResourceLoadDatas =
