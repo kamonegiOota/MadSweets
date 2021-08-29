@@ -47,6 +47,12 @@
 
 #include "EatenObject.h"
 
+// 板橋 追加分 ----------------
+
+#include "CameraHelper.h"
+
+// ----------------------------
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -91,6 +97,13 @@ namespace basecross {
 
 			//ビューとライトの作成
 			CreateViewLight();
+
+			// 板橋 追加分 ---------------
+
+			AddGameObject<CameraObject>();
+
+			// ---------------------------
+
 			TempLoad();
 			CreateMap(L"TempStage.csv");
 			//CreateMap(L"Stage1.csv");
