@@ -130,6 +130,9 @@ namespace basecross {
 				if (!collision) {
 					continue;
 				}
+				if (collision->GetUpdateActive() == false) {
+					continue;
+				}
 
 				//対象外のオブジェクトだったら
 				if (IsExclute(object, excluteObjs)) {
@@ -183,6 +186,10 @@ namespace basecross {
 		bool MyUtility::IsExclute(const shared_ptr<GameObject>& targetObj,const vector<shared_ptr<GameObject>>& excluteObjs) {
 			for (auto& exclute : excluteObjs) {
 				if (targetObj == exclute) {
+					return true;
+				}
+				
+				if (targetObj->GetParent() == exclute) {
 					return true;
 				}
 			}

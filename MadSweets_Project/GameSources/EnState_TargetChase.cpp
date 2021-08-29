@@ -12,6 +12,7 @@
 #include "TargetChase.h"
 #include "TargetEscape.h"
 #include "TargetProbe.h"
+#include "PlowlingMove.h"
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
 #include "CheckTargetPos.h"
@@ -27,6 +28,7 @@ namespace basecross {
 
 		AddChangeComp(chase, true, false);
 		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), false, false);
+		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
 		//AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
 		AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);

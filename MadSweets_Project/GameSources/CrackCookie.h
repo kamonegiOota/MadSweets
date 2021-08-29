@@ -18,13 +18,22 @@ namespace basecross {
 	/// </summary>
 	class CrackCookie : public Component
 	{
+		enum class CrackState {
+			Normal,
+			Crack,
+			Crash,
+		};
+
 		/// <summary>
 		/// ‘Ï‹v“x
 		/// </summary>
 		float m_durability = 2.0f;
+		float m_maxDurability = m_durability;
+		vector<wstring> m_textures;
 
 		float CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr);
 		void DestProcess();
+		void TextureCheck();
 		void Crack(const float& damage);
 
 	public:
@@ -33,7 +42,7 @@ namespace basecross {
 			:Component(objPtr)
 		{}
 
-		void OnCreate() override{}
+		void OnCreate() override;
 		void OnUpdate() override{}
 
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;

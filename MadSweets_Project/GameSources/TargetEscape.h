@@ -7,18 +7,23 @@
 
 #pragma once
 
+#include "BaseUseVelocity.h"
+class BaseUseVelocity;
+
 namespace basecross {
 
 	/// <summary>
 	/// ターゲットから逃げるコンポーネント
 	/// </summary>
-	class TargetEscape : public Component
+	class TargetEscape : public Component , public BaseUseVelocity
 	{
 		int m_outSightCount = 0;     //視界から外れた回数をカウント
 		int m_alertReleaseNum = 2;   //視界から何回外れたら警戒を解除するか  
 
 		std::shared_ptr<GameObject> m_target;
 
+		void EyeSearch(); //視線管理
+		void Rotation();
 		void Move();
 		void TargetRayCheck();   //ターゲットが視界内にいるかどうか判断
 		void ChangeStateCheck(); //ステートの変更が必要なら変更する。

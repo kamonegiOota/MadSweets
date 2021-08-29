@@ -30,9 +30,9 @@ namespace basecross {
 		}
 
 		AddChangeComp(targetEscape, true, false);
-		AddChangeComp(astar, true, false);
-		AddChangeComp(obj->GetComponent<PlowlingMove>(), false, false);
-		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(), false, false);
+		//AddChangeComp(astar, true, false);
+		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
+		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), false, false);
 
 		StartChangeComps();
 

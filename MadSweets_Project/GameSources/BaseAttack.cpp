@@ -9,6 +9,8 @@
 #include "BaseAttack.h"
 #include "MyUtility.h"
 
+#include "DebugObject.h"
+
 namespace basecross {
 
 	bool BaseAttack::IsAttackRange(const bool isObstacleChek) {

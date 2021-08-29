@@ -7,8 +7,8 @@
 #include "Project.h"
 
 #include "TitleFadeCtrl.h"
-
 #include "TitleNameCtrl.h"
+#include "AlphaFadeCtrl.h"
 
 #include "MyUtility.h"
 
@@ -23,12 +23,14 @@ namespace basecross {
 		//欲しい情報の取得
 		auto nameCtrl = maru::MyUtility::GetComponent<TitleNameCtrl>();
 		auto fadeCtrl = maru::MyUtility::GetComponent<FadeChocoCtrl>();
+		auto alphaCtrl = maru::MyUtility::GetComponent<AlphaFadeCtrl>();
 
 		//それぞれの終了時に呼び出したい関数セット
 		nameCtrl->FadeOutStart();
 		nameCtrl->AddEndAction(fadeCtrl, &FadeChocoCtrl::FadeOutStart);
-		fadeCtrl->AddEndAction(GetThis<TitleFadeCtrl>(), &TitleFadeCtrl::ChangeStage);
-		
+		fadeCtrl->AddEndAction(alphaCtrl, &AlphaFadeCtrl::FadeOutStart);
+		alphaCtrl->AddEndAction(GetThis<TitleFadeCtrl>(), &TitleFadeCtrl::ChangeStage);
+
 		//後処理
 		m_titleNameCtrl = nameCtrl;
 		m_fadeChocoCtrl = fadeCtrl;

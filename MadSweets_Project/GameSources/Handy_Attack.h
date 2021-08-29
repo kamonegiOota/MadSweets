@@ -26,7 +26,7 @@ namespace basecross {
 		void ChangeAttackState() override;
 		void ChangeAttackAnimation();
 
-		//void UpdateAttack();
+		void Rotation(const Vec3& direction);
 
 	public:
 		Handy_Attack(const std::shared_ptr<GameObject>& objPtr);

@@ -14,10 +14,14 @@
 #include "TitleNameCtrl.h"
 #include "TitleNameObject.h"
 #include "TitleFadeCtrl.h"
+#include "AlphaFadeCtrl.h"
 #include "FadeChocoCtrl.h"
 #include "MyUtility.h"
 
 #include "SoundHelper.h"
+
+//#include "AlphaFadeObject.h"
+//#include "AlphaFadeCtrl.h"
 
 namespace basecross {
 
@@ -47,9 +51,10 @@ namespace basecross {
 	void TitleStage::CreateFadeCtrl() {
 		//TitleFadeCtrlを生成
 		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
-
 		//チョコフェードの実装
 		Instantiate<GameObject>()->AddComponent<FadeChocoCtrl>();
+		//アルファフェードの実装
+		Instantiate<GameObject>()->AddComponent<AlphaFadeCtrl>();
 	}
 
 	void TitleStage::ChangeStage() {
@@ -59,6 +64,8 @@ namespace basecross {
 		if (key.IsInputDown(itbs::Input::KeyCode::F)) {
 			auto fade = maru::MyUtility::GetComponent<TitleFadeCtrl>();
 			fade->FadeStart();
+
+			//Instantiate<AlphaFadeObject>()->GetComponent<AlphaFadeCtrl>()->FadeOutStart();
 		}
 	}
 
@@ -99,7 +106,7 @@ namespace basecross {
 		app->RegisterTexture(L"TitleFont_Tx", textureDir + L"TitleFont.png");
 		app->RegisterTexture(L"TitleChoco_Tx", textureDir + L"TitleChoco.png");
 		app->RegisterTexture(L"FadeChoco_Tx", textureDir + L"FadeChoco.png");
-
+		app->RegisterTexture(L"FadeBack_Tx", textureDir + L"FadeBack.png");
 	}
 
 }

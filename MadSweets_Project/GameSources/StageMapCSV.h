@@ -10,6 +10,9 @@
 #include "LoadData.h"
 #include "DebugObject.h"
 
+#include "LoadStageTrigger.h"
+#include "EatenComponent.h"
+
 namespace basecross {
 
 	class StageMapCSV : public GameObject
@@ -21,11 +24,16 @@ namespace basecross {
 			rotX, rotY, rotZ,
 			posX, posY, posZ,
 			texture,
-			TorRotDirect,
-			TorRotDegree,
-			TorFrontRoom,
-			TorBackRoom,
-			tiling,
+		};
+
+		enum LoadStageCsvIndex {
+			nextMap = CsvIndex::texture,
+			nextPosX, nextPosY, nextPosZ,
+		};
+
+		enum EatenObjIndex {
+			weight = CsvIndex::texture + 1,
+			calorie,
 		};
 
 		enum RotBoxIndex {
@@ -34,9 +42,9 @@ namespace basecross {
 
 		wstring m_folderName;
 		wstring m_fileName;
-		CsvFile m_csvFile;
+		map<wstring, CsvFile> m_csvFiles;
 
-		std::vector<std::shared_ptr<StageObject>> m_stageObjs;
+		map<wstring ,std::vector<std::shared_ptr<StageObject>>> m_stageObjs;
 
 	public:
 
@@ -55,17 +63,25 @@ namespace basecross {
 		//void CreateMap();
 
 		void ResetMap();
+		/// <summary>
+		/// マップの切り替え
+		/// </summary>
+		/// <param name="fileName">切り替えたいマップの情報の入ったcsvファイル名</param>
+		/// <returns>マップを新規作成する必要がある場合はtureを返す。</returns>
+		bool ChangeMap(const wstring& fileName);
 
-		void AddStageObject(const std::shared_ptr<StageObject>& obj) {
-			m_stageObjs.push_back(obj);
+		void StageObjectActiveChange(const bool isActive);
+
+		void AddStageObject(const wstring& fileName,const std::shared_ptr<StageObject>& obj) {
+			m_stageObjs[fileName].push_back(obj);
 		}
 
 		//マップ上にオブジェクトを生成
 		template<class T>
-		void CreateObject(const wstring& objName)
+		void CreateObject(const wstring& objName, const Vec3& offset = Vec3(0.0f))
 		{
 			vector<wstring> lineVec;
-			m_csvFile.GetSelect(lineVec, 0, objName);
+			m_csvFiles[m_fileName].GetSelect(lineVec, 0, objName);
 
 			for (auto& line : lineVec)
 			{
@@ -91,11 +107,32 @@ namespace basecross {
 				);
 
 				wstring texture = tokens[CsvIndex::texture].c_str();  //テクスチャの取得
+				
+				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
+				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
 
-				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position, texture);  //オブジェクトの生成
-				m_stageObjs.push_back(stageObj);  //オブジェクトを自分のリストに追加
-				//InstantiateSRP<FixedBox>(scale,rotation,position,L"FixedBox");
+				//トリガーだったら
+				auto loadStageTrigger = stageObj->GetComponent<LoadStageTrigger>(false);
+				if (loadStageTrigger) {
+					Vec3 pos(  //ポジション取得
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosX].c_str())),
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosY].c_str())),
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosZ].c_str()))
+					);
+					//DebugObject::AddVector(pos);
+					loadStageTrigger->SetMovePosition(pos);
+				}
 
+				//食べるアイテムだったら
+				auto eaten = stageObj->GetComponent<EatenComponent>(false);
+				if (eaten) {
+					EatenData data(
+						static_cast<float>(_wtof(tokens[EatenObjIndex::weight].c_str())),
+						static_cast<float>(_wtof(tokens[EatenObjIndex::calorie].c_str()))
+					);
+
+					eaten->SetEatenData(data);
+				}
 			}
 		}
 	};
