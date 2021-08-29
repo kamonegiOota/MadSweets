@@ -14,6 +14,7 @@
 #include "TitleNameCtrl.h"
 #include "TitleNameObject.h"
 #include "TitleFadeCtrl.h"
+#include "AlphaFadeCtrl.h"
 #include "FadeChocoCtrl.h"
 #include "MyUtility.h"
 
@@ -50,9 +51,10 @@ namespace basecross {
 	void TitleStage::CreateFadeCtrl() {
 		//TitleFadeCtrlを生成
 		Instantiate<GameObject>()->AddComponent<TitleFadeCtrl>();
-
 		//チョコフェードの実装
 		Instantiate<GameObject>()->AddComponent<FadeChocoCtrl>();
+		//アルファフェードの実装
+		Instantiate<GameObject>()->AddComponent<AlphaFadeCtrl>();
 	}
 
 	void TitleStage::ChangeStage() {
