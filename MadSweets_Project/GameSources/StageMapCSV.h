@@ -10,6 +10,8 @@
 #include "LoadData.h"
 #include "DebugObject.h"
 
+#include "LoadStageTrigger.h"
+
 namespace basecross {
 
 	class StageMapCSV : public GameObject
@@ -21,7 +23,11 @@ namespace basecross {
 			rotX, rotY, rotZ,
 			posX, posY, posZ,
 			texture,
-			nextMap,
+		};
+
+		enum LoadStageCsvIndex {
+			nextMap = CsvIndex::texture,
+			nextPosX, nextPosY, nextPosZ,
 		};
 
 		enum RotBoxIndex {
@@ -98,6 +104,17 @@ namespace basecross {
 				
 				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
 				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
+
+				auto loadStageTrigger = stageObj->GetComponent<LoadStageTrigger>(false);
+				if (loadStageTrigger) {
+					Vec3 pos(  //ポジション取得
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosX].c_str())),
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosY].c_str())),
+						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosZ].c_str()))
+					);
+					DebugObject::AddVector(pos);
+					loadStageTrigger->SetMovePosition(pos);
+				}
 			}
 		}
 	};
