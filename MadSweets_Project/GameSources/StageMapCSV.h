@@ -11,6 +11,7 @@
 #include "DebugObject.h"
 
 #include "LoadStageTrigger.h"
+#include "EatenComponent.h"
 
 namespace basecross {
 
@@ -28,6 +29,11 @@ namespace basecross {
 		enum LoadStageCsvIndex {
 			nextMap = CsvIndex::texture,
 			nextPosX, nextPosY, nextPosZ,
+		};
+
+		enum EatenObjIndex {
+			weight = CsvIndex::texture + 1,
+			calorie,
 		};
 
 		enum RotBoxIndex {
@@ -115,6 +121,17 @@ namespace basecross {
 					);
 					//DebugObject::AddVector(pos);
 					loadStageTrigger->SetMovePosition(pos);
+				}
+
+				//食べるアイテムだったら
+				auto eaten = stageObj->GetComponent<EatenComponent>(false);
+				if (eaten) {
+					EatenData data(
+						static_cast<float>(_wtof(tokens[EatenObjIndex::weight].c_str())),
+						static_cast<float>(_wtof(tokens[EatenObjIndex::calorie].c_str()))
+					);
+
+					eaten->SetEatenData(data);
 				}
 			}
 		}
