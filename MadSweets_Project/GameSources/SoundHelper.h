@@ -1,8 +1,34 @@
 #pragma once
 #include<x3daudio.h>
+#include"SaveHelper.h"
 
 namespace basecross
 {
+	struct SoundSettingData
+	{
+		float bgmVolume;
+		float seVolume;
+	};
+
+	class SoundSetting : public SavableBase<SoundSettingData>
+	{
+		SoundSettingData m_soundSettingData;
+
+	public:
+		itbs::Utility::Delegate<void()> changeEvent;
+
+		SoundSetting(const std::wstring& filePath);
+
+		void SetBGMVolume(const float bgmVolume);
+		void SetSEVolume(const float seVolume);
+
+		void AddBGMVolume(const float addVolume);
+		void AddSEVolume(const float addVolume);
+
+		float GetBGMVolume() const;
+		float GetSEVolume() const;
+	};
+
 	/// <summary>
 	/// サウンド再生用データ
 	/// </summary>

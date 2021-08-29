@@ -1,11 +1,54 @@
 #include"SoundHelper.h"
 #include"MathHelper.h"
-#include"SoundSetting.h"
+#include"GameSaveManager.h"
 
 using itbs::Math::MyMath;
 
 namespace basecross
 {
+	// SoundSetting ---------------------------
+	
+	SoundSetting::SoundSetting(const std::wstring& filePath) :
+		SavableBase(m_soundSettingData, filePath)
+	{
+		m_soundSettingData.bgmVolume = 1.0f;
+		m_soundSettingData.seVolume = 1.0f;
+	}
+	
+	void SoundSetting::SetBGMVolume(const float bgmVolume)
+	{
+		m_soundSettingData.bgmVolume = MyMath::Clamp(bgmVolume, 0.0f, 1.0f);
+		changeEvent();
+	}
+
+	void SoundSetting::SetSEVolume(const float seVolume)
+	{
+		m_soundSettingData.seVolume = MyMath::Clamp(seVolume, 0.0f, 1.0f);
+		changeEvent();
+	}
+
+	void SoundSetting::AddBGMVolume(const float addVolume)
+	{
+		SetBGMVolume(m_soundSettingData.bgmVolume + addVolume);
+		changeEvent();
+	}
+
+	void SoundSetting::AddSEVolume(const float addVolume)
+	{
+		SetSEVolume(m_soundSettingData.seVolume + addVolume);
+		changeEvent();
+	}
+
+	float SoundSetting::GetBGMVolume() const
+	{
+		return m_soundSettingData.bgmVolume;
+	}
+
+	float SoundSetting::GetSEVolume() const
+	{
+		return m_soundSettingData.seVolume;
+	}
+
 	// SoundClip ------------------------------
 	
 	SoundClip::SoundClip() : SoundClip(L"", false, 1.0f) {}
@@ -46,7 +89,7 @@ namespace basecross
 	{
 		if (!m_canSetting)
 		{
-			SoundSetting::changeEventDelegate.AddFunc(UpdateSoundItemVolume);
+			GameSaveManager::GetSoundSetting()->changeEvent.AddFunc(UpdateSoundItemVolume);
 
 			m_canSetting = true;
 		}
@@ -66,11 +109,11 @@ namespace basecross
 	{
 		if (m_bgmSoundItemAndVolume.soundItem->m_SourceVoice)
 		{
-			SettingSoundVolume(m_bgmSoundItemAndVolume, SoundSetting::GetBGMScale());
+			SettingSoundVolume(m_bgmSoundItemAndVolume, GameSaveManager::GetSoundSetting()->GetBGMVolume());
 		}
 
 		auto seUpdateFunc =
-			[](SoundItemAndVolume& soundItemAndVolume) {SettingSoundVolume(soundItemAndVolume, SoundSetting::GetSEScale()); };
+			[](SoundItemAndVolume& soundItemAndVolume) {SettingSoundVolume(soundItemAndVolume, GameSaveManager::GetSoundSetting()->GetSEVolume()); };
 
 		UpdateSESoundItemAndVolumes(seUpdateFunc);
 	}
@@ -111,7 +154,7 @@ namespace basecross
 
 		m_bgmSoundItemAndVolume.volume = volume;
 
-		SoundClip soundClip = SoundClip(bgmName, true, volume * SoundSetting::GetBGMScale());
+		SoundClip soundClip = SoundClip(bgmName, true, volume * GameSaveManager::GetSoundSetting()->GetBGMVolume());
 
 		soundItem = CreateSoundItem(soundClip);
 	}
@@ -159,7 +202,7 @@ namespace basecross
 
 		auto setVolume = MyMath::Clamp(volume, 0.0f, 1.0f);
 
-		auto soundItem = xAudio2Manager->Start(soundName, 0, setVolume * SoundSetting::GetSEScale());
+		auto soundItem = xAudio2Manager->Start(soundName, 0, setVolume * GameSaveManager::GetSoundSetting()->GetSEVolume());
 
 		auto soundItemAndVolume = SoundItemAndVolume(soundItem, setVolume);
 
@@ -342,7 +385,7 @@ namespace basecross
 		filterParam.OneOverQ = 1.0f;
 		sourceVoice->SetFilterParameters(&filterParam);
 
-		sourceVoice->SetVolume(soundItemAndVolume.volume * SoundSetting::GetSEScale());
+		sourceVoice->SetVolume(soundItemAndVolume.volume * GameSaveManager::GetSoundSetting()->GetSEVolume());
 	}
 
 	void SoundEmitter::PlaySoundClip(const SoundClip& soundClip)
@@ -356,7 +399,7 @@ namespace basecross
 
 		UINT32 loopCount = soundClip.isLoop ? XAUDIO2_LOOP_INFINITE : 0;
 		float volume = MyMath::Clamp(soundClip.volume, 0.0f, 1.0f);
-		auto soundItem = App::GetApp()->GetXAudio2Manager()->Start(soundClip.soundName, loopCount, volume * SoundSetting::GetSEScale());
+		auto soundItem = App::GetApp()->GetXAudio2Manager()->Start(soundClip.soundName, loopCount, volume * GameSaveManager::GetSoundSetting()->GetSEVolume());
 
 		auto soundItemAndVolume = SoundItemAndVolume(soundItem, volume);
 
