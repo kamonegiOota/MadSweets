@@ -113,7 +113,7 @@ namespace basecross {
 						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosY].c_str())),
 						static_cast<float>(_wtof(tokens[LoadStageCsvIndex::nextPosZ].c_str()))
 					);
-					DebugObject::AddVector(pos);
+					//DebugObject::AddVector(pos);
 					loadStageTrigger->SetMovePosition(pos);
 				}
 			}
