@@ -39,6 +39,7 @@
 #include "CaraObject.h"
 #include "AshiObject.h"
 #include "GraObject.h"
+#include "TableObject.h"
 
 #include "WallEvasion.h"
 
@@ -105,9 +106,9 @@ namespace basecross {
 			// ---------------------------
 
 			TempLoad();
-			CreateMap(L"TempStage.csv");
+			//CreateMap(L"TempStage.csv");
 			//CreateMap(L"Stage1.csv");
-			//CreateMap(L"Stage2.csv");
+			CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
 
 			//ÉQÅ[ÉWÇÃê∂ê¨
@@ -159,7 +160,9 @@ namespace basecross {
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
-
+			auto table = Instantiate<GameObject>();
+			table->AddComponent<PNTPointDraw>()->SetMeshResource(L"Table");
+			table->GetComponent<Transform>()->SetScale(Vec3(1.0f,0.8f,1.0f));
 		}
 		catch (...) {
 			throw;
@@ -201,6 +204,8 @@ namespace basecross {
 			map->CreateObject<FixedBox>(objName,offset);
 		}
 
+		map->CreateObject<TableObject>(L"Chair", offset);
+		map->CreateObject<TableObject>(L"Table",offset);
 		map->CreateObject<CookieHideObject>(L"WallHide", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		map->CreateObject<EatenObject>(L"EatenObject",offset);
@@ -241,9 +246,10 @@ namespace basecross {
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 		//auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<GraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
