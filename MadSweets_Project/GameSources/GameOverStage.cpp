@@ -1,6 +1,7 @@
 #include"GameOverStage.h"
 #include"MenuButtonObject.h"
 #include"GameOverEventer.h"
+#include"AlphaFadeCtrl.h"
 
 namespace basecross
 {
