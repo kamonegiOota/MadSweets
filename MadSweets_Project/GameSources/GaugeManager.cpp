@@ -74,6 +74,12 @@ namespace basecross
 		m_gaugeImage->SetFillType(imageFillType);
 	}
 
+	void GaugeManager::SetDiffuse(const Col4& diffuse)
+	{
+		m_gaugeImage->SetDiffuse(diffuse);
+		m_gaugeBackgroundImage->SetDiffuse(diffuse);	
+	}
+
 	void GaugeManager::OnCreate()
 	{
 	}

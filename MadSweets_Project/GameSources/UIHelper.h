@@ -154,6 +154,8 @@ namespace basecross
 		/// <returns>ローカル座標</returns>
 		Vec2 GetPosition() const;
 
+		Vec2 GetWorldPosition() const;
+
 		/// <summary>
 		/// ローカル回転を設定する
 		/// </summary>
@@ -173,7 +175,7 @@ namespace basecross
 		void Rotate(const float radian);
 
 		/// <summary>
-		/// ローカルスケールを設定するs
+		/// ローカルスケールを設定する
 		/// </summary>
 		/// <param name="scale">ローカルスケール</param>
 		void SetScale(const Vec2& scale);
@@ -627,6 +629,113 @@ namespace basecross
 		void OnStart() override;
 
 		void OnUpdate2() override;
+	};
+
+	class I_Selectable
+	{
+	public:
+		virtual void OnSelect() = 0;
+		virtual void OnOutSelect() = 0;
+		virtual void OnPush() = 0;
+		virtual bool GetIsSelectedLock() const = 0;
+		virtual std::shared_ptr<I_Selectable> GetVerticalBeforeSelectable() const = 0;
+		virtual std::shared_ptr<I_Selectable> GetVerticalNextSelectable() const = 0;
+		virtual std::shared_ptr<I_Selectable> GetHorizontalBeforeSelectable() const = 0;
+		virtual std::shared_ptr<I_Selectable> GetHorizontalNextSelectable() const = 0;
+	};
+
+	class SelectableComponent : public Component, public I_Selectable
+	{
+		ex_weak_ptr<I_Selectable> m_verticalBeforeSelectable;
+		ex_weak_ptr<I_Selectable> m_verticalNextSelectable;
+		ex_weak_ptr<I_Selectable> m_horizontalBeforeSelectable;
+		ex_weak_ptr<I_Selectable> m_horizontalNextSelectable;
+
+		bool m_isSelectedLock = false;
+	public:
+		itbs::Utility::Delegate<void()> pushEvent;
+
+		itbs::Utility::Delegate<void()> selectEvent;
+
+		itbs::Utility::Delegate<void()> outSelectEvent;
+
+		SelectableComponent(std::shared_ptr<GameObject>& owner);
+
+		void SetIsSelectedLock(const bool isSelectedLock);
+
+		bool GetIsSelectedLock() const override;
+
+		virtual void OnSelect() override;
+
+		virtual void OnPush() override;
+
+		virtual void OnOutSelect() override;
+
+		void SetVerticalBeforeSelectable(const std::shared_ptr<I_Selectable>& verticalBeforeSelectable);
+		void SetVerticalNextSelectable(const std::shared_ptr<I_Selectable>& verticalNextSelectable);
+		void SetHorizontalBeforeSelectable(const std::shared_ptr<I_Selectable>& horizontalBeforeSelectable);
+		void SetHorizontalNextSelectable(const std::shared_ptr<I_Selectable>& horizontalNextSelectable);
+
+		std::shared_ptr<I_Selectable> GetVerticalBeforeSelectable() const override;
+		std::shared_ptr<I_Selectable> GetVerticalNextSelectable() const override;
+		std::shared_ptr<I_Selectable> GetHorizontalBeforeSelectable() const override;
+		std::shared_ptr<I_Selectable> GetHorizontalNextSelectable() const override;
+	};
+
+	class EventSystem : public Component
+	{
+	public:
+		static const std::wstring EVENTSYSTEM_OBJECT_KEY;
+
+	private:
+		static ex_weak_ptr<EventSystem> m_eventSystem;
+		ex_weak_ptr<I_Selectable> m_nowSelectable;
+		std::stack<ex_weak_ptr<I_Selectable>> m_stackSelectable;
+
+		void MoveCheck(const itbs::Input::KeyCode keycode, std::shared_ptr<I_Selectable>(I_Selectable::*func)() const);
+	public:
+		EventSystem(std::shared_ptr<GameObject>& owner);
+
+		void SetNowSelectable(const std::shared_ptr<I_Selectable>& nowSelectable);
+
+		void PushSelectable(const std::shared_ptr<I_Selectable>& nowSelectable);
+
+		void PopSelectable();
+
+		std::shared_ptr<I_Selectable> GetNowSelectable() const;
+
+		static ex_weak_ptr<EventSystem> GetInstance(const std::shared_ptr<Stage>& stage);
+
+		void OnCreate() override;
+
+		void OnUpdate() override;
+	};
+
+	/// <summary>
+	/// ボタンUI
+	/// </summary>
+	class Button : public SelectableComponent
+	{
+		ex_weak_ptr<Image> m_image;
+
+		std::wstring m_normalButtonImageKey;
+		std::wstring m_selectedButtonImageKey;
+
+	public:
+
+		Button(std::shared_ptr<GameObject>& owner);
+
+		void SetNormalButtonImage(const std::wstring& normalButtonImageKey);
+
+		void SetSelectedButtonImage(const std::wstring& selectedButtonImageKey);
+
+		void SetAllButtonImage(const std::wstring& allButtonImageKey);
+
+		void OnSelect() override;
+
+		void OnOutSelect() override;
+
+		void OnCreate() override;
 	};
 
 	/// <summary>

@@ -192,4 +192,67 @@ namespace itbs
 			return GetTime(time, startAnchor.point, endAnchor.point);
 		}
 	}
+
+	namespace Utility
+	{
+		// TimeLineFloat --------------------------------
+
+		TimeLineFloat::TimeLineFloat(const Math::BezierManager& bezier, const float maxTime) :
+			m_bezier(bezier),
+			m_maxTime(std::fmaxf(maxTime,0.01f))
+		{
+
+		}
+
+		void TimeLineFloat::SetNowTime(const float nowTime)
+		{
+			m_nowTime = std::fminf(nowTime, m_maxTime);
+			m_nowTime = std::fmaxf(m_nowTime, 0.0f);
+		}
+
+		void TimeLineFloat::SetMaxTime(const float maxTime)
+		{
+			m_maxTime = std::fmaxf(maxTime, 0.01f);
+			m_nowTime = std::fminf(m_nowTime, m_maxTime);
+		}
+
+		void TimeLineFloat::SetBezierManager(const Math::BezierManager& bezier)
+		{
+			m_bezier = bezier;
+		}
+
+		void TimeLineFloat::SetIsReverse(const bool isReverse)
+		{
+			m_isReverse = isReverse;
+		}
+
+		void TimeLineFloat::AddTime(const float time)
+		{
+			float addTime = m_isReverse ? -time : time;
+			m_nowTime = std::fminf(m_nowTime + addTime, m_maxTime);
+			m_nowTime = std::fmaxf(m_nowTime, 0.0f);
+		}
+
+		float TimeLineFloat::GetValue() const
+		{
+			return m_bezier.TimeToValue(m_nowTime / m_maxTime);
+		}
+
+		bool TimeLineFloat::IsFinish() const
+		{
+			if (m_isReverse)
+			{
+				return m_nowTime <= 0.0f;
+			}
+			else
+			{
+				return m_nowTime >= m_maxTime;
+			}
+		}
+
+		void TimeLineFloat::TimeReset()
+		{
+			m_nowTime = m_isReverse ? m_maxTime : 0.0f;
+		}
+	}
 }

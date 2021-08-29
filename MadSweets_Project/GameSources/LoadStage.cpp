@@ -1,5 +1,7 @@
 #include"LoadStage.h"
 #include"Scene.h"
+#include"SoundHelper.h"
+#include"GameSaveManager.h"
 
 namespace basecross
 {
@@ -24,7 +26,13 @@ namespace basecross
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_texureResourceLoadDatas =
 	{
-
+		ResourceLoadData(L"MenuOption_TX", L"MenuOption.png"),
+		ResourceLoadData(L"MenuPressAToStart_TX", L"MenuPressAToStart.png"),
+		ResourceLoadData(L"MenuBack_TX", L"MenuBack.png"),
+		ResourceLoadData(L"MenuSoundManage_TX", L"MenuSoundManage.png"),
+		ResourceLoadData(L"OptionBGMVolume_TX", L"OptionBGMVolume.png"),
+		ResourceLoadData(L"OptionSEVolume_TX", L"OptionSEVolume.png"),
+		ResourceLoadData(L"OptionGauge_TX", L"OptionGauge.png")
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_seResourceLoadDatas =
@@ -33,7 +41,9 @@ namespace basecross
 		ResourceLoadData(L"HandyWalkSE1", L"HandyWalkSE1.wav"),
 		ResourceLoadData(L"HandyWalkSE2", L"HandyWalkSE2.wav"),
 		ResourceLoadData(L"PlayerWalkSE1", L"PlayerWalkSE1.wav"),
-		ResourceLoadData(L"PlayerWalkSE2", L"PlayerWalkSE2.wav")
+		ResourceLoadData(L"PlayerWalkSE2", L"PlayerWalkSE2.wav"),
+		ResourceLoadData(L"UI_SelectSE",L"UI_SelectSE.wav"),
+		ResourceLoadData(L"UI_PushSE",L"UI_PushSE.wav")
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_bgmResourceLoadDatas =
@@ -51,7 +61,6 @@ namespace basecross
 	LoadStage::LoadStage(const std::wstring& nextStageKey) :
 		m_nextStageKey(nextStageKey)
 	{
-
 	}
 
 	void LoadStage::CreateViewLight()
@@ -128,6 +137,13 @@ namespace basecross
 			}
 
 			app->RegisterResource(modelLoadData.resourceKey, modelMesh);
+		}
+
+		auto& soundSetting = GameSaveManager::GetSoundSetting();
+		if (!soundSetting->Load())
+		{
+			soundSetting->SetBGMVolume(1.0f);
+			soundSetting->SetSEVolume(1.0f);
 		}
 
 		m_isLoadFinish = true;

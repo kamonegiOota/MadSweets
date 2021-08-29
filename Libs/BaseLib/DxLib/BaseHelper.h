@@ -2027,8 +2027,17 @@ namespace basecross{
 			ex_weak_ptr<GameObject> gameobject = ptr;
 			gameobject->OnPreCreate();
 			gameobject->SetParent(parent);
-			gameobject->GetComponent<Transform>()->SetPosition(position);
-			gameobject->GetComponent<Transform>()->SetQuaternion(rotation);
+			auto rectTransform = gameobject->GetComponent<RectTransform>(false);
+			if (rectTransform)
+			{
+				rectTransform->SetPosition(position.x, position.y);
+				rectTransform->SetRotation(rotation.toRotVec().z);
+			}
+			else
+			{
+				gameobject->GetComponent<Transform>()->SetPosition(position);
+				gameobject->GetComponent<Transform>()->SetQuaternion(rotation);
+			}
 
 			gameobject->OnCreate();
 			gameobject->SetCreated(true);

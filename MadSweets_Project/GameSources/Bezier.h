@@ -193,4 +193,34 @@ namespace itbs
 			float TimeToValue(const float time) const;
 		};
 	}
+
+	namespace Utility
+	{
+		class TimeLineFloat
+		{
+			Math::BezierManager m_bezier;
+
+			float m_nowTime = 0.0f;
+			float m_maxTime = 1.0f;
+
+			bool m_isReverse = false;
+
+		public:
+			TimeLineFloat(const Math::BezierManager& bezier, const float maxTime);
+
+			void SetNowTime(const float nowTime);
+			void SetMaxTime(const float maxTime);
+			void SetBezierManager(const Math::BezierManager& bezier);
+
+			void SetIsReverse(const bool isReverse);
+
+			void AddTime(const float time);
+
+			float GetValue() const;
+
+			bool IsFinish() const;
+
+			void TimeReset();
+		};
+	}
 }

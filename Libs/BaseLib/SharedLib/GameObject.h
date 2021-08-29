@@ -213,8 +213,14 @@ namespace basecross {
 		/// <param name="parent">親オブジェクト</param>
 		void SetParent(const std::shared_ptr<GameObject>& parent)
 		{
-			this->m_parent = parent;
+			if (!parent)
+			{
+				return;
+			}
+
+			m_parent = parent;
 			transform->SetParent(parent);
+			parent->AddChild(GetThis<GameObject>());
 		}
 
 		/// <summary>
@@ -229,10 +235,9 @@ namespace basecross {
 		/// 子オブジェクト登録関数
 		/// </summary>
 		/// <param name="child">子オブジェクト</param>
-		void SetChild(const std::shared_ptr<GameObject>& child)
+		void AddChild(const std::shared_ptr<GameObject>& child)
 		{
 			m_children.push_back(child);
-			child->SetParent(GetThis<GameObject>());
 		}
 
 		std::shared_ptr<GameObject> GetChild() const

@@ -124,6 +124,12 @@ namespace basecross
 		return m_position;
 	}
 
+	Vec2 RectTransform::GetWorldPosition() const
+	{
+		auto worldMatrix = GetWorldMatrix();
+		return Vec2(worldMatrix._31, -worldMatrix._32);
+	}
+
 	void RectTransform::SetRotation(const float radian)
 	{
 		m_rotation = radian;
@@ -222,6 +228,32 @@ namespace basecross
 
 	void RectTransform::OnUpdate()
 	{
+
+		auto position = GetPosition();
+
+		auto parentRectTransform = GetParentRectTransform();
+
+		if (parentRectTransform)
+		{
+			auto parentScale = parentRectTransform->GetScale();
+			position.x *= parentScale.x;
+			position.y *= parentScale.y;
+
+			auto offset = parentRectTransform->GetAnchorOffset(GetAnhor());
+
+			position += offset;
+		}
+
+		transform->SetPosition(position.x, position.y, 0);
+
+		float rotation = GetRotation();
+
+		transform->SetRotation(Vec3(0, 0, rotation));
+
+		auto scale = GetWorldScale();
+
+		transform->SetScale(scale.x, scale.y, 1);
+
 	}
 	// Image ------------------------------------
 
@@ -370,28 +402,6 @@ namespace basecross
 	void Image::OnUpdate()
 	{
 		UpdateVertices(CreateVertices());
-
-		auto parentRectTransform = rectTransform->GetParentRectTransform();
-
-		auto position = rectTransform->GetPosition();
-
-		auto parentScale = parentRectTransform->GetScale();
-		position.x *= parentScale.x;
-		position.y *= parentScale.y;
-
-		auto offset = parentRectTransform->GetAnchorOffset(rectTransform->GetAnhor());
-
-		position += offset;
-
-		transform->SetPosition(position.x, position.y, 0);
-
-		float rotation = rectTransform->GetRotation();
-
-		transform->SetRotation(Vec3(0, 0, rotation));
-
-		auto scale = rectTransform->GetWorldScale();
-
-		transform->SetScale(scale.x, scale.y, 1);
 	}
 	// TextBox ------------------------
 
@@ -832,6 +842,252 @@ namespace basecross
 		UpdateChoices();
 
 	}
+
+	// SelectableComponent ----------------------
+
+	SelectableComponent::SelectableComponent(std::shared_ptr<GameObject>& owner) :
+		Component(owner)
+	{
+
+	}
+
+	void SelectableComponent::SetIsSelectedLock(const bool isSelectedLock)
+	{
+		m_isSelectedLock = isSelectedLock;
+	}
+
+	bool SelectableComponent::GetIsSelectedLock() const
+	{
+		return m_isSelectedLock;
+	}
+
+	void SelectableComponent::OnSelect()
+	{
+		selectEvent();
+	}
+
+	void SelectableComponent::OnPush()
+	{
+		pushEvent();
+	}
+
+	void SelectableComponent::OnOutSelect()
+	{
+		outSelectEvent();
+	}
+
+	void SelectableComponent::SetVerticalBeforeSelectable(const std::shared_ptr<I_Selectable>& verticalBeforeSelectable)
+	{
+		m_verticalBeforeSelectable = verticalBeforeSelectable;
+	}
+
+	void SelectableComponent::SetVerticalNextSelectable(const std::shared_ptr<I_Selectable>& verticalNextSelectable)
+	{
+		m_verticalNextSelectable = verticalNextSelectable;
+	}
+
+	void SelectableComponent::SetHorizontalBeforeSelectable(const std::shared_ptr<I_Selectable>& horizontalBeforeSelectable)
+	{
+		m_horizontalBeforeSelectable = horizontalBeforeSelectable;
+	}
+
+	void SelectableComponent::SetHorizontalNextSelectable(const std::shared_ptr<I_Selectable>& horizontalNextSelectable)
+	{
+		m_horizontalNextSelectable = horizontalNextSelectable;
+	}
+
+	std::shared_ptr<I_Selectable> SelectableComponent::GetVerticalBeforeSelectable() const
+	{
+		return m_verticalBeforeSelectable.GetShard();
+	}
+
+	std::shared_ptr<I_Selectable> SelectableComponent::GetVerticalNextSelectable() const
+	{
+		return m_verticalNextSelectable.GetShard();
+	}
+
+	std::shared_ptr<I_Selectable> SelectableComponent::GetHorizontalBeforeSelectable() const
+	{
+		return m_horizontalBeforeSelectable.GetShard();
+	}
+
+	std::shared_ptr<I_Selectable> SelectableComponent::GetHorizontalNextSelectable() const
+	{
+		return m_horizontalNextSelectable.GetShard();
+	}
+
+	// EventSystem ------------------------------
+
+	ex_weak_ptr<EventSystem> EventSystem::m_eventSystem;
+
+	EventSystem::EventSystem(std::shared_ptr<GameObject>& owner) :
+		Component(owner)
+	{
+	}
+
+	void EventSystem::MoveCheck(const itbs::Input::KeyCode keycode,std::shared_ptr<I_Selectable>(I_Selectable::*func)() const)
+	{
+		if (!m_nowSelectable || m_nowSelectable->GetIsSelectedLock())
+		{
+			return;
+		}
+
+		auto nextSelectable = (m_nowSelectable.get()->*func)();
+
+		if (!nextSelectable)
+		{
+			return;
+		}
+
+		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(keycode))
+		{
+			if (m_nowSelectable)
+			{
+				m_nowSelectable->OnOutSelect();
+			}
+
+			m_nowSelectable = nextSelectable;
+
+			if (m_nowSelectable)
+			{
+				m_nowSelectable->OnSelect();
+			}
+		}
+	}
+
+	void EventSystem::SetNowSelectable(const std::shared_ptr<I_Selectable>& nowSelectable)
+	{
+		if (m_nowSelectable)
+		{
+			m_nowSelectable->OnOutSelect();
+		}
+		m_nowSelectable = nowSelectable;
+
+		if (m_nowSelectable)
+		{
+			m_nowSelectable->OnSelect();
+		}
+	}
+
+	void EventSystem::PushSelectable(const std::shared_ptr<I_Selectable>& nowSelectable)
+	{
+		m_stackSelectable.push(m_nowSelectable);
+
+		m_nowSelectable = nowSelectable;
+
+		if (m_nowSelectable)
+		{
+			m_nowSelectable->OnSelect();
+		}
+	}
+
+	void EventSystem::PopSelectable()
+	{
+		if (m_nowSelectable)
+		{
+			m_nowSelectable->OnOutSelect();
+		}
+
+		m_nowSelectable = m_stackSelectable.top().GetShard();
+
+		m_stackSelectable.pop();
+	}
+
+	std::shared_ptr<I_Selectable> EventSystem::GetNowSelectable() const
+	{
+		return m_nowSelectable.GetShard();
+	}
+
+	ex_weak_ptr<EventSystem> EventSystem::GetInstance(const std::shared_ptr<Stage>& stage)
+	{
+		if (!m_eventSystem || m_eventSystem->GetStage() != stage)
+		{
+			m_eventSystem = stage->Instantiate<GameObject>()->AddComponent<EventSystem>();
+		}
+
+		return m_eventSystem;
+	}
+
+	void EventSystem::OnCreate()
+	{
+		if (!m_eventSystem)
+		{
+			m_eventSystem = GetThis<EventSystem>();
+		}
+	}
+
+	void EventSystem::OnUpdate()
+	{
+		MoveCheck(itbs::Input::KeyCode::LeftArrow, &I_Selectable::GetHorizontalBeforeSelectable);
+		MoveCheck(itbs::Input::KeyCode::RightArrow, &I_Selectable::GetHorizontalNextSelectable);
+		MoveCheck(itbs::Input::KeyCode::UpArrow, &I_Selectable::GetVerticalBeforeSelectable);
+		MoveCheck(itbs::Input::KeyCode::DownArrow, &I_Selectable::GetVerticalNextSelectable);
+
+		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(itbs::Input::KeyCode::Space))
+		{
+			if (m_nowSelectable)
+			{
+				m_nowSelectable->OnPush();
+			}
+		}
+	}
+
+	// Button -----------------------------------
+
+	Button::Button(std::shared_ptr<GameObject>& owner) :
+		SelectableComponent(owner)
+	{
+
+	}
+
+	void Button::SetNormalButtonImage(const std::wstring& normalButtonImageKey)
+	{
+		m_normalButtonImageKey = normalButtonImageKey;
+
+		if (!m_image->GetTextureResource())
+		{
+			m_image->SetTextureResource(m_normalButtonImageKey);
+		}
+	}
+
+	void Button::SetSelectedButtonImage(const std::wstring& selectedButtonImageKey)
+	{
+		m_selectedButtonImageKey = selectedButtonImageKey;
+	}
+
+	void Button::SetAllButtonImage(const std::wstring& allButtonImageKey)
+	{
+		SetNormalButtonImage(allButtonImageKey);
+		SetSelectedButtonImage(allButtonImageKey);
+	}
+
+
+	void Button::OnCreate()
+	{
+		m_image = GetGameObject()->GetComponent<Image>(false);
+
+		if (!m_image)
+		{
+			m_image = GetGameObject()->AddComponent<Image>();
+		}
+
+		EventSystem::GetInstance(GetStage());
+	}
+
+	void Button::OnSelect()
+	{
+		SelectableComponent::OnSelect();
+
+		m_image->SetTextureResource(m_selectedButtonImageKey);
+	}
+
+	void Button::OnOutSelect()
+	{
+		SelectableComponent::OnOutSelect();
+
+		m_image->SetTextureResource(m_normalButtonImageKey);
+	}
+
 	// UIObject ---------------------------------
 
 	UIObject::UIObject(std::shared_ptr<Stage>& stage) :
