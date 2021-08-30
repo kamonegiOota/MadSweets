@@ -121,6 +121,9 @@ namespace basecross {
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		AddComponent<ChaseEnemy>();
 
+		CreatePlowlingRoute();
+		CreateTactile();
+
 		auto col = AddComponent<CollisionObb>();
 	}
 }
