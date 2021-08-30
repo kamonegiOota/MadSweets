@@ -11,6 +11,6 @@ namespace basecross
 
 	void PlayerSounder::PlayerWalk()
 	{
-		SimpleSoundManager::OnePlaySE(L"PlayerWalkSE1",0.01f);
+		SimpleSoundManager::OnePlaySE(L"PlayerWalkSE1",1.00f);
 	}
 }
