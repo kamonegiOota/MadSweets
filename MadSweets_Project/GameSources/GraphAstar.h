@@ -114,6 +114,8 @@ namespace basecross {
 		//ノードの削除
 		void RemoveNode(const int& index);
 
+		void AddEdges(const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs);
+
 	private:
 
 		//情報をリセットするときの関数

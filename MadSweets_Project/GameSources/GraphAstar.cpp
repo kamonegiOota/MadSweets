@@ -101,11 +101,22 @@ namespace basecross {
 			m_graph.AddNode(newNode);
 		}
 
-		return index;
+		return index++;
 	}
 
 	void GraphAstar::RemoveNode(const int& index) {
 		m_graph.RemoveNode(index);
+	}
+
+	void GraphAstar::AddEdges(const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs) {
+		auto nodes = m_graph.GetNodes();
+		for (auto& node : nodes) {
+			auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, node, obstacleObjs, excluteObjs);
+			if (edges.size() == 0) {
+				//ÉmÅ[ÉhÇÃí«â¡
+				m_graph.RemoveNode(node.GetIndex());
+			}
+		}
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
@@ -120,6 +131,7 @@ namespace basecross {
 
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
 		ResetAstar();
+		DebugObject::sm_wss << L"AstarRouteStart" << endl;
 
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
 		//DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
