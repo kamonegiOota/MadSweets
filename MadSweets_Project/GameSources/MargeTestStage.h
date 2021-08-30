@@ -17,7 +17,12 @@ namespace basecross {
 
 	class MargeTestStage : public Stage
 	{
-		//wstring m_nowMap;
+		
+		static wstring sm_nowMap;
+		static Vec3 sm_firstCreatePlayerPosition;
+		static Vec3 sm_createPlayerPosition;
+		static Vec3 sm_cretaePlayerForward;
+
 		ex_weak_ptr<StageMapCSV> m_mapCsv;
 		std::shared_ptr<PlayerObject> m_player;
 
@@ -69,6 +74,13 @@ namespace basecross {
 		void CreateSoundCookies();
 		void CreateCrackCookies();
 		void CreateHideObjects();
+
+		static void SetMapName(const wstring& name) {
+			sm_nowMap = name;
+		}
+		static void SetCreatePlayerPosition(const Vec3& position) {
+			sm_createPlayerPosition = position;
+		}
 	};
 
 }

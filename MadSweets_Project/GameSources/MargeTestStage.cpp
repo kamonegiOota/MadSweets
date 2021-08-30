@@ -54,6 +54,7 @@
 #include "UtilityEnemy.h"
 
 #include "PointLightObject.h"
+#include "EnState_Plowling.h"
 
 // 板橋 追加分 ----------------
 
@@ -69,6 +70,13 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
+
+
+	wstring MargeTestStage::sm_nowMap = L"Stage1.csv";
+	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
+	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
+	Vec3 MargeTestStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
+
 	void MargeTestStage::CreateViewLight() {
 		const Vec3 eye(0.0f, +15.0f, -30.0f);
 		const Vec3 at(0.0f);
@@ -143,15 +151,18 @@ namespace basecross {
 
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
-			auto player = Instantiate<PlayerObject>(Vec3(-21.0f, +1.0f, -21.0f),Quat());
+			auto player = Instantiate<PlayerObject>(sm_createPlayerPosition,Quat());
+			player->GetComponent<Transform>()->SetForward(sm_cretaePlayerForward);
+			sm_createPlayerPosition = sm_firstCreatePlayerPosition;
 			player->AddComponent<PointLight>();
 			player->SetDrawActive(false);
 			m_player = player;
 
 			//CreateMap(L"TempStage.csv");
-			CreateMap(L"Stage1.csv");
+			//CreateMap(L"Stage1.csv");
 			//CreateMap(L"Stage2.csv");
 			//CreateMap(L"Stage3.csv");
+			CreateMap(sm_nowMap);
 
 			//敵の生成
 			CreateEnemy(player);
@@ -194,8 +205,6 @@ namespace basecross {
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
 		//応急処置
-		
-
 		vector<wstring> objNames = {
 			{L"StageRotBox"},
 			{L"Plane"},
@@ -236,6 +245,7 @@ namespace basecross {
 		auto textures = map->GetTextures(L"EatenObject");
 		for (int i = 0; i < positions.size() ; i++) {
 			auto eatenObj = Instantiate<EatenObject>(positions[i], Quat::Identity());
+			eatenObj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
 			eatenObj->SetTexture(textures[i]);
 		}
 
@@ -266,6 +276,7 @@ namespace basecross {
 			else {
 				enemy->GetGameObject()->SetUpdateActive(false);
 				enemy->GetGameObject()->SetDrawActive(false);
+				enemy->ChangeStateMachine<EnState_Plowling>();
 			}
 		}
 		
@@ -319,28 +330,6 @@ namespace basecross {
 				break;
 			}
 		}
-
-		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f,0.0f,0.0f), Quat::Identity());
-		//enemy->GetComponent<BaseEnemy>()->SetMapType(fileName);
-		//enemy->AddComponent<AstarCtrl>(astar);
-		//enemy->GetComponent<EyeSearchRange>()->AddTarget(m_player);
-
-		//auto wallEvasion = enemy->GetComponent<WallEvasion>();
-		//if (wallEvasion) {
-		//	for (auto& obj : GetGameObjectVec()) {
-		//		auto stageObj = dynamic_pointer_cast<StageObject>(obj);
-		//		if (stageObj) {
-		//			wallEvasion->AddObstacleObjs(stageObj);
-		//		}
-		//	}
-		//}
-
-		//enemy->GetComponent<Transform>()->SetPosition(positions[0]);
-		//vector<Vec3> poss;
-		//poss.push_back(positions[0]);
-		//poss.push_back(positions[1]);
-		//enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
-
 		return astar;
 	}
 

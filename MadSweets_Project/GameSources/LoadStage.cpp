@@ -63,6 +63,7 @@ namespace basecross
 		ResourceLoadData(L"FadeBack_Tx"          , L"FadeBack.png"),
 		ResourceLoadData(L"DoorKey_Tx"          , L"DoorKey.png"),
 		ResourceLoadData(L"Beans_Tx"          , L"Beans.png"),
+		ResourceLoadData(L"DoorObj_Tx"          , L"DoorObj.png"),
 
 		//プロローグ用
 		ResourceLoadData(L"Prologue_Tx"          , L"Prologue.png"),

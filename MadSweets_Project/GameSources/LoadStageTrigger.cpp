@@ -30,8 +30,12 @@ namespace basecross {
 	void LoadStageTrigger::ChangeStage() {
 		auto stage = dynamic_pointer_cast<MargeTestStage>(GetStage());
 		if (stage) {
-			MovePosition();
-			stage->ChangeMap(m_nextMap, m_fadeCtrl.GetShard());
+			//MovePosition();
+			//stage->ChangeMap(m_nextMap, m_fadeCtrl.GetShard());
+			MargeTestStage::SetCreatePlayerPosition(m_position);
+			MargeTestStage::SetMapName(m_nextMap);
+			float stayTime(0.0f); //ステージ遷移する場合に待つ時間
+			PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
 		}
 		else {
 			DebugObject::sm_wss << endl << L"LoadStageTrigger :: MargeTestStageが存在しません。";
