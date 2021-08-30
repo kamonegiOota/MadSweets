@@ -114,8 +114,10 @@ namespace basecross
 		ModelResourceLoadData(L"Gra_Standby",  L"Gra_Standby.bmf", ModelType::Static,  L"Gra\\"),
 
 		//Table
-		ModelResourceLoadData(L"Table",  L"Table.bmf", ModelType::Static,  L"Table\\"),
-		ModelResourceLoadData(L"Chair",  L"Chair.bmf", ModelType::Static,  L"Chair\\"),
+		ModelResourceLoadData(L"Table",  L"Table1.bmf", ModelType::Static,  L"Table\\"),
+		ModelResourceLoadData(L"Table2",  L"Table2.bmf", ModelType::Static,  L"Table2\\"),
+		ModelResourceLoadData(L"Chair",  L"Chare.bmf", ModelType::Static,  L"Chair\\"),
+		ModelResourceLoadData(L"Locker01",  L"Locker01.bmf", ModelType::Static,  L"Locker\\"),
 
 		//Player
 		ModelResourceLoadData(L"PlayerStandStay",  L"PlayerStandStay.bmf", ModelType::Bone,  L"Player\\StandStay\\"),
