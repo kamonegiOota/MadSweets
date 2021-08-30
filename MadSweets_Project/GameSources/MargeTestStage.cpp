@@ -39,6 +39,7 @@
 #include "CaraObject.h"
 #include "AshiObject.h"
 #include "GraObject.h"
+#include "OriginalMeshObject.h"
 
 #include "WallEvasion.h"
 
@@ -46,6 +47,7 @@
 #include "LoadStageTriggerObject.h"
 
 #include "EatenObject.h"
+#include "PlowlingMove.h"
 
 // 板橋 追加分 ----------------
 
@@ -83,9 +85,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.25f);
+			light.m_DiffuseColor = Col4(0.3f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.25f);
+			light.m_SpecularColor = Col4(0.3f);
 			//light.m_Directional = poss[i];
 		}
 	}
@@ -105,10 +107,6 @@ namespace basecross {
 			// ---------------------------
 
 			TempLoad();
-			CreateMap(L"TempStage.csv");
-			//CreateMap(L"Stage1.csv");
-			//CreateMap(L"Stage2.csv");
-			//CreateMap(L"Stage3.csv");
 
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -128,7 +126,7 @@ namespace basecross {
 
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
-			auto player = Instantiate<PlayerObject>(Vec3(+12.0f, +1.0f, -12.0f),Quat());
+			auto player = Instantiate<PlayerObject>(Vec3(-21.0f, +1.0f, -21.0f),Quat());
 			player->AddComponent<PointLight>();
 			//player->RemoveComponent<CollisionCapsule>();
 			//player->AddComponent<CollisionObb>();
@@ -136,6 +134,12 @@ namespace basecross {
 			//player->AddComponent<CollisionObb>();
 			//場所を把握するための処理
 			//player->AddComponent<PositionDrawComp>();
+			m_player = player;
+
+			//CreateMap(L"TempStage.csv");
+			CreateMap(L"Stage1.csv");
+			//CreateMap(L"Stage2.csv");
+			//CreateMap(L"Stage3.csv");
 
 			//敵の生成
 			CreateEnemy(player);
@@ -147,11 +151,11 @@ namespace basecross {
 			CreatePointLight();
 
 			//クッキーの生成
-			CreateSoundCookies();
-			CreateCrackCookies();
+			//CreateSoundCookies();
+			//CreateCrackCookies();
 
 			//隠れるオブジェクトの生成
-			CreateHideObjects();
+			//CreateHideObjects();
 
 			//auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
 			//loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
@@ -159,7 +163,9 @@ namespace basecross {
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
-
+			//auto table = Instantiate<GameObject>();
+			//table->AddComponent<PNTPointDraw>()->SetMeshResource(L"Table");
+			//table->GetComponent<Transform>()->SetScale(Vec3(1.0f,0.8f,1.0f));
 		}
 		catch (...) {
 			throw;
@@ -201,21 +207,16 @@ namespace basecross {
 			map->CreateObject<FixedBox>(objName,offset);
 		}
 
-		map->CreateObject<CookieHideObject>(L"WallHide", offset);
+		map->CreateObject<OriginalMeshObject>(L"Chair", offset);
+		map->CreateObject<OriginalMeshObject>(L"Table",offset);
+		map->CreateObject<OriginalMeshObject>(L"Table2", offset);
+		map->CreateObject<CookieHideObject>(L"Locker01", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		map->CreateObject<EatenObject>(L"EatenObject",offset);
 
-		for (auto obj : GetGameObjectVec()) {
-			auto fixed = dynamic_pointer_cast<FixedBox>(obj);
-			if (fixed) {
-				//fixed->GetComponent<Collision>()->SetUpdateActive(false);
-				if (fixed->GetName() == L"UpperWall" || fixed->GetName() == L"InnerCorner") {
-					//fixed->GetComponent<Collision>()->SetUpdateActive(false);
-				}
-			}
-		}
-
 		m_mapCsv = map;
+
+		CreateAstar();
 	}
 
 	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
@@ -225,10 +226,111 @@ namespace basecross {
 			CreateMap(fileName, offset);
 		}
 		
-		//playerの移動
-		
 		//フェードイン
 		fade->FadeInStart();
+	}
+
+	GraphAstar MargeTestStage::CreateAstar() {
+
+		SparseGraph<NavGraphNode, GraphEdge> graph(true);
+		//GraphAstar astar(graph);
+		vector<std::shared_ptr<GameObject>> stageObjs;
+		vector<std::shared_ptr<GameObject>> excluteObjs;
+
+		for (auto& obj : GetGameObjectVec()) {
+			auto stageObj = dynamic_pointer_cast<StageObject>(obj);
+			if (stageObj) {
+				stageObjs.push_back(stageObj);
+			}
+		}
+
+		excluteObjs.push_back(m_player);
+
+		int index = 0;
+		auto positions = m_mapCsv->GetPositions(L"Capsule");
+		for (const auto& pos : positions) {
+			graph.AddNode(NavGraphNode(index++, pos));
+			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
+		}
+
+		vector<GraphEdge> edges = {
+			{GraphEdge(0,1)},
+			{GraphEdge(0,5)},
+			{GraphEdge(0,7)},
+			{GraphEdge(1,0)},
+			{GraphEdge(1,12)},
+			{GraphEdge(1,2)},
+			{GraphEdge(2,1)},
+			{GraphEdge(2,3)},
+			{GraphEdge(3,2)},
+			{GraphEdge(3,4)},
+			{GraphEdge(4,3)},
+			{GraphEdge(4,5)},
+			{GraphEdge(5,4)},
+			{GraphEdge(5,0)},
+			{GraphEdge(5,11)},
+
+			{GraphEdge(6,1)},
+			{GraphEdge(6,12)},
+			{GraphEdge(7,1)},
+			{GraphEdge(7,8)},
+			{GraphEdge(8,7)},
+			{GraphEdge(8,9)},
+			{GraphEdge(8,12)},
+			{GraphEdge(9,8)},
+			{GraphEdge(9,13)},
+			{GraphEdge(10,11)},
+			{GraphEdge(11,10)},
+			{GraphEdge(11,5)},
+			{GraphEdge(12,6)},
+			{GraphEdge(12,13)},
+			{GraphEdge(12,8)},
+
+			{GraphEdge(13,12)},
+			{GraphEdge(13,9)},
+			{GraphEdge(14,15)},
+			{GraphEdge(15,14)},
+			{GraphEdge(15,16)},
+			{GraphEdge(16,15)},
+			{GraphEdge(16,17)},
+			{GraphEdge(17,16)},
+		};
+
+		for (auto& edge : edges) {
+			graph.AddEdge(edge);
+		}
+
+		GraphAstar astar(graph);
+
+		//GraphAstar astar(graph);
+		//astar.AddEdges(stageObjs, excluteObjs);
+		
+		//エネミーの仮生成
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f,0.0f,0.0f), Quat::Identity());
+		enemy->AddComponent<AstarCtrl>(astar);
+		enemy->GetComponent<EyeSearchRange>()->AddTarget(m_player);
+
+		auto wallEvasion = enemy->GetComponent<WallEvasion>();
+		if (wallEvasion) {
+			for (auto& obj : GetGameObjectVec()) {
+				auto stageObj = dynamic_pointer_cast<StageObject>(obj);
+				if (stageObj) {
+					wallEvasion->AddObstacleObjs(stageObj);
+				}
+			}
+		}
+
+		enemy->GetComponent<Transform>()->SetPosition(positions[0]);
+		vector<Vec3> poss;
+		poss.push_back(positions[0]);
+		poss.push_back(positions[1]);
+		enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
+		//m_player->GetComponent<Transform>()->SetPosition(poss[0]);
+		//m_player->GetComponent<Transform>()->SetPosition(13,1.0,-6.5);
+
+		//DebugObject::sm_wss << to_wstring(stageObjs.size());
+
+		return astar;
 	}
 
 	void MargeTestStage::TempLoad() {
@@ -239,11 +341,13 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
+		return;
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 		//auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
+		//auto enemy = Instantiate<GraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
 
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
 		
@@ -323,7 +427,8 @@ namespace basecross {
 		}
 
 		GraphAstar astar(graph);
-		enemy->AddComponent<AstarCtrl>(graph);
+		//auto astar = CreateAstar();
+		enemy->AddComponent<AstarCtrl>(astar);
 		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
 
 		auto wallEvasion = enemy->GetComponent<WallEvasion>();
@@ -433,3 +538,7 @@ namespace basecross {
 }
 
 //endbasecross
+
+
+
+

@@ -73,8 +73,8 @@ namespace basecross {
 	}
 
 	void TargetProbe::InvestigateHideObj() {
-		//アニメーションの再生
-		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>();
+		//アニメーションの再生s
+		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
 		if (animeCtrl) {
 			auto animator = animeCtrl->GetAnimator();
 			animator->GetMemberRefarence().hideSearchTrigger.Fire();
@@ -114,7 +114,7 @@ namespace basecross {
 	}
 
 	void TargetProbe::TargetMove() {
-		auto veloComp = GetGameObject()->GetComponent<Velocity>();
+		auto veloComp = GetGameObject()->GetComponent<Velocity>(false);
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj);
 
 		if (veloComp) {
@@ -138,7 +138,7 @@ namespace basecross {
 	}
 
 	void TargetProbe::AstarMove() {
-		auto astar = GetGameObject()->GetComponent<AstarCtrl>();
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
 
@@ -157,6 +157,10 @@ namespace basecross {
 	}
 
 	void TargetProbe::SetHideObjCollisionUpdate(const bool isUpdate) {
+		if (m_checkHideObj == nullptr) {
+			return;
+		}
+
 		auto col = m_checkHideObj->GetComponent<Collision>(false);
 		if (col) {
 			if (col->GetUpdateActive() != isUpdate) {
@@ -170,6 +174,8 @@ namespace basecross {
 	}
 
 	void TargetProbe::OnUpdate() {
+		//m_moveFunc = nullptr;
+
 		if (m_moveFunc) {
 			m_moveFunc(*this);
 		}
@@ -186,7 +192,7 @@ namespace basecross {
 
 	void TargetProbe::StartProb(const shared_ptr<GameObject>& target) {
 		ResetProbe();
-		auto astar = GetGameObject()->GetComponent<AstarCtrl>();
+		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			astar->SearchAstarStart(target);
 			m_checkHideObj = target;

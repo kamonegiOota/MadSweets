@@ -13,6 +13,7 @@
 #include "ReturnPlowlingPosition.h"
 #include "Velocity.h"
 #include "TargetProbe.h"
+#include "PlowlingMove.h"
 
 namespace basecross {
 
@@ -24,15 +25,11 @@ namespace basecross {
 			prob->StartProb();  //探索スタート
 		}
 
-		AddChangeComp(obj->GetComponent<TargetProbe>(false), true, false);
+		AddChangeComp(prob, true, false);
 		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
+		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 
 		StartChangeComps();
-
-		auto draw = obj->GetComponent<BcBaseDraw>(false);
-		if (draw) {
-			draw->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 1.0f));
-		}
 
 		DebugObject::sm_wss << L"Probe";
 	}

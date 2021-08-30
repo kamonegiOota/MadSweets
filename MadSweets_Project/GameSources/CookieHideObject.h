@@ -14,7 +14,7 @@ namespace basecross {
 
 	class CookieHideObject : public StageObject
 	{
-		wstring m_texture;
+		wstring m_mesh;
 		
 	public:
 
@@ -26,7 +26,7 @@ namespace basecross {
 			const wstring& texture
 		) :
 			StageObject(stage, name, scale, rotation, position),
-			m_texture(texture)
+			m_mesh(name)
 		{
 		}
 

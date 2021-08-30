@@ -666,6 +666,9 @@
     </Filter>
     <Filter Include="Patchs\basecross\MessageWindow">
       <UniqueIdentifier>{7d7a43d5-7b76-4fc1-aeca-6e9d0cf8eb5e}</UniqueIdentifier>
+	</Filter>
+	<Filter Include="Maru\Object\StageObject\OriginalMeshObject">
+      <UniqueIdentifier>{c60b9d60-ba8c-4299-b0bc-c96236728c48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1202,6 +1205,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MessageWindow.h">
       <Filter>Patchs\basecross\MessageWindow</Filter>
+	</ClInclude>
+	<ClInclude Include="$(MSBuildThisFileDirectory)OriginalMeshObject.h">
+      <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1681,6 +1687,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MessageWindow.cpp">
       <Filter>Patchs\basecross\MessageWindow</Filter>
+	</ClCompile>
+	<ClCompile Include="$(MSBuildThisFileDirectory)OriginalMeshObject.cpp">
+      <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

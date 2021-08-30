@@ -34,6 +34,7 @@ namespace basecross {
 		ex_weak_ptr<PNTBoneModelDraw> m_draw;
 
 		void CreateAnimator();
+		void CreateToWalkAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine);
 		void CreateWalkAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine);
 		void CreateAttackAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine);
 		void CreateHideSearchAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine);

@@ -26,7 +26,7 @@ namespace basecross {
 		int m_numPorb = 1;
 		int m_probCount = 0;  //ÀÛ‚É‘{õ‚µ‚½‰ñ”B
 
-		float m_searchRange = 20.0f;  //’Tõ‚·‚é”ÍˆÍ
+		float m_searchRange = 10.0f;  //’Tõ‚·‚é”ÍˆÍ
 
 		//Node‚Ì’Ç‰Á
 		void AddNode(const Vec3& position);
@@ -49,9 +49,7 @@ namespace basecross {
 		template<class T, class... Ts>
 		void ChangeState(Ts&&... params) {
 			//m_probCount = 0;
-			ResetProbe();
-
-			auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
+			auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 			if (enemy) {
 				enemy->ChangeStateMachine<T>(params...);  //Œ©¸‚Á‚½ó‘Ô‚É‚·‚éB
 			}

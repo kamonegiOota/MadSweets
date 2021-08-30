@@ -166,6 +166,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StomachSound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StructIOFileStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)OriginalMeshObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
@@ -329,6 +330,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageTransitionOfTitle.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StomachSound.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)OriginalMeshObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TactileObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />

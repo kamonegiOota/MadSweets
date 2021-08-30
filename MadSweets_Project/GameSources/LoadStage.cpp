@@ -97,7 +97,7 @@ namespace basecross
 	const std::vector<LoadStage::ModelResourceLoadData> LoadStage::m_modelResourceLoadDatas =
 	{
 		//Handy
-		ModelResourceLoadData(L"Handy_Walk",  L"Handy_Walk.bmf", ModelType::Bone,  L"Handy\\"),
+		ModelResourceLoadData(L"Handy_Walk",  L"Handy_Walk2.bmf", ModelType::Bone,  L"Handy\\"),
 		ModelResourceLoadData(L"Handy_Attack",  L"Handy_Attack.bmf", ModelType::Bone,  L"Handy\\"),
 		ModelResourceLoadData(L"Handy_Search",  L"Handy_Search.bmf", ModelType::Bone,  L"Handy\\"),
 
@@ -105,7 +105,7 @@ namespace basecross
 		ModelResourceLoadData(L"Stick",  L"Stick.bmf", ModelType::Static,  L"Stick\\"),
 
 		//Cara
-		ModelResourceLoadData(L"Cara_Walk",  L"Cara_Wark.bmf", ModelType::Bone,  L"Cara\\"),
+		ModelResourceLoadData(L"Cara_Walk",  L"Cara_Wark2.bmf", ModelType::Bone,  L"Cara\\"),
 		ModelResourceLoadData(L"Cara_Attack",  L"Cara_Attack.bmf", ModelType::Bone,  L"Cara\\"),
 
 		//Ashi
@@ -113,6 +113,12 @@ namespace basecross
 
 		//Gra
 		ModelResourceLoadData(L"Gra_Standby",  L"Gra_Standby.bmf", ModelType::Static,  L"Gra\\"),
+
+		//Table
+		ModelResourceLoadData(L"Table",  L"Table1.bmf", ModelType::Static,  L"Table\\"),
+		ModelResourceLoadData(L"Table2",  L"Table2.bmf", ModelType::Static,  L"Table2\\"),
+		ModelResourceLoadData(L"Chair",  L"Chare.bmf", ModelType::Static,  L"Chair\\"),
+		ModelResourceLoadData(L"Locker01",  L"Locker01.bmf", ModelType::Static,  L"Locker\\"),
 
 		//Player
 		ModelResourceLoadData(L"PlayerStandStay",  L"PlayerStandStay.bmf", ModelType::Bone,  L"Player\\StandStay\\"),
