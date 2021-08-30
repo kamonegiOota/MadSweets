@@ -9,18 +9,22 @@
 #include "AlphaFadeCtrl.h"
 #include "StageMapCSV.h"
 
+#include "GraphAstar.h"
+#include "PlayerObject.h"
+
 namespace basecross {
 
 	class MargeTestStage : public Stage
 	{
 		//wstring m_nowMap;
 		std::shared_ptr<StageMapCSV> m_mapCsv;
+		std::shared_ptr<PlayerObject> m_player;
 
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
-		virtual void CreateAstar();
+		virtual GraphAstar CreateAstar();
 		//virtual void DeleteMap();
 
 	public:
