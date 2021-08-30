@@ -14,12 +14,12 @@ namespace basecross
 
 	void PlayerChoicesManager::ChoicesPushSound()
 	{
-		SimpleSoundManager::OnePlaySE(L"UI_PushSE");
+		SimpleSoundManager::OnePlaySE(L"UI_PushSE", 0.5f);
 	}
 
 	void PlayerChoicesManager::ChoicesSelectSound()
 	{
-		SimpleSoundManager::OnePlaySE(L"UI_SelectSE");
+		SimpleSoundManager::OnePlaySE(L"UI_SelectSE", 0.5f);
 	}
 
 	void PlayerChoicesManager::SetSearchRange(const float searchRange)
@@ -35,6 +35,9 @@ namespace basecross
 	void PlayerChoicesManager::OnStart()
 	{
 		m_playerChoicesList = GetStage()->GetSharedGameObject<GameObject>(L"PlayerChoicesList")->GetComponent<ChoicesList>();
+
+		m_playerChoicesList->selectChangeEvent.AddFunc(GetThis<PlayerChoicesManager>(), &PlayerChoicesManager::ChoicesSelectSound);
+		m_playerChoicesList->pushEvent.AddFunc(GetThis<PlayerChoicesManager>(), &PlayerChoicesManager::ChoicesPushSound);
 	}
 
 	void PlayerChoicesManager::OnUpdate()
@@ -89,21 +92,17 @@ namespace basecross
 
 		if (PlayerInputer::IsUpChoices())
 		{
-			m_playerChoicesList->AddIndex(-1);
-			
-			ChoicesSelectSound();
+			m_playerChoicesList->AddIndex(-1);			
 		}
 
 		if (PlayerInputer::IsDownChoices())
 		{
 			m_playerChoicesList->AddIndex(1);
-			ChoicesSelectSound();
 		}
 
 		if (PlayerInputer::IsDecision())
 		{
 			m_playerChoicesList->Invoke();
-			ChoicesPushSound();
 		}
 
 	}
