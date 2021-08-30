@@ -2,6 +2,7 @@
 #include"Scene.h"
 #include"SoundHelper.h"
 #include"GameSaveManager.h"
+#include"PlayerInputer.h"
 
 namespace basecross
 {
@@ -60,6 +61,7 @@ namespace basecross
 		ResourceLoadData(L"Cokie_Crack_Last_Tx"  , L"Cokie_Crack_Last.png"),
 		ResourceLoadData(L"FadeChoco_Tx"          , L"FadeChoco.png"),
 		ResourceLoadData(L"FadeBack_Tx"          , L"FadeBack.png"),
+		ResourceLoadData(L"DoorKey_Tx"          , L"DoorKey.png"),
 
 		//プロローグ用
 		ResourceLoadData(L"Prologue_Tx"          , L"Prologue.png"),
@@ -219,6 +221,9 @@ namespace basecross
 
 	void LoadStage::OnCreate()
 	{
+		itbs::Input::CursorSetting::SetIsLock(true);
+		itbs::Input::CursorSetting::SetIsDraw(false);
+
 		CreateViewLight();
 
 		m_stageBackColor = App::GetApp()->GetScene<Scene>()->GetClearColor();
