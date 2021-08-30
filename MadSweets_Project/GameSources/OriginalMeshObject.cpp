@@ -27,8 +27,9 @@ namespace basecross {
 			Vec3(0.0f, 0.0f, 0.0f)
 		);
 
-		auto draw = AddComponent<PNTPointDraw>();
+		auto draw = AddComponent<BcPNTStaticModelDraw>();
 		draw->SetMeshResource(m_mesh);
+		//draw->SetTextureResource(L"");
 		draw->SetMeshToTransformMatrix(spanMat);
 		
 		auto scale = GetComponent<Transform>()->GetScale();
