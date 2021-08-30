@@ -45,7 +45,7 @@ namespace basecross {
 		// ”Â‹´@’Ç‰Á•ª -------------------------
 
 		state->AddAnimationEvent(0.0f, &HandySounder::WalkSound);
-		state->AddAnimationEvent(0.2f, &HandySounder::WalkSound);
+		state->AddAnimationEvent(0.125f, &HandySounder::WalkSound);
 		// --------------------------------------
 	}
 
