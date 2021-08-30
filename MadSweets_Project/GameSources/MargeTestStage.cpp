@@ -326,7 +326,7 @@ namespace basecross {
 		poss.push_back(positions[1]);
 		enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
 		//m_player->GetComponent<Transform>()->SetPosition(poss[0]);
-		m_player->GetComponent<Transform>()->SetPosition(13,1.0,-6.5);
+		//m_player->GetComponent<Transform>()->SetPosition(13,1.0,-6.5);
 
 		//DebugObject::sm_wss << to_wstring(stageObjs.size());
 
