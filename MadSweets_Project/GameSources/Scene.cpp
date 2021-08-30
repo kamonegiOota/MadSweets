@@ -10,6 +10,8 @@
 #include"MargeTestStage.h"
 #include"TitleStage.h"
 #include "LoadStage.h"
+#include"OptionStage.h"
+#include"GameOverStage.h"
 
 namespace basecross{
 
@@ -54,6 +56,16 @@ namespace basecross{
 		if (event->m_MsgStr == L"ToMargeTestStage")
 		{
 			ResetActiveStage<MargeTestStage>();
+		}
+
+		if (event->m_MsgStr == L"ToOptionStage")
+		{
+			ResetActiveStage<OptionStage>();
+		}
+
+		if (event->m_MsgStr == L"ToGameOverStage")
+		{
+			ResetActiveStage<GameOverStage>();
 		}
 	}
 
