@@ -664,6 +664,9 @@
     <Filter Include="Itabashi\GameOver\GameOveEventer">
       <UniqueIdentifier>{3cdbbe9c-4800-4faf-bcf5-a087b683cfba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Patchs\basecross\MessageWindow">
+      <UniqueIdentifier>{7d7a43d5-7b76-4fc1-aeca-6e9d0cf8eb5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1197,6 +1200,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverEventer.h">
       <Filter>Itabashi\GameOver\GameOveEventer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageWindow.h">
+      <Filter>Patchs\basecross\MessageWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1672,6 +1678,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverEventer.cpp">
       <Filter>Itabashi\GameOver\GameOveEventer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MessageWindow.cpp">
+      <Filter>Patchs\basecross\MessageWindow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
