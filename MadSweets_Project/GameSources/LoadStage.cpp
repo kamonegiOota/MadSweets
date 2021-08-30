@@ -54,6 +54,7 @@ namespace basecross
 		ResourceLoadData(L"WallSponge2_Tx"       , L"Tx_Sponge2.png"),
 		ResourceLoadData(L"TitleFont_Tx"         , L"TitleFont.png"),
 		ResourceLoadData(L"HpDraw_Tx"            , L"HPPinch.png"),
+		ResourceLoadData(L"Tx_Cake"            , L"Tx_Cake.png"),
 		ResourceLoadData(L"Cokie_Tx"             , L"Cokie.png"),
 		ResourceLoadData(L"Cokie_Crack_Tx"       , L"Cokie_Crack.png"),
 		ResourceLoadData(L"Cokie_Crack_Last_Tx"  , L"Cokie_Crack_Last.png"),
