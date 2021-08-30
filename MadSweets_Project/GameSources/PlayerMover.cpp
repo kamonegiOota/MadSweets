@@ -87,14 +87,19 @@ namespace basecross
 		auto moveForward = forward * inputVector.z;
 		auto moveRight = right * inputVector.x;
 
+		Vec3 vec = (moveForward + moveRight);
 		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_standMoveSpeed;
 
+		float animationSpeed = std::fminf(vec.length() + 0.2f, 1.0f);
 		if (m_playerWeightManager->GetWeightState() != PlayerWeightState::Hunger &&
 			PlayerInputer::IsDashPush())
 		{
 			moveVector *= m_dashPower;
 			m_playerWeightManager->AddWeight(-m_dashUseWeight);
+			animationSpeed *= 1.5f;
 		}
+
+		m_animator->SetAnimationSpeed(animationSpeed);
 		
 		auto position = transform->GetPosition();
 
