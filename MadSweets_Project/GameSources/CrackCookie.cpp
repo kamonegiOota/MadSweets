@@ -14,6 +14,8 @@
 
 #include "DebugObject.h"
 
+#include"SoundHelper.h"	
+
 namespace basecross {
 
 	float CrackCookie::CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr) {
@@ -44,6 +46,8 @@ namespace basecross {
 		}
 
 		TextureCheck();
+
+		SimpleSoundManager::OnePlaySE(L"CookieCrushSE");
 	}
 
 	void CrackCookie::OnCreate() {
