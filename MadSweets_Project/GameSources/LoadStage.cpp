@@ -87,7 +87,8 @@ namespace basecross
 		ResourceLoadData(L"PlayerWalkSE1", L"PlayerWalkSE1.wav"),
 		ResourceLoadData(L"PlayerWalkSE2", L"PlayerWalkSE2.wav"),
 		ResourceLoadData(L"UI_SelectSE",L"UI_SelectSE.wav"),
-		ResourceLoadData(L"UI_PushSE",L"UI_PushSE.wav")
+		ResourceLoadData(L"UI_PushSE",L"UI_PushSE.wav"),
+		ResourceLoadData(L"CookieCrushSE",L"CookieCrushSE.wav")
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_bgmResourceLoadDatas =
