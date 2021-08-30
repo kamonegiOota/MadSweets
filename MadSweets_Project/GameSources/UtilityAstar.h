@@ -36,7 +36,7 @@ namespace basecross {
 			auto nodes = graph.GetNodes();
 
 			vector<GraphEdge> reEdges;
-			for (const auto& node : nodes) {
+			//for (const auto& node : nodes) {
 				for (auto& node : nodes) {
 					//障害物がなかったらエッジを追加する。
 					if (!maru::MyUtility::IsRayObstacle(newNode.GetPosition(), node.GetPosition(), obstacleObjs, excluteObjs)) {
@@ -49,7 +49,7 @@ namespace basecross {
 						//isCreate = true;
 					}
 				}
-			}
+			//}
 
 			return reEdges;
 		}
