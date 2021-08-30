@@ -666,9 +666,33 @@
     </Filter>
     <Filter Include="Patchs\basecross\MessageWindow">
       <UniqueIdentifier>{7d7a43d5-7b76-4fc1-aeca-6e9d0cf8eb5e}</UniqueIdentifier>
-	</Filter>
-	<Filter Include="Maru\Object\StageObject\OriginalMeshObject">
+    </Filter>
+    <Filter Include="Maru\Object\StageObject\OriginalMeshObject">
       <UniqueIdentifier>{c60b9d60-ba8c-4299-b0bc-c96236728c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\EventedComponent">
+      <UniqueIdentifier>{0e9e5d3a-b691-492f-8234-264647d95cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerOpenDoorManager">
+      <UniqueIdentifier>{2f253621-51ce-4271-aac5-a7dd114c64d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\DoorObject">
+      <UniqueIdentifier>{b9737625-6c4e-4e66-aa29-70373dc37bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\GottenComponent">
+      <UniqueIdentifier>{7990ab59-cbfb-40f6-86bf-beb04257a601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\GameItem">
+      <UniqueIdentifier>{c6595bbe-e13e-4707-b1be-ef3ac942bee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Components\PlayerComponent\PlayerGameItemGetter">
+      <UniqueIdentifier>{d62bec21-0002-4a14-ab16-ab5341823f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GameItemKeyObject">
+      <UniqueIdentifier>{f9b9055a-c3ea-46fd-8077-563ffe741e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\GameMessageWindowObject">
+      <UniqueIdentifier>{514e30ca-dc69-4b33-865b-152ffc28c613}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1205,9 +1229,33 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MessageWindow.h">
       <Filter>Patchs\basecross\MessageWindow</Filter>
-	</ClInclude>
-	<ClInclude Include="$(MSBuildThisFileDirectory)OriginalMeshObject.h">
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)OriginalMeshObject.h">
       <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventedComponent.h">
+      <Filter>Itabashi\Components\EventedComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerOpenDoorManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DoorObject.h">
+      <Filter>Itabashi\DoorObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GottenComponent.h">
+      <Filter>Itabashi\Components\GottenComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameItem.h">
+      <Filter>Itabashi\Components\GameItem</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerGameItemGetter.h">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerGameItemGetter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameItemKeyObject.h">
+      <Filter>Itabashi\GameItemKeyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.h">
+      <Filter>Itabashi\GameMessageWindowObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1687,9 +1735,30 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MessageWindow.cpp">
       <Filter>Patchs\basecross\MessageWindow</Filter>
-	</ClCompile>
-	<ClCompile Include="$(MSBuildThisFileDirectory)OriginalMeshObject.cpp">
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)OriginalMeshObject.cpp">
       <Filter>Maru\Object\StageObject\OriginalMeshObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventedComponent.cpp">
+      <Filter>Itabashi\Components\EventedComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerOpenDoorManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DoorObject.cpp">
+      <Filter>Itabashi\DoorObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GottenComponent.cpp">
+      <Filter>Itabashi\Components\GottenComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerGameItemGetter.cpp">
+      <Filter>Itabashi\Components\PlayerComponent\PlayerGameItemGetter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameItemKeyObject.cpp">
+      <Filter>Itabashi\GameItemKeyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.cpp">
+      <Filter>Itabashi\GameMessageWindowObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
