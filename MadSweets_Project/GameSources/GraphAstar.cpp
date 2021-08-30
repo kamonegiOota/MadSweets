@@ -219,7 +219,8 @@ namespace basecross {
 	void GraphAstar::LoopSearchAstar(const AstarExpectData& startData) {
 		//for (int i = 0; i < 5; i++) {
 		int tempIndex = 0;
-		while(true){
+		//強制終了のバグなくなったら消す。
+		while(tempIndex < 100000){
 			tempIndex++;
 			NavGraphNode node;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
