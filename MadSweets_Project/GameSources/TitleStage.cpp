@@ -19,6 +19,7 @@
 #include "EventSprite.h"
 #include "MyUtility.h"
 
+#include "PlayerInputer.h"
 
 // ”Â‹´ ’Ç‰Á•ª --------------------------
 #include "SoundHelper.h"
@@ -142,6 +143,8 @@ namespace basecross {
 			goOptionButton->SetVerticalBeforeSelectable(startButton);
 
 			EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(startButton);
+
+			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 
 			CreateTitle();
 			CreateFadeCtrl(startButton, goOptionButton);
