@@ -22,7 +22,8 @@ namespace basecross {
 		if (m_target) {
 			auto trans = m_target->GetComponent<Transform>();
 			trans->SetPosition(m_position);
-			DebugObject::AddVector(m_position);
+			trans->SetForward(Vec3(1.0f,0.0f,0.0f));
+			//DebugObject::AddVector(m_position);
 		}
 	}
 
