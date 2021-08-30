@@ -441,7 +441,8 @@ namespace basecross
 		/// 再生する際に呼ばれる
 		/// </summary>
 		/// <param name="member">ステートマシンが使用するデータ構造体</param>
-		void Play(const StructMember& member)
+		/// <param name="animationSpeed">アニメーションスピード</param>
+		void Play(const StructMember& member,const float animationSpeed)
 		{
 			if (isEmpty)
 			{
@@ -454,7 +455,7 @@ namespace basecross
 				m_states.at(m_nowStateEnum)->Entry();
 			}
 
-			m_modelDraw->UpdateAnimation(App::GetApp()->GetElapsedTime());
+			m_modelDraw->UpdateAnimation(App::GetApp()->GetElapsedTime() * animationSpeed);
 
 			auto state = m_states.at(m_nowStateEnum);
 
@@ -543,6 +544,11 @@ namespace basecross
 			return m_animatorStateMachine;
 		}
 
+		void SetAnimationSpeed(const float animationSpeed)
+		{
+			m_animationSpeed = animationSpeed;
+		}
+
 		/// <summary>
 		/// ステートマシーンで使用する構造体の参照を取得する
 		/// </summary>
@@ -573,7 +579,7 @@ namespace basecross
 				return;
 			}
 
-			m_animatorStateMachine->Play(m_structMember);
+			m_animatorStateMachine->Play(m_structMember, m_animationSpeed);
 		}
 	};
 

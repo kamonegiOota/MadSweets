@@ -786,7 +786,14 @@ namespace basecross
 
 	void ChoicesList::SetIndex(const int index)
 	{
-		m_index = MyMath::Clamp(index, 0, static_cast<int>(m_choiceObjectAndEvents.size() - 1));
+		auto kariIndex = MyMath::Clamp(index, 0, static_cast<int>(m_choiceObjectAndEvents.size() - 1));
+
+		if (kariIndex != m_index)
+		{
+			selectChangeEvent();
+		}
+
+		m_index = kariIndex;
 
 		UpdateChoices();
 	}
@@ -798,6 +805,7 @@ namespace basecross
 			return;
 		}
 
+		pushEvent();
 		auto& choicesObjectAndEvent = m_choiceObjectAndEvents[m_index];
 		choicesObjectAndEvent->eventFunction();
 	}

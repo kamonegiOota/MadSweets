@@ -7,6 +7,8 @@ namespace basecross
 	public:
 		GameOverEventer(std::shared_ptr<GameObject>& owner);
 
+		void OnFadeOut();
+
 		void OnRetry();
 
 		void OnBackTitle();

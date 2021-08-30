@@ -4,7 +4,7 @@ namespace basecross
 {
 	HandySounder::HandySounder(std::shared_ptr<GameObject>& owner) :
 		Component(owner),
-		m_walkSoundClip(L"HandyWalkSE2", false, 0.25f)
+		m_walkSoundClip(L"HandyWalkSE1", false, 1.0f)
 	{
 
 	}

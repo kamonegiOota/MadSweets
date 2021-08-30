@@ -8,6 +8,11 @@ namespace basecross
 
 	}
 
+	void GameOverEventer::OnFadeOut()
+	{
+		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
+	}
+
 	void GameOverEventer::OnRetry()
 	{
 		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);

@@ -2,6 +2,7 @@
 #include"MenuButtonObject.h"
 #include"GameOverEventer.h"
 #include"AlphaFadeCtrl.h"
+#include"PlayerInputer.h"
 
 namespace basecross
 {
@@ -62,6 +63,29 @@ namespace basecross
 		retryButton->SetVerticalNextSelectable(backTitleButton);
 		backTitleButton->SetVerticalBeforeSelectable(retryButton);
 
+		auto alphaFade = Instantiate<UIObject>()->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+		alphaFade->FadeInStart();
+
+		alphaFade = Instantiate<UIObject>()->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+
+		alphaFade->AddEndAction(eventer, &GameOverEventer::OnRetry);
+
+		retryButton->pushEvent.AddFunc(eventer, &GameOverEventer::OnFadeOut);
+		retryButton->pushEvent.AddFunc(alphaFade, &AlphaFadeCtrl::FadeOutStart);
+
+		alphaFade = Instantiate<UIObject>()->AddComponent<AlphaFadeCtrl>();
+		alphaFade->SetSpeed(7.5f);
+
+		alphaFade->AddEndAction(eventer, &GameOverEventer::OnBackTitle);
+
+		backTitleButton->pushEvent.AddFunc(eventer, &GameOverEventer::OnFadeOut);
+		backTitleButton->pushEvent.AddFunc(alphaFade, &AlphaFadeCtrl::FadeOutStart);
+
+
+
 		EventSystem::GetInstance(GetThis<GameOverStage>())->SetNowSelectable(retryButton);
+		EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 	}
 }
