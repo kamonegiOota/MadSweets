@@ -209,7 +209,8 @@ namespace basecross {
 
 		map->CreateObject<OriginalMeshObject>(L"Chair", offset);
 		map->CreateObject<OriginalMeshObject>(L"Table",offset);
-		map->CreateObject<CookieHideObject>(L"WallHide", offset);
+		map->CreateObject<OriginalMeshObject>(L"Table2", offset);
+		map->CreateObject<CookieHideObject>(L"Locker01", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		map->CreateObject<EatenObject>(L"EatenObject",offset);
 
@@ -252,8 +253,57 @@ namespace basecross {
 			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
 		}
 
+		vector<GraphEdge> edges = {
+			{GraphEdge(0,1)},
+			{GraphEdge(0,5)},
+			{GraphEdge(0,7)},
+			{GraphEdge(1,0)},
+			{GraphEdge(1,12)},
+			{GraphEdge(1,2)},
+			{GraphEdge(2,1)},
+			{GraphEdge(2,3)},
+			{GraphEdge(3,2)},
+			{GraphEdge(3,4)},
+			{GraphEdge(4,3)},
+			{GraphEdge(4,5)},
+			{GraphEdge(5,4)},
+			{GraphEdge(5,0)},
+			{GraphEdge(5,11)},
+
+			{GraphEdge(6,1)},
+			{GraphEdge(6,12)},
+			{GraphEdge(7,1)},
+			{GraphEdge(7,8)},
+			{GraphEdge(8,7)},
+			{GraphEdge(8,9)},
+			{GraphEdge(8,12)},
+			{GraphEdge(9,8)},
+			{GraphEdge(9,13)},
+			{GraphEdge(10,11)},
+			{GraphEdge(11,10)},
+			{GraphEdge(11,5)},
+			{GraphEdge(12,6)},
+			{GraphEdge(12,13)},
+			{GraphEdge(12,8)},
+
+			{GraphEdge(13,12)},
+			{GraphEdge(13,9)},
+			{GraphEdge(14,15)},
+			{GraphEdge(15,14)},
+			{GraphEdge(15,16)},
+			{GraphEdge(16,15)},
+			{GraphEdge(16,17)},
+			{GraphEdge(17,16)},
+		};
+
+		for (auto& edge : edges) {
+			graph.AddEdge(edge);
+		}
+
 		GraphAstar astar(graph);
-		astar.AddEdges(stageObjs, excluteObjs);
+
+		//GraphAstar astar(graph);
+		//astar.AddEdges(stageObjs, excluteObjs);
 		
 		//エネミーの仮生成
 		auto enemy = Instantiate<HandyObject>(Vec3(0.0f,0.0f,0.0f), Quat::Identity());
@@ -275,7 +325,8 @@ namespace basecross {
 		poss.push_back(positions[0]);
 		poss.push_back(positions[1]);
 		enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
-		m_player->GetComponent<Transform>()->SetPosition(poss[0]);
+		//m_player->GetComponent<Transform>()->SetPosition(poss[0]);
+		m_player->GetComponent<Transform>()->SetPosition(13,1.0,-6.5);
 
 		//DebugObject::sm_wss << to_wstring(stageObjs.size());
 
@@ -491,51 +542,3 @@ namespace basecross {
 
 
 
-		//vector<GraphEdge> edges = {
-		//	{GraphEdge(0,1)},
-		//	{GraphEdge(0,5)},
-		//	{GraphEdge(0,7)},
-		//	{GraphEdge(1,0)},
-		//	{GraphEdge(1,12)},
-		//	{GraphEdge(1,2)},
-		//	{GraphEdge(2,1)},
-		//	{GraphEdge(2,3)},
-		//	{GraphEdge(3,2)},
-		//	{GraphEdge(3,4)},
-		//	{GraphEdge(4,3)},
-		//	{GraphEdge(4,5)},
-		//	{GraphEdge(5,4)},
-		//	{GraphEdge(5,0)},
-		//	{GraphEdge(5,11)},
-
-		//	{GraphEdge(6,1)},
-		//	{GraphEdge(6,12)},
-		//	{GraphEdge(7,1 )},
-		//	{GraphEdge(7,8)},
-		//	{GraphEdge(8,7)},
-		//	{GraphEdge(8,9)},
-		//	{GraphEdge(8,12)},
-		//	{GraphEdge(9,8)},
-		//	{GraphEdge(9,13)},
-		//	{GraphEdge(10,11)},
-		//	{GraphEdge(11,10)},
-		//	{GraphEdge(11,5)},
-		//	{GraphEdge(12,6)},
-		//	{GraphEdge(12,13)},
-		//	{GraphEdge(12,8)},
-
-		//	{GraphEdge(13,12)},
-		//	{GraphEdge(13,9)},
-		//	{GraphEdge(14,15)},
-		//	{GraphEdge(15,14)},
-		//	{GraphEdge(15,16)},
-		//	{GraphEdge(16,15)},
-		//	{GraphEdge(16,17)},
-		//	{GraphEdge(17,16)},
-		//};
-
-		//for (auto& edge : edges) {
-		//	graph.AddEdge(edge);
-		//}
-
-		//GraphAstar astar(graph);
