@@ -12,6 +12,10 @@ namespace basecross
 
 		bool m_isLocked = false;
 
+		void ChoicesPushSound();
+
+		void ChoicesSelectSound();
+
 	public:
 		PlayerChoicesManager(std::shared_ptr<GameObject>& owner);
 
