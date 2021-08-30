@@ -108,6 +108,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonEventer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonSounder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageWindow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTestEnemyObject.h" />
@@ -276,6 +277,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonEventer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonSounder.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MessageWindow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />

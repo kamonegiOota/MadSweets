@@ -10,9 +10,19 @@
 #include"CameraHelper.h"
 #include"MenuButtonObject.h"
 #include"StageTransitionOfTitle.h"
+#include"MessageWindow.h"
 
 namespace basecross
 {
+	class TEST
+	{
+	public:
+		static void test()
+		{
+			SimpleSoundManager::OnePlaySE(L"UI_SelectSE");
+		}
+	};
+
 	void ItabashiStage::OnCreate()
 	{
 		const Vec3 eye(0.0f, 5.0f, -5.0f);
@@ -31,24 +41,6 @@ namespace basecross
 		std::wstring mediaDir = App::GetApp()->GetDataDirWString();
 		auto& app = App::GetApp();
 
-		std::wstring textureDir = mediaDir + L"Textures\\";
-		app->RegisterTexture(L"WeightGaugeBackground", textureDir + L"WeightGaugeBackGround.png");
-		app->RegisterTexture(L"WeightGaugeColor", textureDir + L"WeightGaugeColor.png");
-		app->RegisterTexture(L"HpDraw_Tx", textureDir + L"HPPinch.png");
-		app->RegisterTexture(L"Tx_Cake", textureDir + L"Tx_Cake.png");
-
-		//モデル
-		std::wstring modelDir = mediaDir + L"Models\\";
-		auto modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\StandStay\\", L"PlayerStandStay.bmf");
-		app->RegisterResource(L"PlayerStandStay", modelMesh);
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\CrouchStay\\", L"PlayerCrouchStay.bmf");
-		app->RegisterResource(L"PlayerCrouchStay", modelMesh);
-		modelMesh = MeshResource::CreateBoneModelMesh(
-			modelDir + L"Player\\StandToCrouch\\", L"PlayerStandToCrouch.bmf");
-		app->RegisterResource(L"PlayerStandToCrouch", modelMesh);
-
 		auto cameraobj = Instantiate<CameraObject>();
 		auto brain = cameraobj->GetComponent<CameraBrain>();
 		brain->SetCameraBlend(std::make_shared<CameraBlendLinear>(1));
@@ -61,7 +53,7 @@ namespace basecross
 		gaugeManager->SetGaugeFillType(ImageFillType::Vertical);
 
 		auto rectTransform = gauge->GetComponent<RectTransform>();
-
+		rectTransform->SetPosition(-500, -500);
 		//rectTransform->SetAnchor(AnchorType::LeftUp);
 
 		SetSharedGameObject(L"PlayerWeightGauge", gauge);
@@ -177,32 +169,24 @@ namespace basecross
 			karipos.x += 1;
 		}
 
-		gameobject = Instantiate<GameObject>();
-		auto stageTransition = gameobject->AddComponent<StageTransitionOfTitle>();
+		std::wstring  message =
+			L"さあ、憐んで、血統書　持ち寄って反教典\n沈んだ唱導　腹這幻聴　謁見　席巻　妄信症\n踊れ酔え孕め　アヴァターラ新大系\n斜めの幻聴　錻力と宗教　ラル・ラリ・唱えろ生";
 
-		auto button = Instantiate<MenuButtonObject>();
-		auto m_button = button->GetComponent<Button>();
-		m_button->SetAllButtonImage(L"MenuPressAToStart_TX");
-		m_button->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoGameStage);
+		auto messageWindowObject = Instantiate<MessageWindowObject>();
+		auto messageWindow = messageWindowObject->GetComponent<MessageWindow>();
+		messageWindow->SetMessageText(message);
+		messageWindow->PlayMessage();
+		messageWindow->SetOneSecondDisplayedCharNum(10);
+		messageWindow->finishPushEvent.AddFunc(&TEST::test);
+		rectTransform = messageWindowObject->GetComponent<RectTransform>();
+		rectTransform->SetRectSize(1000, 200);
+		auto textBox = messageWindowObject->GetComponent<TextBox>();
+		//textBox->SetText(L"こんにちは");
+		textBox->SetFontColor(Col4(1.0f));
+		textBox->SetFontSize(50);
+		textBox->SetBoxColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+		textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
 
-		auto rectTransform2 = button->GetComponent<RectTransform>();
-
-		rectTransform2->SetRectSize(645, 100);
-
-		auto button2 = Instantiate<MenuButtonObject>();
-		auto m_button2 = button2->GetComponent<Button>();
-		m_button2->SetAllButtonImage(L"MenuOption_TX");
-		m_button2->pushEvent.AddFunc(stageTransition, &StageTransitionOfTitle::GoOptionStage);
-
-		rectTransform2 = button2->GetComponent<RectTransform>();
-
-		rectTransform2->SetRectSize(250, 100);
-		rectTransform2->SetPosition(0, -100);
-
-		m_button->SetVerticalNextSelectable(m_button2);
-
-		m_button2->SetVerticalBeforeSelectable(m_button);
-
-		EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(m_button);
+		EventSystem::GetInstance(GetThis<ItabashiStage>())->SetNowSelectable(messageWindow);
 	}
 }
