@@ -12,6 +12,7 @@
 #include "GraphAstar.h"
 #include "PlayerObject.h"
 #include "PlowlingMove.h"
+#include "WeightGaugeCtrl.h"
 
 namespace basecross {
 
@@ -25,6 +26,8 @@ namespace basecross {
 
 		ex_weak_ptr<StageMapCSV> m_mapCsv;
 		std::shared_ptr<PlayerObject> m_player;
+
+		void SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight);  //セーブされたパラメータのセット
 
 		//ビューの作成
 		void CreateViewLight();

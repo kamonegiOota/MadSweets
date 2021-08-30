@@ -65,6 +65,11 @@
 
 // ----------------------------
 
+#include "PlayerStatusMgr.h"
+#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
+#include "Velocity.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -76,6 +81,23 @@ namespace basecross {
 	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
 	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
 	Vec3 MargeTestStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
+
+	void MargeTestStage::SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight) {
+		auto saveValue = LoadStageTrigger::GetSavingValue();
+		if (saveValue.hp == 0.0f) {
+			return;
+		}
+
+		auto status = player->GetComponent<PlayerStatusMgr>(false);
+		auto calorie = player->GetComponent<PlayerWeightManager>(false);
+
+		if (status && calorie) {
+			status->SetHP(saveValue.hp);
+			weight->SetNowGauge(saveValue.weight);
+			weight->ChangeState(saveValue.weightState);
+			calorie->SetNowWeight(saveValue.calorie);
+		}
+	}
 
 	void MargeTestStage::CreateViewLight() {
 		const Vec3 eye(0.0f, +15.0f, -30.0f);
@@ -111,7 +133,7 @@ namespace basecross {
 
 	void MargeTestStage::OnCreate() {
 		try {
-			//AddGameObject<DebugObject>()->SetDrawLayer(100);
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 
 			//ビューとライトの作成
@@ -147,7 +169,7 @@ namespace basecross {
 			SetSharedGameObject(L"PlayerChoicesList", go);
 
 			//ウェイトゲージの生成
-			Instantiate<WeightGaugeUI>();
+			auto weightGauge = Instantiate<WeightGaugeUI>()->GetComponent<WeightGaugeCtrl>();
 
 			//プレイヤーの生成
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
@@ -157,36 +179,12 @@ namespace basecross {
 			player->AddComponent<PointLight>();
 			player->SetDrawActive(false);
 			m_player = player;
+			SavingValueSet(player, weightGauge);
 
-			//CreateMap(L"TempStage.csv");
-			//CreateMap(L"Stage1.csv");
-			//CreateMap(L"Stage2.csv");
-			//CreateMap(L"Stage3.csv");
 			CreateMap(sm_nowMap);
 
 			//敵の生成
 			CreateEnemy(player);
-
-			//食べ物の生成
-			//CreateEatItems();
-
-			//ライトの生成
-			CreatePointLight();
-
-			//クッキーの生成
-			//CreateSoundCookies();
-			//CreateCrackCookies();
-
-			//隠れるオブジェクトの生成
-			//CreateHideObjects();
-
-			//AddGameObject<EatenObject>(L"SweetCokie",Vec3(1.0f), Vec3(0.0f), Vec3(-21.0f, +1.0f, -21.0f),L"");
-
-			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
-
-			//auto table = Instantiate<GameObject>();
-			//table->AddComponent<PNTPointDraw>()->SetMeshResource(L"Table");
-			//table->GetComponent<Transform>()->SetScale(Vec3(1.0f,0.8f,1.0f));
 
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 		}
@@ -196,7 +194,8 @@ namespace basecross {
 	}
 
 	void MargeTestStage::OnUpdate() {
-
+		//auto handy = maru::MyUtility::GetGameObject<HandyObject>();
+		//handy->GetComponent<Velocity>()->SetVelocity(Vec3(0.0f));
 	}
 
 	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
@@ -206,24 +205,12 @@ namespace basecross {
 
 		//応急処置
 		vector<wstring> objNames = {
-			{L"StageRotBox"},
-			{L"Plane"},
-			{L"BoxCollision"},
-			{L"Floor"},
-			{L"RoomWall"},
-			{L"Wall"},
-			{L"Partition"},
-			{L"UpperWall"},
-			{L"Corner"},
-			{L"RoomCorner"},
-			{L"InnerCorner"},
-			{L"FrontWall"},
-			{L"RightWall"},
-			{L"BackWall"},
-			{L"LeftWall"},
-			{L"LeftWall"},
-			{L"CandyDoor"},
-			{L"Stairs"},
+			{L"StageRotBox"},{L"Plane"},{L"BoxCollision"},
+			{L"Floor"},{L"RoomWall"},{L"Wall"},
+			{L"Partition"},{L"UpperWall"},{L"Corner"},
+			{L"RoomCorner"},{L"InnerCorner"},{L"FrontWall"},
+			{L"RightWall"},{L"BackWall"},{L"LeftWall"},
+			{L"LeftWall"},{L"CandyDoor"},{L"Stairs"},
 		};
 
 		for (const auto& objName : objNames) {
@@ -323,7 +310,7 @@ namespace basecross {
 				CreateEnemy<HandyObject>(fileName,astar,param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Cara:
-				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
 				CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
