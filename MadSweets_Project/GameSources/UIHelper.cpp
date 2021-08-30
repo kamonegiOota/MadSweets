@@ -925,7 +925,7 @@ namespace basecross
 	{
 	}
 
-	void EventSystem::MoveCheck(const itbs::Input::KeyCode keycode,std::shared_ptr<I_Selectable>(I_Selectable::*func)() const)
+	void EventSystem::MoveCheck(bool(itbs::Input::I_BasicInputer::*isDown)() const,std::shared_ptr<I_Selectable>(I_Selectable::*func)() const)
 	{
 		if (!m_nowSelectable || m_nowSelectable->GetIsSelectedLock())
 		{
@@ -939,7 +939,7 @@ namespace basecross
 			return;
 		}
 
-		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(keycode))
+		if ((m_basicInputer.get()->*isDown)())
 		{
 			if (m_nowSelectable)
 			{
@@ -1008,6 +1008,11 @@ namespace basecross
 		return m_eventSystem;
 	}
 
+	void EventSystem::SetBasicInputer(const std::shared_ptr<itbs::Input::I_BasicInputer>& basicInputer)
+	{
+		m_basicInputer = basicInputer;
+	}
+
 	void EventSystem::OnCreate()
 	{
 		if (!m_eventSystem)
@@ -1018,12 +1023,17 @@ namespace basecross
 
 	void EventSystem::OnUpdate()
 	{
-		MoveCheck(itbs::Input::KeyCode::LeftArrow, &I_Selectable::GetHorizontalBeforeSelectable);
-		MoveCheck(itbs::Input::KeyCode::RightArrow, &I_Selectable::GetHorizontalNextSelectable);
-		MoveCheck(itbs::Input::KeyCode::UpArrow, &I_Selectable::GetVerticalBeforeSelectable);
-		MoveCheck(itbs::Input::KeyCode::DownArrow, &I_Selectable::GetVerticalNextSelectable);
+		if (!m_basicInputer)
+		{
+			return;
+		}
 
-		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(itbs::Input::KeyCode::Space))
+		MoveCheck(&itbs::Input::I_BasicInputer::IsLeftDown, &I_Selectable::GetHorizontalBeforeSelectable);
+		MoveCheck(&itbs::Input::I_BasicInputer::IsRightDown, &I_Selectable::GetHorizontalNextSelectable);
+		MoveCheck(&itbs::Input::I_BasicInputer::IsUpDown, &I_Selectable::GetVerticalBeforeSelectable);
+		MoveCheck(&itbs::Input::I_BasicInputer::IsDownDown, &I_Selectable::GetVerticalNextSelectable);
+
+		if ((m_basicInputer.get()->* & itbs::Input::I_BasicInputer::IsDesitionDown)())
 		{
 			if (m_nowSelectable)
 			{

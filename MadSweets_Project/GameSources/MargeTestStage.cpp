@@ -52,6 +52,9 @@
 // 板橋 追加分 ----------------
 
 #include "CameraHelper.h"
+#include "GaugeManager.h"
+#include "GameMessageWindowObject.h"
+#include "PlayerInputer.h"
 
 // ----------------------------
 
@@ -94,7 +97,7 @@ namespace basecross {
 
 	void MargeTestStage::OnCreate() {
 		try {
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 
 			//ビューとライトの作成
@@ -102,7 +105,8 @@ namespace basecross {
 
 			// 板橋 追加分 ---------------
 
-			AddGameObject<CameraObject>();
+			Instantiate<CameraObject>();
+			Instantiate<GameMessageWindowObject>();
 
 			// ---------------------------
 
@@ -112,7 +116,11 @@ namespace basecross {
 			auto gauge = Instantiate<GaugeUI>();
 			auto rectTransform = gauge->GetComponent<RectTransform>();
 			rectTransform->SetAnchor(AnchorType::LeftUp);
-
+			rectTransform->SetPosition(200, -50);
+			auto gaugeManager = gauge->GetComponent<GaugeManager>();
+			gaugeManager->SetGaugeImage(L"WeightGaugeColor");
+			gaugeManager->SetGaugeBackgroundImage(L"WeightGaugeBackground");
+			gaugeManager->SetGaugeRectSize(768 * 0.5f, 256 * 0.5f);
 			//UI周り
 			auto go = Instantiate<UIObject>();
 			go->GetComponent<RectTransform>()->SetPosition(300, 0);
@@ -166,6 +174,8 @@ namespace basecross {
 			//auto table = Instantiate<GameObject>();
 			//table->AddComponent<PNTPointDraw>()->SetMeshResource(L"Table");
 			//table->GetComponent<Transform>()->SetScale(Vec3(1.0f,0.8f,1.0f));
+
+			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 		}
 		catch (...) {
 			throw;

@@ -18,6 +18,8 @@
 #include"CameraRotater.h"
 #include"PlayerSounder.h"
 #include"DebugCameraObject.h"
+#include"PlayerOpenDoorManager.h"
+#include"PlayerGameItemGetter.h"
 
 //丸山追記分インクルード
 #include "PlayerStatusMgr.h"
@@ -93,6 +95,8 @@ namespace basecross
 		choiceManager->SetSearchRange(2.0f);
 
 		AddComponent<PlayerHideManager>();
+		AddComponent<PlayerGameItemGetter>();
+		AddComponent<PlayerOpenDoorManager>();
 
 		//auto gameobj = GetStage()->Instantiate<GameObject>(Vec3(), Quat(), GetThis<GameObject>());
 

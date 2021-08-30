@@ -614,6 +614,9 @@ namespace basecross
 
 		std::shared_ptr<GameObject> CreateChildTextBoxObject();
 	public:
+		itbs::Utility::Delegate<void()> selectChangeEvent;
+		itbs::Utility::Delegate<void()> pushEvent;
+
 		ChoicesList(std::shared_ptr<GameObject>& owner);
 
 		void AddChoice(const std::shared_ptr<ChoicesObjectAndEvent const>& choicesObjectAndEvent);
@@ -682,6 +685,8 @@ namespace basecross
 		std::shared_ptr<I_Selectable> GetHorizontalNextSelectable() const override;
 	};
 
+	class itbs::Input::I_BasicInputer;
+
 	class EventSystem : public Component
 	{
 	public:
@@ -689,10 +694,13 @@ namespace basecross
 
 	private:
 		static ex_weak_ptr<EventSystem> m_eventSystem;
+
+		std::shared_ptr<itbs::Input::I_BasicInputer> m_basicInputer;
+
 		ex_weak_ptr<I_Selectable> m_nowSelectable;
 		std::stack<ex_weak_ptr<I_Selectable>> m_stackSelectable;
 
-		void MoveCheck(const itbs::Input::KeyCode keycode, std::shared_ptr<I_Selectable>(I_Selectable::*func)() const);
+		void MoveCheck(bool(itbs::Input::I_BasicInputer::*isDown)()const, std::shared_ptr<I_Selectable>(I_Selectable::*func)() const);
 	public:
 		EventSystem(std::shared_ptr<GameObject>& owner);
 
@@ -705,6 +713,8 @@ namespace basecross
 		std::shared_ptr<I_Selectable> GetNowSelectable() const;
 
 		static ex_weak_ptr<EventSystem> GetInstance(const std::shared_ptr<Stage>& stage);
+
+		void SetBasicInputer(const std::shared_ptr<itbs::Input::I_BasicInputer>& basicInputer);
 
 		void OnCreate() override;
 

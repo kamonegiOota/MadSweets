@@ -5,6 +5,13 @@ namespace basecross
 	int PlayerInputer::m_rotationSensitivityLevel = 5;
 	int PlayerInputer::m_mouseSensitivityLevel = 5;
 
+	std::shared_ptr<PlayerInputer> PlayerInputer::m_playerInputer;
+
+	PlayerInputer::PlayerInputer() :
+		m_inputDevice(App::GetApp()->GetMyInputDevice())
+	{
+	}
+
 	Vec2 PlayerInputer::GetMoveDirection()
 	{
 		static const auto& inputDevice = App::GetApp()->GetMyInputDevice();
@@ -134,5 +141,75 @@ namespace basecross
 	{
 		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::DownArrow) ||
 			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::Down);
+	}
+
+	std::shared_ptr<PlayerInputer> PlayerInputer::GetInstance()
+	{
+		if (!m_playerInputer)
+		{
+			m_playerInputer = std::make_shared<PlayerInputer>();
+		}
+
+		return m_playerInputer;
+	}
+
+	bool PlayerInputer::IsDesitionDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::Space) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::A);
+	}
+
+	bool PlayerInputer::IsCancelDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::X) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::B);
+	}
+
+	bool PlayerInputer::IsUpDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::UpArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::Up);
+	}
+
+	bool PlayerInputer::IsUp() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputPush(KeyCode::UpArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputPush(XInputCode::Up);
+	}
+
+	bool PlayerInputer::IsDownDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::DownArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::Down);
+	}
+
+	bool PlayerInputer::IsDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputPush(KeyCode::DownArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputPush(XInputCode::Down);
+	}
+
+	bool PlayerInputer::IsLeftDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::LeftArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::left);
+	}
+
+	bool PlayerInputer::IsLeft() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputPush(KeyCode::LeftArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputPush(XInputCode::left);
+	}
+
+	bool PlayerInputer::IsRightDown() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::RightArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::Right);
+	}
+
+	bool PlayerInputer::IsRight() const
+	{
+		return m_inputDevice->GetKeyBoard().IsInputPush(KeyCode::RightArrow) ||
+			m_inputDevice->GetXInputGamePad().IsInputPush(XInputCode::Right);
 	}
 }

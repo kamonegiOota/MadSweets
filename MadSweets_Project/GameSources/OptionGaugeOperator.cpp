@@ -1,6 +1,7 @@
 #include"OptionGaugeOperator.h"
 #include"SoundHelper.h"
 #include"GameSaveManager.h"
+#include"PlayerInputer.h"
 
 namespace basecross
 {
@@ -25,12 +26,12 @@ namespace basecross
 
 		float addGauge = 0.0f;
 
-		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputPush(itbs::Input::KeyCode::LeftArrow))
+		if (PlayerInputer::GetInstance()->IsLeft())
 		{
 			addGauge += -1.0f;
 		}
 
-		if (App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputPush(itbs::Input::KeyCode::RightArrow))
+		if (PlayerInputer::GetInstance()->IsRight())
 		{
 			addGauge += +1.0f;
 		}

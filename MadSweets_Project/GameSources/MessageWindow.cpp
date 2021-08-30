@@ -31,6 +31,7 @@ namespace basecross
 
 	void MessageWindow::SetMessageText(const std::wstring& messageText)
 	{
+		m_textBox->SetText(L"");
 		m_messageText = messageText;
 		m_isPlaying = false;
 		m_textFrontCharCount = 0;

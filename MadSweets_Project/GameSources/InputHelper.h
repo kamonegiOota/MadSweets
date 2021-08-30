@@ -543,5 +543,29 @@ namespace itbs
 
 			void MessageChecker(const UINT message, const WPARAM wParam, const LPARAM lParam);
 		};
+
+		class I_BasicInputer
+		{
+		public:
+			virtual bool IsDesitionDown() const = 0;
+
+			virtual bool IsCancelDown() const = 0;
+
+			virtual bool IsUpDown() const = 0;
+
+			virtual bool IsUp() const = 0;
+
+			virtual bool IsDownDown() const = 0;
+
+			virtual bool IsDown() const = 0;
+
+			virtual bool IsLeftDown() const = 0;
+
+			virtual bool IsLeft() const = 0;
+
+			virtual bool IsRightDown() const = 0;
+
+			virtual bool IsRight() const = 0;
+		};
 	}
 }
