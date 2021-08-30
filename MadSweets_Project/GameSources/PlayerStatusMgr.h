@@ -52,6 +52,10 @@ namespace basecross {
 			return m_param.state;
 		}
 
+		void SetHP(const float& value) {
+			m_param.hp = value;
+		}
+
 		void AddHP(const float& value) {
 			m_param.hp += value;
 		}
