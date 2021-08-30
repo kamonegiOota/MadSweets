@@ -30,6 +30,9 @@ namespace basecross {
 	{
 		PlayerStatusParam m_param;
 
+		void ChangeGameOverStage();
+		void DestProcess();
+
 	public:
 		PlayerStatusMgr(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
@@ -47,6 +50,10 @@ namespace basecross {
 		}
 		PlayerStaus GetState() const {
 			return m_param.state;
+		}
+
+		void AddHP(const float& value) {
+			m_param.hp += value;
 		}
 
 		float GetHP() const {

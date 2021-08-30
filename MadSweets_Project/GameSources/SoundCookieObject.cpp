@@ -15,6 +15,8 @@
 namespace basecross {
 
 	void SoundCookieObject::OnCreate() {
+		StageObject::OnCreate();
+		
 		auto draw = AddComponent<PNTPointDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
 

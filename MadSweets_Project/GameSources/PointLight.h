@@ -39,6 +39,10 @@ namespace basecross {
 		PointLightParam GetParametor() const {
 			return m_param;
 		}
+
+		void SetPower(const float& power) {
+			m_param.power = Col4(1.0f) * power;
+		}
 	};
 
 

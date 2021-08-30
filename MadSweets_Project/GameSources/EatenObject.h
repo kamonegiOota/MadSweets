@@ -13,24 +13,26 @@
 
 namespace basecross {
 
-	class EatenObject : public StageObject
+	class EatenObject : public GameObject
 	{
 		BuildeVertexPCTParam m_param;
 
 	public:
-		EatenObject(const std::shared_ptr<Stage>& stage,
-			const std::wstring& name,
-			const Vec3& scale,
-			const Vec3& rotation,
-			const Vec3& position,
-			const wstring& texture
-		) :
-			StageObject(stage, name, scale, rotation, position),
-				m_param(BuildeVertexPCTParam(texture, false))
+
+		EatenObject(const std::shared_ptr<Stage>& stage)
+			:GameObject(stage)
 		{}
 
 		void OnCreate() override;
 
+		void SetTexture(const wstring& name) {
+			m_param = BuildeVertexPCTParam(name, false);
+			auto builde = BuildeVertexPCTSprite(m_param);
+
+			auto draw = GetComponent<PCTStaticDraw>();
+			draw->UpdateVertices(builde.m_vertices);
+			draw->SetTextureResource(name);
+		}
 	};
 
 }

@@ -515,6 +515,8 @@ namespace basecross
 		/// </summary>
 		std::shared_ptr<PNTBoneModelDraw> m_boneModelDraw;
 
+		float m_animationSpeed = 1.0f;
+
 	public:
 		/// <summary>
 		/// コンストラクタ

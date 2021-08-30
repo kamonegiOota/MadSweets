@@ -117,6 +117,16 @@ namespace basecross {
 		m_gaugeUI->GetComponent<ScalePop>()->StartPop(speed, startSize);
 	}
 
+	void WeightGaugeCtrl::TimeMgr() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		m_timeElapsed += delta;
+
+		if (m_timeElapsed > m_time) {
+			m_timeElapsed = 0.0f;
+			AddGauge(m_timeDownValue);
+		}
+	}
+
 	void WeightGaugeCtrl::OnCreate() {
 		CreateParametor();
 		m_frameUI->AddComponent<ScalePop>();
@@ -125,6 +135,8 @@ namespace basecross {
 
 	void WeightGaugeCtrl::OnUpdate() {
 		GaugeUpdate();
+
+		TimeMgr();
 	}
 
 }

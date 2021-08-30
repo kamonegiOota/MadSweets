@@ -693,6 +693,15 @@
     </Filter>
     <Filter Include="Itabashi\GameMessageWindowObject">
       <UniqueIdentifier>{514e30ca-dc69-4b33-865b-152ffc28c613}</UniqueIdentifier>
+	</Filter>
+	<Filter Include="Maru\Enemy\Component\Enemy\UtilityEnemy">
+      <UniqueIdentifier>{75e5ea27-a6ee-48d9-8675-18de8e528b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Component\BossCameraEvent">
+      <UniqueIdentifier>{4b653e4e-9e41-464d-8802-cb691452456c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\StageObject\PointLightObject">
+      <UniqueIdentifier>{8df1a5c4-ad20-4b4d-b35b-6d20ebe0d551}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1256,6 +1265,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.h">
       <Filter>Itabashi\GameMessageWindowObject</Filter>
+	</ClInclude>
+	<ClInclude Include="$(MSBuildThisFileDirectory)UtilityEnemy.h">
+      <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLightObject.h">
+      <Filter>Maru\Object\StageObject\PointLightObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1759,6 +1774,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.cpp">
       <Filter>Itabashi\GameMessageWindowObject</Filter>
+	</ClCompile>
+	<ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp">
+      <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLightObject.cpp">
+      <Filter>Maru\Object\StageObject\PointLightObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

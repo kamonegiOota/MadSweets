@@ -1,23 +1,21 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file GameManager.h
+@brief GameManagerクラス
 担当：丸山裕喜
 */
 
 #pragma once
 #include "stdafx.h"
-
 #include "StageObject.h"
+//#include "AdvanceComponent.h"
 
 namespace basecross {
 
-	class SoundCookieObject : public StageObject
-	{
+	class PointLightObject : public StageObject {
 
 	public:
-
-		SoundCookieObject(const std::shared_ptr<Stage>& stage,
+		PointLightObject(const std::shared_ptr<Stage>& stage,
 			const std::wstring& name,
 			const Vec3& scale,
 			const Vec3& rotation,

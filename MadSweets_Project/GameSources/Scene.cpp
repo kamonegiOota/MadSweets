@@ -57,12 +57,10 @@ namespace basecross{
 		{
 			ResetActiveStage<MargeTestStage>();
 		}
-
 		if (event->m_MsgStr == L"ToOptionStage")
 		{
 			ResetActiveStage<OptionStage>();
 		}
-
 		if (event->m_MsgStr == L"ToGameOverStage")
 		{
 			ResetActiveStage<GameOverStage>();

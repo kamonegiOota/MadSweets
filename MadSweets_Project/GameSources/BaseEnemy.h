@@ -15,6 +15,7 @@ namespace basecross {
 
 	protected:
 	 	std::shared_ptr<maru::StateMachine<BaseEnemy>> m_stateMachine;
+		wstring m_mapType = L"";  //どのマップに所属しているか？
 
 	public:
 		BaseEnemy(const std::shared_ptr<GameObject>& objPtr);
@@ -25,6 +26,13 @@ namespace basecross {
 
 
 		//アクセッサ--------------------------------------------------------------
+
+		void SetMapType(const wstring& type) {
+			m_mapType = type;
+		}
+		wstring GetMapType() const {
+			return m_mapType;
+		}
 
 		/// <summary>
 		/// ステートマシンの変更

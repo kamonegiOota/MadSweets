@@ -15,11 +15,14 @@
 #include "AlphaFadeObject.h"
 #include "AlphaFadeCtrl.h"
 
+#include "SoundHelper.h"
+
 namespace basecross {
 
 	void EventSprite::ChangeStage() {
 		float stayTime(0.0f); //ステージ遷移する場合に待つ時間
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToMargeTestStage");
+		SimpleSoundManager::StopBGM();
 	}
 
 	void EventSprite::CreateImage() {
@@ -54,10 +57,12 @@ namespace basecross {
 		}
 	}
 
-	void EventSprite::InputMgr() {
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+	void EventSprite::TimeMgr() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		m_timeElapsed += delta;
 
-		if (key.IsInputDown(itbs::Input::KeyCode::G)) {
+		if (m_timeElapsed > m_time) {
+			m_timeElapsed = 0.0f;
 			NextSprite();
 		}
 	}
@@ -72,11 +77,14 @@ namespace basecross {
 	}
 
 	void EventSprite::OnUpdate() {
-		InputMgr();
+		if (m_isUpdate) {
+			TimeMgr();
+		}
 	}
 
 	void EventSprite::EventStart() {
 		NextSprite();
+		m_isUpdate = true;
 	}
 
 }

@@ -56,6 +56,10 @@ namespace basecross {
 	}
 
 	void AlphaFadeCtrl::FadeInStart() {
+		if (m_isUpdate) {
+			return;
+		}
+
 		m_isUpdate = true;
 		m_direct = -1.0f;
 		SetStartImageAlpha(1.0f);
@@ -72,6 +76,10 @@ namespace basecross {
 	}
 
 	void AlphaFadeCtrl::FadeOutStart() {
+		if (m_isUpdate) {
+			return;
+		}
+
 		m_isUpdate = true;
 		m_direct = 1.0f;
 		SetStartImageAlpha(0.0f);

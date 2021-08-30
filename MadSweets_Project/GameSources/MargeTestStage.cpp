@@ -48,6 +48,12 @@
 
 #include "EatenObject.h"
 #include "PlowlingMove.h"
+#include "BaseEnemy.h"
+
+#include "UtilityAstar.h"
+#include "UtilityEnemy.h"
+
+#include "PointLightObject.h"
 
 // 板橋 追加分 ----------------
 
@@ -88,9 +94,9 @@ namespace basecross {
 		//ライトの設定
 		for (int i = 0; i < 3; i++) {
 			auto& light = PtrMultiLight->GetLight(i);
-			light.m_DiffuseColor = Col4(0.3f);
+			light.m_DiffuseColor = Col4(0.35f);
 			//light.m_Directional = Vec3(0.0f);
-			light.m_SpecularColor = Col4(0.3f);
+			light.m_SpecularColor = Col4(0.35f);
 			//light.m_Directional = poss[i];
 		}
 	}
@@ -111,6 +117,9 @@ namespace basecross {
 			// ---------------------------
 
 			TempLoad();
+
+			auto fade = Instantiate<AlphaFadeObject>()->GetComponent<AlphaFadeCtrl>();
+			fade->FadeInStart();
 
 			//ゲージの生成
 			auto gauge = Instantiate<GaugeUI>();
@@ -136,12 +145,7 @@ namespace basecross {
 			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(Vec3(-21.0f, +1.0f, -21.0f),Quat());
 			player->AddComponent<PointLight>();
-			//player->RemoveComponent<CollisionCapsule>();
-			//player->AddComponent<CollisionObb>();
 			player->SetDrawActive(false);
-			//player->AddComponent<CollisionObb>();
-			//場所を把握するための処理
-			//player->AddComponent<PositionDrawComp>();
 			m_player = player;
 
 			//CreateMap(L"TempStage.csv");
@@ -165,9 +169,7 @@ namespace basecross {
 			//隠れるオブジェクトの生成
 			//CreateHideObjects();
 
-			//auto loadTrigger = Instantiate<GameObject>(Vec3(-8.0f, +1.0f, -12.0f),Quat::Identity())->AddComponent<LoadStageTrigger>();
-			//loadTrigger->GetGameObject()->GetComponent<Transform>()->SetScale(Vec3(2.0f));
-			//loadTrigger->GetGameObject()->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+			//AddGameObject<EatenObject>(L"SweetCokie",Vec3(1.0f), Vec3(0.0f), Vec3(-21.0f, +1.0f, -21.0f),L"");
 
 			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
 
@@ -191,6 +193,9 @@ namespace basecross {
 		//m_nowMap = fileName;
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
+		//応急処置
+		
+
 		vector<wstring> objNames = {
 			{L"StageRotBox"},
 			{L"Plane"},
@@ -210,7 +215,6 @@ namespace basecross {
 			{L"LeftWall"},
 			{L"CandyDoor"},
 			{L"Stairs"},
-			//{L"Cube"},
 		};
 
 		for (const auto& objName : objNames) {
@@ -222,11 +226,22 @@ namespace basecross {
 		map->CreateObject<OriginalMeshObject>(L"Table2", offset);
 		map->CreateObject<CookieHideObject>(L"Locker01", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
-		map->CreateObject<EatenObject>(L"EatenObject",offset);
+		//map->CreateObject<EatenObject>(L"EatenObject",offset);
+		map->CreateObject<PointLightObject>(L"Light", offset);
+		map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		//map->CreateObject<SoundCookieObject>
+
+		//eatオブジェクト
+		auto positions = map->GetPositions(L"EatenObject");
+		auto textures = map->GetTextures(L"EatenObject");
+		for (int i = 0; i < positions.size() ; i++) {
+			auto eatenObj = Instantiate<EatenObject>(positions[i], Quat::Identity());
+			eatenObj->SetTexture(textures[i]);
+		}
 
 		m_mapCsv = map;
 
-		CreateAstar();
+		CreateAstar(fileName);
 	}
 
 	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
@@ -235,15 +250,32 @@ namespace basecross {
 		if (isNewCreate) {
 			CreateMap(fileName, offset);
 		}
+
+		//敵の配置の切り替え
+		auto enemys = maru::MyUtility::GetComponents<BaseEnemy>();
+		for (auto& enemy : enemys) {
+			if (fileName == enemy->GetMapType()) {
+				auto plow = enemy->GetGameObject()->GetComponent<PlowlingMove>();
+				auto pos = plow->GetNowTargetPosition();
+
+				enemy->GetGameObject()->GetComponent<Transform>()->SetPosition(pos);
+
+				enemy->GetGameObject()->SetUpdateActive(true);
+				enemy->GetGameObject()->SetDrawActive(true);
+			}
+			else {
+				enemy->GetGameObject()->SetUpdateActive(false);
+				enemy->GetGameObject()->SetDrawActive(false);
+			}
+		}
 		
 		//フェードイン
 		fade->FadeInStart();
 	}
 
-	GraphAstar MargeTestStage::CreateAstar() {
-
+	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
+		//将来的にそれ用のUtilかFactoryに書く
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
-		//GraphAstar astar(graph);
 		vector<std::shared_ptr<GameObject>> stageObjs;
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 
@@ -263,48 +295,7 @@ namespace basecross {
 			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
 		}
 
-		vector<GraphEdge> edges = {
-			{GraphEdge(0,1)},
-			{GraphEdge(0,5)},
-			{GraphEdge(0,7)},
-			{GraphEdge(1,0)},
-			{GraphEdge(1,12)},
-			{GraphEdge(1,2)},
-			{GraphEdge(2,1)},
-			{GraphEdge(2,3)},
-			{GraphEdge(3,2)},
-			{GraphEdge(3,4)},
-			{GraphEdge(4,3)},
-			{GraphEdge(4,5)},
-			{GraphEdge(5,4)},
-			{GraphEdge(5,0)},
-			{GraphEdge(5,11)},
-
-			{GraphEdge(6,1)},
-			{GraphEdge(6,12)},
-			{GraphEdge(7,1)},
-			{GraphEdge(7,8)},
-			{GraphEdge(8,7)},
-			{GraphEdge(8,9)},
-			{GraphEdge(8,12)},
-			{GraphEdge(9,8)},
-			{GraphEdge(9,13)},
-			{GraphEdge(10,11)},
-			{GraphEdge(11,10)},
-			{GraphEdge(11,5)},
-			{GraphEdge(12,6)},
-			{GraphEdge(12,13)},
-			{GraphEdge(12,8)},
-
-			{GraphEdge(13,12)},
-			{GraphEdge(13,9)},
-			{GraphEdge(14,15)},
-			{GraphEdge(15,14)},
-			{GraphEdge(15,16)},
-			{GraphEdge(16,15)},
-			{GraphEdge(16,17)},
-			{GraphEdge(17,16)},
-		};
+		auto edges = StageMapCSV::sm_astarEdges[fileName];
 
 		for (auto& edge : edges) {
 			graph.AddEdge(edge);
@@ -312,33 +303,43 @@ namespace basecross {
 
 		GraphAstar astar(graph);
 
-		//GraphAstar astar(graph);
-		//astar.AddEdges(stageObjs, excluteObjs);
-		
-		//エネミーの仮生成
-		auto enemy = Instantiate<HandyObject>(Vec3(0.0f,0.0f,0.0f), Quat::Identity());
-		enemy->AddComponent<AstarCtrl>(astar);
-		enemy->GetComponent<EyeSearchRange>()->AddTarget(m_player);
-
-		auto wallEvasion = enemy->GetComponent<WallEvasion>();
-		if (wallEvasion) {
-			for (auto& obj : GetGameObjectVec()) {
-				auto stageObj = dynamic_pointer_cast<StageObject>(obj);
-				if (stageObj) {
-					wallEvasion->AddObstacleObjs(stageObj);
-				}
+		//エネミーの生成
+		auto params = UtilityEnemy::sm_enemyParam[fileName];
+		for (auto param : params) {
+			switch (param.type)
+			{
+			case UtilityEnemy::EnemyType::Handy:
+				CreateEnemy<HandyObject>(fileName,astar,param.plowPositions);
+				break;
+			case UtilityEnemy::EnemyType::Cara:
+				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				break;
+			case UtilityEnemy::EnemyType::Gra:
+				CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
+				break;
 			}
 		}
 
-		enemy->GetComponent<Transform>()->SetPosition(positions[0]);
-		vector<Vec3> poss;
-		poss.push_back(positions[0]);
-		poss.push_back(positions[1]);
-		enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
-		//m_player->GetComponent<Transform>()->SetPosition(poss[0]);
-		//m_player->GetComponent<Transform>()->SetPosition(13,1.0,-6.5);
+		//auto enemy = Instantiate<HandyObject>(Vec3(0.0f,0.0f,0.0f), Quat::Identity());
+		//enemy->GetComponent<BaseEnemy>()->SetMapType(fileName);
+		//enemy->AddComponent<AstarCtrl>(astar);
+		//enemy->GetComponent<EyeSearchRange>()->AddTarget(m_player);
 
-		//DebugObject::sm_wss << to_wstring(stageObjs.size());
+		//auto wallEvasion = enemy->GetComponent<WallEvasion>();
+		//if (wallEvasion) {
+		//	for (auto& obj : GetGameObjectVec()) {
+		//		auto stageObj = dynamic_pointer_cast<StageObject>(obj);
+		//		if (stageObj) {
+		//			wallEvasion->AddObstacleObjs(stageObj);
+		//		}
+		//	}
+		//}
+
+		//enemy->GetComponent<Transform>()->SetPosition(positions[0]);
+		//vector<Vec3> poss;
+		//poss.push_back(positions[0]);
+		//poss.push_back(positions[1]);
+		//enemy->GetComponent<PlowlingMove>()->SetPositions(poss);
 
 		return astar;
 	}
@@ -466,15 +467,6 @@ namespace basecross {
 			//{-21.0f,1.0f,-20.0f}
 		};
 
-		//std::shared_ptr<GameObject> enemy;
-		//for (auto& obj : GetGameObjectVec()) {
-		//	auto ene = obj->GetComponent<ChaseEnemyObject>(false);
-		//	if (ene) {
-		//		enemy = ene;
-		//		break;
-		//	}
-		//}
-
 		for (auto& pos : poss) {
 			pos.y += -0.5f;
 			AddGameObject<FixedBox>(L"Fixed", Vec3(0.5f,1.0f,0.5f), Vec3(0.0f), pos, L"");
@@ -514,7 +506,7 @@ namespace basecross {
 		};
 
 		for (const auto& pos : positions) {
-			auto obj = Instantiate<SoundCookieObject>(pos, Quat());
+			//auto obj = Instantiate<SoundCookieObject>(pos, Quat());
 			//obj->AddComponent<PointLight>();
 		}
 	}
@@ -525,7 +517,7 @@ namespace basecross {
 		};
 
 		for (const auto& pos : positions) {
-			auto obj = Instantiate<CrackCookieObject>(pos, Quat());
+			//auto obj = Instantiate<CrackCookieObject>(pos, Quat());
 			//obj->AddComponent<PointLight>();
 		}
 	}

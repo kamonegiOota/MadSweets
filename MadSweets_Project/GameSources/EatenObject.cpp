@@ -18,17 +18,15 @@
 namespace basecross {
 
 	void EatenObject::OnCreate() {
-		StageObject::OnCreate();
-
 		auto builde = BuildeVertexPCTSprite(m_param);
 
 		auto draw = AddComponent<PCTStaticDraw>();
 		draw->CreateOriginalMesh(builde.m_vertices, builde.m_indices);
 		draw->SetOriginalMeshUse(true);
-		if (m_param.texture != L"") {
-			draw->SetTextureResource(m_param.texture);
-			m_name = m_param.texture;  //テクスチャをネームとして扱う
-		}
+		//if (m_param.texture != L"") {
+		//	draw->SetTextureResource(m_param.texture);
+		//	m_name = m_param.texture;  //テクスチャをネームとして扱う
+		//}
 		SetAlphaActive(true);
 
 		AddComponent<BillBoard>();

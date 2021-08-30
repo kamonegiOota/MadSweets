@@ -1,6 +1,7 @@
 #include"EatenComponent.h"
 #include"PlayerWeightManager.h"
 #include "PlayerWeightMgr.h"
+#include "PlayerStatusMgr.h"
 
 namespace basecross
 {
@@ -29,17 +30,19 @@ namespace basecross
 		//–{—ˆª‚Íweight‚Å‚Í‚È‚­ƒJƒƒŠ[
 		auto weightManager = selectorObject->GetComponent<PlayerWeightManager>(false);
 		auto weightMgr = selectorObject->GetComponent<PlayerWeightMgr>(false);
+		auto player = selectorObject->GetComponent<PlayerStatusMgr>(false);
 
 		std::function<void()> eventFunction = []() {};
 
 		float weight = m_eatenData.weightValue;
 
-		if (weightManager && weightMgr)
+		if (weightManager && weightMgr && player)
 		{
-			eventFunction = [this,weightManager,weightMgr]()
+			eventFunction = [this,weightManager,weightMgr, player]()
 			{
 				weightManager->AddWeight(m_eatenData.calorieValue);
 				weightMgr->AddWeight(m_eatenData.weightValue);
+				player->AddHP(1.0f);
 
 				GetGameObject()->Destroy();
 			};

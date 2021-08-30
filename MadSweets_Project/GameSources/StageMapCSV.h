@@ -13,10 +13,17 @@
 #include "LoadStageTrigger.h"
 #include "EatenComponent.h"
 
+#include "GraphAstar.h"
+
 namespace basecross {
 
 	class StageMapCSV : public GameObject
 	{
+	public:
+		static map<wstring, vector<GraphEdge>> sm_astarEdges;
+
+	private:
+
 		enum CsvIndex
 		{
 			name,
@@ -58,7 +65,8 @@ namespace basecross {
 		{}
 
 		void OnCreate() override;
-
+		void OnUpdate() override;
+ 
 		void LoadCSV();
 		//void CreateMap();
 
@@ -77,6 +85,8 @@ namespace basecross {
 		}
 
 		vector<Vec3> GetPositions(const wstring& objName);
+
+		vector<wstring> GetTextures(const wstring& objName);
 
 		//マップ上にオブジェクトを生成
 		template<class T>
@@ -111,6 +121,7 @@ namespace basecross {
 				wstring texture = tokens[CsvIndex::texture].c_str();  //テクスチャの取得
 				
 				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
+				//ex_weak_ptr<StageObject> obj = stageObj;
 				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
 
 				//トリガーだったら

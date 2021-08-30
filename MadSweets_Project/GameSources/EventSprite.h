@@ -13,11 +13,16 @@ namespace basecross {
 
 	class EventSprite : public Component
 	{
+		bool m_isUpdate = false;
+
 		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
 
 		ex_weak_ptr<Image> m_image;
 		vector<wstring> m_sprites;
 		int m_index = 0;
+
+		float m_timeElapsed = 0;
+		float m_time = 3.0f;
 
 		void ChangeStage();
 
@@ -26,7 +31,8 @@ namespace basecross {
 
 		void EndProcess();
 		void NextSprite();
-		void InputMgr();
+		void InputMgr() {}
+		void TimeMgr();
 
 	public:
 		EventSprite(const std::shared_ptr<GameObject>& objPtr,
@@ -42,7 +48,9 @@ namespace basecross {
 		void EventStart();
 		//アクセッサ--------------------------------------------------
 
-
+		void SetTime(const float& time) {
+			m_time = time;
+		}
 	};
 
 }

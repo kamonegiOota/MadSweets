@@ -55,6 +55,11 @@ namespace basecross {
 
 		map<WeightState, WeightGaugeParam> m_params;
 
+		//一定時間で減る処理
+		float m_timeElapsed = 0.0f;
+		float m_time = 20.0f;
+		float m_timeDownValue = -1.0f;  //一定時間で減る量
+
 		//パラメータの生成
 		void CreateParametor();
 
@@ -68,6 +73,8 @@ namespace basecross {
 		void GaugeUpdate();  //ゲージのコントロール
 		void ChangeTexture(); //テクスチャの変更
 		void PopScale();  //PopScaleをするための処理
+
+		void TimeMgr();
 
 	public:
 
@@ -105,6 +112,14 @@ namespace basecross {
 		}
 		WeightState GetState() const {
 			return m_state;
+		}
+
+		void SetTime(const float& time) {
+			m_time = time;
+		}
+
+		void SetTimeDownValue(const float& value) {
+			m_timeDownValue = value;
 		}
 	};
 

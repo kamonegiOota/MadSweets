@@ -149,6 +149,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PNTPointDraw.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PointLightObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Trigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UIHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilityEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)VertexPCTParam.h" />
@@ -325,6 +327,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PointLightObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
@@ -362,6 +365,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UIHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp" />

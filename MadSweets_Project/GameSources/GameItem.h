@@ -20,7 +20,7 @@ namespace basecross
 
 		bool operator==(const GameItem& gameItem) const
 		{
-			return m_name == gameItem.m_name;
+			return m_name == gameItem.GetName();
 		}
 
 		bool operator!=(const GameItem& gameItem) const

@@ -20,9 +20,11 @@ namespace basecross {
 
 		auto eatens = maru::MyUtility::GetComponents<EatenComponent>();
 		for (auto& eaten : eatens) {
-			auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), eaten->GetGameObject());
-			if (toVec.length() < m_range) {
-				reVec += toVec;
+			if (eaten) {
+				auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), eaten->GetGameObject());
+				if (toVec.length() < m_range) {
+					reVec += toVec;
+				}
 			}
 		}
 
