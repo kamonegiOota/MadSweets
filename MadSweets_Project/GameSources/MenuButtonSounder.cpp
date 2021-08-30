@@ -26,7 +26,7 @@ namespace basecross
 			return;
 		}
 
-		SimpleSoundManager::OnePlaySE(m_selectSoundKey);
+		SimpleSoundManager::OnePlaySE(m_selectSoundKey, 0.5f);
 	}
 
 	void MenuButtonSounder::OnPushSoundPlay()
@@ -36,7 +36,7 @@ namespace basecross
 			return;
 		}
 
-		SimpleSoundManager::OnePlaySE(m_pushSoundKey);
+		SimpleSoundManager::OnePlaySE(m_pushSoundKey, 0.5f);
 	}
 
 	void MenuButtonSounder::OnCreate()
