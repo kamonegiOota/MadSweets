@@ -30,7 +30,7 @@ namespace basecross {
 	void WeightGaugeUI::OnCreate() {
 		auto gauge = CreateUI(L"NomalGauge_Tx");
 		auto frame = CreateUI(L"NomalFont_Tx");
-		gauge->GetComponent<Image>()->SetBlendState(BlendState::Additive);
+		//gauge->GetComponent<Image>()->SetBlendState(BlendState::Additive);
 
 		AddComponent<WeightGaugeCtrl>(frame,gauge);
 		//auto rectTrans = GetComponent<RectTransform>();
