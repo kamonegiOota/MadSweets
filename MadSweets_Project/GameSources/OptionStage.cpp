@@ -7,6 +7,7 @@
 #include"SoundHelper.h"
 #include"GaugeLinkedButtonOperator.h"
 #include"AlphaFadeCtrl.h"
+#include"PlayerInputer.h"
 
 namespace basecross
 {
@@ -129,5 +130,6 @@ namespace basecross
 		backButton->pushEvent.AddFunc(alphaFade, &AlphaFadeCtrl::FadeOutStart);
 
 		EventSystem::GetInstance(GetThis<Stage>())->SetNowSelectable(soundManageButton);
+		EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 	}
 }
