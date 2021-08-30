@@ -11,6 +11,11 @@
 #include"MenuButtonObject.h"
 #include"StageTransitionOfTitle.h"
 #include"MessageWindow.h"
+#include"DoorObject.h"
+#include"GameItemKeyObject.h"
+#include"GameMessageWindowObject.h"
+#include"PlayerInputer.h"
+#include"EatenObject.h"
 
 namespace basecross
 {
@@ -66,6 +71,7 @@ namespace basecross
 
 		SetSharedGameObject(L"PlayerChoicesList", go);
 
+		Instantiate<GameMessageWindowObject>();
 
 		auto playerObject = Instantiate<PlayerObject>();
 
@@ -172,21 +178,26 @@ namespace basecross
 		std::wstring  message =
 			L"さあ、憐んで、血統書　持ち寄って反教典\n沈んだ唱導　腹這幻聴　謁見　席巻　妄信症\n踊れ酔え孕め　アヴァターラ新大系\n斜めの幻聴　錻力と宗教　ラル・ラリ・唱えろ生";
 
-		auto messageWindowObject = Instantiate<MessageWindowObject>();
-		auto messageWindow = messageWindowObject->GetComponent<MessageWindow>();
-		messageWindow->SetMessageText(message);
-		messageWindow->PlayMessage();
-		messageWindow->SetOneSecondDisplayedCharNum(10);
-		messageWindow->finishPushEvent.AddFunc(&TEST::test);
-		rectTransform = messageWindowObject->GetComponent<RectTransform>();
-		rectTransform->SetRectSize(1000, 200);
-		auto textBox = messageWindowObject->GetComponent<TextBox>();
-		//textBox->SetText(L"こんにちは");
-		textBox->SetFontColor(Col4(1.0f));
-		textBox->SetFontSize(50);
-		textBox->SetBoxColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
-		textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
+		//auto messageWindowObject = Instantiate<MessageWindowObject>();
+		//auto messageWindow = messageWindowObject->GetComponent<MessageWindow>();
+		//messageWindow->SetMessageText(message);
+		//messageWindow->PlayMessage();
+		//messageWindow->SetOneSecondDisplayedCharNum(10);
+		//messageWindow->finishPushEvent.AddFunc(&TEST::test);
+		//rectTransform = messageWindowObject->GetComponent<RectTransform>();
+		//rectTransform->SetRectSize(1000, 200);
+		//auto textBox = messageWindowObject->GetComponent<TextBox>();
+		////textBox->SetText(L"こんにちは");
+		//textBox->SetFontColor(Col4(1.0f));
+		//textBox->SetFontSize(50);
+		//textBox->SetBoxColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+		//textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
 
-		EventSystem::GetInstance(GetThis<ItabashiStage>())->SetNowSelectable(messageWindow);
+		//EventSystem::GetInstance(GetThis<ItabashiStage>())->SetNowSelectable(messageWindow);
+
+		Instantiate<GameItemKeyObject>();
+		Instantiate<DoorObject>()->GetComponent<Transform>()->SetPosition(4, 0, 0);
+
+		EventSystem::GetInstance(GetThis<ItabashiStage>())->SetBasicInputer(PlayerInputer::GetInstance());
 	}
 }
