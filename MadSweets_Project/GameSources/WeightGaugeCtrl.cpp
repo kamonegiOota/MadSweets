@@ -90,15 +90,15 @@ namespace basecross {
 
 	void WeightGaugeCtrl::GaugeUpdate() {
 		//‰¼‚Åã‚ª‚è‰º‚ª‚è‚·‚é‚æ‚¤‚É‚µ‚½B
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
-		if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
-			AddGauge(10.0f);
-		}
+		//if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
+		//	AddGauge(10.0f);
+		//}
 
-		if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
-			AddGauge(-10.0f);
-		}
+		//if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
+		//	AddGauge(-10.0f);
+		//}
 
 		auto fill = m_gaugeValue / m_params[m_state].maxGauge;
 		m_gaugeUI->GetComponent<Image>()->SetFillAmount(fill);
