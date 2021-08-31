@@ -231,7 +231,7 @@ namespace basecross {
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		//map->CreateObject<EatenObject>(L"EatenObject",offset);
 		map->CreateObject<PointLightObject>(L"Light", offset);
-		//map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		map->CreateObject<SoundCookieObject>(L"SoundCokie", offset);
 		map->CreateObject<FixedBox>(L"Ceiling", offset);
 		//map->CreateObject<SoundCookieObject>
 
