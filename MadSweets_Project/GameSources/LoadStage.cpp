@@ -64,6 +64,8 @@ namespace basecross
 		ResourceLoadData(L"DoorKey_Tx"          , L"DoorKey.png"),
 		ResourceLoadData(L"Beans_Tx"          , L"Beans.png"),
 		ResourceLoadData(L"DoorObj_Tx"          , L"DoorObj.png"),
+		ResourceLoadData(L"OptionChoco_Tx", L"OptionChoco.png"),
+		ResourceLoadData(L"PressAChoco_Tx"          , L"PressAChoco.png"),
 
 		//プロローグ用
 		ResourceLoadData(L"Prologue_Tx"          , L"Prologue.png"),
@@ -84,9 +86,7 @@ namespace basecross
 	{
 		ResourceLoadData(L"HideSE", L"HideSE.wav"),
 		ResourceLoadData(L"HandyWalkSE1", L"HandyWalkSE1.wav"),
-		ResourceLoadData(L"HandyWalkSE2", L"HandyWalkSE2.wav"),
 		ResourceLoadData(L"PlayerWalkSE1", L"PlayerWalkSE1.wav"),
-		ResourceLoadData(L"PlayerWalkSE2", L"PlayerWalkSE2.wav"),
 		ResourceLoadData(L"UI_SelectSE",L"UI_SelectSE.wav"),
 		ResourceLoadData(L"UI_PushSE",L"UI_PushSE.wav"),
 		ResourceLoadData(L"CookieCrushSE",L"CookieCrushSE.wav")
@@ -95,8 +95,7 @@ namespace basecross
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_bgmResourceLoadDatas =
 	{
 		ResourceLoadData(L"TitleBGM1", L"TitleBGM1.wav"),
-		ResourceLoadData(L"TitleBGM2", L"TitleBGM2.wav"),
-		ResourceLoadData(L"TitleBGM3", L"TitleBGM3.wav")
+		ResourceLoadData(L"GameOverBGM", L"GameOverBGM.wav")
 	};
 
 	const std::vector<LoadStage::ModelResourceLoadData> LoadStage::m_modelResourceLoadDatas =
