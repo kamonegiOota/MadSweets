@@ -22,7 +22,7 @@ namespace basecross {
 
 	public:
 		Cara_Attack(const std::shared_ptr<GameObject>& objPtr)
-			:BaseAttack(objPtr, AttackParam(1.5f,1.0f))
+			:BaseAttack(objPtr, AttackParam(3.5f,1.0f))
 		{}
 
 		Cara_Attack(const std::shared_ptr<GameObject>& objPtr,
