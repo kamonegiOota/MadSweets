@@ -311,7 +311,7 @@ namespace basecross
 
 			float currentTime = m_modelDraw->GetCurrentAnimationTime();
 
-			bool isReset = m_beforeCurrentAnimationTime > currentTime;
+			bool isReset = m_beforeCurrentAnimationTime >= currentTime;
 
 			for (AnimationEvent& animationEvent : m_animationEvents)
 			{
