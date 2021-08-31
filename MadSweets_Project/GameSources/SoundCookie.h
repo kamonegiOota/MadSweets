@@ -14,8 +14,18 @@ namespace basecross {
 
 	class SoundCookie : public Component
 	{
-		int m_numCrack = 2;  //ヒビ割れる回数
+		enum class CrackState {
+			Normal,
+			Crack,
+			Crash,
+		};
 
+		vector<wstring> m_textures;
+
+		int m_numCrack = 2;  //ヒビ割れる回数
+		int m_maxNumCrack = m_numCrack;
+
+		void TextureCheck();
 		void DestProcess();  //もう音が出ないときの処理
 		void SendListener();  //音を聞くものに送信
 		void MakeSound();  //音を出す処理
