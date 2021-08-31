@@ -20,7 +20,7 @@ namespace basecross
 		{
 			auto loadSaveStruct = m_saveStruct;
 
-			auto isLoadSuccess = itbs::Utility::StructIOFileStream::LoadFile(loadSaveStruct, m_filePath);
+			auto isLoadSuccess = itbs::Utility::StructIOFileStream::LoadFile(loadSaveStruct, App::GetApp()->GetDataDirWString() + m_filePath);
 
 			if (!isLoadSuccess)
 			{
@@ -34,7 +34,7 @@ namespace basecross
 
 		bool Save()
 		{
-			return itbs::Utility::StructIOFileStream::WriteFile(m_saveStruct, m_filePath);
+			return itbs::Utility::StructIOFileStream::WriteFile(m_saveStruct, App::GetApp()->GetDataDirWString() + m_filePath);
 		}
 	};
 }
