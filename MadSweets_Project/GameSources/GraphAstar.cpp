@@ -131,7 +131,7 @@ namespace basecross {
 
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
 		ResetAstar();
-		DebugObject::sm_wss << L"AstarRouteStart" << endl;
+		//DebugObject::sm_wss << L"AstarRouteStart" << endl;
 
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
 		//DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
@@ -390,7 +390,7 @@ namespace basecross {
 		if (m_shortRoutes.size() == 0) {
 			m_isRouteEnd = true;
 		}
-
+		
 		//DebugObject::m_wss.str(L"");
 		if (m_isRouteEnd) {
 			//DebugObject::m_wss << to_wstring(m_shortRoutes.size());
@@ -398,7 +398,7 @@ namespace basecross {
 		}
 
 		//オブジェクトが探索ノードの近くにいたら、次のノードに切り替える。
-		float nearRange = 3.0f;  //近くと判断される距離
+		float nearRange = 2.0f;  //近くと判断される距離
 
 		auto trans = objPtr->GetComponent<Transform>();
 		auto objPos = trans->GetPosition();
