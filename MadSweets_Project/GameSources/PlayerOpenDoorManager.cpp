@@ -28,6 +28,8 @@ namespace basecross
 		m_mover = GetGameObject()->GetComponent<PlayerMover>();
 
 		m_messageWindow->finishPushEvent.AddFunc(GetThis<PlayerOpenDoorManager>(), &PlayerOpenDoorManager::MessageWindowFinish);
+
+		m_alphaFade = GetStage()->GetSharedGameObject<UIObject>(L"FinishFadeObject")->GetComponent<AlphaFadeCtrl>();
 	}
 
 	void PlayerOpenDoorManager::OnEvent()
@@ -45,12 +47,17 @@ namespace basecross
 
 		if (m_gameItemGetter->FindGameItem(m_findGameItem))
 		{
-			MessageBox(0, L"Œ®‚ªŠJ‚«‚Ü‚µ‚½", L"", 0);
+			m_messageWindow->SetMessageText(L"Œ®‚ªŠJ‚«‚Ü‚µ‚½");
+			m_messageWindow->PlayMessage();
+			EventSystem::GetInstance(GetStage())->PushSelectable(m_messageWindow.GetShard());
+			GetGameObject()->SetUpdateActive(false);
+			m_messageWindow->finishPushEvent.Clear();
+			m_messageWindow->finishPushEvent.AddFunc(m_alphaFade.GetShard(), &AlphaFadeCtrl::FadeOutStart);
 		}
 		else
 		{
 			m_messageWindowObject->SetActive(true);
-			m_messageWindow->SetMessageText(L"‚©‚¬‚ªŠ|‚©‚Á‚Ä‚¢‚Ü‚·");
+			m_messageWindow->SetMessageText(L"Œ®‚ªŠ|‚©‚Á‚Ä‚¢‚Ü‚·");
 			m_messageWindow->PlayMessage();
 			EventSystem::GetInstance(GetStage())->PushSelectable(m_messageWindow.GetShard());
 			GetGameObject()->SetUpdateActive(false);
