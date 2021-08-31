@@ -124,6 +124,10 @@ namespace basecross {
 				//ex_weak_ptr<StageObject> obj = stageObj;
 				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
 
+				if (objName == L"Ceiling") {
+					stageObj->SetUpdateActive(false);
+				}
+
 				//トリガーだったら
 				auto loadStageTrigger = stageObj->GetComponent<LoadStageTrigger>(false);
 				if (loadStageTrigger) {
