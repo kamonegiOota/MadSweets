@@ -175,6 +175,7 @@ namespace basecross {
 
 	void TargetProbe::OnUpdate() {
 		//m_moveFunc = nullptr;
+		DebugObject::sm_wss << L"LostMove";
 
 		if (m_moveFunc) {
 			m_moveFunc(*this);

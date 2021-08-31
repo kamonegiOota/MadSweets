@@ -22,7 +22,7 @@ namespace basecross {
 		int m_index = 0;
 
 		float m_timeElapsed = 0;
-		float m_time = 3.0f;
+		float m_time = 5.0f;
 
 		void ChangeStage();
 

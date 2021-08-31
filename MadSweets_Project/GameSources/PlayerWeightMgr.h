@@ -17,8 +17,6 @@ namespace basecross {
 	{
 		ex_weak_ptr<WeightGaugeCtrl> m_gaugeCtrl;
 
-		//WeightState m_state = WeightState::Nomal;
-		
 	public:
 		PlayerWeightMgr(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
@@ -36,6 +34,12 @@ namespace basecross {
 
 		void SetWeightGaugeCtrl(const std::shared_ptr<WeightGaugeCtrl>& gaugeCtrl) {
 			m_gaugeCtrl = gaugeCtrl;
+		}
+
+		void SetWeight(const float& value);
+
+		float GetWeight() const {
+			return m_gaugeCtrl->GetNowGauge();
 		}
 	};
 

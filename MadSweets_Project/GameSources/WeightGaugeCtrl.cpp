@@ -35,16 +35,16 @@ namespace basecross {
 		}
 		//normal
 		m_params[WeightState::Nomal] = WeightGaugeParam(100.0f,L"NomalFont_Tx",L"NomalGauge_Tx",
-			WeightState::Chubby, WeightState::Skinny);
+			WeightState::Chubby, WeightState::Hunger);
 		//‘¾‚Á‚Ä‚¢‚é
 		m_params[WeightState::Chubby] = WeightGaugeParam(100.0f, L"ChubbyFont_Tx", L"ChubbyGauge_Tx",
 			WeightState::None, WeightState::Nomal);
 		//‘‰‚¹‚Ä‚¢‚é
-		m_params[WeightState::Skinny] = WeightGaugeParam(100.0f, L"SkinnyFont_Tx", L"SkinnyGauge_Tx",
-			WeightState::Nomal, WeightState::Hunger);
+		//m_params[WeightState::Skinny] = WeightGaugeParam(100.0f, L"SkinnyFont_Tx", L"SkinnyGauge_Tx",
+		//	WeightState::Nomal, WeightState::Hunger);
 		//‹Q‰ì
 		m_params[WeightState::Hunger] = WeightGaugeParam(100.0f, L"HungerFont_Tx", L"HungerGauge_Tx",
-			WeightState::Skinny, WeightState::None);
+			WeightState::Nomal, WeightState::None);
 	}
 
 	void WeightGaugeCtrl::GaugeCheck() {
@@ -90,15 +90,15 @@ namespace basecross {
 
 	void WeightGaugeCtrl::GaugeUpdate() {
 		//‰¼‚Åã‚ª‚è‰º‚ª‚è‚·‚é‚æ‚¤‚É‚µ‚½B
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
-		if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
-			AddGauge(10.0f);
-		}
+		//if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
+		//	AddGauge(10.0f);
+		//}
 
-		if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
-			AddGauge(-10.0f);
-		}
+		//if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
+		//	AddGauge(-10.0f);
+		//}
 
 		auto fill = m_gaugeValue / m_params[m_state].maxGauge;
 		m_gaugeUI->GetComponent<Image>()->SetFillAmount(fill);

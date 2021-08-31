@@ -42,6 +42,10 @@ namespace basecross {
 		}
 		scale.y *= 0.8f;
 		GetComponent<Transform>()->SetScale(scale);
+
+		auto col = AddComponent<CollisionObb>();
+		col->SetFixed(true);
+		col->SetMakedSize(1.2f);
 	}
 
 }

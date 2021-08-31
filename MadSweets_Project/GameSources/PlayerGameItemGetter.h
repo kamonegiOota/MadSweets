@@ -5,7 +5,7 @@ namespace basecross
 {
 	class PlayerGameItemGetter : public Component, public I_GetComponent
 	{
-		std::vector<GameItem> m_gameItems;
+		static std::vector<GameItem> sm_gameItems;
 	public:
 		PlayerGameItemGetter(std::shared_ptr<GameObject>& owner);
 
