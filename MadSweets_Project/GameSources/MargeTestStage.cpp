@@ -70,6 +70,9 @@
 #include "PlayerWeightManager.h"
 #include "Velocity.h"
 
+#include "GameItemKeyObject.h"
+#include "DoorObject.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -133,7 +136,7 @@ namespace basecross {
 
 	void MargeTestStage::OnCreate() {
 		try {
-			AddGameObject<DebugObject>()->SetDrawLayer(100);
+			//AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 
 			//ビューとライトの作成
@@ -224,7 +227,8 @@ namespace basecross {
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		//map->CreateObject<EatenObject>(L"EatenObject",offset);
 		map->CreateObject<PointLightObject>(L"Light", offset);
-		map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		//map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		map->CreateObject<FixedBox>(L"Ceiling", offset);
 		//map->CreateObject<SoundCookieObject>
 
 		//eatオブジェクト
@@ -234,6 +238,18 @@ namespace basecross {
 			auto eatenObj = Instantiate<EatenObject>(positions[i], Quat::Identity());
 			eatenObj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
 			eatenObj->SetTexture(textures[i]);
+		}
+
+		//鍵のオブジェクト
+		positions = map->GetPositions(L"Key");
+		for (auto& pos : positions) {
+			Instantiate<GameItemKeyObject>(pos, Quat());
+		}
+
+		//扉
+		positions = map->GetPositions(L"Door");
+		for (auto& pos : positions) {
+			Instantiate<DoorObject>(pos, Quat());
 		}
 
 		m_mapCsv = map;
@@ -274,13 +290,13 @@ namespace basecross {
 	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
 		//将来的にそれ用のUtilかFactoryに書く
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
-		vector<std::shared_ptr<GameObject>> stageObjs;
+		vector<std::shared_ptr<GameObject>> obstacleObjs;
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 
 		for (auto& obj : GetGameObjectVec()) {
 			auto stageObj = dynamic_pointer_cast<StageObject>(obj);
 			if (stageObj) {
-				stageObjs.push_back(stageObj);
+				obstacleObjs.push_back(stageObj);
 			}
 		}
 
@@ -290,6 +306,7 @@ namespace basecross {
 		auto positions = m_mapCsv->GetPositions(L"Capsule");
 		for (const auto& pos : positions) {
 			graph.AddNode(NavGraphNode(index++, pos));
+			//Instantiate<GameObject>(pos, Quat::Identity())->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
 			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
 		}
 
@@ -300,20 +317,23 @@ namespace basecross {
 		}
 
 		GraphAstar astar(graph);
+		//astar.AddEdges(obstacleObjs, excluteObjs);
 
 		//エネミーの生成
 		auto params = UtilityEnemy::sm_enemyParam[fileName];
-		for (auto param : params) {
+		for (auto& param : params) {
 			switch (param.type)
 			{
 			case UtilityEnemy::EnemyType::Handy:
+				param.plowPositions = m_mapCsv->GetPositions(L"HandyPlowling");
 				CreateEnemy<HandyObject>(fileName,astar,param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Cara:
-				//CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				param.plowPositions = m_mapCsv->GetPositions(L"CaraPlowling");
+				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
-				CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
 				break;
 			}
 		}

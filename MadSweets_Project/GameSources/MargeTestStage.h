@@ -56,6 +56,8 @@ namespace basecross {
 			if (plow) {
 				plow->SetPositions(positions);
 			}
+
+			enemy->GetComponent<Transform>()->SetPosition(positions[0]);
 		}
 
 	public:
