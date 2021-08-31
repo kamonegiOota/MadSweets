@@ -19,6 +19,8 @@ namespace basecross
 		std::shared_ptr<ChoicesObjectAndEvent> m_choicesObjectAndEvent;
 
 	public:
+		itbs::Utility::Delegate<void()> gottenEvent;
+
 		GottenComponent(std::shared_ptr<GameObject>& owner, const GameItem& gameItem, const bool isGottenDestroy = true);
 
 		std::shared_ptr<ChoicesObjectAndEvent const> GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject) override;

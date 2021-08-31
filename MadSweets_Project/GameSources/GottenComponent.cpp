@@ -17,6 +17,8 @@ namespace basecross
 		auto eventFunction = [this,getComponent]()
 		{
 			getComponent->OnGetGameItem(m_gameItem);
+
+			gottenEvent();
 			
 			if (m_isGottenDestroy)
 			{
@@ -24,7 +26,7 @@ namespace basecross
 			}
 		};
 
-		m_choicesObjectAndEvent = std::make_shared<ChoicesObjectAndEvent>(L"Š“¾‚·‚é", GetGameObject(), eventFunction);
+		m_choicesObjectAndEvent = std::make_shared<ChoicesObjectAndEvent>(L"æ“¾‚·‚é", GetGameObject(), eventFunction);
 
 		return m_choicesObjectAndEvent;
 	}
