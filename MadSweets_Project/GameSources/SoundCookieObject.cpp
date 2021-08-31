@@ -19,15 +19,16 @@ namespace basecross {
 		
 		auto draw = AddComponent<PNTPointDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
+		draw->SetTextureResource(L"Cokie_Tx");
+		transform->SetScale(Vec3(1.0f, 0.1f, 1.0f));
 
 		auto col = AddComponent<CollisionObb>();
 		col->SetAfterCollision(AfterCollision::None);
-		//col->SetFixed(true);
 
 		AddComponent<SoundCookie>();
 
 		//テスト的に薄くする
-		transform->SetScale(Vec3(1.0f, 0.3f, 1.0f));
+		//transform->SetScale(Vec3(1.0f, 0.3f, 1.0f));
 	}
 
 }

@@ -15,10 +15,19 @@
 #include "EnemyEar.h"
 
 #include "PNTPointDraw.h"
+#include "SoundHelper.h"
 
 #include "DebugObject.h"
+#include "PlayerWeightMgr.h"
 
 namespace basecross {
+
+	void SoundCookie::TextureCheck() {
+		float prob = (float)m_numCrack / (float)m_maxNumCrack;
+		if (prob <= 0.5f) {  //耐久値が半分になったら。
+			GetGameObject()->GetComponent<BcBaseDraw>()->SetTextureResource(m_textures[(int)CrackState::Crack]);
+		}
+	}
 
 	void SoundCookie::DestProcess() {
 		//本来は粉々の状態にする。
@@ -35,6 +44,7 @@ namespace basecross {
 
 	void SoundCookie::MakeSound() {
 		//音を出す
+		SimpleSoundManager::OnePlaySE(L"CookieCrushSE");
 
 		//音を聞くものに渡す
 		SendListener();
@@ -42,6 +52,7 @@ namespace basecross {
 
 	void SoundCookie::Crack() {
 		m_numCrack--;
+		TextureCheck();
 
 		if (m_numCrack <= 0) {
 			m_numCrack = 0;
@@ -50,7 +61,13 @@ namespace basecross {
 	}
 
 	void SoundCookie::OnCreate() {
-		
+		m_textures = {
+			{L"Cokie_Tx"},
+			{L"Cokie_Crack_Tx"},
+			{L"Cokie_Crack_Last_Tx"},
+		};
+
+		GetGameObject()->GetComponent<BcBaseDraw>()->SetTextureResource(m_textures[(int)CrackState::Normal]);
 	}
 
 	void SoundCookie::OnUpdate() {
@@ -62,10 +79,13 @@ namespace basecross {
 			return;
 		}
 
-		auto player = other->GetComponent<PlayerProvider>(false);
-		if (player) {
-			MakeSound();
-			Crack();
+		auto weightMgr = other->GetComponent<PlayerWeightMgr>(false);
+		if (weightMgr) {
+			//太っていたら
+			if (weightMgr->GetState() == WeightState::Chubby) {
+				MakeSound();
+				Crack();
+			}
 		}
 	}
 
