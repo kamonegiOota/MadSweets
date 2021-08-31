@@ -19,6 +19,8 @@ namespace basecross
 		m_playerChoicesManager = GetGameObject()->GetComponent<PlayerChoicesManager>();
 
 		m_unHideObject = GetStage()->Instantiate<GameObject>();
+
+		m_playerAnimator = GetGameObject()->GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
 	}
 
 	void PlayerHideManager::OnUpdate()
@@ -28,6 +30,7 @@ namespace basecross
 	void PlayerHideManager::OnHide(const HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(false);
+		m_playerAnimator->SetAnimationSpeed(0.0f);
 
 		transform->SetWorldPosition(hideData.hideWorldPosition);
 		transform->SetForward(hideData.hideForward);
@@ -45,7 +48,7 @@ namespace basecross
 	void PlayerHideManager::OnEndHide(const HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(true);
-
+		m_playerAnimator->SetAnimationSpeed(1.0f);
 		auto worldPosition = transform->GetWorldPosition();
 		transform->SetWorldPosition(worldPosition + hideData.hideForward);
 
