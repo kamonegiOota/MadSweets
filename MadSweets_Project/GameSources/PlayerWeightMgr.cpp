@@ -54,6 +54,14 @@ namespace basecross {
 		}
 	}
 
+	void PlayerWeightMgr::SetWeight(const float& value) {
+		if (!m_gaugeCtrl) {
+			m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>();
+		}
+
+		m_gaugeCtrl->SetNowGauge(value);
+	}
+
 }
 
 //endbasecross

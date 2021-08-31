@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "DebugObject.h"
+
 namespace basecross {
 
 	//class PlayerWeightMgr;
@@ -16,7 +18,7 @@ namespace basecross {
 	enum class WeightState {
 		Nomal,
 		Chubby, //デブ
-		Skinny, //痩せ
+		//Skinny, //痩せ
 		Hunger, //飢餓
 		None, //nullのように扱うよう、存在しないとき用
 	};
@@ -102,6 +104,7 @@ namespace basecross {
 
 		virtual void SetNowGauge(const float& value) final {
 			m_gaugeValue = value;
+			GaugeCheck();
 		}
 		virtual float GetNowGauge() const final {
 			return m_gaugeValue;
@@ -109,6 +112,7 @@ namespace basecross {
 
 		void ChangeState(const WeightState& state) {
 			m_state = state;
+			ChangeTexture();
 		}
 		WeightState GetState() const {
 			return m_state;

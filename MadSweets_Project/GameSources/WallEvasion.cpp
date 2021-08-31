@@ -26,13 +26,28 @@ namespace basecross {
 			rangePairs.push_back(ObstacleRangePair(obj.GetShard(), toVec.length()));
 		}
 
-		std::sort(rangePairs.begin(), rangePairs.end(), SortObstacleRange);
+		//バグが起きたため応急処置
+		//std::sort(rangePairs.begin(), rangePairs.end(), SortObstacleRange);
+		ObstacleRangePair minRangePair;
+		float minRange = 100000.0f;
+		for (auto& pair : rangePairs) {
+			if (pair.range < minRange) {
+				minRangePair = pair;
+			}
+		}
 
-		return rangePairs;
+		vector<ObstacleRangePair> reVector;
+		reVector.push_back(minRangePair);
+		return reVector;
+		//return rangePairs;
 	}
 
 	Vec3 WallEvasion::CalucForce(const std::shared_ptr<GameObject>& tactile) {
 		Vec3 returnVec(0.0f);
+
+		if (m_obstacleObjs.size() == 0.0f) {
+			return returnVec;
+		}
 
 		auto obstacleRangePairs = CalucWallRangeSort();
 		auto startPos = transform->GetPosition();

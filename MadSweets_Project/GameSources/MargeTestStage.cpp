@@ -67,6 +67,14 @@
 
 // ----------------------------
 
+#include "PlayerStatusMgr.h"
+#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
+#include "Velocity.h"
+
+#include "GameItemKeyObject.h"
+#include "DoorObject.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -78,6 +86,23 @@ namespace basecross {
 	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
 	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
 	Vec3 MargeTestStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
+
+	void MargeTestStage::SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight) {
+		auto saveValue = LoadStageTrigger::GetSavingValue();
+		if (saveValue.hp == 0.0f) {
+			return;
+		}
+
+		auto status = player->GetComponent<PlayerStatusMgr>(false);
+		auto calorie = player->GetComponent<PlayerWeightManager>(false);
+
+		if (status && calorie) {
+			status->SetHP(saveValue.hp);
+			weight->SetNowGauge(saveValue.weight);
+			weight->ChangeState(saveValue.weightState);
+			calorie->SetNowWeight(saveValue.calorie);
+		}
+	}
 
 	void MargeTestStage::CreateViewLight() {
 		const Vec3 eye(0.0f, +15.0f, -30.0f);
@@ -139,7 +164,7 @@ namespace basecross {
 			Instantiate<PlayerChoicesListObject>();
 
 			//ウェイトゲージの生成
-			Instantiate<WeightGaugeUI>();
+			auto weightGauge = Instantiate<WeightGaugeUI>()->GetComponent<WeightGaugeCtrl>();
 
 			auto fadeObject = Instantiate<UIObject>();
 			fadeObject->SetDrawLayer(100000);
@@ -156,36 +181,12 @@ namespace basecross {
 			player->AddComponent<PointLight>();
 			player->SetDrawActive(false);
 			m_player = player;
+			SavingValueSet(player, weightGauge);
 
-			//CreateMap(L"TempStage.csv");
-			//CreateMap(L"Stage1.csv");
-			//CreateMap(L"Stage2.csv");
-			//CreateMap(L"Stage3.csv");
 			CreateMap(sm_nowMap);
 
 			//敵の生成
 			CreateEnemy(player);
-
-			//食べ物の生成
-			//CreateEatItems();
-
-			//ライトの生成
-			CreatePointLight();
-
-			//クッキーの生成
-			//CreateSoundCookies();
-			//CreateCrackCookies();
-
-			//隠れるオブジェクトの生成
-			//CreateHideObjects();
-
-			//AddGameObject<EatenObject>(L"SweetCokie",Vec3(1.0f), Vec3(0.0f), Vec3(-21.0f, +1.0f, -21.0f),L"");
-
-			//AddGameObject<MTestEnemyObject>()->GetComponent<Transform>()->SetScale(Vec3(1.0f));
-
-			//auto table = Instantiate<GameObject>();
-			//table->AddComponent<PNTPointDraw>()->SetMeshResource(L"Table");
-			//table->GetComponent<Transform>()->SetScale(Vec3(1.0f,0.8f,1.0f));
 
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 		}
@@ -195,7 +196,8 @@ namespace basecross {
 	}
 
 	void MargeTestStage::OnUpdate() {
-
+		//auto handy = maru::MyUtility::GetGameObject<HandyObject>();
+		//handy->GetComponent<Velocity>()->SetVelocity(Vec3(0.0f));
 	}
 
 	void MargeTestStage::GoClearStage()
@@ -210,24 +212,12 @@ namespace basecross {
 
 		//応急処置
 		vector<wstring> objNames = {
-			{L"StageRotBox"},
-			{L"Plane"},
-			{L"BoxCollision"},
-			{L"Floor"},
-			{L"RoomWall"},
-			{L"Wall"},
-			{L"Partition"},
-			{L"UpperWall"},
-			{L"Corner"},
-			{L"RoomCorner"},
-			{L"InnerCorner"},
-			{L"FrontWall"},
-			{L"RightWall"},
-			{L"BackWall"},
-			{L"LeftWall"},
-			{L"LeftWall"},
-			{L"CandyDoor"},
-			{L"Stairs"},
+			{L"StageRotBox"},{L"Plane"},{L"BoxCollision"},
+			{L"Floor"},{L"RoomWall"},{L"Wall"},
+			{L"Partition"},{L"UpperWall"},{L"Corner"},
+			{L"RoomCorner"},{L"InnerCorner"},{L"FrontWall"},
+			{L"RightWall"},{L"BackWall"},{L"LeftWall"},
+			{L"LeftWall"},{L"CandyDoor"},{L"Stairs"},
 		};
 
 		for (const auto& objName : objNames) {
@@ -241,7 +231,8 @@ namespace basecross {
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		//map->CreateObject<EatenObject>(L"EatenObject",offset);
 		map->CreateObject<PointLightObject>(L"Light", offset);
-		map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		//map->CreateObject<CrackCookieObject>(L"SoundCokie", offset);
+		map->CreateObject<FixedBox>(L"Ceiling", offset);
 		//map->CreateObject<SoundCookieObject>
 
 		//eatオブジェクト
@@ -251,6 +242,18 @@ namespace basecross {
 			auto eatenObj = Instantiate<EatenObject>(positions[i], Quat::Identity());
 			eatenObj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
 			eatenObj->SetTexture(textures[i]);
+		}
+
+		//鍵のオブジェクト
+		positions = map->GetPositions(L"Key");
+		for (auto& pos : positions) {
+			Instantiate<GameItemKeyObject>(pos, Quat());
+		}
+
+		//扉
+		positions = map->GetPositions(L"Door");
+		for (auto& pos : positions) {
+			Instantiate<DoorObject>(pos, Quat());
 		}
 
 		m_mapCsv = map;
@@ -291,13 +294,13 @@ namespace basecross {
 	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
 		//将来的にそれ用のUtilかFactoryに書く
 		SparseGraph<NavGraphNode, GraphEdge> graph(true);
-		vector<std::shared_ptr<GameObject>> stageObjs;
+		vector<std::shared_ptr<GameObject>> obstacleObjs;
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 
 		for (auto& obj : GetGameObjectVec()) {
 			auto stageObj = dynamic_pointer_cast<StageObject>(obj);
 			if (stageObj) {
-				stageObjs.push_back(stageObj);
+				obstacleObjs.push_back(stageObj);
 			}
 		}
 
@@ -307,6 +310,7 @@ namespace basecross {
 		auto positions = m_mapCsv->GetPositions(L"Capsule");
 		for (const auto& pos : positions) {
 			graph.AddNode(NavGraphNode(index++, pos));
+			//Instantiate<GameObject>(pos, Quat::Identity())->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
 			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
 		}
 
@@ -317,20 +321,23 @@ namespace basecross {
 		}
 
 		GraphAstar astar(graph);
+		//astar.AddEdges(obstacleObjs, excluteObjs);
 
 		//エネミーの生成
 		auto params = UtilityEnemy::sm_enemyParam[fileName];
-		for (auto param : params) {
+		for (auto& param : params) {
 			switch (param.type)
 			{
 			case UtilityEnemy::EnemyType::Handy:
+				param.plowPositions = m_mapCsv->GetPositions(L"HandyPlowling");
 				CreateEnemy<HandyObject>(fileName,astar,param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Cara:
+				param.plowPositions = m_mapCsv->GetPositions(L"CaraPlowling");
 				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
-				CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
 				break;
 			}
 		}

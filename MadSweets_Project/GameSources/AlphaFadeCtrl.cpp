@@ -38,6 +38,7 @@ namespace basecross {
 
 	void AlphaFadeCtrl::OnCreate() {
 		auto fadeObj = GetStage()->Instantiate<UIObject>();
+		fadeObj->SetDrawLayer(100);
 		auto image = fadeObj->AddComponent<Image>();
 		image->SetDiffuse(Col4(0.0f,0.0f,0.0f,1.0f));
 		image->SetTextureResource(L"FadeBack_Tx");
