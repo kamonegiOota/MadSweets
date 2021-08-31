@@ -58,9 +58,9 @@ namespace basecross
 
 		Quat quat = Quat::Identity();
 		quat.rotationY(XM_PI);
-		auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
+		//auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
 
-		springArmComponent->SetChildObject(tpsCamera);
+		//springArmComponent->SetChildObject(tpsCamera);
 		springArmComponent->AddHitTag(L"Wall");
 
 		auto draw = AddComponent<PNTBoneModelDraw>();
@@ -107,6 +107,7 @@ namespace basecross
 
 		AddComponent<PlayerWeightMgr>();
 		
+		AddComponent<Gravity>();
 	}
 
 	void PlayerObject::OnUpdate()
