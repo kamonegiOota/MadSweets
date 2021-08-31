@@ -16,6 +16,8 @@
 #include"GameMessageWindowObject.h"
 #include"PlayerInputer.h"
 #include"EatenObject.h"
+#include"PlayerCalorieGaugeObject.h"
+#include"PlayerChoicesListObject.h"
 
 namespace basecross
 {
@@ -50,26 +52,9 @@ namespace basecross
 		auto brain = cameraobj->GetComponent<CameraBrain>();
 		brain->SetCameraBlend(std::make_shared<CameraBlendLinear>(1));
 
-		auto gauge = Instantiate<GaugeUI>();
-		auto gaugeManager = gauge->GetComponent<GaugeManager>();
+		Instantiate<PlayerCalorieGaugeObject>();
 
-		gaugeManager->SetGaugeImage(L"Tx_Cake");
-		gaugeManager->SetGaugeRectSize(160, 160);
-		gaugeManager->SetGaugeFillType(ImageFillType::Vertical);
-
-		auto rectTransform = gauge->GetComponent<RectTransform>();
-		rectTransform->SetPosition(-500, -500);
-		//rectTransform->SetAnchor(AnchorType::LeftUp);
-
-		SetSharedGameObject(L"PlayerWeightGauge", gauge);
-
-		auto go = Instantiate<UIObject>();
-		go->GetComponent<RectTransform>()->SetPosition(300, 0);
-
-		auto mo = go->AddComponent<ChoicesList>();
-		mo->OnStart();
-
-		SetSharedGameObject(L"PlayerChoicesList", go);
+		Instantiate<PlayerChoicesListObject>();
 
 		Instantiate<GameMessageWindowObject>();
 
@@ -174,26 +159,6 @@ namespace basecross
 
 			karipos.x += 1;
 		}
-
-		std::wstring  message =
-			L"さあ、憐んで、血統書　持ち寄って反教典\n沈んだ唱導　腹這幻聴　謁見　席巻　妄信症\n踊れ酔え孕め　アヴァターラ新大系\n斜めの幻聴　錻力と宗教　ラル・ラリ・唱えろ生";
-
-		//auto messageWindowObject = Instantiate<MessageWindowObject>();
-		//auto messageWindow = messageWindowObject->GetComponent<MessageWindow>();
-		//messageWindow->SetMessageText(message);
-		//messageWindow->PlayMessage();
-		//messageWindow->SetOneSecondDisplayedCharNum(10);
-		//messageWindow->finishPushEvent.AddFunc(&TEST::test);
-		//rectTransform = messageWindowObject->GetComponent<RectTransform>();
-		//rectTransform->SetRectSize(1000, 200);
-		//auto textBox = messageWindowObject->GetComponent<TextBox>();
-		////textBox->SetText(L"こんにちは");
-		//textBox->SetFontColor(Col4(1.0f));
-		//textBox->SetFontSize(50);
-		//textBox->SetBoxColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
-		//textBox->SetTextVerticalAlignment(TextBox::TextVerticalAlignment::Center);
-
-		//EventSystem::GetInstance(GetThis<ItabashiStage>())->SetNowSelectable(messageWindow);
 
 		Instantiate<GameItemKeyObject>();
 		Instantiate<DoorObject>()->GetComponent<Transform>()->SetPosition(4, 0, 0);
