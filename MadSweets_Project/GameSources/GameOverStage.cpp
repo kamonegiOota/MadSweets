@@ -3,6 +3,7 @@
 #include"GameOverEventer.h"
 #include"AlphaFadeCtrl.h"
 #include"PlayerInputer.h"
+#include"SoundHelper.h"
 
 namespace basecross
 {
@@ -22,6 +23,8 @@ namespace basecross
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
+
+		SimpleSoundManager::ChangeBGM(L"GameOverBGM");
 
 		auto backGroundObject = Instantiate<UIObject>();
 		auto backGroundImage = backGroundObject->AddComponent<Image>();
