@@ -69,7 +69,7 @@
 
 #include "PlayerStatusMgr.h"
 #include "PlayerWeightMgr.h"
-#include "PlayerWeightManager.h"
+#include "PlayerCalorieManager.h"
 #include "Velocity.h"
 
 #include "GameItemKeyObject.h"
@@ -94,13 +94,13 @@ namespace basecross {
 		}
 
 		auto status = player->GetComponent<PlayerStatusMgr>(false);
-		auto calorie = player->GetComponent<PlayerWeightManager>(false);
+		auto calorie = player->GetComponent<PlayerCalorieManager>(false);
 
 		if (status && calorie) {
 			status->SetHP(saveValue.hp);
 			weight->SetNowGauge(saveValue.weight);
 			weight->ChangeState(saveValue.weightState);
-			calorie->SetNowWeight(saveValue.calorie);
+			calorie->SetNowCalorie(saveValue.calorie);
 		}
 	}
 
