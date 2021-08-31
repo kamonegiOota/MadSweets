@@ -45,7 +45,7 @@ namespace basecross
 
 	void PlayerMover::OnStart()
 	{
-		m_playerWeightManager = GetGameObject()->GetComponent<PlayerWeightManager>();
+		m_playerCalorieManager = GetGameObject()->GetComponent<PlayerCalorieManager>();
 		m_camera = GetStage()->GetView()->GetTargetCamera();
 
 		m_animator = GetGameObject()->GetComponent<Animator<PlayerAnimationMember, PlayerState>>();
@@ -91,11 +91,11 @@ namespace basecross
 		Vec3 moveVector = (moveForward + moveRight) * App::GetApp()->GetElapsedTime() * m_standMoveSpeed;
 
 		float animationSpeed = std::fminf(vec.length() + 0.2f, 1.0f);
-		if (m_playerWeightManager->GetWeightState() != PlayerWeightState::Hunger &&
-			PlayerInputer::IsDashPush())
+
+		if (m_playerCalorieManager->GetNowCalorie() > 0.0f && PlayerInputer::IsDashPush())
 		{
 			moveVector *= m_dashPower;
-			m_playerWeightManager->AddWeight(-m_dashUseWeight);
+			m_playerCalorieManager->AddCalorie(-m_dashUseWeight);
 			animationSpeed *= 1.5f;
 		}
 

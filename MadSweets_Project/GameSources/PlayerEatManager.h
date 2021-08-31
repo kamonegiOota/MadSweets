@@ -1,11 +1,11 @@
 #pragma once
-#include"PlayerWeightManager.h"
+#include"PlayerCalorieManager.h"
 
 namespace basecross
 {
 	class PlayerEatManager : public Component
 	{
-		ex_weak_ptr<PlayerWeightManager> m_weightManager;
+		ex_weak_ptr<PlayerCalorieManager> m_calorieManager;
 
 		ex_weak_ptr<GameObject> m_playerCameraObject;
 
