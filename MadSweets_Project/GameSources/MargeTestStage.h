@@ -55,6 +55,8 @@ namespace basecross {
 			}
 		}
 
+		void GoClearStage();
+
 	public:
 		//\’z‚Æ”jŠü
 		MargeTestStage() :Stage() {}

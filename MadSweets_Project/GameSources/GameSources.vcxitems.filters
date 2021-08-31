@@ -94,14 +94,8 @@
     <Filter Include="Itabashi\Inputs\PlayerInputer">
       <UniqueIdentifier>{b403c781-feea-4210-ae15-8248516a5e84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\PlayerObject">
-      <UniqueIdentifier>{122d87cd-c1bf-4518-8c04-83d5028304f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\Stage">
       <UniqueIdentifier>{cea4f9bd-46bd-4295-b7a5-2795e5fa44f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Itabashi\PlayerCameraObject">
-      <UniqueIdentifier>{621fd597-b413-47d9-bdb3-df9a993dff9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Patchs\Maths\MyMath">
       <UniqueIdentifier>{b5b99c72-316b-47bf-89cc-86ccf6366663}</UniqueIdentifier>
@@ -514,9 +508,6 @@
     <Filter Include="Patchs\basecross\CameraHelper">
       <UniqueIdentifier>{90c9bb49-8222-4ead-b651-69f370cd4b26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\DebugCameraObject">
-      <UniqueIdentifier>{75b5110b-2d41-4f73-ab92-5d2667d60f50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\MenuButtonObject">
       <UniqueIdentifier>{b5d54f1c-c6b7-4f9d-81df-9ee10ef58be5}</UniqueIdentifier>
     </Filter>
@@ -676,9 +667,6 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerOpenDoorManager">
       <UniqueIdentifier>{2f253621-51ce-4271-aac5-a7dd114c64d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\DoorObject">
-      <UniqueIdentifier>{b9737625-6c4e-4e66-aa29-70373dc37bfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\Components\GottenComponent">
       <UniqueIdentifier>{7990ab59-cbfb-40f6-86bf-beb04257a601}</UniqueIdentifier>
     </Filter>
@@ -688,13 +676,7 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerGameItemGetter">
       <UniqueIdentifier>{d62bec21-0002-4a14-ab16-ab5341823f0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Itabashi\GameItemKeyObject">
-      <UniqueIdentifier>{f9b9055a-c3ea-46fd-8077-563ffe741e46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Itabashi\GameMessageWindowObject">
-      <UniqueIdentifier>{514e30ca-dc69-4b33-865b-152ffc28c613}</UniqueIdentifier>
-	</Filter>
-	<Filter Include="Maru\Enemy\Component\Enemy\UtilityEnemy">
+    <Filter Include="Maru\Enemy\Component\Enemy\UtilityEnemy">
       <UniqueIdentifier>{75e5ea27-a6ee-48d9-8675-18de8e528b5a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Component\BossCameraEvent">
@@ -702,6 +684,36 @@
     </Filter>
     <Filter Include="Maru\Object\StageObject\PointLightObject">
       <UniqueIdentifier>{8df1a5c4-ad20-4b4d-b35b-6d20ebe0d551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects">
+      <UniqueIdentifier>{fca2dda0-36a1-4e62-a6b5-7804ad16238e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\GameMessageWindowObject">
+      <UniqueIdentifier>{514e30ca-dc69-4b33-865b-152ffc28c613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\DebugCameraObject">
+      <UniqueIdentifier>{75b5110b-2d41-4f73-ab92-5d2667d60f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\DoorObject">
+      <UniqueIdentifier>{b9737625-6c4e-4e66-aa29-70373dc37bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\GameItemKeyObject">
+      <UniqueIdentifier>{f9b9055a-c3ea-46fd-8077-563ffe741e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\PlayerCameraObject">
+      <UniqueIdentifier>{621fd597-b413-47d9-bdb3-df9a993dff9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\PlayerObject">
+      <UniqueIdentifier>{122d87cd-c1bf-4518-8c04-83d5028304f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\PlayerCalorieGaugeObject">
+      <UniqueIdentifier>{6d6e39ba-6e7e-48e4-af19-fe7d26c67df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Objects\PlayerChoicesListObject">
+      <UniqueIdentifier>{78efbee9-9a81-49fc-8ba5-6ca0f3bcde99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Itabashi\Stage\ClearStage">
+      <UniqueIdentifier>{e1adab36-f85b-4655-bc36-784d1e91e8c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -784,13 +796,13 @@
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerObject.h">
-      <Filter>Itabashi\PlayerObject</Filter>
+      <Filter>Itabashi\Objects\PlayerObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h">
       <Filter>Patchs\Maths\MyMath</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h">
-      <Filter>Itabashi\PlayerCameraObject</Filter>
+      <Filter>Itabashi\Objects\PlayerCameraObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerMover.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerMover</Filter>
@@ -843,7 +855,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeManager.h">
       <Filter>Itabashi\Components\GaugeManager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.h">
       <Filter>Itabashi\Components\PlayerComponent\PlayerWeightManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h">
@@ -1135,7 +1147,7 @@
       <Filter>Patchs\basecross\CameraHelper</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugCameraObject.h">
-      <Filter>Itabashi\DebugCameraObject</Filter>
+      <Filter>Itabashi\Objects\DebugCameraObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuButtonObject.h">
       <Filter>Itabashi\MenuButtonObject</Filter>
@@ -1249,7 +1261,7 @@
       <Filter>Itabashi\Components\PlayerComponent\PlayerOpenDoorManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DoorObject.h">
-      <Filter>Itabashi\DoorObject</Filter>
+      <Filter>Itabashi\Objects\DoorObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GottenComponent.h">
       <Filter>Itabashi\Components\GottenComponent</Filter>
@@ -1261,16 +1273,25 @@
       <Filter>Itabashi\Components\PlayerComponent\PlayerGameItemGetter</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameItemKeyObject.h">
-      <Filter>Itabashi\GameItemKeyObject</Filter>
+      <Filter>Itabashi\Objects\GameItemKeyObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.h">
-      <Filter>Itabashi\GameMessageWindowObject</Filter>
-	</ClInclude>
-	<ClInclude Include="$(MSBuildThisFileDirectory)UtilityEnemy.h">
+      <Filter>Itabashi\Objects\GameMessageWindowObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilityEnemy.h">
       <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLightObject.h">
       <Filter>Maru\Object\StageObject\PointLightObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieGaugeObject.h">
+      <Filter>Itabashi\Objects\PlayerCalorieGaugeObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesListObject.h">
+      <Filter>Itabashi\Objects\PlayerChoicesListObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h">
+      <Filter>Itabashi\Stage\ClearStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1320,13 +1341,13 @@
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerObject.cpp">
-      <Filter>Itabashi\PlayerObject</Filter>
+      <Filter>Itabashi\Objects\PlayerObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MathHelper.cpp">
       <Filter>Patchs\Maths\MyMath</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp">
-      <Filter>Itabashi\PlayerCameraObject</Filter>
+      <Filter>Itabashi\Objects\PlayerCameraObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerMover.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerMover</Filter>
@@ -1385,7 +1406,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeManager.cpp">
       <Filter>Itabashi\Components\GaugeManager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.cpp">
       <Filter>Itabashi\Components\PlayerComponent\PlayerWeightManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp">
@@ -1656,7 +1677,7 @@
       <Filter>Patchs\basecross\CameraHelper</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugCameraObject.cpp">
-      <Filter>Itabashi\DebugCameraObject</Filter>
+      <Filter>Itabashi\Objects\DebugCameraObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuButtonObject.cpp">
       <Filter>Itabashi\MenuButtonObject</Filter>
@@ -1761,7 +1782,7 @@
       <Filter>Itabashi\Components\PlayerComponent\PlayerOpenDoorManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)DoorObject.cpp">
-      <Filter>Itabashi\DoorObject</Filter>
+      <Filter>Itabashi\Objects\DoorObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GottenComponent.cpp">
       <Filter>Itabashi\Components\GottenComponent</Filter>
@@ -1770,16 +1791,25 @@
       <Filter>Itabashi\Components\PlayerComponent\PlayerGameItemGetter</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameItemKeyObject.cpp">
-      <Filter>Itabashi\GameItemKeyObject</Filter>
+      <Filter>Itabashi\Objects\GameItemKeyObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.cpp">
-      <Filter>Itabashi\GameMessageWindowObject</Filter>
-	</ClCompile>
-	<ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp">
+      <Filter>Itabashi\Objects\GameMessageWindowObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp">
       <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLightObject.cpp">
       <Filter>Maru\Object\StageObject\PointLightObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieGaugeObject.cpp">
+      <Filter>Itabashi\Objects\PlayerCalorieGaugeObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesListObject.cpp">
+      <Filter>Itabashi\Objects\PlayerChoicesListObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
+      <Filter>Itabashi\Stage\ClearStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

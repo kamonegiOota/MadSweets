@@ -62,6 +62,8 @@
 #include "GaugeManager.h"
 #include "GameMessageWindowObject.h"
 #include "PlayerInputer.h"
+#include "PlayerCalorieGaugeObject.h"
+#include "PlayerChoicesListObject.h"
 
 // ----------------------------
 
@@ -120,6 +122,7 @@ namespace basecross {
 			// 板橋 追加分 ---------------
 
 			Instantiate<CameraObject>();
+
 			Instantiate<GameMessageWindowObject>();
 
 			// ---------------------------
@@ -130,27 +133,23 @@ namespace basecross {
 			fade->FadeInStart();
 
 			//ゲージの生成
-			auto gauge = Instantiate<GaugeUI>();
-			auto rectTransform = gauge->GetComponent<RectTransform>();
-			rectTransform->SetAnchor(AnchorType::LeftUp);
-			rectTransform->SetPosition(200, -50);
-			auto gaugeManager = gauge->GetComponent<GaugeManager>();
-			gaugeManager->SetGaugeImage(L"WeightGaugeColor");
-			gaugeManager->SetGaugeBackgroundImage(L"WeightGaugeBackground");
-			gaugeManager->SetGaugeRectSize(768 * 0.5f, 256 * 0.5f);
-			//UI周り
-			auto go = Instantiate<UIObject>();
-			go->GetComponent<RectTransform>()->SetPosition(300, 0);
-			auto mo = go->AddComponent<ChoicesList>();
-			mo->OnStart();
+			Instantiate<PlayerCalorieGaugeObject>();
 
-			SetSharedGameObject(L"PlayerChoicesList", go);
+			//UI周り
+			Instantiate<PlayerChoicesListObject>();
 
 			//ウェイトゲージの生成
 			Instantiate<WeightGaugeUI>();
 
+			auto fadeObject = Instantiate<UIObject>();
+			fadeObject->SetDrawLayer(100000);
+			auto alphaFade = fadeObject->AddComponent<AlphaFadeCtrl>();
+			alphaFade->AddEndAction(GetThis<MargeTestStage>(), &MargeTestStage::GoClearStage);
+
+			SetSharedGameObject(L"FinishFadeObject", fadeObject);
+
+
 			//プレイヤーの生成
-			SetSharedGameObject(L"PlayerWeightGauge", gauge);
 			auto player = Instantiate<PlayerObject>(sm_createPlayerPosition,Quat());
 			player->GetComponent<Transform>()->SetForward(sm_cretaePlayerForward);
 			sm_createPlayerPosition = sm_firstCreatePlayerPosition;
@@ -197,6 +196,11 @@ namespace basecross {
 
 	void MargeTestStage::OnUpdate() {
 
+	}
+
+	void MargeTestStage::GoClearStage()
+	{
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<SceneBase>(), L"ToClearStage");
 	}
 
 	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)

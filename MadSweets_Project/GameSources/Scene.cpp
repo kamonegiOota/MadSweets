@@ -12,6 +12,7 @@
 #include "LoadStage.h"
 #include"OptionStage.h"
 #include"GameOverStage.h"
+#include"ClearStage.h"
 
 namespace basecross{
 
@@ -22,7 +23,7 @@ namespace basecross{
 		try {
 			//クリアする色を設定
 			Col4 Col;
-			Col.set(31.0f / 255.0f, 30.0f / 255.0f, 71.0f / 255.0f, 255.0f / 255.0f);
+			Col.set(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
@@ -47,7 +48,7 @@ namespace basecross{
 		}
 		if (event->m_MsgStr == L"ToLoadStage")
 		{
-			ResetActiveStage<LoadStage>(L"ToMargeTestStage");
+			ResetActiveStage<LoadStage>(L"ToTitleStage");
 		}
 		if (event->m_MsgStr == L"ToTitleStage")
 		{
@@ -64,6 +65,10 @@ namespace basecross{
 		if (event->m_MsgStr == L"ToGameOverStage")
 		{
 			ResetActiveStage<GameOverStage>();
+		}
+		if (event->m_MsgStr == L"ToClearStage")
+		{
+			ResetActiveStage<ClearStage>();
 		}
 	}
 

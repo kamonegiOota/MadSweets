@@ -1,5 +1,5 @@
 #include"EatenComponent.h"
-#include"PlayerWeightManager.h"
+#include"PlayerCalorieManager.h"
 #include "PlayerWeightMgr.h"
 #include "PlayerStatusMgr.h"
 
@@ -28,7 +28,7 @@ namespace basecross
 	std::shared_ptr<ChoicesObjectAndEvent const> EatenComponent::GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject)
 	{
 		//–{—ˆª‚Íweight‚Å‚Í‚È‚­ƒJƒƒŠ[
-		auto weightManager = selectorObject->GetComponent<PlayerWeightManager>(false);
+		auto calorieManager = selectorObject->GetComponent<PlayerCalorieManager>(false);
 		auto weightMgr = selectorObject->GetComponent<PlayerWeightMgr>(false);
 		auto player = selectorObject->GetComponent<PlayerStatusMgr>(false);
 
@@ -36,11 +36,11 @@ namespace basecross
 
 		float weight = m_eatenData.weightValue;
 
-		if (weightManager && weightMgr && player)
+		if (calorieManager && weightMgr && player)
 		{
-			eventFunction = [this,weightManager,weightMgr, player]()
+			eventFunction = [this, calorieManager,weightMgr, player]()
 			{
-				weightManager->AddWeight(m_eatenData.calorieValue);
+				calorieManager->AddCalorie(m_eatenData.calorieValue);
 				weightMgr->AddWeight(m_eatenData.weightValue);
 				player->AddHP(1.0f);
 

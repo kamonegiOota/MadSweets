@@ -1,4 +1,5 @@
 #include"GameOverEventer.h"
+#include"SoundHelper.h"
 
 namespace basecross
 {
@@ -16,12 +17,16 @@ namespace basecross
 	void GameOverEventer::OnRetry()
 	{
 		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
+
+		SimpleSoundManager::StopBGM();
+		
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<SceneBase>(), L"ToMargeTestStage");
 	}
 
 	void GameOverEventer::OnBackTitle()
 	{
 		EventSystem::GetInstance(GetStage())->SetUpdateActive(false);
+		SimpleSoundManager::StopBGM();
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<SceneBase>(), L"ToTitleStage");
 	}
 }

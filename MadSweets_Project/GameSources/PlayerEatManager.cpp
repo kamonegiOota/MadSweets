@@ -12,7 +12,7 @@ namespace basecross
 
 	void PlayerEatManager::OnCreate()
 	{
-		m_weightManager = GetGameObject()->GetComponent<PlayerWeightManager>();
+		m_calorieManager = GetGameObject()->GetComponent<PlayerCalorieManager>();
 	}
 
 	void PlayerEatManager::OnUpdate()
@@ -38,7 +38,7 @@ namespace basecross
 
 			if (collision->IsRayHit(startPosition, searchEndPosition))
 			{
-				m_weightManager->AddWeight(eatenComponent->GetEatenData().weightValue);
+				m_calorieManager->AddCalorie(eatenComponent->GetEatenData().weightValue);
 
 				object->Destroy();
 			}

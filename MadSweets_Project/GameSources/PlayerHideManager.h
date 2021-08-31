@@ -3,6 +3,7 @@
 #include"PlayerMover.h"
 #include"PlayerRotater.h"
 #include "PlayerChoicesManager.h"
+#include "PlayerObject.h"
 
 namespace basecross
 {
@@ -17,6 +18,7 @@ namespace basecross
 		ex_weak_ptr<Collision> m_collision;
 
 		ex_weak_ptr<PlayerChoicesManager> m_playerChoicesManager;
+		ex_weak_ptr<Animator<PlayerAnimationMember, PlayerState>> m_playerAnimator;
 
 		std::shared_ptr<ChoicesObjectAndEvent> m_choice;
 

@@ -43,6 +43,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChubbyCompCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CookieHideObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookie.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CrackCookieObject.h" />
@@ -127,8 +128,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ParticleSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieGaugeObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraMover.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCameraObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesListObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerDebuger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerEatManager.h" />
@@ -142,7 +145,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
@@ -228,6 +231,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookie.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CrackCookieObject.cpp" />
@@ -305,8 +309,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ParticleSystem.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieGaugeObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraMover.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCameraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesListObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerChoicesManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerDebuger.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerEatManager.cpp" />
@@ -320,7 +326,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />

@@ -4,6 +4,7 @@
 #include"MessageWindow.h"
 #include"GameMessageWindowObject.h"
 #include"PlayerMover.h"
+#include"AlphaFadeCtrl.h"
 
 namespace basecross
 {
@@ -15,6 +16,8 @@ namespace basecross
 		ex_weak_ptr<MessageWindow> m_messageWindow;
 
 		ex_weak_ptr<PlayerMover> m_mover;
+
+		ex_weak_ptr<AlphaFadeCtrl> m_alphaFade;
 
 		GameItem m_findGameItem = GameItem(L"Key");
 
