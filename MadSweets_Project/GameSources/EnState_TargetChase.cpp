@@ -24,13 +24,13 @@ namespace basecross {
 		auto chase = obj->GetComponent<TargetChase>(false);
 		if (chase) {
 			chase->SetTarget(m_target);
+			chase->ChaseStart();
 		}
 
 		AddChangeComp(chase, true, false);
 		AddChangeComp(obj->GetComponent<CheckTargetPos>(false), false, false);
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
-		//AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
 		AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
 		AddChangeComp(obj->GetComponent<TargetProbe>(false), false, false);
 		
@@ -42,7 +42,6 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnExit() {
-
 		ExitChangeComps();
 	}
 
