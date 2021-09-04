@@ -18,8 +18,8 @@ namespace basecross {
 		};
 
 		std::shared_ptr<GameObject> m_target;
-		float m_speed;
 		ChaseMode m_chaseMode = ChaseMode::Look;
+		float m_speed = 3.0f;
 
 		std::function<void(TargetChase&)> m_updateFunc;
 
@@ -31,9 +31,8 @@ namespace basecross {
 		void FindTarget();
 
 		void LookMove();
-		//void LostCheck();
-
 		void LostMove();
+
 		void LookCheck();
 
 		void Rotation(const Vec3& moveVec);
@@ -56,9 +55,14 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnDraw() override {}
 
+		//追う処理の開始
+		void ChaseStart() {
+			m_chaseMode = ChaseMode::Look;
+			m_updateFunc = &TargetChase::LookMove;
+		}
+
 		//アクセッサ-----------------------------------------------------------------------
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
-			//m_updateFunc = &TargetChase::LookMove;
 			m_target = target;
 		}
 		std::shared_ptr<GameObject> GetTarget() const {

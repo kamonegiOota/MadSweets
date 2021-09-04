@@ -81,14 +81,8 @@ namespace basecross {
 		auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
 		if (probe) {
 			//’Êí’Tõ
-			probe->CalucRoute(m_target);
+			probe->LostTarget(m_target);
 			m_updateFunc = &TargetChase::LostMove;
-
-			//ƒeƒXƒgŽÀ‘•
-			auto draw = obj->GetComponent<BcBaseDraw>(false);
-			if (draw) {
-				draw->SetDiffuse(Col4(1.0f, 0.0f, 1.0f, 1.0f));
-			}
 		}
 
 		m_chaseMode = ChaseMode::Lost;
@@ -130,7 +124,7 @@ namespace basecross {
 		auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
 		if (probe) {
 			probe->Move();
-			if (probe->IsRouteEnd()) {
+			if (probe->IsProbeEnd()) {
 				ChangeStateMachine();
 				return;
 			}
@@ -184,7 +178,6 @@ namespace basecross {
 			m_updateFunc(*this);
 		}
 	}
-
 }
 
 //endbasecross
