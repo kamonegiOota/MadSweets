@@ -17,6 +17,11 @@ namespace basecross {
 		static NavGraphNode SearchNearNode(const GraphAstar& astar, const std::shared_ptr<GameObject>& target);
 		static NavGraphNode SearchNearNode(const GraphAstar& astar, const Vec3& targetPos);
 
+		//自分のノードから伸びるノードで一番ターゲットに近いノードの選択
+		static NavGraphNode SearchMyNodeToTargetNearNode(const GraphAstar& astar, 
+			const std::shared_ptr<GameObject>& startObject, const std::shared_ptr<GameObject>& target, 
+			const int& from);
+
 		//自分のノードからターゲット方向にあるノードを検索
 		static NavGraphNode CalucTargetDirectNode(const GraphAstar& astar,
 			const NavGraphNode& startNode,
