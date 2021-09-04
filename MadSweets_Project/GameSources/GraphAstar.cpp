@@ -131,12 +131,9 @@ namespace basecross {
 
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
 		ResetAstar();
-		//DebugObject::sm_wss << L"AstarRouteStart" << endl;
 
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
-		//DebugObject::sm_wss << L"stattNode:" << to_wstring(selfNearNode.GetIndex()) << endl;
 		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
-		//DebugObject::AddVector(targetNearNode.GetPosition());
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
 
 		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
@@ -386,14 +383,11 @@ namespace basecross {
 	}
 
 	Vec3 GraphAstar::CalucTargetNode(const std::shared_ptr<GameObject>& objPtr) {
-
 		if (m_shortRoutes.size() == 0) {
 			m_isRouteEnd = true;
 		}
-		
-		//DebugObject::m_wss.str(L"");
+
 		if (m_isRouteEnd) {
-			//DebugObject::m_wss << to_wstring(m_shortRoutes.size());
 			return Vec3(0.0f);
 		}
 
@@ -404,7 +398,6 @@ namespace basecross {
 		auto objPos = trans->GetPosition();
 		
 		auto nodePos = m_shortRoutes[m_routeIndex].nextNode.GetPosition();  //現在の目標ノードのポジションを取得
-		//DebugObject::AddVector(nodePos);
 
 		auto toNode = nodePos - objPos;
 		if (toNode.length() <= nearRange) {  //ノードの近くまで来たら。
@@ -416,7 +409,6 @@ namespace basecross {
 			m_isRouteEnd = true;//機能をoffにする。
 		}
 
-		//DebugObject::m_wss << to_wstring(m_shortRoutes[m_routeIndex].node.GetIndex());
 		return nodePos;
 	}
 }
