@@ -7,6 +7,7 @@
 #include "Project.h"
 
 #include "AstarCtrl.h"
+#include "UtilityAstar.h"
 #include "MTestEnemyObject.h"
 #include "MTestBox.h"
 #include "CalucEscapeRoute.h"
@@ -66,9 +67,6 @@ namespace basecross {
 	}
 
 	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target, const bool isCreateNode) {
-		//if (isCreateNode) {
-		//	m_astar.AddNode();
-		//}
 		SearchAstarStart(target->GetComponent<Transform>()->GetPosition(), isCreateNode);
 	}
 
@@ -103,6 +101,17 @@ namespace basecross {
 
 	void AstarCtrl::RemoveNode(const int& index) {
 		m_astar.RemoveNode(index);
+	}
+
+	Vec3 AstarCtrl::CalucTargetNearNodePosition(const std::shared_ptr<GameObject>& target) {
+		auto nearNode = UtilityAstar::SearchNearNode(m_astar, target);
+		return nearNode.GetPosition();
+	}
+
+	NavGraphNode AstarCtrl::CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target) {
+		auto selfNode = UtilityAstar::SearchNearNode(m_astar,GetGameObject());
+		auto node = UtilityAstar::SearchMyNodeToTargetNearNode(m_astar, GetGameObject(), target, selfNode.GetIndex());
+		return node;
 	}
 }
 

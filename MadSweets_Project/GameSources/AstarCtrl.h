@@ -34,6 +34,7 @@ namespace basecross {
 		void UpdateVelocityMove(const float& maxSpeedd, const float& nearRange = 3.0f);
 
 		//アクセッサ-------------------------------------------------------------
+
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target, const bool isCreateNode = false);
 		void SearchAstarStart(const Vec3& targetPos, const bool isCreateNode = false);
 		
@@ -54,6 +55,12 @@ namespace basecross {
 
 		//ノードの削除
 		void RemoveNode(const int& index);
+
+		//ターゲットから一番近いノードを見つけてポジションを取得
+		Vec3 CalucTargetNearNodePosition(const std::shared_ptr<GameObject>& target);
+
+		//自分のノードから一番ターゲットに近いノードを取得
+		NavGraphNode CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target);
 
 		Vec3 GetCalucNodePos(){
 			return m_astar.CalucTargetNode(GetGameObject());
