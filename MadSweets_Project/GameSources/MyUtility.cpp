@@ -126,7 +126,7 @@ namespace basecross {
 
 			for (const auto& object : obstacleObjs)
 			{
-				auto collision = object->GetComponent<Collision>(false);
+				auto collision = object->GetComponent<CollisionObb>(false);
 				if (!collision) {
 					continue;
 				}
@@ -138,6 +138,13 @@ namespace basecross {
 				if (IsExclute(object, excluteObjs)) {
 					continue;
 				}
+
+				if (HitTest::SEGMENT_OBB(startPosition, endPosition, collision->GetObb())) {
+					return true;
+				}
+
+				//IsRayHitに不具合があるまでこちらでcontinue
+				continue;
 
 				//ヒットしたら、障害物があることになる。
 				RayHitData data;
