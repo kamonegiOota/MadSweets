@@ -31,7 +31,8 @@ namespace basecross {
 				<< L"z: " << vec.z << endl;
 		}
 
-		static void AddFloat(const float& value , const bool isEndl = true) {
+		template<class T>
+		static void AddValue(const T& value , const bool isEndl = true) {
 			sm_wss << to_wstring(value);
 			if (isEndl) {
 				sm_wss << endl;
