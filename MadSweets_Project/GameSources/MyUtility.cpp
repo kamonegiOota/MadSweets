@@ -144,6 +144,10 @@ namespace basecross {
 				if (collision->IsRayHit(startPosition, direction, data)) {
 					auto length = direction.length();
 					if (direction.length() > data.length) {  //length‚ªŽè‘O‚¾‚Á‚½‚ç
+						//auto draw = object->GetComponent<BcBaseDraw>(false);
+						//if (draw) {
+						//	draw->SetDiffuse(Col4(1.0f,0.0f,0.0f,1.0f));
+						//}
 						return true;
 					}
 				}
@@ -181,14 +185,12 @@ namespace basecross {
 			return false;
 		}
 
-		
-
 		bool MyUtility::IsExclute(const shared_ptr<GameObject>& targetObj,const vector<shared_ptr<GameObject>>& excluteObjs) {
 			for (auto& exclute : excluteObjs) {
 				if (targetObj == exclute) {
 					return true;
 				}
-				
+
 				if (targetObj->GetParent() == exclute) {
 					return true;
 				}
