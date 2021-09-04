@@ -174,9 +174,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::OnUpdate() {
-		//m_moveFunc = nullptr;
-		DebugObject::sm_wss << L"LostMove";
-
 		if (m_moveFunc) {
 			m_moveFunc(*this);
 		}
@@ -214,9 +211,8 @@ namespace basecross {
 
 		m_probCount++;
 
-		if (m_probCount >= m_numPorb) {  //指定回数調べたら。
-			m_moveFunc = nullptr;
-			//ChangeState<EnState_LoseTarget>();
+		if (m_probCount >= m_numPorb) {  //指定回数調べたら
+			ChangeState<EnState_LoseTarget>();
 		}
 		else {  //まだカウントが過ぎていなかったら。
 			SetHideObjCollisionUpdate(true);
@@ -225,7 +221,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::ExitProbState() {
-		//SetHideObjCollisionUpdate(true);
 		RemoveNode();
 	}
 }
