@@ -81,9 +81,10 @@ namespace basecross {
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
 
-
-	wstring MargeTestStage::sm_nowMap = L"Stage1.csv";
+	//wstring MargeTestStage::sm_nowMap = L"TempStage.csv";
+	wstring MargeTestStage::sm_nowMap = L"Stage3.csv";
 	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
+	//Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(1.0f, +1.0f, 1.0f);
 	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
 	Vec3 MargeTestStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
 
@@ -138,21 +139,16 @@ namespace basecross {
 
 	void MargeTestStage::OnCreate() {
 		try {
-			//AddGameObject<DebugObject>()->SetDrawLayer(100);
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 
 			//ビューとライトの作成
 			CreateViewLight();
 
 			// 板橋 追加分 ---------------
-
 			Instantiate<CameraObject>();
-
 			Instantiate<GameMessageWindowObject>();
-
 			// ---------------------------
-
-			TempLoad();
 
 			auto fade = Instantiate<AlphaFadeObject>()->GetComponent<AlphaFadeCtrl>();
 			fade->FadeInStart();
@@ -173,7 +169,6 @@ namespace basecross {
 
 			SetSharedGameObject(L"FinishFadeObject", fadeObject);
 
-
 			//プレイヤーの生成
 			auto player = Instantiate<PlayerObject>(sm_createPlayerPosition,Quat());
 			player->GetComponent<Transform>()->SetForward(sm_cretaePlayerForward);
@@ -184,11 +179,16 @@ namespace basecross {
 			SavingValueSet(player, weightGauge);
 
 			CreateMap(sm_nowMap);
+			
+			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 
+			return;
+			//test
+			CreatePointLight();
 			//敵の生成
 			CreateEnemy(player);
-
-			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
+			CreateHideObjects();
+			CreateEatItems();
 		}
 		catch (...) {
 			throw;
@@ -196,8 +196,7 @@ namespace basecross {
 	}
 
 	void MargeTestStage::OnUpdate() {
-		//auto handy = maru::MyUtility::GetGameObject<HandyObject>();
-		//handy->GetComponent<Velocity>()->SetVelocity(Vec3(0.0f));
+
 	}
 
 	void MargeTestStage::GoClearStage()
@@ -207,10 +206,8 @@ namespace basecross {
 
 	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
-		//m_nowMap = fileName;
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
-		//応急処置
 		vector<wstring> objNames = {
 			{L"StageRotBox"},{L"Plane"},{L"BoxCollision"},
 			{L"Floor"},{L"RoomWall"},{L"Wall"},
@@ -229,11 +226,9 @@ namespace basecross {
 		map->CreateObject<OriginalMeshObject>(L"Table2", offset);
 		map->CreateObject<CookieHideObject>(L"Locker01", offset);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
-		//map->CreateObject<EatenObject>(L"EatenObject",offset);
 		map->CreateObject<PointLightObject>(L"Light", offset);
 		map->CreateObject<SoundCookieObject>(L"SoundCokie", offset);
 		map->CreateObject<FixedBox>(L"Ceiling", offset);
-		//map->CreateObject<SoundCookieObject>
 
 		//eatオブジェクト
 		auto positions = map->GetPositions(L"EatenObject");
@@ -258,6 +253,7 @@ namespace basecross {
 
 		m_mapCsv = map;
 
+		//return;
 		CreateAstar(fileName);
 	}
 
@@ -314,8 +310,8 @@ namespace basecross {
 			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
 		}
 
+		//手動で設定したノード
 		auto edges = StageMapCSV::sm_astarEdges[fileName];
-
 		for (auto& edge : edges) {
 			graph.AddEdge(edge);
 		}
@@ -345,14 +341,10 @@ namespace basecross {
 	}
 
 	void MargeTestStage::TempLoad() {
-		//音ロード
-		//wstring SE_Dir = mediaDir + L"SEs\\";
-		//App::GetApp()->RegisterWav(L"Test", SE_Dir + L"Test.wav");
-		//App::GetApp()->RegisterWav(L"Test2", SE_Dir + L"Test2.wav");
+
 	}
 
 	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
-		return;
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
 		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
