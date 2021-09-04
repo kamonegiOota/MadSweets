@@ -29,7 +29,7 @@ namespace basecross {
 		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 
-		StartChangeComps();
+        StartChangeComps();
 
 		DebugObject::sm_wss << L"Probe";
 	}
