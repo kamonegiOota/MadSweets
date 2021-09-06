@@ -182,7 +182,7 @@ namespace basecross {
 		/// </summary>
 		/// <returns>ƒm[ƒh‚ÌŒÂ”</returns>
 		int GetNumNodes() const {
-			return m_nodes.size();
+			return static_cast<int>(m_nodes.size());
 		}
 
 		/// <summary>
