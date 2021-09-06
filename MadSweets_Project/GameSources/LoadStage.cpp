@@ -79,7 +79,10 @@ namespace basecross
 		ResourceLoadData(L"NomalFont_Tx"   , L"WeightTx_NomalFont.png"),
 		ResourceLoadData(L"NomalGauge_Tx"  , L"WeightTx_NomalGauge.png"),
 		ResourceLoadData(L"SkinnyFont_Tx"  , L"WeightTx_SkinnyFont.png"),
-		ResourceLoadData(L"SkinnyGauge_Tx" , L"WeightTx_SkinnyGauge.png")
+		ResourceLoadData(L"SkinnyGauge_Tx" , L"WeightTx_SkinnyGauge.png"),
+
+		//デバッグ用
+		ResourceLoadData(L"Arrow_Tx" , L"Arrow.png"),
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_seResourceLoadDatas =
