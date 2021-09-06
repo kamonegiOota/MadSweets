@@ -715,6 +715,12 @@
     <Filter Include="Itabashi\Stage\ClearStage">
       <UniqueIdentifier>{e1adab36-f85b-4655-bc36-784d1e91e8c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruUthilyty\AstarEdgeDraw">
+      <UniqueIdentifier>{529b01b6-0200-42b3-9e2a-ead1487be4ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\ArrowObject">
+      <UniqueIdentifier>{551801f9-77b5-4449-a2a1-2131112c5704}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1293,6 +1299,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ClearStage.h">
       <Filter>Itabashi\Stage\ClearStage</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.h">
+      <Filter>Maru\MaruUthilyty\AstarEdgeDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArrowObject.h">
+      <Filter>Maru\Object\ArrowObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1810,6 +1822,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp">
       <Filter>Itabashi\Stage\ClearStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.cpp">
+      <Filter>Maru\MaruUthilyty\AstarEdgeDraw</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArrowObject.cpp">
+      <Filter>Maru\Object\ArrowObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

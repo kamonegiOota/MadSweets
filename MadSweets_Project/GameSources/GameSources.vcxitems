@@ -18,9 +18,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AlphaFadeObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArrowObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseAttack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BasecrossInputer.h" />
@@ -210,9 +212,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArrowObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarPlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseAttack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BasecrossInputer.cpp" />
