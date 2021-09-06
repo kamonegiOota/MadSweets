@@ -74,6 +74,7 @@
 
 #include "GameItemKeyObject.h"
 #include "DoorObject.h"
+#include "AstarEdgeDraw.h"
 
 namespace basecross {
 
@@ -82,7 +83,7 @@ namespace basecross {
 	//--------------------------------------------------------------------------------------
 
 	//wstring MargeTestStage::sm_nowMap = L"TempStage.csv";
-	wstring MargeTestStage::sm_nowMap = L"Stage3.csv";
+	wstring MargeTestStage::sm_nowMap = L"Stage1.csv";
 	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
 	//Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(1.0f, +1.0f, 1.0f);
 	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
@@ -253,7 +254,6 @@ namespace basecross {
 
 		m_mapCsv = map;
 
-		//return;
 		CreateAstar(fileName);
 	}
 
@@ -306,8 +306,11 @@ namespace basecross {
 		auto positions = m_mapCsv->GetPositions(L"Capsule");
 		for (const auto& pos : positions) {
 			graph.AddNode(NavGraphNode(index++, pos));
-			//Instantiate<GameObject>(pos, Quat::Identity())->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
-			//astar.AddNode(pos, m_stageObjs, m_excluteObjs);
+			//ノードの表示
+			auto obj = Instantiate<GameObject>(pos, Quat::Identity());
+			obj->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+			obj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
+			//astar.AddNode(pos, obstacleObjs, excluteObjs);
 		}
 
 		//手動で設定したノード
@@ -318,6 +321,8 @@ namespace basecross {
 
 		GraphAstar astar(graph);
 		//astar.AddEdges(obstacleObjs, excluteObjs);
+
+		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar.GetGraph());
 
 		//エネミーの生成
 		auto params = UtilityEnemy::sm_enemyParam[fileName];
