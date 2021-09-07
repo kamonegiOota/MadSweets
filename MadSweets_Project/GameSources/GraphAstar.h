@@ -131,6 +131,8 @@ namespace basecross {
 
 		//戻る時の処理
 		void BackProcess(const AstarExpectData& shortRoute);
+		//被ったルートまで戻ってルートの検索しなおす処理
+		bool BackResetProcess(const AstarExpectData& shortRoute);
 
 		//ループして探索経路を測る。
 		void LoopSearchAstar(const AstarExpectData& startData);

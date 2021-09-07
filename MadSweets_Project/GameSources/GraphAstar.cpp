@@ -14,6 +14,9 @@
 
 namespace basecross {
 
+	//auto text = to_wstring(numDelete);
+	//MessageBox(0, text.c_str(), L"test", 0);
+
 	const NavGraphNode *GraphAstar::GetBeforeNode() const {
 		if (m_shortRoutes.size() != 0) {
 			auto index = m_shortRoutes.size() - 1;
@@ -24,7 +27,6 @@ namespace basecross {
 	}
 
 	void GraphAstar::RemoveData(const AstarExpectData& data) {
-
 		auto index = m_expectDatas.size() - 1;
 		if (m_isReturnPhase) {  //リターン状態出会った場合は、最新のデータを消す。
 			auto end = m_expectDatas.end();
@@ -33,6 +35,7 @@ namespace basecross {
 			index--;
 		}
 
+		//デバッグ用
 		if (m_expectDatas.size() == 0) {
 			int i = 0;
 		}
@@ -46,9 +49,10 @@ namespace basecross {
 		}
 
 		auto iter = m_expectDatas[index].begin();
-
+		//合計の長さが一緒のデータを削除
 		while (iter != m_expectDatas[index].end()) {
 			if(iter->GetSumRange() == data.GetSumRange()){
+			//if (iter->nextNode == data.nextNode) {
 				m_expectDatas[index].erase(iter);
 				return;
 			}
@@ -141,16 +145,6 @@ namespace basecross {
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
 		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
 		SearchAstarStart(selfNearNode, targetNearNode);
-
-		//if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
-		//	m_shortRoutes.push_back(AstarExpectData(selfNearNode, targetNearNode, 0, 0));
-		//	return;
-		//}
-
-		////ループして処理を行う。
-		//AstarExpectData data;
-		//data.nextNode = selfNearNode;
-		//LoopSearchAstar(data);
 	}
 
 	void GraphAstar::SearchAstarStart(const NavGraphNode& selfNearNode, const NavGraphNode& targetNearNode) {
@@ -226,6 +220,44 @@ namespace basecross {
 		m_isReturnPhase = true;
 	}
 
+	//被ったルートまで戻ってルートの検索しなおす処理
+	bool GraphAstar::BackResetProcess(const AstarExpectData& shortRoute) {
+		bool isReturn = true;
+		int index = 0;
+		for (auto& route : m_shortRoutes) {
+			if (route.node == shortRoute.nextNode) {
+				isReturn = false;
+				break;
+			}
+			index++;
+		}
+
+		if (isReturn) {
+			return false;
+		}
+
+		//削除する回数
+		//m_isReturnPhase = true;
+		int arraySize = (int)m_shortRoutes.size() - 1;
+		int numDelete = arraySize - index;
+		for (int i = 0; i < numDelete; i++) {
+			//int newIndex = arraySize - i;
+			//expectDatasの削除
+			auto end = m_expectDatas.end();
+			end--;
+			m_expectDatas.erase(end);
+			BackShortRoute();
+		}
+
+		m_isReturnPhase = true;
+
+		auto shortIndex = m_shortRoutes.size() - 1;
+		auto route = m_shortRoutes[shortIndex];
+		RemoveData(route);
+		BackShortRoute();
+		return true;
+	}
+
 	void GraphAstar::LoopSearchAstar(const AstarExpectData& startData) {
 		//for (int i = 0; i < 5; i++) {
 		int tempIndex = 0;
@@ -258,6 +290,13 @@ namespace basecross {
 			//それぞれの合計の中で一番小さい理想値を求める。
 			auto shortRoute = CalucMinRangeNode(datas);
 			
+			//選んだノードがスタートノードの場合
+			//if (shortRoute.nextNode.GetIndex() == startData.nextNode.GetIndex()) {
+			if(BackResetProcess(shortRoute)){
+				continue;
+			}
+
+			int s = 0;
 			//一番最初に選んだノードが最短かどうか判断する。
 			//そうでない場合は処理を一回もどす。
 			if (IsShortRoute(shortRoute)) {
@@ -282,7 +321,7 @@ namespace basecross {
 			}
 		}
 
-		if (tempIndex >= 10000000) {
+		if (tempIndex >= 100000) {
 			DebugObject::sm_wss << endl << L"serchOver" << endl;
 		}
 
