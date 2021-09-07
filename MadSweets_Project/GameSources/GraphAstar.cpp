@@ -289,7 +289,8 @@ namespace basecross {
 		LastAdjust(startData);
 
 		for (auto route : m_shortRoutes) {
-			DebugObject::AddValue(route.nextNode.GetIndex());
+			DebugObject::AddValue(route.nextNode.GetIndex(),false);
+			DebugObject::AddString(L",",false);
 		}
 	}
 
