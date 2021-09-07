@@ -25,6 +25,13 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnUpdate2() override;
 
+		static void AddString(const wstring& string, const bool isEndl = true) {
+			sm_wss << string;
+			if (isEndl) {
+				sm_wss << endl;
+			}
+		}
+
 		static void AddVector(const Vec3& vec) {
 			sm_wss << L"x: " << vec.x << L", "
 				<< L"y: " << vec.y << L", "
