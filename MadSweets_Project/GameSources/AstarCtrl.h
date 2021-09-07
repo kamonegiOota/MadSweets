@@ -15,6 +15,7 @@ namespace basecross {
 
 		float m_speed;
 
+		void Rotation(const Vec3& direct);
 		Vec3 CalucMoveVec();
 
 	public:
@@ -35,8 +36,8 @@ namespace basecross {
 
 		//アクセッサ-------------------------------------------------------------
 
-		void SearchAstarStart(const std::shared_ptr<GameObject>& target, const bool isCreateNode = false);
-		void SearchAstarStart(const Vec3& targetPos, const bool isCreateNode = false);
+		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
+		void SearchAstarStart(const Vec3& targetPos);
 		
 		/// <summary>
 		/// ターゲットの行先を予測してノードを選択する関数

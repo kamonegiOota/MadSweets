@@ -18,6 +18,13 @@
 
 namespace basecross {
 
+	void AstarCtrl::Rotation(const Vec3& direct) {
+		auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotation) {
+			rotation->SetDirect(direct);
+		}
+	}
+
 	Vec3 AstarCtrl::CalucMoveVec() {
 		auto nodePos = m_astar.CalucTargetNode(GetGameObject());
 		auto toVec = nodePos - transform->GetPosition();
@@ -56,24 +63,18 @@ namespace basecross {
 		}
 
 		//Œü‚«‚Ì’²®
-		auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
-		if (rotation) {
-			rotation->SetDirect(veloComp->GetVelocity());
-		}
+		Rotation(veloComp->GetVelocity());
 	}
 
 	void AstarCtrl::OnCreate() {
 
 	}
 
-	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target, const bool isCreateNode) {
-		SearchAstarStart(target->GetComponent<Transform>()->GetPosition(), isCreateNode);
+	void AstarCtrl::SearchAstarStart(const std::shared_ptr<GameObject>& target) {
+		m_astar.SearchAstarStart(GetGameObject(), target);
 	}
 
-	void AstarCtrl::SearchAstarStart(const Vec3& targetPos, const bool isCreateNode) {
-		if (isCreateNode) {
-			m_astar.AddNode(targetPos);
-		}
+	void AstarCtrl::SearchAstarStart(const Vec3& targetPos) {
 		m_astar.SearchAstarStart(GetGameObject(), targetPos);
 	}
 
