@@ -83,6 +83,7 @@ namespace basecross
 
 		//デバッグ用
 		ResourceLoadData(L"Arrow_Tx" , L"Arrow.png"),
+		ResourceLoadData(L"Number_Tx" , L"Number.png"),
 	};
 
 	const std::vector<LoadStage::ResourceLoadData> LoadStage::m_seResourceLoadDatas =
