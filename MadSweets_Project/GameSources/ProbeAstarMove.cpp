@@ -21,17 +21,13 @@ namespace basecross {
 	using MyUtility = maru::MyUtility;
 
 	bool ProbeAstarMove::IsRouteEnd() {
-		float nearRange = 1.5f;
-
 		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
 		auto toVec = m_targetPosition - selfPosition;
-		if (toVec.length() <= nearRange) {
+		if (toVec.length() <= m_targetNearRange) {
 			return true;
 		}
 
 		return false;
-		//auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
-		//return astar->IsRouteEnd();
 	}
 
 	void ProbeAstarMove::Rotation(const Vec3& moveVec) {
@@ -54,8 +50,6 @@ namespace basecross {
 		if (astar) {
 			//目的のポジションを取得
 			m_targetPosition = astar->CalucTargetNearNodePosition(target);
-			//astar->SearchAstarStart(target);
-			//astar->SearchAstarForecastStart(target);
 		}
 	}
 
@@ -70,7 +64,7 @@ namespace basecross {
 	void ProbeAstarMove::OnStart() {
 		//Velocityを使うときの初期値を設定
 		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
-		BaseUseVelocity::SetArriveNearRnage(15.0f);
+		BaseUseVelocity::SetArriveNearRange(15.0f);
 	}
 
 	void ProbeAstarMove::Move() {
@@ -95,7 +89,6 @@ namespace basecross {
 	void ProbeAstarMove::LostTarget(const std::shared_ptr<GameObject>& target) {
 		CalucRoute(target);
 		//見失った場所の記録
-		m_lostPosition = target->GetComponent<Transform>()->GetPosition();
 		m_target = target;
 		m_isProbeEnd = false;
 		m_numLostChaseElapsed = m_numLostChase;
@@ -107,9 +100,9 @@ namespace basecross {
 		vector<shared_ptr<GameObject>> excluteObjs;
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
 		excluteObjs.push_back(target);
+
 		if (!MyUtility::IsRayObstacle(GetGameObject(), target, excluteObjs)) {
 			//視界内にいるなら
-			DebugObject::sm_wss << L"TargetRayHit" << endl;
 			m_targetPosition = target->GetComponent<Transform>()->GetPosition();
 		}
 		else {  //視界の外にいたら

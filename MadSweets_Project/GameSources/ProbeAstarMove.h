@@ -17,12 +17,13 @@ namespace basecross {
 	class ProbeAstarMove : public Component , public BaseUseVelocity
 	{
 		bool m_isProbeEnd = false;
-		int m_numLostChase = 3;  //LostMoveをする回数
+
+		int m_numLostChase = 7;  //LostMoveをする回数
 		int m_numLostChaseElapsed = m_numLostChase;
+		float m_targetNearRange = 1.5f;  //ターゲットの場所に近いと判断される長さ
 
 		ex_weak_ptr<GameObject> m_target;
 		Vec3 m_targetPosition = Vec3(0.0f);
-		Vec3 m_lostPosition = Vec3(0.0f);
 
 		bool IsRouteEnd();
 
@@ -61,6 +62,17 @@ namespace basecross {
 		}
 		int GetNumLostCheck() const {
 			return m_numLostChase;
+		}
+
+		/// <summary>
+		/// 目的の場所に近いと判断される距離のセット
+		/// </summary>
+		/// <param name="range">目的の場所に近いと判断される距離</param>
+		void SetTargetNearRange(const float& range) {
+			m_targetNearRange = range;
+		}
+		float GetTargetNearRange() const {
+			return m_targetNearRange;
 		}
 	};
 
