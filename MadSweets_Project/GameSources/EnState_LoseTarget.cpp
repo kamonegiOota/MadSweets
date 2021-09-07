@@ -33,7 +33,7 @@ namespace basecross {
 
         StartChangeComps();
 
-        DebugObject::sm_wss << L"Lose";
+        DebugObject::sm_wss << L"Lose" << endl;
     }
 
     void EnState_LoseTarget::OnUpdate() {
