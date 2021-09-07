@@ -124,6 +124,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Number.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumbersCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumbersObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionMenuEventer.h" />
@@ -307,6 +311,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTestEnemyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUtility.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Number.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumbersCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionMenuEventer.cpp" />

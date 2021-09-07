@@ -721,6 +721,18 @@
     <Filter Include="Maru\Object\ArrowObject">
       <UniqueIdentifier>{551801f9-77b5-4449-a2a1-2131112c5704}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Object\NumberObject">
+      <UniqueIdentifier>{4845048e-151b-4b9c-97d8-c4c101a77f59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\NumberObject\Number">
+      <UniqueIdentifier>{9cd7ef30-44ac-4415-8e1e-4c9b4fab3778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\NumbersObject">
+      <UniqueIdentifier>{dfca5c3e-f093-4e19-8193-3ec8712cb56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Object\NumbersObject\NumbersCtrl">
+      <UniqueIdentifier>{e4b8e075-89a8-420c-bad9-e3e89c245405}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1305,6 +1317,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ArrowObject.h">
       <Filter>Maru\Object\ArrowObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumberObject.h">
+      <Filter>Maru\Object\NumberObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Number.h">
+      <Filter>Maru\Object\NumberObject\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumbersCtrl.h">
+      <Filter>Maru\Object\NumbersObject\NumbersCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)NumbersObject.h">
+      <Filter>Maru\Object\NumbersObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1828,6 +1852,18 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ArrowObject.cpp">
       <Filter>Maru\Object\ArrowObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumberObject.cpp">
+      <Filter>Maru\Object\NumberObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Number.cpp">
+      <Filter>Maru\Object\NumberObject\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumbersCtrl.cpp">
+      <Filter>Maru\Object\NumbersObject\NumbersCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp">
+      <Filter>Maru\Object\NumbersObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
