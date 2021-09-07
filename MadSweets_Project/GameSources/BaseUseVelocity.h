@@ -27,7 +27,7 @@ namespace basecross {
 		}
 
 		//“’…s“®‚É‹ß‚­‚Æ”»’f‚·‚é‹——£
-		virtual void SetArriveNearRnage(const float& range) final{
+		virtual void SetArriveNearRange(const float& range) final{
 			m_nearRange = range;
 		}
 		virtual float GetArriveNearRange() const final{

@@ -90,7 +90,7 @@ namespace basecross {
 
 	void TargetEscape::OnCreate() {
 		SetUpdateActive(false);
-		SetArriveNearRnage(1.0f);
+		SetArriveNearRange(1.0f);
 		SetVelocityMaxSpeed(10.0f);
 	}
 
