@@ -234,6 +234,7 @@ namespace basecross {
 
 	void TargetProbe::ExitProbState() {
 		RemoveNode();
+		SetHideObjCollisionUpdate(true);
 	}
 }
 
