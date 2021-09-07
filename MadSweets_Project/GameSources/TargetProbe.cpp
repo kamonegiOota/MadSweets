@@ -27,21 +27,27 @@
 
 namespace basecross {
 
+	using MyUtility = maru::MyUtility;
+
 	void TargetProbe::AddNode(const Vec3& position) {
-		//return;
+		return;
 		vector<shared_ptr<GameObject>> obstacleObjs;
 		vector<shared_ptr<GameObject>> excluteObjs;
 
 		MyUtility::AddObjects<StageObject>(obstacleObjs); //障害物の対象をStageObjectにする
+
 		excluteObjs.push_back(GetGameObject()); //自分を障害物から省く
 		MyUtility::AddObjects<PlayerObject>(excluteObjs);
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
 
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
-		m_newNodeIndex = astar->AddNode(position, obstacleObjs, excluteObjs);
+		if (astar) {
+			m_newNodeIndex = astar->AddNode(position, obstacleObjs, excluteObjs);
+		}
 	}
 
 	void TargetProbe::RemoveNode() {
+		return;
 		if (m_checkHideObj == nullptr) {
 			return;
 		}
@@ -50,50 +56,42 @@ namespace basecross {
 		astar->RemoveNode(m_newNodeIndex);
 	}
 
+
 	void TargetProbe::SetAstarRondomHideObject() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			//近くのオブジェクトからランダムに捜索対象のオブジェクトを選択。
 			auto hideObj = SearchHidden::SearchRandomHiddenObject(GetGameObject(), m_searchRange, m_checkHideObj);
-
-			DebugObject::sm_wss << endl << L"RandomHide" <<  endl;
-
 			if (hideObj == nullptr) {  //近くに隠れるオブジェクトが無かったら
 				return;
 			}
 			
 			//ノードの追加と削除
 			RemoveNode();
-			AddNode(hideObj->GetComponent<Transform>()->GetPosition()); 
 
+			auto hidePosition = hideObj->GetComponent<Transform>()->GetPosition();
+			hidePosition += hideObj->GetComponent<Transform>()->GetForword();
+			AddNode(hidePosition);
+
+			//ルート検索スタート
 			astar->SearchAstarStart(hideObj);
+
+			//探しているオブジェクトの保存
 			m_checkHideObj = hideObj;
 			m_moveFunc = &TargetProbe::AstarMove;
 		}
 	}
 
 	void TargetProbe::InvestigateHideObj() {
-		//アニメーションの再生s
+		//アニメーションの再生
 		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
 		if (animeCtrl) {
 			auto animator = animeCtrl->GetAnimator();
 			animator->GetMemberRefarence().hideSearchTrigger.Fire();
 		}
 
-		//敵が発見できるかどうか?
 		//hideObjectのコライダーをoffにすることで判断
 		SetHideObjCollisionUpdate(false);
-
-		return;
-		//現在は仮で判断している。
-		auto hideComp = m_checkHideObj->GetComponent<HiddenComponent>(false);
-		if (hideComp) {
-			auto pos = hideComp->GetHideData().hideWorldPosition;
-			auto toVec = m_target->GetComponent<Transform>()->GetPosition() - pos;
-			if (toVec.length() <= 0.01f) {
-				//ChangeState<EnState_Attack>(m_target);
-			}
-		}
 	}
 
 	void TargetProbe::RouteEnd() {
@@ -114,8 +112,18 @@ namespace basecross {
 	}
 
 	void TargetProbe::TargetMove() {
+		//DebugObject::sm_wss << L"TragetMove" << endl;
+
+		//間に障害物が合ったらTargetMoveの処理を中断
+		vector<std::shared_ptr<GameObject>> excluteObjs;
+		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
+		MyUtility::AddObjects<PlayerObject>(excluteObjs);
+		if (MyUtility::IsRayObstacle(GetGameObject(),m_checkHideObj, excluteObjs)) {
+			m_moveFunc = nullptr;
+		}
+
 		auto veloComp = GetGameObject()->GetComponent<Velocity>(false);
-		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj);
+		auto toVec = MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj);
 
 		if (veloComp) {
 			auto velocity = veloComp->GetVelocity();
@@ -124,10 +132,7 @@ namespace basecross {
 			veloComp->SetForce(force);
 
 			//向きの調整
-			auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
-			if (rotation) {
-				rotation->SetDirect(veloComp->GetVelocity());
-			}
+			Rotation(veloComp->GetVelocity());
 		}
 
 		//ターゲットの近くまで来たら
@@ -138,6 +143,8 @@ namespace basecross {
 	}
 
 	void TargetProbe::AstarMove() {
+		//DebugObject::sm_wss << endl << L"AstarMove" << endl;
+
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
@@ -145,8 +152,14 @@ namespace basecross {
 			//対象の障害物判定がなくなったらでもいいかも？
 			if (astar->IsRouteEnd()) {
 				m_moveFunc = &TargetProbe::TargetMove;
-				//RouteEnd();
 			}
+		}
+	}
+
+	void TargetProbe::Rotation(const Vec3& direct) {
+		auto rotation = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
+		if (rotation) {
+			rotation->SetDirect(direct);
 		}
 	}
 
@@ -200,7 +213,6 @@ namespace basecross {
 
 	void TargetProbe::EndInvestigateHideAnimation() {
 		//AnimatorのExitFuncで呼び出すからステートが違う場合は処理をしないようにする。
-		//もしバグが生じるようなら、こちらのUpdateでアニメーションの終了を監視するようにする。
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 		if (enemy) {
 			//TargetProbe状態で無かったら処理をしない。
@@ -209,7 +221,7 @@ namespace basecross {
 			}
 		}
 
-		m_probCount++;
+		m_probCount++;  //調べたカウントの追加
 
 		if (m_probCount >= m_numPorb) {  //指定回数調べたら
 			ChangeState<EnState_LoseTarget>();

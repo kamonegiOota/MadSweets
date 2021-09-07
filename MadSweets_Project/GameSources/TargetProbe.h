@@ -26,7 +26,7 @@ namespace basecross {
 		int m_numPorb = 1;
 		int m_probCount = 0;  //実際に捜索した回数。
 
-		float m_searchRange = 3.0f;  //探索する範囲
+		float m_searchRange = 10.0f;  //探索する範囲
 
 		//Nodeの追加
 		void AddNode(const Vec3& position);
@@ -35,20 +35,25 @@ namespace basecross {
 		//Astarに捜索先をセットする。
 		void SetAstarRondomHideObject();
 
-		void InvestigateHideObj();  //隠れるオブジェクトを調べる処理。
+		//隠れるオブジェクトを調べる処理。
+		void InvestigateHideObj();
 		void RouteEnd();
 
 		//隠れるオブジェクトを探すアニメーションの再生の終了を待つ
 		void WaitInvestigateAnimationUpdateEnd();
 		void TargetMove();
 		void AstarMove();
+		void Rotation(const Vec3& direct);
 
 		void ResetProbe();
+		/// <summary>
+		/// HideObjectのColliderのOn,Offの切り替え(覗くときに一時的にoffにする。)
+		/// </summary>
+		/// <param name="isUpdate">Onならtrue</param>
 		void SetHideObjCollisionUpdate(const bool isUpdate);
 
 		template<class T, class... Ts>
 		void ChangeState(Ts&&... params) {
-			//m_probCount = 0;
 			auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 			if (enemy) {
 				enemy->ChangeStateMachine<T>(params...);  //見失った状態にする。
@@ -71,11 +76,19 @@ namespace basecross {
 		void EndInvestigateHideAnimation();
 
 		//アクセッサ--------------------------------------------------------
+
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
 			m_target = target;
 		}
 		std::shared_ptr<GameObject> GetTarget() const {
 			return m_target;
+		}
+
+		void SetSearchRange(const float& range) {
+			m_searchRange = range;
+		}
+		float GetSearchRange() const {
+			return m_searchRange;
 		}
 
 		void ExitProbState();
