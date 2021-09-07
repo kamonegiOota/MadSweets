@@ -21,11 +21,11 @@ namespace basecross {
 		auto trans = obj->GetComponent<Transform>();
 
 		//スケールのセット
-		auto scale = Vec3(toVec.length() * 0.8f, 1.0f, 1.0f);
+		auto scale = Vec3(toVec.length() * 0.9f, 1.0f, 1.0f);
 		trans->SetScale(scale);
 
 		trans->SetForward(toVec.GetNormalized());
-		trans->Rotate(Vec3(0.0f,XM_PIDIV2, 0.0f));
+		trans->Rotate(Vec3(0.0f,-XM_PIDIV2, 0.0f));
 	}
 
 	void AstarEdgeDraw::OnCreate() {
