@@ -69,6 +69,8 @@ namespace basecross {
 		void RemoveData(const AstarExpectData& data); //データのリムーブ
 		void BackShortRoute(); //一旦前のルートに戻る。
 		bool IsAstarEnd();  //Astarの終了を判断
+
+		void SearchAstarStart(const NavGraphNode& selfNearNode, const NavGraphNode& targetNearNode);
 		
 	public:
 		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
