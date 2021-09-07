@@ -8,28 +8,32 @@
 
 #include "PlayerObject.h"
 #include "BaseEnemy.h"
+#include "HiddenComponent.h"
 
 namespace basecross {
 
 	NavGraphNode UtilityAstar::SearchNearNode(const GraphAstar& astar, const std::shared_ptr<GameObject>& target) {
+		vector<std::shared_ptr<GameObject>> excluteObjs;
+		excluteObjs.push_back(target);
+
 		auto targetPos = target->GetComponent<Transform>()->GetPosition();
-		return SearchNearNode(astar, targetPos);
+		return SearchNearNode(astar, targetPos, excluteObjs);
 	}
 
-	NavGraphNode UtilityAstar::SearchNearNode(const GraphAstar& astar, const Vec3& targetPos) {
+	NavGraphNode UtilityAstar::SearchNearNode(const GraphAstar& astar, const Vec3& targetPos, 
+		vector<std::shared_ptr<GameObject>> excluteObjs)
+	{
 		const auto& graph = astar.GetGraph();
 		const auto& nodes = graph.GetNodes();
 
 		float minRange = 10000.0f;
 		NavGraphNode minNode;  //一番距離が短いノード
 
-		//vector<shared_ptr<GameObject>> obstacleObjs;
-		vector<shared_ptr<GameObject>> excluteObjs;
 
 		//障害物の対象外を選択
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
 		MyUtility::AddObjects<PlayerObject>(excluteObjs);
-
+		
 		//検索開始
 		for (const auto& node : nodes) {
 			auto pos = node.GetPosition();
@@ -37,9 +41,9 @@ namespace basecross {
 			const auto& range = toNode.length();
 
 			//障害物が合ったらコンティニュ―
-			//if (maru::MyUtility::IsRayObstacle(pos, targetPos, excluteObjs)) {
-			//	continue;
-			//}
+			if (maru::MyUtility::IsRayObstacle(targetPos, pos, excluteObjs)) {
+				continue;
+			}
 
 			//距離が短かったらこれにする。
 			if (range <= minRange) {
