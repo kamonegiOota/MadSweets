@@ -51,7 +51,6 @@ namespace basecross {
 						//どのようなエッジを生成したか返せるように別の配列に入れる。
 						reEdges.push_back(GraphEdge(newNode.GetIndex(), node.GetIndex()));
 						reEdges.push_back(GraphEdge(node.GetIndex(), newNode.GetIndex()));
-						//isCreate = true;
 					}
 				}
 			//}
