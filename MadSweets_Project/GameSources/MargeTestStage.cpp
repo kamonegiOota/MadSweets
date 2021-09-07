@@ -75,6 +75,10 @@
 #include "GameItemKeyObject.h"
 #include "DoorObject.h"
 #include "AstarEdgeDraw.h"
+#include "Number.h"
+#include "NumberObject.h"
+#include "NumbersObject.h"
+#include "NumbersCtrl.h"
 
 namespace basecross {
 
@@ -182,6 +186,12 @@ namespace basecross {
 			CreateMap(sm_nowMap);
 			
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
+
+			//test
+			Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
+			//Instantiate<NumberObject>(sm_createPlayerPosition, Quat());
+			//auto number = Instantiate<GameObject>(sm_createPlayerPosition, Quat());
+			//number->AddComponent<NumbersCtrl>();
 
 			return;
 			//test
@@ -307,9 +317,11 @@ namespace basecross {
 		for (const auto& pos : positions) {
 			graph.AddNode(NavGraphNode(index++, pos));
 			//ÉmÅ[ÉhÇÃï\é¶
-			auto obj = Instantiate<GameObject>(pos, Quat::Identity());
-			obj->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
-			obj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
+			auto numberObj = Instantiate<NumbersObject>(pos, Quat::Identity());
+			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
+			//auto obj = Instantiate<GameObject>(pos, Quat::Identity());
+			//obj->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
+			//obj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
 			//astar.AddNode(pos, obstacleObjs, excluteObjs);
 		}
 
@@ -335,7 +347,7 @@ namespace basecross {
 				break;
 			case UtilityEnemy::EnemyType::Cara:
 				param.plowPositions = m_mapCsv->GetPositions(L"CaraPlowling");
-				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
 				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
