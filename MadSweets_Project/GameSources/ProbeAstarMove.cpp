@@ -20,6 +20,10 @@ namespace basecross {
 
 	using MyUtility = maru::MyUtility;
 
+	void ProbeAstarMove::ResetNumLostChaseElapsed() {
+		m_numLostChaseElapsed = m_numLostChase;
+	}
+
 	bool ProbeAstarMove::IsRouteEnd() {
 		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
 		auto toVec = m_targetPosition - selfPosition;
@@ -104,6 +108,7 @@ namespace basecross {
 		if (!MyUtility::IsRayObstacle(GetGameObject(), target, excluteObjs)) {
 			//Ž‹ŠE“à‚É‚¢‚é‚È‚ç
 			m_targetPosition = target->GetComponent<Transform>()->GetPosition();
+			ResetNumLostChaseElapsed();
 		}
 		else {  //Ž‹ŠE‚ÌŠO‚É‚¢‚½‚ç
 			CalucNextRoute(target);
@@ -111,7 +116,7 @@ namespace basecross {
 			m_numLostChaseElapsed--;
 			if (m_numLostChaseElapsed < 0) {
 				m_isProbeEnd = true;
-				m_numLostChaseElapsed = m_numLostChase;
+				ResetNumLostChaseElapsed();
 			}
 		}
 

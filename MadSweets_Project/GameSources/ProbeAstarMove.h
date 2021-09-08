@@ -25,6 +25,9 @@ namespace basecross {
 		ex_weak_ptr<GameObject> m_target;
 		Vec3 m_targetPosition = Vec3(0.0f);
 
+		//NumLostChaseElapsedのリセット
+		void ResetNumLostChaseElapsed();
+
 		bool IsRouteEnd();
 
 		void Rotation(const Vec3& moveVec);
@@ -53,6 +56,10 @@ namespace basecross {
 
 		//アクセッサ-----------------------------------------------------------
 
+		/// <summary>
+		/// 探索が終了しているかどうかを判断
+		/// </summary>
+		/// <returns>終了していたらtrue</returns>
 		bool IsProbeEnd() const {
 		 	return m_isProbeEnd;
 		}
