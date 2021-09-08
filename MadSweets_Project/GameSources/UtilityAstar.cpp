@@ -56,21 +56,21 @@ namespace basecross {
 	}
 
 	NavGraphNode UtilityAstar::SearchMyNodeToTargetNearNode(const GraphAstar& astar,
-		const std::shared_ptr<GameObject>& startObject, const std::shared_ptr<GameObject>& target, 
+		const std::shared_ptr<GameObject>& target, 
 		const int& from)
 	{
 		const auto& graph = astar.GetGraph();
 		const auto& edges = graph.GetEdges(from);
-		const Vec3 startPosition = startObject->GetComponent<Transform>()->GetPosition();
+		const Vec3 targetPosition = target->GetComponent<Transform>()->GetPosition();
 
 		float minRange = 100000.0f;
 		NavGraphNode nearNode;
 		for (auto& edge : edges) {
 			int toIndex = edge.GetTo();
-			NavGraphNode node = graph.GetNode(toIndex);
-			auto toVec = node.GetPosition() - startPosition;
+			NavGraphNode toNode = graph.GetNode(toIndex);
+			auto toVec = toNode.GetPosition() - targetPosition;
 			if (toVec.length() < minRange) {
-				nearNode = node;
+				nearNode = toNode;
 				minRange = toVec.length();
 			}
 		}
