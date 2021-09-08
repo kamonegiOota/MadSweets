@@ -78,9 +78,9 @@ namespace basecross {
 		m_astar.SearchAstarStart(GetGameObject(), targetPos);
 	}
 
-	void AstarCtrl::SearchAstarForecastStart(const std::shared_ptr<GameObject>& target) {
-		m_astar.SearchAstarForecastStart(GetGameObject(),target);
-	}
+	//void AstarCtrl::SearchAstarForecastStart(const std::shared_ptr<GameObject>& target) {
+	//	//m_astar.SearchAstarForecastStart(GetGameObject(),target);
+	//}
 
 	void AstarCtrl::SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target) {
 		auto targetNode = CalucEscapeRoute::CalucRoute(m_astar,GetGameObject(),target);

@@ -43,7 +43,7 @@ namespace basecross {
 		/// ターゲットの行先を予測してノードを選択する関数
 		/// </summary>
 		/// <param name="target"></param>
-		void SearchAstarForecastStart(const std::shared_ptr<GameObject>& target);
+		//void SearchAstarForecastStart(const std::shared_ptr<GameObject>& target);
 
 		//逃げ出すときのルート計算
 		void SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target);
