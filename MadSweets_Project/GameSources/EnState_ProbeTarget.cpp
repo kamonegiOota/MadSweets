@@ -31,11 +31,10 @@ namespace basecross {
 
         StartChangeComps();
 
-		DebugObject::sm_wss << L"Probe";
+		DebugObject::AddString(L"Probe");
 	}
 
 	void EnState_ProbTarget::OnUpdate() {
-		//DebugObject::m_wss << L"Chase";
 		//DebugObject::sm_wss << L"Probe";
 	}
 
