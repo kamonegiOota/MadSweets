@@ -110,8 +110,7 @@ namespace basecross {
 	}
 
 	NavGraphNode AstarCtrl::CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target) {
-		auto selfNode = UtilityAstar::SearchNearNode(m_astar,GetGameObject());
-		auto node = UtilityAstar::SearchMyNodeToTargetNearNode(m_astar, GetGameObject(), target, selfNode.GetIndex());
+		auto node = UtilityAstar::SearchMyNodeToTargetNearNode(m_astar, GetGameObject(), target);
 		return node;
 	}
 }
