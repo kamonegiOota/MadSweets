@@ -56,9 +56,12 @@ namespace basecross {
 	}
 
 	NavGraphNode UtilityAstar::SearchMyNodeToTargetNearNode(const GraphAstar& astar,
-		const std::shared_ptr<GameObject>& target, 
-		const int& from)
+		const std::shared_ptr<GameObject>& selfObject, const std::shared_ptr<GameObject>& target)
 	{
+		//自分自身の近くのノードの検索
+		const NavGraphNode selfNode = SearchNearNode(astar, selfObject);
+		const int from = selfNode.GetIndex();  //そのインデクスの取得
+
 		const auto& graph = astar.GetGraph();
 		const auto& edges = graph.GetEdges(from);
 		const Vec3 targetPosition = target->GetComponent<Transform>()->GetPosition();
