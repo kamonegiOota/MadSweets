@@ -26,9 +26,9 @@ namespace basecross {
 		using NodeType = node_type ;
 		using EdgeType = edge_type ;
 
-		typedef std::vector<node_type> NodeVector;
-		typedef std::vector<edge_type> EdgeVector; //削除の都合上リストにしてある。
-		typedef std::map<int,EdgeVector> EdgeMapVector;
+		using NodeVector = std::vector<node_type>;
+		using EdgeVector = std::vector<edge_type>; //削除の都合上リストにしてある。
+		using EdgeMapVector = std::map<int,EdgeVector> ;
 
 	private:
 		//このクラスを構成するノード
