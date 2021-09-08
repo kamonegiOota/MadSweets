@@ -115,6 +115,7 @@ namespace basecross {
 			}
 		}
 
+		//デバッグ-------------------------------------------------------
 		DebugObject::sm_wss << L"numLost: ";
 		DebugObject::AddValue(m_numLostChaseElapsed, true);
 	}
