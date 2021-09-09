@@ -14,7 +14,7 @@
 namespace basecross {
 
 	//ターゲット追従中にAstarを利用して移動したい時のコンポーネント
-	class ProbeAstarMove : public Component , public BaseUseVelocity
+	class ChaseAstarMove : public Component , public BaseUseVelocity
 	{
 		bool m_isProbeEnd = false;
 
@@ -51,7 +51,7 @@ namespace basecross {
 
 	public:
 
-		ProbeAstarMove(const std::shared_ptr<GameObject>& objPtr)
+		ChaseAstarMove(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 

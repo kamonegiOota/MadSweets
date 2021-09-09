@@ -19,7 +19,7 @@
 #include "Handy_Attack.h"
 #include "ThrowCtrl.h"
 #include "Velocity.h"
-#include "ProbeAstarMove.h"
+#include "ChaseAstarMove.h"
 #include "PNTPointDraw.h"
 #include "AstarPlowlingMove.h"
 #include "EnemyEar.h"
@@ -114,7 +114,7 @@ namespace basecross {
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
-		AddComponent<ProbeAstarMove>();
+		AddComponent<ChaseAstarMove>();
 		AddComponent<EnemyEar>();   //Ž¨
 		AddComponent<CheckTargetPos>();
 

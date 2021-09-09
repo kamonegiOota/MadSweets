@@ -6,7 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "ProbeAstarMove.h"
+#include "ChaseAstarMove.h"
 #include "TargetChase.h"
 #include "Velocity.h"
 #include "UtilVelocity.h"
@@ -20,11 +20,11 @@ namespace basecross {
 
 	using MyUtility = maru::MyUtility;
 
-	void ProbeAstarMove::ResetNumLostChaseElapsed() {
+	void ChaseAstarMove::ResetNumLostChaseElapsed() {
 		m_numLostChaseElapsed = m_numLostChase;
 	}
 
-	bool ProbeAstarMove::IsRouteEnd() {
+	bool ChaseAstarMove::IsRouteEnd() {
 		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
 		auto toVec = m_targetPosition - selfPosition;
 		if (toVec.length() <= m_targetNearRange) {
@@ -34,14 +34,14 @@ namespace basecross {
 		return false;
 	}
 
-	void ProbeAstarMove::Rotation(const Vec3& moveVec) {
+	void ChaseAstarMove::Rotation(const Vec3& moveVec) {
 		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
 		if (rotCtrl) {
 			rotCtrl->SetDirect(moveVec);
 		}
 	}
 
-	void ProbeAstarMove::CalucRoute(const std::shared_ptr<GameObject>& target) {
+	void ChaseAstarMove::CalucRoute(const std::shared_ptr<GameObject>& target) {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			//目的のポジションを取得
@@ -49,7 +49,7 @@ namespace basecross {
 		}
 	}
 
-	void ProbeAstarMove::CalucNextRoute(const std::shared_ptr<GameObject>& target) {
+	void ChaseAstarMove::CalucNextRoute(const std::shared_ptr<GameObject>& target) {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			auto node = astar->CalucMyNodeToTargetNearNode(target);
@@ -57,13 +57,13 @@ namespace basecross {
 		}
 	}
 
-	void ProbeAstarMove::OnStart() {
+	void ChaseAstarMove::OnStart() {
 		//Velocityを使うときの初期値を設定
 		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
 		BaseUseVelocity::SetArriveNearRange(15.0f);
 	}
 
-	void ProbeAstarMove::Move() {
+	void ChaseAstarMove::Move() {
 		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
 		auto moveVec = m_targetPosition - selfPosition;
 
@@ -82,7 +82,7 @@ namespace basecross {
 		}
 	}
 
-	void ProbeAstarMove::LostTarget(const std::shared_ptr<GameObject>& target) {
+	void ChaseAstarMove::LostTarget(const std::shared_ptr<GameObject>& target) {
 		CalucRoute(target);
 		//見失った場所の記録
 		m_target = target;
@@ -90,7 +90,7 @@ namespace basecross {
 		m_numLostChaseElapsed = m_numLostChase;
 	}
 
-	void ProbeAstarMove::NextRoute() {
+	void ChaseAstarMove::NextRoute() {
 		//ターゲットが視界の範囲にいるかどうか
 		const auto& target = m_target.GetShard();
 		vector<shared_ptr<GameObject>> excluteObjs;

@@ -18,7 +18,7 @@
 #include "I_Chase.h"
 #include "DebugObject.h"
 
-#include "ProbeAstarMove.h"
+#include "ChaseAstarMove.h"
 #include "HiddenComponent.h"
 
 namespace basecross {
@@ -78,10 +78,10 @@ namespace basecross {
 			return;
 		}
 
-		auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
-		if (probe) {
+		auto cahseAstarMove = GetGameObject()->GetComponent<ChaseAstarMove>(false);
+		if (cahseAstarMove) {
 			//’Êí’Tõ
-			probe->LostTarget(m_target);
+			cahseAstarMove->LostTarget(m_target);
 			m_updateFunc = &TargetChase::LostMove;
 		}
 
@@ -121,10 +121,10 @@ namespace basecross {
 	}
 
 	void TargetChase::LostMove() {
-		auto probe = GetGameObject()->GetComponent<ProbeAstarMove>(false);
-		if (probe) {
-			probe->Move();
-			if (probe->IsProbeEnd()) {
+		auto cahseAstarMove = GetGameObject()->GetComponent<ChaseAstarMove>(false);
+		if (cahseAstarMove) {
+			cahseAstarMove->Move();
+			if (cahseAstarMove->IsProbeEnd()) {
 				ChangeStateMachine();
 				return;
 			}
