@@ -112,8 +112,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::TargetMove() {
-		//DebugObject::sm_wss << L"TragetMove" << endl;
-
 		//ŠÔ‚ÉáŠQ•¨‚ª‡‚Á‚½‚çTargetMove‚Ìˆ—‚ð’†’f
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
@@ -143,8 +141,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::AstarMove() {
-		//DebugObject::sm_wss << endl << L"AstarMove" << endl;
-
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());

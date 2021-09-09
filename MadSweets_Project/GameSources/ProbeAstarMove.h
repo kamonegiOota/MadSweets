@@ -13,7 +13,7 @@
 
 namespace basecross {
 
-	//探索中にAstarを利用して移動したい時のコンポーネント
+	//ターゲット追従中にAstarを利用して移動したい時のコンポーネント
 	class ProbeAstarMove : public Component , public BaseUseVelocity
 	{
 		bool m_isProbeEnd = false;
@@ -49,7 +49,10 @@ namespace basecross {
 		//Astarを利用した移動
 		void Move();
 
-		//目的を見失った時の処理
+		/// <summary>
+		/// ターゲットが視界から外れた時の処理
+		/// </summary>
+		/// <param name="target">追従中のターゲット</param>
 		void LostTarget(const std::shared_ptr<GameObject>& target);
 		//次のルートを検索する。
 		void NextRoute();
