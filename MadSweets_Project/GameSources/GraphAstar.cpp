@@ -265,6 +265,8 @@ namespace basecross {
 			}
 		}
 
+		LastAdjust(initialNode);
+
 		//デバッグ
 		if (tempIndex >= maxTempIndex) {
 			DebugObject::sm_wss << endl << L"serchOver" << endl;
@@ -334,6 +336,15 @@ namespace basecross {
 		}
 
 		return datas[index];
+	}
+
+	void GraphAstar::LastAdjust(const NavGraphNode& initialNode) {
+		auto shortRoutes = m_shortRoutes;
+		m_shortRoutes.clear();
+		m_shortRoutes.push_back(AstarExpectData(initialNode,initialNode,0,0));
+		for (auto route : shortRoutes) {
+			m_shortRoutes.push_back(route);
+		}
 	}
 
 	//アクセッサ------------------------------------------------------------------------------------------------------

@@ -153,6 +153,10 @@ namespace basecross {
 		/// <returns>期待値が一番小さいデータ</returns>
 		AstarExpectData CalucMinRangeNode(const std::vector<AstarExpectData>& datas);
 
+		/// <summary>
+		/// 最終調整
+		/// </summary>
+		void LastAdjust(const NavGraphNode& initialNode);
 
 		//アクセッサ-------------------------------------------------------
 	public:
