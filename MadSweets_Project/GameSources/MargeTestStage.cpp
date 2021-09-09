@@ -189,9 +189,6 @@ namespace basecross {
 
 			//test
 			Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
-			//Instantiate<NumberObject>(sm_createPlayerPosition, Quat());
-			//auto number = Instantiate<GameObject>(sm_createPlayerPosition, Quat());
-			//number->AddComponent<NumbersCtrl>();
 
 			return;
 			//test
