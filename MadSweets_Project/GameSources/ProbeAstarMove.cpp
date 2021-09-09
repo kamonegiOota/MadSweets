@@ -41,14 +41,6 @@ namespace basecross {
 		}
 	}
 
-	void ProbeAstarMove::ChangeTargetChase() {
-		auto chase = GetGameObject()->GetComponent<TargetChase>();
-		if (chase) {
-			chase->SetUpdateActive(true);
-			SetUpdateActive(false);
-		}
-	}
-
 	void ProbeAstarMove::CalucRoute(const std::shared_ptr<GameObject>& target) {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {

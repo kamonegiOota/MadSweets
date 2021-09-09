@@ -22,18 +22,31 @@ namespace basecross {
 		int m_numLostChaseElapsed = m_numLostChase;
 		float m_targetNearRange = 1.5f;  //ターゲットの場所に近いと判断される長さ
 
-		ex_weak_ptr<GameObject> m_target;
-		Vec3 m_targetPosition = Vec3(0.0f);
+		ex_weak_ptr<GameObject> m_target;   //ターゲットのポインタ
+		Vec3 m_targetPosition = Vec3(0.0f); //現在向かっている場所
 
-		//NumLostChaseElapsedのリセット
+		/// <summary>
+		/// NumLostChaseElapsedのリセット
+		/// </summary>
 		void ResetNumLostChaseElapsed();
 
+		/// <summary>
+		/// ターゲットの近くに来たらtrueを返す
+		/// </summary>
+		/// <returns>ターゲットの近くならtrue</returns>
 		bool IsRouteEnd();
 
 		void Rotation(const Vec3& moveVec);
-		void ChangeTargetChase();
 
+		/// <summary>
+		/// ルートの検索
+		/// </summary>
+		/// <param name="target">検索する対象</param>
 		void CalucRoute(const std::shared_ptr<GameObject>& target);
+		/// <summary>
+		/// 二回目以降にターゲットの場所を調べる処理
+		/// </summary>
+		/// <param name="target">ターゲット</param>
 		void CalucNextRoute(const std::shared_ptr<GameObject>& target);
 
 	public:
@@ -46,7 +59,9 @@ namespace basecross {
 		void OnStart() override;
 		void OnUpdate() override {}
 
-		//Astarを利用した移動
+		/// <summary>
+		/// 移動処理
+		/// </summary>
 		void Move();
 
 		/// <summary>
@@ -54,7 +69,9 @@ namespace basecross {
 		/// </summary>
 		/// <param name="target">追従中のターゲット</param>
 		void LostTarget(const std::shared_ptr<GameObject>& target);
-		//次のルートを検索する。
+		/// <summary>
+		/// 次のルートを検索する。
+		/// </summary>
 		void NextRoute();
 
 		//アクセッサ-----------------------------------------------------------
@@ -67,9 +84,17 @@ namespace basecross {
 		 	return m_isProbeEnd;
 		}
 
+		/// <summary>
+		/// ターゲットを見失ってから何回調べるかをセットする
+		/// </summary>
+		/// <param name="num">ターゲットを見失ってから何回調べるか</param>
 		void SetNumLostCheck(const int& num) {
 			m_numLostChase = num;
 		}
+		/// <summary>
+		/// ターゲットを見失ってから何回調べるか
+		/// </summary>
+		/// <returns>ターゲットを見失ってから何回調べるか</returns>
 		int GetNumLostCheck() const {
 			return m_numLostChase;
 		}
@@ -81,6 +106,10 @@ namespace basecross {
 		void SetTargetNearRange(const float& range) {
 			m_targetNearRange = range;
 		}
+		/// <summary>
+		/// 目的の場所に近いと判断される距離
+		/// </summary>
+		/// <returns>目的の場所に近いと判断される距離</returns>
 		float GetTargetNearRange() const {
 			return m_targetNearRange;
 		}
