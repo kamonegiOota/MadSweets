@@ -184,25 +184,7 @@ namespace basecross {
 	}
 
 	void StageMapCSV::OnUpdate() {
-		//wstring fileNames[] = {
-		//	L"Stage1.csv",
-		//	//L"Stage2.csv",
-		//	//L"Stage3.csv"
-		//};
 
-		//vector<std::shared_ptr<StageObject>> deleteObjs;
-
-		//for (auto& name : fileNames) {
-		//	for (auto& obj : m_stageObjs[name]) {
-		//		if (!obj) {
-		//			deleteObjs.push_back(obj);
-		//		}
-		//	}
-
-		//	for (auto& obj : deleteObjs) {
-		//		maru::MyUtility::RemoveVec(m_stageObjs[name], obj);
-		//	}
-		//}
 	}
 
 	void StageMapCSV::LoadCSV()
