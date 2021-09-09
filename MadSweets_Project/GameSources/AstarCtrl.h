@@ -36,6 +36,10 @@ namespace basecross {
 
 		//アクセッサ-------------------------------------------------------------
 
+		/// <summary>
+		/// Astarのルート計算のスタート
+		/// </summary>
+		/// <param name="target">ルート目的のポインタ</param>
 		void SearchAstarStart(const std::shared_ptr<GameObject>& target);
 		void SearchAstarStart(const Vec3& targetPos);
 		
@@ -45,24 +49,51 @@ namespace basecross {
 		/// <param name="target"></param>
 		//void SearchAstarForecastStart(const std::shared_ptr<GameObject>& target);
 
-		//逃げ出すときのルート計算
+		/// <summary>
+		/// 逃げ出すときのルート計算
+		/// </summary>
+		/// <param name="target">逃げ出すターゲット</param>
 		void SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target);
-		//逃げているときのルート計算
+		/// <summary>
+		/// 逃げているときのルート計算(二回目以降)
+		/// </summary>
+		/// <param name="target">逃げ出す対象</param>
 		void SearchAstarEscapeNextRoute(const std::shared_ptr<GameObject>& target);
 
-		//ノードの追記
+		/// <summary>
+		/// ノードの追記
+		/// </summary>
+		/// <param name="position">ノードのポジション</param>
+		/// <param name="obstacleObjs">障害物のオブジェクト配列</param>
+		/// <param name="excluteObjs">障害物から省くオブジェクト配列</param>
+		/// <returns>追加したノードのインデックス</returns>
 		int AddNode(const Vec3& position,
 			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs);
 
-		//ノードの削除
+		/// <summary>
+		/// ノードの削除
+		/// </summary>
+		/// <param name="index">削除したいノードのインデックス</param>
 		void RemoveNode(const int& index);
 
-		//ターゲットから一番近いノードを見つけてポジションを取得
+		/// <summary>
+		/// ターゲットから一番近いノードを見つけてポジションを取得
+		/// </summary>
+		/// <param name="target">ターゲットのポインタ</param>
+		/// <returns>ノードのポジション</returns>
 		Vec3 CalucTargetNearNodePosition(const std::shared_ptr<GameObject>& target);
 
-		//自分のノードから一番ターゲットに近いノードを取得
+		/// <summary>
+		/// 自分のノードから一番ターゲットに近いノードを取得
+		/// </summary>
+		/// <param name="target">ターゲットのポインタ</param>
+		/// <returns>ターゲットに近いノード</returns>
 		NavGraphNode CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target);
 
+		/// <summary>
+		/// 現在向かうノードのポジションを返す
+		/// </summary>
+		/// <returns>ノードのポジション</returns>
 		Vec3 GetCalucNodePos(){
 			return m_astar.CalucTargetNode(GetGameObject());
 		}
