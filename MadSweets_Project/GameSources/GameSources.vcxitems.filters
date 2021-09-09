@@ -331,9 +331,6 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetProbe">
       <UniqueIdentifier>{a46d04c4-93af-4287-b6e5-4d9d149a5eda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove">
-      <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Component\Velocity\BaseUseVelocity">
       <UniqueIdentifier>{b98cc198-7278-4d92-ade9-8b06f9526747}</UniqueIdentifier>
     </Filter>
@@ -733,6 +730,9 @@
     <Filter Include="Maru\Object\NumbersObject\NumbersCtrl">
       <UniqueIdentifier>{e4b8e075-89a8-420c-bad9-e3e89c245405}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove">
+      <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1026,8 +1026,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseUseVelocity.h">
       <Filter>Maru\Component\Velocity\BaseUseVelocity</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h">
-      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseAstarMove.h">
+      <Filter>Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h">
       <Filter>Maru\Light\PointLight</Filter>
@@ -1577,8 +1577,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp">
       <Filter>Maru\Enemy\Component\Move\TargetProbe</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp">
-      <Filter>Maru\Enemy\Component\Move\TargetProbe\ProbeTargetMove</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseAstarMove.cpp">
+      <Filter>Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PNTPointDraw.cpp">
       <Filter>Maru\Light\PNTPointDraw</Filter>

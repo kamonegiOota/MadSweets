@@ -160,7 +160,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLightObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PositionDrawComp.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProbeAstarMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseAstarMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
@@ -347,7 +347,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLightObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PositionDrawComp.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProbeAstarMove.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseAstarMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PulledSweets.cpp" />
