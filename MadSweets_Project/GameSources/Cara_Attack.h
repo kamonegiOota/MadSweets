@@ -22,7 +22,7 @@ namespace basecross {
 
 	public:
 		Cara_Attack(const std::shared_ptr<GameObject>& objPtr)
-			:BaseAttack(objPtr, AttackParam(3.5f,1.0f))
+			:BaseAttack(objPtr, AttackParam(1.5f,1.0f))
 		{}
 
 		Cara_Attack(const std::shared_ptr<GameObject>& objPtr,
@@ -35,7 +35,13 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void Attack(const std::shared_ptr<GameObject>& target) override;
-		void ChangeEndState() override;  //ステート終了時にやる処理
+		//ステート終了時の処理
+		void ChangeEndState() override;  
+
+		/// <summary>
+		/// 範囲内の敵にダメージを与える処理
+		/// </summary>
+		void ProvideDamage();
 
 	};
 

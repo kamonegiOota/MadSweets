@@ -21,6 +21,7 @@
 #include "MyUtility.h"
 
 #include "DebugObject.h"
+#include "I_Damaged.h"
 
 namespace basecross {
 
@@ -61,6 +62,13 @@ namespace basecross {
 		}
 	}
 
+	void Cara_Attack::ProvideDamage() {
+		auto damage = GetTarget()->GetComponent<I_Damaged>(false);
+		if (damage && IsAttackRange()) {
+			damage->Damage(m_param.power);
+		}
+	}
+
 	void Cara_Attack::ChangeEndState() {
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 		if (enemy) {
@@ -75,7 +83,6 @@ namespace basecross {
 
 	void Cara_Attack::OnUpdate() {
 		transform->SetForward(maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target));
-		//Rotation(maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target));
 	}
 }
 
