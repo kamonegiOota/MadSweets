@@ -15,8 +15,6 @@ namespace basecross {
 
 	class Handy_Attack : public BaseAttack
 	{
-		//std::function<void(Handy_Attack&)> m_updateFunc = nullptr;
-
 		float m_delay = 1.0f;
 
 		bool IsNowAnimeStateAttack();  //Œ»İUŒ‚’†‚¾‚Á‚½‚ç

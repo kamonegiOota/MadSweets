@@ -99,7 +99,6 @@ namespace basecross {
 			ChangeAttackAnimation();
 			ChangeAttackState();
 			SetUpdateActive(true);
-			//m_updateFunc = &Handy_Attack::UpdateAttack;
 		}
 	}
 
