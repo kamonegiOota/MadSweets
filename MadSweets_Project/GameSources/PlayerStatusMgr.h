@@ -42,9 +42,11 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//インターフェースの実装
+
 		void Damage(const float& damage) override;
 
 		//アクセッサ---------------------------------------------------------
+
 		void ChangeState(const PlayerStaus& state) {
 			m_param.state = state;
 		}
@@ -68,7 +70,10 @@ namespace basecross {
 			return m_param.maxHp;
 		}
 		
-		//HPの割合を計算して返す
+		/// <summary>
+		/// HPの割合を計算して返す
+		/// </summary>
+		/// <returns>HPの割合</returns>
 		float CalucHPRatio() const{
 			return m_param.hp / m_param.maxHp;
 		}
