@@ -37,6 +37,7 @@ namespace basecross {
 		void FadeOutStart() override;
 
 		//アクセッサ------------------------------------------------------
+
 		void SetSpeed(const float& speed) {
 			m_speed = speed;
 		}
