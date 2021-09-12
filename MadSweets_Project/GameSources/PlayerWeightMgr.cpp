@@ -15,9 +15,9 @@
 namespace basecross {
 
 	void PlayerWeightMgr::OnCreate() {
-		//if (!m_gaugeCtrl) { //ゲージが存在しなかったら
-		//	m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>();
-		//}
+		if (!m_gaugeCtrl) { //ゲージが存在しなかったら
+			m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>(GetStage());
+		}
 	}
 
 	void PlayerWeightMgr::OnStart() {
