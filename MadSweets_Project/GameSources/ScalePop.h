@@ -17,10 +17,15 @@ namespace basecross {
 
 		float m_elapsed = 0.0f;
 
-		bool IsMinScale(const Vec3& nowScale);
-		bool StopScale(const Vec3& scale, const Vec3& targetScale);
+		/// <summary>
+		/// スケールの変動が終了したかどうかを判断
+		/// </summary>
+		/// <param name="scale">現在のスケール</param>
+		/// <param name="targetScale">目標のスケール</param>
+		/// <returns>終了するならtrue</returns>
+		bool IsStopScale(const Vec3& scale, const Vec3& targetScale);
 
-		
+		void ScaleUpdate();
 
 	public:
 
@@ -31,10 +36,11 @@ namespace basecross {
 			m_speed(0.0f)
 		{}
 
-		void OnCreate() override;
+		void OnCreate() override {}
 		void OnUpdate() override;
 
-		//アクセッサ
+		//アクセッサ-------------------------------------------------------------------------
+
 		void SetMaxScale(const Vec3& scale) {
 			m_maxScale = scale;
 		}

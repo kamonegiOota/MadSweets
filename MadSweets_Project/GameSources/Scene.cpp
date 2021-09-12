@@ -23,7 +23,8 @@ namespace basecross{
 		try {
 			//クリアする色を設定
 			Col4 Col;
-			Col.set(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
+			//Col.set(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
+			Col.set(0.0f / 255.0f, 0.0f / 255.0f, 25.0f / 255.0f, 255.0f / 255.0f);
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
@@ -48,7 +49,7 @@ namespace basecross{
 		}
 		if (event->m_MsgStr == L"ToLoadStage")
 		{
-			ResetActiveStage<LoadStage>(L"ToTitleStage");
+			ResetActiveStage<LoadStage>(L"ToMargeTestStage");
 		}
 		if (event->m_MsgStr == L"ToTitleStage")
 		{
