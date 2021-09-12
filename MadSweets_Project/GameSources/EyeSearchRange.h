@@ -90,10 +90,15 @@ namespace basecross {
 		void OnCreate() override {}
 		void OnUpdate() override;
 
-		//視界内にいるならtrue
+		/// <summary>
+		/// 視界内にいるならtrueを返す
+		/// </summary>
+		/// <param name="target">ターゲット</param>
+		/// <returns>視界の中にいるならtrue</returns>
 		bool IsInEyeRange(std::shared_ptr<GameObject>& target);
 
 		//アクセッサ-------------------------------------------------------------------------
+
 		void AddTarget(const std::shared_ptr<GameObject>& obj) {
 			m_targetParams.push_back(EyeTargetParam(obj));
 		}
@@ -105,7 +110,11 @@ namespace basecross {
 			return m_param;
 		}
 
-		//見つけている状態かどうかを判断する
+		/// <summary>
+		/// 見つけている状態かどうかを判断する
+		/// </summary>
+		/// <param name="target">ターゲット</param>
+		/// <returns>視界の範囲ならtrue</returns>
 		bool IsLookTarget(const std::shared_ptr<GameObject>& target) {
 			for (auto param : m_targetParams) {
 				if (target == param.target) {  //同じ種類だったら
