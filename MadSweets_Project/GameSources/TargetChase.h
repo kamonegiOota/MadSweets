@@ -19,20 +19,36 @@ namespace basecross {
 
 		std::shared_ptr<GameObject> m_target;
 		ChaseMode m_chaseMode = ChaseMode::Look;
-		float m_speed = 3.0f;
+		float m_maxSpeed = 10.0f;
 
 		std::function<void(TargetChase&)> m_updateFunc;
 
-		//視界の先に隠れるオブジェクトが合ってそこにtargetが隠れていたらそれをターゲットにする。
+		/// <summary>
+		/// 視界の先に隠れるオブジェクトが合って、そこにtargetが隠れていたらそれをターゲットにする。
+		/// </summary>
+		/// <returns>視界の先に隠れるオブジェクトがあればtrue</returns>
 		bool TargetEyeRangeHide();
-		//ターゲットを見失った時
+		/// <summary>
+		/// ターゲットを見失った時
+		/// </summary>
 		void LostTarget();  
-		//ターゲットを見つけた時
+		/// <summary>
+		/// ターゲットを見つけた時
+		/// </summary>
 		void FindTarget();
 
+		/// <summary>
+		/// 視界の中にターゲットがいる時の移動
+		/// </summary>
 		void LookMove();
+		/// <summary>
+		/// 視界の外にターゲットがいる時の移動
+		/// </summary>
 		void LostMove();
 
+		/// <summary>
+		/// 視界内にいるかチェックし、それに合わせて状態を変える。
+		/// </summary>
 		void LookCheck();
 
 		void Rotation(const Vec3& moveVec);
@@ -55,13 +71,16 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnDraw() override {}
 
-		//追う処理の開始
+		/// <summary>
+		/// 追う処理の開始
+		/// </summary>
 		void ChaseStart() {
 			m_chaseMode = ChaseMode::Look;
 			m_updateFunc = &TargetChase::LookMove;
 		}
 
 		//アクセッサ-----------------------------------------------------------------------
+
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
 			m_target = target;
 		}
@@ -69,11 +88,11 @@ namespace basecross {
 			return m_target;
 		}
 
-		void SetSpeed(const float& speed) {
-			m_speed = speed;
+		void SetMaxSpeed(const float& speed) {
+			m_maxSpeed = speed;
 		}
-		float GetSpeed() const {
-			return m_speed;
+		float GetMaxSpeed() const {
+			return m_maxSpeed;
 		}
 	};
 

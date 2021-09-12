@@ -30,16 +30,16 @@ namespace basecross {
 	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
 		const std::shared_ptr<GameObject>& target
 	) :
-		TargetChase(objPtr,target,2.0f)
+		TargetChase(objPtr,target,10.0f)
 	{}
 
 	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
 		const std::shared_ptr<GameObject>& target,
-		const float& speed
+		const float& maxSpeed
 	):
 		Component(objPtr),
 		m_target(target),
-		m_speed(speed)
+		m_maxSpeed(maxSpeed)
 	{}
 	
 	bool TargetChase::TargetEyeRangeHide() {
@@ -109,9 +109,8 @@ namespace basecross {
 
 		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
 		
-		auto maxSpeed = 10.0f;  //«—ˆ“I‚Éƒƒ“ƒo•Ï”‰»
 		auto velo = velocity->GetVelocity();
-		auto force = UtilVelocity::CalucSeekVec(velo, toVec, maxSpeed);
+		auto force = UtilVelocity::CalucSeekVec(velo, toVec, m_maxSpeed);
 
 		velocity->AddForce(force);
 
