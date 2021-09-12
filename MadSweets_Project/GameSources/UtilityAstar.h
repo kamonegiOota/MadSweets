@@ -13,27 +13,64 @@ namespace basecross {
 	{
 	public:
 
-		//ターゲットから一番近くのノードを検索する。
+		/// <summary>
+		/// ターゲットから一番近くのノードを検索する。
+		/// </summary>
+		/// <param name="astar">Astarの参照</param>
+		/// <param name="target">ターゲット</param>
+		/// <returns>ターゲットの一番近くのノード</returns>
 		static NavGraphNode SearchNearNode(const GraphAstar& astar, const std::shared_ptr<GameObject>& target);
+		/// <summary>
+		/// ターゲットから一番近くのノードを検索する。
+		/// </summary>
+		/// <param name="astar">Astarの参照</param>
+		/// <param name="targetPos">ターゲットのポジション</param>
+		/// <param name="excluteObjs">Rayの対象外にするオブジェクト群</param>
+		/// <returns>ターゲットから一番近いノード</returns>
 		static NavGraphNode SearchNearNode(const GraphAstar& astar, const Vec3& targetPos,
 			vector<std::shared_ptr<GameObject>> excluteObjs = vector<std::shared_ptr<GameObject>>());
 
-		//自分のノードから伸びるノードで一番ターゲットに近いノードの選択
+		/// <summary>
+		/// 自分のノードから伸びるノードで一番ターゲットに近いノードの選択
+		/// </summary>
+		/// <param name="astar">Astarの参照</param>
+		/// <param name="selfObject">自分自身</param>
+		/// <param name="target">ターゲット</param>
+		/// <returns>一番近いノード</returns>
 		static NavGraphNode SearchMyNodeToTargetNearNode(const GraphAstar& astar, 
 			const std::shared_ptr<GameObject>& selfObject,const std::shared_ptr<GameObject>& target);
 
-		//自分のノードからターゲット方向にあるノードを検索
+		/// <summary>
+		/// 自分のノードからターゲット方向にあるノードを検索
+		/// </summary>
+		/// <param name="astar">Astarの参照</param>
+		/// <param name="startNode">開始ノード</param>
+		/// <param name="targetPos">ターゲットのポジション</param>
+		/// <returns>ターゲット方向のノード</returns>
 		static NavGraphNode CalucTargetDirectNode(const GraphAstar& astar,
 			const NavGraphNode& startNode,
 			const Vec3& targetPos);
 
-		//ターゲットから逃げるための方向のノードを検索する
+		/// <summary>
+		/// ターゲットから逃げるための方向のノードを検索する
+		/// </summary>
+		/// <param name="astar">Astarの参照</param>
+		/// <param name="startNode">開始ノード</param>
+		/// <param name="targetPos">ターゲットのポジション</param>
+		/// <returns>ターゲット方向のノード</returns>
 		static NavGraphNode CalucTargetEscapeDirectNode(const GraphAstar& astar,
 			const NavGraphNode& startNode,
 			const Vec3& targetPos);
 
-		//nodeのインデックスから隣接するエッジの生成する。
-		//生成する場合に直接渡されたSparseGraphにAddする。
+		/// <summary>
+		/// nodeのインデックスから隣接するエッジの生成する。
+		/// 生成する場合に直接渡されたSparseGraphにAddする。
+		/// </summary>
+		/// <param name="graph">Graphの参照</param>
+		/// <param name="newNode">新規ノード</param>
+		/// <param name="obstacleObjs">障害物のオブジェクト配列</param>
+		/// <param name="excluteObjs">障害物から省くオブジェクト配列</param>
+		/// <returns>生成されたエッジの配列</returns>
 		template<class NodeClass, class EdgeClass>
 		static vector<GraphEdge> CreateAdjacendEdges(SparseGraph<NodeClass, EdgeClass>& graph, const NavGraphNode& newNode,
 			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
