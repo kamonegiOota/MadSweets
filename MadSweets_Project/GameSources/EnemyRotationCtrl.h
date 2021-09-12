@@ -27,6 +27,7 @@ namespace basecross {
 
 
 		//アクセッサ------------------------------------------------------------------
+
 		void SetDirect(const Vec3& direct) {
 			m_direct = direct;
 		}
