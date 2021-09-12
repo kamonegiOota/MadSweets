@@ -32,7 +32,6 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-
 		void FadeInStart() override;
 		void FadeOutStart() override;
 
