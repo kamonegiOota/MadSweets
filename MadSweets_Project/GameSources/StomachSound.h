@@ -33,6 +33,7 @@ namespace basecross {
 
 
 		//アクセッサ--------------------------------------------------
+
 		void SetTime(const float& time) {
 			m_time = time;
 		}
