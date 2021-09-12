@@ -36,6 +36,7 @@ namespace basecross {
 		CreateHideSearchAnimator(stateMachine);
 	}
 
+	//歩きモーション
 	void HandyAnimatorCtrl::CreateWalkAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine) {
 		auto state = stateMachine->CreateAnimationState(HandyAnimationState::Walk, L"Handy_Walk", 10, true);
 
@@ -49,6 +50,7 @@ namespace basecross {
 		// --------------------------------------
 	}
 
+	//アタックモーション
 	void HandyAnimatorCtrl::CreateAttackAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine) {
 		auto state = stateMachine->CreateAnimationState(AnimeState::Attack, L"Handy_Attack", 60, false);
 
@@ -62,6 +64,7 @@ namespace basecross {
 		});
 	}
 
+	//隠れている場所を探す処理をする処理
 	void HandyAnimatorCtrl::CreateHideSearchAnimator(const std::shared_ptr<HandyStateMachine>& stateMachine) {
 		auto state = stateMachine->CreateAnimationState(AnimeState::HideSearch, L"Handy_Search", 60, false);
 
