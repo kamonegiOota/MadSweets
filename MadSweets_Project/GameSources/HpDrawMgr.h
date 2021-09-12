@@ -18,6 +18,10 @@ namespace basecross {
 		void CreateImage();
 
 		bool IsDraw(const float& ratio);
+		/// <summary>
+		/// 画像のアルファ値を計算してくれる
+		/// </summary>
+		/// <returns>アルファ値を返す</returns>
 		float CalucAlpha();
 		void ImageAlphaMgr();
 
