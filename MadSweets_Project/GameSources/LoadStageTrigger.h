@@ -24,7 +24,7 @@ namespace basecross {
 			WeightState weightState = WeightState::Nomal;
 		};
 
-		static SavingValue sm_saveValue;
+		static SavingValue sm_saveValue; //セーブ用のデータ
 
 		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
 		std::shared_ptr<GameObject> m_target;
@@ -32,7 +32,13 @@ namespace basecross {
 		wstring m_nextMap = L"Stage2.csv";
 		Vec3 m_position = Vec3(0.0f);
 
-		void ChangeStageReserve();  //ステージ変化準備
+		/// <summary>
+		/// //ステージ変化の準備
+		/// </summary>
+		void ChangeStageReserve();  
+		/// <summary>
+		/// ステージ変更時にターゲットを移動させる場所
+		/// </summary>
 		void MovePosition();
 		void ChangeStage();
 		void FadeStart();
@@ -48,6 +54,7 @@ namespace basecross {
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 
 		//アクセッサ---------------------------------------------------------------
+
 		void SetNextMap(const wstring& nextMap) {
 			m_nextMap = nextMap;
 		}
@@ -56,7 +63,7 @@ namespace basecross {
 			m_position = position;
 		}
 
-
+		//セーブ用のデータ
 		static SavingValue GetSavingValue() {
 			return sm_saveValue;
 		}
