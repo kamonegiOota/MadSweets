@@ -60,6 +60,10 @@ namespace basecross {
 				attack->ChangeEndState();
 			}
 		});
+
+		//UŒ‚”»’è
+		float frameTime = 0.25f;
+		state->AddAnimationEvent(frameTime, &Cara_Attack::ProvideDamage);
 	}
 
 	void CaraAnimatorCtrl::CreateHideSearchAnimator(const std::shared_ptr<CaraStateMachine>& stateMachine) {
