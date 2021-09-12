@@ -40,6 +40,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//アクセッサ-------------------------------------------------
+
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
 			m_target = target;
 		}

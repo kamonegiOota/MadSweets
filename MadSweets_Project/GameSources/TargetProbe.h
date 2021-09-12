@@ -28,18 +28,23 @@ namespace basecross {
 
 		float m_searchRange = 10.0f;  //探索する範囲
 
-		//Nodeの追加
 		void AddNode(const Vec3& position);
 		void RemoveNode();
 
-		//Astarに捜索先をセットする。
+		/// <summary>
+		/// Astarに捜索先をセットする。
+		/// </summary>
 		void SetAstarRondomHideObject();
 
-		//隠れるオブジェクトを調べる処理。
+		/// <summary>
+		/// 隠れるオブジェクトを調べる処理。
+		/// </summary>
 		void InvestigateHideObj();
 		void RouteEnd();
 
-		//隠れるオブジェクトを探すアニメーションの再生の終了を待つ
+		/// <summary>
+		/// 隠れるオブジェクトを探すアニメーションの再生の終了を待つ
+		/// </summary>
 		void WaitInvestigateAnimationUpdateEnd();
 		void TargetMove();
 		void AstarMove();
@@ -69,10 +74,19 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		void StartProb();  //捜索開始
-		void StartProb(const shared_ptr<GameObject>& target);  //捜索開始
+		/// <summary>
+		/// 捜索開始
+		/// </summary>
+		void StartProb();  
+		/// <summary>
+		/// 捜索開始
+		/// </summary>
+		/// <param name="target">捜索ターゲット</param>
+		void StartProb(const shared_ptr<GameObject>& target);
 
-		//探すアニメーションが終了したときの処理
+		/// <summary>
+		/// 探すアニメーションが終了したときの処理
+		/// </summary>
 		void EndInvestigateHideAnimation();
 
 		//アクセッサ--------------------------------------------------------
@@ -91,6 +105,9 @@ namespace basecross {
 			return m_searchRange;
 		}
 
+		/// <summary>
+		/// このステートを抜け出すときに呼ぶ関数
+		/// </summary>
 		void ExitProbState();
 	};
 
