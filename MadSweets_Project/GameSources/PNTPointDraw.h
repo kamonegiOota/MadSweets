@@ -42,7 +42,6 @@ namespace basecross {
 		PointLightParam pointLightParams[256];
 
 		Vec4 bones[3 * 72];
-		//PointLightParam poitnLightParam[256];
 	};
 
 	//コンスタントバッファの実装

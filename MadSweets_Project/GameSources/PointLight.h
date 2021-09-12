@@ -33,6 +33,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//アクセッサ---------------------------------------------------------
+
 		void SetParametor(const PointLightParam& param) {
 			m_param = param;
 		}
