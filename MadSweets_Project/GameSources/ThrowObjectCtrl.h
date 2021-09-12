@@ -30,12 +30,19 @@ namespace basecross {
 		void OnStart() override{}
 		void OnUpdate() override{}
 
+		/// <summary>
+		/// 投げるときの関数
+		/// </summary>
+		/// <param name="owner">投げたオブジェクト</param>
+		/// <param name="direct">投げる方向</param>
+		/// <param name="speed">飛んでいくスピード</param>
 		void Throw(const std::shared_ptr<GameObject>& owner, const Vec3& direct, const float& speed);
 
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 
 
 		//アクセッサ------------------------------------------------------------
+
 		void SetOwner(const std::shared_ptr<GameObject>& owner) {
 			m_owner = owner;
 		}
