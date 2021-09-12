@@ -32,6 +32,7 @@ namespace basecross {
 		virtual void FadeOutStart() = 0;
 
 		//アクセッサ-----------------------------------------------------------
+
 		virtual void SetEndAction(const Delegate<void()>& action) final {
 			m_endAction = action;
 		}
