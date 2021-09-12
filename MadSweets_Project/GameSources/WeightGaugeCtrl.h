@@ -13,12 +13,9 @@
 
 namespace basecross {
 
-	//class PlayerWeightMgr;
-
 	enum class WeightState {
 		Nomal,
 		Chubby, //デブ
-		//Skinny, //痩せ
 		Hunger, //飢餓
 		None, //nullのように扱うよう、存在しないとき用
 	};
@@ -47,8 +44,6 @@ namespace basecross {
 
 	class WeightGaugeCtrl : public Component
 	{
-		//ex_weak_ptr<PlayerWeightMgr> m_weightMgr;
-
 		std::shared_ptr<UIObject> m_frameUI;
 		std::shared_ptr<UIObject> m_gaugeUI;
 
