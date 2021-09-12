@@ -20,21 +20,11 @@ namespace basecross {
 
 	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
 		const std::vector<Vec3>& positions
-	) :
-		PlowlingMove(objPtr,positions,2.0f,10.0f)
-	{}
-
-	PlowlingMove::PlowlingMove(const std::shared_ptr<GameObject>& objPtr,
-		const std::vector<Vec3>& positions,
-		const float& speed,
-		const float& nearRange
 	):
 		Component(objPtr),
 		m_positions(positions),
 		m_index(0),
-		m_addIndexDirect(1),
-		m_maxSpeed(speed),
-		m_nearRange(nearRange)
+		m_addIndexDirect(1)
 	{}
 
 
@@ -47,7 +37,7 @@ namespace basecross {
 
 	void PlowlingMove::Move() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
-		astar->UpdateVelocityMove(m_maxSpeed, m_nearRange);
+		astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetVelocityMaxSpeed());
 
 		if (astar->IsRouteEnd()) {
 			NextIndex();
@@ -77,11 +67,15 @@ namespace basecross {
 
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		astar->SearchAstarStart(m_positions[m_index]);
-		//m_astar->SearchAstarStart(m_positions[m_index]);
+	}
+
+	void PlowlingMove::OnCreate() {
+		SetVelocityMaxSpeed(2.0f);
+		SetArriveNearRange(3.5f);
 	}
 
 	void PlowlingMove::OnStart() {
-		//m_astar = GetGameObject()->GetComponent<AstarCtrl>(false);
+
 	}
 
 	void PlowlingMove::OnUpdate() {
