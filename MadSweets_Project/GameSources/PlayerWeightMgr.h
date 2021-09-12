@@ -28,6 +28,7 @@ namespace basecross {
 
 
 		//アクセッサ--------------------------------------------------
+
 		void AddWeight(const float& value);
 
 		WeightState GetState() const;
@@ -37,7 +38,6 @@ namespace basecross {
 		}
 
 		void SetWeight(const float& value);
-
 		float GetWeight() const {
 			return m_gaugeCtrl->GetNowGauge();
 		}
