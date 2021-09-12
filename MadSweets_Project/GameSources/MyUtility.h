@@ -179,6 +179,12 @@ namespace basecross {
 			static shared_ptr<T> GetComponent() {
 				auto stage = GetStage();
 
+				return GetComponent<T>(stage);
+			}
+
+			template<class T,
+				enable_if_t<is_base_of_v<Component, T>, std::nullptr_t> = nullptr >
+			static shared_ptr<T> GetComponent(std::shared_ptr<Stage>& stage) {
 				auto objs = stage->GetGameObjectVec();
 				for (auto& obj : objs) {
 					auto t = obj->GetComponent<T>(false);
