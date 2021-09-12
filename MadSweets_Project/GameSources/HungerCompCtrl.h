@@ -15,22 +15,30 @@
 
 namespace basecross {
 
+	enum class WeightState;
+
+
 	class HungerCompCtrl : public Component
 	{
-		ex_weak_ptr<TimerDamage> m_timerDamage;
-		ex_weak_ptr<PulledSweets> m_pulledSweets;
-		ex_weak_ptr<StomachSound> m_stomachSound;
+		WeightState m_beforeWeightState;  //前回のステート
 
-		//飢餓状態に変更
+		ex_weak_ptr<TimerDamage> m_timerDamage;   //時間経過でダメージを受ける
+		ex_weak_ptr<PulledSweets> m_pulledSweets; //お菓子の方向に移動し始める
+		ex_weak_ptr<StomachSound> m_stomachSound; //音がなる処理
+
+		/// <summary>
+		/// 状態変更時に、関係するコンポーネントのOn,Offを切り替える。
+		/// </summary>
+		/// <param name="isActive">飢餓状態かどうか</param>
 		void ChangeUpdateActive(const bool isActive);
 
-		//飢餓状態の監視
+		/// <summary>
+		/// 飢餓状態かどうかの監視
+		/// </summary>
 		void HungerMgr();
 
 	public:
-		HungerCompCtrl(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
-		{}
+		HungerCompCtrl(const std::shared_ptr<GameObject>& objPtr);
 
 		void OnCreate() override{}
 		void OnStart() override;

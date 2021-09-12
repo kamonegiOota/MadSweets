@@ -14,6 +14,10 @@
 
 namespace basecross {
 
+	HungerCompCtrl::HungerCompCtrl(const std::shared_ptr<GameObject>& objPtr)
+		:Component(objPtr),m_beforeWeightState(WeightState::Nomal)
+	{}
+
 	void HungerCompCtrl::ChangeUpdateActive(const bool isActive) {
 		//飢餓状態になったらこの変更を加える
 		ex_weak_ptr<Component> comps[] = {
@@ -33,16 +37,22 @@ namespace basecross {
 
 	void HungerCompCtrl::HungerMgr() {
 		//飢餓状態のステートを監視する。
-		//testが終了したらステートが切り替わったタイミングでのみ呼ばれるように調整する。
 		auto weightMgr = GetGameObject()->GetComponent<PlayerWeightMgr>(false);
 		if (weightMgr) {
 			auto state = weightMgr->GetState();
+			//前回のステートと一緒ならば処理をしない
+			if (m_beforeWeightState == state) {  
+				return;
+			}
+
 			if (state == WeightState::Hunger) {
 				ChangeUpdateActive(true);
 			}
 			else {
 				ChangeUpdateActive(false);
 			}
+
+			m_beforeWeightState = state;
 		}
 	}
 
