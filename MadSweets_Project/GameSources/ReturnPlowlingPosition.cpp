@@ -54,14 +54,12 @@ namespace basecross {
 		m_astar = obj->GetComponent<AstarCtrl>(false);
 		auto plowling = obj->GetComponent<PlowlingMove>(false);
 		if (!m_astar || !plowling) {
-			//ChangeStateMachine();
 			return;
 		}
 
 		auto targetPos = plowling->GetNowTargetPosition();
 
 		m_astar->SearchAstarStart(targetPos);
-		//ChangeStateMachine();
 
 		SetUpdateActive(true);
 	}

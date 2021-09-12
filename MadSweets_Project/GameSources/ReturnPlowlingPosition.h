@@ -14,11 +14,12 @@
 
 namespace basecross {
 
-	//徘徊状態の場所まで戻るコンポーンネント
+	/// <summary>
+	/// 徘徊状態の場所まで戻るコンポーンネント
+	/// </summary>
 	class ReturnPlowlingPosition : public Component , public BaseUseVelocity
 	{
 		ex_weak_ptr<AstarCtrl> m_astar;
-		float m_speed;
 
 		void ChangeStateMachine();
 		void Move();
@@ -27,14 +28,16 @@ namespace basecross {
 	public:
 
 		ReturnPlowlingPosition(const std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr),
-			m_speed(2.0f)
+			:Component(objPtr)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		void StartReturn(); //戻る処理開始
+		/// <summary>
+		/// 戻る処理開始
+		/// </summary>
+		void StartReturn();
 	};
 
 }
