@@ -17,10 +17,13 @@ namespace basecross {
 	/// </summary>
 	class PulledSweets : public Component
 	{
-		//vector<std::shared_ptr<EatenComponent>> m_eatenComps;
 		float m_speed;  //吸い寄せられるスピード
 		float m_range;  //吸い寄せられる範囲
 
+		/// <summary>
+		/// 寄せられる方向を計算して返す
+		/// </summary>
+		/// <returns>吸い寄せられる方向</returns>
 		Vec3 CalucPulledVec();
 		void PulledMove();
 
@@ -35,6 +38,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//アクセッサ--------------------------------------------------
+
 		void SetSpeed(const float& speed) {
 			m_speed = speed;
 		}
