@@ -31,6 +31,8 @@ namespace basecross {
 		NavGraphNode(const int& index, const Vec3& position) :
 			GraphNode(index),m_position(position)
 		{}
+
+		//アクセッサ---------------------------------------------------------
 		
 		void SetPosition(const Vec3& position) {
 			m_position = position;

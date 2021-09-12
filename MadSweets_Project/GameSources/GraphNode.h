@@ -21,7 +21,8 @@ namespace basecross {
 		GraphNode(const int& index);
 		virtual ~GraphNode() {}
 
-		//アクセッサ
+		//アクセッサ------------------------------------------------------
+
 		int GetIndex() const{
 			return m_index;
 		};
