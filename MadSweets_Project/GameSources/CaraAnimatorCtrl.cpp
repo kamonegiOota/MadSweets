@@ -40,7 +40,7 @@ namespace basecross {
 		auto state = stateMachine->CreateAnimationState(CaraAnimationState::Walk, L"Cara_Walk", 30, true);
 
 		state->AddTransition([](const AnimeMember& member) { return member.attackTrigger.Get(); }, AnimeState::Attack, false);
-		//state->AddTransition([](const AnimeMember& member) { return member.hideSearchTrigger.Get(); }, AnimeState::HideSearch, false);
+		state->AddTransition([](const AnimeMember& member) { return member.hideSearchTrigger.Get(); }, AnimeState::HideSearch, false);
 
 		// ”Â‹´@’Ç‰Á•ª -------------------------
 
@@ -67,16 +67,16 @@ namespace basecross {
 	}
 
 	void CaraAnimatorCtrl::CreateHideSearchAnimator(const std::shared_ptr<CaraStateMachine>& stateMachine) {
-		//auto state = stateMachine->CreateAnimationState(AnimeState::HideSearch, L"Cara_Search", 60, false);
+		auto state = stateMachine->CreateAnimationState(AnimeState::HideSearch, L"Cara_Walk", 30, false);
 
-		//state->AddTransition([](const AnimeMember& member) { return true; }, AnimeState::Walk, true);
+		state->AddTransition([](const AnimeMember& member) { return true; }, AnimeState::Walk, true);
 
-		//state->AddExitEvent([this] {
-		//	auto probe = GetGameObject()->GetComponent<TargetProbe>(false);
-		//	if (probe) {
-		//		probe->EndInvestigateHideAnimation();
-		//	}
-		//});
+		state->AddExitEvent([this] {
+			auto probe = GetGameObject()->GetComponent<TargetProbe>(false);
+			if (probe) {
+				probe->EndInvestigateHideAnimation();
+			}
+		});
 	}
 
 }

@@ -51,6 +51,7 @@ namespace basecross {
 
 
 		//アクセッサ------------------------------------------------------------------------------------------
+
 		std::shared_ptr<CaraAnimator> GetAnimator() const {
 			return GetGameObject()->GetComponent<CaraAnimator>();
 		}
