@@ -449,37 +449,6 @@ namespace basecross {
 			pointCb.lightView = bsm::transpose(LightView);
 			pointCb.lightProjection = bsm::transpose(LightProj);
 		}
-
-
-		//ボーンの設定
-		//size_t BoneSz = pImpl->m_BcDrawObject.m_LocalBonesMatrix.size();
-		//if (BoneSz > 0) {
-		//	UINT cb_count = 0;
-		//	for (size_t b = 0; b < BoneSz; b++) {
-		//		bsm::Mat4x4 mat = pImpl->m_BcDrawObject.m_LocalBonesMatrix[b];
-		//		mat.transpose();
-		//		BcCb.bones[cb_count] = ((XMMATRIX)mat).r[0];
-		//		BcCb.bones[cb_count + 1] = ((XMMATRIX)mat).r[1];
-		//		BcCb.bones[cb_count + 2] = ((XMMATRIX)mat).r[2];
-		//		cb_count += 3;
-		//	}
-		//}
-		//else if (pImpl->m_BcDrawObject.m_MultiLocalBonesMatrix.size() > data.m_MultiMeshIndex) {
-		//	マルチメッシュのボーンがあった
-		//	ボーンの設定
-		//	BoneSz = pImpl->m_BcDrawObject.m_MultiLocalBonesMatrix[data.m_MultiMeshIndex].size();
-		//	if (BoneSz > 0) {
-		//		UINT cb_count = 0;
-		//		for (size_t b = 0; b < BoneSz; b++) {
-		//			bsm::Mat4x4 mat = pImpl->m_BcDrawObject.m_MultiLocalBonesMatrix[data.m_MultiMeshIndex][b];
-		//			mat.transpose();
-		//			BcCb.bones[cb_count] = ((XMMATRIX)mat).r[0];
-		//			BcCb.bones[cb_count + 1] = ((XMMATRIX)mat).r[1];
-		//			BcCb.bones[cb_count + 2] = ((XMMATRIX)mat).r[2];
-		//			cb_count += 3;
-		//		}
-		//	}
-		//}
 	}
 
 
