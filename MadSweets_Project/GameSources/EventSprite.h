@@ -31,7 +31,6 @@ namespace basecross {
 
 		void EndProcess();
 		void NextSprite();
-		void InputMgr() {}
 		void TimeMgr();
 
 	public:
