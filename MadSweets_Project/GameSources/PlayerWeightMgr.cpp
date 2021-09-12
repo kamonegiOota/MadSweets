@@ -32,6 +32,7 @@ namespace basecross {
 	}
 
 	//アクセッサ--------------------------------------------------
+
 	void PlayerWeightMgr::AddWeight(const float& value) {
 		//生成の順番を間違えた時用
 		//存在しなかったら一度検索
