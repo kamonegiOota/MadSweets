@@ -31,9 +31,21 @@ namespace basecross {
 		float m_maxDurability = m_durability;
 		vector<wstring> m_textures;
 
+		/// <summary>
+		/// 減る耐久値を計算して返す
+		/// </summary>
+		/// <param name="weightMgr">PlayerWieghtMgrの本体</param>
+		/// <returns>減る耐久値を返す</returns>
 		float CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr);
 		void DestProcess();
+		/// <summary>
+		/// テクスチャの変更が必要かチェック
+		/// </summary>
 		void TextureCheck();
+		/// <summary>
+		/// 耐久値を減らす処理
+		/// </summary>
+		/// <param name="damage">減る耐久値</param>
 		void Crack(const float& damage);
 
 	public:

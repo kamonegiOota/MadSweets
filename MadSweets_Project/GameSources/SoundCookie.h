@@ -25,11 +25,26 @@ namespace basecross {
 		int m_numCrack = 2;  //ヒビ割れる回数
 		int m_maxNumCrack = m_numCrack;
 
+		/// <summary>
+		/// テクスチャの変更が必要か判断して変える
+		/// </summary>
 		void TextureCheck();
-		void DestProcess();  //もう音が出ないときの処理
-		void SendListener();  //音を聞くものに送信
-		void MakeSound();  //音を出す処理
-		void Crack(); //ひび割れ
+		/// <summary>
+		/// もう音が出ないときの処理
+		/// </summary>
+		void DestProcess();
+		/// <summary>
+		/// 音を聞くオブジェクトに、音が出たことを伝える
+		/// </summary>
+		void SendListener();
+		/// <summary>
+		/// 音を鳴らす
+		/// </summary>
+		void MakeSound();
+		/// <summary>
+		/// 耐久値を減らす
+		/// </summary>
+		void Crack();
 
 	public:
 		SoundCookie(const std::shared_ptr<GameObject>& objPtr)
@@ -42,7 +57,11 @@ namespace basecross {
 		void OnCollisionEnter(std::shared_ptr<GameObject>& ohter) override;
 
 		//アクセッサ-----------------------------------------------------
-		//何回音が出るかをセットする。
+		
+		/// <summary>
+		/// 耐久値のセット
+		/// </summary>
+		/// <param name="num">耐久値</param>
 		void SetNumCrack(const int& num) {
 			m_numCrack = num;
 		}
