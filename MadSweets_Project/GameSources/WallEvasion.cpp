@@ -15,7 +15,7 @@
 namespace basecross {
 
 	bool SortObstacleRange(const ObstacleRangePair& left, const ObstacleRangePair& right) {
-		return left.range <= right.range ? true : false;
+		return left.range < right.range ? true : false;
 	}
 
 	std::vector<ObstacleRangePair> WallEvasion::CalucWallRangeSort() {
@@ -26,20 +26,9 @@ namespace basecross {
 			rangePairs.push_back(ObstacleRangePair(obj.GetShard(), toVec.length()));
 		}
 
-		//バグが起きたため応急処置
-		//std::sort(rangePairs.begin(), rangePairs.end(), SortObstacleRange);
-		ObstacleRangePair minRangePair;
-		float minRange = 100000.0f;
-		for (auto& pair : rangePairs) {
-			if (pair.range < minRange) {
-				minRangePair = pair;
-			}
-		}
+		std::sort(rangePairs.begin(), rangePairs.end(), &SortObstacleRange);
 
-		vector<ObstacleRangePair> reVector;
-		reVector.push_back(minRangePair);
-		return reVector;
-		//return rangePairs;
+		return rangePairs;
 	}
 
 	Vec3 WallEvasion::CalucForce(const std::shared_ptr<GameObject>& tactile) {
@@ -88,6 +77,14 @@ namespace basecross {
 
 			velocityComp->AddForce(force);
 		}
+	}
+
+	void WallEvasion::SetTactile(const std::shared_ptr<TactileCtrl>& tactile) {
+		tactile->AddExcuteAction(
+			[this](const std::shared_ptr<TactileCtrl>& tactile, const std::shared_ptr<GameObject>& other) {
+			EvasionUpdate(tactile, other);
+		}
+		);
 	}
 
 }
