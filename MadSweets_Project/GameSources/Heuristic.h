@@ -32,10 +32,11 @@ namespace basecross {
 		/// </summary>
 		/// <param name="node">開始地点のノード</param>
 		/// <returns>targetNode.position - node.position</returns>
-		float CalucHeuristicRange(const std::shared_ptr<NavGraphNode>& node);
+		float CalucHeuristicRange(const std::shared_ptr<const NavGraphNode>& node);
 
 
 		//アクセッサ-------------------------------------------------
+
 		void SetTargetNode(const std::shared_ptr<NavGraphNode>& node) {
 			m_targetNode = node;
 		}
