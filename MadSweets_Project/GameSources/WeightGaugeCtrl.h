@@ -55,7 +55,7 @@ namespace basecross {
 		//一定時間で減る処理
 		float m_timeElapsed = 0.0f;
 		float m_time = 20.0f;
-		float m_timeDownValue = -1.0f;  //一定時間で減る量
+		float m_timeDownValue = -5.0f;  //一定時間で減る量
 
 		//パラメータの生成
 		void CreateParametor();
@@ -116,9 +116,22 @@ namespace basecross {
 		void SetTime(const float& time) {
 			m_time = time;
 		}
+		float GetTime() const {
+			return m_time;
+		}
 
+		/// <summary>
+		/// 時間ごとに減らす数値
+		/// </summary>
+		/// <param name="value">減らしたい数値</param>
 		void SetTimeDownValue(const float& value) {
 			m_timeDownValue = value;
+		}
+		/// <summary>
+		/// 時間ごとに減らす数値
+		/// </summary>
+		float GetTimeDownValue() const {
+			return m_timeDownValue;
 		}
 	};
 
