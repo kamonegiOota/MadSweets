@@ -12,7 +12,7 @@
 
 namespace basecross {
 
-	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<GraphAstar>& astar, const std::shared_ptr<GameObject>& target) {
+	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target) {
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 		excluteObjs.push_back(target);
 
@@ -20,7 +20,7 @@ namespace basecross {
 		return SearchNearNode(astar, targetPos, excluteObjs);
 	}
 
-	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<GraphAstar>& astar, const Vec3& targetPos,
+	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
 		vector<std::shared_ptr<GameObject>> excluteObjs)
 	{
 		const auto& graph = astar->GetGraph();
@@ -55,7 +55,7 @@ namespace basecross {
 		return minNode;
 	}
 
-	NavGraphNode UtilityAstar::SearchMyNodeToTargetNearNode(const std::shared_ptr<GraphAstar>& astar,
+	NavGraphNode UtilityAstar::SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
 		const std::shared_ptr<GameObject>& selfObject, const std::shared_ptr<GameObject>& target)
 	{
 		//自分自身の近くのノードの検索
@@ -81,7 +81,7 @@ namespace basecross {
 		return nearNode;
 	}
 
-	NavGraphNode UtilityAstar::CalucTargetDirectNode(const std::shared_ptr<GraphAstar>& astar,
+	NavGraphNode UtilityAstar::CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
 		const NavGraphNode& startNode,
 		const Vec3& targetPos)
 	{
@@ -114,7 +114,7 @@ namespace basecross {
 	}
 
 	//逃げるためのノードの検索
-	NavGraphNode UtilityAstar::CalucTargetEscapeDirectNode(const std::shared_ptr<GraphAstar>& astar,
+	NavGraphNode UtilityAstar::CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
 		const NavGraphNode& startNode,
 		const Vec3& targetPos)
 	{
