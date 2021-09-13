@@ -10,7 +10,7 @@
 
 namespace basecross {
 
-	bool ScalePop::StopScale(const Vec3& scale ,const Vec3& targetScale) {
+	bool ScalePop::IsStopScale(const Vec3& scale ,const Vec3& targetScale) {
 		Vec3 between = targetScale - scale;
 
 		float betweenSize = 0.1f;
@@ -24,20 +24,7 @@ namespace basecross {
 		return false;
 	}
 
-	bool ScalePop::IsMinScale(const Vec3& nowScale) {
-		//if (abs(nowScale.x) < m_minScale.x &&
-		//	abs(nowScale.y) < m_minScale.y)
-		//{  //最大スケールになったら。
-		//	return true;
-		//}
-		return false;
-	}
-
-	void ScalePop::OnCreate() {
-
-	}
-
-	void ScalePop::OnUpdate() {
+	void ScalePop::ScaleUpdate() {
 		if (m_speed == 0.0f) {
 			return;
 		}
@@ -46,20 +33,23 @@ namespace basecross {
 		m_elapsed += delta * m_speed;
 
 		auto rad = sinf(m_elapsed);
-		
-		auto trans = GetGameObject()->GetComponent<RectTransform>();
-		
+
 		auto setScale = m_maxScale * rad;
 
 		if (m_elapsed >= 1.0f) {   //一度最大になったら
-			if (StopScale(setScale, m_returnScale)) {
+			if (IsStopScale(setScale, m_returnScale)) {
 				setScale = m_returnScale;
 				m_elapsed = 0.0f;
 				m_speed = 0.0f;
 			}
 		}
 
+		auto trans = GetGameObject()->GetComponent<RectTransform>();
 		trans->SetScale(Vec2(setScale));
+	}
+
+	void ScalePop::OnUpdate() {
+		ScaleUpdate();
 	}
 
 }
