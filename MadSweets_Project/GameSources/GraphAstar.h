@@ -94,7 +94,7 @@ namespace basecross {
 		void SearchAstarStart(const std::shared_ptr<NavGraphNode>& selfNearNode, const std::shared_ptr<NavGraphNode>& targetNearNode);
 
 		//前のノードの情報を取得する。
-		const std::shared_ptr<NavGraphNode> GetBeforeNode() const;
+		const std::shared_ptr<const NavGraphNode> GetBeforeNode() const;
 
 		/// <summary>
 		/// Astarのループ計算が終了すべきかを判断する。

@@ -79,7 +79,7 @@ namespace basecross {
 		LoopSearchAstar(selfNearNode);
 	}
 
-	const std::shared_ptr<NavGraphNode> GraphAstar::GetBeforeNode() const {
+	const std::shared_ptr<const NavGraphNode> GraphAstar::GetBeforeNode() const {
 		if (m_shortRoutes.size() != 0) {
 			auto index = m_shortRoutes.size() - 1;
 			return m_shortRoutes[index].node.GetShard();
