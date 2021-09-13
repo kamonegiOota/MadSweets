@@ -19,7 +19,7 @@ namespace basecross {
 		/// <param name="astar">Astarの参照</param>
 		/// <param name="target">ターゲット</param>
 		/// <returns>ターゲットの一番近くのノード</returns>
-		static NavGraphNode SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target);
+		static std::shared_ptr<NavGraphNode> SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// ターゲットから一番近くのノードを検索する。
 		/// </summary>
@@ -27,7 +27,7 @@ namespace basecross {
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <param name="excluteObjs">Rayの対象外にするオブジェクト群</param>
 		/// <returns>ターゲットから一番近いノード</returns>
-		static NavGraphNode SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
+		static std::shared_ptr<NavGraphNode> SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
 			vector<std::shared_ptr<GameObject>> excluteObjs = vector<std::shared_ptr<GameObject>>());
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace basecross {
 		/// <param name="selfObject">自分自身</param>
 		/// <param name="target">ターゲット</param>
 		/// <returns>一番近いノード</returns>
-		static NavGraphNode SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
 			const std::shared_ptr<GameObject>& selfObject,const std::shared_ptr<GameObject>& target);
 
 		/// <summary>
@@ -47,8 +47,8 @@ namespace basecross {
 		/// <param name="startNode">開始ノード</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>ターゲット方向のノード</returns>
-		static NavGraphNode CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
-			const NavGraphNode& startNode,
+		static std::shared_ptr<NavGraphNode> CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+			const std::shared_ptr<NavGraphNode>& startNode,
 			const Vec3& targetPos);
 
 		/// <summary>
@@ -58,8 +58,8 @@ namespace basecross {
 		/// <param name="startNode">開始ノード</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>ターゲット方向のノード</returns>
-		static NavGraphNode CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
-			const NavGraphNode& startNode,
+		static std::shared_ptr<NavGraphNode> CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+			const std::shared_ptr<NavGraphNode>& startNode,
 			const Vec3& targetPos);
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace basecross {
 		/// <param name="excluteObjs">障害物から省くオブジェクト配列</param>
 		/// <returns>生成されたエッジの配列</returns>
 		template<class NodeClass, class EdgeClass>
-		static vector<GraphEdge> CreateAdjacendEdges(std::shared_ptr<SparseGraph<NodeClass, EdgeClass>>& graph, const NavGraphNode& newNode,
+		static vector<GraphEdge> CreateAdjacendEdges(std::shared_ptr<SparseGraph<NodeClass, EdgeClass>>& graph, const std::shared_ptr<NavGraphNode>& newNode,
 			const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
 		{
 			auto nodes = graph->GetNodes();
@@ -81,13 +81,13 @@ namespace basecross {
 			//for (const auto& node : nodes) {
 				for (auto& node : nodes) {
 					//障害物がなかったらエッジを追加する。
-					if (!maru::MyUtility::IsRayObstacle(newNode.GetPosition(), node.GetPosition(), obstacleObjs, excluteObjs)) {
+					if (!maru::MyUtility::IsRayObstacle(newNode->GetPosition(), node->GetPosition(), obstacleObjs, excluteObjs)) {
 						//双方向にエッジを生成
-						graph->AddEdge(GraphEdge(newNode.GetIndex(), node.GetIndex()));
-						graph->AddEdge(GraphEdge(node.GetIndex(), newNode.GetIndex()));
+						graph->AddEdge(GraphEdge(newNode->GetIndex(), node->GetIndex()));
+						graph->AddEdge(GraphEdge(node->GetIndex(), newNode->GetIndex()));
 						//どのようなエッジを生成したか返せるように別の配列に入れる。
-						reEdges.push_back(GraphEdge(newNode.GetIndex(), node.GetIndex()));
-						reEdges.push_back(GraphEdge(node.GetIndex(), newNode.GetIndex()));
+						reEdges.push_back(GraphEdge(newNode->GetIndex(), node->GetIndex()));
+						reEdges.push_back(GraphEdge(node->GetIndex(), newNode->GetIndex()));
 					}
 				}
 			//}

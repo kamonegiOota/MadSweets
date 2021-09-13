@@ -19,16 +19,16 @@ namespace basecross {
 	/// Astarにおける、期待値の計算に用いる構造体
 	/// </summary>
 	struct AstarExpectData {
-		NavGraphNode node;
-		NavGraphNode nextNode;
+		ex_weak_ptr<NavGraphNode> node;
+		ex_weak_ptr<NavGraphNode> nextNode;
 		float range;
 		float heuristic;
 
 		AstarExpectData():
-			AstarExpectData(NavGraphNode(),NavGraphNode(),0.0f,0.0f)
+			AstarExpectData(nullptr,nullptr,0.0f,0.0f)
 		{}
 
-		AstarExpectData(const NavGraphNode& node, const NavGraphNode& nextNode,
+		AstarExpectData(const std::shared_ptr<NavGraphNode>& node, const std::shared_ptr<NavGraphNode>& nextNode,
 			const float& range, const float& heuristic
 		) :
 			node(node),nextNode(nextNode),
@@ -91,10 +91,10 @@ namespace basecross {
 
 	private:
 		//実際の処理の開始
-		void SearchAstarStart(const NavGraphNode& selfNearNode, const NavGraphNode& targetNearNode);
+		void SearchAstarStart(const std::shared_ptr<NavGraphNode>& selfNearNode, const std::shared_ptr<NavGraphNode>& targetNearNode);
 
 		//前のノードの情報を取得する。
-		const NavGraphNode* GetBeforeNode() const;
+		const std::shared_ptr<NavGraphNode> GetBeforeNode() const;
 
 		/// <summary>
 		/// Astarのループ計算が終了すべきかを判断する。
@@ -143,14 +143,14 @@ namespace basecross {
 		/// ループして探索経路を測る。
 		/// </summary>
 		/// <param name="initialNode">初期スタートノード</param>
-		void LoopSearchAstar(const NavGraphNode& initialNode);
+		void LoopSearchAstar(const std::shared_ptr<NavGraphNode>& initialNode);
 
 		/// <summary>
 		/// 隣接ノードの距離とヒューリスティック距離の合計を測り、そのデータを返す。
 		/// </summary>
 		/// <param name="node">基準となるノード(スタート地点)</param>
 		/// <returns>計算された配列を返す</returns>
-		std::vector<AstarExpectData> CalucNearNodeExpectData(const NavGraphNode& node);
+		std::vector<AstarExpectData> CalucNearNodeExpectData(const std::shared_ptr<NavGraphNode>& node);
 
 		/// <summary>
 		/// 隣接ノードの距離を測る
@@ -158,7 +158,7 @@ namespace basecross {
 		/// <param name="fromNode">開始のノード</param>
 		/// <param name="toNode">対象のノード</param>
 		/// <returns>隣接ノードの距離</returns>
-		float CalucNearNodeRange(const NavGraphNode& fromNode, const NavGraphNode& toNode);
+		float CalucNearNodeRange(const std::shared_ptr<NavGraphNode>& fromNode, const std::shared_ptr<NavGraphNode>& toNode);
 
 		/// <summary>
 		/// 計測した隣接ノードの期待値の中で,一番小さい数のノードを引き抜く。
@@ -170,7 +170,7 @@ namespace basecross {
 		/// <summary>
 		/// 最終調整
 		/// </summary>
-		void LastAdjust(const NavGraphNode& initialNode);
+		void LastAdjust(const std::shared_ptr<NavGraphNode>& initialNode);
 
 		//アクセッサ-------------------------------------------------------
 	public:

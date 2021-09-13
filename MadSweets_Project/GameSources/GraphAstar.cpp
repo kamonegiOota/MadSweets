@@ -32,7 +32,7 @@ namespace basecross {
 		auto trans = objPtr->GetComponent<Transform>();
 		auto objPos = trans->GetPosition();
 
-		auto nodePos = m_shortRoutes[m_routeIndex].nextNode.GetPosition();  //現在の目標ノードのポジションを取得
+		auto nodePos = m_shortRoutes[m_routeIndex].nextNode->GetPosition();  //現在の目標ノードのポジションを取得
 
 		auto toNode = nodePos - objPos;
 		if (toNode.length() <= nearRange) {  //ノードの近くまで来たら。
@@ -65,12 +65,12 @@ namespace basecross {
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
-	void GraphAstar::SearchAstarStart(const NavGraphNode& selfNearNode, const NavGraphNode& targetNearNode) {
+	void GraphAstar::SearchAstarStart(const std::shared_ptr<NavGraphNode>& selfNearNode, const std::shared_ptr<NavGraphNode>& targetNearNode) {
 		ResetAstar();
 
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
 
-		if (selfNearNode.GetPosition() == targetNearNode.GetPosition()) {
+		if (selfNearNode->GetPosition() == targetNearNode->GetPosition()) {
 			m_shortRoutes.push_back(AstarExpectData(selfNearNode, targetNearNode, 0, 0));
 			return;
 		}
@@ -79,10 +79,10 @@ namespace basecross {
 		LoopSearchAstar(selfNearNode);
 	}
 
-	const NavGraphNode* GraphAstar::GetBeforeNode() const {
+	const std::shared_ptr<NavGraphNode> GraphAstar::GetBeforeNode() const {
 		if (m_shortRoutes.size() != 0) {
 			auto index = m_shortRoutes.size() - 1;
-			return &m_shortRoutes[index].node;
+			return m_shortRoutes[index].node.GetShard();
 		}
 
 		return nullptr;
@@ -140,9 +140,9 @@ namespace basecross {
 			int i = 0;
 		}
 		auto beforeShort = m_shortRoutes[index];
-		auto edges = m_graph->GetEdges(beforeShort.node.GetIndex());
+		auto edges = m_graph->GetEdges(beforeShort.node->GetIndex());
 		for (auto& edge : edges) {
-			if (newShortRoute.nextNode.GetIndex() == edge.GetTo()) {
+			if (newShortRoute.nextNode->GetIndex() == edge.GetTo()) {
 				//ノードを戻る処理		
 				return true;
 			}
@@ -159,7 +159,7 @@ namespace basecross {
 	}
 
 	void GraphAstar::RemoveData(const AstarExpectData& data) {
-		auto index = data.node.GetIndex();
+		auto index = data.node->GetIndex();
 
 		//デバッグ用
 		if (m_expectDatas.size() == 0) {
@@ -203,19 +203,19 @@ namespace basecross {
 		BackShortRoute();
 	}
 
-	void GraphAstar::LoopSearchAstar(const NavGraphNode& initialNode) {
+	void GraphAstar::LoopSearchAstar(const std::shared_ptr<NavGraphNode>& initialNode) {
 		int tempIndex = 0;
 		int maxTempIndex = 100000;
 		//強制終了のバグなくなったら消す。
 		while(tempIndex < maxTempIndex){
 			tempIndex++;
-			NavGraphNode startNode;
+			std::shared_ptr<NavGraphNode> startNode;
 			if (m_shortRoutes.size() == 0) {  //最初の時のみ
 				startNode = initialNode;
 			}
 			else {
 				auto index = m_shortRoutes.size() - 1;
-				startNode = m_shortRoutes[index].nextNode;
+				startNode = m_shortRoutes[index].nextNode.GetShard();
 			}
 
 			//初めに、全ての隣接ノードの期待値を測る。
@@ -273,20 +273,20 @@ namespace basecross {
 		}
 
 		for (auto route : m_shortRoutes) {
-			DebugObject::AddValue(route.nextNode.GetIndex(),false);
+			DebugObject::AddValue(route.nextNode->GetIndex(),false);
 			DebugObject::AddString(L",",false);
 		}
 	}
 
-	std::vector<AstarExpectData> GraphAstar::CalucNearNodeExpectData(const NavGraphNode& node) {
+	std::vector<AstarExpectData> GraphAstar::CalucNearNodeExpectData(const std::shared_ptr<NavGraphNode>& node) {
 		//一度検索したことのあるノードはその分を返す
-		if (m_expectDatas.count(node.GetIndex())) {
-			return m_expectDatas[node.GetIndex()];
+		if (m_expectDatas.count(node->GetIndex())) {
+			return m_expectDatas[node->GetIndex()];
 		}
 
 		//エッジの距離を測って配列で返す。
-		auto selfPos = node.GetPosition();
-		auto index = node.GetIndex();
+		auto selfPos = node->GetPosition();
+		auto index = node->GetIndex();
 		auto edges = m_graph->GetEdges(index);
 
 		std::vector<AstarExpectData> reExpectData;  //リターンする期待値を含むデータ。
@@ -311,13 +311,13 @@ namespace basecross {
 			reExpectData.push_back(data);
 		}
 
-		m_expectDatas[node.GetIndex()] = reExpectData;
+		m_expectDatas[node->GetIndex()] = reExpectData;
 		return reExpectData;
 	}
 
-	float GraphAstar::CalucNearNodeRange(const NavGraphNode& selfNode, const NavGraphNode& targetNode) {
-		auto selfPos = selfNode.GetPosition();
-		auto targetPos = targetNode.GetPosition();
+	float GraphAstar::CalucNearNodeRange(const std::shared_ptr<NavGraphNode>& selfNode, const std::shared_ptr<NavGraphNode>& targetNode) {
+		auto selfPos = selfNode->GetPosition();
+		auto targetPos = targetNode->GetPosition();
 
 		auto toVec = targetPos - selfPos;
 		return toVec.length();
@@ -338,7 +338,7 @@ namespace basecross {
 		return datas[index];
 	}
 
-	void GraphAstar::LastAdjust(const NavGraphNode& initialNode) {
+	void GraphAstar::LastAdjust(const std::shared_ptr<NavGraphNode>& initialNode) {
 		auto shortRoutes = m_shortRoutes;
 		m_shortRoutes.clear();
 		m_shortRoutes.push_back(AstarExpectData(initialNode,initialNode,0,0));
@@ -362,7 +362,7 @@ namespace basecross {
 	{
 		//ノードの生成
 		auto index = m_graph->GetNextFreeNodeIndex();
-		NavGraphNode newNode(index, position);
+		auto newNode = make_shared<NavGraphNode>(index, position);
 
 		auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, newNode, obstacleObjs, excluteObjs);
 
@@ -386,7 +386,7 @@ namespace basecross {
 			auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, node, obstacleObjs, excluteObjs);
 			if (edges.size() == 0) {
 				//ノードの追加
-				m_graph->RemoveNode(node.GetIndex());
+				m_graph->RemoveNode(node->GetIndex());
 			}
 		}
 	}

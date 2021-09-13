@@ -313,7 +313,7 @@ namespace basecross {
 		int index = 0;
 		auto positions = m_mapCsv->GetPositions(L"Capsule");
 		for (const auto& pos : positions) {
-			graph->AddNode(NavGraphNode(index++, pos));
+			graph->AddNode(make_shared<NavGraphNode>(index++, pos));
 			//ノードの表示
 			auto numberObj = Instantiate<NumbersObject>(pos, Quat::Identity());
 			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
@@ -331,8 +331,6 @@ namespace basecross {
 
 		auto astar = make_shared<GraphAstar>(graph);
 		//astar.AddEdges(obstacleObjs, excluteObjs);
-
-		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
 
 		//エネミーの生成
 		auto params = UtilityEnemy::sm_enemyParam[fileName];
@@ -352,6 +350,9 @@ namespace basecross {
 				break;
 			}
 		}
+
+		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
+
 		return astar;
 	}
 
@@ -392,7 +393,7 @@ namespace basecross {
 
 		int index = 0;
 		for (auto pos : poss) {
-			graph.AddNode(NavGraphNode(index++, pos));
+			graph.AddNode(make_shared<NavGraphNode>(index++, pos));
 		}
 
 		vector<GraphEdge> edges = {

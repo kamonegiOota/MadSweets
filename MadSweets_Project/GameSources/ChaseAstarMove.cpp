@@ -53,7 +53,7 @@ namespace basecross {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			auto node = astar->CalucMyNodeToTargetNearNode(target);
-			m_targetPosition = node.GetPosition();
+			m_targetPosition = node->GetPosition();
 		}
 	}
 

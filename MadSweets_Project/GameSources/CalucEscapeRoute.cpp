@@ -12,7 +12,7 @@
 
 namespace basecross {
 
-	NavGraphNode CalucEscapeRoute::CalucRoute(const std::shared_ptr<GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> CalucEscapeRoute::CalucRoute(const std::shared_ptr<GraphAstar>& astar,
 		const std::shared_ptr<GameObject>& selfObj,
 		const std::shared_ptr<GameObject>& targetObj) 
 	{
@@ -22,7 +22,7 @@ namespace basecross {
 		return CalucRoute(astar, selfPos, targetPos);
 	}
 
-	NavGraphNode CalucEscapeRoute::CalucRoute(const std::shared_ptr<GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> CalucEscapeRoute::CalucRoute(const std::shared_ptr<GraphAstar>& astar,
 		const Vec3& selfPos, const Vec3& targetPos)
 	{
 		auto selfNode = UtilityAstar::SearchNearNode(astar,selfPos);
@@ -34,7 +34,7 @@ namespace basecross {
 		return escapeNode;
 	}
 
-	NavGraphNode CalucEscapeRoute::CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> CalucEscapeRoute::CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
 		const std::shared_ptr<GameObject>& selfObj,
 		const std::shared_ptr<GameObject>& targetObj)
 	{
@@ -44,7 +44,7 @@ namespace basecross {
 		return CalucNextRoute(astar, selfPos,targetPos);
 	}
 
-	NavGraphNode CalucEscapeRoute::CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> CalucEscapeRoute::CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
 		const Vec3& selfPos, const Vec3& targetPos)
 	{
 		auto selfNode = UtilityAstar::SearchNearNode(astar, selfPos);

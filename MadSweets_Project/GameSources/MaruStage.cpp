@@ -126,7 +126,7 @@ namespace basecross {
 
 		int index = 0;
 		for (auto pos : poss) {
-			graph.AddNode(NavGraphNode(index++, pos));
+			graph.AddNode(make_shared<NavGraphNode>(index++, pos));
 		}
 		
 		//for (int i = 0; i < poss.size(); i++) {
@@ -164,9 +164,9 @@ namespace basecross {
 		astarTarget->GetComponent<Transform>()->SetPosition(Vec3(5.0f, +5.0f, 0.0f));
 
 		//Astar¶¬
-		GraphAstar astar(graph);
+		//GraphAstar astar(graph);
 		for (auto enemy : enemys) {
-			enemy->AddComponent<AstarCtrl>(astar)->SearchAstarStart(astarTarget);
+			//enemy->AddComponent<AstarCtrl>(astar)->SearchAstarStart(astarTarget);
 		}
 		
 		//enemy->GetComponent<Transform>()->SetPosition(Vec3(-5.0f,0.0f,0.0f));
@@ -188,7 +188,7 @@ namespace basecross {
 
 		auto chaseEnemy = Instantiate<ChaseEnemyObject>();
 		chaseEnemy->GetComponent<EyeSearchRange>()->AddTarget(player);
-		chaseEnemy->AddComponent<AstarCtrl>(astar);
+		//chaseEnemy->AddComponent<AstarCtrl>(astar);
 		//chaseEnemy->AddComponent<EnemyEar>();
 	}
 }

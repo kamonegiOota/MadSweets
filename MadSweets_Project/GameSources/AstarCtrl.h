@@ -88,7 +88,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="target">ターゲットのポインタ</param>
 		/// <returns>ターゲットに近いノード</returns>
-		NavGraphNode CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target);
+		std::shared_ptr<NavGraphNode> CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target);
 
 		/// <summary>
 		/// 現在向かうノードのポジションを返す

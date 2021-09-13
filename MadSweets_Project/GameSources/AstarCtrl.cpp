@@ -85,13 +85,13 @@ namespace basecross {
 	void AstarCtrl::SearchAstarEscapeStart(const std::shared_ptr<GameObject>& target) {
 		auto targetNode = CalucEscapeRoute::CalucRoute(m_astar,GetGameObject(),target);
 
-		m_astar->SearchAstarStart(GetGameObject(),targetNode.GetPosition());
+		m_astar->SearchAstarStart(GetGameObject(),targetNode->GetPosition());
 	}
 
 	void AstarCtrl::SearchAstarEscapeNextRoute(const std::shared_ptr<GameObject>& target) {
 		auto targetNode = CalucEscapeRoute::CalucNextRoute(m_astar,GetGameObject(),target);
 
-		m_astar->SearchAstarStart(GetGameObject(), targetNode.GetPosition());
+		m_astar->SearchAstarStart(GetGameObject(), targetNode->GetPosition());
 	}
 
 	int AstarCtrl::AddNode(const Vec3& position,
@@ -106,10 +106,10 @@ namespace basecross {
 
 	Vec3 AstarCtrl::CalucTargetNearNodePosition(const std::shared_ptr<GameObject>& target) {
 		auto nearNode = UtilityAstar::SearchNearNode(m_astar, target);
-		return nearNode.GetPosition();
+		return nearNode->GetPosition();
 	}
 
-	NavGraphNode AstarCtrl::CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target) {
+	std::shared_ptr<NavGraphNode> AstarCtrl::CalucMyNodeToTargetNearNode(const std::shared_ptr<GameObject>& target) {
 		auto node = UtilityAstar::SearchMyNodeToTargetNearNode(m_astar, GetGameObject(), target);
 		return node;
 	}

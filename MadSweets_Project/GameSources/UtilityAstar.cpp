@@ -12,7 +12,7 @@
 
 namespace basecross {
 
-	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target) {
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target) {
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 		excluteObjs.push_back(target);
 
@@ -20,14 +20,14 @@ namespace basecross {
 		return SearchNearNode(astar, targetPos, excluteObjs);
 	}
 
-	NavGraphNode UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
 		vector<std::shared_ptr<GameObject>> excluteObjs)
 	{
 		const auto& graph = astar->GetGraph();
 		const auto& nodes = graph->GetNodes();
 
 		float minRange = 10000.0f;
-		NavGraphNode minNode;  //一番距離が短いノード
+		std::shared_ptr<NavGraphNode> minNode;  //一番距離が短いノード
 
 
 		//障害物の対象外を選択
@@ -36,7 +36,7 @@ namespace basecross {
 		
 		//検索開始
 		for (const auto& node : nodes) {
-			auto pos = node.GetPosition();
+			auto pos = node->GetPosition();
 			auto toNode = pos - targetPos;
 			const auto& range = toNode.length();
 
@@ -55,23 +55,23 @@ namespace basecross {
 		return minNode;
 	}
 
-	NavGraphNode UtilityAstar::SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
 		const std::shared_ptr<GameObject>& selfObject, const std::shared_ptr<GameObject>& target)
 	{
 		//自分自身の近くのノードの検索
-		const NavGraphNode selfNode = SearchNearNode(astar, selfObject);
-		const int from = selfNode.GetIndex();  //そのインデクスの取得
+		const std::shared_ptr<const NavGraphNode> selfNode = SearchNearNode(astar, selfObject);
+		const int from = selfNode->GetIndex();  //そのインデクスの取得
 
 		const auto& graph = astar->GetGraph();
 		const auto& edges = graph->GetEdges(from);
 		const Vec3 targetPosition = target->GetComponent<Transform>()->GetPosition();
 
 		float minRange = 100000.0f;
-		NavGraphNode nearNode;
+		std::shared_ptr<NavGraphNode> nearNode;
 		for (auto& edge : edges) {
 			int toIndex = edge.GetTo();
-			NavGraphNode toNode = graph->GetNode(toIndex);
-			auto toVec = toNode.GetPosition() - targetPosition;
+			std::shared_ptr<NavGraphNode> toNode = graph->GetNode(toIndex);
+			auto toVec = toNode->GetPosition() - targetPosition;
 			if (toVec.length() < minRange) {
 				nearNode = toNode;
 				minRange = toVec.length();
@@ -81,22 +81,22 @@ namespace basecross {
 		return nearNode;
 	}
 
-	NavGraphNode UtilityAstar::CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
-		const NavGraphNode& startNode,
+	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+		const std::shared_ptr<NavGraphNode>& startNode,
 		const Vec3& targetPos)
 	{
 		const auto& graph = astar->GetGraph();
-		const auto& edges = graph->GetEdges(startNode.GetIndex());
+		const auto& edges = graph->GetEdges(startNode->GetIndex());
 
-		auto startNodePos = startNode.GetPosition();
+		auto startNodePos = startNode->GetPosition();
 		auto toTargetVec = targetPos - startNodePos;
 		
 		float minRad = 360.0f;
-		NavGraphNode reNode;
+		std::shared_ptr<NavGraphNode> reNode;
 		for (const auto& edge : edges) {
 			auto toIndex = edge.GetTo();
 			auto nextNode = graph->GetNode(toIndex);
-			auto nextPos = nextNode.GetPosition();
+			auto nextPos = nextNode->GetPosition();
 
 			auto toNextNodeVec = nextPos - startNodePos;
 			toNextNodeVec.y = 0.0f;
@@ -114,22 +114,22 @@ namespace basecross {
 	}
 
 	//逃げるためのノードの検索
-	NavGraphNode UtilityAstar::CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
-		const NavGraphNode& startNode,
+	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+		const std::shared_ptr<NavGraphNode>& startNode,
 		const Vec3& targetPos)
 	{
 		const auto& graph = astar->GetGraph();
-		const auto& edges = graph->GetEdges(startNode.GetIndex());
+		const auto& edges = graph->GetEdges(startNode->GetIndex());
 
-		auto startNodePos = startNode.GetPosition();
+		auto startNodePos = startNode->GetPosition();
 		auto toTargetVec = targetPos - startNodePos;
 
 		float maxRad = 0.0f;
-		NavGraphNode reNode;
+		std::shared_ptr<NavGraphNode> reNode;
 		for (const auto& edge : edges) {
 			int toIndex = edge.GetTo();
-			NavGraphNode nextNode = graph->GetNode(toIndex);
-			auto nextPos = nextNode.GetPosition();
+			std::shared_ptr<NavGraphNode> nextNode = graph->GetNode(toIndex);
+			auto nextPos = nextNode->GetPosition();
 
 			auto toNextNodeVec = nextPos - startNodePos;
 			toNextNodeVec.y = 0.0f;

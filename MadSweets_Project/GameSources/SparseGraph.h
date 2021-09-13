@@ -26,7 +26,7 @@ namespace basecross {
 		using NodeType = node_type ;
 		using EdgeType = edge_type ;
 
-		using NodeVector = std::vector<node_type>;
+		using NodeVector = std::vector<std::shared_ptr<node_type>>;
 		using EdgeVector = std::vector<edge_type>; //削除の都合上リストにしてある。
 		using EdgeMapVector = std::map<int,EdgeVector> ;
 
@@ -55,7 +55,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="index">欲しいノードのインデックス</param>
 		/// <returns>指定されたインデクスのノード</returns>
-		const NodeType& GetNode(const int& index) const {
+		const std::shared_ptr<NodeType> GetNode(const int& index) const {
 			return m_nodes[index];
 		}
 
@@ -63,7 +63,7 @@ namespace basecross {
 		/// 全てのノードを渡す
 		/// </summary>
 		/// <returns>全てのノード</returns>
-		const std::vector<NodeType>& GetNodes() const {
+		const std::vector<std::shared_ptr<NodeType>>& GetNodes() const {
 			return m_nodes;
 		}
 
@@ -75,7 +75,7 @@ namespace basecross {
 		/// <returns></returns>
 		const EdgeType& GetEdge(const int& from,const int& to) const {
 			for (auto edge : m_edges[from]) {
-				if (edge.GetTo() == to) {
+				if (edge->GetTo() == to) {
 					return edge;
 				}
 			}
@@ -110,10 +110,10 @@ namespace basecross {
 		/// </summary>
 		/// <param name="node">追加したいノード</param>
 		/// <returns>追加したノードのインデックス</returns>
-		int AddNode(const NodeType& node) {
+		int AddNode(const std::shared_ptr<NodeType>& node) {
 			m_nodes.push_back(node);
-			m_nextNodeIndex++;
-			return (int)m_nodes.size() - 1;
+			return m_nextNodeIndex++;
+			//return (int)m_nodes.size() - 1;
 		}
 
 		/// <summary>

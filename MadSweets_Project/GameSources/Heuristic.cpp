@@ -10,9 +10,9 @@
 
 namespace basecross {
 
-	float Heuristic::CalucHeuristicRange(const NavGraphNode& node) {
-		auto pos = node.GetPosition();
-		auto targetPos = m_targetNode.GetPosition();
+	float Heuristic::CalucHeuristicRange(const std::shared_ptr<NavGraphNode>& node) {
+		auto pos = node->GetPosition();
+		auto targetPos = m_targetNode->GetPosition();
 
 		auto toVec = targetPos - pos;
 		return toVec.length();
