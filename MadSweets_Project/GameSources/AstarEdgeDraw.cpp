@@ -29,16 +29,16 @@ namespace basecross {
 	}
 
 	void AstarEdgeDraw::OnCreate() {
-		auto graph = m_astar.GetGraph();
-		auto numNode = graph.GetNumNodes();
+		auto graph = m_astar->GetGraph();
+		auto numNode = graph->GetNumNodes();
 
 		DebugObject::AddValue(numNode);
 
 		for (int i = 0; i < numNode; i++) {
-			auto edges = graph.GetEdges(i);
+			auto edges = graph->GetEdges(i);
 			for (const auto& edge : edges) {
-				auto startPosition = graph.GetNode(edge.GetFrom()).GetPosition();
-				auto endPosition = graph.GetNode(edge.GetTo()).GetPosition();
+				auto startPosition = graph->GetNode(edge.GetFrom()).GetPosition();
+				auto endPosition = graph->GetNode(edge.GetTo()).GetPosition();
 
 				CreateDrawBox(startPosition, endPosition);
 			}

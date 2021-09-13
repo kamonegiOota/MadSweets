@@ -294,9 +294,10 @@ namespace basecross {
 		fade->FadeInStart();
 	}
 
-	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
+
+	std::shared_ptr<GraphAstar> MargeTestStage::CreateAstar(const wstring& fileName) {
 		//将来的にそれ用のUtilかFactoryに書く
-		SparseGraph<NavGraphNode, GraphEdge> graph(true);
+		auto graph = make_shared<SparseGraph<NavGraphNode, GraphEdge>>(true);
 		vector<std::shared_ptr<GameObject>> obstacleObjs;
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 
@@ -312,7 +313,7 @@ namespace basecross {
 		int index = 0;
 		auto positions = m_mapCsv->GetPositions(L"Capsule");
 		for (const auto& pos : positions) {
-			graph.AddNode(NavGraphNode(index++, pos));
+			graph->AddNode(NavGraphNode(index++, pos));
 			//ノードの表示
 			auto numberObj = Instantiate<NumbersObject>(pos, Quat::Identity());
 			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
@@ -325,13 +326,13 @@ namespace basecross {
 		//手動で設定したノード
 		auto edges = StageMapCSV::sm_astarEdges[fileName];
 		for (auto& edge : edges) {
-			graph.AddEdge(edge);
+			graph->AddEdge(edge);
 		}
 
-		GraphAstar astar(graph);
+		auto astar = make_shared<GraphAstar>(graph);
 		//astar.AddEdges(obstacleObjs, excluteObjs);
 
-		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar.GetGraph());
+		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
 
 		//エネミーの生成
 		auto params = UtilityEnemy::sm_enemyParam[fileName];
@@ -443,9 +444,9 @@ namespace basecross {
 			graph.AddEdge(edge);
 		}
 
-		GraphAstar astar(graph);
+		//GraphAstar astar(graph);
 		//auto astar = CreateAstar();
-		enemy->AddComponent<AstarCtrl>(astar);
+		//enemy->AddComponent<AstarCtrl>(astar);
 		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
 
 		auto wallEvasion = enemy->GetComponent<WallEvasion>();

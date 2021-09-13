@@ -45,7 +45,7 @@ namespace basecross {
 		/// <summary>
 		/// ノードとエッジを管理する
 		/// </summary>
-		SparseGraph<NavGraphNode, GraphEdge> m_graph;  //グラフデータ
+		std::shared_ptr<SparseGraph<NavGraphNode, GraphEdge>> m_graph;  //グラフデータ
 		/// <summary>
 		/// ヒュースリック計算をしてくれるクラス
 		/// </summary>
@@ -59,8 +59,8 @@ namespace basecross {
 		
 	public:
 
-		GraphAstar(const SparseGraph<NavGraphNode, GraphEdge>& graph)
-			:m_graph(graph)//, m_countIndex(0)
+		GraphAstar(const std::shared_ptr<SparseGraph<NavGraphNode, GraphEdge>>& graph)
+			:m_graph(graph)
 		{}
 
 		/// <summary>
@@ -76,7 +76,17 @@ namespace basecross {
 		/// <param name="self">開始のオブジェクト</param>
 		/// <param name="target">ターゲットとなるオブジェクト</param>
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target);
+		/// <summary>
+		/// 自分ノードとエッジから、どのルートが一番近いか検索
+		/// </summary>
+		/// <param name="self">開始のオブジェクト</param>
+		/// <param name="targetPos">ターゲットのポジション</param>
 		void SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos);
+		/// <summary>
+		/// 自分ノードとエッジから、どのルートが一番近いか検索
+		/// </summary>
+		/// <param name="selfPos">開始のポジション</param>
+		/// <param name="targetPos">ターゲットのポジション</param>
 		void SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos);
 
 	private:
@@ -111,7 +121,11 @@ namespace basecross {
 		bool IsBackShort(const AstarExpectData& newShortRoute);
 
 		void ResetAstar();  //情報をリセットするときの関数
-		void RemoveData(const AstarExpectData& data); //データのリムーブ
+		/// <summary>
+		/// データのリムーブ
+		/// </summary>
+		/// <param name="data">リムーブしたいデータ</param>
+		void RemoveData(const AstarExpectData& data);
 		void BackShortRoute(); //一旦前のルートに戻る。
 
 		/// <summary>
@@ -169,7 +183,7 @@ namespace basecross {
 			return m_isRouteEnd;
 		}
 
-		const SparseGraph<NavGraphNode, GraphEdge>& GetGraph() const {
+		const std::shared_ptr<const SparseGraph<NavGraphNode, GraphEdge>> GetGraph() const {
 			return m_graph;
 		}
 

@@ -48,20 +48,20 @@ namespace basecross {
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(*this, self);
-		auto targetNearNode = UtilityAstar::SearchNearNode(*this, target);
+		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), self);
+		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), target);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(*this, self);
-		auto targetNearNode = UtilityAstar::SearchNearNode(*this, targetPos);
+		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), self);
+		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), targetPos);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
-		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
+		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this),selfPos);
+		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this),targetPos);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
@@ -140,7 +140,7 @@ namespace basecross {
 			int i = 0;
 		}
 		auto beforeShort = m_shortRoutes[index];
-		auto edges = m_graph.GetEdges(beforeShort.node.GetIndex());
+		auto edges = m_graph->GetEdges(beforeShort.node.GetIndex());
 		for (auto& edge : edges) {
 			if (newShortRoute.nextNode.GetIndex() == edge.GetTo()) {
 				//ノードを戻る処理		
@@ -287,7 +287,7 @@ namespace basecross {
 		//エッジの距離を測って配列で返す。
 		auto selfPos = node.GetPosition();
 		auto index = node.GetIndex();
-		auto edges = m_graph.GetEdges(index);
+		auto edges = m_graph->GetEdges(index);
 
 		std::vector<AstarExpectData> reExpectData;  //リターンする期待値を含むデータ。
 
@@ -295,7 +295,7 @@ namespace basecross {
 
 		for (auto edge : edges) {
 			auto toIndex = edge.GetTo();
-			auto nextNode = m_graph.GetNode(toIndex);
+			auto nextNode = m_graph->GetNode(toIndex);
 
 			//自分の前のノードの場合は入れない
 			if (beforeNode) {  //beforeNodeが存在する場合
@@ -361,7 +361,7 @@ namespace basecross {
 		const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs)
 	{
 		//ノードの生成
-		auto index = m_graph.GetNextFreeNodeIndex();
+		auto index = m_graph->GetNextFreeNodeIndex();
 		NavGraphNode newNode(index, position);
 
 		auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, newNode, obstacleObjs, excluteObjs);
@@ -370,23 +370,23 @@ namespace basecross {
 		//改善され次第外す。
 		if (edges.size() != 0) {
 			//ノードの追加
-			m_graph.AddNode(newNode);
+			m_graph->AddNode(newNode);
 		}
 
 		return index++;
 	}
 
 	void GraphAstar::RemoveNode(const int& index) {
-		m_graph.RemoveNode(index);
+		m_graph->RemoveNode(index);
 	}
 
 	void GraphAstar::AddEdges(const vector<shared_ptr<GameObject>>& obstacleObjs, const vector<shared_ptr<GameObject>>& excluteObjs) {
-		auto nodes = m_graph.GetNodes();
+		auto nodes = m_graph->GetNodes();
 		for (auto& node : nodes) {
 			auto edges = UtilityAstar::CreateAdjacendEdges(m_graph, node, obstacleObjs, excluteObjs);
 			if (edges.size() == 0) {
 				//ノードの追加
-				m_graph.RemoveNode(node.GetIndex());
+				m_graph->RemoveNode(node.GetIndex());
 			}
 		}
 	}
