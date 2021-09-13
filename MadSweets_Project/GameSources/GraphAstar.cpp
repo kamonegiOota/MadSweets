@@ -48,20 +48,20 @@ namespace basecross {
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const std::shared_ptr<GameObject>& target) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), self);
-		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), target);
+		auto selfNearNode = UtilityAstar::SearchNearNode(*this, self);
+		auto targetNearNode = UtilityAstar::SearchNearNode(*this, target);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<GameObject>& self, const Vec3& targetPos) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), self);
-		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this), targetPos);
+		auto selfNearNode = UtilityAstar::SearchNearNode(*this, self);
+		auto targetNearNode = UtilityAstar::SearchNearNode(*this, targetPos);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
-		auto selfNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this),selfPos);
-		auto targetNearNode = UtilityAstar::SearchNearNode(make_shared<GraphAstar>(*this),targetPos);
+		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
+		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 

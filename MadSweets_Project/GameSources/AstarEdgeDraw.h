@@ -12,13 +12,13 @@ namespace basecross {
 
 	class AstarEdgeDraw : public Component {
 
-		ex_weak_ptr<GraphAstar> m_astar;
+		GraphAstar m_astar;
 
 		void CreateDrawBox(const Vec3& startPosition, const Vec3& endPosition);
 
 	public:
 
-		AstarEdgeDraw(const std::shared_ptr<GameObject>& objPtr,const std::shared_ptr<GraphAstar>& astar)
+		AstarEdgeDraw(const std::shared_ptr<GameObject>& objPtr,const GraphAstar& astar)
 			:Component(objPtr),m_astar(astar)
 		{}
 

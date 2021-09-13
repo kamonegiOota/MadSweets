@@ -12,7 +12,7 @@
 
 namespace basecross {
 
-	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target) {
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const GraphAstar& astar, const std::shared_ptr<GameObject>& target) {
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 		excluteObjs.push_back(target);
 
@@ -20,10 +20,10 @@ namespace basecross {
 		return SearchNearNode(astar, targetPos, excluteObjs);
 	}
 
-	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchNearNode(const GraphAstar& astar, const Vec3& targetPos,
 		vector<std::shared_ptr<GameObject>> excluteObjs)
 	{
-		const auto& graph = astar->GetGraph();
+		const auto& graph = astar.GetGraph();
 		const auto& nodes = graph->GetNodes();
 
 		float minRange = 10000.0f;
@@ -55,14 +55,14 @@ namespace basecross {
 		return minNode;
 	}
 
-	std::shared_ptr<NavGraphNode> UtilityAstar::SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> UtilityAstar::SearchMyNodeToTargetNearNode(const GraphAstar& astar,
 		const std::shared_ptr<GameObject>& selfObject, const std::shared_ptr<GameObject>& target)
 	{
 		//自分自身の近くのノードの検索
 		const std::shared_ptr<const NavGraphNode> selfNode = SearchNearNode(astar, selfObject);
 		const int from = selfNode->GetIndex();  //そのインデクスの取得
 
-		const auto& graph = astar->GetGraph();
+		const auto& graph = astar.GetGraph();
 		const auto& edges = graph->GetEdges(from);
 		const Vec3 targetPosition = target->GetComponent<Transform>()->GetPosition();
 
@@ -81,11 +81,11 @@ namespace basecross {
 		return nearNode;
 	}
 
-	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetDirectNode(const GraphAstar& astar,
 		const std::shared_ptr<NavGraphNode>& startNode,
 		const Vec3& targetPos)
 	{
-		const auto& graph = astar->GetGraph();
+		const auto& graph = astar.GetGraph();
 		const auto& edges = graph->GetEdges(startNode->GetIndex());
 
 		auto startNodePos = startNode->GetPosition();
@@ -114,11 +114,11 @@ namespace basecross {
 	}
 
 	//逃げるためのノードの検索
-	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+	std::shared_ptr<NavGraphNode> UtilityAstar::CalucTargetEscapeDirectNode(const GraphAstar& astar,
 		const std::shared_ptr<NavGraphNode>& startNode,
 		const Vec3& targetPos)
 	{
-		const auto& graph = astar->GetGraph();
+		const auto& graph = astar.GetGraph();
 		const auto& edges = graph->GetEdges(startNode->GetIndex());
 
 		auto startNodePos = startNode->GetPosition();

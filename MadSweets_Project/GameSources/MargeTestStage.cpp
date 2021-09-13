@@ -295,7 +295,7 @@ namespace basecross {
 	}
 
 
-	std::shared_ptr<GraphAstar> MargeTestStage::CreateAstar(const wstring& fileName) {
+	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
 		//将来的にそれ用のUtilかFactoryに書く
 		auto graph = make_shared<SparseGraph<NavGraphNode, GraphEdge>>(true);
 		vector<std::shared_ptr<GameObject>> obstacleObjs;
@@ -329,7 +329,7 @@ namespace basecross {
 			graph->AddEdge(edge);
 		}
 
-		auto astar = make_shared<GraphAstar>(graph);
+		auto astar = GraphAstar(graph);
 		//astar.AddEdges(obstacleObjs, excluteObjs);
 
 		//エネミーの生成

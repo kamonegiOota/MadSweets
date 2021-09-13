@@ -19,7 +19,7 @@ namespace basecross {
 		/// <param name="astar">Astarの参照</param>
 		/// <param name="target">ターゲット</param>
 		/// <returns>ターゲットの一番近くのノード</returns>
-		static std::shared_ptr<NavGraphNode> SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const std::shared_ptr<GameObject>& target);
+		static std::shared_ptr<NavGraphNode> SearchNearNode(const GraphAstar& astar, const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// ターゲットから一番近くのノードを検索する。
 		/// </summary>
@@ -27,7 +27,7 @@ namespace basecross {
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <param name="excluteObjs">Rayの対象外にするオブジェクト群</param>
 		/// <returns>ターゲットから一番近いノード</returns>
-		static std::shared_ptr<NavGraphNode> SearchNearNode(const std::shared_ptr<const GraphAstar>& astar, const Vec3& targetPos,
+		static std::shared_ptr<NavGraphNode> SearchNearNode(const GraphAstar& astar, const Vec3& targetPos,
 			vector<std::shared_ptr<GameObject>> excluteObjs = vector<std::shared_ptr<GameObject>>());
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace basecross {
 		/// <param name="selfObject">自分自身</param>
 		/// <param name="target">ターゲット</param>
 		/// <returns>一番近いノード</returns>
-		static std::shared_ptr<NavGraphNode> SearchMyNodeToTargetNearNode(const std::shared_ptr<const GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> SearchMyNodeToTargetNearNode(const GraphAstar& astar,
 			const std::shared_ptr<GameObject>& selfObject,const std::shared_ptr<GameObject>& target);
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace basecross {
 		/// <param name="startNode">開始ノード</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>ターゲット方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucTargetDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucTargetDirectNode(const GraphAstar& astar,
 			const std::shared_ptr<NavGraphNode>& startNode,
 			const Vec3& targetPos);
 
@@ -58,7 +58,7 @@ namespace basecross {
 		/// <param name="startNode">開始ノード</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>ターゲット方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucTargetEscapeDirectNode(const std::shared_ptr<const GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucTargetEscapeDirectNode(const GraphAstar& astar,
 			const std::shared_ptr<NavGraphNode>& startNode,
 			const Vec3& targetPos);
 

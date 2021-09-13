@@ -26,7 +26,7 @@ namespace basecross {
 		/// <param name="selfObj">自分自身</param>
 		/// <param name="targetObj">ターゲット</param>
 		/// <returns>逃げる方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucRoute(const std::shared_ptr<GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucRoute(const GraphAstar& astar,
 			const std::shared_ptr<GameObject>& selfObj,
 			const std::shared_ptr<GameObject>& targetObj);
 		/// <summary>
@@ -36,7 +36,7 @@ namespace basecross {
 		/// <param name="selfPos">自分自身のポジション</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>逃げる方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucRoute(const std::shared_ptr<GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucRoute(const GraphAstar& astar,
 			const Vec3& selfPos, const Vec3& targetPos);
 
 
@@ -47,7 +47,7 @@ namespace basecross {
 		/// <param name="selfObj">自分自身</param>
 		/// <param name="targetObj">ターゲット</param>
 		/// <returns>逃げる方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucNextRoute(const GraphAstar& astar,
 			const std::shared_ptr<GameObject>& selfObj,
 			const std::shared_ptr<GameObject>& targetObj);
 		/// <summary>
@@ -57,7 +57,7 @@ namespace basecross {
 		/// <param name="selfPos">自分自身のポジション</param>
 		/// <param name="targetPos">ターゲットのポジション</param>
 		/// <returns>逃げる方向のノード</returns>
-		static std::shared_ptr<NavGraphNode> CalucNextRoute(const std::shared_ptr<GraphAstar>& astar,
+		static std::shared_ptr<NavGraphNode> CalucNextRoute(const GraphAstar& astar,
 			const Vec3& selfPos, const Vec3& targetPos);
 	};
 

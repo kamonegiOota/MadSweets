@@ -18,7 +18,6 @@ namespace basecross {
 
 	class MargeTestStage : public Stage
 	{
-		
 		static wstring sm_nowMap;
 		static Vec3 sm_firstCreatePlayerPosition;
 		static Vec3 sm_createPlayerPosition;
@@ -33,10 +32,10 @@ namespace basecross {
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
-		virtual std::shared_ptr<GraphAstar>  CreateAstar(const wstring& fileName);
+		virtual GraphAstar CreateAstar(const wstring& fileName);
 
 		template<class T>
-		void CreateEnemy(const wstring& fileName, const std::shared_ptr<GraphAstar>& astar, const vector<Vec3>& positions) {
+		void CreateEnemy(const wstring& fileName, const GraphAstar& astar, const vector<Vec3>& positions) {
 			auto enemy = Instantiate<T>(Vec3(0.0f, 0.0f, 0.0f), Quat::Identity());
 			enemy->GetComponent<BaseEnemy>()->SetMapType(fileName);
 			enemy->AddComponent<AstarCtrl>(astar);

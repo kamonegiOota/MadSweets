@@ -11,7 +11,7 @@ namespace basecross {
 
 	class AstarCtrl : public Component
 	{
-		std::shared_ptr<GraphAstar> m_astar;
+		GraphAstar m_astar;
 
 		float m_speed;
 
@@ -20,7 +20,7 @@ namespace basecross {
 
 	public:
 		AstarCtrl(const std::shared_ptr<GameObject>& objPtr,
-			const std::shared_ptr<GraphAstar>& astar
+			const GraphAstar& astar
 		):
 			Component(objPtr),
 			m_astar(astar),
@@ -95,11 +95,11 @@ namespace basecross {
 		/// </summary>
 		/// <returns>ノードのポジション</returns>
 		Vec3 GetCalucNodePos(){
-			return m_astar->CalucTargetNode(GetGameObject());
+			return m_astar.CalucTargetNode(GetGameObject());
 		}
 
 		bool IsRouteEnd() const {
-			return m_astar->IsRouteEnd();
+			return m_astar.IsRouteEnd();
 		}
 
 		void SetSpeed(const float& speed) {

@@ -29,7 +29,7 @@ namespace basecross {
 	}
 
 	void AstarEdgeDraw::OnCreate() {
-		auto graph = m_astar->GetGraph();
+		auto graph = m_astar.GetGraph();
 		auto numNode = graph->GetNumNodes();
 
 		DebugObject::AddValue(numNode);
