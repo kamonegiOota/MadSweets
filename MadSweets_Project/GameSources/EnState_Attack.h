@@ -28,6 +28,13 @@ namespace basecross {
 		void OnUpdate() override;
 		void OnExit() override;
 
+		
+		//アクセッサ------------------------------------------------------------------
+
+		void SetTarget(const std::shared_ptr<GameObject>& target) {
+			m_target = target;
+		}
+
 	};
 
 }
