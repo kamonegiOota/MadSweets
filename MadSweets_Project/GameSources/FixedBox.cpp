@@ -19,7 +19,6 @@ namespace basecross {
 
         auto coll = AddComponent<CollisionObb>();
         coll->SetFixed(true);
-        //coll->SetMakedSize(0.95f);
 
         AddTag(L"FixedBox");
         AddTag(L"Wall");
