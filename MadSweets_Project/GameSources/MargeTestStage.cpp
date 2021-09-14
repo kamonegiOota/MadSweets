@@ -80,6 +80,8 @@
 #include "NumbersObject.h"
 #include "NumbersCtrl.h"
 
+#include "EnemyMainStateMachine.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -197,6 +199,8 @@ namespace basecross {
 			CreateEnemy(player);
 			CreateHideObjects();
 			CreateEatItems();
+
+			//EnemyMainStateMachine<GraphNode, GraphEdge, PlayerStatusParam>();
 		}
 		catch (...) {
 			throw;
