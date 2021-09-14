@@ -12,6 +12,8 @@
 #include "EdgeBase.h"
 #include "GraphBase.h"
 
+#include "DebugObject.h"
+
 namespace basecross {
 
 	/// <summary>
@@ -42,20 +44,31 @@ namespace basecross {
 		std::shared_ptr<GraphType> m_graph;  //グラフの情報
 		TransitionStructMember m_transitionStruct; //遷移条件に利用する構造体
 
+		std::map<EnumType ,std::function<void()>> m_changeOnceFuncs;  //切り替え時に一度だけ呼ぶファンクション
+
 		//privateメンバ関数-------------------------
 
 		//ステートの変更
 		void ChangeState(const EnumType type) {
-			m_nodes[m_nowNodeType]->Exit();
+			//切り替え時に一度だけ呼ぶファンクション
+			int i = 0;
+			if (m_changeOnceFuncs.count(type)) {
+				m_changeOnceFuncs[type]();
+			}
+			m_changeOnceFuncs.clear();
 
-			m_nowNodeType = type;
-			m_nodes[m_nowNodeType]->Start();
+			m_graph->ChangeState(type);
 		}
 
 	public:
 		EnemyMainStateMachine(const std::shared_ptr<GameObject>& objPtr) 
-			:Component(objPtr)
+			:Component(objPtr),m_graph(std::make_shared<GraphType>())
 		{}
+
+		//現在使っているノードのタイプ
+		EnumType GetNowType() const {
+			return m_graph->GetNowType();
+		}
 
 		//現在使うノードの取得
 		std::shared_ptr<NodeType> GetNowNode() const {
@@ -84,7 +97,7 @@ namespace basecross {
 
 		//ノードの追加
 		void AddNode(const EnumType type,const std::shared_ptr<NodeType>& node) {
-			m_graph->addNode(type, node);
+			m_graph->AddNode(type, node);
 		}
 
 		//ノードの削除
@@ -139,6 +152,14 @@ namespace basecross {
 			return m_transitionStruct;
 		}
 		
+		/// <summary>
+		/// ステート切り替え時に一度だけ呼ぶファンクションのセット
+		/// </summary>
+		/// <param name="changeType">切り替え先のステートタイプ</param>
+		/// <param name="func">切り替え時に呼ぶ関数ポインタ</param>
+		void SetChangeOnceFunc(const EnumType changeType, const std::function<void()>& func) {
+			m_changeOnceFuncs[changeType] = func;
+		}
 
 		void OnCreate() override {}
 
