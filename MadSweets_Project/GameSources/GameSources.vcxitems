@@ -56,7 +56,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EarBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EdgeBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h" />
@@ -91,11 +93,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GottenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
@@ -287,6 +291,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />

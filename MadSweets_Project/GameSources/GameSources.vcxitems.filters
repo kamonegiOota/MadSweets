@@ -733,6 +733,18 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove">
       <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\StateMachine\EnemyMainStateMachine">
+      <UniqueIdentifier>{a93236f3-82c6-4d1f-a67e-43bca6b9eb8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\StateMachine\EdgeBase">
+      <UniqueIdentifier>{2e015852-b2fe-48fa-ac67-9b9e51ad321c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\StateMachine\GraphBase">
+      <UniqueIdentifier>{3d1efeb6-4bf9-46ce-8ac6-59ebacdedcf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr">
+      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1329,6 +1341,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NumbersObject.h">
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
+      <Filter>Maru\StateMachine\EnemyMainStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EdgeBase.h">
+      <Filter>Maru\StateMachine\EdgeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphBase.h">
+      <Filter>Maru\StateMachine\GraphBase</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
+      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1864,6 +1888,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp">
       <Filter>Maru\Object\NumbersObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp">
+      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
