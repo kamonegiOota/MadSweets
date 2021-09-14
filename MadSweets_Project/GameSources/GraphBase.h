@@ -25,7 +25,7 @@ namespace basecross {
 		//usingディレクティブ
 		using EdgeType = EdgeBase<EnumType, TransitionStructMember>;
 
-		using NodeMap = std::map<EnumType, NodeType>;
+		using NodeMap = std::map<EnumType, std::shared_ptr<NodeType>>;
 		using EdgeVector = std::vector<std::shared_ptr<EdgeType>>;
 		using EdgeVectorMap = std::map<EnumType, EdgeVector>;
 
@@ -40,6 +40,11 @@ namespace basecross {
 		bool m_isActive = true;
 
 	public:
+		//現在使うノードのタイプの取得
+		EnumType GetNowType() const {
+			return m_nowNodeType;
+		}
+
 		//現在使うノードの取得
 		std::shared_ptr<NodeType> GetNowNode() const {
 			return m_nodes.at(m_nowNodeType);
@@ -87,7 +92,7 @@ namespace basecross {
 				m_nowNodeType = type;
 			}
 
-			m_nodes.push_back(node);
+			m_nodes[type] = node;
 		}
 
 		//ノードの削除
@@ -100,7 +105,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="edge">追加したいエッジ</param>
 		void AddEdge(const std::shared_ptr<EdgeType>& edge) {
-			m_edges[edge->GetFromType()].push_back(edge);
+			m_edgesMap[edge->GetFromType()].push_back(edge);
 		}
 
 		/// <summary>
@@ -113,7 +118,7 @@ namespace basecross {
 			const std::function<bool(const TransitionStructMember& transition)>& isTransitionFunc)
 		{
 			auto newEdge = make_shared<EdgeType>(from, to, isTransitionFunc);
-			AddEdge(from, newEdge);
+			AddEdge(newEdge);
 		}
 
 		//ノードの数の取得
@@ -139,7 +144,15 @@ namespace basecross {
 		}
 
 		bool IsEmpty() const {
-			return m_nodes.size() == 0 ? true, false;
+			return static_cast<int>(m_nodes.size()) == 0 ? true : false;
+		}
+
+		//ステートの変更
+		void ChangeState(const EnumType type) {
+			m_nodes[m_nowNodeType]->OnExit();
+
+			m_nowNodeType = type;
+			m_nodes[m_nowNodeType]->OnStart();
 		}
 	};
 
