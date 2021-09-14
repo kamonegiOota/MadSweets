@@ -31,6 +31,7 @@
 #include "WallEvasion.h"
 
 #include "TactileObject.h"
+#include "HandyStateMgr.h"
 
 
 // ”Â‹´@’Ç‰Á•ª --------------------
@@ -125,6 +126,8 @@ namespace basecross {
 
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
+
+		AddComponent<HandyStateMgr>();
 
 		//–{‘Ì‚ÍÅŒã‚É‚·‚éB
 		AddComponent<ChaseEnemy>();
