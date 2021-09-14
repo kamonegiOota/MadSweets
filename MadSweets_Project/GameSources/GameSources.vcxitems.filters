@@ -1341,9 +1341,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NumbersObject.h">
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
-      <Filter>Maru\StateMachine\EnemyMainStateMachine</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EdgeBase.h">
       <Filter>Maru\StateMachine\EdgeBase</Filter>
     </ClInclude>
@@ -1352,6 +1349,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
       <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
+      <Filter>Maru\StateMachine\GraphBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
