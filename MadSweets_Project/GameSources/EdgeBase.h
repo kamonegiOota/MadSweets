@@ -21,7 +21,7 @@ namespace basecross {
 	{
 		std::function<bool(const TransitionStructMember& member)> m_isTransitionFunc = nullptr; //‘JˆÚ‚·‚éğŒ
 
-		EnumType m_formType;
+		EnumType m_fromType;
 		EnumType m_toType;
 
 	public:
@@ -30,7 +30,7 @@ namespace basecross {
 		{}
 
 		EdgeBase(const EnumType from, const EnumType to,
-			const std::function<bool()>& isTransitionFunc
+			const std::function<bool(const TransitionStructMember& member)>& isTransitionFunc
 		) :
 			m_fromType(from), m_toType(to), m_isTransitionFunc(isTransitionFunc)
 		{}
@@ -49,7 +49,7 @@ namespace basecross {
 		}
 
 		EnumType GetFromType() const {
-			return m_formType;
+			return m_fromType;
 		}
 
 		EnumType GetToType() const {
