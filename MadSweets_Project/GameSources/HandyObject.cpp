@@ -32,6 +32,7 @@
 
 #include "TactileObject.h"
 #include "HandyStateMgr.h"
+#include "TargetMgr.h"
 
 
 // 板橋　追加分 --------------------
@@ -106,9 +107,6 @@ namespace basecross {
 
 		auto draw = AddComponent<PNTBoneModelDraw>();
 		draw->SetMeshResource(L"Handy_Walk");
-		//draw->SetMeshResource(L"Cara_Walk");
-		//draw->SetMeshResource(L"Ashi_Walk");
-		//draw->AddAnimation(L"Run", 0, 60, true, 30.0f);
 		draw->SetMeshToTransformMatrix(spanMat);
 
 		AddComponent<HandyAnimatorCtrl>(draw);
@@ -127,7 +125,9 @@ namespace basecross {
 		AddComponent<Handy_Attack>();
 		AddComponent<ThrowCtrl>();
 
+		//新規ステートマシン用の追記分
 		AddComponent<HandyStateMgr>();
+		AddComponent<TargetMgr>();
 
 		//本体は最後にする。
 		AddComponent<ChaseEnemy>();
