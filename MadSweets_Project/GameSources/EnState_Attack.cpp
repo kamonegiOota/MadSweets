@@ -24,7 +24,7 @@ namespace basecross {
 		
 		auto attack = obj->GetComponent<BaseAttack>(false);
 		if (attack) {
-			attack->SetTarget(m_target);
+			//attack->SetTarget(m_target);
 		}
 
 		auto velocity = GetOwner()->GetGameObject()->GetComponent<Velocity>(false);
