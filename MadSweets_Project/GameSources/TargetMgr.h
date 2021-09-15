@@ -11,6 +11,10 @@
 
 namespace basecross {
 
+
+	/// <summary>
+	/// 現在のOwnerがターゲットに指定しているオブジェクトを管理し、他のコンポーネントと共有する。
+	/// </summary>
 	class TargetMgr : public Component
 	{
 		std::weak_ptr<GameObject> m_target;
