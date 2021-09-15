@@ -49,14 +49,6 @@ namespace basecross {
 		rotCtrl->SetDirect(moveVec);
 	}
 
-	bool PlowlingMove::IsNearArrival(const Vec3& pos) {
-		float nearRange = 0.1f;  //近くまで来たら、次のポジションに移動するようにする。
-
-		auto toTargetVec = m_positions[m_index] - pos;
-		//目的地に到着していたらtrue
-		return toTargetVec.length() <= nearRange ? true : false;
-	}
-
 	void PlowlingMove::NextIndex() {
 		m_index += m_addIndexDirect; //カウントを進める。
 

@@ -36,12 +36,7 @@ namespace basecross {
 		/// </summary>
 		void Move();
 		void Rotation(const Vec3& moveVec);
-		/// <summary>
-		/// 目的地に限りなく近い場所にいるならtrue
-		/// </summary>
-		/// <param name="pos">現在のポジション</param>
-		/// <returns>目的地に近い場合true</returns>
-		bool IsNearArrival(const Vec3& pos);
+
 		/// <summary>
 		/// 次の目的地のインデックスに切り替える処理
 		/// </summary>
@@ -57,7 +52,6 @@ namespace basecross {
 		void OnCreate();
 		void OnStart();
 		void OnUpdate();
-		void OnDraw(){}
 		
 		//アクセッサ----------------------------------------------
 
