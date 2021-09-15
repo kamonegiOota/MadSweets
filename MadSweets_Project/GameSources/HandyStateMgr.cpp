@@ -25,6 +25,7 @@
 #include "Handy_Attack.h"
 
 #include "DebugObject.h"
+#include "TargetMgr.h"
 
 namespace basecross {
 
@@ -87,7 +88,25 @@ namespace basecross {
 		//testkey
 		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 
+		if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
+			//GetStage()->RemoveGameObject<GameObject>(m_testObj.GetShard());
+		}
+
 		if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
+			
+			//auto targetMgr = GetGameObject()->AddComponent<TargetMgr>();
+			//auto obj = GetStage()->AddGameObject<GameObject>();
+			//targetMgr->SetTarget(obj);
+			//auto target = targetMgr->GetTarget();
+			//if (target) {
+			//	DebugObject::AddString(L"aru");
+			//}
+			//else {
+			//	DebugObject::AddString(L"null");
+			//}
+			//m_testObj = obj;
+			//return;
+
 			DebugObject::AddString(L"Attack");
 			stateMachine->SetChangeOnceFunc(StateType::Attack,[stateMachine]() {
 				//ターゲットを指定する処理

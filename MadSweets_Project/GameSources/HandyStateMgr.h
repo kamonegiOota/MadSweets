@@ -57,7 +57,6 @@ namespace basecross {
 		std::shared_ptr<HandyStateMachine> GetStateMachine() const {
 			return GetGameObject()->GetComponent<HandyStateMachine>();
 		}
-
 	};
 
 }
