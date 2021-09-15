@@ -192,6 +192,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h" />
