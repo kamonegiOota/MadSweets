@@ -36,7 +36,10 @@ namespace basecross {
 
 	class HandyStateMgr : public Component
 	{
+	public:
 		using HandyStateMachine = EnemyMainStateMachine<maru::StateMachine<BaseEnemy>, HandyStateType, HandyStateTransitionMember>;
+
+	private:
 
 		void AddNodes(const std::shared_ptr<HandyStateMachine>& state);
 		void AddEdges(const std::shared_ptr<HandyStateMachine>& state);
