@@ -168,6 +168,9 @@ namespace basecross {
 				return;
 			}
 
+			//ノードのUpdate
+
+			//エッジの切替判断
 			auto edges = m_graph->GetNowNodeEdges();
 			for (auto& edge : edges) {
 				if (edge->IsTransition(m_transitionStruct)) {
@@ -175,6 +178,9 @@ namespace basecross {
 					break;
 				}
 			}
+
+			//トリガーのリセット
+
 		}
 	};
 
