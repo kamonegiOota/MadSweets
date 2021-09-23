@@ -10,6 +10,8 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "NodeBase.h"
+
 namespace basecross {
 
 	/// <summary>
@@ -21,7 +23,7 @@ namespace basecross {
 	template<class NodeType, class EnumType, class TransitionStructMember>
 	class GraphBase
 	{
-	private:
+	public:
 		//usingディレクティブ
 		using EdgeType = EdgeBase<EnumType, TransitionStructMember>;
 
@@ -29,6 +31,7 @@ namespace basecross {
 		using EdgeVector = std::vector<std::shared_ptr<EdgeType>>;
 		using EdgeVectorMap = std::map<EnumType, EdgeVector>;
 
+	private:
 		//メンバ変数---------------
 
 		EnumType m_nowNodeType;  //現在のノード
