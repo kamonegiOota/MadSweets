@@ -21,6 +21,9 @@
 #include "BaseEnemy.h"
 #include "MyUtility.h"
 
+#include "TargetMgr.h"
+#include "HandyStateMgr.h"
+
 #include "DebugObject.h"
 
 namespace basecross {
@@ -60,6 +63,17 @@ namespace basecross {
 	}
 
 	void Handy_Attack::ChangeAttackState() {
+		//auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+		//if (targetMgr) {
+		//	targetMgr->SetTarget(m_target);
+		//}
+
+		//auto stateMgr = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		//if (stateMgr) {
+		//	auto state = stateMgr->GetStateMachine();
+		//	state->GetTransitionStructMember().attackTrigger.Fire();
+		//}
+
 		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
 		if (enemy) {
 			enemy->ChangeStateMachine<EnState_Attack>(m_target);
