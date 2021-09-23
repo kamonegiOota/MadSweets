@@ -60,6 +60,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyStateNodeBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h" />
@@ -128,6 +129,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRandom.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUtility.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)NodeBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Number.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumbersCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumberObject.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TestEnemyNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowHandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowObject.h" />
@@ -378,6 +381,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetEscape.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TargetProbe.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEatenObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowHandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ThrowObject.cpp" />
