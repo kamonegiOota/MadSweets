@@ -82,6 +82,8 @@
 
 #include "EnemyMainStateMachine.h"
 
+#include "TestEnemyNode.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -200,6 +202,8 @@ namespace basecross {
 			CreateHideObjects();
 			CreateEatItems();
 
+			//auto node = std::make_shared<TestEnemyNode>(AddGameObject<GameObject>()->AddComponent<MTestEnemy>());
+			//node->OnStart();
 			//EnemyMainStateMachine<GraphNode, GraphEdge, PlayerStatusParam>();
 		}
 		catch (...) {
