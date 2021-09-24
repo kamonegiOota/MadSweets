@@ -7,6 +7,7 @@
 #pragma once
 
 #include "StateMachine.h"
+#include "EnemyStateNodeBase.h"
 
 namespace basecross {
 
@@ -14,7 +15,7 @@ namespace basecross {
 	{
 
 	protected:
-	 	std::shared_ptr<maru::StateMachine<BaseEnemy>> m_stateMachine;
+	 	std::shared_ptr<EnemyStateNodeBase<BaseEnemy>> m_stateMachine;
 		wstring m_mapType = L"";  //どのマップに所属しているか？
 
 	public:
@@ -39,7 +40,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="newState">変更したいステート</param>
 		template<class T, class... Ts,
-			enable_if_t<is_base_of_v<maru::StateMachine<BaseEnemy>, T>, std::nullptr_t> = nullptr >
+			enable_if_t<is_base_of_v<EnemyStateNodeBase<BaseEnemy>, T>, std::nullptr_t> = nullptr >
 		void ChangeStateMachine(Ts&&... params) {
 			if (IsEqualStateType<T>()) {  //同じステートに変更しようとした場合処理をしない。
 				return;
@@ -59,7 +60,7 @@ namespace basecross {
 		/// 同じステートでも変更処理を加えたいときはこちらを利用
 		/// </summary>
 		template<class T, class... Ts,
-			enable_if_t<is_base_of_v<maru::StateMachine<BaseEnemy>, T>, std::nullptr_t> = nullptr >
+			enable_if_t<is_base_of_v<EnemyStateNodeBase<BaseEnemy>, T>, std::nullptr_t> = nullptr >
 		void AbsoluteChangeStateMachine(Ts&&... params) 
 		{
 
