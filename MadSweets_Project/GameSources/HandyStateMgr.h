@@ -37,7 +37,7 @@ namespace basecross {
 	class HandyStateMgr : public Component
 	{
 	public:
-		using HandyStateMachine = EnemyMainStateMachine<EnemyStateNodeBase<BaseEnemy>, HandyStateType, HandyStateTransitionMember>;
+		using HandyStateMachine = EnemyMainStateMachine<BaseEnemy, HandyStateType, HandyStateTransitionMember>;
 
 	private:
 
