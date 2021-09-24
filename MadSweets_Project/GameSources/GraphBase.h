@@ -98,6 +98,7 @@ namespace basecross {
 		void AddNode(const EnumType type, const std::shared_ptr<NodeType>& node) {
 			if (IsEmpty()) {
 				m_nowNodeType = type;
+				node->OnStart();
 			}
 
 			m_nodes[type] = node;
