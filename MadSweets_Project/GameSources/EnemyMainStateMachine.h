@@ -18,13 +18,12 @@ namespace basecross {
 
 	/// <summary>
 	/// EnemyStateMachine用のテンプレートクラス。
-	/// ノードはStateMachineを継承した物を扱うこと
 	/// </summary>
 	/// <typeparam name="NodeType">使用するノード</typeparam>
 	/// <typeparam name="EnumType">使用する列挙体</typeparam>
 	/// <typeparam name="TransitionStructMember">遷移条件用の構造体メンバー</typeparam>
 	template<class node_type, class EnumType, class TransitionStructMember>
-	class EnemyMainStateMachine : public Component
+	class EnemyMainStateMachine
 	{
 	public:
 		//外部からEnumを使う時用にEnumTypeをpublicにする。
@@ -62,8 +61,8 @@ namespace basecross {
 		}
 
 	public:
-		EnemyMainStateMachine(const std::shared_ptr<GameObject>& objPtr) 
-			:Component(objPtr),m_graph(std::make_shared<GraphType>())
+		EnemyMainStateMachine() 
+			:m_graph(std::make_shared<GraphType>())
 		{}
 
 		//現在使っているノードのタイプ
@@ -162,9 +161,7 @@ namespace basecross {
 			m_changeOnceFuncs[changeType] = func;
 		}
 
-		void OnCreate() override {}
-
-		void OnUpdate() override {
+		void OnUpdate() {
 			if (IsEmpty()) {
 				return;
 			}
