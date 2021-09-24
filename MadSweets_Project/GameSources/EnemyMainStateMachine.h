@@ -23,7 +23,7 @@ namespace basecross {
 	/// <typeparam name="NodeType">使用するノード</typeparam>
 	/// <typeparam name="EnumType">使用する列挙体</typeparam>
 	/// <typeparam name="TransitionStructMember">遷移条件用の構造体メンバー</typeparam>
-	template<class NodeType, class EnumType, class TransitionStructMember>
+	template<class node_type, class EnumType, class TransitionStructMember>
 	class EnemyMainStateMachine : public Component
 	{
 	public:
@@ -33,8 +33,9 @@ namespace basecross {
 
 	private:
 		//usingディレクティブ
-		using GraphType = GraphBase<NodeType, EnumType, TransitionStructMember>;
+		using GraphType = GraphBase<node_type, EnumType, TransitionStructMember>;
 
+		using NodeType = NodeBase<node_type>;
 		using NodeMap = std::map<EnumType, NodeType>;
 		using EdgeVector = std::vector<std::shared_ptr<EdgeType>>;
 		using EdgeVectorMap = std::map<EnumType, EdgeVector>;
@@ -169,8 +170,24 @@ namespace basecross {
 			}
 
 			//ノードのUpdate
+			NodeUpdate();
 
 			//エッジの切替判断
+			TransitionCheck();
+
+			//トリガーのリセット
+			TriggerReset();
+		}
+
+		void NodeUpdate() {
+			auto node = m_graph->GetNowNode();
+			node->OnUpdate();
+		}
+
+		/// <summary>
+		/// 遷移チェック
+		/// </summary>
+		void TransitionCheck() {
 			auto edges = m_graph->GetNowNodeEdges();
 			for (auto& edge : edges) {
 				if (edge->IsTransition(m_transitionStruct)) {
@@ -178,9 +195,18 @@ namespace basecross {
 					break;
 				}
 			}
+		}
 
-			//トリガーのリセット
-
+		/// <summary>
+		/// トリガーのリセット
+		/// </summary>
+		void TriggerReset() {
+			EdgeVectorMap edgesMap = m_graph->GetEdgesMap();
+			for (std::pair<EnumType, EdgeVector> edgePair : edgesMap) {
+				for (auto& edge : edgePair.second) {
+					edge->IsTransition(m_transitionStruct);
+				}
+			}
 		}
 	};
 
