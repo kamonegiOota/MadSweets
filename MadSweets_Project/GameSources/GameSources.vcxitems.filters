@@ -757,6 +757,9 @@
     <Filter Include="Maru\StateMachine\Test">
       <UniqueIdentifier>{d05c5de4-797f-4428-998b-d9f6ad31325e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\CaraObject\CaraComp\CaraStator">
+      <UniqueIdentifier>{08105c35-1fe7-440f-8602-b3a78c6eddfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1377,6 +1380,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyStateNodeBase.h">
       <Filter>Maru\StateMachine\Graph\NodeBase</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StatorBase.h">
+      <Filter>Maru\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h">
+      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1918,6 +1927,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp">
       <Filter>Maru\StateMachine\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp">
+      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
