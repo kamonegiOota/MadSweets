@@ -8,16 +8,92 @@
 #include "Project.h"
 
 #include "StatorBase.h"
+#include "Trigger.h"
+#include "BaseEnemy.h"
+#include "EnemyMainStateMachine.h"
 #include "CaraStator.h"
+
+#include "EnState_Attack.h"
+#include "EnState_Plowling.h"
+#include "EnState_TargetChase.h"
+#include "EnState_ProbeTarget.h"
+#include "EnState_LoseTarget.h"
 
 namespace basecross {
 
-	void CaraStator::OnCreate() {
+	using StateType = CaraStateType;
+	using TransitionMember = CaraStateTransitionMember;
 
+	//‘JˆÚðŒ-------------------------------------------------------------
+
+	bool ToAttackTrigger(const TransitionMember& member) {
+		return member.attackTrigger.Get();
+	}
+
+	bool ToChaseTrigger(const TransitionMember& member) {
+		return member.chaseTrigger.Get();
+	}
+
+	bool ToProbeTrigger(const TransitionMember& member) {
+		return member.probeTrigger.Get();
+	}
+
+	bool ToLoseTrigger(const TransitionMember& member) {
+		return member.loseTrigger.Get();
+	}
+
+	bool ToPlowlingTrigger(const TransitionMember& member) {
+		return member.plowlingTrigger.Get();
+	}
+
+	//ƒm[ƒgAƒGƒbƒW’Ç‰Á----------------------------------------------------------------------------------
+
+	void CaraStator::CreateNodes() {
+		auto& state = m_stateMachine;
+		auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
+
+		state->AddNode(StateType::Plowling, make_shared<EnState_Plowling>(enemy));
+		state->AddNode(StateType::Chase,    make_shared<EnState_TargetChase>(enemy, nullptr));
+		state->AddNode(StateType::Probe,    make_shared<EnState_ProbTarget>(enemy, nullptr));
+		state->AddNode(StateType::Lose,     make_shared<EnState_LoseTarget>(enemy));
+		state->AddNode(StateType::Attack  , make_shared<EnState_Attack>(enemy, nullptr));
+	}
+
+	void CaraStator::CreateEdges() {
+		auto& state = m_stateMachine;
+
+		//’Tõs“®Žž
+		state->AddEdge(StateType::Plowling, StateType::Attack, &ToAttackTrigger);
+		state->AddEdge(StateType::Plowling, StateType::Chase,  &ToChaseTrigger);
+		//state->AddEdge(StateType::Plowling, StateType::TargetChase,    [](const TransitionMember& member) { return member.chaseTrigger.Get(); } );
+
+		//UŒ‚Žž
+		state->AddEdge(StateType::Attack, StateType::Chase,    &ToChaseTrigger);
+															   
+		//ƒ^[ƒQƒbƒg’Ç]									    
+		state->AddEdge(StateType::Chase, StateType::Attack,    &ToAttackTrigger);
+		state->AddEdge(StateType::Chase, StateType::Probe,	   &ToProbeTrigger);
+															   
+		//ƒ^[ƒQƒbƒg‘{õŽž									   
+		state->AddEdge(StateType::Probe, StateType::Chase,	   &ToChaseTrigger);
+		state->AddEdge(StateType::Probe, StateType::Lose,	   &ToLoseTrigger);
+		state->AddEdge(StateType::Probe, StateType::Attack,    &ToAttackTrigger);
+															   
+		//ƒ^[ƒQƒbƒg‘rŽ¸Žž									   
+		state->AddEdge(StateType::Lose,  StateType::Chase,     &ToChaseTrigger);
+		state->AddEdge(StateType::Lose,  StateType::Attack,    &ToAttackTrigger);
+		state->AddEdge(StateType::Lose,  StateType::Plowling,  &ToPlowlingTrigger);
+	}
+	
+	void CaraStator::OnStart() {
+		m_stateMachine = std::make_shared<CaraStateMachine>();
+
+		CreateNodes();
+		CreateEdges();
 	}
 
 	void CaraStator::OnUpdate() {
-
+		m_stateMachine->OnUpdate();
 	}
 
 }
