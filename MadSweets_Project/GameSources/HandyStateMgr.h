@@ -29,9 +29,9 @@ namespace basecross {
 	enum class HandyStateType {
 		Plowling,
 		Attack,
-		TargetChase,
-		TargetProbe,
-		TargetLose,
+		Chase,
+		Probe,
+		Lose,
 	};
 
 	class HandyStateMgr : public Component
@@ -40,6 +40,7 @@ namespace basecross {
 		using HandyStateMachine = EnemyMainStateMachine<BaseEnemy, HandyStateType, HandyStateTransitionMember>;
 
 	private:
+		std::shared_ptr<HandyStateMachine> m_stateMachine;
 
 		void AddNodes(const std::shared_ptr<HandyStateMachine>& state);
 		void AddEdges(const std::shared_ptr<HandyStateMachine>& state);
@@ -58,7 +59,7 @@ namespace basecross {
 		//アクセッサ------------------------------------------------------------------------------
 
 		std::shared_ptr<HandyStateMachine> GetStateMachine() const {
-			return GetGameObject()->GetComponent<HandyStateMachine>();
+			return m_stateMachine;
 		}
 	};
 
