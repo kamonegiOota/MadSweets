@@ -33,6 +33,11 @@
 
 #include "TactileObject.h"
 
+#include "StatorBase.h"
+#include "Trigger.h"
+#include "BaseEnemy.h"
+#include "EnemyMainStateMachine.h"
+#include "CaraStator.h"
 
 // ”Â‹´@’Ç‰Á•ª --------------------
 
@@ -114,8 +119,9 @@ namespace basecross {
 		AddComponent<ChaseAstarMove>();
 		AddComponent<EnemyEar>();   //¨
 		AddComponent<CheckTargetPos>();
-
 		AddComponent<Cara_Attack>();
+
+		AddComponent<CaraStator>();
 
 		//–{‘Ì‚ÍÅŒã‚É‚·‚éB
 		AddComponent<ChaseEnemy>();
