@@ -11,7 +11,7 @@
 
 namespace basecross {
 
-	class EnState_TargetChase : public maru::StateMachine<BaseEnemy>
+	class EnState_TargetChase : public EnemyStateNodeBase<BaseEnemy>
 	{
 		std::shared_ptr<GameObject> m_target;
 
@@ -20,7 +20,7 @@ namespace basecross {
 		EnState_TargetChase(const std::shared_ptr<BaseEnemy>& owner,
 			const std::shared_ptr<GameObject>& target
 		) :
-			maru::StateMachine<BaseEnemy>(owner),
+			EnemyStateNodeBase<BaseEnemy>(owner),
 			m_target(target)
 		{}
 		

@@ -14,12 +14,12 @@ namespace basecross {
 	/// <summary>
 	/// エネミーが徘徊するときのステート
 	/// </summary>
-	class EnState_Plowling : public maru::StateMachine<BaseEnemy>
+	class EnState_Plowling : public EnemyStateNodeBase<BaseEnemy>
 	{
 
 	public:
 		EnState_Plowling(const std::shared_ptr<BaseEnemy>& objPtr)
-			:maru::StateMachine<BaseEnemy>(objPtr)
+			:EnemyStateNodeBase<BaseEnemy>(objPtr)
 		{}
 
 		void OnStart() override;

@@ -8,13 +8,14 @@
 
 #include "StateMachine.h"
 #include "BaseEnemy.h"
+#include "EnemyStateNodeBase.h"
 
 namespace basecross {
 
 	/// <summary>
 	/// 逃げている状態のステート
 	/// </summary>
-	class EnState_EscapeMove : public maru::StateMachine<BaseEnemy>
+	class EnState_EscapeMove : public EnemyStateNodeBase<BaseEnemy>
 	{
 		std::shared_ptr<GameObject> m_target;
 
@@ -22,7 +23,7 @@ namespace basecross {
 		EnState_EscapeMove(const std::shared_ptr<BaseEnemy>& objPtr,
 			const std::shared_ptr<GameObject>& target
 		) :
-			maru::StateMachine<BaseEnemy>(objPtr),
+			EnemyStateNodeBase<BaseEnemy>(objPtr),
 			m_target(target)
 		{}
 

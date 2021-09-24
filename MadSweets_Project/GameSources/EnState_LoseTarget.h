@@ -13,13 +13,13 @@
 
 namespace basecross {
 
-	class EnState_LoseTarget : public maru::StateMachine<BaseEnemy>
+	class EnState_LoseTarget : public EnemyStateNodeBase<BaseEnemy>
 	{
 
 	public:
 
 		EnState_LoseTarget(const std::shared_ptr<BaseEnemy>& owner)
-			:maru::StateMachine<BaseEnemy>(owner)
+			:EnemyStateNodeBase<BaseEnemy>(owner)
 		{}
 
 		void OnStart() override;

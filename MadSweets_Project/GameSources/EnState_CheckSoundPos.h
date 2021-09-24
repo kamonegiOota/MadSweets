@@ -8,10 +8,11 @@
 
 #include "StateMachine.h"
 #include "BaseEnemy.h"
+#include "EnemyStateNodeBase.h"
 
 namespace basecross {
 
-	class EnState_CheckSoundPos : public maru::StateMachine<BaseEnemy>
+	class EnState_CheckSoundPos : public EnemyStateNodeBase<BaseEnemy>
 	{
 		Vec3 m_targetPos;
 
@@ -20,7 +21,7 @@ namespace basecross {
 		EnState_CheckSoundPos(const std::shared_ptr<BaseEnemy>& owner,
 			const Vec3& targetPos
 		) :
-			maru::StateMachine<BaseEnemy>(owner),
+			EnemyStateNodeBase<BaseEnemy>(owner),
 			m_targetPos(targetPos)
 		{}
 

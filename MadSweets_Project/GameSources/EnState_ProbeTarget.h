@@ -12,7 +12,7 @@
 namespace basecross {
 
 	//ターゲットの捜索ステート
-	class EnState_ProbTarget : public maru::StateMachine<BaseEnemy>
+	class EnState_ProbTarget : public EnemyStateNodeBase<BaseEnemy>
 	{
 		std::shared_ptr<GameObject> m_target;
 
@@ -21,7 +21,7 @@ namespace basecross {
 		EnState_ProbTarget(const std::shared_ptr<BaseEnemy>& owner,
 			const std::shared_ptr<GameObject>& target
 		) :
-			maru::StateMachine<BaseEnemy>(owner),
+			EnemyStateNodeBase<BaseEnemy>(owner),
 			m_target(target)
 		{}
 

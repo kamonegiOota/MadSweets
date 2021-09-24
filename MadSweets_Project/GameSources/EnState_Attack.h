@@ -8,10 +8,11 @@
 
 #include "StateMachine.h"
 #include "BaseEnemy.h"
+#include "EnemyStateNodeBase.h"
 
 namespace basecross {
 
-	class EnState_Attack : public maru::StateMachine<BaseEnemy>
+	class EnState_Attack : public EnemyStateNodeBase<BaseEnemy>
 	{
 		std::shared_ptr<GameObject> m_target;
 
@@ -20,7 +21,7 @@ namespace basecross {
 		EnState_Attack(const std::shared_ptr<BaseEnemy>& owner,
 			const std::shared_ptr<GameObject>& target
 		) :
-			maru::StateMachine<BaseEnemy>(owner),
+			EnemyStateNodeBase<BaseEnemy>(owner),
 			m_target(target)
 		{}
 
