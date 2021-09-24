@@ -20,13 +20,14 @@ namespace basecross {
 	/// <typeparam name="NodeType">使用するノード</typeparam>
 	/// <typeparam name="EnumType">使用する列挙体</typeparam>
 	/// <typeparam name="TransitionStructMember">遷移条件用の構造体メンバー</typeparam>
-	template<class NodeType, class EnumType, class TransitionStructMember>
+	template<class node_type, class EnumType, class TransitionStructMember>
 	class GraphBase
 	{
 	public:
 		//usingディレクティブ
 		using EdgeType = EdgeBase<EnumType, TransitionStructMember>;
 
+		using NodeType = NodeBase<node_type>;
 		using NodeMap = std::map<EnumType, std::shared_ptr<NodeType>>;
 		using EdgeVector = std::vector<std::shared_ptr<EdgeType>>;
 		using EdgeVectorMap = std::map<EnumType, EdgeVector>;
@@ -87,6 +88,10 @@ namespace basecross {
 
 		EdgeVector GetNowNodeEdges() const {
 			return m_edgesMap.at(m_nowNodeType);
+		}
+
+		EdgeVectorMap GetEdgesMap() {
+			return m_edgesMap;
 		}
 
 		//ノードの追加
