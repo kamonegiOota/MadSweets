@@ -28,6 +28,7 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//インターフェースの実装
+
 		void ChangeEscapeState(const std::shared_ptr<GameObject>& target) override;
 		void SuccessEscape() override;
 
