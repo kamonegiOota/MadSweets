@@ -760,6 +760,9 @@
     <Filter Include="Maru\Enemy\Object\CaraObject\CaraComp\CaraStator">
       <UniqueIdentifier>{08105c35-1fe7-440f-8602-b3a78c6eddfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator">
+      <UniqueIdentifier>{20ca5243-4d98-4272-9c85-2b6130630ff5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1386,6 +1389,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h">
       <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.h">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1930,6 +1936,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp">
       <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.cpp">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
