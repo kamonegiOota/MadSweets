@@ -18,6 +18,7 @@
 #include "EnState_TargetChase.h"
 #include "EnState_ProbeTarget.h"
 #include "EnState_LoseTarget.h"
+#include "EnState_CheckSoundPos.h"
 
 namespace basecross {
 
@@ -61,6 +62,7 @@ namespace basecross {
 		state->AddNode(StateType::Probe,    make_shared<EnState_ProbTarget>(enemy, nullptr));
 		state->AddNode(StateType::Lose,     make_shared<EnState_LoseTarget>(enemy));
 		state->AddNode(StateType::Attack  , make_shared<EnState_Attack>(enemy, nullptr));
+		state->AddNode(StateType::SoundCheck, make_shared<EnState_CheckSoundPos>(enemy, Vec3(0.0f)));
 	}
 
 	void CaraStator::CreateEdges() {
