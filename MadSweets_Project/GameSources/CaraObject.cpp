@@ -39,7 +39,14 @@
 #include "EnemyMainStateMachine.h"
 #include "CaraStator.h"
 
-#include "ChaseEnemyStator.h"
+#include "I_Chase.h"
+#include "I_Chase.h"
+#include "I_Probe.h"
+#include "I_Ear.h"
+#include "I_ReturnPlowling.h"
+#include "CaraManager.h"
+
+#include "PlayerObject.h"
 
 // î¬ã¥Å@í«â¡ï™ --------------------
 
@@ -112,7 +119,8 @@ namespace basecross {
 		AddComponent<CaraAnimatorCtrl>(draw);
 
 		//AddComponent<AstarCtrl>();
-		AddComponent<TargetChase>();
+		float chaseMaxSpeed = 10.0f;
+		AddComponent<TargetChase>(chaseMaxSpeed);
 		AddComponent<TargetProbe>();
 		AddComponent<EyeSearchRange>();
 		AddComponent<ReturnPlowlingPosition>();
@@ -122,8 +130,10 @@ namespace basecross {
 		AddComponent<EnemyEar>();   //é®
 		AddComponent<CheckTargetPos>();
 		AddComponent<Cara_Attack>();
+		AddComponent<CaraManager>();
 
-		//AddComponent<ChaseEnemyStator>();
+		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
+		AddComponent<TargetMgr>(player);
 		AddComponent<CaraStator>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
