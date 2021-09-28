@@ -1,6 +1,6 @@
 /*!
-@file ReturnPlowlingPosition.h
-@brief ReturnPlowlingPosition
+@file ChaseAstarMove.h
+@brief ChaseAstarMove
 担当者：丸山 裕喜
 */
 
@@ -36,18 +36,38 @@ namespace basecross {
 		/// <returns>ターゲットの近くならtrue</returns>
 		bool IsRouteEnd();
 
+		/// <summary>
+		/// ターゲットに向かって障害物があるか判断する。
+		/// </summary>
+		/// <param name="target">ターゲット</param>
+		/// <returns>障害物があるならtrue</returns>
+		bool IsRayObstacle(const std::shared_ptr<GameObject>& target);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="targetPosition"></param>
+		/// <param name="excluteObjs"></param>
+		/// <returns></returns>
+		bool IsRayObstacle(const Vec3& targetPosition, vector<shared_ptr<GameObject>>& excluteObjs = vector<shared_ptr<GameObject>>());
+
 		void Rotation(const Vec3& moveVec);
 
 		/// <summary>
 		/// ルートの検索
 		/// </summary>
 		/// <param name="target">検索する対象</param>
-		void CalucRoute(const std::shared_ptr<GameObject>& target);
+		void CalcuRoute(const std::shared_ptr<GameObject>& target);
 		/// <summary>
 		/// 二回目以降にターゲットの場所を調べる処理
 		/// </summary>
 		/// <param name="target">ターゲット</param>
-		void CalucNextRoute(const std::shared_ptr<GameObject>& target);
+		void CalcuNextRoute(const std::shared_ptr<GameObject>& target);
+		/// <summary>
+		/// 移動の力を計算して返す
+		/// </summary>
+		/// <param name="target">追いかける対象</param>
+		/// <returns>移動の力</returns>
+		Vec3 CalcuMoveForce(const std::shared_ptr<GameObject>& target);
 
 	public:
 

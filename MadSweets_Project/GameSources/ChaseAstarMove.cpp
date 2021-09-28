@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMoveなど実体
+@file ChaseAstarMove.cpp
+@brief ChaseAstarMoveなど実体
 */
 
 #include "stdafx.h"
@@ -34,6 +34,26 @@ namespace basecross {
 		return false;
 	}
 
+	bool ChaseAstarMove::IsRayObstacle(const std::shared_ptr<GameObject>& target) {
+		vector<shared_ptr<GameObject>> excluteObjs;
+		excluteObjs.push_back(target);
+		return IsRayObstacle(target->GetComponent<Transform>()->GetPosition());
+	}
+
+	bool ChaseAstarMove::IsRayObstacle(const Vec3& targetPosition, vector<shared_ptr<GameObject>>& excluteObjs) {
+		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
+		excluteObjs.push_back(GetGameObject());
+		excluteObjs.push_back(m_target.GetShard());
+
+		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
+		if (MyUtility::IsRayObstacle(selfPosition, targetPosition, excluteObjs)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	void ChaseAstarMove::Rotation(const Vec3& moveVec) {
 		auto rotCtrl = GetGameObject()->GetComponent<EnemyRotationCtrl>(false);
 		if (rotCtrl) {
@@ -41,7 +61,7 @@ namespace basecross {
 		}
 	}
 
-	void ChaseAstarMove::CalucRoute(const std::shared_ptr<GameObject>& target) {
+	void ChaseAstarMove::CalcuRoute(const std::shared_ptr<GameObject>& target) {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			//目的のポジションを取得
@@ -49,12 +69,24 @@ namespace basecross {
 		}
 	}
 
-	void ChaseAstarMove::CalucNextRoute(const std::shared_ptr<GameObject>& target) {
+	void ChaseAstarMove::CalcuNextRoute(const std::shared_ptr<GameObject>& target) {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			auto node = astar->CalucMyNodeToTargetNearNode(target);
 			m_targetPosition = node->GetPosition();
 		}
+	}
+
+	Vec3 ChaseAstarMove::CalcuMoveForce(const std::shared_ptr<GameObject>& target) {
+		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
+		auto moveVec = m_targetPosition - selfPosition;
+
+		//スピードの加算
+		auto velocityComp = GetGameObject()->GetComponent<Velocity>(false);
+		auto velocity = velocityComp->GetVelocity();
+		auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, GetVelocityMaxSpeed(), GetArriveNearRange());
+
+		return force;
 	}
 
 	void ChaseAstarMove::OnStart() {
@@ -64,17 +96,13 @@ namespace basecross {
 	}
 
 	void ChaseAstarMove::Move() {
-		auto selfPosition = GetGameObject()->GetComponent<Transform>()->GetPosition();
-		auto moveVec = m_targetPosition - selfPosition;
-
 		//スピードの加算
 		auto velocityComp = GetGameObject()->GetComponent<Velocity>(false);
 		if (velocityComp) {
-			auto velocity = velocityComp->GetVelocity();
-			auto force = UtilVelocity::CalucNearArriveFarSeek(velocity, moveVec, GetVelocityMaxSpeed(), GetArriveNearRange());
-			velocityComp->SetForce(force);
+			auto force = CalcuMoveForce(m_target.GetShard());
+			velocityComp->AddForce(force);
 
-			Rotation(velocity);
+			Rotation(velocityComp->GetVelocity());
 		}
 
 		if (IsRouteEnd()) {
@@ -83,7 +111,7 @@ namespace basecross {
 	}
 
 	void ChaseAstarMove::LostTarget(const std::shared_ptr<GameObject>& target) {
-		CalucRoute(target);
+		CalcuRoute(target);
 		//見失った場所の記録
 		m_target = target;
 		m_isProbeEnd = false;
@@ -93,17 +121,14 @@ namespace basecross {
 	void ChaseAstarMove::NextRoute() {
 		//ターゲットが視界の範囲にいるかどうか
 		const auto& target = m_target.GetShard();
-		vector<shared_ptr<GameObject>> excluteObjs;
-		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
-		excluteObjs.push_back(target);
 
-		if (!MyUtility::IsRayObstacle(GetGameObject(), target, excluteObjs)) {
+		if (!IsRayObstacle(target)) {
 			//視界内にいるなら
 			m_targetPosition = target->GetComponent<Transform>()->GetPosition();
 			ResetNumLostChaseElapsed();
 		}
 		else {  //視界の外にいたら
-			CalucNextRoute(target);
+			CalcuNextRoute(target);
 
 			m_numLostChaseElapsed--;
 			if (m_numLostChaseElapsed < 0) {
