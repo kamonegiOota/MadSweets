@@ -119,7 +119,7 @@ namespace basecross {
 		AddComponent<CaraAnimatorCtrl>(draw);
 
 		//AddComponent<AstarCtrl>();
-		float chaseMaxSpeed = 10.0f;
+		float chaseMaxSpeed = 5.0f;
 		AddComponent<TargetChase>(chaseMaxSpeed);
 		AddComponent<TargetProbe>();
 		AddComponent<EyeSearchRange>();
