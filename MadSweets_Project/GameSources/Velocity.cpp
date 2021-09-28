@@ -73,6 +73,8 @@ namespace basecross {
 		auto pos = transform->GetPosition();
 		pos += m_velocity * delta;
 		transform->SetPosition(pos);
+
+		m_force = Vec3(0.0f);
 	}
 
 	void Velocity::OnUpdate() {
