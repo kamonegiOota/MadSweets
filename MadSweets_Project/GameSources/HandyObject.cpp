@@ -33,7 +33,15 @@
 #include "TactileObject.h"
 #include "HandyStateMgr.h"
 #include "TargetMgr.h"
+#include "ChaseEnemyStator.h"
 
+#include "I_Chase.h"
+#include "I_Probe.h"
+#include "I_Ear.h"
+#include "I_ReturnPlowling.h"
+#include "HandyManager.h"
+#include "MyUtility.h"
+#include "PlayerObject.h"
 
 // 板橋　追加分 --------------------
 
@@ -114,7 +122,9 @@ namespace basecross {
 		//AddComponent<AstarCtrl>();
 		AddComponent<TargetChase>();
 		AddComponent<TargetProbe>();
-		AddComponent<EyeSearchRange>();
+		auto eye = AddComponent<EyeSearchRange>();
+		eye->SetEyeDegree(40.0f);
+		
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
@@ -127,10 +137,13 @@ namespace basecross {
 
 		//新規ステートマシン用の追記分
 		AddComponent<HandyStateMgr>();
-		AddComponent<TargetMgr>();
+		//AddComponent<ChaseEnemyStator>();
+		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
+		AddComponent<TargetMgr>(player);
 
 		//本体は最後にする。
-		AddComponent<ChaseEnemy>();
+		//AddComponent<ChaseEnemy>();
+		AddComponent<HandyManager>();
 
 		auto col = AddComponent<CollisionObb>();
 

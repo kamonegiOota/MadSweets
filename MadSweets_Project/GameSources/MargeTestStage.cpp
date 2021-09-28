@@ -294,7 +294,7 @@ namespace basecross {
 			else {
 				enemy->GetGameObject()->SetUpdateActive(false);
 				enemy->GetGameObject()->SetDrawActive(false);
-				enemy->ChangeStateMachine<EnState_Plowling>();
+				//enemy->ChangeStateMachine<EnState_Plowling>();
 			}
 		}
 		

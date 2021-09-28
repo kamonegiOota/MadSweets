@@ -16,6 +16,8 @@
 #include "StateMachine.h"
 #include "BaseEnemy.h"
 
+#include "StatorBase.h"
+
 namespace basecross {
 
 	struct HandyStateTransitionMember {
@@ -24,6 +26,7 @@ namespace basecross {
 		Trigger probeTrigger;
 		Trigger loseTrigger;
 		Trigger plowlingTrigger;
+		Trigger soundCheckTrigger;
 	};
 
 	enum class HandyStateType {
@@ -32,9 +35,10 @@ namespace basecross {
 		Chase,
 		Probe,
 		Lose,
+		SoundCheck,
 	};
 
-	class HandyStateMgr : public Component
+	class HandyStateMgr : public StatorBase
 	{
 	public:
 		using HandyStateMachine = EnemyMainStateMachine<BaseEnemy, HandyStateType, HandyStateTransitionMember>;
@@ -48,7 +52,7 @@ namespace basecross {
 	public:
 
 		HandyStateMgr(std::shared_ptr<GameObject>& objPtr)
-			:Component(objPtr)
+			:StatorBase(objPtr)
 		{}
 
 		void OnCreate() {}
@@ -60,6 +64,14 @@ namespace basecross {
 
 		std::shared_ptr<HandyStateMachine> GetStateMachine() const {
 			return m_stateMachine;
+		}
+
+		HandyStateTransitionMember& GetTransitionMember() const {
+			return m_stateMachine->GetTransitionStructMember();
+		}
+
+		HandyStateType GetStateType() const {
+			return m_stateMachine->GetNowType();
 		}
 	};
 

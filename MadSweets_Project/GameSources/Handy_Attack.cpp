@@ -26,6 +26,9 @@
 
 #include "DebugObject.h"
 
+#include "ChaseEnemyStator.h"
+#include "HandyStateMgr.h"
+
 namespace basecross {
 
 	Handy_Attack::Handy_Attack(const std::shared_ptr<GameObject>& objPtr)
@@ -74,18 +77,31 @@ namespace basecross {
 		//	state->GetTransitionStructMember().attackTrigger.Fire();
 		//}
 
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_Attack>(m_target);
+		//ステートマシン変更時
+		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		if (stator) {
+			stator->GetTransitionMember().attackTrigger.Fire();
 		}
+
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy) {
+		//	enemy->ChangeStateMachine<EnState_Attack>(m_target);
+		//}
 	}
 
 	void Handy_Attack::ChangeEndState() {
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
+		//ステートマシン変更時
+		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		if (stator) {
+			stator->GetTransitionMember().chaseTrigger.Fire();
 			SetUpdateActive(false);
 		}
+
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy) {
+		//	enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
+		//	SetUpdateActive(false);
+		//}
 	}
 
 	void Handy_Attack::ChangeAttackAnimation() {
@@ -102,10 +118,20 @@ namespace basecross {
 
 	void Handy_Attack::Attack(const std::shared_ptr<GameObject>& target) {
 		//攻撃状態なら遷移をしない
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy->IsEqualStateType<EnState_Attack>()) {
-			return;
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy->IsEqualStateType<EnState_Attack>()) {
+		//	return;
+		//}
+
+		//攻撃状態なら遷移をしない
+		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		if (stator) {
+			if (stator->GetStateType() == HandyStateType::Attack) {
+				//DebugObject::AddString(L"Attack");
+				return;
+			}
 		}
+
 		SetTarget(target);
 
 		if (IsAttackRange()) {

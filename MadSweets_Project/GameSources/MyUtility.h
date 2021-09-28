@@ -143,6 +143,14 @@ namespace basecross {
 			static shared_ptr<T> GetGameObject() {
 				auto stage = GetStage();
 
+				return GetGameObject<T>(stage);
+			}
+
+			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
+			//最初に取得できたものだけ返す。
+			template<class T,
+				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
+			static shared_ptr<T> GetGameObject(const std::shared_ptr<Stage>& stage) {
 				auto objs = stage->GetGameObjectVec();
 				for (auto& obj : objs) {
 					auto t = dynamic_pointer_cast<T>(obj);
@@ -161,6 +169,14 @@ namespace basecross {
 			static vector<shared_ptr<T>> GetGameObjects() {
 				auto stage = GetStage();
 
+				return GetGameObjects<T>(stage);
+			}
+
+			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
+			//ベクター配列として見つけたもの全て返す。
+			template<class T,
+				enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
+			static vector<shared_ptr<T>> GetGameObjects(const std::shared_ptr<Stage>& stage) {
 				vector<shared_ptr<T>> returnObjs;
 
 				auto objs = stage->GetGameObjectVec();

@@ -19,6 +19,7 @@
 #include "EnState_TargetChase.h"
 #include "EnState_ProbeTarget.h"
 #include "EnState_LoseTarget.h"
+#include "EnState_CheckSoundPos.h"
 
 #include "MyUtility.h"
 #include "PlayerObject.h"
@@ -54,6 +55,10 @@ namespace basecross {
 		return member.plowlingTrigger.Get();
 	}
 
+	bool ToSoundCheckTrigger(const TransitionMember& member) {
+		return member.soundCheckTrigger.Get();
+	}
+
 	//ノート、エッジ追加----------------------------------------------------------------------------------
 
 	void HandyStateMgr::AddNodes(const std::shared_ptr<HandyStateMachine>& state) {
@@ -64,12 +69,14 @@ namespace basecross {
 		state->AddNode(StateType::Probe,	   make_shared<EnState_ProbTarget>(object, nullptr));
 		state->AddNode(StateType::Lose,		   make_shared<EnState_LoseTarget>(object));
 		state->AddNode(StateType::Attack,      make_shared<EnState_Attack>(object, nullptr));
+		state->AddNode(StateType::SoundCheck,  make_shared<EnState_CheckSoundPos>(object ,Vec3(0.0f)));
 	}
 
 	void HandyStateMgr::AddEdges(const std::shared_ptr<HandyStateMachine>& state) {
 		//探索行動時
-		state->AddEdge(StateType::Plowling, StateType::Attack,   &ToAttackTrigger);
-		state->AddEdge(StateType::Plowling, StateType::Chase,    &ToChaseTrigger);
+		state->AddEdge(StateType::Plowling, StateType::Attack,     &ToAttackTrigger);
+		state->AddEdge(StateType::Plowling, StateType::Chase,      &ToChaseTrigger);
+		state->AddEdge(StateType::Plowling, StateType::SoundCheck, &ToSoundCheckTrigger);
 		//state->AddEdge(StateType::Plowling, StateType::TargetChase,    [](const TransitionMember& member) { return member.chaseTrigger.Get(); } );
 
 		//攻撃時
@@ -88,6 +95,10 @@ namespace basecross {
 		state->AddEdge(StateType::Lose,  StateType::Chase,		 &ToChaseTrigger);
 		state->AddEdge(StateType::Lose,  StateType::Attack,      &ToAttackTrigger);
 		state->AddEdge(StateType::Lose,  StateType::Plowling,    &ToPlowlingTrigger);
+
+		//音の確認状態
+		state->AddEdge(StateType::SoundCheck, StateType::Lose,   &ToLoseTrigger);
+		state->AddEdge(StateType::SoundCheck, StateType::Chase,  &ToChaseTrigger);
 	}
 
 	//Start,Update-------------------------------------------------------------------------
@@ -101,17 +112,6 @@ namespace basecross {
 	}
 
 	void HandyStateMgr::OnUpdate() {
-		//auto stateMachine = GetGameObject()->GetComponent<HandyStateMachine>(false);
-		//if (stateMachine) {
-		//	if (stateMachine->IsEmpty()) {
-		//		return;
-		//	}
-		//	
-		//	auto node = stateMachine->GetNowNode();
-		//	if (node) {
-		//		node->OnUpdate();
-		//	}
-		//}
 
 		m_stateMachine->OnUpdate();
 
