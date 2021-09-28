@@ -43,11 +43,11 @@ namespace basecross {
 		/// <returns>障害物があるならtrue</returns>
 		bool IsRayObstacle(const std::shared_ptr<GameObject>& target);
 		/// <summary>
-		/// 
+		/// ターゲットに向かって障害物があるか判断する。
 		/// </summary>
-		/// <param name="targetPosition"></param>
-		/// <param name="excluteObjs"></param>
-		/// <returns></returns>
+		/// <param name="targetPosition">ターゲットのポジション</param>
+		/// <param name="excluteObjs">障害物から省く対象</param>
+		/// <returns>障害物があるならtrue</returns>
 		bool IsRayObstacle(const Vec3& targetPosition, vector<shared_ptr<GameObject>>& excluteObjs = vector<shared_ptr<GameObject>>());
 
 		void Rotation(const Vec3& moveVec);
