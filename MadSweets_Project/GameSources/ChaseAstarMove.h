@@ -18,7 +18,7 @@ namespace basecross {
 	{
 		bool m_isProbeEnd = false;
 
-		int m_numLostChase = 1;  //LostMoveをする回数
+		int m_numLostChase = 3;  //LostMoveをする回数
 		int m_numLostChaseElapsed = m_numLostChase;
 		float m_targetNearRange = 1.5f;  //ターゲットの場所に近いと判断される長さ
 
