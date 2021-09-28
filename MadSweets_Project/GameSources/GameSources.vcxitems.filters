@@ -475,9 +475,6 @@
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
       <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\HandyObject">
-      <UniqueIdentifier>{63477525-db0b-41c9-9f0c-34ffef8087bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Itabashi\Components\ParticleSystem">
       <UniqueIdentifier>{216afc2d-1770-4986-b046-19df7f429e04}</UniqueIdentifier>
     </Filter>
@@ -568,9 +565,6 @@
     <Filter Include="Maru\Object\StageObject\LoadStageTriggerObject">
       <UniqueIdentifier>{1ec38193-0b06-4c8b-941f-bf36173d69e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\CaraObject">
-      <UniqueIdentifier>{afb1f578-952f-4721-b759-e71ef8d5fb3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object\TestEnemy">
       <UniqueIdentifier>{98dd4702-61bb-4f40-b805-67f0f3ff6a50}</UniqueIdentifier>
     </Filter>
@@ -583,12 +577,6 @@
     <Filter Include="Maru\Enemy\Object\TestEnemy\MTestEnemyObject">
       <UniqueIdentifier>{234102e7-b5d5-4c6e-9457-2768e8495afb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\HandyObject\HandyComp">
-      <UniqueIdentifier>{aa3d501d-2f63-4e8b-902d-eaa59a2a6d5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Object\HandyObject\HandyComp\HandyAnimator">
-      <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Component\Enemy\EnemyType">
       <UniqueIdentifier>{96a6c5a0-c6ba-4bc6-9cc8-8c8118a05b56}</UniqueIdentifier>
     </Filter>
@@ -600,12 +588,6 @@
     </Filter>
     <Filter Include="Maru\Enemy\Component\Enemy\EnemyType\EscapeEnemy">
       <UniqueIdentifier>{5b40025a-023b-40b2-a51a-b0f29012e380}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Object\CaraObject\CaraComp">
-      <UniqueIdentifier>{b7900242-fe3b-4ea1-9a72-f2d7d27d867f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Object\CaraObject\CaraComp\CaraAnimatorCtrl">
-      <UniqueIdentifier>{118a310b-55d9-4068-962c-89414a05f421}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\Component\Attack\CaraAttack">
       <UniqueIdentifier>{bfceaa72-3306-41b0-ade8-4eba48f9218f}</UniqueIdentifier>
@@ -736,9 +718,6 @@
     <Filter Include="Maru\StateMachine\EnemyMainStateMachine">
       <UniqueIdentifier>{a93236f3-82c6-4d1f-a67e-43bca6b9eb8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr">
-      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Component\TargetMgr">
       <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
     </Filter>
@@ -757,11 +736,38 @@
     <Filter Include="Maru\StateMachine\Test">
       <UniqueIdentifier>{d05c5de4-797f-4428-998b-d9f6ad31325e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\CaraObject\CaraComp\CaraStator">
-      <UniqueIdentifier>{08105c35-1fe7-440f-8602-b3a78c6eddfb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator">
       <UniqueIdentifier>{20ca5243-4d98-4272-9c85-2b6130630ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject">
+      <UniqueIdentifier>{b3c1623e-1b29-434d-ba54-d7ddae1f4b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject">
+      <UniqueIdentifier>{63477525-db0b-41c9-9f0c-34ffef8087bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp">
+      <UniqueIdentifier>{aa3d501d-2f63-4e8b-902d-eaa59a2a6d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyAnimator">
+      <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr">
+      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject">
+      <UniqueIdentifier>{afb1f578-952f-4721-b759-e71ef8d5fb3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp">
+      <UniqueIdentifier>{b7900242-fe3b-4ea1-9a72-f2d7d27d867f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraAnimatorCtrl">
+      <UniqueIdentifier>{118a310b-55d9-4068-962c-89414a05f421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator">
+      <UniqueIdentifier>{08105c35-1fe7-440f-8602-b3a78c6eddfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\Stator">
+      <UniqueIdentifier>{68501f41-505e-451e-919d-81a7fdc154fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1162,10 +1168,10 @@
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h">
-      <Filter>Maru\Enemy\Object\HandyObject</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h">
-      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyAnimator</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyAnimator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ParticleSystem.h">
       <Filter>Itabashi\Components\ParticleSystem</Filter>
@@ -1255,10 +1261,10 @@
       <Filter>Maru\Object\StageObject\LoadStageTriggerObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraObject.h">
-      <Filter>Maru\Enemy\Object\CaraObject</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.h">
-      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraAnimatorCtrl</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraAnimatorCtrl</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Cara_Attack.h">
       <Filter>Maru\Enemy\Component\Attack\CaraAttack</Filter>
@@ -1366,7 +1372,7 @@
       <Filter>Maru\StateMachine\Graph\GraphBase</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
-      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h">
       <Filter>Maru\Enemy\Component\TargetMgr</Filter>
@@ -1387,10 +1393,28 @@
       <Filter>Maru\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h">
-      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.h">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Probe.h">
+      <Filter>Maru\Enemy\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_ReturnPlowling.h">
+      <Filter>Maru\Enemy\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Stator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Ear.h">
+      <Filter>Maru\Enemy\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraManager.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyManager.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1743,10 +1767,10 @@
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp">
-      <Filter>Maru\Enemy\Object\HandyObject</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp">
-      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyAnimator</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyAnimator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ParticleSystem.cpp">
       <Filter>Itabashi\Components\ParticleSystem</Filter>
@@ -1830,10 +1854,10 @@
       <Filter>Maru\Object\StageObject\LoadStageTriggerObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraObject.cpp">
-      <Filter>Maru\Enemy\Object\CaraObject</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.cpp">
-      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraAnimatorCtrl</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraAnimatorCtrl</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Cara_Attack.cpp">
       <Filter>Maru\Enemy\Component\Attack\CaraAttack</Filter>
@@ -1929,16 +1953,25 @@
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp">
-      <Filter>Maru\Enemy\Object\HandyObject\HandyComp\HandyStateMgr</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp">
       <Filter>Maru\StateMachine\Test</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp">
-      <Filter>Maru\Enemy\Object\CaraObject\CaraComp\CaraStator</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Stator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyManager.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraManager.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

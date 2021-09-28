@@ -37,11 +37,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cara_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChasingTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CheckTargetPos.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ChoicesComponentBase.h" />
@@ -100,6 +102,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyAnimator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h" />
@@ -112,7 +115,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Chase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Ear.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Escape.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_Probe.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)I_ReturnPlowling.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadData.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h" />
@@ -245,11 +251,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Cara_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CheckTargetPos.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ClearStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp" />
@@ -298,6 +306,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyAnimator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp" />
