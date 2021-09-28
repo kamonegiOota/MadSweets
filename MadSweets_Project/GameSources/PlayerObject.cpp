@@ -58,9 +58,7 @@ namespace basecross
 
 		Quat quat = Quat::Identity();
 		quat.rotationY(XM_PI);
-		//auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
 
-		//springArmComponent->SetChildObject(tpsCamera);
 		springArmComponent->AddHitTag(L"Wall");
 
 		auto draw = AddComponent<PNTBoneModelDraw>();
@@ -93,9 +91,6 @@ namespace basecross
 		AddComponent<PlayerGameItemGetter>();
 		AddComponent<PlayerOpenDoorManager>();
 
-		//AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
-
-
 		//丸山追記文
 		AddComponent<PlayerStatusMgr>();  //ステータス管理コンポーネント
 		AddComponent<TimerDamage>()->SetUpdateActive(false);  //飢餓状態で一定時間ごとにダメージを受ける処理
@@ -107,7 +102,13 @@ namespace basecross
 
 		AddComponent<PlayerWeightMgr>();
 		
-		AddComponent<Gravity>();
+		//AddComponent<Gravity>();
+
+
+		//デバッグ用
+		//AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
+		auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
+		springArmComponent->SetChildObject(tpsCamera);
 	}
 
 	void PlayerObject::OnUpdate()

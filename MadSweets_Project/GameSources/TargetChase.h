@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "TargetMgr.h"
+
 namespace basecross {
 
 	//設定されたターゲットを追従する処理
@@ -17,11 +19,13 @@ namespace basecross {
 			Lost   //視認できてない状態
 		};
 
-		std::shared_ptr<GameObject> m_target;
+		ex_weak_ptr<GameObject> m_target;
 		ChaseMode m_chaseMode = ChaseMode::Look;
 		float m_maxSpeed = 10.0f;
 
 		std::function<void(TargetChase&)> m_updateFunc;
+
+		bool m_isEnd = false;
 
 		/// <summary>
 		/// 視界の先に隠れるオブジェクトが合って、そこにtargetが隠れていたらそれをターゲットにする。
@@ -58,14 +62,16 @@ namespace basecross {
 	public:
 		TargetChase(const std::shared_ptr<GameObject>& objPtr);
 
-		TargetChase(const std::shared_ptr<GameObject>& objPtr,
-			const std::shared_ptr<GameObject>& target
-		);
+		TargetChase(const std::shared_ptr<GameObject>& objPtr, const float& speed);
 
-		TargetChase(const std::shared_ptr<GameObject>& objPtr,
-			const std::shared_ptr<GameObject>& target,
-			const float& speed
-		);
+		//TargetChase(const std::shared_ptr<GameObject>& objPtr,
+		//	const std::shared_ptr<GameObject>& target
+		//);
+
+		//TargetChase(const std::shared_ptr<GameObject>& objPtr,
+		//	const std::shared_ptr<GameObject>& target,
+		//	const float& speed
+		//);
 
 		void OnCreate() override;
 		void OnUpdate() override;
@@ -75,8 +81,14 @@ namespace basecross {
 		/// 追う処理の開始
 		/// </summary>
 		void ChaseStart() {
+			m_isEnd = false;
 			m_chaseMode = ChaseMode::Look;
 			m_updateFunc = &TargetChase::LookMove;
+			
+			auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+			if (targetMgr) {
+				m_target = targetMgr->GetTarget();
+			}
 		}
 
 		//アクセッサ-----------------------------------------------------------------------
@@ -85,7 +97,7 @@ namespace basecross {
 			m_target = target;
 		}
 		std::shared_ptr<GameObject> GetTarget() const {
-			return m_target;
+			return m_target.GetShard();
 		}
 
 		void SetMaxSpeed(const float& speed) {
@@ -94,6 +106,11 @@ namespace basecross {
 		float GetMaxSpeed() const {
 			return m_maxSpeed;
 		}
+
+		bool IsEnd() {
+			return m_isEnd;
+		}
+
 	};
 
 }

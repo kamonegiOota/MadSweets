@@ -57,13 +57,15 @@ namespace basecross {
 		/// <param name="isUpdate">Onならtrue</param>
 		void SetHideObjCollisionUpdate(const bool isUpdate);
 
-		template<class T, class... Ts>
-		void ChangeState(Ts&&... params) {
-			auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-			if (enemy) {
-				enemy->ChangeStateMachine<T>(params...);  //見失った状態にする。
-			}
-		}
+		//template<class T, class... Ts>
+		//void ChangeState(Ts&&... params) {
+		//	auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//	if (enemy) {
+		//		enemy->ChangeStateMachine<T>(params...);  //見失った状態にする。
+		//	}
+		//}
+
+		void ChangeEndProbeState();  //ステートマシン変更時に生成
 
 	public:
 

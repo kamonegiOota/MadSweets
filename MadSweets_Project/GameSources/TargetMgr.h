@@ -24,6 +24,10 @@ namespace basecross {
 		TargetMgr(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
+		
+		TargetMgr(const std::shared_ptr<GameObject>& objPtr,const std::shared_ptr<GameObject>& target)
+			:Component(objPtr), m_target(target)
+		{}
 
 		void OnCreate() override {}
 		void OnUpdate() override {}

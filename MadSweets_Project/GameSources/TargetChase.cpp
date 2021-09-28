@@ -23,24 +23,32 @@
 
 namespace basecross {
 
-	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr):
-		TargetChase(objPtr,nullptr)
+	//TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr):
+	//	TargetChase(objPtr,nullptr)
+	//{}
+
+	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr) :
+		TargetChase(objPtr, 10.0f)
 	{}
 
-	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
-		const std::shared_ptr<GameObject>& target
-	) :
-		TargetChase(objPtr,target,10.0f)
+	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr, const float& speed)
+		:Component(objPtr), m_maxSpeed(speed)
 	{}
 
-	TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
-		const std::shared_ptr<GameObject>& target,
-		const float& maxSpeed
-	):
-		Component(objPtr),
-		m_target(target),
-		m_maxSpeed(maxSpeed)
-	{}
+	//TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
+	//	const std::shared_ptr<GameObject>& target
+	//) :
+	//	TargetChase(objPtr,target,10.0f)
+	//{}
+
+	//TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
+	//	const std::shared_ptr<GameObject>& target,
+	//	const float& maxSpeed
+	//):
+	//	Component(objPtr),
+	//	m_target(target),
+	//	m_maxSpeed(maxSpeed)
+	//{}
 	
 	bool TargetChase::TargetEyeRangeHide() {
 		auto obj = GetGameObject();
@@ -50,8 +58,9 @@ namespace basecross {
 		auto hides = maru::MyUtility::GetComponents<HiddenComponent>();
 		for (auto& hide : hides) {
 			if (eyeRange->IsInEyeRange(hide->GetGameObject())) {  //本来はEyeRangeで判断
-				auto toVec = maru::MyUtility::CalucToTargetVec(m_target, hide->GetGameObject());
+				auto toVec = maru::MyUtility::CalucToTargetVec(m_target.GetShard(), hide->GetGameObject());
 				if (toVec.length() <= 0.01f) {  //限りなく近いということは隠れたという事。
+					m_isEnd = true;
 					ChangeStateMachine();  //ステートの変更
 					//ターゲットを今目の前に隠れたオブジェクトにする。
 					GetGameObject()->GetComponent<TargetProbe>()->StartProb(hide->GetGameObject());
@@ -81,7 +90,7 @@ namespace basecross {
 		auto cahseAstarMove = GetGameObject()->GetComponent<ChaseAstarMove>(false);
 		if (cahseAstarMove) {
 			//通常探索
-			cahseAstarMove->LostTarget(m_target);
+			cahseAstarMove->LostTarget(m_target.GetShard());
 			m_updateFunc = &TargetChase::LostMove;
 		}
 
@@ -107,7 +116,7 @@ namespace basecross {
 			return;
 		}
 
-		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target);
+		auto toVec = maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target.GetShard());
 		
 		auto velo = velocity->GetVelocity();
 		auto force = UtilVelocity::CalucSeekVec(velo, toVec, m_maxSpeed);
@@ -124,6 +133,7 @@ namespace basecross {
 		if (cahseAstarMove) {
 			cahseAstarMove->Move();
 			if (cahseAstarMove->IsProbeEnd()) {
+				m_isEnd = true;
 				ChangeStateMachine();
 				return;
 			}
@@ -141,7 +151,7 @@ namespace basecross {
 		}
 
 		//視界外にいるかどうか？
-		if (eyeRange->IsLookTarget(m_target)) {
+		if (eyeRange->IsLookTarget(m_target.GetShard())) {
 			FindTarget();
 		}
 		else{
@@ -160,7 +170,7 @@ namespace basecross {
 	void TargetChase::ChangeStateMachine() {
 		auto chase = GetGameObject()->GetComponent<I_Chase>(false);
 		if (chase) {
-			chase->ChangeTargetLostState(m_target);
+			chase->EndChase(m_target.GetShard());
 		}
 	}
 
@@ -169,7 +179,7 @@ namespace basecross {
 	}
 
 	void TargetChase::OnUpdate() {
-		if (m_target == nullptr) {  //ターゲットが追従
+		if (m_target.GetShard() == nullptr) {  //ターゲットが追従
 			return;
 		}
 

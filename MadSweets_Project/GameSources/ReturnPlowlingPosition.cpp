@@ -14,12 +14,17 @@
 #include "EnemyRotationCtrl.h"
 #include "Velocity.h"
 
+#include "I_ReturnPlowling.h"
+
 namespace basecross {
 
 	void ReturnPlowlingPosition::ChangeStateMachine() {
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_Plowling>();
+		m_isRouteEnd = true;
+
+		auto returnPlowling = GetGameObject()->GetComponent<I_ReturnPlowling>(false);
+		if (returnPlowling) {
+			returnPlowling->EndReturnPlowling();
+			//enemy->ChangeStateMachine<EnState_Plowling>();
 		}
 	}
 
@@ -62,6 +67,8 @@ namespace basecross {
 		m_astar->SearchAstarStart(targetPos);
 
 		SetUpdateActive(true);
+
+		m_isRouteEnd = false;
 	}
 
 }

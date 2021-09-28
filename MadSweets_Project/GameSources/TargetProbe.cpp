@@ -25,6 +25,8 @@
 #include "HiddenComponent.h"
 #include "EnState_Attack.h"
 
+#include "I_Probe.h"
+
 namespace basecross {
 
 	using MyUtility = maru::MyUtility;
@@ -178,6 +180,13 @@ namespace basecross {
 		}
 	}
 
+	void TargetProbe::ChangeEndProbeState() {
+		auto probe = GetGameObject()->GetComponent<I_Probe>(false);
+		if (probe) {
+			probe->EndProbe();
+		}
+	}
+
 	void TargetProbe::OnCreate() {
 		SetUpdateActive(false);
 	}
@@ -188,7 +197,7 @@ namespace basecross {
 		}
 		else {
 			SetHideObjCollisionUpdate(true);
-			ChangeState<EnState_LoseTarget>();
+			ChangeEndProbeState();  //ステートマシン変更時に変更
 		}
 	}
 
@@ -209,18 +218,22 @@ namespace basecross {
 
 	void TargetProbe::EndInvestigateHideAnimation() {
 		//AnimatorのExitFuncで呼び出すからステートが違う場合は処理をしないようにする。
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			//TargetProbe状態で無かったら処理をしない。
-			if (!enemy->IsEqualStateType<EnState_ProbTarget>()) {
-				return;
-			}
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy) {
+		//	//TargetProbe状態で無かったら処理をしない。
+		//	if (!enemy->IsEqualStateType<EnState_ProbTarget>()) {
+		//		return;
+		//	}
+		//}
+
+		if (GetUpdateActive() == false) {
+			return;
 		}
 
 		m_probCount++;  //調べたカウントの追加
 
 		if (m_probCount >= m_numPorb) {  //指定回数調べたら
-			ChangeState<EnState_LoseTarget>();
+			ChangeEndProbeState();
 		}
 		else {  //まだカウントが過ぎていなかったら。
 			SetHideObjCollisionUpdate(true);

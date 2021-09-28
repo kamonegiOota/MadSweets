@@ -19,6 +19,8 @@ namespace basecross {
 	/// </summary>
 	class ReturnPlowlingPosition : public Component , public BaseUseVelocity
 	{
+		bool m_isRouteEnd = false;
+
 		ex_weak_ptr<AstarCtrl> m_astar;
 
 		void ChangeStateMachine();
@@ -38,6 +40,12 @@ namespace basecross {
 		/// 戻る処理開始
 		/// </summary>
 		void StartReturn();
+
+		//アクセッサ------------------------------------------------------
+
+		bool IsRouteEnd() {
+			return m_isRouteEnd;
+		}
 	};
 
 }
