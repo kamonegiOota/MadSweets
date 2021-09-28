@@ -16,6 +16,7 @@ namespace basecross {
 	class CheckTargetPos : public Component, public BaseUseVelocity 
 	{
 		//Vec3 m_targetPos;
+		bool m_isRouteEnd = false;
 
 		void Move();
 		void ChangeStateMachine();
@@ -31,13 +32,13 @@ namespace basecross {
 
 
 		//アクセッサ--------------------------------------------------------------
-		//void SetTargetPos(const Vec3& position) {
-		//	m_targetPos = position;
-		//}
-		//Vec3 GetTargetPos() const {
-		//	return m_targetPos;
-		//}
-
+		
+		void SetIsRouteEnd(const bool isRouteEnd) {
+			m_isRouteEnd = isRouteEnd;
+		}
+		bool IsRouteEnd() {
+			return m_isRouteEnd;
+		}
 	};
 
 }

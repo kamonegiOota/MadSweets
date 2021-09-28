@@ -16,6 +16,7 @@
 #include "Velocity.h"
 
 #include "AstarCtrl.h"
+#include "I_Ear.h"
 
 namespace basecross {
 
@@ -33,19 +34,31 @@ namespace basecross {
 
 		StartChangeComps();
 
-		auto draw = obj->GetComponent<BcBaseDraw>(false);
-		if (draw) {
-			draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
-		}
-
 		DebugObject::sm_wss << L"Listen" << endl;
 	}
 
 	void EnState_CheckSoundPos::OnUpdate() {
 		//DebugObject::m_wss << L"Chase";
+		auto obj = GetOwner()->GetGameObject();
+		auto checkTarget = obj->GetComponent<CheckTargetPos>(false);
+		if (checkTarget == nullptr) {
+			return;
+		}
+
+		if (checkTarget->IsRouteEnd()) {
+			auto ear = obj->GetComponent<I_Ear>();
+			if (ear) {
+				ear->EndListen();
+			}
+		}
 	}
 
 	void EnState_CheckSoundPos::OnExit() {
+		auto obj = GetOwner()->GetGameObject();
+		auto checkTarget = obj->GetComponent<CheckTargetPos>(false);
+		if (checkTarget) {
+			checkTarget->SetIsRouteEnd(false);
+		}
 
 		ExitChangeComps();
 	}

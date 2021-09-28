@@ -110,6 +110,34 @@ namespace basecross {
 			return m_param;
 		}
 
+		void SetEyeLength(const float& length) {
+			m_param.lenght = length;
+		}
+		float GetEyeLength() const {
+			return m_param.lenght;
+		}
+
+		void SetEyeHeight(const float& height) {
+			m_param.height = height;
+		}
+		float GetEyeHeight() const {
+			return m_param.height;
+		}
+
+		void SetEyeDegree(const float& degree) {
+			m_param.rad = XMConvertToRadians(degree);
+		}
+		float GetEyeDegree() const {
+			return XMConvertToDegrees(m_param.rad);
+		}
+
+		void SetEyeRadian(const float& radian) {
+			m_param.rad = radian;
+		}
+		float GetEyeRadian() const {
+			return m_param.rad;
+		}
+
 		/// <summary>
 		/// Œ©‚Â‚¯‚Ä‚¢‚éó‘Ô‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é
 		/// </summary>

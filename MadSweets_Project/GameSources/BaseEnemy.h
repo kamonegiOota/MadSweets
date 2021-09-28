@@ -39,22 +39,22 @@ namespace basecross {
 		/// ステートマシンの変更
 		/// </summary>
 		/// <param name="newState">変更したいステート</param>
-		template<class T, class... Ts,
-			enable_if_t<is_base_of_v<EnemyStateNodeBase<BaseEnemy>, T>, std::nullptr_t> = nullptr >
-		void ChangeStateMachine(Ts&&... params) {
-			if (IsEqualStateType<T>()) {  //同じステートに変更しようとした場合処理をしない。
-				return;
-			}
+		//template<class T, class... Ts,
+		//	enable_if_t<is_base_of_v<EnemyStateNodeBase<BaseEnemy>, T>, std::nullptr_t> = nullptr >
+		//void ChangeStateMachine(Ts&&... params) {
+		//	if (IsEqualStateType<T>()) {  //同じステートに変更しようとした場合処理をしない。
+		//		return;
+		//	}
 
-			auto newState = make_shared<T>(GetThis<BaseEnemy>(),params...);
+		//	auto newState = make_shared<T>(GetThis<BaseEnemy>(),params...);
 
-			if (m_stateMachine) {
-				m_stateMachine->OnExit();
-			}
+		//	if (m_stateMachine) {
+		//		m_stateMachine->OnExit();
+		//	}
 
-			newState->OnStart();
-			m_stateMachine = newState;
-		}
+		//	newState->OnStart();
+		//	m_stateMachine = newState;
+		//}
 
 		/// <summary>
 		/// 同じステートでも変更処理を加えたいときはこちらを利用

@@ -15,10 +15,13 @@
 #include "EyeSearchRange.h"
 #include "AstarCtrl.h"
 
+#include "I_Escape.h"
+#include "EscapeEnemyStator.h"
+
 namespace basecross {
 
 	void EscapeEnemy::OnCreate() {
-		ChangeStateMachine<EnState_Plowling>();
+		//ChangeStateMachine<EnState_Plowling>();
 	}
 
 	void EscapeEnemy::OnUpdate() {
@@ -28,11 +31,21 @@ namespace basecross {
 	}
 
 	void EscapeEnemy::ChangeEscapeState(const std::shared_ptr<GameObject>& target) {
-		ChangeStateMachine<EnState_EscapeMove>(target);
+		auto stator = GetGameObject()->GetComponent<EscapeEnemyStator>(false);
+		if (stator) {
+			stator->GetTransitionMemeber().escapeTrigger.Fire();
+		}
+
+		//ChangeStateMachine<EnState_EscapeMove>(target);
 	}
 
 	void EscapeEnemy::SuccessEscape() {
-		ChangeStateMachine<EnState_LoseTarget>();
+		auto stator = GetGameObject()->GetComponent<EscapeEnemyStator>(false);
+		if (stator) {
+			stator->GetTransitionMemeber().loseTrigger.Fire();
+		}
+
+		//ChangeStateMachine<EnState_LoseTarget>();
 	}
 
 	//void EscapeEnemy::EyeSearch() {

@@ -15,6 +15,11 @@
 #include "TargetProbe.h"
 #include "PlowlingMove.h"
 
+#include "I_Chase.h"
+#include "EyeSearchRange.h"
+
+#include "DebugObject.h"
+
 namespace basecross {
 
 	void EnState_ProbTarget::OnStart() {
@@ -30,12 +35,29 @@ namespace basecross {
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 
         StartChangeComps();
-
-		DebugObject::AddString(L"Probe");
 	}
 
 	void EnState_ProbTarget::OnUpdate() {
 		//DebugObject::sm_wss << L"Probe";
+
+		auto object = GetOwner()->GetGameObject();
+		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
+		auto chase = object->GetComponent<I_Chase>(false);
+
+		//nullCheck
+		if (targetMgr == nullptr || eyeSearch == nullptr || chase == nullptr) {
+			return;
+		}
+
+		//視界にターゲットが存在したら、Chaseに切替
+		auto target = targetMgr->GetTarget();
+		if (target) {
+			if (eyeSearch->IsInEyeRange(target)) {
+				DebugObject::AddString(L"Probe", false);
+				chase->StartChase(target);
+			}
+		}
 	}
 
 	void EnState_ProbTarget::OnExit() {

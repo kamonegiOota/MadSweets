@@ -14,7 +14,7 @@ namespace basecross {
 	/// <summary>
 	/// 敵を見つけたら追いかけてくるエネミー
 	/// </summary>
-	class ChaseEnemy : public BaseEnemy, public I_Chase
+	class ChaseEnemy : public BaseEnemy
 	{
 
 	public:
@@ -26,8 +26,8 @@ namespace basecross {
 		void OnUpdate() override;
 
 		//Interfaceの実装
-		void ChangeChaseState(const std::shared_ptr<GameObject>& target) override;
-		void ChangeTargetLostState(const std::shared_ptr<GameObject>& target) override;
+		//void ChangeChaseState(const std::shared_ptr<GameObject>& target) override;
+		//void ChangeTargetLostState(const std::shared_ptr<GameObject>& target) override;
 
 		//アクセッサ-----------------------------------------------
 	};

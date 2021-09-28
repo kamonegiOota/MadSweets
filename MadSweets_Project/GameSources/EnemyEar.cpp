@@ -10,6 +10,8 @@
 #include "EnState_TargetChase.h"
 #include "EnState_CheckSoundPos.h"
 
+#include "I_Ear.h";
+
 namespace basecross {
 
 	bool EnemyEar::IsListenRnage(const Vec3& targetPos) {
@@ -23,10 +25,16 @@ namespace basecross {
 		//特定のステートの時は変更できないようにする。
 		//敵を直接見ているときは目の前の敵を見るなど
 		if (IsListenRnage(targetPos)) {  //聞こえる範囲にいる時
-			auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-			if (enemy) {
-				enemy->ChangeStateMachine<EnState_CheckSoundPos>(targetPos);
+			//ステートマシン変更時
+			auto ear = GetGameObject()->GetComponent<I_Ear>(false);
+			if (ear) {
+				ear->Listen();
 			}
+
+			//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+			//if (enemy) {
+			//	enemy->ChangeStateMachine<EnState_CheckSoundPos>(targetPos);
+			//}
 		}
 	}
 }

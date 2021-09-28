@@ -39,6 +39,8 @@
 #include "EnemyMainStateMachine.h"
 #include "CaraStator.h"
 
+#include "ChaseEnemyStator.h"
+
 // ”Â‹´@’Ç‰Á•ª --------------------
 
 #include "SoundHelper.h"
@@ -121,6 +123,7 @@ namespace basecross {
 		AddComponent<CheckTargetPos>();
 		AddComponent<Cara_Attack>();
 
+		//AddComponent<ChaseEnemyStator>();
 		AddComponent<CaraStator>();
 
 		//–{‘Ì‚ÍÅŒã‚É‚·‚éB

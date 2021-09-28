@@ -18,6 +18,9 @@
 #include "TargetEscape.h"
 #include "TargetProbe.h"
 
+#include "EyeSearchRange.h"
+#include "I_Chase.h"
+
 namespace basecross {
 
 	void EnState_Plowling::OnStart() {
@@ -34,14 +37,27 @@ namespace basecross {
 		AddChangeComp(obj->GetComponent<TargetProbe>(false), false, false);
 
 		StartChangeComps();
-
-		auto draw = obj->GetComponent<BcBaseDraw>(false);
-		if (draw) {
-			draw->SetDiffuse(Col4(0.0f, 1.0f, 0.0f, 1.0f));
-		}
 	}
 
 	void EnState_Plowling::OnUpdate() {
+		auto object = GetOwner()->GetGameObject();
+		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
+		auto chase = object->GetComponent<I_Chase>(false);
+
+		//nullCheck
+		if (targetMgr == nullptr || eyeSearch == nullptr || chase == nullptr) {  
+			return;
+		}
+
+		//視界にターゲットが存在したら、Chaseに切替
+		auto target = targetMgr->GetTarget();
+		if (target) {
+			if (eyeSearch->IsInEyeRange(target)) {
+				chase->StartChase(target);
+			}
+		}
+
 		//DebugObject::sm_wss << L"Plowling";
 	}
 

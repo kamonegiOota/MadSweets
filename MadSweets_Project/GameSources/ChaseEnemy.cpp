@@ -15,30 +15,48 @@
 #include "EnState_Attack.h"
 #include "DebugObject.h"
 
+#include "StatorBase.h"
+#include "Trigger.h"
+#include "BaseEnemy.h"
+#include "EnemyMainStateMachine.h"
+#include "ChaseEnemyStator.h"
+
 namespace basecross {
 
 	void ChaseEnemy::OnCreate() {
-		ChangeStateMachine<EnState_Plowling>();
+		//ChangeStateMachine<EnState_Plowling>();
 	}
 
 	void ChaseEnemy::OnUpdate() {
-		if (m_stateMachine) {
-			m_stateMachine->OnUpdate();
-		}
+		//if (m_stateMachine) {
+		//	m_stateMachine->OnUpdate();
+		//}
 	}
 
-	void ChaseEnemy::ChangeChaseState(const std::shared_ptr<GameObject>& target) {
-		auto attack = dynamic_pointer_cast<EnState_Attack>(m_stateMachine);
-		if (attack) {
-			return;
-		}
+	//void ChaseEnemy::ChangeChaseState(const std::shared_ptr<GameObject>& target) {
+	//	auto attack = dynamic_pointer_cast<EnState_Attack>(m_stateMachine);
+	//	if (attack) {
+	//		return;
+	//	}
 
-		ChangeStateMachine<EnState_TargetChase>(target);
-	}
 
-	void ChaseEnemy::ChangeTargetLostState(const std::shared_ptr<GameObject>& target) {
-		ChangeStateMachine<EnState_ProbTarget>(target);
-	}
+
+		//ステートマシン変更時
+		//auto stator = GetGameObject()->GetComponent<ChaseEnemyStator>(false);
+		//if (stator) {
+		//	stator->GetTransitionMember().chaseTrigger.Fire();
+		//}
+		//ChangeStateMachine<EnState_TargetChase>(target);
+	//}
+
+	//void ChaseEnemy::ChangeTargetLostState(const std::shared_ptr<GameObject>& target) {
+	//	//ステートマシン変更時
+	//	//auto stator = GetGameObject()->GetComponent<ChaseEnemyStator>(false);
+	//	//if (stator) {
+	//	//	stator->GetTransitionMember().probeTrigger.Fire();
+	//	//}
+	//	//ChangeStateMachine<EnState_ProbTarget>(target);
+	//}
 
 }
 

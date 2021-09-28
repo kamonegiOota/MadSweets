@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "ChaseEnemyStator.h"
+
 namespace basecross {
 
 	class StatorBase;
@@ -24,15 +26,17 @@ namespace basecross {
 		Trigger probeTrigger;
 		Trigger loseTrigger;
 		Trigger plowlingTrigger;
+		Trigger soundCheckTrigger;
 	};
 
-	enum CaraStateType 
+	enum class CaraStateType
 	{
 		Plowling,
 		Attack,
 		Chase,
 		Probe,
 		Lose,
+		SoundCheck,
 	};
 
 	class CaraStator : public StatorBase

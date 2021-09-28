@@ -16,14 +16,24 @@
 
 #include "EnState_LoseTarget.h"
 
+#include "I_Ear.h"
+
 namespace basecross {
 
 	void CheckTargetPos::ChangeStateMachine() {
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
-		//将来的にはProbStateに変更
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_LoseTarget>();
-		}
+		
+
+		//ステートマシン変更時
+		//auto ear = GetGameObject()->GetComponent<I_Ear>(false);
+		//if (ear) {
+		//	ear->EndListen();
+		//}
+
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
+		////将来的にはProbStateに変更
+		//if (enemy) {
+		//	//enemy->ChangeStateMachine<EnState_LoseTarget>();
+		//}
 	}
 
 	void CheckTargetPos::Move() {
@@ -32,7 +42,7 @@ namespace basecross {
 			astar->UpdateVelocityMove(GetVelocityMaxSpeed(), GetArriveNearRange());
 
 			if (astar->IsRouteEnd()) {
-				ChangeStateMachine();
+				SetIsRouteEnd(true);
 			}
 		}
 	}

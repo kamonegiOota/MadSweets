@@ -23,13 +23,22 @@
 #include "DebugObject.h"
 #include "I_Damaged.h"
 
+#include "ChaseEnemyStator.h"
+#include "CaraStator.h"
+
 namespace basecross {
 
 	void Cara_Attack::ChangeAttackState() {
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_Attack>(m_target);
+		//ステートマシン変更時
+		auto stator = GetGameObject()->GetComponent<CaraStator>(false);
+		if (stator) {
+			stator->GetTransitionMember().attackTrigger.Fire();
 		}
+
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy) {
+		//	enemy->ChangeStateMachine<EnState_Attack>(m_target);
+		//}
 	}
 
 	void Cara_Attack::ChangeAttackAnimation() {
@@ -70,11 +79,18 @@ namespace basecross {
 	}
 
 	void Cara_Attack::ChangeEndState() {
-		auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		if (enemy) {
-			enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
+		//ステートマシン変更時
+		auto stator = GetGameObject()->GetComponent<CaraStator>(false);
+		if (stator) {
+			stator->GetTransitionMember().chaseTrigger.Fire();
 			SetUpdateActive(false);
 		}
+
+		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
+		//if (enemy) {
+		//	enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
+		//	SetUpdateActive(false);
+		//}
 	}
 
 	void Cara_Attack::OnCreate() {

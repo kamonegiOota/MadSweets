@@ -81,7 +81,7 @@ namespace basecross {
 
 		auto chase = obj->GetComponent<I_Chase>(false);
 		if (chase) {
-			chase->ChangeChaseState(targetParam.target);
+			//chase->StartChase(targetParam.target);
 			return;
 		}
 
