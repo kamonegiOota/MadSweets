@@ -64,15 +64,6 @@ namespace basecross {
 
 		TargetChase(const std::shared_ptr<GameObject>& objPtr, const float& speed);
 
-		//TargetChase(const std::shared_ptr<GameObject>& objPtr,
-		//	const std::shared_ptr<GameObject>& target
-		//);
-
-		//TargetChase(const std::shared_ptr<GameObject>& objPtr,
-		//	const std::shared_ptr<GameObject>& target,
-		//	const float& speed
-		//);
-
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnDraw() override {}
