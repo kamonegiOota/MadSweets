@@ -104,7 +104,6 @@ namespace basecross {
 	//Start,Update-------------------------------------------------------------------------
 
 	void HandyStateMgr::OnStart() {
-		//auto state = GetGameObject()->AddComponent<HandyStateMachine>();
 		m_stateMachine = std::make_shared<HandyStateMachine>();
 
 		AddNodes(m_stateMachine);
@@ -117,37 +116,6 @@ namespace basecross {
 
 		//testkey
 		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
-
-		if (key.IsInputDown(itbs::Input::KeyCode::DownArrow)) {
-			//GetStage()->RemoveGameObject<GameObject>(m_testObj.GetShard());
-		}
-
-		if (key.IsInputDown(itbs::Input::KeyCode::UpArrow)) {
-			
-			//auto targetMgr = GetGameObject()->AddComponent<TargetMgr>();
-			//auto obj = GetStage()->AddGameObject<GameObject>();
-			//targetMgr->SetTarget(obj);
-			//auto target = targetMgr->GetTarget();
-			//if (target) {
-			//	DebugObject::AddString(L"aru");
-			//}
-			//else {
-			//	DebugObject::AddString(L"null");
-			//}
-			//m_testObj = obj;
-			//return;
-
-			DebugObject::AddString(L"Attack");
-			//m_stateMachine->SetChangeOnceFunc(StateType::Attack,[m_stateMachine]() {
-			//	//ターゲットを指定する処理
-			//	auto player = maru::MyUtility::GetGameObject<PlayerObject>();
-			//	auto state = stateMachine->GetNode(StateType::Attack);
-			//	auto attackState = dynamic_pointer_cast<EnState_Attack>(state);
-			//	attackState->SetTarget(player);
-			//});
-			auto& transition = m_stateMachine->GetTransitionStructMember();
-			transition.attackTrigger.Fire();
-		}
 	}
 
 }
