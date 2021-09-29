@@ -48,6 +48,8 @@
 
 #include "PlayerObject.h"
 
+#include "WaitTimer.h"
+
 // ”Â‹´@’Ç‰Á•ª --------------------
 
 #include "SoundHelper.h"
@@ -131,6 +133,7 @@ namespace basecross {
 		AddComponent<CheckTargetPos>();
 		AddComponent<Cara_Attack>();
 		AddComponent<CaraManager>();
+		AddComponent<WaitTimer>();
 
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
 		AddComponent<TargetMgr>(player);
