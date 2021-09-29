@@ -124,7 +124,8 @@ namespace basecross {
 		float chaseMaxSpeed = 5.0f;
 		AddComponent<TargetChase>(chaseMaxSpeed);
 		AddComponent<TargetProbe>();
-		AddComponent<EyeSearchRange>();
+		auto eye = AddComponent<EyeSearchRange>();
+		eye->SetEyeDegree(40.0f);
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
