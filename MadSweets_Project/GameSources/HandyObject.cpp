@@ -43,6 +43,8 @@
 #include "MyUtility.h"
 #include "PlayerObject.h"
 
+#include "WaitTimer.h"
+
 // ”Â‹´@’Ç‰Á•ª --------------------
 
 #include "SoundHelper.h"
@@ -144,6 +146,7 @@ namespace basecross {
 		//–{‘Ì‚ÍÅŒã‚É‚·‚éB
 		//AddComponent<ChaseEnemy>();
 		AddComponent<HandyManager>();
+		AddComponent<WaitTimer>();
 
 		auto col = AddComponent<CollisionObb>();
 
