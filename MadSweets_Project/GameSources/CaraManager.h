@@ -31,6 +31,7 @@ namespace basecross {
 		//捜索スタート
 		void StartProbe() override;
 		void EndProbe() override;
+		void HideSearchAnimationStart() override;
 
 		//音を聞いた
 		void Listen() override;

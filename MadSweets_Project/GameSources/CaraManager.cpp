@@ -15,6 +15,7 @@
 #include "CaraManager.h"
 
 #include "CaraStator.h"
+#include "CaraAnimatorCtrl.h"
 
 #include "TargetMgr.h"
 
@@ -22,7 +23,7 @@ namespace basecross {
 
 	void CaraManager::StartChase(const std::shared_ptr<GameObject>& target) {
 		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-		if (targetMgr) {
+		if (targetMgr && target != nullptr) {
 			targetMgr->SetTarget(target);
 		}
 
@@ -50,6 +51,14 @@ namespace basecross {
 		auto stator = GetGameObject()->GetComponent<CaraStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().loseTrigger.Fire();
+		}
+	}
+
+	void CaraManager::HideSearchAnimationStart() {
+		//アニメーションの再生
+		auto animeCtrl = GetGameObject()->GetComponent<CaraAnimatorCtrl>(false);
+		if (animeCtrl) {
+			animeCtrl->GetAnimator()->GetMemberRefarence().hideSearchTrigger.Fire();
 		}
 	}
 
