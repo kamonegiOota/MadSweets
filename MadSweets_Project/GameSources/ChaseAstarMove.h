@@ -20,7 +20,8 @@ namespace basecross {
 
 		int m_numLostChase = 3;  //LostMoveをする回数
 		int m_numLostChaseElapsed = m_numLostChase;
-		float m_targetNearRange = 1.5f;  //ターゲットの場所に近いと判断される長さ
+		float m_targetNearRange = 1.5f;  //ターゲットの場所に近いと判断される長さ。
+		float m_lostSeekTime = 3.0f;     //ターゲットとの間に障害物がある場合。
 
 		ex_weak_ptr<GameObject> m_target;   //ターゲットのポインタ
 		Vec3 m_targetPosition = Vec3(0.0f); //現在向かっている場所
@@ -68,6 +69,11 @@ namespace basecross {
 		/// <param name="target">追いかける対象</param>
 		/// <returns>移動の力</returns>
 		Vec3 CalcuMoveForce(const std::shared_ptr<GameObject>& target);
+
+		//ターゲットロストまでのカウントをスタート
+		void LostTimerStart();
+		//ターゲットロスト状態の解除
+		void LostTimerCancel();
 
 	public:
 

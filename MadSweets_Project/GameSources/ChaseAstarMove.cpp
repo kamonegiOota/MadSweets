@@ -16,6 +16,8 @@
 #include "BaseEnemy.h"
 #include "TactileCtrl.h"
 
+#include "WaitTimer.h"
+
 namespace basecross {
 
 	using MyUtility = maru::MyUtility;
@@ -89,6 +91,24 @@ namespace basecross {
 		return force;
 	}
 
+	void ChaseAstarMove::LostTimerStart() {
+		auto waitTimer = GetGameObject()->GetComponent<WaitTimer>(false);
+		if (waitTimer) {
+			if (waitTimer->IsWait(GetThis<ChaseAstarMove>())) {  //待機状態なら処理をしない。
+				return;
+			}
+			
+			waitTimer->AddTimer(GetThis<ChaseAstarMove>(), m_lostSeekTime, [this](){ NextRoute(); });
+		}
+	}
+
+	void ChaseAstarMove::LostTimerCancel() {
+		auto waitTimer = GetGameObject()->GetComponent<WaitTimer>(false);
+		if (waitTimer) {
+			waitTimer->AbsoluteEndTimer(GetThis<ChaseAstarMove>(), false);
+		}
+	}
+
 	void ChaseAstarMove::OnStart() {
 		//Velocityを使うときの初期値を設定
 		BaseUseVelocity::SetVelocityMaxSpeed(3.0f);
@@ -103,6 +123,14 @@ namespace basecross {
 			velocityComp->AddForce(force);
 
 			Rotation(velocityComp->GetVelocity());
+		}
+
+		//見失ったら
+		if (IsRayObstacle(m_targetPosition)) {
+			LostTimerStart();   //ターゲットのロストカウントダウン開始
+		}
+		else {
+			LostTimerCancel();  //ターゲットのロスト解除
 		}
 
 		if (IsRouteEnd()) {
