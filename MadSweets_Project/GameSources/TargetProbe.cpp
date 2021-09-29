@@ -26,6 +26,7 @@
 #include "EnState_Attack.h"
 
 #include "I_Probe.h"
+#include "WaitTimer.h"
 
 namespace basecross {
 
@@ -85,11 +86,9 @@ namespace basecross {
 	}
 
 	void TargetProbe::InvestigateHideObj() {
-		//アニメーションの再生
-		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
-		if (animeCtrl) {
-			auto animator = animeCtrl->GetAnimator();
-			animator->GetMemberRefarence().hideSearchTrigger.Fire();
+		auto probe = GetGameObject()->GetComponent<I_Probe>(false);
+		if (probe) {
+			probe->HideSearchAnimationStart();
 		}
 
 		//hideObjectのコライダーをoffにすることで判断
@@ -118,8 +117,12 @@ namespace basecross {
 		vector<std::shared_ptr<GameObject>> excluteObjs;
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
 		MyUtility::AddObjects<PlayerObject>(excluteObjs);
+		//MyUtility::AddComponents<HiddenComponent>(excluteObjs);
 		if (MyUtility::IsRayObstacle(GetGameObject(),m_checkHideObj, excluteObjs)) {
-			m_moveFunc = nullptr;
+			LostTimerStart();
+		}
+		else {
+			LostTimerCancel();
 		}
 
 		auto veloComp = GetGameObject()->GetComponent<Velocity>(false);
@@ -138,6 +141,7 @@ namespace basecross {
 		//ターゲットの近くまで来たら
 		constexpr float NearRange = 2.0f;
 		if (toVec.length() <= NearRange) {
+			LostTimerCancel();
 			RouteEnd();
 		}
 	}
@@ -187,6 +191,24 @@ namespace basecross {
 		}
 	}
 
+	void TargetProbe::LostTimerStart() {
+		auto waitTimer = GetGameObject()->GetComponent<WaitTimer>(false);
+		if (waitTimer) {
+			if (waitTimer->IsWait(GetThis<TargetProbe>())) {  //待機状態なら処理をしない。
+				return;
+			}
+
+			waitTimer->AddTimer(GetThis<TargetProbe>(), m_lostSeekTime, [this]() { m_moveFunc = nullptr; });
+		}
+	}
+
+	void TargetProbe::LostTimerCancel() {
+		auto waitTimer = GetGameObject()->GetComponent<WaitTimer>(false);
+		if (waitTimer) {
+			waitTimer->AbsoluteEndTimer(GetThis<TargetProbe>(), false);
+		}
+	}
+
 	void TargetProbe::OnCreate() {
 		SetUpdateActive(false);
 	}
@@ -217,15 +239,6 @@ namespace basecross {
 	}
 
 	void TargetProbe::EndInvestigateHideAnimation() {
-		//AnimatorのExitFuncで呼び出すからステートが違う場合は処理をしないようにする。
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy) {
-		//	//TargetProbe状態で無かったら処理をしない。
-		//	if (!enemy->IsEqualStateType<EnState_ProbTarget>()) {
-		//		return;
-		//	}
-		//}
-
 		if (GetUpdateActive() == false) {
 			return;
 		}
@@ -244,6 +257,7 @@ namespace basecross {
 	void TargetProbe::ExitProbState() {
 		RemoveNode();
 		SetHideObjCollisionUpdate(true);
+		LostTimerCancel();
 	}
 }
 

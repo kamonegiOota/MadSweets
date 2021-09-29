@@ -27,6 +27,7 @@ namespace basecross {
 		int m_probCount = 0;  //実際に捜索した回数。
 
 		float m_searchRange = 10.0f;  //探索する範囲
+		float m_lostSeekTime = 3.0f;  //ターゲットとの間に障害物がある場合次のルート検索にうつるタイム。
 
 		void AddNode(const Vec3& position);
 		void RemoveNode();
@@ -57,15 +58,10 @@ namespace basecross {
 		/// <param name="isUpdate">Onならtrue</param>
 		void SetHideObjCollisionUpdate(const bool isUpdate);
 
-		//template<class T, class... Ts>
-		//void ChangeState(Ts&&... params) {
-		//	auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//	if (enemy) {
-		//		enemy->ChangeStateMachine<T>(params...);  //見失った状態にする。
-		//	}
-		//}
-
 		void ChangeEndProbeState();  //ステートマシン変更時に生成
+
+		void LostTimerStart();
+		void LostTimerCancel();
 
 	public:
 
