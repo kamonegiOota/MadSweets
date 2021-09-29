@@ -35,21 +35,6 @@ namespace basecross {
 		:Component(objPtr), m_maxSpeed(speed)
 	{}
 
-	//TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
-	//	const std::shared_ptr<GameObject>& target
-	//) :
-	//	TargetChase(objPtr,target,10.0f)
-	//{}
-
-	//TargetChase::TargetChase(const std::shared_ptr<GameObject>& objPtr,
-	//	const std::shared_ptr<GameObject>& target,
-	//	const float& maxSpeed
-	//):
-	//	Component(objPtr),
-	//	m_target(target),
-	//	m_maxSpeed(maxSpeed)
-	//{}
-	
 	bool TargetChase::TargetEyeRangeHide() {
 		auto obj = GetGameObject();
 		auto eyeRange = obj->GetComponent<EyeSearchRange>(false);
