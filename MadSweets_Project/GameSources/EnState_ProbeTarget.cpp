@@ -54,7 +54,6 @@ namespace basecross {
 		auto target = targetMgr->GetTarget();
 		if (target) {
 			if (eyeSearch->IsInEyeRange(target)) {
-				DebugObject::AddString(L"Probe", false);
 				chase->StartChase(target);
 			}
 		}
