@@ -14,6 +14,7 @@
 #include "HandyManager.h"
 
 #include "HandyStateMgr.h"
+#include "HandyAnimator.h"
 
 #include "TargetMgr.h"
 
@@ -49,6 +50,15 @@ namespace basecross {
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
 			stator->GetTransitionMember().loseTrigger.Fire();
+		}
+	}
+
+	void HandyManager::HideSearchAnimationStart() {
+		//アニメーションの再生
+		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
+		if (animeCtrl) {
+			auto animator = animeCtrl->GetAnimator();
+			animator->GetMemberRefarence().hideSearchTrigger.Fire();
 		}
 	}
 
