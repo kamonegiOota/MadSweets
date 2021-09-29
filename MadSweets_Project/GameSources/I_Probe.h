@@ -16,6 +16,11 @@ namespace basecross {
 
 		virtual void StartProbe() = 0;
 		virtual void EndProbe() = 0;
+
+		/// <summary>
+		/// 隠れるオブジェクトの中を覗く処理
+		/// </summary>
+		virtual void HideSearchAnimationStart() = 0;
 	};
 
 	
