@@ -223,6 +223,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilVelocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Velocity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)VertexPCTParam.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WaitTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WallEvasion.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h" />
@@ -410,6 +411,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilVelocity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Velocity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WaitTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WallEvasion.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TactileCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp" />

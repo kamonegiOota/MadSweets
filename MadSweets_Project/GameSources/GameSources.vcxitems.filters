@@ -769,6 +769,9 @@
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\Stator">
       <UniqueIdentifier>{68501f41-505e-451e-919d-81a7fdc154fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruUthilyty\WaitTimer">
+      <UniqueIdentifier>{624c1aab-dda1-4e6d-86ad-0cb1ae83135a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1416,6 +1419,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyManager.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)WaitTimer.h">
+      <Filter>Maru\MaruUthilyty\WaitTimer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1972,6 +1978,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraManager.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WaitTimer.cpp">
+      <Filter>Maru\MaruUthilyty\WaitTimer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
