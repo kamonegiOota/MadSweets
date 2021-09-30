@@ -16,7 +16,7 @@ namespace basecross {
 	/// </summary>
 	class TargetProbe : public Component, public BaseUseVelocity
 	{
-		std::shared_ptr<GameObject> m_target;  //捜索対象
+		//std::shared_ptr<GameObject> m_target;  //捜索対象
 		std::shared_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
 		int m_newNodeIndex = 0;
 		
@@ -89,12 +89,12 @@ namespace basecross {
 
 		//アクセッサ--------------------------------------------------------
 
-		void SetTarget(const std::shared_ptr<GameObject>& target) {
-			m_target = target;
-		}
-		std::shared_ptr<GameObject> GetTarget() const {
-			return m_target;
-		}
+		//void SetTarget(const std::shared_ptr<GameObject>& target) {
+		//	m_target = target;
+		//}
+		//std::shared_ptr<GameObject> GetTarget() const {
+		//	return m_target;
+		//}
 
 		void SetSearchRange(const float& range) {
 			m_searchRange = range;
