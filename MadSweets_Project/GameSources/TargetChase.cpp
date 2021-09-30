@@ -61,6 +61,7 @@ namespace basecross {
 		if (m_chaseMode == ChaseMode::Lost) {  //ロスト状態なら処理をしない。
 			return;
 		}
+		m_chaseMode = ChaseMode::Lost;
 
 		//見失った時の処理。
 		auto obj = GetGameObject();
@@ -78,8 +79,6 @@ namespace basecross {
 			cahseAstarMove->LostTarget(m_target.GetShard());
 			m_updateFunc = &TargetChase::LostMove;
 		}
-
-		m_chaseMode = ChaseMode::Lost;
 	}
 
 	void TargetChase::FindTarget() {
@@ -155,7 +154,7 @@ namespace basecross {
 	void TargetChase::ChangeStateMachine() {
 		auto chase = GetGameObject()->GetComponent<I_Chase>(false);
 		if (chase) {
-			chase->EndChase(m_target.GetShard());
+			chase->EndChase();
 		}
 	}
 
