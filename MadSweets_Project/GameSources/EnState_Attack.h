@@ -14,15 +14,11 @@ namespace basecross {
 
 	class EnState_Attack : public EnemyStateNodeBase<BaseEnemy>
 	{
-		std::shared_ptr<GameObject> m_target;
-
 	public:
 		
-		EnState_Attack(const std::shared_ptr<BaseEnemy>& owner,
-			const std::shared_ptr<GameObject>& target
+		EnState_Attack(const std::shared_ptr<BaseEnemy>& owner
 		) :
-			EnemyStateNodeBase<BaseEnemy>(owner),
-			m_target(target)
+			EnemyStateNodeBase<BaseEnemy>(owner)
 		{}
 
 		void OnStart() override;
@@ -31,10 +27,6 @@ namespace basecross {
 
 		
 		//アクセッサ------------------------------------------------------------------
-
-		void SetTarget(const std::shared_ptr<GameObject>& target) {
-			m_target = target;
-		}
 
 	};
 
