@@ -76,7 +76,7 @@ namespace basecross {
 		
 		auto attack = obj->GetComponent<BaseAttack>(false);
 		if (attack) {
-			attack->Attack(targetParam.target);
+			//attack->Attack(targetParam.target);
 		}
 
 		auto chase = obj->GetComponent<I_Chase>(false);
@@ -87,7 +87,7 @@ namespace basecross {
 
 		auto escape = obj->GetComponent<I_Escape>(false);
 		if (escape) {
-			escape->ChangeEscapeState(targetParam.target);
+			//escape->ChangeEscapeState(targetParam.target);
 			return;
 		}
 	}
