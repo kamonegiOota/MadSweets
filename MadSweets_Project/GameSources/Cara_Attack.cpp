@@ -26,6 +26,8 @@
 #include "ChaseEnemyStator.h"
 #include "CaraStator.h"
 
+#include "TargetMgr.h"
+
 namespace basecross {
 
 	void Cara_Attack::ChangeAttackState() {
@@ -34,11 +36,6 @@ namespace basecross {
 		if (stator) {
 			stator->GetTransitionMember().attackTrigger.Fire();
 		}
-
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy) {
-		//	enemy->ChangeStateMachine<EnState_Attack>(m_target);
-		//}
 	}
 
 	void Cara_Attack::ChangeAttackAnimation() {
@@ -85,12 +82,6 @@ namespace basecross {
 			stator->GetTransitionMember().chaseTrigger.Fire();
 			SetUpdateActive(false);
 		}
-
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy) {
-		//	enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
-		//	SetUpdateActive(false);
-		//}
 	}
 
 	void Cara_Attack::OnCreate() {
@@ -98,7 +89,13 @@ namespace basecross {
 	}
 
 	void Cara_Attack::OnUpdate() {
-		transform->SetForward(maru::MyUtility::CalucToTargetVec(GetGameObject(), m_target));
+		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+		if (targetMgr) {
+			auto target = targetMgr->GetTarget();
+			if (target) {
+				transform->SetForward(maru::MyUtility::CalucToTargetVec(GetGameObject(), target));
+			}
+		}
 	}
 }
 
