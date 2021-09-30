@@ -40,6 +40,7 @@ namespace basecross {
 		std::shared_ptr<GameObject> GetTarget() const {
 			auto target = m_target.lock();
 			return target ? target : nullptr;
+			//return m_target;
 		}
 	};
 
