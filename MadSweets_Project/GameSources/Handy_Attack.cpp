@@ -21,7 +21,6 @@
 #include "BaseEnemy.h"
 #include "MyUtility.h"
 
-#include "TargetMgr.h"
 #include "HandyStateMgr.h"
 
 #include "DebugObject.h"
@@ -46,9 +45,6 @@ namespace basecross {
 		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
 		if (animeCtrl) {
 			auto anime = animeCtrl->GetAnimator();
-			//DebugObject::sm_wss << to_wstring((int)anime->GetNowState());
-			//DebugObject::sm_isResetDelta = true;
-			//DebugObject::AddFloat(anime->GetStateRateOfTime());
 			if (anime->GetNowState() == HandyAnimationState::Attack) {
 				return true;
 			}
@@ -66,27 +62,11 @@ namespace basecross {
 	}
 
 	void Handy_Attack::ChangeAttackState() {
-		//auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-		//if (targetMgr) {
-		//	targetMgr->SetTarget(m_target);
-		//}
-
-		//auto stateMgr = GetGameObject()->GetComponent<HandyStateMgr>(false);
-		//if (stateMgr) {
-		//	auto state = stateMgr->GetStateMachine();
-		//	state->GetTransitionStructMember().attackTrigger.Fire();
-		//}
-
 		//ƒXƒe[ƒgƒ}ƒVƒ“•ÏXŽž
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
 			stator->GetTransitionMember().attackTrigger.Fire();
 		}
-
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy) {
-		//	enemy->ChangeStateMachine<EnState_Attack>(m_target);
-		//}
 	}
 
 	void Handy_Attack::ChangeEndState() {
@@ -96,12 +76,6 @@ namespace basecross {
 			stator->GetTransitionMember().chaseTrigger.Fire();
 			SetUpdateActive(false);
 		}
-
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy) {
-		//	enemy->ChangeStateMachine<EnState_TargetChase>(m_target);
-		//	SetUpdateActive(false);
-		//}
 	}
 
 	void Handy_Attack::ChangeAttackAnimation() {
@@ -118,16 +92,9 @@ namespace basecross {
 
 	void Handy_Attack::Attack(const std::shared_ptr<GameObject>& target) {
 		//UŒ‚ó‘Ô‚È‚ç‘JˆÚ‚ð‚µ‚È‚¢
-		//auto enemy = GetGameObject()->GetComponent<BaseEnemy>(false);
-		//if (enemy->IsEqualStateType<EnState_Attack>()) {
-		//	return;
-		//}
-
-		//UŒ‚ó‘Ô‚È‚ç‘JˆÚ‚ð‚µ‚È‚¢
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
 			if (stator->GetStateType() == HandyStateType::Attack) {
-				//DebugObject::AddString(L"Attack");
 				return;
 			}
 		}
