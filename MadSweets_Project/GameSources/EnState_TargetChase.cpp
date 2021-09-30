@@ -17,13 +17,17 @@
 #include "Velocity.h"
 #include "CheckTargetPos.h"
 
+#include "EyeSearchRange.h"
+#include "BaseEnemy.h"
+#include "BaseAttack.h"
+
 namespace basecross {
 
 	void EnState_TargetChase::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 		auto chase = obj->GetComponent<TargetChase>(false);
 		if (chase) {
-			chase->SetTarget(m_target);
+			//chase->SetTarget(m_target);
 			chase->ChaseStart();
 		}
 
@@ -38,7 +42,26 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnUpdate() {
-		//DebugObject::sm_wss << L"Chase";
+		DebugObject::sm_wss << L"Chase";
+
+		auto object = GetOwner()->GetGameObject();
+		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
+
+		//nullCheck
+		if (targetMgr == nullptr || eyeSearch == nullptr) {
+			return;
+		}
+
+		//視界にターゲットが存在したら、Chaseに切替
+		auto target = targetMgr->GetTarget();
+		if (target) {
+			auto attack = object->GetComponent<BaseAttack>(false);
+			if (attack) {
+				attack->Attack(target);
+				return;
+			}
+		}
 	}
 
 	void EnState_TargetChase::OnExit() {
