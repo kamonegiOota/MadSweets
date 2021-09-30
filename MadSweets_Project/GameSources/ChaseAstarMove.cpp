@@ -17,6 +17,7 @@
 #include "TactileCtrl.h"
 
 #include "WaitTimer.h"
+#include "TargetMgr.h"
 
 namespace basecross {
 
@@ -117,9 +118,12 @@ namespace basecross {
 
 	void ChaseAstarMove::Move() {
 		//スピードの加算
+		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+		auto target = targetMgr->GetTarget();
+
 		auto velocityComp = GetGameObject()->GetComponent<Velocity>(false);
 		if (velocityComp) {
-			auto force = CalcuMoveForce(m_target.GetShard());
+			auto force = CalcuMoveForce(target);
 			velocityComp->AddForce(force);
 
 			Rotation(velocityComp->GetVelocity());
@@ -148,6 +152,8 @@ namespace basecross {
 
 	void ChaseAstarMove::NextRoute() {
 		//ターゲットが視界の範囲にいるかどうか
+		//auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+		//auto target = targetMgr->GetTarget();
 		const auto& target = m_target.GetShard();
 
 		if (!IsRayObstacle(target)) {
