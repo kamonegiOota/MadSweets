@@ -352,6 +352,7 @@ namespace basecross {
 			case UtilityEnemy::EnemyType::Cara:
 				param.plowPositions = m_mapCsv->GetPositions(L"CaraPlowling");
 				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
 				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
