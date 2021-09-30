@@ -14,15 +14,11 @@ namespace basecross {
 	//ターゲットの捜索ステート
 	class EnState_ProbTarget : public EnemyStateNodeBase<BaseEnemy>
 	{
-		std::shared_ptr<GameObject> m_target;
-
 	public:
 
-		EnState_ProbTarget(const std::shared_ptr<BaseEnemy>& owner,
-			const std::shared_ptr<GameObject>& target
+		EnState_ProbTarget(const std::shared_ptr<BaseEnemy>& owner
 		) :
-			EnemyStateNodeBase<BaseEnemy>(owner),
-			m_target(target)
+			EnemyStateNodeBase<BaseEnemy>(owner)
 		{}
 
 		void OnStart() override;

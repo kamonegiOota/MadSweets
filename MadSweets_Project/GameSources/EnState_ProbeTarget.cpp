@@ -17,6 +17,7 @@
 
 #include "I_Chase.h"
 #include "EyeSearchRange.h"
+#include "BaseAttack.h"
 
 #include "DebugObject.h"
 
@@ -26,7 +27,7 @@ namespace basecross {
 		auto obj = GetOwner()->GetGameObject();
 		auto prob = obj->GetComponent<TargetProbe>(false);
 		if (prob) {
-			prob->SetTarget(m_target);
+			//prob->SetTarget(m_target);
 			prob->StartProb();  //探索スタート
 		}
 
@@ -38,7 +39,7 @@ namespace basecross {
 	}
 
 	void EnState_ProbTarget::OnUpdate() {
-		//DebugObject::sm_wss << L"Probe";
+		DebugObject::sm_wss << L"Probe";
 
 		auto object = GetOwner()->GetGameObject();
 		auto targetMgr = object->GetComponent<TargetMgr>(false);
@@ -53,8 +54,14 @@ namespace basecross {
 		//視界にターゲットが存在したら、Chaseに切替
 		auto target = targetMgr->GetTarget();
 		if (target) {
+			auto attack = object->GetComponent<BaseAttack>(false);
+			if (attack) {
+				attack->Attack(target);
+				return;
+			}
+
 			if (eyeSearch->IsInEyeRange(target)) {
-				chase->StartChase(target);
+				chase->StartChase();
 			}
 		}
 	}
