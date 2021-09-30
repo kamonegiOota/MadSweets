@@ -25,8 +25,8 @@ namespace basecross {
 		//Interfaceの実装---------------------------------------------------
 
 		//追従スタート
-		void StartChase(const std::shared_ptr<GameObject>& target) override; 
-		void EndChase(const std::shared_ptr<GameObject>& target) override;  //ターゲットを見失ったときの処理
+		void StartChase() override; 
+		void EndChase() override;  //ターゲットを見失ったときの処理
 
 		//捜索スタート
 		void StartProbe() override;

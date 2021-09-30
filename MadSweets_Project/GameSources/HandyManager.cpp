@@ -20,19 +20,14 @@
 
 namespace basecross {
 
-	void HandyManager::StartChase(const std::shared_ptr<GameObject>& target) {
-		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-		if (targetMgr) {
-			targetMgr->SetTarget(target);
-		}
-
+	void HandyManager::StartChase() {
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
 			stator->GetTransitionMember().chaseTrigger.Fire();
 		}
 	}
 
-	void HandyManager::EndChase(const std::shared_ptr<GameObject>& target) {
+	void HandyManager::EndChase() {
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
 			stator->GetTransitionMember().probeTrigger.Fire();

@@ -21,11 +21,11 @@
 
 namespace basecross {
 
-	void CaraManager::StartChase(const std::shared_ptr<GameObject>& target) {
-		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-		if (targetMgr && target != nullptr) {
-			targetMgr->SetTarget(target);
-		}
+	void CaraManager::StartChase() {
+		//auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
+		//if (targetMgr && target != nullptr) {
+		//	targetMgr->SetTarget(target);
+		//}
 
 		auto stator = GetGameObject()->GetComponent<CaraStator>(false);
 		if (stator) {
@@ -33,7 +33,7 @@ namespace basecross {
 		}
 	}
 
-	void CaraManager::EndChase(const std::shared_ptr<GameObject>& target) {
+	void CaraManager::EndChase() {
 		auto stator = GetGameObject()->GetComponent<CaraStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().probeTrigger.Fire();
