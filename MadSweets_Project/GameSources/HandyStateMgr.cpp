@@ -65,10 +65,10 @@ namespace basecross {
 		auto object = GetGameObject()->GetComponent<BaseEnemy>();
 
 		state->AddNode(StateType::Plowling,    make_shared<EnState_Plowling>(object));
-		state->AddNode(StateType::Chase,	   make_shared<EnState_TargetChase>(object, nullptr));
-		state->AddNode(StateType::Probe,	   make_shared<EnState_ProbTarget>(object, nullptr));
+		state->AddNode(StateType::Chase,	   make_shared<EnState_TargetChase>(object));
+		state->AddNode(StateType::Probe,	   make_shared<EnState_ProbTarget>(object));
 		state->AddNode(StateType::Lose,		   make_shared<EnState_LoseTarget>(object));
-		state->AddNode(StateType::Attack,      make_shared<EnState_Attack>(object, nullptr));
+		state->AddNode(StateType::Attack,      make_shared<EnState_Attack>(object));
 		state->AddNode(StateType::SoundCheck,  make_shared<EnState_CheckSoundPos>(object ,Vec3(0.0f)));
 	}
 
