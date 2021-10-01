@@ -13,8 +13,10 @@ namespace basecross {
 
 	class EnemyRotationCtrl : public Component
 	{
-		Vec3 m_direct; //Œü‚«‚½‚¢•ûŒü
+		Vec3 m_direct = Vec3(0.0f); //Œü‚«‚½‚¢•ûŒü
+		float m_speed = 0.25f;
 
+		Quat CalcuRotationQuat(Vec3 direct, const float& speed);
 		void RotationProcess();
 
 	public:
