@@ -42,7 +42,7 @@ namespace basecross {
 	}
 
 	void EnState_TargetChase::OnUpdate() {
-		DebugObject::sm_wss << L"Chase";
+		//DebugObject::sm_wss << L"Chase";
 
 		auto object = GetOwner()->GetGameObject();
 		auto targetMgr = object->GetComponent<TargetMgr>(false);

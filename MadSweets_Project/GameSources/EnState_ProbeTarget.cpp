@@ -39,7 +39,7 @@ namespace basecross {
 	}
 
 	void EnState_ProbTarget::OnUpdate() {
-		DebugObject::sm_wss << L"Probe";
+		//DebugObject::sm_wss << L"Probe";
 
 		auto object = GetOwner()->GetGameObject();
 		auto targetMgr = object->GetComponent<TargetMgr>(false);
