@@ -29,8 +29,8 @@ namespace basecross
 
 		void OnUpdate() override;
 
-		void OnHide(const HideData& hideData) override;
+		void OnHide(HideData& hideData) override;
 
-		void OnEndHide(const HideData& hideData) override;
+		void OnEndHide(HideData& hideData) override;
 	};
 }

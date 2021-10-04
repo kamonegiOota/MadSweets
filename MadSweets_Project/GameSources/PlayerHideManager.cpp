@@ -27,7 +27,7 @@ namespace basecross
 	{
 	}
 
-	void PlayerHideManager::OnHide(const HideData& hideData)
+	void PlayerHideManager::OnHide(HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(false);
 		m_playerAnimator->SetAnimationSpeed(0.0f);
@@ -43,9 +43,11 @@ namespace basecross
 
 		m_choice = std::make_shared<ChoicesObjectAndEvent>(L"o‚é", m_unHideObject, [&hideData, this]() {OnEndHide(hideData); });
 		m_playerChoicesManager->AddPlayerChoice(m_choice);
+
+		hideData.hideObject = GetGameObject();
 	}
 
-	void PlayerHideManager::OnEndHide(const HideData& hideData)
+	void PlayerHideManager::OnEndHide(HideData& hideData)
 	{
 		m_playerMover->SetUpdateActive(true);
 		m_playerAnimator->SetAnimationSpeed(1.0f);
@@ -57,5 +59,7 @@ namespace basecross
 		m_collision->SetAfterCollision(AfterCollision::Auto);
 
 		m_playerChoicesManager->RemovePlayerChoice(m_unHideObject);
+
+		hideData.hideObject = nullptr;
 	}
 }
