@@ -16,6 +16,8 @@ namespace basecross
 		/// 隠れる際の向き
 		/// </summary>
 		Vec3 hideForward;
+		//隠れているオブジェクト
+		ex_weak_ptr<GameObject> hideObject = nullptr;
 
 		/// <summary>
 		/// コンストラクタ
@@ -39,13 +41,13 @@ namespace basecross
 		/// 隠れる際に呼ばれる関数
 		/// </summary>
 		/// <param name="hideData">隠れる際に使うデータ構造体</param>
-		virtual void OnHide(const HideData& hideData) = 0;
+		virtual void OnHide(HideData& hideData) = 0;
 
 		/// <summary>
 		/// 隠れるのを終了したときに呼ばれる関数
 		/// </summary>
 		/// <param name="hideData">隠れるのに必要なデ－タ構造体</param>
-		virtual void OnEndHide(const HideData& hideData) = 0;
+		virtual void OnEndHide(HideData& hideData) = 0;
 	};
 
 	/// <summary>
