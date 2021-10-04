@@ -28,6 +28,9 @@
 #include "I_Probe.h"
 #include "WaitTimer.h"
 
+#include "BaseAttack.h"
+#include "TargetMgr.h"
+
 namespace basecross {
 
 	using MyUtility = maru::MyUtility;
@@ -51,7 +54,7 @@ namespace basecross {
 
 	void TargetProbe::RemoveNode() {
 		return;
-		if (m_checkHideObj == nullptr) {
+		if (m_checkHideObj.GetShard() == nullptr) {
 			return;
 		}
 
@@ -64,7 +67,7 @@ namespace basecross {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>(false);
 		if (astar) {
 			//近くのオブジェクトからランダムに捜索対象のオブジェクトを選択。
-			auto hideObj = SearchHidden::SearchRandomHiddenObject(GetGameObject(), m_searchRange, m_checkHideObj);
+			auto hideObj = SearchHidden::SearchRandomHiddenObject(GetGameObject(), m_searchRange, m_checkHideObj.GetShard());
 			if (hideObj == nullptr) {  //近くに隠れるオブジェクトが無かったら
 				return;
 			}
@@ -89,6 +92,21 @@ namespace basecross {
 		auto probe = GetGameObject()->GetComponent<I_Probe>(false);
 		if (probe) {
 			probe->HideSearchAnimationStart();
+		}
+
+		//hideObjectにPlayerがいたら
+		auto hide = m_checkHideObj->GetComponent<HiddenComponent>(false);
+		if (hide->GetHideData().hideObject) {  //中に何か入っていたら。
+			auto targetMgr = GetGameObject()->GetComponent<TargetMgr>();
+			auto target = targetMgr->GetTarget();
+			if (target) {
+				auto attack = GetGameObject()->GetComponent<BaseAttack>(false);
+				if (attack) {
+					attack->Attack(target);
+					//GetStage()->RemoveGameObject<GameObject>(m_checkHideObj.GetShard());
+					//m_checkHideObj = nullptr;
+				}
+			}
 		}
 
 		//hideObjectのコライダーをoffにすることで判断
@@ -118,7 +136,7 @@ namespace basecross {
 		MyUtility::AddComponents<BaseEnemy>(excluteObjs);
 		MyUtility::AddObjects<PlayerObject>(excluteObjs);
 		//MyUtility::AddComponents<HiddenComponent>(excluteObjs);
-		if (MyUtility::IsRayObstacle(GetGameObject(),m_checkHideObj, excluteObjs)) {
+		if (MyUtility::IsRayObstacle(GetGameObject(),m_checkHideObj.GetShard(), excluteObjs)) {
 			LostTimerStart();
 		}
 		else {
@@ -126,7 +144,7 @@ namespace basecross {
 		}
 
 		auto veloComp = GetGameObject()->GetComponent<Velocity>(false);
-		auto toVec = MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj);
+		auto toVec = MyUtility::CalucToTargetVec(GetGameObject(), m_checkHideObj.GetShard());
 
 		if (veloComp) {
 			auto velocity = veloComp->GetVelocity();
@@ -139,7 +157,7 @@ namespace basecross {
 		}
 
 		//ターゲットの近くまで来たら
-		constexpr float NearRange = 2.0f;
+		constexpr float NearRange = 1.5f;
 		if (toVec.length() <= NearRange) {
 			LostTimerCancel();
 			RouteEnd();
@@ -172,7 +190,7 @@ namespace basecross {
 	}
 
 	void TargetProbe::SetHideObjCollisionUpdate(const bool isUpdate) {
-		if (m_checkHideObj == nullptr) {
+		if (m_checkHideObj.GetShard() == nullptr) {
 			return;
 		}
 

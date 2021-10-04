@@ -17,7 +17,7 @@ namespace basecross {
 	class TargetProbe : public Component, public BaseUseVelocity
 	{
 		//std::shared_ptr<GameObject> m_target;  //捜索対象
-		std::shared_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
+		ex_weak_ptr<GameObject> m_checkHideObj;  //チェックしている隠れるオブジェクト
 		int m_newNodeIndex = 0;
 		
 		std::function<void(TargetProbe&)> m_moveFunc;
