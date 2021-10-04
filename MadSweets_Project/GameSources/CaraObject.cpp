@@ -125,7 +125,7 @@ namespace basecross {
 		AddComponent<TargetChase>(chaseMaxSpeed);
 		AddComponent<TargetProbe>();
 		auto eye = AddComponent<EyeSearchRange>();
-		eye->SetEyeDegree(40.0f);
+		eye->SetEyeDegree(50.0f);
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
