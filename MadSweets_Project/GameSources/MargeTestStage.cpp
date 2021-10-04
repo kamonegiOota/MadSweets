@@ -325,10 +325,6 @@ namespace basecross {
 			//ノードの表示
 			auto numberObj = Instantiate<NumbersObject>(pos, Quat::Identity());
 			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
-			//auto obj = Instantiate<GameObject>(pos, Quat::Identity());
-			//obj->AddComponent<PNTStaticDraw>()->SetMeshResource(L"DEFAULT_CUBE");
-			//obj->GetComponent<Transform>()->SetScale(Vec3(0.5f));
-			//astar.AddNode(pos, obstacleObjs, excluteObjs);
 		}
 
 		//手動で設定したノード
