@@ -205,6 +205,12 @@ namespace basecross {
 
 			return false;
 		}
+
+		float MyUtility::CalcuSubRange(const std::shared_ptr<GameObject>& selfObject, const Vec3& targetPosition) {
+			auto selfPosition = selfObject->GetComponent<Transform>()->GetPosition();
+			auto toVec = targetPosition - selfPosition;
+			return toVec.length();
+		}
 	}
 }
 

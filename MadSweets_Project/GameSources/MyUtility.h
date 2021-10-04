@@ -135,6 +135,13 @@ namespace basecross {
 			/// <returns>対象外ならtrue</returns>
 			static bool IsExclute(const shared_ptr<GameObject>& targetObj ,const vector<shared_ptr<GameObject>>& excluteObjs);
 
+			/// <summary>
+			/// 対象のポジションからどれだけ離れているかを返す
+			/// </summary>
+			/// <param name="selfObject">自分自身のオブジェクト</param>
+			/// <param name="targetPosition">ターゲットのポジション</param>
+			/// <returns>ターゲットからどれだけ離れているか</returns>
+			static float CalcuSubRange(const std::shared_ptr<GameObject>& selfObject, const Vec3& targetPosition);
 
 			//ゲームオブジェクトVecから指定のオブジェクトのみ取得
 			//最初に取得できたものだけ返す。
@@ -228,6 +235,19 @@ namespace basecross {
 				}
 
 				return returnObjs;
+			}
+
+			template<class T>
+			static std::shared_ptr<T> FindInterface(const std::shared_ptr<Stage>& stage) {
+				auto objs = stage->GetGameObjectVec();
+				for (auto& obj : objs) {
+					auto t = obj->GetComponent<T>(false);
+					if (t) {
+						return t;
+					}
+				}
+
+				return nullptr;
 			}
 
 			/// <summary>
