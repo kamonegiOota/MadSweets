@@ -120,6 +120,7 @@ namespace basecross {
 		vector<StartCamera::ShowParam> params = {
 			//startPos            //startLock          //endPos             //endLock                //time
 			{
+				//仮実装
 				LiveMoveParam(Vec3(2.0f,0.0f,0.0f),Vec3(+4.0f,+0.0f,+0.0f)),
 				LiveMoveParam(Vec3(0.0f,0.0f,0.0f),Vec3(-3.0f,-3.0f,-3.0f)),
 			},
@@ -140,14 +141,8 @@ namespace basecross {
 	}
 
 	void MargeTestStage::CreateViewLight() {
-		const Vec3 eye(0.0f, +15.0f, -30.0f);
-		const Vec3 at(0.0f);
-		auto PtrView = CreateView<SingleView>();
-		//ビューのカメラの設定
-		auto PtrCamera = ObjectFactory::Create<Camera>();
-		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetEye(eye);
-		PtrCamera->SetAt(at);
+		CreateStartCamera();
+		CreateMainCamera();
 
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
@@ -170,6 +165,8 @@ namespace basecross {
 			light.m_SpecularColor = Col4(0.35f);
 			//light.m_Directional = poss[i];
 		}
+
+		//ChangeStartCamera();
 	}
 
 	void MargeTestStage::OnCreate() {
