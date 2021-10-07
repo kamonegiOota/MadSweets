@@ -154,7 +154,7 @@ namespace basecross {
 		//終了,MainCameraに切り替え
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
 		auto scene = app->GetScene<Scene>(); // アプリオブジェからシーンを取得
-		auto stage = dynamic_pointer_cast<MargeTestStage>(scene->GetActiveStage()); // シーンからステージを取得する
+		auto stage = dynamic_pointer_cast<MainStage>(scene->GetActiveStage()); // シーンからステージを取得する
 
 		if (stage)
 		{

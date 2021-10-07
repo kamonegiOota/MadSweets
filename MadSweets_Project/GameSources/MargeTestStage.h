@@ -1,6 +1,6 @@
 /*!
-@file MargeTestStage.h
-@brief MargeTestStage
+@file MainStage.h
+@brief MainStage
 ’S“–ÒFŠÛR —TŠì
 */
 
@@ -18,7 +18,7 @@
 
 namespace basecross {
 
-	class MargeTestStage : public Stage
+	class MainStage : public GameStage
 	{
 		static wstring sm_nowMap;
 		static Vec3 sm_firstCreatePlayerPosition;
@@ -73,8 +73,8 @@ namespace basecross {
 
 	public:
 		//\’z‚Æ”jŠü
-		MargeTestStage() :Stage() {}
-		virtual ~MargeTestStage() {}
+		MainStage() :GameStage() {}
+		virtual ~MainStage() {}
 		//‰Šú‰»
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;

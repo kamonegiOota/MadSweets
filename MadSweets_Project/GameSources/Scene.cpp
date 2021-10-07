@@ -57,7 +57,7 @@ namespace basecross{
 		}
 		if (event->m_MsgStr == L"ToMargeTestStage")
 		{
-			ResetActiveStage<MargeTestStage>();
+			ResetActiveStage<MainStage>();
 		}
 		if (event->m_MsgStr == L"ToOptionStage")
 		{

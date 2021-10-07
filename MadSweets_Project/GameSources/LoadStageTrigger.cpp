@@ -27,8 +27,8 @@ namespace basecross {
 	LoadStageTrigger::SavingValue LoadStageTrigger::sm_saveValue = SavingValue();
 
 	void LoadStageTrigger::ChangeStageReserve() {
-		MargeTestStage::SetCreatePlayerPosition(m_position);
-		MargeTestStage::SetMapName(m_nextMap);
+		MainStage::SetCreatePlayerPosition(m_position);
+		MainStage::SetMapName(m_nextMap);
 
 		auto player = maru::MyUtility::GetGameObject<PlayerObject>();
 		auto status = player->GetComponent<PlayerStatusMgr>(false);
@@ -52,7 +52,7 @@ namespace basecross {
 	}
 
 	void LoadStageTrigger::ChangeStage() {
-		auto stage = dynamic_pointer_cast<MargeTestStage>(GetStage());
+		auto stage = dynamic_pointer_cast<MainStage>(GetStage());
 		if (stage) {
 			//MovePosition();
 			//stage->ChangeMap(m_nextMap, m_fadeCtrl.GetShard());

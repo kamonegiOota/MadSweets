@@ -1,7 +1,7 @@
 
 /*!
-@file MargeTestStage.h
-@brief MargeTestStage
+@file MainStage.h
+@brief MainStage
 担当者：丸山 裕喜
 */
 
@@ -90,14 +90,14 @@ namespace basecross {
 	//	ゲームステージクラス実体
 	//--------------------------------------------------------------------------------------
 
-	//wstring MargeTestStage::sm_nowMap = L"TempStage.csv";
-	wstring MargeTestStage::sm_nowMap = L"Stage1.csv";
-	Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
-	//Vec3 MargeTestStage::sm_firstCreatePlayerPosition = Vec3(1.0f, +1.0f, 1.0f);
-	Vec3 MargeTestStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
-	Vec3 MargeTestStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
+	//wstring MainStage::sm_nowMap = L"TempStage.csv";
+	wstring MainStage::sm_nowMap = L"Stage1.csv";
+	Vec3 MainStage::sm_firstCreatePlayerPosition = Vec3(-21.0f, +1.0f, -21.0f);
+	//Vec3 MainStage::sm_firstCreatePlayerPosition = Vec3(1.0f, +1.0f, 1.0f);
+	Vec3 MainStage::sm_createPlayerPosition = sm_firstCreatePlayerPosition;
+	Vec3 MainStage::sm_cretaePlayerForward = Vec3(1.0f, 0.0f, 0.0f);
 
-	void MargeTestStage::SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight) {
+	void MainStage::SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight) {
 		auto saveValue = LoadStageTrigger::GetSavingValue();
 		if (saveValue.hp == 0.0f) {
 			return;
@@ -114,7 +114,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateStartCamera() {
+	void MainStage::CreateStartCamera() {
 		//StartCameraの設定
 		m_startView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
 		vector<StartCamera::ShowParam> params = {
@@ -129,7 +129,7 @@ namespace basecross {
 		m_startView->SetCamera(startCam);
 	}
 
-	void MargeTestStage::CreateMainCamera() {
+	void MainStage::CreateMainCamera() {
 		const Vec3 eye(0.0f, +15.0f, -30.0f);
 		const Vec3 at(0.0f);
 		m_mainView = CreateView<SingleView>();
@@ -140,7 +140,7 @@ namespace basecross {
 		m_mainCamera->SetAt(at);
 	}
 
-	void MargeTestStage::CreateViewLight() {
+	void MainStage::CreateViewLight() {
 		CreateStartCamera();
 		CreateMainCamera();
 
@@ -169,7 +169,7 @@ namespace basecross {
 		//ChangeStartCamera();
 	}
 
-	void MargeTestStage::OnCreate() {
+	void MainStage::OnCreate() {
 		try {
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
@@ -197,7 +197,7 @@ namespace basecross {
 			auto fadeObject = Instantiate<UIObject>();
 			fadeObject->SetDrawLayer(100000);
 			auto alphaFade = fadeObject->AddComponent<AlphaFadeCtrl>();
-			alphaFade->AddEndAction(GetThis<MargeTestStage>(), &MargeTestStage::GoClearStage);
+			alphaFade->AddEndAction(GetThis<MainStage>(), &MainStage::GoClearStage);
 
 			SetSharedGameObject(L"FinishFadeObject", fadeObject);
 
@@ -234,16 +234,16 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::OnUpdate() {
+	void MainStage::OnUpdate() {
 
 	}
 
-	void MargeTestStage::GoClearStage()
+	void MainStage::GoClearStage()
 	{
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<SceneBase>(), L"ToClearStage");
 	}
 
-	void MargeTestStage::CreateMap(const wstring& fileName, const Vec3& offset)
+	void MainStage::CreateMap(const wstring& fileName, const Vec3& offset)
 	{
 		auto map = AddGameObject<StageMapCSV>(L"MapDatas/", fileName);
 
@@ -295,7 +295,7 @@ namespace basecross {
 		CreateAstar(fileName);
 	}
 
-	void MargeTestStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
+	void MainStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
 		//マップ情報の切り替え
 		bool isNewCreate = m_mapCsv->ChangeMap(fileName);
 		if (isNewCreate) {
@@ -326,7 +326,7 @@ namespace basecross {
 	}
 
 
-	GraphAstar MargeTestStage::CreateAstar(const wstring& fileName) {
+	GraphAstar MainStage::CreateAstar(const wstring& fileName) {
 		//将来的にそれ用のUtilかFactoryに書く
 		auto graph = make_shared<SparseGraph<NavGraphNode, GraphEdge>>(true);
 		vector<std::shared_ptr<GameObject>> obstacleObjs;
@@ -384,11 +384,11 @@ namespace basecross {
 		return astar;
 	}
 
-	void MargeTestStage::TempLoad() {
+	void MainStage::TempLoad() {
 
 	}
 
-	void MargeTestStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
+	void MainStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
 		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
 		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
 		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
@@ -489,7 +489,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateEatItems() {
+	void MainStage::CreateEatItems() {
 		Vec3 poss[] = {
 			//{ +0.0f, +1.0f, +0.0f},//0
 			//{-12.0f, +1.0f,-12.0f},
@@ -513,7 +513,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreatePointLight() {
+	void MainStage::CreatePointLight() {
 		
 		Vec3 positions[] = {
 			//{-12.0f,1.5f,-12.0f},
@@ -536,7 +536,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateSoundCookies() {
+	void MainStage::CreateSoundCookies() {
 		Vec3 positions[] = {
 			{-12.0f,1.0f,-12.0f},
 		};
@@ -547,7 +547,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateCrackCookies() {
+	void MainStage::CreateCrackCookies() {
 		Vec3 positions[] = {
 			{13.0f,0.2f,12.0f},
 		};
@@ -558,7 +558,7 @@ namespace basecross {
 		}
 	}
 
-	void MargeTestStage::CreateHideObjects() {
+	void MainStage::CreateHideObjects() {
 		Vec3 positions[] = {
 			{14.0f,1.0f,-6.0f},
 			//{11.0f,1.0f, 11.0f},
