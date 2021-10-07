@@ -114,6 +114,31 @@ namespace basecross {
 		}
 	}
 
+	void MargeTestStage::CreateStartCamera() {
+		//StartCameraの設定
+		m_startView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
+		vector<StartCamera::ShowParam> params = {
+			//startPos            //startLock          //endPos             //endLock                //time
+			{
+				LiveMoveParam(Vec3(2.0f,0.0f,0.0f),Vec3(+4.0f,+0.0f,+0.0f)),
+				LiveMoveParam(Vec3(0.0f,0.0f,0.0f),Vec3(-3.0f,-3.0f,-3.0f)),
+			},
+		};
+		auto startCam = ObjectFactory::Create<StartCamera>(params);
+		m_startView->SetCamera(startCam);
+	}
+
+	void MargeTestStage::CreateMainCamera() {
+		const Vec3 eye(0.0f, +15.0f, -30.0f);
+		const Vec3 at(0.0f);
+		m_mainView = CreateView<SingleView>();
+		//ビューのカメラの設定
+		m_mainCamera = ObjectFactory::Create<Camera>();
+		m_mainView->SetCamera(m_mainCamera);
+		m_mainCamera->SetEye(eye);
+		m_mainCamera->SetAt(at);
+	}
+
 	void MargeTestStage::CreateViewLight() {
 		const Vec3 eye(0.0f, +15.0f, -30.0f);
 		const Vec3 at(0.0f);
@@ -123,6 +148,7 @@ namespace basecross {
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
+
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		
@@ -192,7 +218,7 @@ namespace basecross {
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 
 			//test
-			Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
+			//Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
 
 			return;
 			//test

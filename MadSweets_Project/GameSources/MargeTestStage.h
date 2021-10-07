@@ -14,6 +14,8 @@
 #include "PlowlingMove.h"
 #include "WeightGaugeCtrl.h"
 
+#include "StartCamera.h"
+
 namespace basecross {
 
 	class MargeTestStage : public Stage
@@ -26,9 +28,17 @@ namespace basecross {
 		ex_weak_ptr<StageMapCSV> m_mapCsv;
 		std::shared_ptr<PlayerObject> m_player;
 
+		std::shared_ptr<SingleView> m_startView;
+		std::shared_ptr<StartCamera> m_startCamera;
+
+		std::shared_ptr<SingleView> m_mainView;
+		std::shared_ptr<Camera> m_mainCamera;
+
 		void SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight);  //セーブされたパラメータのセット
 
 		//ビューの作成
+		void CreateStartCamera();
+		void CreateMainCamera();
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
@@ -86,6 +96,23 @@ namespace basecross {
 		}
 		static void SetCreatePlayerPosition(const Vec3& position) {
 			sm_createPlayerPosition = position;
+		}
+
+		//カメラ関係
+		std::shared_ptr<StartCamera> ChangeStartCamera()
+		{
+			auto camera = m_startView->GetCamera();
+			SetView(m_startView);
+
+			return dynamic_pointer_cast<StartCamera>(camera);
+		}
+
+		std::shared_ptr<Camera> ChangeMainCamera()
+		{
+			auto camera = m_mainView->GetCamera();
+			SetView(m_mainView);
+
+			return camera;
 		}
 	};
 
