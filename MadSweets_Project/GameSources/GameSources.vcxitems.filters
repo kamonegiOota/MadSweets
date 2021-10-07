@@ -772,6 +772,15 @@
     <Filter Include="Maru\MaruUthilyty\WaitTimer">
       <UniqueIdentifier>{624c1aab-dda1-4e6d-86ad-0cb1ae83135a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Camera">
+      <UniqueIdentifier>{20934215-c9aa-4565-ac7f-63160088a345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Camera\LiveCamera">
+      <UniqueIdentifier>{32aad7db-b81c-4b2e-a5f4-525a2cbcf7a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Camera\StartCamera">
+      <UniqueIdentifier>{bfc820f8-a39f-43c4-be75-b8acc56f6bc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1422,6 +1431,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WaitTimer.h">
       <Filter>Maru\MaruUthilyty\WaitTimer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LiveCamera.h">
+      <Filter>Maru\Camera\LiveCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartCamera.h">
+      <Filter>Maru\Camera\StartCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1981,6 +1996,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)WaitTimer.cpp">
       <Filter>Maru\MaruUthilyty\WaitTimer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LiveCamera.cpp">
+      <Filter>Maru\Camera\LiveCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartCamera.cpp">
+      <Filter>Maru\Camera\StartCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
