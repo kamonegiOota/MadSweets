@@ -9,6 +9,8 @@
 #include "StartCamera.h"
 #include "Mathf.h"
 
+#include "MargeTestStage.h"
+
 namespace basecross {
 
 	std::shared_ptr<GameStage> StartCamera::GetGameStage() {
@@ -61,6 +63,7 @@ namespace basecross {
 			return;
 		}
 
+		//フェードの実装
 		//auto fadeMgr = stage->GetFadeMgr();
 		//MyDelegate deleg;
 		//deleg.AddFunction(GetThis<StartCamera>(), &StartCamera::ChangeCamera);
@@ -151,17 +154,15 @@ namespace basecross {
 		//終了,MainCameraに切り替え
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
 		auto scene = app->GetScene<Scene>(); // アプリオブジェからシーンを取得
-		auto stage = dynamic_pointer_cast<GameStage>(scene->GetActiveStage()); // シーンからステージを取得する
+		auto stage = dynamic_pointer_cast<MargeTestStage>(scene->GetActiveStage()); // シーンからステージを取得する
 
 		if (stage)
 		{
-			//stage->ChangeMainCamera();
+			stage->ChangeMainCamera();
 			StartLock(false);
 
 			//auto gameCtrl = stage->GetGameStateCtrl();
 			//gameCtrl->ChangeState(GameState::Play);
-
-			//stage->CreateFarstMission();
 		}
 	}
 
