@@ -795,9 +795,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Stages\GameStage</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h">
       <Filter>Patchs\Inputs\InputHelper</Filter>
     </ClInclude>
@@ -1437,6 +1434,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StartCamera.h">
       <Filter>Maru\Camera\StartCamera</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Stages\GameStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1450,9 +1450,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
       <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
-      <Filter>Stages\GameStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp">
       <Filter>Patchs\Inputs\InputHelper</Filter>
@@ -2002,6 +1999,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StartCamera.cpp">
       <Filter>Maru\Camera\StartCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Stages\GameStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
