@@ -61,6 +61,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EdgeBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyEar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyGenerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyStateNodeBase.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EatenObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyEar.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyGenerator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyRotationCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_CheckSoundPos.cpp" />
