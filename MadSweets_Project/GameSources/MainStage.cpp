@@ -84,6 +84,8 @@
 
 #include "TestEnemyNode.h"
 
+#include "EnemyGenerator.h"
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -209,7 +211,11 @@ namespace basecross {
 			SavingValueSet(player, weightGauge);
 
 			CreateMap(sm_nowMap);
-			
+			//ìGÇÃê∂ê¨
+			auto generator = Instantiate<GameObject>()->AddComponent<EnemyGenerator>(m_mapCsv.GetShard());
+			generator->Generate(sm_nowMap);
+
+
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 
 			//test
@@ -293,7 +299,7 @@ namespace basecross {
 
 		m_mapCsv = map;
 
-		CreateAstar(fileName);
+		//CreateAstar(fileName);
 	}
 
 	void MainStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
