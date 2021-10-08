@@ -7,12 +7,12 @@
 #include "stdafx.h"
 #include "Project.h"
 #include "ItabashiStage.h"
-#include"MargeTestStage.h"
-#include"TitleStage.h"
+#include "MainStage.h"
+#include "TitleStage.h"
 #include "LoadStage.h"
-#include"OptionStage.h"
-#include"GameOverStage.h"
-#include"ClearStage.h"
+#include "OptionStage.h"
+#include "GameOverStage.h"
+#include "ClearStage.h"
 
 namespace basecross{
 
