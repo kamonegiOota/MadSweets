@@ -42,32 +42,6 @@ namespace basecross {
 		void CreateViewLight();
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
-		virtual GraphAstar CreateAstar(const wstring& fileName);
-
-		template<class T>
-		void CreateEnemy(const wstring& fileName, const GraphAstar& astar, const vector<Vec3>& positions) {
-			auto enemy = Instantiate<T>(Vec3(0.0f, 0.0f, 0.0f), Quat::Identity());
-			enemy->GetComponent<BaseEnemy>()->SetMapType(fileName);
-			enemy->AddComponent<AstarCtrl>(astar);
-			enemy->GetComponent<EyeSearchRange>()->AddTarget(m_player);
-
-			auto wallEvasion = enemy->GetComponent<WallEvasion>();
-			if (wallEvasion) {
-				for (auto& obj : GetGameObjectVec()) {
-					auto stageObj = dynamic_pointer_cast<StageObject>(obj);
-					if (stageObj) {
-						wallEvasion->AddObstacleObjs(stageObj);
-					}
-				}
-			}
-
-			auto plow = enemy->GetComponent<PlowlingMove>(false);
-			if (plow) {
-				plow->SetPositions(positions);
-			}
-
-			enemy->GetComponent<Transform>()->SetPosition(positions[0]);
-		}
 
 		void GoClearStage();
 
@@ -83,8 +57,6 @@ namespace basecross {
 		virtual void ChangeMap(const wstring& fileName,const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset = Vec3(0.0f));
 
 		//テスト用-----------------------------------------------------------
-		virtual void TempLoad();
-		void CreateEnemy(const std::shared_ptr<GameObject>& player);
 		void CreateEatItems();
 		void CreatePointLight();
 		void CreateSoundCookies();

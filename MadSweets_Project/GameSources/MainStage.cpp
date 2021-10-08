@@ -228,7 +228,6 @@ namespace basecross {
 			//test
 			CreatePointLight();
 			//敵の生成
-			CreateEnemy(player);
 			CreateHideObjects();
 			CreateEatItems();
 
@@ -298,8 +297,6 @@ namespace basecross {
 		}
 
 		m_mapCsv = map;
-
-		//CreateAstar(fileName);
 	}
 
 	void MainStage::ChangeMap(const wstring& fileName, const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset) {
@@ -330,170 +327,6 @@ namespace basecross {
 		
 		//フェードイン
 		fade->FadeInStart();
-	}
-
-
-	GraphAstar MainStage::CreateAstar(const wstring& fileName) {
-		//将来的にそれ用のUtilかFactoryに書く
-		auto graph = make_shared<SparseGraph<NavGraphNode, GraphEdge>>(true);
-		vector<std::shared_ptr<GameObject>> obstacleObjs;
-		vector<std::shared_ptr<GameObject>> excluteObjs;
-
-		for (auto& obj : GetGameObjectVec()) {
-			auto stageObj = dynamic_pointer_cast<StageObject>(obj);
-			if (stageObj) {
-				obstacleObjs.push_back(stageObj);
-			}
-		}
-
-		excluteObjs.push_back(m_player);
-
-		int index = 0;
-		auto positions = m_mapCsv->GetPositions(L"Capsule");
-		for (const auto& pos : positions) {
-			graph->AddNode(make_shared<NavGraphNode>(index++, pos));
-			//ノードの表示
-			auto numberObj = Instantiate<NumbersObject>(pos, Quat::Identity());
-			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
-		}
-
-		//手動で設定したノード
-		auto edges = StageMapCSV::sm_astarEdges[fileName];
-		for (auto& edge : edges) {
-			graph->AddEdge(edge);
-		}
-
-		auto astar = GraphAstar(graph);
-		//astar.AddEdges(obstacleObjs, excluteObjs);
-
-		//エネミーの生成
-		auto params = UtilityEnemy::sm_enemyParam[fileName];
-		for (auto& param : params) {
-			switch (param.type)
-			{
-			case UtilityEnemy::EnemyType::Handy:
-				param.plowPositions = m_mapCsv->GetPositions(L"HandyPlowling");
-				CreateEnemy<HandyObject>(fileName,astar,param.plowPositions);
-				break;
-			case UtilityEnemy::EnemyType::Cara:
-				param.plowPositions = m_mapCsv->GetPositions(L"CaraPlowling");
-				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
-				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
-				break;
-			case UtilityEnemy::EnemyType::Gra:
-				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);
-				break;
-			}
-		}
-
-		Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
-
-		return astar;
-	}
-
-	void MainStage::TempLoad() {
-
-	}
-
-	void MainStage::CreateEnemy(const std::shared_ptr<GameObject>& player) {
-		//auto enemy = Instantiate<ChaseEnemyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat());
-		//auto enemy = Instantiate<EscapeEnemyObject>(Vec3(0.0f,1.0f,0.0f),Quat());
-		auto enemy = Instantiate<HandyObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		//auto enemy = Instantiate<CaraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		//auto enemy = Instantiate<AshiObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-		//auto enemy = Instantiate<GraObject>(Vec3(0.0f, 1.0f, 0.0f), Quat::Identity());
-
-		SparseGraph<NavGraphNode, GraphEdge> graph(true);
-		
-		//Astar生成
-		std::vector<Vec3> poss = {
-			{ +0.0f, +1.0f, +0.0f},//0
-			{-12.0f, +1.0f,-12.0f},
-			{+12.0f, +1.0f,-12.0f},//2
-			{+11.0f, +1.0f,+11.0f},
-			{ +0.0f, +1.0f,+12.0f},//4
-			{-10.0f, +1.0f,+12.0f},
-			{-12.0f, +1.0f, +7.0f},//6
-			{-12.0f, +1.0f, -6.0f},
-
-			//{ 11.19f,   0.87f,	3.89f},
-			//{  2.94f, 	0.87f,  -5.83f	},
-			//{ -2.25f,	0.87f,  -14.27f },
-			//{ 10.73f,	0.87f,  -14.27f },
-			//{ 16.35f,	0.87f,  -10.21f },
-			//{ 16.35f,	0.87f,	2.64f },
-			//{ -7.36f,	0.87f,  -1.05f },
-			//{ 16.35f,	0.87f,  -6.6f },
-		};
-
-		int index = 0;
-		for (auto pos : poss) {
-			graph.AddNode(make_shared<NavGraphNode>(index++, pos));
-		}
-
-		vector<GraphEdge> edges = {
-			  //{GraphEdge(0,5)},
-			  //{GraphEdge(0,1)},
-
-			  //{GraphEdge(1,0)},
-			  //{GraphEdge(1,2)},
-			  //{GraphEdge(1,6)},
-
-			  //{GraphEdge(2,1)},
-			  //{GraphEdge(2,3)},
-
-			  //{GraphEdge(3,2)},
-			  //{GraphEdge(3,4)},
-
-			  //{GraphEdge(4,3)},
-			  //{GraphEdge(4,7)},
-
-			  //{GraphEdge(5,0)},
-			  //{GraphEdge(5,7)},
-
-			  //{GraphEdge(6,1)},
-
-			  //{GraphEdge(7,5)},
-			  //{GraphEdge(7,4)},
-
-			{GraphEdge(0,1)},
-			{GraphEdge(0,2)},
-			{GraphEdge(0,4)},
-			{GraphEdge(1,0)},
-			{GraphEdge(1,2)},
-			{GraphEdge(1,7)},
-			{GraphEdge(2,0)},
-			{GraphEdge(2,1)},
-			{GraphEdge(2,3)},
-			{GraphEdge(3,2)},
-			{GraphEdge(3,4)},
-			{GraphEdge(4,0)},
-			{GraphEdge(4,3)},
-			{GraphEdge(4,5)},
-			{GraphEdge(5,4)},
-			{GraphEdge(5,6)},
-			{GraphEdge(6,5)},
-			{GraphEdge(7,1)},
-		};
-
-		for (auto& edge : edges) {
-			graph.AddEdge(edge);
-		}
-
-		//GraphAstar astar(graph);
-		//auto astar = CreateAstar();
-		//enemy->AddComponent<AstarCtrl>(astar);
-		enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
-
-		auto wallEvasion = enemy->GetComponent<WallEvasion>();
-		if (wallEvasion) {
-			for (auto& obj : GetGameObjectVec()) {
-				auto stageObj = dynamic_pointer_cast<StageObject>(obj);
-				if(stageObj){
-					wallEvasion->AddObstacleObjs(stageObj);
-				}
-			}
-		}
 	}
 
 	void MainStage::CreateEatItems() {
