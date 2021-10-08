@@ -165,8 +165,6 @@ namespace basecross {
 			light.m_SpecularColor = Col4(0.35f);
 			//light.m_Directional = poss[i];
 		}
-
-		//ChangeStartCamera();
 	}
 
 	void MainStage::OnCreate() {
@@ -217,6 +215,7 @@ namespace basecross {
 			//test
 			//Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
 
+			//スタート演出カメラのスタート
 			ChangeStartCamera();
 
 			return;
