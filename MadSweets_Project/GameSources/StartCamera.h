@@ -12,6 +12,8 @@
 
 namespace basecross {
 
+	class AlphaFadeCtrl;
+
 	class StartCamera : public Camera
 	{
 		CONTROLER_STATE GetPad() const
@@ -67,6 +69,8 @@ namespace basecross {
 		int m_index;
 
 		float m_timeElapsed;
+
+		std::weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
 
 		std::shared_ptr<GameStage> GetGameStage();
 

@@ -6,10 +6,13 @@
 
 #include "stdafx.h"
 #include "Project.h"
+
+#include "AlphaFadeCtrl.h"
+
 #include "StartCamera.h"
 #include "Mathf.h"
 
-#include "MargeTestStage.h"
+#include "MainStage.h"
 
 namespace basecross {
 
@@ -64,10 +67,13 @@ namespace basecross {
 		}
 
 		//フェードの実装
-		//auto fadeMgr = stage->GetFadeMgr();
-		//MyDelegate deleg;
-		//deleg.AddFunction(GetThis<StartCamera>(), &StartCamera::ChangeCamera);
-		//fadeMgr->FadeOutStartTortion(deleg);
+		auto fadeCtrl = stage->Instantiate<GameObject>()->AddComponent<AlphaFadeCtrl>();
+		fadeCtrl->SetSpeed(1.0f);
+		fadeCtrl->AddEndAction(GetThis<StartCamera>(), &StartCamera::ChangeCamera);
+		fadeCtrl->AddEndAction(fadeCtrl, &AlphaFadeCtrl::FadeInStart);
+		fadeCtrl->FadeOutStart();
+
+		m_fadeCtrl = fadeCtrl;
 	}
 
 	void StartCamera::OnCreate()
@@ -81,10 +87,8 @@ namespace basecross {
 	void StartCamera::OnUpdate()
 	{
 		//終了のお知らせ
-		if (m_params.size() <= m_index)
-		{
-			//終了
-			return;
+		if (m_params.size() <= m_index) {
+			return; //終了
 		}
 
 		Skip();
@@ -150,7 +154,6 @@ namespace basecross {
 	}
 
 	void StartCamera::ChangeCamera() {
-
 		//終了,MainCameraに切り替え
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
 		auto scene = app->GetScene<Scene>(); // アプリオブジェからシーンを取得
