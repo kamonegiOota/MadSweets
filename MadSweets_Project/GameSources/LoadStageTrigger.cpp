@@ -12,7 +12,7 @@
 #include "DebugObject.h"
 
 #include "AlphaFadeObject.h"
-#include "MargeTestStage.h"
+#include "MainStage.h"
 
 #include "DebugObject.h"
 
