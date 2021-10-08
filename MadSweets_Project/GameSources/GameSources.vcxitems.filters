@@ -223,9 +223,6 @@
     <Filter Include="Maru\TestStage\MaruStage">
       <UniqueIdentifier>{46da6908-d87d-40c1-975b-8dc5fc350493}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\TestStage\MargeTestStage">
-      <UniqueIdentifier>{e7601cfc-f04e-4bc4-a7eb-05cd32530f9f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Load">
       <UniqueIdentifier>{9fb80dcc-85b3-49a5-aa9b-87b2cc6fbb55}</UniqueIdentifier>
     </Filter>
@@ -781,6 +778,9 @@
     <Filter Include="Maru\Camera\StartCamera">
       <UniqueIdentifier>{bfc820f8-a39f-43c4-be75-b8acc56f6bc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stages\MainStage">
+      <UniqueIdentifier>{e7601cfc-f04e-4bc4-a7eb-05cd32530f9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -972,8 +972,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h">
       <Filter>Maru\TestStage\MaruStage</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MargeTestStage.h">
-      <Filter>Maru\TestStage\MargeTestStage</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainStage.h">
+      <Filter>Stages\MainStage</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StageMapCSV.h">
       <Filter>Maru\Load\StageMapCSV</Filter>
@@ -1595,8 +1595,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp">
       <Filter>Maru\TestStage\MaruStage</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MargeTestStage.cpp">
-      <Filter>Maru\TestStage\MargeTestStage</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainStage.cpp">
+      <Filter>Stages\MainStage</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StageMapCSV.cpp">
       <Filter>Maru\Load\StageMapCSV</Filter>
