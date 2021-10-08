@@ -5,7 +5,7 @@
 ’S“–ÒFŠÛR —TŠì
 */
 
-#include "MargeTestStage.h"
+#include "MainStage.h"
 #include "StageMapCSV.h"
 #include "FixedBox.h"
 
@@ -216,6 +216,8 @@ namespace basecross {
 
 			//test
 			//Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
+
+			ChangeStartCamera();
 
 			return;
 			//test
