@@ -91,7 +91,7 @@ namespace basecross {
 
 		//マップ上にオブジェクトを生成
 		template<class T>
-		void CreateObject(const wstring& objName, const Vec3& offset = Vec3(0.0f))
+		void CreateObject(const wstring& objName, const Vec3& offset = Vec3(0.0f), const bool isAddObjectList = true)
 		{
 			vector<wstring> lineVec;
 			m_csvFiles[m_fileName].GetSelect(lineVec, 0, objName);
@@ -123,7 +123,9 @@ namespace basecross {
 				
 				auto stageObj = GetStage()->AddGameObject<T>(objName, scale, rotation, position + offset, texture);  //オブジェクトの生成
 				//ex_weak_ptr<StageObject> obj = stageObj;
-				m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加
+				if (isAddObjectList) {
+					m_stageObjs[m_fileName].push_back(stageObj);  //オブジェクトを自分のリストに追加	
+				}
 
 				if (objName == L"Ceiling") {
 					stageObj->SetUpdateActive(false);
