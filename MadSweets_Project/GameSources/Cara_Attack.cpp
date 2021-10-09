@@ -70,7 +70,7 @@ namespace basecross {
 
 	void Cara_Attack::ProvideDamage() {
 		auto damage = GetTarget()->GetComponent<I_Damaged>(false);
-		if (damage && IsAttackRange()) {
+		if (damage && IsAttackRange(false)) {
 			damage->Damage(m_param.power);
 		}
 	}
