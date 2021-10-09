@@ -230,7 +230,6 @@ namespace basecross {
 			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {
 				ChangeStartCamera();
 			}
-			
 		}
 		catch (...) {
 			throw;
