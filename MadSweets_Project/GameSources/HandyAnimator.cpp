@@ -16,6 +16,7 @@
 
 #include "TargetProbe.h"
 #include "Velocity.h"
+#include "WallEvasion.h"
 
 // ”Â‹´@’Ç‰Á•ª -----------------------
 
@@ -76,7 +77,13 @@ namespace basecross {
 				velocity->SetUpdateActive(false);
 			}
 		});
-		
+
+		state->AddEntryEvent([this] {
+			auto evasion = GetGameObject()->GetComponent<WallEvasion>(false);
+			if (evasion) {
+				evasion->SetUpdateActive(false);
+			}
+		});
 
 		state->AddExitEvent([this] {
 			auto probe = GetGameObject()->GetComponent<TargetProbe>(false);
@@ -88,6 +95,12 @@ namespace basecross {
 			auto velocity = GetGameObject()->GetComponent<Velocity>(false);
 			if (velocity) {
 				velocity->SetUpdateActive(true);
+			}
+		});
+		state->AddExitEvent([this] {
+			auto evasion = GetGameObject()->GetComponent<WallEvasion>(false);
+			if (evasion) {
+				evasion->SetUpdateActive(true);
 			}
 		});
 	}
