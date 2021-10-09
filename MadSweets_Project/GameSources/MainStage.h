@@ -34,7 +34,8 @@ namespace basecross {
 		std::shared_ptr<SingleView> m_mainView;
 		std::shared_ptr<Camera> m_mainCamera;
 
-		void SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight);  //セーブされたパラメータのセット
+		//セーブされたパラメータのセット
+		void SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight);  
 
 		//ビューの作成
 		void CreateStartCamera();

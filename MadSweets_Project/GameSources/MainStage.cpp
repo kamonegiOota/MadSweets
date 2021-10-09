@@ -101,7 +101,10 @@ namespace basecross {
 
 	void MainStage::SavingValueSet(const std::shared_ptr<PlayerObject> player, const std::shared_ptr<WeightGaugeCtrl>& weight) {
 		auto saveValue = LoadStageTrigger::GetSavingValue();
-		if (saveValue.hp == 0.0f) {
+		if (saveValue.isActive == false) {
+			//¶¬‚·‚éêŠ‚È‚Ç‚ğ‰ŠúˆÊ’u‚É•ÏX
+			sm_nowMap = L"Stage1.csv";
+			sm_createPlayerPosition = sm_firstCreatePlayerPosition;
 			return;
 		}
 
