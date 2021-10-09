@@ -263,7 +263,7 @@ namespace basecross {
 		map->CreateObject<OriginalMeshObject>(L"Chair", offset);
 		map->CreateObject<OriginalMeshObject>(L"Table",offset);
 		map->CreateObject<OriginalMeshObject>(L"Table2", offset);
-		map->CreateObject<CookieHideObject>(L"Locker01", offset);
+		map->CreateObject<CookieHideObject>(L"Locker01", offset, false);
 		map->CreateObject<LoadStageTriggerObject>(L"Trigger",offset);
 		map->CreateObject<PointLightObject>(L"Light", offset);
 		map->CreateObject<SoundCookieObject>(L"SoundCokie", offset);
