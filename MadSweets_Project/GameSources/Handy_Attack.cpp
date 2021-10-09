@@ -40,7 +40,6 @@ namespace basecross {
 		BaseAttack(objPtr,param)
 	{}
 
-
 	bool Handy_Attack::IsNowAnimeStateAttack() {
 		auto animeCtrl = GetGameObject()->GetComponent<HandyAnimatorCtrl>(false);
 		if (animeCtrl) {
@@ -51,6 +50,13 @@ namespace basecross {
 		}
 
 		return false;
+	}
+
+	void Handy_Attack::StartAttack() {
+		CreateThrowObject();
+		ChangeAttackAnimation();
+		ChangeAttackState();
+		SetUpdateActive(true);
 	}
 
 	void Handy_Attack::CreateThrowObject() {
@@ -70,6 +76,11 @@ namespace basecross {
 	}
 
 	void Handy_Attack::ChangeEndState() {
+		if (IsAttackRange(false)) {
+			StartAttack();
+			return;
+		}
+
 		//ステートマシン変更時
 		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
 		if (stator) {
@@ -102,10 +113,7 @@ namespace basecross {
 		SetTarget(target);
 
 		if (IsAttackRange()) {
-			CreateThrowObject();
-			ChangeAttackAnimation();
-			ChangeAttackState();
-			SetUpdateActive(true);
+			StartAttack();
 		}
 	}
 

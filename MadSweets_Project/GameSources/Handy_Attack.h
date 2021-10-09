@@ -19,12 +19,15 @@ namespace basecross {
 
 		bool IsNowAnimeStateAttack();  //Œ»İUŒ‚’†‚¾‚Á‚½‚ç
 
+		void StartAttack();
+
 		void CreateThrowObject();  //“Š‚°‚éw‚ğ¶¬
 
 		void ChangeAttackState() override;
 		void ChangeAttackAnimation();
 
 		void Rotation(const Vec3& direction);
+		
 
 	public:
 		Handy_Attack(const std::shared_ptr<GameObject>& objPtr);
