@@ -56,16 +56,10 @@ namespace basecross {
 		//ステージの変更
 		virtual void ChangeMap(const wstring& fileName,const std::shared_ptr<AlphaFadeCtrl>& fade, const Vec3& offset = Vec3(0.0f));
 
-		//テスト用-----------------------------------------------------------
-		void CreateEatItems();
-		void CreatePointLight();
-		void CreateSoundCookies();
-		void CreateCrackCookies();
-		void CreateHideObjects();
-
 		static void SetMapName(const wstring& name) {
 			sm_nowMap = name;
 		}
+
 		static void SetCreatePlayerPosition(const Vec3& position) {
 			sm_createPlayerPosition = position;
 		}

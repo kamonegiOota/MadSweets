@@ -215,25 +215,13 @@ namespace basecross {
 			auto generator = Instantiate<GameObject>()->AddComponent<EnemyGenerator>(m_mapCsv.GetShard());
 			generator->Generate(sm_nowMap);
 
-
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
 
-			//test
-			//Instantiate<NumbersObject>(sm_createPlayerPosition, Quat());
-
 			//スタート演出カメラのスタート
-			ChangeStartCamera();
-
-			return;
-			//test
-			CreatePointLight();
-			//敵の生成
-			CreateHideObjects();
-			CreateEatItems();
-
-			//auto node = std::make_shared<TestEnemyNode>(AddGameObject<GameObject>()->AddComponent<MTestEnemy>());
-			//node->OnStart();
-			//EnemyMainStateMachine<GraphNode, GraphEdge, PlayerStatusParam>();
+			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {
+				ChangeStartCamera();
+			}
+			
 		}
 		catch (...) {
 			throw;
@@ -327,91 +315,6 @@ namespace basecross {
 		
 		//フェードイン
 		fade->FadeInStart();
-	}
-
-	void MainStage::CreateEatItems() {
-		Vec3 poss[] = {
-			//{ +0.0f, +1.0f, +0.0f},//0
-			//{-12.0f, +1.0f,-12.0f},
-			//{+12.0f, +1.0f,-12.0f},//2
-			{+13.0f, +1.0f,+13.0f},
-			//{ +0.0f, +1.0f,+12.0f},//4
-			//{-10.0f, +1.0f,+12.0f},
-			//{-12.0f, +1.0f, +6.0f},//6
-			//{-12.0f, +1.0f, -7.0f},
-
-			//{-21.0f,1.0f,-20.0f}
-		};
-
-		for (auto& pos : poss) {
-			pos.y += -0.5f;
-			AddGameObject<FixedBox>(L"Fixed", Vec3(0.5f,1.0f,0.5f), Vec3(0.0f), pos, L"");
-			pos.y += 1.0f;
-			auto item = Instantiate<TestEatenObject>(pos,Quat());
-			item->GetComponent<Collision>()->SetAfterCollision(AfterCollision::None);
-			//item->GetComponent<Collision>()->AddExcludeCollisionGameObject(enemy);
-		}
-	}
-
-	void MainStage::CreatePointLight() {
-		
-		Vec3 positions[] = {
-			//{-12.0f,1.5f,-12.0f},
-			//{0.0f,0.0f,0.0f},
-
-			{ +0.0f, +1.0f, +0.0f},//0
-			{-12.0f, +1.0f,-12.0f},
-			{+12.0f, +1.0f,-12.0f},//2
-			{+11.0f, +1.0f,+11.0f},
-			{ +0.0f, +1.0f,+12.0f},//4
-			{-10.0f, +1.0f,+12.0f},
-			{-12.0f, +1.0f, +7.0f},//6
-			{-12.0f, +1.0f, -6.0f},
-		};
-
-		//constexpr int num = ;
-		for (const auto& pos : positions) {
-			auto obj = Instantiate<GameObject>(pos,Quat());
-			obj->AddComponent<PointLight>();
-		}
-	}
-
-	void MainStage::CreateSoundCookies() {
-		Vec3 positions[] = {
-			{-12.0f,1.0f,-12.0f},
-		};
-
-		for (const auto& pos : positions) {
-			//auto obj = Instantiate<SoundCookieObject>(pos, Quat());
-			//obj->AddComponent<PointLight>();
-		}
-	}
-
-	void MainStage::CreateCrackCookies() {
-		Vec3 positions[] = {
-			{13.0f,0.2f,12.0f},
-		};
-
-		for (const auto& pos : positions) {
-			//auto obj = Instantiate<CrackCookieObject>(pos, Quat());
-			//obj->AddComponent<PointLight>();
-		}
-	}
-
-	void MainStage::CreateHideObjects() {
-		Vec3 positions[] = {
-			{14.0f,1.0f,-6.0f},
-			//{11.0f,1.0f, 11.0f},
-		};
-
-		for (const auto& pos : positions) {
-			auto obj = Instantiate<GameObject>(pos, Quat());
-			obj->AddComponent<HiddenComponent>(pos,obj->GetComponent<Transform>()->GetForword());
-			obj->AddComponent<PNTPointDraw>()->SetMeshResource(L"DEFAULT_CUBE");
-			obj->AddComponent<CollisionObb>()->SetFixed(true);
-			
-			//obj->AddComponent<PointLight>();
-		}
 	}
 }
 
