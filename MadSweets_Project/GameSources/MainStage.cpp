@@ -169,6 +169,16 @@ namespace basecross {
 		}
 	}
 
+	void MainStage::CreatePlayer(const std::shared_ptr<WeightGaugeCtrl>& weightGauge) {
+		auto player = Instantiate<PlayerObject>(sm_createPlayerPosition, Quat());
+		player->GetComponent<Transform>()->SetForward(sm_cretaePlayerForward);
+		sm_createPlayerPosition = sm_firstCreatePlayerPosition;
+		player->AddComponent<PointLight>();
+		player->SetDrawActive(false);
+		m_player = player;
+		SavingValueSet(player, weightGauge);
+	}
+
 	void MainStage::OnCreate() {
 		try {
 			AddGameObject<DebugObject>()->SetDrawLayer(100);
@@ -194,6 +204,7 @@ namespace basecross {
 			//ウェイトゲージの生成
 			auto weightGauge = Instantiate<WeightGaugeUI>()->GetComponent<WeightGaugeCtrl>();
 
+			//フェードの生成
 			auto fadeObject = Instantiate<UIObject>();
 			fadeObject->SetDrawLayer(100000);
 			auto alphaFade = fadeObject->AddComponent<AlphaFadeCtrl>();
@@ -202,14 +213,9 @@ namespace basecross {
 			SetSharedGameObject(L"FinishFadeObject", fadeObject);
 
 			//プレイヤーの生成
-			auto player = Instantiate<PlayerObject>(sm_createPlayerPosition,Quat());
-			player->GetComponent<Transform>()->SetForward(sm_cretaePlayerForward);
-			sm_createPlayerPosition = sm_firstCreatePlayerPosition;
-			player->AddComponent<PointLight>();
-			player->SetDrawActive(false);
-			m_player = player;
-			SavingValueSet(player, weightGauge);
+			CreatePlayer(weightGauge);
 
+			//マップの生成
 			CreateMap(sm_nowMap);
 			//敵の生成
 			auto generator = Instantiate<GameObject>()->AddComponent<EnemyGenerator>(m_mapCsv.GetShard());

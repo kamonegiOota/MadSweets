@@ -26,7 +26,7 @@ namespace basecross {
 		static Vec3 sm_cretaePlayerForward;
 
 		ex_weak_ptr<StageMapCSV> m_mapCsv;
-		std::shared_ptr<PlayerObject> m_player;
+		ex_weak_ptr<PlayerObject> m_player;
 
 		std::shared_ptr<SingleView> m_startView;
 		std::shared_ptr<StartCamera> m_startCamera;
@@ -40,6 +40,7 @@ namespace basecross {
 		void CreateStartCamera();
 		void CreateMainCamera();
 		void CreateViewLight();
+		void CreatePlayer(const std::shared_ptr<WeightGaugeCtrl>& weightGauge);
 
 		virtual void CreateMap(const wstring& fileName, const Vec3& offset = Vec3(0.0f));
 
