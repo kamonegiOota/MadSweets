@@ -20,6 +20,7 @@ namespace basecross {
 	class StageMapCSV : public GameObject
 	{
 	public:
+		static map<wstring, int> sm_admissionCount; //“üê‚µ‚½‰ñ”
 		static map<wstring, vector<GraphEdge>> sm_astarEdges;
 
 	private:
@@ -151,6 +152,10 @@ namespace basecross {
 					eaten->SetEatenData(data);
 				}
 			}
+		}
+
+		static int GetAdmissionCount(const wstring& fileName) {
+			return sm_admissionCount.at(fileName);
 		}
 	};
 

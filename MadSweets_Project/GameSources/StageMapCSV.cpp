@@ -12,6 +12,8 @@
 
 namespace basecross {
 
+	map<wstring, int> StageMapCSV::sm_admissionCount = map<wstring, int>();
+
 	map<wstring, vector<GraphEdge>> StageMapCSV::sm_astarEdges = {
 		{L"Stage1.csv",
 			{
@@ -181,6 +183,13 @@ namespace basecross {
 		LoadCSV();
 		//CreateMap();
 
+		//ステージに入場した回数をカウント
+		if (StageMapCSV::sm_admissionCount.find(m_fileName) == StageMapCSV::sm_admissionCount.end()) {
+			StageMapCSV::sm_admissionCount[m_fileName] = 0;
+		}
+		else {
+			StageMapCSV::sm_admissionCount[m_fileName]++;
+		}
 	}
 
 	void StageMapCSV::OnUpdate() {
