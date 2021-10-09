@@ -22,6 +22,15 @@ namespace basecross {
 			float weight = 0;
 			float calorie = 0;
 			WeightState weightState = WeightState::Nomal;
+			bool isActive = false;
+
+			void Reset() {
+				hp = 0;
+				weight = 0;
+				calorie = 0;
+				WeightState weightState = WeightState::Nomal;
+				isActive = false;
+			}
 		};
 
 		static SavingValue sm_saveValue; //セーブ用のデータ
@@ -65,7 +74,9 @@ namespace basecross {
 
 		//セーブ用のデータ
 		static SavingValue GetSavingValue() {
-			return sm_saveValue;
+			auto saveValue = sm_saveValue;
+			sm_saveValue.isActive = false;
+			return saveValue;
 		}
 	};
 

@@ -40,6 +40,7 @@ namespace basecross {
 			sm_saveValue.weight = weightMgr->GetWeight();
 			sm_saveValue.weightState = weightMgr->GetState();
 			sm_saveValue.calorie = calorie->GetNowCalorie();
+			sm_saveValue.isActive = true;
 		}
 	}
 
