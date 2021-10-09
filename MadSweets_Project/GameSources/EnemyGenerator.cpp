@@ -54,8 +54,8 @@ namespace basecross {
 		for (const auto& pos : positions) {
 			graph->AddNode(make_shared<NavGraphNode>(index++, pos));
 			//ノードの表示
-			auto numberObj = GetStage()->Instantiate<NumbersObject>(pos, Quat::Identity());
-			numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
+			//auto numberObj = GetStage()->Instantiate<NumbersObject>(pos, Quat::Identity());
+			//numberObj->GetComponent<NumbersCtrl>()->SetValue(index - 1);
 		}
 
 		//手動で設定したノード
