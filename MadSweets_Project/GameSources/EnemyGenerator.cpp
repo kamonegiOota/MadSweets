@@ -96,7 +96,7 @@ namespace basecross {
 		}
 
 		//test—p
-		GetStage()->Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
+		//GetStage()->Instantiate<GameObject>()->AddComponent<AstarEdgeDraw>(astar);
 	}
 
 }
