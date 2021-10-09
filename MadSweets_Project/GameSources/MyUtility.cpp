@@ -134,6 +134,10 @@ namespace basecross {
 					continue;
 				}
 
+				if (collision->GetAfterCollision() == AfterCollision::None) {
+					continue;
+				}
+
 				//対象外のオブジェクトだったら
 				if (IsExclute(object, excluteObjs)) {
 					continue;
