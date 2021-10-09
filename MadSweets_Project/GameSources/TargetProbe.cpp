@@ -94,6 +94,9 @@ namespace basecross {
 			probe->HideSearchAnimationStart();
 		}
 
+		//hideObjectのコライダーをoffにすることで判断
+		SetHideObjCollisionUpdate(false);
+
 		//hideObjectにPlayerがいたら
 		auto hide = m_checkHideObj->GetComponent<HiddenComponent>(false);
 		if (hide->GetHideData().hideObject) {  //中に何か入っていたら。
@@ -103,14 +106,9 @@ namespace basecross {
 				auto attack = GetGameObject()->GetComponent<BaseAttack>(false);
 				if (attack) {
 					attack->Attack(target);
-					//GetStage()->RemoveGameObject<GameObject>(m_checkHideObj.GetShard());
-					//m_checkHideObj = nullptr;
 				}
 			}
 		}
-
-		//hideObjectのコライダーをoffにすることで判断
-		SetHideObjCollisionUpdate(false);
 	}
 
 	void TargetProbe::RouteEnd() {
