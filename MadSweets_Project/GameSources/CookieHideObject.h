@@ -18,6 +18,10 @@ namespace basecross {
 		
 	public:
 
+		//CookieHideObject(const std::shared_ptr<Stage>& stage, const wstring& name)
+		//	:GameObject(stage), m_mesh(name)
+		//{}
+
 		CookieHideObject(const std::shared_ptr<Stage>& stage,
 			const std::wstring& name,
 			const Vec3& scale,
