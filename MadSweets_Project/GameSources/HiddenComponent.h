@@ -1,5 +1,6 @@
 #pragma once
 #include"ChoicesComponentBase.h"
+#include "I_Damaged.h"
 
 namespace basecross
 {
@@ -53,7 +54,7 @@ namespace basecross
 	/// <summary>
 	/// 隠れられるオブジェクトの機能を持ったコンポーネント
 	/// </summary>
-	class HiddenComponent : public ChoicesComponentBase
+	class HiddenComponent : public ChoicesComponentBase, public I_Damaged
 	{
 		/// <summary>
 		/// 隠れるのに必要なデータ
@@ -84,5 +85,7 @@ namespace basecross
 		HideData GetHideData() const;
 
 		std::shared_ptr<ChoicesObjectAndEvent const> GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject) override;
+
+		void Damage(const float& damage) override;
 	};
 }

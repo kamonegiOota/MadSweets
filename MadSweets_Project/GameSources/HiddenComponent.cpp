@@ -43,4 +43,12 @@ namespace basecross
 
 		return m_choicesObjectAndEvent;
 	}
+
+	void HiddenComponent::Damage(const float& damage) {
+		auto damageComp = m_hideData.hideObject->GetComponent<I_Damaged>(false);
+		if (damageComp) {
+			damageComp->Damage(damage);
+		}
+		//GetStage()->RemoveGameObject<GameObject>(GetGameObject());
+	}
 }
