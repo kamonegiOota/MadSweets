@@ -66,13 +66,18 @@ namespace basecross {
 			sm_createPlayerPosition = position;
 		}
 
-		//ƒJƒƒ‰ŠÖŒW
+		//ƒJƒƒ‰ŠÖŒW-----------------------------------------------------------------
+
 		std::shared_ptr<StartCamera> ChangeStartCamera()
 		{
 			auto camera = m_startView->GetCamera();
 			SetView(m_startView);
 
-			return dynamic_pointer_cast<StartCamera>(camera);
+			auto startCamera = dynamic_pointer_cast<StartCamera>(camera);
+			if (startCamera) {
+				startCamera->Start(GetThis<Stage>());
+			}
+			return startCamera;
 		}
 
 		std::shared_ptr<Camera> ChangeMainCamera()
