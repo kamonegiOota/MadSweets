@@ -20,6 +20,7 @@
 #include"DebugCameraObject.h"
 #include"PlayerOpenDoorManager.h"
 #include"PlayerGameItemGetter.h"
+#include"Lock.h"
 
 //丸山追記分インクルード
 #include "PlayerStatusMgr.h"
@@ -90,6 +91,8 @@ namespace basecross
 		AddComponent<PlayerHideManager>();
 		AddComponent<PlayerGameItemGetter>();
 		AddComponent<PlayerOpenDoorManager>();
+
+		AddComponent<LockPlayer>();
 
 		//丸山追記文
 		AddComponent<PlayerStatusMgr>();  //ステータス管理コンポーネント
