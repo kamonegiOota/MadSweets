@@ -125,6 +125,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTrigger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Lock.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MaruStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mathf.h" />
@@ -327,6 +328,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTrigger.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStageTriggerObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Lock.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MaruStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mathf.cpp" />

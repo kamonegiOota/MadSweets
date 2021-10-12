@@ -784,6 +784,9 @@
     <Filter Include="Maru\Enemy\Generator">
       <UniqueIdentifier>{90a67e13-3218-4f60-a3fe-0969326141a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\Lock">
+      <UniqueIdentifier>{45695c48-8f1b-4c58-905c-10d4ae1af561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1443,6 +1446,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyGenerator.h">
       <Filter>Maru\Enemy\Generator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Lock.h">
+      <Filter>Maru\MaruPlayer\Component\Lock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2011,6 +2017,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyGenerator.cpp">
       <Filter>Maru\Enemy\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Lock.cpp">
+      <Filter>Maru\MaruPlayer\Component\Lock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
