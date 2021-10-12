@@ -75,7 +75,7 @@ namespace basecross {
 		std::shared_ptr<GameStage> GetGameStage();
 
 		void PlayAnimation();
-		void StartLock(const bool b);  //スタートカメラ中にロックする項目
+		void StartLock(const bool b, const std::shared_ptr<Stage>& stage);  //スタートカメラ中にロックする項目
 
 		void FadeStart();
 
@@ -87,6 +87,8 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
+
+		void Start(const std::shared_ptr<Stage>& stage);
 
 		void EyeMove();
 		void AtMove();

@@ -13,6 +13,8 @@
 #include "Mathf.h"
 
 #include "MainStage.h"
+#include "Lock.h"
+#include "MyUtility.h"
 
 namespace basecross {
 
@@ -44,20 +46,16 @@ namespace basecross {
 		}
 	}
 
-	void StartCamera::StartLock(const bool b) {
-		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
-		auto scene = app->GetScene<Scene>(); // アプリオブジェからシーンを取得
-		auto stage = dynamic_pointer_cast<GameStage>(scene->GetActiveStage());
-
-		if (!stage) {
+	void StartCamera::StartLock(const bool b, const std::shared_ptr<Stage>& stage) {
+		auto player = MyUtility::GetGameObject<PlayerObject>(stage);
+		if (!player) {
 			return;
 		}
-
-		//auto player = stage->GetPlayer();
-		//auto lock = player->GetComponent<Lock>(false);
-		//if (lock) {
-		//	lock->MoveLock(b);
-		//}
+		
+		auto lock = player->GetComponent<LockPlayer>(false);
+		if (lock) {
+			lock->SetPlayerOperationActive(!b);
+		}
 	}
 
 	void StartCamera::FadeStart() {
@@ -80,8 +78,6 @@ namespace basecross {
 	{
 		SetAt(m_params[m_index].at.startPos);
 		SetEye(m_params[m_index].eye.startPos);
-
-		StartLock(true);
 	}
 
 	void StartCamera::OnUpdate()
@@ -116,6 +112,9 @@ namespace basecross {
 
 	}
 
+	void StartCamera::Start(const std::shared_ptr<Stage>& stage) {
+		StartLock(true, stage);
+	}
 
 	void StartCamera::EyeMove()
 	{
@@ -162,7 +161,7 @@ namespace basecross {
 		if (stage)
 		{
 			stage->ChangeMainCamera();
-			StartLock(false);
+			StartLock(false, stage);
 
 			//auto gameCtrl = stage->GetGameStateCtrl();
 			//gameCtrl->ChangeState(GameState::Play);
