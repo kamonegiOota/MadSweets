@@ -17,29 +17,29 @@
 
 namespace basecross {
 
-	struct EscapeEnemyStateTransitionMember {
+	struct AshiStateTransitionMember {
 		Trigger escapeTrigger;
 		Trigger loseTrigger;
 		Trigger plowlingTrigger;
 	};
 
-	enum class EscapeEnemyStateType {
+	enum class AshiStateType {
 		Escape,
 		Lose,
 		Plowling,
 	};
 
-	class EscapeEnemyStator : public Component
+	class AshiStator : public Component
 	{
-		using TransitionMember = EscapeEnemyStateTransitionMember;
-		using StateType = EscapeEnemyStateType;
+		using TransitionMember = AshiStateTransitionMember;
+		using StateType = AshiStateType;
 		using StateMachine = EnemyMainStateMachine<BaseEnemy, StateType, TransitionMember>;
 
 		std::shared_ptr<StateMachine> m_stateMachine;
 
 	public :
 
-		EscapeEnemyStator(const std::shared_ptr<GameObject>& objPtr)
+		AshiStator(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 

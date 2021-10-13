@@ -6,11 +6,11 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "EscapeEnemyStator.h"
+#include "AshiStator.h"
 
 namespace basecross {
 
-	void EscapeEnemyStator::OnCreate() {
+	void AshiStator::OnCreate() {
 		m_stateMachine = make_shared<StateMachine>();
 	}
 
