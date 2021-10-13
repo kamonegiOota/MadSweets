@@ -25,6 +25,7 @@
 #include "HandyObject.h"
 #include "CaraObject.h"
 #include "GraObject.h"
+#include "AshiObject.h"
 
 //test—p
 #include "NumbersObject.h"
@@ -88,6 +89,10 @@ namespace basecross {
 				param.plowPositions = csvMap->GetPositions(L"CaraPlowling");
 				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
 				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
+				break;
+			case UtilityEnemy::EnemyType::Ashi:
+				param.plowPositions = csvMap->GetPositions(L"AshiPlowling");
+				CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:
 				//CreateEnemy<GraObject>(fileName, astar, param.plowPositions);

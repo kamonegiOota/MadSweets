@@ -37,6 +37,9 @@ namespace basecross {
 
 		std::shared_ptr<StateMachine> m_stateMachine;
 
+		void CreateNodes();
+		void CreateEdges();
+
 	public :
 
 		AshiStator(const std::shared_ptr<GameObject>& objPtr)
