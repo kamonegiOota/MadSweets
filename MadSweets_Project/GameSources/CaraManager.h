@@ -24,7 +24,7 @@ namespace basecross {
 
 		//Interfaceの実装-------------------------------------------------------------
 
-				//追従スタート
+		//追従スタート
 		void StartChase() override;
 		void EndChase() override;  //ターゲットを見失ったときの処理
 
