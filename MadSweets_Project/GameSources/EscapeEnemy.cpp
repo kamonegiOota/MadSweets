@@ -16,7 +16,7 @@
 #include "AstarCtrl.h"
 
 #include "I_Escape.h"
-#include "EscapeEnemyStator.h"
+#include "AshiStator.h"
 
 namespace basecross {
 
@@ -31,7 +31,7 @@ namespace basecross {
 	}
 
 	void EscapeEnemy::ChangeEscapeState(const std::shared_ptr<GameObject>& target) {
-		auto stator = GetGameObject()->GetComponent<EscapeEnemyStator>(false);
+		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
 		if (stator) {
 			stator->GetTransitionMemeber().escapeTrigger.Fire();
 		}
@@ -40,7 +40,7 @@ namespace basecross {
 	}
 
 	void EscapeEnemy::SuccessEscape() {
-		auto stator = GetGameObject()->GetComponent<EscapeEnemyStator>(false);
+		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
 		if (stator) {
 			stator->GetTransitionMemeber().loseTrigger.Fire();
 		}
