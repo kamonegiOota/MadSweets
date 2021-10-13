@@ -17,7 +17,8 @@ namespace basecross {
 		enum class EnemyType {
 			Handy,
 			Gra,
-			Cara
+			Ashi,
+			Cara,
 		};
 
 		struct CreateEnemyParam {
