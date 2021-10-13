@@ -11,7 +11,6 @@
 #include "AstarCtrl.h"
 
 #include "TargetEscape.h"
-//#include "TargetChase.h"
 #include "PlowlingMove.h"
 #include "EyeSearchRange.h"
 #include "ReturnPlowlingPosition.h"
@@ -108,8 +107,6 @@ namespace basecross {
 		AddComponent<AshiAnimatorCtrl>(draw);
 
 		AddComponent<TargetEscape>();
-		//AddComponent<TargetChase>();
-		//AddComponent<TargetProbe>();
 		AddComponent<EyeSearchRange>();
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
