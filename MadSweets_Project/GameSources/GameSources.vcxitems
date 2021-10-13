@@ -20,6 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AnimationHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ArrowObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.h" />

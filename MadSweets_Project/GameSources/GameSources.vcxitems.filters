@@ -733,9 +733,6 @@
     <Filter Include="Maru\StateMachine\Test">
       <UniqueIdentifier>{d05c5de4-797f-4428-998b-d9f6ad31325e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator">
-      <UniqueIdentifier>{20ca5243-4d98-4272-9c85-2b6130630ff5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject">
       <UniqueIdentifier>{b3c1623e-1b29-434d-ba54-d7ddae1f4b53}</UniqueIdentifier>
     </Filter>
@@ -786,6 +783,12 @@
     </Filter>
     <Filter Include="Maru\MaruPlayer\Component\Lock">
       <UniqueIdentifier>{45695c48-8f1b-4c58-905c-10d4ae1af561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\AshiStator">
+      <UniqueIdentifier>{20ca5243-4d98-4272-9c85-2b6130630ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\AshiManager">
+      <UniqueIdentifier>{93116893-d89b-4317-9005-69f9b57fe3c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1411,7 +1414,7 @@
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiStator.h">
-      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiStator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Probe.h">
       <Filter>Maru\Enemy\Interface</Filter>
@@ -1448,6 +1451,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Lock.h">
       <Filter>Maru\MaruPlayer\Component\Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiManager.h">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1992,7 +1998,7 @@
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiStator.cpp">
-      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\Stator</Filter>
