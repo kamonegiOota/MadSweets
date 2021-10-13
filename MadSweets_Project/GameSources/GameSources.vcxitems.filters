@@ -1410,7 +1410,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiStator.h">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Probe.h">
@@ -1991,7 +1991,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiStator.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\EscapeEnemyStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp">

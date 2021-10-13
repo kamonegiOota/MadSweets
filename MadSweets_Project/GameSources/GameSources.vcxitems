@@ -74,7 +74,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AshiStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EventedComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EventSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ex_weak_ptr.h" />
@@ -286,7 +286,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_TargetChase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)EscapeEnemyStator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EventedComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EventSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EyeSearchRange.cpp" />
