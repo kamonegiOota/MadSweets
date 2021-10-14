@@ -12,6 +12,7 @@
 #include "AstarPlowlingMove.h"
 #include "TargetEscape.h"
 #include "AstarCtrl.h"
+#include "TargetMgr.h"
 
 #include "DebugObject.h"
 
@@ -19,6 +20,12 @@ namespace basecross {
 
 	void EnState_EscapeMove::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
+
+		auto targetMgr = obj->GetComponent<TargetMgr>(false);
+		if (targetMgr) {
+			m_target = targetMgr->GetTarget();
+		}
+
 		auto targetEscape = obj->GetComponent<TargetEscape>(false);
 		if (targetEscape) {
 			targetEscape->SetTarget(m_target);

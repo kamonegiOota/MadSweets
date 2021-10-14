@@ -20,11 +20,9 @@ namespace basecross {
 		std::shared_ptr<GameObject> m_target;
 
 	public:
-		EnState_EscapeMove(const std::shared_ptr<BaseEnemy>& objPtr,
-			const std::shared_ptr<GameObject>& target
+		EnState_EscapeMove(const std::shared_ptr<BaseEnemy>& objPtr
 		) :
-			EnemyStateNodeBase<BaseEnemy>(objPtr),
-			m_target(target)
+			EnemyStateNodeBase<BaseEnemy>(objPtr)
 		{}
 
 		void OnStart() override;
