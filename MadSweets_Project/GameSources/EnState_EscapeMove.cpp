@@ -37,20 +37,14 @@ namespace basecross {
 		}
 
 		AddChangeComp(targetEscape, true, false);
-		//AddChangeComp(astar, true, false);
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), false, false);
 		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), false, false);
 
 		StartChangeComps();
-
-		auto draw = obj->GetComponent<BcBaseDraw>(false);
-		if (draw) {
-			draw->SetDiffuse(Col4(1.0f, 0.0f, 0.0f, 1.0f));
-		}
 	}
 
 	void EnState_EscapeMove::OnUpdate() {
-
+		DebugObject::AddString(L"Escape");
 	}
 
 	void EnState_EscapeMove::OnExit() {
