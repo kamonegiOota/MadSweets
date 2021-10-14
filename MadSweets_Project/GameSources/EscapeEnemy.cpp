@@ -30,23 +30,23 @@ namespace basecross {
 		//EyeSearch();
 	}
 
-	void EscapeEnemy::ChangeEscapeState(const std::shared_ptr<GameObject>& target) {
-		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
-		if (stator) {
-			stator->GetTransitionMemeber().escapeTrigger.Fire();
-		}
+	//void EscapeEnemy::StartEscape(const std::shared_ptr<GameObject>& target) {
+	//	//auto stator = GetGameObject()->GetComponent<AshiStator>(false);
+	//	//if (stator) {
+	//	//	stator->GetTransitionMemeber().escapeTrigger.Fire();
+	//	//}
 
-		//ChangeStateMachine<EnState_EscapeMove>(target);
-	}
+	//	//ChangeStateMachine<EnState_EscapeMove>(target);
+	//}
 
-	void EscapeEnemy::SuccessEscape() {
-		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
-		if (stator) {
-			stator->GetTransitionMemeber().loseTrigger.Fire();
-		}
+	//void EscapeEnemy::SuccessEscape() {
+	//	//auto stator = GetGameObject()->GetComponent<AshiStator>(false);
+	//	//if (stator) {
+	//	//	stator->GetTransitionMemeber().loseTrigger.Fire();
+	//	//}
 
-		//ChangeStateMachine<EnState_LoseTarget>();
-	}
+	//	//ChangeStateMachine<EnState_LoseTarget>();
+	//}
 
 	//void EscapeEnemy::EyeSearch() {
 	//	//auto obj = GetGameObject();
