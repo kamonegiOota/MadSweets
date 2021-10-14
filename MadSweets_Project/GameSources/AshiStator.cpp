@@ -55,7 +55,7 @@ namespace basecross {
 		state->AddEdge(StateType::Lose, StateType::Plowling, &ToPlowlingTrigger);
 	}
 
-	void AshiStator::OnCreate() {
+	void AshiStator::OnStart() {
 		m_stateMachine = make_shared<StateMachine>();
 
 		CreateNodes();

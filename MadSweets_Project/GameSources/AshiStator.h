@@ -46,9 +46,9 @@ namespace basecross {
 			:Component(objPtr)
 		{}
 
-		void OnCreate();
-		void OnStart() {}
-		void OnUpdate();
+		void OnCreate() override {}
+		void OnStart() override;
+		void OnUpdate() override;
 
 
 		//アクセッサ---------------------------------------------------------------------
