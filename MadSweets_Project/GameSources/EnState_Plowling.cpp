@@ -20,16 +20,28 @@
 
 #include "EyeSearchRange.h"
 #include "I_Chase.h"
+#include "I_Escape.h"
 
 namespace basecross {
+
+	void EnState_Plowling::ChangeState() {
+		auto object = GetOwner()->GetGameObject();
+
+		auto chase = object->GetComponent<I_Chase>(false);
+		if (chase) {
+			chase->StartChase();
+		}
+
+		auto escape = object->GetComponent<I_Escape>(false);
+		if (escape) {
+			escape->StartEscape();
+		}
+	}
 
 	void EnState_Plowling::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
-		//auto plow = obj->GetComponent<PlowlingMove>();
-
 		AddChangeComp(obj->GetComponent<PlowlingMove>(false), true, false);
-		//AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), true, false);
 		AddChangeComp(obj->GetComponent<ReturnPlowlingPosition>(false), false, false);
 
 		AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
@@ -43,10 +55,9 @@ namespace basecross {
 		auto object = GetOwner()->GetGameObject();
 		auto targetMgr = object->GetComponent<TargetMgr>(false);
 		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
-		auto chase = object->GetComponent<I_Chase>(false);
 
 		//nullCheck
-		if (targetMgr == nullptr || eyeSearch == nullptr || chase == nullptr) {  
+		if (targetMgr == nullptr || eyeSearch == nullptr) {  
 			return;
 		}
 
@@ -54,7 +65,7 @@ namespace basecross {
 		auto target = targetMgr->GetTarget();
 		if (target) {
 			if (eyeSearch->IsInEyeRange(target)) {
-				chase->StartChase();
+				ChangeState();
 			}
 		}
 

@@ -16,6 +16,7 @@ namespace basecross {
 	/// </summary>
 	class EnState_Plowling : public EnemyStateNodeBase<BaseEnemy>
 	{
+		void ChangeState();
 
 	public:
 		EnState_Plowling(const std::shared_ptr<BaseEnemy>& objPtr)
