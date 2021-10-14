@@ -41,14 +41,18 @@ namespace basecross {
 		AddChangeComp(obj->GetComponent<AstarPlowlingMove>(false), false, false);
 
 		StartChangeComps();
+
+		DebugObject::AddString(L"StartEscape");
 	}
 
 	void EnState_EscapeMove::OnUpdate() {
-		DebugObject::AddString(L"Escape");
+		//DebugObject::AddString(L"Escape");
 	}
 
 	void EnState_EscapeMove::OnExit() {
 		ExitChangeComps();
+
+		DebugObject::AddString(L"ExitEscape");
 	}
 
 }
