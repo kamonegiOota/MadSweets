@@ -6,9 +6,6 @@
 
 #pragma once
 
-#include "StateMachine.h"
-#include "BaseEnemy.h"
-
 namespace basecross {
 
 	class I_ReturnPlowling

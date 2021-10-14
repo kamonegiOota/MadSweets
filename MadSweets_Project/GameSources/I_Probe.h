@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "BaseEnemy.h"
-
 namespace basecross {
 
 	class I_Probe {
@@ -22,9 +20,6 @@ namespace basecross {
 		/// </summary>
 		virtual void HideSearchAnimationStart() = 0;
 	};
-
-	
-
 }
 
 //endbasecross

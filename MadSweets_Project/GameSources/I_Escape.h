@@ -6,9 +6,6 @@
 
 #pragma once
 
-#include "StateMachine.h"
-#include "BaseEnemy.h"
-
 namespace basecross {
 
 	/// <summary>
@@ -18,7 +15,7 @@ namespace basecross {
 
 	public:
 		
-		virtual void ChangeEscapeState(const std::shared_ptr<GameObject>& target) = 0;
+		virtual void StartEscape() = 0;
 		virtual void SuccessEscape() = 0;  //“¦‚°Ø‚è¬Œ÷
 	};
 
