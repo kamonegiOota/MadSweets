@@ -57,7 +57,8 @@ namespace basecross {
 		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
 
 		//nullCheck
-		if (targetMgr == nullptr || eyeSearch == nullptr) {  
+		if (targetMgr == nullptr || eyeSearch == nullptr) {
+			DebugObject::AddString(L"EnState_Plowling:: コンポーネントが足りません。");
 			return;
 		}
 
