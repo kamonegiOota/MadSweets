@@ -42,7 +42,7 @@ namespace basecross {
 		AddComponent<TargetEscape>();
 		CreatePlowlingRoute();
 
-		AddComponent<EscapeEnemy>();
+		//AddComponent<EscapeEnemy>();
 
 		auto col = AddComponent<CollisionObb>();
 	}

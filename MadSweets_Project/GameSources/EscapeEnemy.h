@@ -15,7 +15,7 @@ namespace basecross {
 	/// <summary>
 	/// プレイヤ―を見つけたら逃げる動作をするEnemy
 	/// </summary>
-	class EscapeEnemy : public BaseEnemy, public I_Escape
+	class EscapeEnemy : public BaseEnemy
 	{
 
 	public:
@@ -29,8 +29,8 @@ namespace basecross {
 
 		//インターフェースの実装
 
-		void ChangeEscapeState(const std::shared_ptr<GameObject>& target) override;
-		void SuccessEscape() override;
+		//void StartEscape(const std::shared_ptr<GameObject>& target) override;
+		//void SuccessEscape() override;
 
 		//void EyeSearch();  //目のサーチ
 	};
