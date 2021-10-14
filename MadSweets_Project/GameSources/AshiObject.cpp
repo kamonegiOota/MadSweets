@@ -31,7 +31,7 @@
 #include "WallEvasion.h"
 
 #include "TactileObject.h"
-
+#include "AshiManager.h"
 
 // î¬ã¥Å@í«â¡ï™ --------------------
 
@@ -115,7 +115,8 @@ namespace basecross {
 		AddComponent<EnemyEar>();   //é®
 		AddComponent<CheckTargetPos>();
 
-		AddComponent<EscapeEnemy>();
+		AddComponent<AshiManager>();
+		//AddComponent<EscapeEnemy>();
 
 		auto col = AddComponent<CollisionObb>();
 
