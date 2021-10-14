@@ -13,10 +13,21 @@
 #include "TargetEscape.h"
 #include "AstarCtrl.h"
 #include "TargetMgr.h"
+#include "EyeSearchRange.h"
+#include "I_Escape.h"
 
 #include "DebugObject.h"
 
 namespace basecross {
+
+	void EnState_EscapeMove::ChangeState() {
+		auto object = GetOwner()->GetGameObject();
+
+		auto escape = object->GetComponent<I_Escape>(false);
+		if (escape) {
+			escape->StartEscape();
+		}
+	}
 
 	void EnState_EscapeMove::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
@@ -46,6 +57,24 @@ namespace basecross {
 	}
 
 	void EnState_EscapeMove::OnUpdate() {
+		auto object = GetOwner()->GetGameObject();
+		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
+
+		//nullCheck
+		if (targetMgr == nullptr || eyeSearch == nullptr) {
+			DebugObject::AddString(L"EnState_EscapeMove:: コンポーネントが足りません。");
+			return;
+		}
+
+		//視界にターゲットが存在したら、Chaseに切替
+		auto target = targetMgr->GetTarget();
+		if (target) {
+			if (eyeSearch->IsInEyeRange(target)) {
+				ChangeState();
+			}
+		}
+
 		//DebugObject::AddString(L"Escape");
 	}
 

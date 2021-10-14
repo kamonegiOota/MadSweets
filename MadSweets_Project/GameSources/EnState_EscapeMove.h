@@ -19,6 +19,8 @@ namespace basecross {
 	{
 		std::shared_ptr<GameObject> m_target;
 
+		void ChangeState();
+
 	public:
 		EnState_EscapeMove(const std::shared_ptr<BaseEnemy>& objPtr
 		) :
