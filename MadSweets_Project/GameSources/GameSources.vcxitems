@@ -241,6 +241,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)AlphaFadeObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ArrowObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiAnimatorCtrl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarEdgeDraw.cpp" />

@@ -2027,6 +2027,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Lock.cpp">
       <Filter>Maru\MaruPlayer\Component\Lock</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AshiManager.cpp">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="$(MSBuildThisFileDirectory)..\..\Libs\BaseLib\DxShaders\PSPNTPoint.hlsl">
