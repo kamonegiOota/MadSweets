@@ -31,7 +31,11 @@
 #include "WallEvasion.h"
 
 #include "TactileObject.h"
+#include "AshiStator.h"
 #include "AshiManager.h"
+#include "TargetMgr.h"
+#include "PlayerObject.h"
+#include "WaitTimer.h"
 
 // ”Â‹´@’Ç‰Á•ª --------------------
 
@@ -104,6 +108,9 @@ namespace basecross {
 		draw->SetMeshResource(L"Ashi_Walk");
 		draw->SetMeshToTransformMatrix(spanMat);
 
+		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
+		AddComponent<TargetMgr>(player);
+
 		AddComponent<AshiAnimatorCtrl>(draw);
 
 		AddComponent<TargetEscape>();
@@ -114,9 +121,11 @@ namespace basecross {
 		AddComponent<ChaseAstarMove>();
 		AddComponent<EnemyEar>();   //Ž¨
 		AddComponent<CheckTargetPos>();
+		AddComponent<WaitTimer>();
 
-		AddComponent<AshiManager>();
+		AddComponent<AshiStator>();
 		//AddComponent<EscapeEnemy>();
+		AddComponent<AshiManager>();
 
 		auto col = AddComponent<CollisionObb>();
 
