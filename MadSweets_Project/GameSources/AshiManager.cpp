@@ -18,11 +18,17 @@
 namespace basecross {
 
 	void AshiManager::StartEscape() {
-
+		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
+		if (stator) {
+			stator->GetTransitionMember().escapeTrigger.Fire();
+		}
 	}
 
 	void AshiManager::SuccessEscape() {
-
+		auto stator = GetGameObject()->GetComponent<AshiStator>(false);
+		if (stator) {
+			stator->GetTransitionMember().loseTrigger.Fire();
+		}
 	}
 
 	void AshiManager::StartReturnPlowling() {
