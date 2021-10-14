@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
+#include "BaseEnemy.h"
 #include "I_Chase.h"
 #include "I_Probe.h"
 #include "I_Ear.h"
