@@ -8,12 +8,16 @@
 
 #include "AshiStator.h"
 
+#include "EnState_Plowling.h"
+#include "EnState_EscapeMove.h"
+#include "EnState_LoseTarget.h"
+
 namespace basecross {
 
 	using StateType = AshiStateType;
 	using TransitionMember = AshiStateTransitionMember;
 
-	//‘JˆÚðŒ-------------------------------------------------------------
+	//‘JˆÚðŒ-------------------------------------------------------------------------------------------
 
 	bool ToEscapeTrigger(const TransitionMember& member) {
 		return member.escapeTrigger.Get();
@@ -30,11 +34,25 @@ namespace basecross {
 	//ƒm[ƒgAƒGƒbƒW’Ç‰Á----------------------------------------------------------------------------------
 
 	void AshiStator::CreateNodes() {
+		auto& state = m_stateMachine;
+		auto enemy = GetGameObject()->GetComponent<BaseEnemy>();
 
+		state->AddNode(StateType::Plowling, make_shared<EnState_Plowling>(enemy));
+		state->AddNode(StateType::Escape, make_shared<EnState_EscapeMove>(enemy));
+		state->AddNode(StateType::Lose, make_shared<EnState_LoseTarget>(enemy));
 	}
 
 	void AshiStator::CreateEdges() {
+		auto& state = m_stateMachine;
 
+		//’Tõs“®Žž
+		state->AddEdge(StateType::Plowling, StateType::Escape, &ToEscapeTrigger);
+
+		//“¦‚°‚Ä‚¢‚éŽž
+		state->AddEdge(StateType::Escape, StateType::Lose, &ToLoseTrigger);
+
+		//ƒ^[ƒQƒbƒg‘rŽ¸Žž
+		state->AddEdge(StateType::Lose, StateType::Plowling, &ToPlowlingTrigger);
 	}
 
 	void AshiStator::OnCreate() {
@@ -42,6 +60,12 @@ namespace basecross {
 
 		CreateNodes();
 		CreateEdges();
+	}
+
+	void AshiStator::OnUpdate() {
+		if (m_stateMachine) {
+			m_stateMachine->OnUpdate();
+		}
 	}
 
 }

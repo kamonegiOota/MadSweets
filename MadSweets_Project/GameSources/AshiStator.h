@@ -48,7 +48,7 @@ namespace basecross {
 
 		void OnCreate();
 		void OnStart() {}
-		void OnUpdate() {}
+		void OnUpdate();
 
 
 		//アクセッサ---------------------------------------------------------------------
