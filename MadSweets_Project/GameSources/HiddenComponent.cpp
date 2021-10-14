@@ -45,6 +45,10 @@ namespace basecross
 	}
 
 	void HiddenComponent::Damage(const float& damage) {
+		if (!m_hideData.hideObject) {
+			return;
+		}
+
 		auto damageComp = m_hideData.hideObject->GetComponent<I_Damaged>(false);
 		if (damageComp) {
 			damageComp->Damage(damage);
