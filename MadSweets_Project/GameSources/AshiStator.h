@@ -53,7 +53,7 @@ namespace basecross {
 
 		//アクセッサ---------------------------------------------------------------------
 
-		TransitionMember& GetTransitionMemeber() {
+		TransitionMember& GetTransitionMember() {
 			return m_stateMachine->GetTransitionStructMember();
 		}
 
