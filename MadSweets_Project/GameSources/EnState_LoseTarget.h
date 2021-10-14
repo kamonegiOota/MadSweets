@@ -15,6 +15,7 @@ namespace basecross {
 
 	class EnState_LoseTarget : public EnemyStateNodeBase<BaseEnemy>
 	{
+		void ChangeState();
 
 	public:
 

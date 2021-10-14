@@ -14,8 +14,19 @@
 #include "TargetEscape.h"
 #include "TargetProbe.h"
 #include "Velocity.h"
+#include "EyeSearchRange.h"
+#include "I_Escape.h"
 
 namespace basecross {
+
+    void EnState_LoseTarget::ChangeState() {
+        auto object = GetOwner()->GetGameObject();
+        
+        auto escape = object->GetComponent<I_Escape>();
+        if (escape) {
+            escape->StartEscape();
+        }
+    }
 
     void EnState_LoseTarget::OnStart() {
         auto obj = GetOwner()->GetGameObject();
@@ -25,7 +36,6 @@ namespace basecross {
         }
 
         AddChangeComp(returnPlow, true, false);
-       // AddChangeComp(obj->GetComponent<AstarCtrl>(false), true, false);
 
         AddChangeComp(obj->GetComponent<TargetChase>(false), false, false);
         AddChangeComp(obj->GetComponent<TargetEscape>(false), false, false);
@@ -37,6 +47,24 @@ namespace basecross {
     }
 
     void EnState_LoseTarget::OnUpdate() {
+        auto object = GetOwner()->GetGameObject();
+        auto targetMgr = object->GetComponent<TargetMgr>(false);
+        auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
+
+        //nullCheck
+        if (targetMgr == nullptr || eyeSearch == nullptr) {
+            DebugObject::AddString(L"EnState_LoseTarget:: コンポーネントが足りません。");
+            return;
+        }
+
+        //視界にターゲットが存在したら、Chaseに切替
+        auto target = targetMgr->GetTarget();
+        if (target) {
+            if (eyeSearch->IsInEyeRange(target)) {
+                ChangeState();
+            }
+        }
+
         //DebugObject::sm_wss << L"Lose";
     }
 
