@@ -50,9 +50,11 @@ namespace basecross {
 
 		//“¦‚°‚Ä‚¢‚éŽž
 		state->AddEdge(StateType::Escape, StateType::Lose, &ToLoseTrigger);
+		state->AddEdge(StateType::Escape, StateType::Escape, &ToEscapeTrigger);
 
 		//ƒ^[ƒQƒbƒg‘rŽ¸Žž
 		state->AddEdge(StateType::Lose, StateType::Plowling, &ToPlowlingTrigger);
+		state->AddEdge(StateType::Lose, StateType::Escape, &ToEscapeTrigger);
 	}
 
 	void AshiStator::OnStart() {
