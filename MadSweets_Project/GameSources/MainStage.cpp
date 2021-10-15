@@ -228,7 +228,7 @@ namespace basecross {
 
 			//スタート演出カメラのスタート
 			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {
-				ChangeStartCamera();
+				//ChangeStartCamera();
 			}
 		}
 		catch (...) {
