@@ -39,12 +39,12 @@ namespace basecross {
 
 		auto targetEscape = obj->GetComponent<TargetEscape>(false);
 		if (targetEscape) {
-			targetEscape->SetTarget(m_target);
+			targetEscape->SetTarget(m_target.GetShard());
 		}
 
 		auto astar = obj->GetComponent<AstarCtrl>(false);
 		if (astar) {
-			astar->SearchAstarEscapeStart(m_target);
+			astar->SearchAstarEscapeStart(m_target.GetShard());
 		}
 
 		AddChangeComp(targetEscape, true, false);

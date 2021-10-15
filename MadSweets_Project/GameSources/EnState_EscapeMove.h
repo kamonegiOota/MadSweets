@@ -17,7 +17,7 @@ namespace basecross {
 	/// </summary>
 	class EnState_EscapeMove : public EnemyStateNodeBase<BaseEnemy>
 	{
-		std::shared_ptr<GameObject> m_target;
+		ex_weak_ptr<GameObject> m_target;
 
 		void ChangeState();
 
