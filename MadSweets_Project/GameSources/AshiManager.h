@@ -36,6 +36,11 @@ namespace basecross {
 		//元の場所に戻る行為スタート
 		void StartReturnPlowling() override;
 		void EndReturnPlowling() override;
+
+		//コリジョン判定-----------------------------------------------------------
+
+		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
+		
 	};
 
 }

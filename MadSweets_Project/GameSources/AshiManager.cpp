@@ -45,6 +45,11 @@ namespace basecross {
 		}
 	}
 
+	//ƒRƒŠƒWƒ‡ƒ“”»’è
+	void AshiManager::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
+				
+	}
+
 }
 
 //endbasecross
