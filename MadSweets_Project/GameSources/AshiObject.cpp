@@ -36,6 +36,7 @@
 #include "TargetMgr.h"
 #include "PlayerObject.h"
 #include "WaitTimer.h"
+#include "ObjectTransport.h"
 
 #include "EatenComponent.h"
 
@@ -124,6 +125,7 @@ namespace basecross {
 		AddComponent<EnemyEar>();   //Ž¨
 		AddComponent<CheckTargetPos>();
 		AddComponent<WaitTimer>();
+		AddComponent<ObjectTransport>();
 
 		AddComponent<AshiStator>();
 		//AddComponent<EscapeEnemy>();
