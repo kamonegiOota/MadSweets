@@ -37,6 +37,8 @@
 #include "PlayerObject.h"
 #include "WaitTimer.h"
 
+#include "EatenComponent.h"
+
 // î¬ã¥Å@í«â¡ï™ --------------------
 
 #include "SoundHelper.h"
@@ -113,8 +115,8 @@ namespace basecross {
 
 		AddComponent<AshiAnimatorCtrl>(draw);
 
-		AddComponent<TargetEscape>();
 		AddComponent<EyeSearchRange>();
+		AddComponent<TargetEscape>();
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
 		AddComponent<Velocity>();
@@ -126,6 +128,8 @@ namespace basecross {
 		AddComponent<AshiStator>();
 		//AddComponent<EscapeEnemy>();
 		AddComponent<AshiManager>();
+
+		//AddComponent<EatenComponent>(EatenData(100, 20));
 
 		auto col = AddComponent<CollisionObb>();
 
