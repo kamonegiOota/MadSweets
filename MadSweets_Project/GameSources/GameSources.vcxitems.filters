@@ -790,6 +790,9 @@
     <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\AshiManager">
       <UniqueIdentifier>{93116893-d89b-4317-9005-69f9b57fe3c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport">
+      <UniqueIdentifier>{67c08259-a539-46b7-9015-29184876564c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1455,6 +1458,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AshiManager.h">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiManager</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ObjectTransport.h">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2029,6 +2035,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiManager.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ObjectTransport.cpp">
+      <Filter>Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

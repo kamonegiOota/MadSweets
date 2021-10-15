@@ -146,6 +146,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)NumbersCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumberObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NumbersObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ObjectTransport.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)OptionMenuEventer.h" />
@@ -348,6 +349,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)NumberObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)NumbersCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ObjectTransport.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionGaugeOperator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionMainMenuButtonEventer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)OptionMenuEventer.cpp" />
