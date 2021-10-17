@@ -23,12 +23,13 @@ namespace basecross {
 
 		struct CreateEnemyParam {
 			EnemyType type;
+			wstring plowlingDataName;
 			vector<Vec3> plowPositions;
 
 			CreateEnemyParam(const EnemyType type,
-				vector<Vec3> plowPositions
+				const wstring plowlingDataName
 			)
-				:type(type), plowPositions(plowPositions)
+				:type(type), plowlingDataName(plowlingDataName)
 			{}
 		};
 
