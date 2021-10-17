@@ -21,6 +21,7 @@ namespace basecross {
 		std::weak_ptr<GameObject> m_target;  //運ぶ対象
 
 		void ParentSet();  //ターゲットを自分自身の子オブジェクトにする。
+		void Move();  //移動を処理をする。
 
 	public:
 		ObjectTransport(const std::shared_ptr<GameObject>& objPtr)
@@ -28,7 +29,7 @@ namespace basecross {
 		{}
 
 		void OnCreate() override;
-		void OnUpdate() override {}
+		void OnUpdate() override;
 
 		//アクセッサ----------------------------------------------------------
 
@@ -46,6 +47,15 @@ namespace basecross {
 		}
 		Vec3 GetOffset() const {
 			return m_offset;
+		}
+
+		/// <summary>
+		/// ターゲットが存在するかどうか
+		/// </summary>
+		/// <returns>ターゲットが存在しないならtrue</returns>
+		bool IsTargetEmpty() {
+			auto target = m_target.lock();
+			return target == nullptr ? true : false;
 		}
 
 	};
