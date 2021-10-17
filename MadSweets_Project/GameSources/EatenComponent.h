@@ -50,5 +50,9 @@ namespace basecross
 		EatenData GetDefaultEatenData(const wstring& dataName) {
 			return sm_defaultDatas[dataName];
 		}
+
+		map<wstring, EatenData> GetDefaultEatenDatas() {
+			return sm_defaultDatas;
+		}
 	};
 }
