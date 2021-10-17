@@ -39,6 +39,7 @@
 #include "ObjectTransport.h"
 
 #include "EatenComponent.h"
+#include "EatenObject.h"
 
 // ”Â‹´@’Ç‰Á•ª --------------------
 
@@ -125,7 +126,11 @@ namespace basecross {
 		AddComponent<EnemyEar>();   //¨
 		AddComponent<CheckTargetPos>();
 		AddComponent<WaitTimer>();
-		AddComponent<ObjectTransport>();
+		//‰^‚Ô•¨‚ğİ’è
+		auto transport = AddComponent<ObjectTransport>();
+		auto eatObject = GetStage()->Instantiate<EatenObject>();
+		eatObject->SetTexture(L"SweetHand_Tx");
+		transport->SetTarget(eatObject);
 
 		AddComponent<AshiStator>();
 		//AddComponent<EscapeEnemy>();
