@@ -6,7 +6,6 @@ namespace basecross
 	struct EatenData
 	{
 		float weightValue;
-
 		float calorieValue;
 
 		EatenData();
@@ -32,6 +31,8 @@ namespace basecross
 
 	class EatenComponent : public ChoicesComponentBase
 	{
+		static map<wstring, EatenData> sm_defaultDatas;
+
 		EatenData m_eatenData;
 
 		std::shared_ptr<ChoicesObjectAndEvent> m_choiceObjectAndEventPtr;
@@ -45,5 +46,9 @@ namespace basecross
 		EatenData GetEatenData() const;
 
 		std::shared_ptr<ChoicesObjectAndEvent const> GetChoicesObjectAndEvent(const std::shared_ptr<GameObject>& selectorObject) override;
+
+		EatenData GetDefaultEatenData(const wstring& dataName) {
+			return sm_defaultDatas[dataName];
+		}
 	};
 }

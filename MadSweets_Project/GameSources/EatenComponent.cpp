@@ -15,6 +15,12 @@ namespace basecross
 		calorieValue(calorieValue)
 	{}
 
+	map<wstring, EatenData> EatenComponent::sm_defaultDatas = {
+		{L"SweetHand_Tx", EatenData(50.0f, 50.0f)},
+		{L"SweetCokie_Tx", EatenData(30.0f, 70.0f)},
+		{L"SweetEye_Tx", EatenData(100.0f, 30.0f)},
+	};
+
 	EatenComponent::EatenComponent(std::shared_ptr<GameObject>& owner,const EatenData& eatenData) :
 		ChoicesComponentBase(owner),
 		m_eatenData(eatenData)
