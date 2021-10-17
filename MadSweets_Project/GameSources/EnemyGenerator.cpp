@@ -27,11 +27,15 @@
 #include "GraObject.h"
 #include "AshiObject.h"
 
+#include "MyRandom.h"
+
 //test用
 #include "NumbersObject.h"
 #include "NumbersCtrl.h"
 
 namespace basecross {
+
+	using maru::MyRandom;
 
 	GraphAstar EnemyGenerator::CreateAstar(const wstring& fileName) {
 		auto csvMap = m_csvMap.lock();
@@ -71,7 +75,19 @@ namespace basecross {
 	}
 
 	void EnemyGenerator::AdjustCreateEnemy(const std::shared_ptr<GameObject>& enemy){
-		
+		//auto ashi = dynamic_pointer_cast<AshiObject>(enemy);
+		//if (ashi) {
+		//	auto eaten = ashi->GetComponent<EatenComponent>(false);
+		//	if (eaten) {
+		//		auto datas = eaten->GetDefaultEatenDatas();
+		//		auto randIndex = MyRandom::Random(0, (int)datas.size());
+
+		//		auto iter = datas.begin();
+		//		std::advance(iter, randIndex); //イテレータを進める。
+
+		//	    eaten->SetEatenData(datas[iter->first]);
+		//	}
+		//}
 	}
 
 	void EnemyGenerator::Generate(const wstring& fileName) {
@@ -91,8 +107,8 @@ namespace basecross {
 				break;
 			case UtilityEnemy::EnemyType::Cara:
 				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
-				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
-				//CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
 				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Ashi:
