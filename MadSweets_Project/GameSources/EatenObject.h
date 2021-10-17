@@ -17,6 +17,8 @@ namespace basecross {
 	{
 		BuildeVertexPCTParam m_param;
 
+		void SetEatenParametor(const wstring& texture);
+
 	public:
 
 		EatenObject(const std::shared_ptr<Stage>& stage)
@@ -25,14 +27,7 @@ namespace basecross {
 
 		void OnCreate() override;
 
-		void SetTexture(const wstring& name) {
-			m_param = BuildeVertexPCTParam(name, false);
-			auto builde = BuildeVertexPCTSprite(m_param);
-
-			auto draw = GetComponent<PCTStaticDraw>();
-			draw->UpdateVertices(builde.m_vertices);
-			draw->SetTextureResource(name);
-		}
+		void SetTexture(const wstring& name);
 	};
 
 }

@@ -17,6 +17,13 @@
 
 namespace basecross {
 
+	void EatenObject::SetEatenParametor(const wstring& texture) {
+		auto eaten = GetComponent<EatenComponent>();
+		if (eaten) {
+			eaten->SetEatenData(eaten->GetDefaultEatenData(texture));
+		}
+	}
+
 	void EatenObject::OnCreate() {
 		auto builde = BuildeVertexPCTSprite(m_param);
 
@@ -31,6 +38,17 @@ namespace basecross {
 
 		AddComponent<EatenComponent>(EatenData(10, 10));
 		AddComponent<SoundEmitter>();
+	}
+
+	void EatenObject::SetTexture(const wstring& name) {
+		m_param = BuildeVertexPCTParam(name, false);
+		auto builde = BuildeVertexPCTSprite(m_param);
+
+		auto draw = GetComponent<PCTStaticDraw>();
+		draw->UpdateVertices(builde.m_vertices);
+		draw->SetTextureResource(name);
+
+		SetEatenParametor(name);
 	}
 
 }
