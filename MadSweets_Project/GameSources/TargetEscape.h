@@ -20,7 +20,7 @@ namespace basecross {
 		int m_outSightCount = 0;     //視界から外れた回数をカウント
 		int m_alertReleaseNum = 2;   //視界から何回外れたら警戒を解除するか  
 
-		std::shared_ptr<GameObject> m_target;
+		ex_weak_ptr<GameObject> m_target = nullptr;
 
 		void EyeSearch(); //視線管理
 		void Rotation();

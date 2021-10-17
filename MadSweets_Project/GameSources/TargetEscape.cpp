@@ -23,7 +23,7 @@ namespace basecross {
 	void TargetEscape::EyeSearch() {
 		auto eye = GetGameObject()->GetComponent<EyeSearchRange>(false);
 		if (eye) {
-			if (eye->IsLookTarget(m_target)) {
+			if (eye->IsLookTarget(m_target.GetShard())) {
 				CalucNextNode();
 				m_outSightCount = 0;
 			}
@@ -53,7 +53,7 @@ namespace basecross {
 
 	void TargetEscape::TargetRayCheck() {
 		//áŠQ•¨‚ª‡‚Á‚½‚ç
-		if (maru::MyUtility::IsRayObstacle(GetGameObject(),m_target)) {
+		if (maru::MyUtility::IsRayObstacle(GetGameObject(),m_target.GetShard())) {
 			m_outSightCount++;
 		}
 		else {  //–³‚©‚Á‚½‚ç
@@ -76,7 +76,7 @@ namespace basecross {
 	void TargetEscape::CalucNextNode() {
 		auto astar = GetGameObject()->GetComponent<AstarCtrl>();
 		if (astar) {
-			astar->SearchAstarEscapeNextRoute(m_target);  //Ÿ‚É“¦‚°‚é‚×‚«ƒm[ƒh‚ÌŒŸõ
+			astar->SearchAstarEscapeNextRoute(m_target.GetShard());  //Ÿ‚É“¦‚°‚é‚×‚«ƒm[ƒh‚ÌŒŸõ
 		}
 	}
 
