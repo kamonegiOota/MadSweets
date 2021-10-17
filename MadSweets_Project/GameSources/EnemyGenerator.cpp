@@ -70,6 +70,10 @@ namespace basecross {
 		return astar;
 	}
 
+	void EnemyGenerator::AdjustCreateEnemy(const std::shared_ptr<GameObject>& enemy){
+		
+	}
+
 	void EnemyGenerator::Generate(const wstring& fileName) {
 		m_player = MyUtility::GetGameObject<PlayerObject>(GetStage());
 
@@ -82,16 +86,17 @@ namespace basecross {
 			switch (param.type)
 			{
 			case UtilityEnemy::EnemyType::Handy:
-				param.plowPositions = csvMap->GetPositions(L"HandyPlowling");
+				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
 				CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Cara:
-				param.plowPositions = csvMap->GetPositions(L"CaraPlowling");
+				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
 				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
+				//CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
 				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Ashi:
-				param.plowPositions = csvMap->GetPositions(L"AshiPlowling");
+				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
 				CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Gra:

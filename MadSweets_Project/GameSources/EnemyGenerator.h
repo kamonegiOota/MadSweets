@@ -35,7 +35,8 @@ namespace basecross {
 		/// <summary>
 		/// ìGÇÃê∂ê¨
 		/// </summary>
-		template<class T>
+		template<class T,
+			enable_if_t<is_base_of_v<GameObject, T>, std::nullptr_t> = nullptr >
 		void CreateEnemy(const wstring& fileName, const GraphAstar& astar, const vector<Vec3>& positions) {
 			auto player = m_player.lock();
 
@@ -44,7 +45,7 @@ namespace basecross {
 			enemy->AddComponent<AstarCtrl>(astar);
 			enemy->GetComponent<EyeSearchRange>()->AddTarget(player);
 
-			auto wallEvasion = enemy->GetComponent<WallEvasion>();
+			auto wallEvasion = enemy->GetComponent<WallEvasion>(false);
 			if (wallEvasion) {
 				for (auto& obj : GetStage()->GetGameObjectVec()) {
 					auto stageObj = dynamic_pointer_cast<StageObject>(obj);
@@ -60,7 +61,11 @@ namespace basecross {
 			}
 
 			enemy->GetComponent<Transform>()->SetPosition(positions[0]);
+
+			AdjustCreateEnemy(enemy);
 		}
+
+		void AdjustCreateEnemy(const std::shared_ptr<GameObject>& enemy);
 
 	public:
 		EnemyGenerator(const std::shared_ptr<GameObject>& objPtr,
