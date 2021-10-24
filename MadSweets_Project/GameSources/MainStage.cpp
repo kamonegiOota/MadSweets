@@ -184,7 +184,7 @@ namespace basecross {
 
 	void MainStage::OnCreate() {
 		try {
-			//AddGameObject<DebugObject>()->SetDrawLayer(100);
+			AddGameObject<DebugObject>()->SetDrawLayer(100);
 			//DebugObject::sm_isResetDelta = true;
 
 			//ビューとライトの作成
