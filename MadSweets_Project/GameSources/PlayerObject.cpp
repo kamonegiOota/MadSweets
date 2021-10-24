@@ -110,8 +110,8 @@ namespace basecross
 
 		//デバッグ用
 		//AddComponent<PlayerDebuger>(fpsCameraComponent, tpsCameraComponent,GetThis<PlayerObject>());
-		auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
-		springArmComponent->SetChildObject(tpsCamera);
+		//auto tpsCamera = GetStage()->Instantiate<DebugCameraObject>(Vec3(0, 0, 3), quat, springArm);
+		//springArmComponent->SetChildObject(tpsCamera);
 	}
 
 	void PlayerObject::OnUpdate()
