@@ -45,6 +45,11 @@ namespace basecross
 		m_playerChoicesManager->AddPlayerChoice(m_choice);
 
 		hideData.hideObject = GetGameObject();
+
+		auto gravity = GetGameObject()->GetComponent<Gravity>(false);
+		if (gravity) {
+			gravity->SetUpdateActive(false);
+		}
 	}
 
 	void PlayerHideManager::OnEndHide(HideData& hideData)
@@ -61,5 +66,10 @@ namespace basecross
 		m_playerChoicesManager->RemovePlayerChoice(m_unHideObject);
 
 		hideData.hideObject = nullptr;
+
+		auto gravity = GetGameObject()->GetComponent<Gravity>(false);
+		if (gravity) {
+			gravity->SetUpdateActive(true);
+		}
 	}
 }

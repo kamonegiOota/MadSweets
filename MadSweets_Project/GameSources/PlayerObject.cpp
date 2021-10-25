@@ -105,7 +105,7 @@ namespace basecross
 
 		AddComponent<PlayerWeightMgr>();
 		
-		//AddComponent<Gravity>();
+		AddComponent<Gravity>();
 
 
 		//デバッグ用
