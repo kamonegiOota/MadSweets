@@ -108,8 +108,6 @@ namespace basecross {
 			case UtilityEnemy::EnemyType::Cara:
 				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
 				CreateEnemy<CaraObject>(fileName, astar, param.plowPositions);
-				//CreateEnemy<AshiObject>(fileName, astar, param.plowPositions);
-				//CreateEnemy<HandyObject>(fileName, astar, param.plowPositions);
 				break;
 			case UtilityEnemy::EnemyType::Ashi:
 				param.plowPositions = csvMap->GetPositions(param.plowlingDataName);
