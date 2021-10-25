@@ -103,7 +103,7 @@ namespace basecross
 
 	bool PlayerInputer::IsDecision()
 	{
-		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::Space) ||
+		return App::GetApp()->GetMyInputDevice()->GetKeyBoard().IsInputDown(KeyCode::F) ||
 			App::GetApp()->GetMyInputDevice()->GetXInputGamePad().IsInputDown(XInputCode::A);
 	}
 
@@ -155,7 +155,7 @@ namespace basecross
 
 	bool PlayerInputer::IsDesitionDown() const
 	{
-		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::Space) ||
+		return m_inputDevice->GetKeyBoard().IsInputDown(KeyCode::F) ||
 			m_inputDevice->GetXInputGamePad().IsInputDown(XInputCode::A);
 	}
 
