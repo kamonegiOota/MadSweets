@@ -16,8 +16,12 @@
 #include "AlphaFadeCtrl.h"
 
 #include "SoundHelper.h"
+#include "PlayerInputer.h"
 
 namespace basecross {
+
+	using itbs::Input::KeyCode;
+	using itbs::Input::XInputCode;
 
 	void EventSprite::ChangeStage() {
 		float stayTime(0.0f); //ステージ遷移する場合に待つ時間
@@ -41,6 +45,8 @@ namespace basecross {
 	}
 
 	void EventSprite::EndProcess() {
+		m_isEnd = true;
+
 		if (m_fadeCtrl) {
 			m_fadeCtrl->AddEndAction(GetThis<EventSprite>(), &EventSprite::ChangeStage);
 			m_fadeCtrl->FadeOutStart();
@@ -67,6 +73,17 @@ namespace basecross {
 		}
 	}
 
+	void EventSprite::InputProcess() {
+		if (m_isEnd) {
+			return;
+		}
+
+		if (PlayerInputer::IsDecision()) {
+			m_timeElapsed = 0.0f;
+			NextSprite();
+		}
+	}
+
 	void EventSprite::OnCreate() {
 		CreateImage();
 		CreateFadeCtrl();
@@ -79,6 +96,7 @@ namespace basecross {
 	void EventSprite::OnUpdate() {
 		if (m_isUpdate) {
 			TimeMgr();
+			InputProcess();
 		}
 	}
 
