@@ -13,6 +13,7 @@ namespace basecross {
 
 	class EventSprite : public Component
 	{
+		bool m_isEnd = false;
 		bool m_isUpdate = false;
 
 		ex_weak_ptr<AlphaFadeCtrl> m_fadeCtrl;
@@ -32,6 +33,7 @@ namespace basecross {
 		void EndProcess();
 		void NextSprite();
 		void TimeMgr();
+		void InputProcess();
 
 	public:
 		EventSprite(const std::shared_ptr<GameObject>& objPtr,
