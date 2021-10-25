@@ -18,6 +18,8 @@ namespace basecross {
 				UtilityEnemy::CreateEnemyParam(UtilityEnemy::EnemyType::Handy, L"HandyPlowling"),
 
 				UtilityEnemy::CreateEnemyParam(UtilityEnemy::EnemyType::Cara, L"CaraPlowling"),
+
+				UtilityEnemy::CreateEnemyParam(UtilityEnemy::EnemyType::Ashi, L"AshiPlowling"),
 			}
 		},
 
