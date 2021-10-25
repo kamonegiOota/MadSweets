@@ -211,14 +211,6 @@ namespace basecross {
 				if (targetObj->GetComponent<Transform>()->GetParent() == exclute) {
 					return true;
 				}
-
-				//運んでいるオブジェクトなら
-				//auto transportObject = targetObj->GetComponent<ObjectTransport>(false);
-				//if (transportObject) {
-				//	if (transportObject->GetTarget() == exclute) {
-				//		return true;
-				//	}
-				//}
 			}
 
 			return false;
