@@ -117,7 +117,8 @@ namespace basecross {
 
 		AddComponent<AshiAnimatorCtrl>(draw);
 
-		AddComponent<EyeSearchRange>();
+		auto eye = AddComponent<EyeSearchRange>();
+		eye->SetEyeRadian(XMConvertToRadians(50.0f));
 		AddComponent<TargetEscape>();
 		AddComponent<ReturnPlowlingPosition>();
 		AddComponent<EnemyRotationCtrl>();
