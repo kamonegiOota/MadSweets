@@ -81,7 +81,7 @@ namespace basecross {
 	}
 
 	void TargetEscape::SuccessEscape() {  //“¦‚°Ø‚è¬Œ÷
-		auto escape = GetGameObject()->GetComponent<I_Escape>();
+		auto escape = GetGameObject()->GetComponent<I_Escape>(false);
 		if (escape) {
 			//DebugObject::sm_wss << endl << to_wstring(m_outSightCount) <<endl << L"escape";
 			escape->SuccessEscape();

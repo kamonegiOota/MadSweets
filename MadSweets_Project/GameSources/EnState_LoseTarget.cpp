@@ -22,7 +22,7 @@ namespace basecross {
     void EnState_LoseTarget::ChangeState() {
         auto object = GetOwner()->GetGameObject();
         
-        auto escape = object->GetComponent<I_Escape>();
+        auto escape = object->GetComponent<I_Escape>(false);
         if (escape) {
             escape->StartEscape();
         }
