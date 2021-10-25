@@ -17,11 +17,14 @@ namespace basecross {
 	/// </summary>
 	class ObjectTransport : public Component
 	{
-		Vec3 m_offset = Vec3(0.0f);
+		Vec3 m_offset = Vec3(0.0f, 0.1f, 0.0f);
+		float m_targetScaleAdjust = 0.5f;
 		std::weak_ptr<GameObject> m_target;  //運ぶ対象
 
-		void ParentSet();  //ターゲットを自分自身の子オブジェクトにする。
 		void Move();  //移動を処理をする。
+		void Rotation();
+
+		void ScaleAdjust(const std::shared_ptr<GameObject>& target);
 
 	public:
 		ObjectTransport(const std::shared_ptr<GameObject>& objPtr)
@@ -35,7 +38,7 @@ namespace basecross {
 
 		void SetTarget(const std::shared_ptr<GameObject>& target) {
 			m_target = target;
-			ParentSet();
+			ScaleAdjust(target);
 		}
 		std::shared_ptr<GameObject> GetTarget() const {
 			auto target = m_target.lock();
@@ -47,6 +50,11 @@ namespace basecross {
 		}
 		Vec3 GetOffset() const {
 			return m_offset;
+		}
+
+		void SetTargetScaleAdjust(const float& adjust) {
+			m_targetScaleAdjust = adjust;
+			ScaleAdjust(m_target.lock());
 		}
 
 		/// <summary>
