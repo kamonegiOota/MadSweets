@@ -35,6 +35,7 @@ namespace basecross {
 		AddComponent<BillBoard>();
 
 		auto col = AddComponent<CollisionObb>();
+		col->SetAfterCollision(AfterCollision::None);
 
 		AddComponent<EatenComponent>(EatenData(10, 10));
 		AddComponent<SoundEmitter>();
