@@ -796,6 +796,9 @@
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder">
       <UniqueIdentifier>{94c99e3e-821f-4d64-a9a5-81c59d88b0a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Camera\UtilityCamera">
+      <UniqueIdentifier>{b560860c-1668-4915-800c-f598d6f2f327}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1467,6 +1470,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraSounder.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UtilityStartCamera.h">
+      <Filter>Maru\Camera\UtilityCamera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2047,6 +2053,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraSounder.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UtilityStartCamera.cpp">
+      <Filter>Maru\Camera\UtilityCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
