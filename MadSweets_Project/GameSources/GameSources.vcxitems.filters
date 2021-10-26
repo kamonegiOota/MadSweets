@@ -793,6 +793,9 @@
     <Filter Include="Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport">
       <UniqueIdentifier>{67c08259-a539-46b7-9015-29184876564c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder">
+      <UniqueIdentifier>{94c99e3e-821f-4d64-a9a5-81c59d88b0a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1461,6 +1464,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ObjectTransport.h">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraSounder.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2038,6 +2044,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ObjectTransport.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\ObjectTransport</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraSounder.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraSounder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
