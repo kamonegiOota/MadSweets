@@ -56,6 +56,8 @@
 #include "PointLightObject.h"
 #include "EnState_Plowling.h"
 
+#include "UtilityStartCamera.h"
+
 // 板橋 追加分 ----------------
 
 #include "CameraHelper.h"
@@ -122,15 +124,8 @@ namespace basecross {
 	void MainStage::CreateStartCamera() {
 		//StartCameraの設定
 		m_startView = ObjectFactory::Create<SingleView>(GetThis<Stage>());
-		vector<StartCamera::ShowParam> params = {
-			//startPos            //startLock          //endPos             //endLock                //time
-			{
-				//仮実装
-				LiveMoveParam(Vec3(2.0f,0.0f,0.0f),Vec3(+4.0f,+0.0f,+0.0f)),
-				LiveMoveParam(Vec3(0.0f,0.0f,0.0f),Vec3(-3.0f,-3.0f,-3.0f)),
-			},
-		};
-		auto startCam = ObjectFactory::Create<StartCamera>(params);
+
+		auto startCam = ObjectFactory::Create<StartCamera>(UtilityStartCamera::GetStartCameraShowParams(sm_nowMap));
 		m_startView->SetCamera(startCam);
 	}
 
@@ -228,7 +223,7 @@ namespace basecross {
 
 			//スタート演出カメラのスタート
 			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {
-				//ChangeStartCamera();
+				ChangeStartCamera();
 			}
 		}
 		catch (...) {
