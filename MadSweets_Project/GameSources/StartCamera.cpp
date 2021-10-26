@@ -76,12 +76,22 @@ namespace basecross {
 
 	void StartCamera::OnCreate()
 	{
+		if (m_params.size() == 0) {
+			ChangeCamera();
+			return;
+		}
+
 		SetAt(m_params[m_index].at.startPos);
 		SetEye(m_params[m_index].eye.startPos);
 	}
 
 	void StartCamera::OnUpdate()
 	{
+		if (m_params.size() == 0) {
+			ChangeCamera();
+			return;
+		}
+
 		//èIóπÇÃÇ®ímÇÁÇπ
 		if (m_params.size() <= m_index) {
 			return; //èIóπ

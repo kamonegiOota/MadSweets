@@ -101,7 +101,6 @@ namespace basecross {
 			return m_params.size() <= m_index;
 		}
 
-
 		//アクセッサ--------------------------------------------------------
 
 		void SetShowParametor(const std::vector<ShowParam>& params) {
