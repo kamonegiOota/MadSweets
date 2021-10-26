@@ -50,12 +50,9 @@
 
 #include "WaitTimer.h"
 
-// î¬ã¥Å@í«â¡ï™ --------------------
-
 #include "SoundHelper.h"
-#include "HandySounder.h"
+#include "CaraSounder.h"
 
-// ---------------------------------
 namespace basecross {
 
 	void CaraObject::CreatePlowlingRoute() {
@@ -135,6 +132,8 @@ namespace basecross {
 		AddComponent<Cara_Attack>();
 		AddComponent<CaraManager>();
 		AddComponent<WaitTimer>();
+		AddComponent<SoundEmitter>();
+		AddComponent<CaraSounder>();
 
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
 		AddComponent<TargetMgr>(player);

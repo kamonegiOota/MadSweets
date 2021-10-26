@@ -15,6 +15,7 @@ namespace basecross {
 
 	class Cara_Attack : public BaseAttack
 	{
+		void PlayAttackSound();
 
 		void ChangeAttackState() override;
 		void ChangeAttackAnimation();

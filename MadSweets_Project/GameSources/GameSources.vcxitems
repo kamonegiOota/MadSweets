@@ -39,6 +39,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CaraSounder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cara_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraObject.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraAnimatorCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CaraSounder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Cara_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemy.cpp" />

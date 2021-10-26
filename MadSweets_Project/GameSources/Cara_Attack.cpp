@@ -28,7 +28,15 @@
 
 #include "TargetMgr.h"
 
+#include "SoundHelper.h"
+#include "CaraSounder.h"
+
 namespace basecross {
+
+	void Cara_Attack::PlayAttackSound() {
+		auto sounder = GetGameObject()->GetComponent<CaraSounder>();
+		sounder->AttackSound();
+	}
 
 	void Cara_Attack::ChangeAttackState() {
 		//ステートマシン変更時
@@ -72,6 +80,7 @@ namespace basecross {
 		auto damage = GetTarget()->GetComponent<I_Damaged>(false);
 		if (damage && IsAttackRange(false)) {
 			damage->Damage(m_param.power);
+			PlayAttackSound();
 		}
 	}
 
