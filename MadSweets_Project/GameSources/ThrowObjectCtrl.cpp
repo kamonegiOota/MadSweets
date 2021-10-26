@@ -12,6 +12,8 @@
 #include "I_Damaged.h"
 #include <DirectXMath.h>
 
+#include "SoundHelper.h"
+
 namespace basecross {
 
 	void ThrowObjectCtrl::Rotation(const Vec3& direct) {
@@ -39,7 +41,7 @@ namespace basecross {
 	}
 
 	void ThrowObjectCtrl::OnCollisionEnter(std::shared_ptr<GameObject>& other) {
-		if (other == m_owner) {
+		if (other == m_owner || other == m_owner->GetChild() || other == m_owner->GetParent()) {
 			return;
 		}
 
@@ -48,6 +50,8 @@ namespace basecross {
 		if (damage) {
 			damage->Damage(m_attackPower);
 		}
+
+		SimpleSoundManager::OnePlaySE(L"CookieCrushSE", 30.0f);
 
 		GetStage()->RemoveGameObject<GameObject>(GetGameObject());
 	}
