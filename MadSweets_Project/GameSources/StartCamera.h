@@ -100,6 +100,12 @@ namespace basecross {
 		bool IsEnd() {  //終了を判断
 			return m_params.size() <= m_index;
 		}
+
+		//アクセッサ--------------------------------------------------------
+
+		void SetShowParametor(const std::vector<ShowParam>& params) {
+			m_params = params;
+		}
 	};
 
 }
