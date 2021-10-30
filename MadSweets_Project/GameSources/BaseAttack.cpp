@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.cpp
-@brief SearchObject‚È‚ÇŽÀ‘Ì
+@file BaseAttack.cpp
+@brief BaseAttack‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"
