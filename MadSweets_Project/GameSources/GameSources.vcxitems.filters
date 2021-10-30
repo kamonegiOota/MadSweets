@@ -799,6 +799,9 @@
     <Filter Include="Maru\Camera\UtilityCamera">
       <UniqueIdentifier>{b560860c-1668-4915-800c-f598d6f2f327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack\HitEffectManager">
+      <UniqueIdentifier>{fd89deb4-b3b5-49b8-bdad-e41ac2753622}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1473,6 +1476,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityStartCamera.h">
       <Filter>Maru\Camera\UtilityCamera</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HitEffectManager.h">
+      <Filter>Maru\Enemy\Component\Attack\HitEffectManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2056,6 +2062,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityStartCamera.cpp">
       <Filter>Maru\Camera\UtilityCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HitEffectManager.cpp">
+      <Filter>Maru\Enemy\Component\Attack\HitEffectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
