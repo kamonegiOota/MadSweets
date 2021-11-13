@@ -33,7 +33,7 @@
 #include "TactileObject.h"
 #include "AshiStator.h"
 #include "AshiManager.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 #include "PlayerObject.h"
 #include "WaitTimer.h"
 #include "ObjectTransport.h"
@@ -113,7 +113,7 @@ namespace basecross {
 		draw->SetMeshToTransformMatrix(spanMat);
 
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
-		AddComponent<TargetMgr>(player);
+		AddComponent<TargetManager>(player);
 
 		AddComponent<AshiAnimatorCtrl>(draw);
 

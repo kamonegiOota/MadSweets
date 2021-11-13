@@ -32,7 +32,7 @@
 
 #include "TactileObject.h"
 #include "HandyStateMgr.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 #include "ChaseEnemyStator.h"
 
 #include "I_Chase.h"
@@ -138,7 +138,7 @@ namespace basecross {
 		AddComponent<HandyStateMgr>();
 		//AddComponent<ChaseEnemyStator>();
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
-		AddComponent<TargetMgr>(player);
+		AddComponent<TargetManager>(player);
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
 		//AddComponent<ChaseEnemy>();

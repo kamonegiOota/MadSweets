@@ -26,7 +26,7 @@
 #include "Handy_Attack.h"
 
 #include "DebugObject.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 

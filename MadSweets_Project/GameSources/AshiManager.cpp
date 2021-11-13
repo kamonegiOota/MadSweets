@@ -13,7 +13,7 @@
 #include "AshiStator.h"
 #include "AshiAnimatorCtrl.h"
 
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 

@@ -15,17 +15,17 @@ namespace basecross {
 	/// <summary>
 	/// 現在のOwnerがターゲットに指定しているオブジェクトを管理し、他のコンポーネントと共有する。
 	/// </summary>
-	class TargetMgr : public Component
+	class TargetManager : public Component
 	{
 		std::weak_ptr<GameObject> m_target;
 
 	public:
 
-		TargetMgr(const std::shared_ptr<GameObject>& objPtr)
+		TargetManager(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 		
-		TargetMgr(const std::shared_ptr<GameObject>& objPtr,const std::shared_ptr<GameObject>& target)
+		TargetManager(const std::shared_ptr<GameObject>& objPtr,const std::shared_ptr<GameObject>& target)
 			:Component(objPtr), m_target(target)
 		{}
 
