@@ -18,11 +18,8 @@
 #include "Velocity.h"
 #include "WallEvasion.h"
 
-// 板橋　追加分 -----------------------
-
 #include "HandySounder.h"
 
-// ------------------------------------
 namespace basecross {
 
 	using AnimeMember = HandyAnimationMember;
@@ -44,11 +41,8 @@ namespace basecross {
 		state->AddTransition([](const AnimeMember& member) { return member.attackTrigger.Get(); }, AnimeState::Attack, false);
 		state->AddTransition([](const AnimeMember& member) { return member.hideSearchTrigger.Get(); }, AnimeState::HideSearch, false);
 
-		// 板橋　追加分 -------------------------
-
 		state->AddAnimationEvent(0.0f, &HandySounder::WalkSound);
 		state->AddAnimationEvent(0.125f, &HandySounder::WalkSound);
-		// --------------------------------------
 	}
 
 	//アタックモーション
