@@ -29,7 +29,7 @@
 #include "WaitTimer.h"
 
 #include "BaseAttack.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 
@@ -100,8 +100,8 @@ namespace basecross {
 		//hideObject‚ÉPlayer‚ª‚¢‚½‚ç
 		auto hide = m_checkHideObj->GetComponent<HiddenComponent>(false);
 		if (hide->GetHideData().hideObject) {  //’†‚É‰½‚©“ü‚Á‚Ä‚¢‚½‚çB
-			auto targetMgr = GetGameObject()->GetComponent<TargetMgr>();
-			auto target = targetMgr->GetTarget();
+			auto targetManager = GetGameObject()->GetComponent<TargetManager>();
+			auto target = targetManager->GetTarget();
 			if (target) {
 				auto attack = GetGameObject()->GetComponent<BaseAttack>(false);
 				if (attack) {
