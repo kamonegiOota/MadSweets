@@ -625,9 +625,6 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerGameItemGetter">
       <UniqueIdentifier>{d62bec21-0002-4a14-ab16-ab5341823f0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Component\BossCameraEvent">
-      <UniqueIdentifier>{4b653e4e-9e41-464d-8802-cb691452456c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Object\StageObject\PointLightObject">
       <UniqueIdentifier>{8df1a5c4-ad20-4b4d-b35b-6d20ebe0d551}</UniqueIdentifier>
     </Filter>
@@ -693,9 +690,6 @@
     </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyAnimator">
       <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr">
-      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject">
       <UniqueIdentifier>{afb1f578-952f-4721-b759-e71ef8d5fb3d}</UniqueIdentifier>
@@ -801,6 +795,9 @@
     </Filter>
     <Filter Include="Maru\Enemy\Component\TargetManager">
       <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator">
+      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1399,7 +1396,7 @@
       <Filter>Maru\Enemy\StateMachine\Graph\GraphBase</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyStator.h">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h">
       <Filter>Maru\Enemy\Component\TargetManager</Filter>
@@ -2013,7 +2010,7 @@
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyStator.cpp">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp">
       <Filter>Maru\Enemy\StateMachine\Test</Filter>
