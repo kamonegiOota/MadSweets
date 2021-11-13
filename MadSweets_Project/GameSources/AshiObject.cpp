@@ -141,7 +141,8 @@ namespace basecross {
 
 		auto col = AddComponent<CollisionObb>();
 
-		CreatePlowlingRoute();
+		AddComponent<PlowlingMove>();
+		//CreatePlowlingRoute();
 		CreateTactile();
 	}
 
