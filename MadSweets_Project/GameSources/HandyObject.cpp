@@ -45,12 +45,9 @@
 
 #include "WaitTimer.h"
 
-// ”Â‹´@’Ç‰Á•ª --------------------
-
 #include "SoundHelper.h"
 #include "HandySounder.h"
 
-// ---------------------------------
 namespace basecross {
 
 	void HandyObject::CreatePlowlingRoute() {
@@ -150,16 +147,13 @@ namespace basecross {
 
 		auto col = AddComponent<CollisionObb>();
 
-		CreatePlowlingRoute();
+		AddComponent<PlowlingMove>();
+		//CreatePlowlingRoute();
 		CreateTactile();
 		//CreateAnimetor();
 
-		// ”Â‹´@’Ç‰Á•ª ------------------------
-
 		AddComponent<SoundEmitter>();
 		AddComponent<HandySounder>();
-
-		// -------------------------------------
 	}
 
 	void HandyObject::OnUpdate() {
