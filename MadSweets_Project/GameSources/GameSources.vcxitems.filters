@@ -1401,7 +1401,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h">
       <Filter>Maru\Enemy\Component\TargetMgr</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
