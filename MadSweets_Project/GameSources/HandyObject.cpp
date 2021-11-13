@@ -31,7 +31,7 @@
 #include "WallEvasion.h"
 
 #include "TactileObject.h"
-#include "HandyStateMgr.h"
+#include "HandyStator.h"
 #include "TargetManager.h"
 #include "ChaseEnemyStator.h"
 
@@ -135,7 +135,7 @@ namespace basecross {
 		AddComponent<ThrowCtrl>();
 
 		//新規ステートマシン用の追記分
-		AddComponent<HandyStateMgr>();
+		AddComponent<HandyStator>();
 		//AddComponent<ChaseEnemyStator>();
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
 		AddComponent<TargetManager>(player);

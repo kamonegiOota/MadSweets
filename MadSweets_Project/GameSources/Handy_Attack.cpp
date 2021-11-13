@@ -21,12 +21,12 @@
 #include "BaseEnemy.h"
 #include "MyUtility.h"
 
-#include "HandyStateMgr.h"
+#include "HandyStator.h"
 
 #include "DebugObject.h"
 
 #include "ChaseEnemyStator.h"
-#include "HandyStateMgr.h"
+#include "HandyStator.h"
 
 namespace basecross {
 
@@ -69,7 +69,7 @@ namespace basecross {
 
 	void Handy_Attack::ChangeAttackState() {
 		//ステートマシン変更時
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().attackTrigger.Fire();
 		}
@@ -82,7 +82,7 @@ namespace basecross {
 		}
 
 		//ステートマシン変更時
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().chaseTrigger.Fire();
 			SetUpdateActive(false);
@@ -103,7 +103,7 @@ namespace basecross {
 
 	void Handy_Attack::Attack(const std::shared_ptr<GameObject>& target) {
 		//攻撃状態なら遷移をしない
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			if (stator->GetStateType() == HandyStateType::Attack) {
 				return;
