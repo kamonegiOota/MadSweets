@@ -108,7 +108,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
@@ -322,7 +322,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />

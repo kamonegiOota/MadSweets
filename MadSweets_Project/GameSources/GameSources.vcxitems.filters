@@ -682,9 +682,6 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove">
       <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Component\TargetMgr">
-      <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject">
       <UniqueIdentifier>{b3c1623e-1b29-434d-ba54-d7ddae1f4b53}</UniqueIdentifier>
     </Filter>
@@ -801,6 +798,9 @@
     </Filter>
     <Filter Include="Maru\TestStage\UtilityEnemy">
       <UniqueIdentifier>{75e5ea27-a6ee-48d9-8675-18de8e528b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\TargetManager">
+      <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1398,11 +1398,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphBase.h">
       <Filter>Maru\Enemy\StateMachine\Graph\GraphBase</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStator.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h">
-      <Filter>Maru\Enemy\Component\TargetMgr</Filter>
+      <Filter>Maru\Enemy\Component\TargetManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
       <Filter>Maru\Enemy\StateMachine\EnemyMainStateMachine</Filter>
@@ -2012,7 +2012,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp">
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStator.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp">
