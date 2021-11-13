@@ -115,7 +115,7 @@ namespace basecross {
 		m_stateMachine->OnUpdate();
 
 		//testkey
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 	}
 
 }
