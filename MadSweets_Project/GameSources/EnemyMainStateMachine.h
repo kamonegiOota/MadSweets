@@ -25,6 +25,21 @@ namespace basecross {
 	template<class node_type, class EnumType, class TransitionStructMember>
 	class EnemyMainStateMachine
 	{
+		//切替先候補のパラメータ
+		struct TransitionCandidateParametor
+		{
+			EnumType type;
+			int priority;
+
+			TransitionCandidateParametor(const EnumType type)
+				:TransitionCandidateParametor(type)
+			{}
+
+			TransitionCandidateParametor(const EnumType type, const int priority)
+				:type(type), priority(priority)
+			{ }
+		};
+
 	public:
 		//外部からEnumを使う時用にEnumTypeをpublicにする。
 		using StateEnum = EnumType;
@@ -45,6 +60,8 @@ namespace basecross {
 		TransitionStructMember m_transitionStruct; //遷移条件に利用する構造体
 
 		std::map<EnumType ,std::function<void()>> m_changeOnceFuncs;  //切り替え時に一度だけ呼ぶファンクション
+
+		std::vector<TransitionCandidateParametor> m_transitionCandidates;  //遷移先候補パラメータ群
 
 		//privateメンバ関数-------------------------
 
@@ -151,6 +168,16 @@ namespace basecross {
 		TransitionStructMember& GetTransitionStructMember() {
 			return m_transitionStruct;
 		}
+
+		/// <summary>
+		/// クロスフェード
+		/// </summary>
+		/// <param name="type">切り替えたいステート</param>
+		/// <param name="priority">優先度</param>
+		void CrossFade(EnumType type, int priority)
+		{
+			m_transitionCandidates.push_back(TransitionCandidateParametor(type, priority));
+		}
 		
 		/// <summary>
 		/// ステート切り替え時に一度だけ呼ぶファンクションのセット
@@ -174,6 +201,12 @@ namespace basecross {
 
 			//トリガーのリセット
 			TriggerReset();
+
+			//遷移
+			Transition();
+
+			//遷移先候補のクリア
+			m_transitionCandidates.clear();
 		}
 
 		void NodeUpdate() {
@@ -188,8 +221,11 @@ namespace basecross {
 			auto edges = m_graph->GetNowNodeEdges();
 			for (auto& edge : edges) {
 				if (edge->IsTransition(m_transitionStruct)) {
-					ChangeState(edge->GetToType());
-					break;
+					const auto type = edge->GetToType();
+					const auto priority = edge->GetPriority();
+					m_transitionCandidates.push_back(TransitionCandidateParametor(type, priority));
+					//ChangeState(edge->GetToType());
+					//break;
 				}
 			}
 		}
@@ -204,6 +240,22 @@ namespace basecross {
 					edge->IsTransition(m_transitionStruct);
 				}
 			}
+		}
+
+		/// <summary>
+		/// 遷移
+		/// </summary>
+		void Transition() {
+			if (m_transitionCandidates.size() == 0) {  //遷移先候補が0なら処理を飛ばす。
+				return;
+			}
+
+			//遷移先候補のソート
+			std::sort(m_transitionCandidates.begin(), m_transitionCandidates.end(),
+				[](const TransitionCandidateParametor& left, const TransitionCandidateParametor& right) 
+				{ return left.priority > right.priority ? true : false; }); //優先度が高い順から遷移する。
+			
+			ChangeState(m_transitionCandidates[0].type);
 		}
 	};
 
