@@ -87,6 +87,7 @@
 #include "TestEnemyNode.h"
 
 #include "EnemyGenerator.h"
+#include "HitEffectManager.h"
 
 namespace basecross {
 
@@ -220,6 +221,9 @@ namespace basecross {
 			generator->Generate(sm_nowMap);
 
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
+
+			//EffectTest
+			//Instantiate<GameObject>()->AddComponent<HitEffectManager>(L"HitCream_Tx");
 
 			//スタート演出カメラのスタート
 			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {
