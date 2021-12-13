@@ -20,7 +20,7 @@ namespace basecross {
 	}
 
 	void FluidUVController::FluidUpdate() {
-		const float& speed = m_param.speed;
+		const float& speed = m_param.elapsedSpeed;
 		const float& decelerationSpeed = m_param.decelerationSpeed;
 		const Vec2& direct = m_param.direct;
 		auto delta = App::GetApp()->GetElapsedTime();
@@ -33,11 +33,17 @@ namespace basecross {
 		rectTrans->SetRectSize(size.x, size.y);
 
 		m_param.offsetElapsed += direct * speed * delta;
-		m_param.speed += -decelerationSpeed * delta;
+		m_param.elapsedSpeed += -decelerationSpeed * delta;
 		
-		if (m_param.speed < 0) {
+		const Vec2& offsetElpased = m_param.offsetElapsed;
+		if (offsetElpased.x < 0 || offsetElpased.y < 0) { //offsetがマイナスになったら処理を終了(逆走するため)
 			SetUpdateActive(false);
 		}
+	}
+
+	void FluidUVController::FluidStart() {
+		SetUpdateActive(true);
+		m_param.elapsedSpeed = m_param.speed;
 	}
 }
 

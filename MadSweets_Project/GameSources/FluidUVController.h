@@ -15,7 +15,8 @@ namespace basecross {
 	{
 		struct Parametor {
 			float speed = 1.0f;
-			float decelerationSpeed = 0.1f;  //減速スピード
+			float elapsedSpeed = speed;
+			float decelerationSpeed = 0.5f;  //減速スピード
 			Vec2 direct = Vec2(0.0f, 1.0f);
 			Vec2 offsetElapsed = Vec2(0.0f);  
 		};
@@ -35,6 +36,8 @@ namespace basecross {
 		void FluidUpdate();
 
 		//アクセッサ------------------------------------------------------
+
+		void FluidStart();
 
 		void SetParametor(const Parametor& param) {
 			m_param = param;
