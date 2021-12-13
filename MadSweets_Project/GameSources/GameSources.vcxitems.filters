@@ -805,6 +805,9 @@
     <Filter Include="Maru\UV">
       <UniqueIdentifier>{8a5665e3-eabc-400b-a308-fb5c2fa71704}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\MaruUthilyty\GameTimer">
+      <UniqueIdentifier>{178b23fc-0661-419f-8946-a880a2401087}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1488,6 +1491,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FluidUVController.h">
       <Filter>Maru\UV</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameTimer.h">
+      <Filter>Maru\MaruUthilyty\GameTimer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2077,6 +2083,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FluidUVController.cpp">
       <Filter>Maru\UV</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameTimer.cpp">
+      <Filter>Maru\MaruUthilyty\GameTimer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
