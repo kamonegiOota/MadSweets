@@ -213,6 +213,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEnemyNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h" />

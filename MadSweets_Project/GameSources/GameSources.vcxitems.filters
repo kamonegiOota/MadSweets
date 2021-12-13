@@ -799,6 +799,9 @@
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator">
       <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\TaskList">
+      <UniqueIdentifier>{fd282f8d-104f-4fb9-bff9-c9d7c8fe6530}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1475,6 +1478,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h">
       <Filter>Maru\Enemy\StateMachine\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskList.h">
+      <Filter>Maru\Enemy\StateMachine\TaskList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
