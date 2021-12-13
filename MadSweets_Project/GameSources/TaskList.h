@@ -46,9 +46,9 @@ namespace basecross {
 	public:
 
 		struct Parametor {
-			std::function<void> enter;
-			std::function<void> update;
-			std::function<void> exit;
+			std::function<void()> enter;
+			std::function<void()> update;
+			std::function<void()> exit;
 		};
 
 	protected:
@@ -90,14 +90,14 @@ namespace basecross {
 		//タスク構造体
 		struct Task {
 			EnumType type;
-			std::function<void> enter;
-			std::function<bool> update;
-			std::function<void> exit;
+			std::function<void()> enter;
+			std::function<bool()> update;
+			std::function<void()> exit;
 
 			Task(const EnumType type,
-				const std::function<void>& enter,
-				const std::function<bool>& update,
-				const std::function<void>& exit)
+				const std::function<void()>& enter,
+				const std::function<bool()>& update,
+				const std::function<void()>& exit)
 				:
 				type(type), enter(enter), update(update), exit(exit)
 			{}
@@ -188,9 +188,9 @@ namespace basecross {
 
 		//タスクの定義
 		void DefineTask(const EnumType type, 
-			const std::function<void>& enter,
-			const std::function<bool>& update,
-			const std::function<void>& exit)
+			const std::function<void()>& enter,
+			const std::function<bool()>& update,
+			const std::function<void()>& exit)
 		{
 			auto task = std::make_shared<Task>(new Task(type, enter, update, exit));
 			if (m_defineTaskMap.count(type)) {  //キーが存在するなら
