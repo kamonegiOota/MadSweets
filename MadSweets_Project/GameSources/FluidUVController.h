@@ -13,6 +13,8 @@ namespace basecross {
 	//‰t‘Ì“®ì‚ğUV‚É‚³‚¹‚é‚½‚ß‚Ìˆ—
 	class FluidUVController : public Component
 	{
+	public:
+
 		struct Parametor {
 			float speed = 1.0f;
 			float elapsedSpeed = speed;
@@ -20,6 +22,8 @@ namespace basecross {
 			Vec2 direct = Vec2(0.0f, 1.0f);
 			Vec2 offsetElapsed = Vec2(0.0f);  
 		};
+
+	private:
 
 		Parametor m_param;
 
