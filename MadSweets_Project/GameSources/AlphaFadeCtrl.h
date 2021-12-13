@@ -45,6 +45,10 @@ namespace basecross {
 			auto image = m_fadeObj->GetComponent<Image>();
 			image->SetTextureResource(texture);
 		}
+
+		void SetFadeObj(const std::shared_ptr<UIObject>& uiObj) {
+			m_fadeObj = uiObj;
+		}
 	};
 
 }
