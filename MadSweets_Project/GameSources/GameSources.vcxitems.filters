@@ -802,6 +802,9 @@
     <Filter Include="Maru\Enemy\StateMachine\TaskList">
       <UniqueIdentifier>{fd282f8d-104f-4fb9-bff9-c9d7c8fe6530}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\UV">
+      <UniqueIdentifier>{8a5665e3-eabc-400b-a308-fb5c2fa71704}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1482,6 +1485,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TaskList.h">
       <Filter>Maru\Enemy\StateMachine\TaskList</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FluidUVController.h">
+      <Filter>Maru\UV</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2068,6 +2074,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HitEffectManager.cpp">
       <Filter>Maru\Enemy\Component\Attack\HitEffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FluidUVController.cpp">
+      <Filter>Maru\UV</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

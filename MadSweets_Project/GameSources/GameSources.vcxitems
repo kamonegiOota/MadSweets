@@ -85,6 +85,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FluidUVController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameItem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameItemKeyObject.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FluidUVController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameItemKeyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.cpp" />
