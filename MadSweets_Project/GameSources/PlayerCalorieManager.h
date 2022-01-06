@@ -30,6 +30,8 @@ namespace basecross
 
 		void OnCreate() override;
 
-		void OnUpdate() override {}
+		void OnUpdate() override { 
+			//m_nowCalorie = m_maxCalorie; 
+		}
 	};
 }

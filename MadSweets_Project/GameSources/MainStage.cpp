@@ -111,7 +111,7 @@ namespace basecross {
 			return;
 		}
 
-		auto status = player->GetComponent<PlayerStatusMgr>(false);
+		auto status = player->GetComponent<PlayerStatusManager>(false);
 		auto calorie = player->GetComponent<PlayerCalorieManager>(false);
 
 		if (status && calorie) {

@@ -36,7 +36,7 @@ namespace basecross
 		//–{—ˆª‚Íweight‚Å‚Í‚È‚­ƒJƒƒŠ[
 		auto calorieManager = selectorObject->GetComponent<PlayerCalorieManager>(false);
 		auto weightMgr = selectorObject->GetComponent<PlayerWeightMgr>(false);
-		auto player = selectorObject->GetComponent<PlayerStatusMgr>(false);
+		auto player = selectorObject->GetComponent<PlayerStatusManager>(false);
 
 		std::function<void()> eventFunction = []() {};
 

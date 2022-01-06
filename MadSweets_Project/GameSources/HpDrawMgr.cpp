@@ -28,7 +28,7 @@ namespace basecross {
 	}
 
 	float HpDrawMgr::CalucAlpha() {
-		auto statusMgr = GetGameObject()->GetComponent<PlayerStatusMgr>();
+		auto statusMgr = GetGameObject()->GetComponent<PlayerStatusManager>();
 		if (!statusMgr) {
 			return 0.0f;
 		}

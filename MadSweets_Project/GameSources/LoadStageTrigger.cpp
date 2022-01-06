@@ -31,7 +31,7 @@ namespace basecross {
 		MainStage::SetMapName(m_nextMap);
 
 		auto player = maru::MyUtility::GetGameObject<PlayerObject>();
-		auto status = player->GetComponent<PlayerStatusMgr>(false);
+		auto status = player->GetComponent<PlayerStatusManager>(false);
 		auto weightMgr = player->GetComponent<PlayerWeightMgr>(false);
 		auto calorie = player->GetComponent<PlayerCalorieManager>(false);
 

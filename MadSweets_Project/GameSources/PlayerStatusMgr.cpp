@@ -15,18 +15,18 @@
 
 namespace basecross {
 
-	void PlayerStatusMgr::ChangeGameOverStage() {
+	void PlayerStatusManager::ChangeGameOverStage() {
 		float stayTime(0.0f); //ステージ遷移する場合に待つ時間
 		PostEvent(stayTime, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameOverStage");
 	}
 
-	void PlayerStatusMgr::DestProcess() {
+	void PlayerStatusManager::DestProcess() {
 		auto fade = maru::MyUtility::GetComponent<AlphaFadeCtrl>();
-		fade->AddEndAction(GetThis<PlayerStatusMgr>(), &PlayerStatusMgr::ChangeGameOverStage);
+		fade->AddEndAction(GetThis<PlayerStatusManager>(), &PlayerStatusManager::ChangeGameOverStage);
 		fade->FadeOutStart();
 	}
 
-	void PlayerStatusMgr::Damage(const float& damage) {
+	void PlayerStatusManager::Damage(const float& damage) {
 		m_param.hp += -damage;
 
 		if (m_param.hp <= 0.0f) {
@@ -36,7 +36,7 @@ namespace basecross {
 		}
 	}
 
-	void PlayerStatusMgr::OnUpdate() {
+	void PlayerStatusManager::OnUpdate() {
 		//DebugObject::AddFloat(m_param.hp);
 	}
 

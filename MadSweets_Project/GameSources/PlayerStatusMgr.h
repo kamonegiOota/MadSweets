@@ -26,7 +26,7 @@ namespace basecross {
 	/// <summary>
 	/// playerのステータスのコンポーネント
 	/// </summary>
-	class PlayerStatusMgr : public Component , public I_Damaged
+	class PlayerStatusManager : public Component , public I_Damaged
 	{
 		PlayerStatusParam m_param;
 
@@ -34,7 +34,7 @@ namespace basecross {
 		void DestProcess();
 
 	public:
-		PlayerStatusMgr(const std::shared_ptr<GameObject>& objPtr)
+		PlayerStatusManager(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 		 

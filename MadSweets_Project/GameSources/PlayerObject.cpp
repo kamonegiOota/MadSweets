@@ -95,7 +95,7 @@ namespace basecross
 		AddComponent<LockPlayer>();
 
 		//丸山追記文
-		AddComponent<PlayerStatusMgr>();  //ステータス管理コンポーネント
+		AddComponent<PlayerStatusManager>();  //ステータス管理コンポーネント
 		AddComponent<TimerDamage>()->SetUpdateActive(false);  //飢餓状態で一定時間ごとにダメージを受ける処理
 		AddComponent<StomachSound>()->SetUpdateActive(false); //飢餓状態で一定時間ごとに腹の音がなる処理。
 		AddComponent<PulledSweets>()->SetUpdateActive(false); //飢餓状態でお菓子の方向に引っ張られる処理
