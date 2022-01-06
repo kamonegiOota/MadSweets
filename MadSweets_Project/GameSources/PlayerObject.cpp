@@ -102,7 +102,7 @@ namespace basecross
 		AddComponent<PulledSweets>()->SetUpdateActive(false); //‹Q‰ìó‘Ô‚Å‚¨‰Ùq‚Ì•ûŒü‚Éˆø‚Á’£‚ç‚ê‚éˆ—
 		AddComponent<HungerCompCtrl>();
 
-		auto hitEffectParam = HitEffectManager::Parametor(L"HitCream_Tx", Col4(1.0f, 0.5f, 0.5f, 0.0f), 1.0f, 0.8f);
+		auto hitEffectParam = HitEffectManager::Parametor(L"HitCream_Tx", Col4(0.9f, 0.85f, 0.65f, 0.0f), 0.5f, 0.8f);
 		AddComponent<HitEffectManager>(hitEffectParam);
 		
 		AddComponent<HpDrawManager>();
