@@ -33,6 +33,11 @@ namespace basecross {
 		void OnUpdate() override;
 
 		void FadeInStart() override;
+		/// <summary>
+		/// 強制的にフェードアウトさせる。
+		/// </summary>
+		/// <param name="startAlpha">透明化の初期値</param>
+		void ForceFadeInStart(const float& startAlpha = 1.0f);
 		void FadeOutStart() override;
 
 		//アクセッサ------------------------------------------------------

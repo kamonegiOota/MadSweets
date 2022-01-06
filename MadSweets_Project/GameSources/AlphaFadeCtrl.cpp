@@ -61,11 +61,15 @@ namespace basecross {
 			return;
 		}
 
+		ForceFadeInStart();
+	}
+
+	void AlphaFadeCtrl::ForceFadeInStart(const float& startAlpha) {
 		m_isUpdate = true;
 		m_direct = -1.0f;
-		SetStartImageAlpha(1.0f);
+		SetStartImageAlpha(startAlpha);
 
-		m_isEndFunc = [](float& alpha){ 
+		m_isEndFunc = [](float& alpha) {
 			if (alpha < 0.0f) {
 				alpha = 0.0f;
 				return true;
