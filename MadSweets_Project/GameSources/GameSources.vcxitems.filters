@@ -805,6 +805,9 @@
     <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager">
       <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\Tester">
+      <UniqueIdentifier>{550fd362-19ec-4f29-b063-858b4f2e6925}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -1488,6 +1491,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameTimer.h">
       <Filter>Maru\MaruUthilyty\GameTimer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Tester</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -2077,6 +2083,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameTimer.cpp">
       <Filter>Maru\MaruUthilyty\GameTimer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Tester</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
