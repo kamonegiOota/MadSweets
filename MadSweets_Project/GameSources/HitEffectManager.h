@@ -20,11 +20,13 @@ namespace basecross {
 			Vec2 uvSize = Vec2(1280.0f, 800.0f);
 			Col4 color = Col4(1.0f);
 			float fadeSpeed = 0.1f;
+			float fadeStartAlpha = 1.0f;
 
 			Parametor(const wstring& texture);
 			Parametor(const wstring& texture, const Col4& color);
 			Parametor(const wstring& texture, const Col4& color, const float& fadeSpeed);
-			Parametor(const wstring& texture, const Vec2& uvSize, const Col4& color, const float& fadeSpeed);
+			Parametor(const wstring& texture, const Col4& color, const float& fadeSpeed, const float& fadeStartAlpha);
+			Parametor(const wstring& texture, const Vec2& uvSize, const Col4& color, const float& fadeSpeed, const float& fadeStartAlpha);
 		};
 
 	private:

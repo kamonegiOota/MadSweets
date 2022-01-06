@@ -21,11 +21,20 @@ namespace basecross {
 	HitEffectManager::Parametor::Parametor(const wstring& texture, const Col4& color)
 		:Parametor(texture, color, 0.1f)
 	{}
-	HitEffectManager::Parametor::Parametor(const wstring& texture, const Col4& color, const float& fadeSpeed)
-		:Parametor(texture, Vec2(1280.0f, 800.0f), color, fadeSpeed)
+	HitEffectManager::Parametor::Parametor(const wstring& texture, const Col4& color,
+		const float& fadeSpeed
+	)
+		:Parametor(texture, Vec2(1280.0f, 800.0f), color, fadeSpeed, 1.0f)
 	{}
-	HitEffectManager::Parametor::Parametor(const wstring& texture, const Vec2& uvSize, const Col4& color, const float& fadeSpeed)
-		: texture(texture), uvSize(uvSize), color(color), fadeSpeed(fadeSpeed)
+	HitEffectManager::Parametor::Parametor(const wstring& texture, const Col4& color, 
+		const float& fadeSpeed, const float& fadeStartAlpha
+	)
+		: Parametor(texture, Vec2(1280.0f, 800.0f), color, fadeSpeed, fadeStartAlpha)
+	{}
+	HitEffectManager::Parametor::Parametor(const wstring& texture, const Vec2& uvSize, const Col4& color, 
+		const float& fadeSpeed, const float& fadeStartAlpha
+	)
+		: texture(texture), uvSize(uvSize), color(color), fadeSpeed(fadeSpeed), fadeStartAlpha(fadeStartAlpha)
 	{}
 
 	//--------------------------------------------------------------------------------------------------
@@ -72,7 +81,7 @@ namespace basecross {
 		for (auto effect : m_effects) {
 			auto fade = effect->GetComponent<AlphaFadeCtrl>();
 			fade->SetSpeed(m_param.fadeSpeed);
-			fade->FadeInStart();
+			fade->ForceFadeInStart(m_param.fadeStartAlpha);
 		}
 	}
 
