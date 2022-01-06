@@ -115,7 +115,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HitEffectManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HungerCompCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
@@ -332,7 +332,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HitEffectManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HungerCompCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />

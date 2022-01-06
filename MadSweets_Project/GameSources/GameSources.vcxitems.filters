@@ -364,9 +364,6 @@
     <Filter Include="Maru\MaruPlayer\Component">
       <UniqueIdentifier>{9d9d01c7-dbd6-48ab-bd75-08879bd869ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr">
-      <UniqueIdentifier>{3635aded-36d5-468b-bf70-bd1f4b01f505}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\MaruPlayer\Component\Hunger">
       <UniqueIdentifier>{82129509-7fa9-40cd-924d-ac88b21da835}</UniqueIdentifier>
     </Filter>
@@ -384,9 +381,6 @@
     </Filter>
     <Filter Include="Maru\MaruPlayer\Component\Hunger\HungerCompCtrl">
       <UniqueIdentifier>{478b2b8c-ad1b-4fda-ac76-0b64a8fcfff8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr">
-      <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\TestStage\TitleStage\TitleName">
       <UniqueIdentifier>{163091b9-7a70-41f0-ac28-9a90e8aaa24d}</UniqueIdentifier>
@@ -805,7 +799,13 @@
     <Filter Include="Maru\MaruUthilyty\GameTimer">
       <UniqueIdentifier>{178b23fc-0661-419f-8946-a880a2401087}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager">
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager">
+      <UniqueIdentifier>{3635aded-36d5-468b-bf70-bd1f4b01f505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager">
+      <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager">
       <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -1141,7 +1141,7 @@
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusManager.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimerDamage.h">
       <Filter>Maru\MaruPlayer\Component\Hunger\TimerDamage</Filter>
@@ -1158,8 +1158,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HungerCompCtrl.h">
       <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawManager.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleNameObject.h">
       <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
@@ -1195,7 +1195,7 @@
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
@@ -1782,7 +1782,7 @@
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusManager.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp">
       <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
@@ -1802,8 +1802,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HungerCompCtrl.cpp">
       <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawManager.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleNameObject.cpp">
       <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
@@ -1836,7 +1836,7 @@
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager</Filter>
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
