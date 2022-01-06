@@ -173,7 +173,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
@@ -382,7 +382,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />

@@ -8,7 +8,7 @@
 #include "Project.h"
 
 #include "HpDrawMgr.h"
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 
 namespace basecross {
 

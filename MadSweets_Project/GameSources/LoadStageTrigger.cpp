@@ -18,7 +18,7 @@
 
 #include "MyUtility.h"
 
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 #include "PlayerWeightMgr.h"
 #include "PlayerCalorieManager.h"
 

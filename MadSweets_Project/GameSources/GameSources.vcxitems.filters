@@ -1140,7 +1140,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusManager.h">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimerDamage.h">
@@ -1781,7 +1781,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp">
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusManager.cpp">
       <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp">

@@ -6,7 +6,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 
 #include "DebugObject.h"
 

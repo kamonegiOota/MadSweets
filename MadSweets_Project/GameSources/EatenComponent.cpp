@@ -1,7 +1,7 @@
 #include"EatenComponent.h"
 #include"PlayerCalorieManager.h"
 #include "PlayerWeightMgr.h"
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 
 namespace basecross
 {

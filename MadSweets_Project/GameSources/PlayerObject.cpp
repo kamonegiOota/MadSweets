@@ -23,7 +23,7 @@
 #include"Lock.h"
 
 //丸山追記分インクルード
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 #include "TimerDamage.h"
 #include "StomachSound.h"
 #include "PulledSweets.h"
