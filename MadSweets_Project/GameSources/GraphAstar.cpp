@@ -62,10 +62,17 @@ namespace basecross {
 	void GraphAstar::SearchAstarStart(const Vec3& selfPos, const Vec3& targetPos) {
 		auto selfNearNode = UtilityAstar::SearchNearNode(*this,selfPos);
 		auto targetNearNode = UtilityAstar::SearchNearNode(*this,targetPos);
+		if (selfNearNode == nullptr || targetNearNode == nullptr) {
+			return;
+		}
 		SearchAstarStart(selfNearNode, targetNearNode);
 	}
 
 	void GraphAstar::SearchAstarStart(const std::shared_ptr<NavGraphNode>& selfNearNode, const std::shared_ptr<NavGraphNode>& targetNearNode) {
+		if (selfNearNode == nullptr || targetNearNode == nullptr) {
+			return;
+		}
+
 		ResetAstar();
 
 		m_heuristic.SetTargetNode(targetNearNode);  //ヒューリスティック関数に目標ノードを設定
