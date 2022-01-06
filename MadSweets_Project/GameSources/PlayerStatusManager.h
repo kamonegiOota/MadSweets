@@ -30,6 +30,8 @@ namespace basecross {
 	{
 		PlayerStatusParam m_param;
 
+		void CreateHitEffect();  //ヒットエフェクトの生成
+
 		void ChangeGameOverStage();
 		void DestProcess();
 
