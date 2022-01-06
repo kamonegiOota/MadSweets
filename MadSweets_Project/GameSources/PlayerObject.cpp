@@ -31,6 +31,7 @@
 #include "HpDrawManager.h"
 
 #include "PlayerWeightManager.h"
+#include "HitEffectManager.h"
 
 namespace basecross
 {
@@ -100,6 +101,9 @@ namespace basecross
 		AddComponent<StomachSound>()->SetUpdateActive(false); //‹Q‰ìó‘Ô‚Åˆê’èŠÔ‚²‚Æ‚É• ‚Ì‰¹‚ª‚È‚éˆ—B
 		AddComponent<PulledSweets>()->SetUpdateActive(false); //‹Q‰ìó‘Ô‚Å‚¨‰Ùq‚Ì•ûŒü‚Éˆø‚Á’£‚ç‚ê‚éˆ—
 		AddComponent<HungerCompCtrl>();
+
+		auto hitEffectParam = HitEffectManager::Parametor(L"HitCream_Tx", Col4(1.0f, 0.5f, 0.5f, 0.0f), 1.0f, 0.8f);
+		AddComponent<HitEffectManager>(hitEffectParam);
 		
 		AddComponent<HpDrawManager>();
 
