@@ -23,7 +23,7 @@ namespace basecross {
 		/// </summary>
 		/// <returns>アルファ値を返す</returns>
 		float CalucAlpha();
-		void ImageAlphaMgr();
+		void ImageAlphaManager();
 
 	public:
 

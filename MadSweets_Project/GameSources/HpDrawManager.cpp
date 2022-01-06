@@ -42,7 +42,7 @@ namespace basecross {
 		}
 	}
 
-	void HpDrawManager::ImageAlphaMgr() {
+	void HpDrawManager::ImageAlphaManager() {
 		auto alpha = CalucAlpha();
 
 		auto color = m_image->GetDiffuse();
@@ -55,7 +55,7 @@ namespace basecross {
 	}
 
 	void HpDrawManager::OnUpdate() {
-		ImageAlphaMgr();
+		ImageAlphaManager();
 	}
 
 }
