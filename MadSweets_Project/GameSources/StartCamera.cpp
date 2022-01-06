@@ -157,7 +157,8 @@ namespace basecross {
 
 	void StartCamera::Skip(){
 		if (PlayerInputer::IsDecision()) {
-			ChangeCamera();
+			//ChangeCamera();
+			FadeStart();
 			//LockMove(false);
 		}
 	}
