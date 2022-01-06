@@ -1,7 +1,7 @@
 
 /*!
-@file GameManager.h
-@brief GameManagerクラス
+@file BoardObj.h
+@brief BoardObjクラス
 担当：丸山裕喜
 */
 

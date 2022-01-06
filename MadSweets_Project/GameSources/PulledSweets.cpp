@@ -1,6 +1,6 @@
 /*!
-@file GameManager.cpp
-@brief GameManagerクラス実体
+@file PulledSweets.cpp
+@brief PulledSweetsクラス実体
 担当：丸山裕喜
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file EnState_ProbTarget.cpp
+@brief EnState_ProbTarget‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

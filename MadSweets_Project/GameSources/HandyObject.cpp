@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file HandyObject.cpp
+@brief HandyObject‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

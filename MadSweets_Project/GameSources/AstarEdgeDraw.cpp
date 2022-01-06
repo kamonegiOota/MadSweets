@@ -1,6 +1,6 @@
 /*!
-@file PositionDrawComp.h
-@brief PositionDrawComp
+@file AstarEdgeDraw.h
+@brief AstarEdgeDraw
 ’S“–ÒFŠÛR —TŠì
 */
 

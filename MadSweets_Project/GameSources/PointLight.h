@@ -1,6 +1,6 @@
 /*!
-@file EnemyStateMachine.h
-@brief EnemyStateMachine
+@file PointLight.h
+@brief PointLight
 ’S“–ÒFŠÛR —TŠì
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file GameManager.h
-@brief GameManagerクラス
+@file OriginalMeshObject.h
+@brief OriginalMeshObjectクラス
 担当：丸山裕喜
 */
 

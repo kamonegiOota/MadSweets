@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file GraphAstar.cpp
+@brief GraphAstar‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

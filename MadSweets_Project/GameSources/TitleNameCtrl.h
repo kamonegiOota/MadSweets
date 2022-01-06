@@ -1,6 +1,6 @@
 /*!
-@file MaruStage.h
-@brief MaruStage
+@file TitleNameCtrl.h
+@brief TitleNameCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

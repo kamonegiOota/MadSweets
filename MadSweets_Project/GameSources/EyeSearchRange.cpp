@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.cpp
-@brief SearchObject‚È‚ÇŽÀ‘Ì
+@file EyeSearchRangeParam.cpp
+@brief EyeSearchRangeParam‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

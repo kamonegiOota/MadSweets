@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.cpp
-@brief SearchObject‚È‚ÇŽÀ‘Ì
+@file EventSprite.cpp
+@brief EventSprite‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

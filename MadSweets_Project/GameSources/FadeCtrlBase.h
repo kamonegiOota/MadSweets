@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file FadeCtrlBase.h
+@brief FadeCtrlBaseクラス
 担当：丸山裕喜
 */
 

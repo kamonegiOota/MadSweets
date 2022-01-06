@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file TargetProbe.cpp
+@brief TargetProbe‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

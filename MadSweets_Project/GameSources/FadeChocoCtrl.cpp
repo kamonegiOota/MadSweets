@@ -1,6 +1,6 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file FadeChocoCtrl.cpp
+@brief FadeChocoCtrl実体
 */
 
 #include "stdafx.h"

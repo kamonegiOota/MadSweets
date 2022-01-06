@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file ArrowObject.h
+@brief ArrowObjectクラス
 担当：丸山裕喜
 */
 

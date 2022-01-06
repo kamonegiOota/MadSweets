@@ -1,6 +1,6 @@
 /*!
-@file BaseEnemy.cpp
-@brief BaseEnemy‚È‚ÇŽÀ‘Ì
+@file EscapeEnemy.cpp
+@brief EscapeEnemy‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

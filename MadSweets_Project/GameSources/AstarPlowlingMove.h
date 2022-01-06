@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.h
-@brief PlowlingMove
+@file AstarPlowlingMove.h
+@brief AstarPlowlingMove
 ’S“–ÒFŠÛR —TŠì
 */
 

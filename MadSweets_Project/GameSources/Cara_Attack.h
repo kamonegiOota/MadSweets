@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.h
-@brief SearchObject‚È‚Ç
+@file Cara_Attack.h
+@brief Cara_Attack‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

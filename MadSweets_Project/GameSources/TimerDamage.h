@@ -1,7 +1,7 @@
 
 /*!
-@file MyRandom.h
-@brief MyRandomクラス
+@file TimerDamage.h
+@brief TimerDamageクラス
 担当：丸山裕喜
 */
 

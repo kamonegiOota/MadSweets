@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file MTestBox.cpp
+@brief MTestBoxクラス実体
 担当：丸山裕喜
 */
 

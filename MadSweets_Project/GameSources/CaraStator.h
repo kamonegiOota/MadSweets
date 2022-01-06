@@ -1,6 +1,6 @@
 /*!
-@file StatorBase.h
-@brief StatorBase
+@file CaraStator.h
+@brief CaraStator
 ’S“–ÒFŠÛR —TŠì
 */
 

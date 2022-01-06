@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file ObjectTransport.cpp
+@brief ObjectTransport‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

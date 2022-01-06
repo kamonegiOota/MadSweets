@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.h
-@brief PlowlingMove
+@file CheckTargetPos.h
+@brief CheckTargetPos
 ’S“–ÒFŠÛR —TŠì
 */
 

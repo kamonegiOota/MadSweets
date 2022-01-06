@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file HpDrawManager.h
+@brief HpDrawManagerクラス
 担当：丸山裕喜
 */
 

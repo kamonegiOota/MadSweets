@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.h
-@brief SearchObject‚È‚Ç
+@file EyeSearchRangeParam.h
+@brief EyeSearchRangeParam‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

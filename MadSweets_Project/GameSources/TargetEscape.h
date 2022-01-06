@@ -1,7 +1,7 @@
 
 /*!
-@file TargetChase.h
-@brief TargetChase
+@file TargetEscape.h
+@brief TargetEscape
 ’S“–ÒFŠÛR —TŠì
 */
 

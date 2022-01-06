@@ -1,6 +1,6 @@
 /*!
-@file LoadData.cpp
-@brief LoadDataのクラス実体
+@file HandyManager.cpp
+@brief HandyManagerのクラス実体
 担当：丸山裕喜
 */
 

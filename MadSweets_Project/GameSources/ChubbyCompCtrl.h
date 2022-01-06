@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file ChubbyCompCtrl.h
+@brief ChubbyCompCtrlクラス
 担当：丸山裕喜
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file GraphEdge.h
-@brief GraphEdge
+@file Heuristic.h
+@brief Heuristic
 ’S“–ÒFŠÛR —TŠì
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file CrackCookie.h
+@brief CrackCookieクラス
 担当：丸山裕喜
 */
 

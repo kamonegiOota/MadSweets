@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file ChaseEnemy.cpp
+@brief ChaseEnemy‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

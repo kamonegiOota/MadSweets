@@ -1,6 +1,6 @@
 /*!
-@file MaruStage.h
-@brief MaruStage
+@file MTestEnemy.h
+@brief MTestEnemy
 ’S“–ÒFŠÛR —TŠì
 */
 

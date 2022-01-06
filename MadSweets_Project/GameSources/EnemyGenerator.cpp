@@ -1,6 +1,6 @@
 /*!
-@file MTestEnemyObject.h
-@brief MTestEnemyObject
+@file EnemyGenerator.h
+@brief EnemyGenerator
 ’S“–ÒFŠÛR —TŠì
 */
 

@@ -1,3 +1,9 @@
+/*!
+@file UtilityAstar.h
+@brief UtilityAstar‚È‚Ç
+’S“–ÒFŠÛR —TŠì
+*/
+
 #pragma once
 
 #include "NavGraphNode.h"

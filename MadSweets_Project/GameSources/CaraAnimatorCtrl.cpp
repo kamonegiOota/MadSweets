@@ -1,6 +1,6 @@
 /*!
-@file MTestEnemyObject.h
-@brief MTestEnemyObject
+@file CaraAnimatorCtrl.h
+@brief CaraAnimatorCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

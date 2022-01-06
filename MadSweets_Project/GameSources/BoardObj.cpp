@@ -1,7 +1,7 @@
 
 /*!
-@file GameStateCtrl.cpp
-@brief GameStateCtrlクラス実体
+@file BoardObj.cpp
+@brief BoardObjクラス実体
 担当：丸山裕喜
 */
 

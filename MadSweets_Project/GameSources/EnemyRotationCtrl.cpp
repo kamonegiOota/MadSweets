@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file EnemyRotationCtrl.cpp
+@brief EnemyRotationCtrl‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.h
-@brief PlowlingMove
+@file AstarCtrl.h
+@brief AstarCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 #pragma once

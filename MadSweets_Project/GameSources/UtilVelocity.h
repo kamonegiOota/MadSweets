@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file UtilVelocity.h
+@brief UtilVelocityクラス
 担当：丸山裕喜
 */
 

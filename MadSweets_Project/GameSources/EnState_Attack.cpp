@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file EnState_Attack.cpp
+@brief EnState_Attack‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

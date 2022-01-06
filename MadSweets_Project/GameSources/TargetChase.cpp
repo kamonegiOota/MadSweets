@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file TargetChase.cpp
+@brief TargetChase‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

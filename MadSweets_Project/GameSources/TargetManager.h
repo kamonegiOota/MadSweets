@@ -1,6 +1,6 @@
 /*!
-@file EnemyRotationCtrl.h
-@brief EnemyRotationCtrl‚È‚Ç
+@file TargetManager.h
+@brief TargetManager‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

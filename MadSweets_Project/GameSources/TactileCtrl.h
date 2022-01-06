@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.h
-@brief PlowlingMove
+@file TactileCtrl.h
+@brief TactileCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

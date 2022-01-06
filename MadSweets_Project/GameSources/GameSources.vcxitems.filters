@@ -694,9 +694,6 @@
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator">
       <UniqueIdentifier>{08105c35-1fe7-440f-8602-b3a78c6eddfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\Stator">
-      <UniqueIdentifier>{68501f41-505e-451e-919d-81a7fdc154fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\MaruUthilyty\WaitTimer">
       <UniqueIdentifier>{624c1aab-dda1-4e6d-86ad-0cb1ae83135a}</UniqueIdentifier>
     </Filter>
@@ -1437,9 +1434,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_ReturnPlowling.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.h">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Stator</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Ear.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
@@ -2038,9 +2032,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AshiStator.cpp">
       <Filter>Maru\Enemy\Object\AshiObject\AshiComp\AshiStator</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ChaseEnemyStator.cpp">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\Stator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyManager.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp</Filter>

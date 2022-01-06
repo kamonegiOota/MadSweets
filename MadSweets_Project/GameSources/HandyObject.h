@@ -1,6 +1,6 @@
 /*!
-@file MTestEnemyObject.h
-@brief MTestEnemyObject
+@file HandyObject.h
+@brief HandyObject
 ’S“–ÒFŠÛR —TŠì
 */
 

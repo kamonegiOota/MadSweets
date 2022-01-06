@@ -1,8 +1,8 @@
 #pragma once
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file EatenObject.h
+@brief EatenObjectクラス
 担当：丸山裕喜
 */
 

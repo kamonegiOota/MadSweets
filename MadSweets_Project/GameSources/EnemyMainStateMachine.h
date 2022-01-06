@@ -1,6 +1,6 @@
 /*!
-@file EnemyStateMachine.h
-@brief EnemyStateMachine
+@file EnemyMainStateMachine.h
+@brief EnemyMainStateMachine
 ’S“–ÒFŠÛR —TŠì
 */
 

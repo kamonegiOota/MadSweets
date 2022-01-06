@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file AlphaFadeCtrl.h
+@brief AlphaFadeCtrlクラス
 担当：丸山裕喜
 */
 

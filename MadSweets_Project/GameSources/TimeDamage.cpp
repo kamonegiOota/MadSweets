@@ -1,7 +1,7 @@
 
 /*!
-@file GameManager.cpp
-@brief GameManagerクラス実体
+@file TimerDamage.cpp
+@brief TimerDamageクラス実体
 担当：丸山裕喜
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.h
-@brief SearchObject‚È‚Ç
+@file Handy_Attack.h
+@brief Handy_Attack‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

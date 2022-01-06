@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file MTestBox.h
+@brief MTestBoxクラス
 担当：丸山裕喜
 */
 

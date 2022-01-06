@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file WaitTimer.cpp
+@brief WaitTimerクラス実体
 担当：丸山裕喜
 */
 

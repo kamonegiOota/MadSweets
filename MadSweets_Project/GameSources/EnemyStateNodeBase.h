@@ -1,7 +1,7 @@
 
 /*!
-@file EnemyStateMachine.h
-@brief EnemyStateMachine
+@file EnemyStateNodeBase.h
+@brief EnemyStateNodeBase
 ’S“–ÒFŠÛR —TŠì
 */
 

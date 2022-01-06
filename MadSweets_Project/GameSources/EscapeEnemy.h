@@ -1,6 +1,6 @@
 /*!
-@file BaseEnemy.h
-@brief BaseEnemy
+@file EscapeEnemy.h
+@brief EscapeEnemy
 ’S“–ÒFŠÛR —TŠì
 */
 

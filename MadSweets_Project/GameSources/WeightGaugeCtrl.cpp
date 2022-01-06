@@ -1,6 +1,6 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file WeightGaugeCtrl.cpp
+@brief WeightGaugeCtrl
 */
 
 #include "stdafx.h"

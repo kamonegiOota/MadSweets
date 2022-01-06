@@ -1,6 +1,6 @@
 /*!
-@file EnState_Plowling.cpp
-@brief EnState_Plowling‚È‚ÇŽÀ‘Ì
+@file TargetEscape.cpp
+@brief TargetEscape‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

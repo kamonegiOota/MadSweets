@@ -1,6 +1,7 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file MTestEnemy.cpp
+@file MTestEnemy.cpp
+@brief MTestEnemy‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

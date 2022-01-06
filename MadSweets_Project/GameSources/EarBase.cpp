@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file EarBase.cpp
+@brief EarBase‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

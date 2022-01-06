@@ -1,6 +1,6 @@
 /*!
-@file FixedBox.cpp
-@brief FixedBoxÀ‘Ì
+@file ResetStageObj.cpp
+@brief ResetStageObjÀ‘Ì
 ’S“–FŠÛR—TŠì
 */
 

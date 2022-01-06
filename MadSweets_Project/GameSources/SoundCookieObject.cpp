@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file SoundCookieObject.cpp
+@brief SoundCookieObjectクラス実体
 担当：丸山裕喜
 */
 

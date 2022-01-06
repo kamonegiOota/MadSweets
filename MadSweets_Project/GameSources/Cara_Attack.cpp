@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.cpp
-@brief SearchObject‚È‚ÇŽÀ‘Ì
+@file Cara_Attack.cpp
+@brief Cara_Attack‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

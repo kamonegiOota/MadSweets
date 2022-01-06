@@ -1,3 +1,10 @@
+
+/*!
+@file Mathf.h
+@brief Mathfクラス
+担当：丸山裕喜
+*/
+
 #pragma once
 #include "stdafx.h"
 

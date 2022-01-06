@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file WaitTimer.h
+@brief WaitTimerクラス
 担当：丸山裕喜
 */
 

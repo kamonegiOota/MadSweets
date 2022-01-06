@@ -1,6 +1,6 @@
 /*!
-@file PositionDrawComp.h
-@brief PositionDrawComp
+@file PlayerStatusManager.h
+@brief PlayerStatusManager
 ’S“–ÒFŠÛR —TŠì
 */
 
