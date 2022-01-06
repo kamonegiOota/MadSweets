@@ -9,7 +9,7 @@
 
 namespace basecross {
 
-	class HpDrawMgr : public Component
+	class HpDrawManager : public Component
 	{
 		ex_weak_ptr<Image> m_image;
 
@@ -27,7 +27,7 @@ namespace basecross {
 
 	public:
 
-		HpDrawMgr(const std::shared_ptr<GameObject>& objPtr)
+		HpDrawManager(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 

@@ -28,7 +28,7 @@
 #include "StomachSound.h"
 #include "PulledSweets.h"
 #include "HungerCompCtrl.h"
-#include "HpDrawMgr.h"
+#include "HpDrawManager.h"
 
 #include "PlayerWeightManager.h"
 
@@ -101,7 +101,7 @@ namespace basecross
 		AddComponent<PulledSweets>()->SetUpdateActive(false); //‹Q‰ìó‘Ô‚Å‚¨‰Ùq‚Ì•ûŒü‚Éˆø‚Á’£‚ç‚ê‚éˆ—
 		AddComponent<HungerCompCtrl>();
 		
-		AddComponent<HpDrawMgr>();
+		AddComponent<HpDrawManager>();
 
 		AddComponent<PlayerWeightManager>();
 		
