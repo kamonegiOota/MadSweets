@@ -1,7 +1,7 @@
 
 /*!
-@file GameManager.h
-@brief GameManagerクラス
+@file ResetStageObj.h
+@brief ResetStageObjクラス
 担当：丸山裕喜
 */
 

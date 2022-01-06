@@ -1,6 +1,6 @@
 /*!
-@file EnemyRotationCtrl.h
-@brief EnemyRotationCtrl‚È‚Ç
+@file SearchHidden.h
+@brief SearchHidden‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

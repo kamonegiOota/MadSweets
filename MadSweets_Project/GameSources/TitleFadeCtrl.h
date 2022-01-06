@@ -1,6 +1,6 @@
 /*!
-@file MaruStage.h
-@brief MaruStage
+@file TitleFadeCtrl.h
+@brief TitleFadeCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

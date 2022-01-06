@@ -1,7 +1,7 @@
 
 /*!
-@file GameManager.cpp
-@brief GameManagerクラス実体
+@file MyRandom.cpp
+@brief MyRandomクラス実体
 担当：丸山裕喜
 */
 

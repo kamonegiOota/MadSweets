@@ -1,7 +1,7 @@
 
 /*!
-@file MaruStage.h
-@brief MaruStage
+@file FadeChocoCtrl.h
+@brief FadeChocoCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

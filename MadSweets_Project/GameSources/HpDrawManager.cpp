@@ -1,6 +1,6 @@
 /*!
-@file PositionDrawComp.h
-@brief PositionDrawComp
+@file HpDrawManager.h
+@brief HpDrawManager
 ’S“–ÒFŠÛR —TŠì
 */
 

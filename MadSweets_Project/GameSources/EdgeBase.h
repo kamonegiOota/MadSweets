@@ -1,6 +1,6 @@
 /*!
-@file EnemyStateMachine.h
-@brief EnemyStateMachine
+@file EdgeBase.h
+@brief EdgeBase
 ’S“–ÒFŠÛR —TŠì
 */
 

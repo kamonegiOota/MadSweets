@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file EnState_CheckSoundPos.cpp
+@brief EnState_CheckSoundPos‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

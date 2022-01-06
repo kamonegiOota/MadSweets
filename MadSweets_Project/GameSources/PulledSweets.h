@@ -1,7 +1,7 @@
 
 /*!
-@file MyRandom.h
-@brief MyRandomクラス
+@file PulledSweets.h
+@brief PulledSweetsクラス
 担当：丸山裕喜
 */
 

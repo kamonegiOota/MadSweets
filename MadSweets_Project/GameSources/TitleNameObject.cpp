@@ -1,6 +1,6 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file TitleNameObject.cpp
+@brief TitleNameObject実体
 */
 
 #include "stdafx.h"

@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.h
-@brief SearchObject‚È‚Ç
+@file ThrowObjectCtrl.h
+@brief ThrowObjectCtrl‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

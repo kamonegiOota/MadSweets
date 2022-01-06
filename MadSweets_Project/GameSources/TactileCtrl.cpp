@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file TactileCtrl.cpp
+@brief TactileCtrl‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

@@ -1,7 +1,7 @@
 
 /*!
-@file GameManager.h
-@brief GameManagerクラス
+@file PointLightObject.h
+@brief PointLightObjectクラス
 担当：丸山裕喜
 */
 

@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file ThrowHandyObject.h
+@brief ThrowHandyObjectクラス
 担当：丸山裕喜
 */
 

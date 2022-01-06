@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file AshiStator.cpp
+@brief AshiStator‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

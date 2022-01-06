@@ -1,7 +1,7 @@
 
 /*!
-@file MyRandom.h
-@brief MyRandomクラス
+@file StomachSound.h
+@brief StomachSoundクラス
 担当：丸山裕喜
 */
 

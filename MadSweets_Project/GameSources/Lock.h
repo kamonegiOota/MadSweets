@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file LockPlayer.h
+@brief LockPlayerクラス
 担当：丸山裕喜
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file GraphNode.cpp
-@brief GraphNode‚È‚ÇŽÀ‘Ì
+@file PointLight.cpp
+@brief PointLight‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

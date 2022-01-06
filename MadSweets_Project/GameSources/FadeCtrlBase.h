@@ -1,6 +1,6 @@
 /*!
-@file EventSprite.h
-@brief EventSpriteクラス
+@file FadeCtrlBase.h
+@brief FadeCtrlBaseクラス
 担当：丸山裕喜
 */
 

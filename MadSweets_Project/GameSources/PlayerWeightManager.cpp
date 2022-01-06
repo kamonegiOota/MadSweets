@@ -1,6 +1,6 @@
 /*!
-@file PositionDrawComp.h
-@brief PositionDrawComp
+@file PlayerWeightManager.h
+@brief PlayerWeightManager
 ’S“–ÒFŠÛR —TŠì
 */
 

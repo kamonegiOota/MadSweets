@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file WallEvasion.cpp
+@brief WallEvasion‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

@@ -1,6 +1,6 @@
 /*!
-@file LoseTarget.cpp
-@brief LoseTarget‚È‚ÇŽÀ‘Ì
+@file EnState_LoseTarget.cpp
+@brief EnState_LoseTarget‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

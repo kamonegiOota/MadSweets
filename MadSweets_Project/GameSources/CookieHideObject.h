@@ -1,8 +1,8 @@
 #pragma once
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file CookieHideObject.h
+@brief CookieHideObjectクラス
 担当：丸山裕喜
 */
 

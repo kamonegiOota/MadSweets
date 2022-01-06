@@ -1,6 +1,6 @@
 /*!
-@file MyRandom.h
-@brief MyRandomクラス
+@file HungerCompCtrl.h
+@brief HungerCompCtrlクラス
 担当：丸山裕喜
 */
 

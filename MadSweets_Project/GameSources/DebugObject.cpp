@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.cpp
-@brief PlowlingMove‚È‚ÇŽÀ‘Ì
+@file DebugObject.cpp
+@brief DebugObject‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

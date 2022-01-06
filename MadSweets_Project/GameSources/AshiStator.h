@@ -1,6 +1,6 @@
 /*!
-@file MTestEnemyObject.h
-@brief MTestEnemyObject
+@file AshiStator.h
+@brief AshiStator
 ’S“–ÒFŠÛR —TŠì
 */
 

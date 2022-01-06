@@ -1,6 +1,6 @@
 /*!
-@file LoseTarget.h
-@brief LoseTarget
+@file EnState_LoseTarget.h
+@brief EnState_LoseTarget
 ’S“–ÒFŠÛR —TŠì
 */
 #pragma once

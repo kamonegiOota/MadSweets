@@ -1,6 +1,6 @@
 /*!
-@file EnState_TargetChase.h
-@brief EnState_TargetChase
+@file EnState_Attack.h
+@brief EnState_Attack
 ’S“–ÒFŠÛR —TŠì
 */
 

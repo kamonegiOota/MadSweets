@@ -1,6 +1,6 @@
 /*!
-@file EnemyStateMachine.h
-@brief EnemyStateMachine
+@file PNTPointDraw.h
+@brief PNTPointDraw
 ’S“–ÒFŠÛR —TŠì
 */
 

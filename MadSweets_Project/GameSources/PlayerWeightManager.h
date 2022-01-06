@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file PlayerWeightManager.h
+@brief PlayerWeightManagerクラス
 担当：丸山裕喜
 */
 

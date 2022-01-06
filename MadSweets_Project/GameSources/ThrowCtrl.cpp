@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.cpp
-@brief SearchObject‚È‚ÇŽÀ‘Ì
+@file ThrowCtrl.cpp
+@brief ThrowCtrl‚È‚ÇŽÀ‘Ì
 */
 
 #include "stdafx.h"

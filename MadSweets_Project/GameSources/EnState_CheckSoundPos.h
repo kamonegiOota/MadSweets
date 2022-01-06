@@ -1,6 +1,6 @@
 /*!
-@file EnState_TargetChase.h
-@brief EnState_TargetChase
+@file EnState_CheckSoundPos.h
+@brief EnState_CheckSoundPos
 ’S“–ÒFŠÛR —TŠì
 */
 

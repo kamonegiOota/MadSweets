@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file NumbersObject.cpp
+@brief NumbersObjectクラス実体
 担当：丸山裕喜
 */
 

@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file PlayerStatusManager.h
+@brief PlayerStatusManagerクラス
 担当：丸山裕喜
 */
 

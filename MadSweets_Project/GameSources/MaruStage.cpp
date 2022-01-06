@@ -1,6 +1,6 @@
 /*!
-@file GameStage.cpp
-@brief ゲームステージ実体
+@file MaruStage.cpp
+@brief MaruStage実体
 */
 
 #include "stdafx.h"

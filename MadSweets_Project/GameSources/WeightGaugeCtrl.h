@@ -1,6 +1,6 @@
 /*!
-@file MaruStage.h
-@brief MaruStage
+@file WeightGaugeCtrl.h
+@brief WeightGaugeCtrl
 ’S“–ÒFŠÛR —TŠì
 */
 

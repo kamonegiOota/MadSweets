@@ -1,6 +1,6 @@
 /*!
-@file PositionDrawComp.h
-@brief PositionDrawComp
+@file LockPlayer.h
+@brief LockPlayer
 ’S“–ÒFŠÛR —TŠì
 */
 

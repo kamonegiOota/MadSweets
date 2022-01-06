@@ -1,6 +1,6 @@
 /*!
-@file ChaseEnemyObject.h
-@brief ChaseEnemyObject
+@file I_Damaged.h
+@brief I_Damaged
 ’S“–ÒFŠÛR —TŠì
 */
 

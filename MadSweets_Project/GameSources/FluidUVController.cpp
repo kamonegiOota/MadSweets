@@ -1,6 +1,6 @@
 /*!
-@file ScalePop.cpp
-@brief ScalePopのクラス実体
+@file FluidUVController.cpp
+@brief FluidUVControllerのクラス実体
 担当：丸山裕喜
 */
 

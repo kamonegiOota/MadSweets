@@ -1,7 +1,7 @@
 
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file Number.h
+@brief Numberクラス
 担当：丸山裕喜
 */
 

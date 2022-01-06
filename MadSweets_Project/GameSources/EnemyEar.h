@@ -1,6 +1,6 @@
 /*!
-@file PlowlingMove.h
-@brief PlowlingMove
+@file EnemyEar.h
+@brief EnemyEar
 ’S“–ÒFŠÛR —TŠì
 */
 
