@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file SoundCookie.h
+@brief SoundCookieクラス
 担当：丸山裕喜
 */
 

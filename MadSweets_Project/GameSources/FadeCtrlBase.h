@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file EventSprite.h
+@brief EventSpriteクラス
 担当：丸山裕喜
 */
 

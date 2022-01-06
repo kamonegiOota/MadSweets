@@ -1,6 +1,6 @@
 /*!
-@file BillBoard.h
-@brief BillBoardクラス
+@file EventSprite.h
+@brief EventSpriteクラス
 担当：丸山裕喜
 */
 

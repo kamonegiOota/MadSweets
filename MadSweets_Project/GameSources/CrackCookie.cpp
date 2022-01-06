@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file CrackCookie.cpp
+@brief CrackCookieクラス実体
 担当：丸山裕喜
 */
 

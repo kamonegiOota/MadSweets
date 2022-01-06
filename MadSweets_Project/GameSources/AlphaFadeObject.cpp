@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.cpp
-@brief MyUtilityクラス実体
+@file AlphaFadeObject.cpp
+@brief AlphaFadeObjectクラス実体
 担当：丸山裕喜
 */
 

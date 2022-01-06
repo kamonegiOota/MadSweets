@@ -1,6 +1,6 @@
 /*!
-@file MyUtility.h
-@brief MyUtilityクラス
+@file FlameMatch.h
+@brief FlameMatchクラス
 担当：丸山裕喜
 */
 
