@@ -70,7 +70,7 @@
 // ----------------------------
 
 #include "PlayerStatusManager.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 #include "PlayerCalorieManager.h"
 #include "Velocity.h"
 

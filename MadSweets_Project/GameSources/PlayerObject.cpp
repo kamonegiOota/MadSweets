@@ -30,7 +30,7 @@
 #include "HungerCompCtrl.h"
 #include "HpDrawMgr.h"
 
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 
 namespace basecross
 {
@@ -103,7 +103,7 @@ namespace basecross
 		
 		AddComponent<HpDrawMgr>();
 
-		AddComponent<PlayerWeightMgr>();
+		AddComponent<PlayerWeightManager>();
 		
 		AddComponent<Gravity>();
 

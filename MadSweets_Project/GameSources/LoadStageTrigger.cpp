@@ -19,7 +19,7 @@
 #include "MyUtility.h"
 
 #include "PlayerStatusManager.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 #include "PlayerCalorieManager.h"
 
 namespace basecross {
@@ -32,7 +32,7 @@ namespace basecross {
 
 		auto player = maru::MyUtility::GetGameObject<PlayerObject>();
 		auto status = player->GetComponent<PlayerStatusManager>(false);
-		auto weightMgr = player->GetComponent<PlayerWeightMgr>(false);
+		auto weightMgr = player->GetComponent<PlayerWeightManager>(false);
 		auto calorie = player->GetComponent<PlayerCalorieManager>(false);
 
 		if (status && weightMgr && calorie) {

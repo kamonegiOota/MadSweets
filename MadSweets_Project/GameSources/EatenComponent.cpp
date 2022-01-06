@@ -1,6 +1,6 @@
 #include"EatenComponent.h"
 #include"PlayerCalorieManager.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 #include "PlayerStatusManager.h"
 
 namespace basecross
@@ -35,7 +35,7 @@ namespace basecross
 	{
 		//–{—ˆª‚Íweight‚Å‚Í‚È‚­ƒJƒƒŠ[
 		auto calorieManager = selectorObject->GetComponent<PlayerCalorieManager>(false);
-		auto weightMgr = selectorObject->GetComponent<PlayerWeightMgr>(false);
+		auto weightMgr = selectorObject->GetComponent<PlayerWeightManager>(false);
 		auto player = selectorObject->GetComponent<PlayerStatusManager>(false);
 
 		std::function<void()> eventFunction = []() {};

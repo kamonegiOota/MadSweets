@@ -439,9 +439,6 @@
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl">
       <UniqueIdentifier>{60cde739-2f09-433d-a45e-eb63b9161a57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr">
-      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
       <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
     </Filter>
@@ -807,6 +804,9 @@
     </Filter>
     <Filter Include="Maru\MaruUthilyty\GameTimer">
       <UniqueIdentifier>{178b23fc-0661-419f-8946-a880a2401087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager">
+      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1194,8 +1194,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
@@ -1835,8 +1835,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
