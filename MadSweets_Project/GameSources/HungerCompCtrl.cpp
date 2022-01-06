@@ -8,7 +8,7 @@
 #include "Project.h"
 
 #include "HungerCompCtrl.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 
 #include "DebugObject.h"
 
@@ -37,7 +37,7 @@ namespace basecross {
 
 	void HungerCompCtrl::HungerMgr() {
 		//飢餓状態のステートを監視する。
-		auto weightMgr = GetGameObject()->GetComponent<PlayerWeightMgr>(false);
+		auto weightMgr = GetGameObject()->GetComponent<PlayerWeightManager>(false);
 		if (weightMgr) {
 			auto state = weightMgr->GetState();
 			//前回のステートと一緒ならば処理をしない

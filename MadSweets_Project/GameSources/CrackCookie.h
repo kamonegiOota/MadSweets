@@ -9,7 +9,7 @@
 
 #include "Mathf.h"
 #include "DebugObject.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 
 namespace basecross {
 
@@ -36,7 +36,7 @@ namespace basecross {
 		/// </summary>
 		/// <param name="weightMgr">PlayerWieghtMgrの本体</param>
 		/// <returns>減る耐久値を返す</returns>
-		float CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr);
+		float CalucDamage(const std::shared_ptr<PlayerWeightManager>& weightMgr);
 		void DestProcess();
 		/// <summary>
 		/// テクスチャの変更が必要かチェック

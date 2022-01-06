@@ -6,7 +6,7 @@
 
 #include "stdafx.h"
 #include "Project.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 
 #include "MyUtility.h"
 
@@ -14,17 +14,17 @@
 
 namespace basecross {
 
-	void PlayerWeightMgr::OnCreate() {
+	void PlayerWeightManager::OnCreate() {
 		if (!m_gaugeCtrl) { //ゲージが存在しなかったら
 			m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>(GetStage());
 		}
 	}
 
-	void PlayerWeightMgr::OnStart() {
+	void PlayerWeightManager::OnStart() {
 		
 	}
 
-	void PlayerWeightMgr::OnUpdate() {
+	void PlayerWeightManager::OnUpdate() {
 		//test的に無かったらここで取得するようにしておく
 		if (!m_gaugeCtrl) {
 			m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>();
@@ -33,7 +33,7 @@ namespace basecross {
 
 	//アクセッサ--------------------------------------------------
 
-	void PlayerWeightMgr::AddWeight(const float& value) {
+	void PlayerWeightManager::AddWeight(const float& value) {
 		//生成の順番を間違えた時用
 		//存在しなかったら一度検索
 		if (!m_gaugeCtrl) {
@@ -45,17 +45,17 @@ namespace basecross {
 		}
 	}
 
-	WeightState PlayerWeightMgr::GetState() const {
+	WeightState PlayerWeightManager::GetState() const {
 		if (m_gaugeCtrl) {
 			return m_gaugeCtrl->GetState();
 		}
 		else {
 			return WeightState::None;
-			DebugObject::sm_wss << endl << L"PlayerWeightMgr::GetState() , m_gaugeCtrlが存在しません。";
+			DebugObject::sm_wss << endl << L"PlayerWeightManager::GetState() , m_gaugeCtrlが存在しません。";
 		}
 	}
 
-	void PlayerWeightMgr::SetWeight(const float& value) {
+	void PlayerWeightManager::SetWeight(const float& value) {
 		if (!m_gaugeCtrl) {
 			m_gaugeCtrl = maru::MyUtility::GetComponent<WeightGaugeCtrl>();
 		}

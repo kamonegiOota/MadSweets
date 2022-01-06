@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "HandyStateMgr.h"
+#include "HandyStator.h"
 
 #include "EnemyMainStateMachine.h"
 
@@ -26,7 +26,7 @@
 #include "Handy_Attack.h"
 
 #include "DebugObject.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 
@@ -61,7 +61,7 @@ namespace basecross {
 
 	//ノート、エッジ追加----------------------------------------------------------------------------------
 
-	void HandyStateMgr::AddNodes(const std::shared_ptr<HandyStateMachine>& state) {
+	void HandyStator::AddNodes(const std::shared_ptr<HandyStateMachine>& state) {
 		auto object = GetGameObject()->GetComponent<BaseEnemy>();
 
 		state->AddNode(StateType::Plowling,    make_shared<EnState_Plowling>(object));
@@ -72,7 +72,7 @@ namespace basecross {
 		state->AddNode(StateType::SoundCheck,  make_shared<EnState_CheckSoundPos>(object ,Vec3(0.0f)));
 	}
 
-	void HandyStateMgr::AddEdges(const std::shared_ptr<HandyStateMachine>& state) {
+	void HandyStator::AddEdges(const std::shared_ptr<HandyStateMachine>& state) {
 		//探索行動時
 		state->AddEdge(StateType::Plowling, StateType::Attack,     &ToAttackTrigger);
 		state->AddEdge(StateType::Plowling, StateType::Chase,      &ToChaseTrigger);
@@ -103,19 +103,19 @@ namespace basecross {
 
 	//Start,Update-------------------------------------------------------------------------
 
-	void HandyStateMgr::OnStart() {
+	void HandyStator::OnStart() {
 		m_stateMachine = std::make_shared<HandyStateMachine>();
 
 		AddNodes(m_stateMachine);
 		AddEdges(m_stateMachine);
 	}
 
-	void HandyStateMgr::OnUpdate() {
+	void HandyStator::OnUpdate() {
 
 		m_stateMachine->OnUpdate();
 
 		//testkey
-		auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
+		//auto& key = App::GetApp()->GetMyInputDevice()->GetKeyBoard();
 	}
 
 }

@@ -16,7 +16,7 @@
 #include "CaraStator.h"
 #include "CaraAnimatorCtrl.h"
 
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 

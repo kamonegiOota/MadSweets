@@ -69,8 +69,8 @@
 
 // ----------------------------
 
-#include "PlayerStatusMgr.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerStatusManager.h"
+#include "PlayerWeightManager.h"
 #include "PlayerCalorieManager.h"
 #include "Velocity.h"
 
@@ -87,6 +87,7 @@
 #include "TestEnemyNode.h"
 
 #include "EnemyGenerator.h"
+#include "HitEffectManager.h"
 
 namespace basecross {
 
@@ -110,7 +111,7 @@ namespace basecross {
 			return;
 		}
 
-		auto status = player->GetComponent<PlayerStatusMgr>(false);
+		auto status = player->GetComponent<PlayerStatusManager>(false);
 		auto calorie = player->GetComponent<PlayerCalorieManager>(false);
 
 		if (status && calorie) {
@@ -220,6 +221,9 @@ namespace basecross {
 			generator->Generate(sm_nowMap);
 
 			EventSystem::GetInstance(GetThis<Stage>())->SetBasicInputer(PlayerInputer::GetInstance());
+
+			//EffectTest
+			//Instantiate<GameObject>()->AddComponent<HitEffectManager>(L"HitCream_Tx");
 
 			//スタート演出カメラのスタート
 			if (m_mapCsv->GetAdmissionCount(sm_nowMap) == 0) {

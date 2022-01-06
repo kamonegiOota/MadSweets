@@ -23,6 +23,7 @@ namespace basecross {
 
 		EnumType m_fromType;
 		EnumType m_toType;
+		int m_priority = 0;  //優先度
 
 	public:
 		EdgeBase(const EnumType from, const EnumType to)
@@ -32,7 +33,14 @@ namespace basecross {
 		EdgeBase(const EnumType from, const EnumType to,
 			const std::function<bool(const TransitionStructMember& member)>& isTransitionFunc
 		) :
-			m_fromType(from), m_toType(to), m_isTransitionFunc(isTransitionFunc)
+			EdgeBase(from, to, isTransitionFunc, static_cast<int>(to))
+		{}
+
+		EdgeBase(const EnumType from, const EnumType to,
+			const std::function<bool(const TransitionStructMember& member)>& isTransitionFunc,
+			const int priority
+		) :
+			m_fromType(from), m_toType(to), m_isTransitionFunc(isTransitionFunc), m_priority(priority)
 		{}
 
 		//アクセッサ--------------------------------------------------
@@ -54,6 +62,13 @@ namespace basecross {
 
 		EnumType GetToType() const {
 			return m_toType;
+		}
+
+		void SetPriority(const int priority) {
+			m_priority = priority;
+		}
+		int GetPriority() const {
+			return m_priority;
 		}
 	};
 

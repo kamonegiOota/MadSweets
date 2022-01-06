@@ -7,12 +7,12 @@
 #include "stdafx.h"
 #include "Project.h"
 
-#include "HpDrawMgr.h"
-#include "PlayerStatusMgr.h"
+#include "HpDrawManager.h"
+#include "PlayerStatusManager.h"
 
 namespace basecross {
 
-	void HpDrawMgr::CreateImage() {
+	void HpDrawManager::CreateImage() {
 		auto ui = GetStage()->Instantiate<UIObject>();
 		auto image = ui->AddComponent<Image>();
 		image->SetTextureResource(L"HpDraw_Tx");
@@ -22,13 +22,13 @@ namespace basecross {
 		m_image = image;
 	}
 
-	bool HpDrawMgr::IsDraw(const float& ratio) {
+	bool HpDrawManager::IsDraw(const float& ratio) {
 		//hpÇ™m_drawRatioÇÊÇËè¨Ç≥Ç©Ç¡ÇΩÇÁï\é¶Ç∑ÇÈÅB
 		return ratio < m_drawRatio ? true : false;
 	}
 
-	float HpDrawMgr::CalucAlpha() {
-		auto statusMgr = GetGameObject()->GetComponent<PlayerStatusMgr>();
+	float HpDrawManager::CalucAlpha() {
+		auto statusMgr = GetGameObject()->GetComponent<PlayerStatusManager>();
 		if (!statusMgr) {
 			return 0.0f;
 		}
@@ -42,7 +42,7 @@ namespace basecross {
 		}
 	}
 
-	void HpDrawMgr::ImageAlphaMgr() {
+	void HpDrawManager::ImageAlphaManager() {
 		auto alpha = CalucAlpha();
 
 		auto color = m_image->GetDiffuse();
@@ -50,12 +50,12 @@ namespace basecross {
 		m_image->SetDiffuse(color);
 	}
 
-	void HpDrawMgr::OnCreate() {
+	void HpDrawManager::OnCreate() {
 		CreateImage();
 	}
 
-	void HpDrawMgr::OnUpdate() {
-		ImageAlphaMgr();
+	void HpDrawManager::OnUpdate() {
+		ImageAlphaManager();
 	}
 
 }

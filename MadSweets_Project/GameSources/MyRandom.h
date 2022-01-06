@@ -32,6 +32,22 @@ namespace basecross {
 			}
 
 			/// <summary>
+			/// ランダムなベクトルを返す
+			/// </summary>
+			/// <param name="min">最小値</param>
+			/// <param name="max">最大値</param>
+			/// <returns>ランダムなベクトル</returns>
+			static Vec3 RandomVector(const Vec3& min, const Vec3& max) {
+				Vec3 randomPosition(0.0f);
+
+				randomPosition.x = Random(min.x, max.x);
+				randomPosition.y = Random(min.y, max.y);
+				randomPosition.z = Random(min.z, max.z);
+
+				return randomPosition;
+			}
+
+			/// <summary>
 			/// 何割の確率化変数で受け取る。
 			/// 0～100までの間の数値を引き数で受け取る。
 			/// </summary>
@@ -55,6 +71,17 @@ namespace basecross {
 				auto ran = MyRandom::Random(0, (int)vec.size() - 1);
 
 				return vec[ran];
+			}
+
+			/// <summary>
+			/// ランダムなポジションを返す。
+			/// </summary>
+			/// <param name="maxRangeBase">最大値のベース値</param>
+			/// <returns>ランダムなポジション</returns>
+			static Vec3 RandomPosition(const Vec3& maxRangeBase) {
+				auto maxRange = Vec3(abs(maxRangeBase.x), abs(maxRangeBase.y), abs(maxRangeBase.z));
+
+				return RandomVector(-maxRange, maxRange);
 			}
 
 		};

@@ -18,7 +18,7 @@
 #include "SoundHelper.h"
 
 #include "DebugObject.h"
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
 
 namespace basecross {
 
@@ -79,7 +79,7 @@ namespace basecross {
 			return;
 		}
 
-		auto weightMgr = other->GetComponent<PlayerWeightMgr>(false);
+		auto weightMgr = other->GetComponent<PlayerWeightManager>(false);
 		if (weightMgr) {
 			//‘¾‚Á‚Ä‚¢‚½‚ç
 			if (weightMgr->GetState() == WeightState::Chubby) {

@@ -31,8 +31,8 @@
 #include "WallEvasion.h"
 
 #include "TactileObject.h"
-#include "HandyStateMgr.h"
-#include "TargetMgr.h"
+#include "HandyStator.h"
+#include "TargetManager.h"
 #include "ChaseEnemyStator.h"
 
 #include "I_Chase.h"
@@ -45,12 +45,9 @@
 
 #include "WaitTimer.h"
 
-// 板橋　追加分 --------------------
-
 #include "SoundHelper.h"
 #include "HandySounder.h"
 
-// ---------------------------------
 namespace basecross {
 
 	void HandyObject::CreatePlowlingRoute() {
@@ -138,10 +135,10 @@ namespace basecross {
 		AddComponent<ThrowCtrl>();
 
 		//新規ステートマシン用の追記分
-		AddComponent<HandyStateMgr>();
+		AddComponent<HandyStator>();
 		//AddComponent<ChaseEnemyStator>();
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
-		AddComponent<TargetMgr>(player);
+		AddComponent<TargetManager>(player);
 
 		//本体は最後にする。
 		//AddComponent<ChaseEnemy>();
@@ -150,16 +147,13 @@ namespace basecross {
 
 		auto col = AddComponent<CollisionObb>();
 
-		CreatePlowlingRoute();
+		AddComponent<PlowlingMove>();
+		//CreatePlowlingRoute();
 		CreateTactile();
 		//CreateAnimetor();
 
-		// 板橋　追加分 ------------------------
-
 		AddComponent<SoundEmitter>();
 		AddComponent<HandySounder>();
-
-		// -------------------------------------
 	}
 
 	void HandyObject::OnUpdate() {

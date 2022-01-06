@@ -13,12 +13,12 @@ namespace basecross {
 
 	class WeightGaugeCtrl;
 
-	class PlayerWeightMgr : public Component
+	class PlayerWeightManager : public Component
 	{
 		ex_weak_ptr<WeightGaugeCtrl> m_gaugeCtrl;
 
 	public:
-		PlayerWeightMgr(const std::shared_ptr<GameObject>& objPtr)
+		PlayerWeightManager(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 

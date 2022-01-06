@@ -9,7 +9,7 @@
 
 namespace basecross {
 
-	class HpDrawMgr : public Component
+	class HpDrawManager : public Component
 	{
 		ex_weak_ptr<Image> m_image;
 
@@ -23,11 +23,11 @@ namespace basecross {
 		/// </summary>
 		/// <returns>アルファ値を返す</returns>
 		float CalucAlpha();
-		void ImageAlphaMgr();
+		void ImageAlphaManager();
 
 	public:
 
-		HpDrawMgr(const std::shared_ptr<GameObject>& objPtr)
+		HpDrawManager(const std::shared_ptr<GameObject>& objPtr)
 			:Component(objPtr)
 		{}
 

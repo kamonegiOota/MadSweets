@@ -14,36 +14,36 @@
 #include "I_ReturnPlowling.h"
 #include "HandyManager.h"
 
-#include "HandyStateMgr.h"
+#include "HandyStator.h"
 #include "HandyAnimator.h"
 
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 
 	void HandyManager::StartChase() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().chaseTrigger.Fire();
 		}
 	}
 
 	void HandyManager::EndChase() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().probeTrigger.Fire();
 		}
 	}
 
 	void HandyManager::StartProbe() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().probeTrigger.Fire();
 		}
 	}
 
 	void HandyManager::EndProbe() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().loseTrigger.Fire();
 		}
@@ -59,28 +59,28 @@ namespace basecross {
 	}
 
 	void HandyManager::Listen() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().soundCheckTrigger.Fire();
 		}
 	}
 
 	void HandyManager::EndListen() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().loseTrigger.Fire();
 		}
 	}
 
 	void HandyManager::StartReturnPlowling() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().loseTrigger.Fire();
 		}
 	}
 
 	void HandyManager::EndReturnPlowling() {
-		auto stator = GetGameObject()->GetComponent<HandyStateMgr>(false);
+		auto stator = GetGameObject()->GetComponent<HandyStator>(false);
 		if (stator) {
 			stator->GetTransitionMember().plowlingTrigger.Fire();
 		}

@@ -38,7 +38,7 @@ namespace basecross {
 		SoundCheck,
 	};
 
-	class HandyStateMgr : public StatorBase
+	class HandyStator : public StatorBase
 	{
 	public:
 		using HandyStateMachine = EnemyMainStateMachine<BaseEnemy, HandyStateType, HandyStateTransitionMember>;
@@ -51,7 +51,7 @@ namespace basecross {
 
 	public:
 
-		HandyStateMgr(std::shared_ptr<GameObject>& objPtr)
+		HandyStator(std::shared_ptr<GameObject>& objPtr)
 			:StatorBase(objPtr)
 		{}
 

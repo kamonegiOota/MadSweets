@@ -1,6 +1,6 @@
 /*!
-@file SearchObject.h
-@brief SearchObject‚È‚Ç
+@file BaseAttack.h
+@brief BaseAttack‚È‚Ç
 ’S“–ÒFŠÛR —TŠì
 */
 

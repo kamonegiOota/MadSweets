@@ -18,7 +18,7 @@
 
 namespace basecross {
 
-	float CrackCookie::CalucDamage(const std::shared_ptr<PlayerWeightMgr>& weightMgr) {
+	float CrackCookie::CalucDamage(const std::shared_ptr<PlayerWeightManager>& weightMgr) {
 		//将来重さによって床が受けるダメージが変わる時用の関数
 		//現在は1.0f減るのみ
 		return 1.0f;
@@ -65,7 +65,7 @@ namespace basecross {
 			return;
 		}
 
-		auto weightMgr = other->GetComponent<PlayerWeightMgr>(false);
+		auto weightMgr = other->GetComponent<PlayerWeightManager>(false);
 		if (weightMgr) {
 			//太っていたら
 			if (weightMgr->GetState() == WeightState::Chubby) {

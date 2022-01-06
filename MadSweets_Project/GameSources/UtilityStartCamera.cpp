@@ -32,9 +32,9 @@ namespace basecross {
 		},
 		{L"Stage3.csv",
 			{
-				StartCamera::ShowParam(
-					LiveMoveParam(Vec3(2.0f,0.0f,0.0f),Vec3(+4.0f,+0.0f,+0.0f)),
-					LiveMoveParam(Vec3(0.0f,0.0f,0.0f),Vec3(-3.0f,-3.0f,-3.0f)))
+				//StartCamera::ShowParam(
+				//	LiveMoveParam(Vec3(2.0f,0.0f,0.0f),Vec3(+4.0f,+0.0f,+0.0f)),
+				//	LiveMoveParam(Vec3(0.0f,0.0f,0.0f),Vec3(-3.0f,-3.0f,-3.0f)))
 			},
 		},
 	};

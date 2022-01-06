@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 namespace basecross {
 
@@ -76,9 +76,9 @@ namespace basecross {
 			m_chaseMode = ChaseMode::Look;
 			m_updateFunc = &TargetChase::LookMove;
 			
-			auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-			if (targetMgr) {
-				m_target = targetMgr->GetTarget();
+			auto targetManager = GetGameObject()->GetComponent<TargetManager>(false);
+			if (targetManager) {
+				m_target = targetManager->GetTarget();
 			}
 		}
 

@@ -26,7 +26,7 @@
 #include "ChaseEnemyStator.h"
 #include "CaraStator.h"
 
-#include "TargetMgr.h"
+#include "TargetManager.h"
 
 #include "SoundHelper.h"
 #include "CaraSounder.h"
@@ -98,9 +98,9 @@ namespace basecross {
 	}
 
 	void Cara_Attack::OnUpdate() {
-		auto targetMgr = GetGameObject()->GetComponent<TargetMgr>(false);
-		if (targetMgr) {
-			auto target = targetMgr->GetTarget();
+		auto targetManager = GetGameObject()->GetComponent<TargetManager>(false);
+		if (targetManager) {
+			auto target = targetManager->GetTarget();
 			if (target) {
 				transform->SetForward(maru::MyUtility::CalucToTargetVec(GetGameObject(), target));
 			}

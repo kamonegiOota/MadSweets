@@ -85,6 +85,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeCtrlBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FixedBox.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FlameMatch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FluidUVController.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FontHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameItem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameItemKeyObject.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameOverStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameSaveManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameTimer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonEventer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.h" />
@@ -108,11 +110,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandyObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HandySounder.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handy_Attack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HiddenComponent.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HitEffectManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HungerCompCtrl.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ItabashiStage.h" />
@@ -170,9 +173,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerRotater.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerSounder.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlowlingMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerProvider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStanceManager.h" />
@@ -210,8 +213,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TactileObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetChase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetEscape.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TargetProbe.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEatenObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEnemyNode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ThrowCtrl.h" />
@@ -300,6 +304,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeCtrlBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FixedBox.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FlameMatch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FluidUVController.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FontHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameItemKeyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameMessageWindowObject.cpp" />
@@ -307,6 +312,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameOverStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameSaveManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameTimer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonEventer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GaugeLinkedButtonOperator.cpp" />
@@ -321,11 +327,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandyObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HandySounder.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handy_Attack.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HiddenComponent.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HitEffectManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HungerCompCtrl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ItabashiStage.cpp" />
@@ -375,9 +382,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerOpenDoorManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerRotater.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerSounder.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerCalorieManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlowlingMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerProvider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStanceManager.cpp" />

@@ -136,7 +136,7 @@ namespace basecross {
 		AddComponent<CaraSounder>();
 
 		auto player = MyUtility::GetGameObject<PlayerObject>(GetStage());
-		AddComponent<TargetMgr>(player);
+		AddComponent<TargetManager>(player);
 		AddComponent<CaraStator>();
 
 		//ñ{ëÃÇÕç≈å„Ç…Ç∑ÇÈÅB
@@ -144,7 +144,8 @@ namespace basecross {
 
 		auto col = AddComponent<CollisionObb>();
 
-		CreatePlowlingRoute();
+		AddComponent<PlowlingMove>();
+		//CreatePlowlingRoute();
 		CreateTactile();
 	}
 

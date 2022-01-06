@@ -53,17 +53,17 @@ namespace basecross {
 
 	void EnState_Plowling::OnUpdate() {
 		auto object = GetOwner()->GetGameObject();
-		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto targetManager = object->GetComponent<TargetManager>(false);
 		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
 
 		//nullCheck
-		if (targetMgr == nullptr || eyeSearch == nullptr) {
+		if (targetManager == nullptr || eyeSearch == nullptr) {
 			DebugObject::AddString(L"EnState_Plowling:: コンポーネントが足りません。");
 			return;
 		}
 
 		//視界にターゲットが存在したら、Chaseに切替
-		auto target = targetMgr->GetTarget();
+		auto target = targetManager->GetTarget();
 		if (target) {
 			if (eyeSearch->IsInEyeRange(target)) {
 				ChangeState();

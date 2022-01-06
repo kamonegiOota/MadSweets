@@ -23,14 +23,15 @@
 #include"Lock.h"
 
 //丸山追記分インクルード
-#include "PlayerStatusMgr.h"
+#include "PlayerStatusManager.h"
 #include "TimerDamage.h"
 #include "StomachSound.h"
 #include "PulledSweets.h"
 #include "HungerCompCtrl.h"
-#include "HpDrawMgr.h"
+#include "HpDrawManager.h"
 
-#include "PlayerWeightMgr.h"
+#include "PlayerWeightManager.h"
+#include "HitEffectManager.h"
 
 namespace basecross
 {
@@ -95,15 +96,18 @@ namespace basecross
 		AddComponent<LockPlayer>();
 
 		//丸山追記文
-		AddComponent<PlayerStatusMgr>();  //ステータス管理コンポーネント
+		AddComponent<PlayerStatusManager>();  //ステータス管理コンポーネント
 		AddComponent<TimerDamage>()->SetUpdateActive(false);  //飢餓状態で一定時間ごとにダメージを受ける処理
 		AddComponent<StomachSound>()->SetUpdateActive(false); //飢餓状態で一定時間ごとに腹の音がなる処理。
 		AddComponent<PulledSweets>()->SetUpdateActive(false); //飢餓状態でお菓子の方向に引っ張られる処理
 		AddComponent<HungerCompCtrl>();
-		
-		AddComponent<HpDrawMgr>();
 
-		AddComponent<PlayerWeightMgr>();
+		auto hitEffectParam = HitEffectManager::Parametor(L"HitCream_Tx", Col4(0.9f, 0.85f, 0.65f, 0.0f), 0.5f, 0.8f);
+		AddComponent<HitEffectManager>(hitEffectParam);
+		
+		AddComponent<HpDrawManager>();
+
+		AddComponent<PlayerWeightManager>();
 		
 		AddComponent<Gravity>();
 

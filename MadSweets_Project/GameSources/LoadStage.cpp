@@ -81,6 +81,9 @@ namespace basecross
 		ResourceLoadData(L"SkinnyFont_Tx"  , L"WeightTx_SkinnyFont.png"),
 		ResourceLoadData(L"SkinnyGauge_Tx" , L"WeightTx_SkinnyGauge.png"),
 
+		//ダメージ表記
+		ResourceLoadData(L"HitCream_Tx" , L"HitCream.png"),
+
 		//デバッグ用
 		ResourceLoadData(L"Arrow_Tx" , L"Arrow.png"),
 		ResourceLoadData(L"Number_Tx" , L"Number.png"),

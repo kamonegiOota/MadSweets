@@ -16,6 +16,8 @@
 #include "Lock.h"
 #include "MyUtility.h"
 
+#include "PlayerInputer.h"
+
 namespace basecross {
 
 	std::shared_ptr<GameStage> StartCamera::GetGameStage() {
@@ -154,9 +156,7 @@ namespace basecross {
 	}
 
 	void StartCamera::Skip(){
-		auto pad = GetPad();
-
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
+		if (PlayerInputer::IsDecision()) {
 			ChangeCamera();
 			//LockMove(false);
 		}

@@ -64,21 +64,6 @@
     <Filter Include="Maru">
       <UniqueIdentifier>{d3af788f-c0c9-4122-9ab8-27d30e05e62e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Astar">
-      <UniqueIdentifier>{ceb38311-a939-4f54-914d-4553ac69e531}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Astar\GraphNode">
-      <UniqueIdentifier>{fd7ddc07-2b43-4996-903e-2df1a49d9fbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Astar\GraphEdge">
-      <UniqueIdentifier>{5c3cd9e0-b287-4aee-b098-24bcdd6fd7af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Astar\GraphNode\NavGraphNode">
-      <UniqueIdentifier>{0127342d-7a04-425a-a63e-dd2a8650a656}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Astar\SparseGraph">
-      <UniqueIdentifier>{146890ae-e14b-4f42-b16f-b1c8e8b6d6d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\TestStage">
       <UniqueIdentifier>{84e15fa2-dc3d-46bd-a2e2-6b680dbee1e2}</UniqueIdentifier>
     </Filter>
@@ -106,20 +91,11 @@
     <Filter Include="Maru\Enemy\Object">
       <UniqueIdentifier>{4965dc1f-7a8c-4767-b962-af79a521793d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Astar\Heuristic">
-      <UniqueIdentifier>{84fe0058-3e9b-4ce8-8dd8-aebbe9290e97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Astar\GraphAstar">
-      <UniqueIdentifier>{104f405c-f970-4d1a-a158-badb80056fa2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Component">
       <UniqueIdentifier>{bd7b30f6-fffc-4b3a-a4bc-c06e624a3bfe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\Component\Enemy">
       <UniqueIdentifier>{48186e4c-0c09-4d6f-aaf2-887440318ea5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine">
-      <UniqueIdentifier>{202a3964-3764-46d9-a6ae-c53493ab2e4b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\EnemyStateMachine">
       <UniqueIdentifier>{30be2354-38be-413d-82d9-8eef988daf03}</UniqueIdentifier>
@@ -271,9 +247,6 @@
     <Filter Include="Maru\Enemy\AstarCtrl\CalucEscapeRoute">
       <UniqueIdentifier>{83bd686a-1912-474b-b5d5-427224540019}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Astar\GraphAstar\UtilityAstar">
-      <UniqueIdentifier>{f741759d-93b9-4df0-a1b3-002c0cad64c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\EnemyStateMachine\EnState_EscapeMove">
       <UniqueIdentifier>{1ed975ae-d20b-413e-8ce3-2335c25c2b3b}</UniqueIdentifier>
     </Filter>
@@ -391,9 +364,6 @@
     <Filter Include="Maru\MaruPlayer\Component">
       <UniqueIdentifier>{9d9d01c7-dbd6-48ab-bd75-08879bd869ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr">
-      <UniqueIdentifier>{3635aded-36d5-468b-bf70-bd1f4b01f505}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\MaruPlayer\Component\Hunger">
       <UniqueIdentifier>{82129509-7fa9-40cd-924d-ac88b21da835}</UniqueIdentifier>
     </Filter>
@@ -411,9 +381,6 @@
     </Filter>
     <Filter Include="Maru\MaruPlayer\Component\Hunger\HungerCompCtrl">
       <UniqueIdentifier>{478b2b8c-ad1b-4fda-ac76-0b64a8fcfff8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr">
-      <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\TestStage\TitleStage\TitleName">
       <UniqueIdentifier>{163091b9-7a70-41f0-ac28-9a90e8aaa24d}</UniqueIdentifier>
@@ -465,9 +432,6 @@
     </Filter>
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl">
       <UniqueIdentifier>{60cde739-2f09-433d-a45e-eb63b9161a57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr">
-      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\MaruPlayer\WeihtGauge\Component\ScalePop">
       <UniqueIdentifier>{b7d39aea-c924-48fd-b171-6982e9bfd14d}</UniqueIdentifier>
@@ -652,12 +616,6 @@
     <Filter Include="Itabashi\Components\PlayerComponent\PlayerGameItemGetter">
       <UniqueIdentifier>{d62bec21-0002-4a14-ab16-ab5341823f0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\Enemy\Component\Enemy\UtilityEnemy">
-      <UniqueIdentifier>{75e5ea27-a6ee-48d9-8675-18de8e528b5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Component\BossCameraEvent">
-      <UniqueIdentifier>{4b653e4e-9e41-464d-8802-cb691452456c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Object\StageObject\PointLightObject">
       <UniqueIdentifier>{8df1a5c4-ad20-4b4d-b35b-6d20ebe0d551}</UniqueIdentifier>
     </Filter>
@@ -712,27 +670,6 @@
     <Filter Include="Maru\Enemy\Component\Move\TargetChase\ChaseAstarMove">
       <UniqueIdentifier>{1a70eff2-f7f3-4e15-bf10-9666fbbfb031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maru\StateMachine\EnemyMainStateMachine">
-      <UniqueIdentifier>{a93236f3-82c6-4d1f-a67e-43bca6b9eb8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Component\TargetMgr">
-      <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine\Graph">
-      <UniqueIdentifier>{3325f465-c6e9-404d-98b6-9c19a74f63db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine\Graph\GraphBase">
-      <UniqueIdentifier>{3d1efeb6-4bf9-46ce-8ac6-59ebacdedcf5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine\Graph\EdgeBase">
-      <UniqueIdentifier>{2e015852-b2fe-48fa-ac67-9b9e51ad321c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine\Graph\NodeBase">
-      <UniqueIdentifier>{85039332-7766-46bd-9de6-2fa964bf6a87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\StateMachine\Test">
-      <UniqueIdentifier>{d05c5de4-797f-4428-998b-d9f6ad31325e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject">
       <UniqueIdentifier>{b3c1623e-1b29-434d-ba54-d7ddae1f4b53}</UniqueIdentifier>
     </Filter>
@@ -744,9 +681,6 @@
     </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyAnimator">
       <UniqueIdentifier>{6c7aa04a-5a2a-4ee7-989b-0585742344e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr">
-      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
     </Filter>
     <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\CaraObject">
       <UniqueIdentifier>{afb1f578-952f-4721-b759-e71ef8d5fb3d}</UniqueIdentifier>
@@ -799,6 +733,81 @@
     <Filter Include="Maru\Camera\UtilityCamera">
       <UniqueIdentifier>{b560860c-1668-4915-800c-f598d6f2f327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maru\Enemy\Component\Attack\HitEffectManager">
+      <UniqueIdentifier>{fd89deb4-b3b5-49b8-bdad-e41ac2753622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine">
+      <UniqueIdentifier>{202a3964-3764-46d9-a6ae-c53493ab2e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\EnemyMainStateMachine">
+      <UniqueIdentifier>{a93236f3-82c6-4d1f-a67e-43bca6b9eb8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\Graph">
+      <UniqueIdentifier>{3325f465-c6e9-404d-98b6-9c19a74f63db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\Graph\GraphBase">
+      <UniqueIdentifier>{3d1efeb6-4bf9-46ce-8ac6-59ebacdedcf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\Graph\EdgeBase">
+      <UniqueIdentifier>{2e015852-b2fe-48fa-ac67-9b9e51ad321c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\Graph\NodeBase">
+      <UniqueIdentifier>{85039332-7766-46bd-9de6-2fa964bf6a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\Test">
+      <UniqueIdentifier>{d05c5de4-797f-4428-998b-d9f6ad31325e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar">
+      <UniqueIdentifier>{ceb38311-a939-4f54-914d-4553ac69e531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\GraphNode">
+      <UniqueIdentifier>{fd7ddc07-2b43-4996-903e-2df1a49d9fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\GraphNode\NavGraphNode">
+      <UniqueIdentifier>{0127342d-7a04-425a-a63e-dd2a8650a656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\GraphEdge">
+      <UniqueIdentifier>{5c3cd9e0-b287-4aee-b098-24bcdd6fd7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\SparseGraph">
+      <UniqueIdentifier>{146890ae-e14b-4f42-b16f-b1c8e8b6d6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\Heuristic">
+      <UniqueIdentifier>{84fe0058-3e9b-4ce8-8dd8-aebbe9290e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\GraphAstar">
+      <UniqueIdentifier>{104f405c-f970-4d1a-a158-badb80056fa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Astar\GraphAstar\UtilityAstar">
+      <UniqueIdentifier>{f741759d-93b9-4df0-a1b3-002c0cad64c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\TestStage\UtilityEnemy">
+      <UniqueIdentifier>{75e5ea27-a6ee-48d9-8675-18de8e528b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Component\TargetManager">
+      <UniqueIdentifier>{505deddc-246f-46dd-9a52-b566d9a31a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator">
+      <UniqueIdentifier>{26f718d8-b265-4b4d-90e4-da1c327f2d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\Enemy\StateMachine\TaskList">
+      <UniqueIdentifier>{fd282f8d-104f-4fb9-bff9-c9d7c8fe6530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\UV">
+      <UniqueIdentifier>{8a5665e3-eabc-400b-a308-fb5c2fa71704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruUthilyty\GameTimer">
+      <UniqueIdentifier>{178b23fc-0661-419f-8946-a880a2401087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager">
+      <UniqueIdentifier>{3635aded-36d5-468b-bf70-bd1f4b01f505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager">
+      <UniqueIdentifier>{e49a8935-de1c-4a8a-a1f2-5ac69604bfc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager">
+      <UniqueIdentifier>{787ef13b-4179-47e6-a0d6-16b3825bd976}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
@@ -844,22 +853,22 @@
       <Filter>Objects\Player</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphNode.h">
-      <Filter>Maru\Astar\GraphNode</Filter>
+      <Filter>Maru\Enemy\Astar\GraphNode</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEdge.h">
-      <Filter>Maru\Astar\GraphEdge</Filter>
+      <Filter>Maru\Enemy\Astar\GraphEdge</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)NavGraphNode.h">
-      <Filter>Maru\Astar\GraphNode\NavGraphNode</Filter>
+      <Filter>Maru\Enemy\Astar\GraphNode\NavGraphNode</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SparseGraph.h">
-      <Filter>Maru\Astar\SparseGraph</Filter>
+      <Filter>Maru\Enemy\Astar\SparseGraph</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Heuristic.h">
-      <Filter>Maru\Astar\Heuristic</Filter>
+      <Filter>Maru\Enemy\Astar\Heuristic</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphAstar.h">
-      <Filter>Maru\Astar\GraphAstar</Filter>
+      <Filter>Maru\Enemy\Astar\GraphAstar</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseEnemy.h">
       <Filter>Maru\Enemy\Component\Enemy</Filter>
@@ -902,9 +911,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_Plowling.h">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_Plowling</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h">
-      <Filter>Maru\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_TargetChase.h">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_TargetChase</Filter>
@@ -1042,7 +1048,7 @@
       <Filter>Maru\Enemy\AstarCtrl\CalucEscapeRoute</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityAstar.h">
-      <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
+      <Filter>Maru\Enemy\Astar\GraphAstar\UtilityAstar</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.h">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_EscapeMove</Filter>
@@ -1134,8 +1140,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)I_Damaged.h">
       <Filter>Maru\Enemy\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerStatusManager.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimerDamage.h">
       <Filter>Maru\MaruPlayer\Component\Hunger\TimerDamage</Filter>
@@ -1152,8 +1158,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HungerCompCtrl.h">
       <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawMgr.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HpDrawManager.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleNameObject.h">
       <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
@@ -1188,8 +1194,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.h">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerWeightManager.h">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ScalePop.h">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
@@ -1360,7 +1366,7 @@
       <Filter>Itabashi\Objects\GameMessageWindowObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityEnemy.h">
-      <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
+      <Filter>Maru\TestStage\UtilityEnemy</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PointLightObject.h">
       <Filter>Maru\Object\StageObject\PointLightObject</Filter>
@@ -1393,31 +1399,31 @@
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EdgeBase.h">
-      <Filter>Maru\StateMachine\Graph\EdgeBase</Filter>
+      <Filter>Maru\Enemy\StateMachine\Graph\EdgeBase</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphBase.h">
-      <Filter>Maru\StateMachine\Graph\GraphBase</Filter>
+      <Filter>Maru\Enemy\StateMachine\Graph\GraphBase</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStateMgr.h">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HandyStator.h">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TargetMgr.h">
-      <Filter>Maru\Enemy\Component\TargetMgr</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TargetManager.h">
+      <Filter>Maru\Enemy\Component\TargetManager</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyMainStateMachine.h">
-      <Filter>Maru\StateMachine\EnemyMainStateMachine</Filter>
+      <Filter>Maru\Enemy\StateMachine\EnemyMainStateMachine</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)NodeBase.h">
-      <Filter>Maru\StateMachine\Graph\NodeBase</Filter>
+      <Filter>Maru\Enemy\StateMachine\Graph\NodeBase</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TestEnemyNode.h">
-      <Filter>Maru\StateMachine\Test</Filter>
+      <Filter>Maru\Enemy\StateMachine\Test</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyStateNodeBase.h">
-      <Filter>Maru\StateMachine\Graph\NodeBase</Filter>
+      <Filter>Maru\Enemy\StateMachine\Graph\NodeBase</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StatorBase.h">
-      <Filter>Maru\StateMachine</Filter>
+      <Filter>Maru\Enemy\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CaraStator.h">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
@@ -1473,6 +1479,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UtilityStartCamera.h">
       <Filter>Maru\Camera\UtilityCamera</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HitEffectManager.h">
+      <Filter>Maru\Enemy\Component\Attack\HitEffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StateMachine.h">
+      <Filter>Maru\Enemy\StateMachine\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskList.h">
+      <Filter>Maru\Enemy\StateMachine\TaskList</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FluidUVController.h">
+      <Filter>Maru\UV</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameTimer.h">
+      <Filter>Maru\MaruUthilyty\GameTimer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
@@ -1509,10 +1530,10 @@
       <Filter>Objects\Player</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphNode.cpp">
-      <Filter>Maru\Astar\GraphNode</Filter>
+      <Filter>Maru\Enemy\Astar\GraphNode</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEdge.cpp">
-      <Filter>Maru\Astar\GraphEdge</Filter>
+      <Filter>Maru\Enemy\Astar\GraphEdge</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerInputer.cpp">
       <Filter>Itabashi\Inputs\PlayerInputer</Filter>
@@ -1536,10 +1557,10 @@
       <Filter>Maru\Enemy\Component\Move\PlowlingMove</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Heuristic.cpp">
-      <Filter>Maru\Astar\Heuristic</Filter>
+      <Filter>Maru\Enemy\Astar\Heuristic</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphAstar.cpp">
-      <Filter>Maru\Astar\GraphAstar</Filter>
+      <Filter>Maru\Enemy\Astar\GraphAstar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AstarCtrl.cpp">
       <Filter>Maru\Enemy\AstarCtrl</Filter>
@@ -1677,7 +1698,7 @@
       <Filter>Maru\Enemy\AstarCtrl\CalucEscapeRoute</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityAstar.cpp">
-      <Filter>Maru\Astar\GraphAstar\UtilityAstar</Filter>
+      <Filter>Maru\Enemy\Astar\GraphAstar\UtilityAstar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)EnState_EscapeMove.cpp">
       <Filter>Maru\Enemy\EnemyStateMachine\EnState_EscapeMove</Filter>
@@ -1760,8 +1781,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRandom.cpp">
       <Filter>Maru\MaruUthilyty\MyRandom</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerStatusManager.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CookieHideObject.cpp">
       <Filter>Maru\Object\StageObject\CookieHideObject</Filter>
@@ -1781,8 +1802,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HungerCompCtrl.cpp">
       <Filter>Maru\MaruPlayer\Component\Hunger\HungerCompCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\HpDrawMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HpDrawManager.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\HpDrawManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleNameObject.cpp">
       <Filter>Maru\TestStage\TitleStage\TitleName\TItleNameObject</Filter>
@@ -1814,8 +1835,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)WeightGaugeCtrl.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\WeihtGaugeCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightMgr.cpp">
-      <Filter>Maru\MaruPlayer\Component\PlayerStatusMgr\WeightMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerWeightManager.cpp">
+      <Filter>Maru\MaruPlayer\Component\PlayerStatusManager\WeightManager</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ScalePop.cpp">
       <Filter>Maru\MaruPlayer\WeihtGauge\Component\ScalePop</Filter>
@@ -1974,7 +1995,7 @@
       <Filter>Itabashi\Objects\GameMessageWindowObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityEnemy.cpp">
-      <Filter>Maru\Enemy\Component\Enemy\UtilityEnemy</Filter>
+      <Filter>Maru\TestStage\UtilityEnemy</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PointLightObject.cpp">
       <Filter>Maru\Object\StageObject\PointLightObject</Filter>
@@ -2006,11 +2027,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)NumbersObject.cpp">
       <Filter>Maru\Object\NumbersObject</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStateMgr.cpp">
-      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStateMgr</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HandyStator.cpp">
+      <Filter>Maru\Enemy\Object\ChaseEnemyObject\HandyObject\HandyComp\HandyStator</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TestEnemyNode.cpp">
-      <Filter>Maru\StateMachine\Test</Filter>
+      <Filter>Maru\Enemy\StateMachine\Test</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CaraStator.cpp">
       <Filter>Maru\Enemy\Object\ChaseEnemyObject\CaraObject\CaraComp\CaraStator</Filter>
@@ -2056,6 +2077,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UtilityStartCamera.cpp">
       <Filter>Maru\Camera\UtilityCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HitEffectManager.cpp">
+      <Filter>Maru\Enemy\Component\Attack\HitEffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FluidUVController.cpp">
+      <Filter>Maru\UV</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameTimer.cpp">
+      <Filter>Maru\MaruUthilyty\GameTimer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

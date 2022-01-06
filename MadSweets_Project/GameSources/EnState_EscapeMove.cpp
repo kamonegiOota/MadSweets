@@ -12,7 +12,7 @@
 #include "AstarPlowlingMove.h"
 #include "TargetEscape.h"
 #include "AstarCtrl.h"
-#include "TargetMgr.h"
+#include "TargetManager.h"
 #include "EyeSearchRange.h"
 #include "I_Escape.h"
 
@@ -32,9 +32,9 @@ namespace basecross {
 	void EnState_EscapeMove::OnStart() {
 		auto obj = GetOwner()->GetGameObject();
 
-		auto targetMgr = obj->GetComponent<TargetMgr>(false);
-		if (targetMgr) {
-			m_target = targetMgr->GetTarget();
+		auto targetManager = obj->GetComponent<TargetManager>(false);
+		if (targetManager) {
+			m_target = targetManager->GetTarget();
 		}
 
 		auto targetEscape = obj->GetComponent<TargetEscape>(false);
@@ -58,17 +58,17 @@ namespace basecross {
 
 	void EnState_EscapeMove::OnUpdate() {
 		auto object = GetOwner()->GetGameObject();
-		auto targetMgr = object->GetComponent<TargetMgr>(false);
+		auto targetManager = object->GetComponent<TargetManager>(false);
 		auto eyeSearch = object->GetComponent<EyeSearchRange>(false);
 
 		//nullCheck
-		if (targetMgr == nullptr || eyeSearch == nullptr) {
+		if (targetManager == nullptr || eyeSearch == nullptr) {
 			DebugObject::AddString(L"EnState_EscapeMove:: コンポーネントが足りません。");
 			return;
 		}
 
 		//視界にターゲットが存在したら、Chaseに切替
-		auto target = targetMgr->GetTarget();
+		auto target = targetManager->GetTarget();
 		if (target) {
 			if (eyeSearch->IsInEyeRange(target)) {
 				ChangeState();
